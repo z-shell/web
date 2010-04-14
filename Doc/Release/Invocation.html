@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on May, 28 2009 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>zsh: 4. Invocation</title>
+
+<meta name="description" content="zsh: 4. Invocation">
+<meta name="keywords" content="zsh: 4. Invocation">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Invocation"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Roadmap.html#SEC20" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC22" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Roadmap.html#SEC12" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Files.html#SEC25" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+
+<a name="SEC21"></a>
+<h1 class="chapter"> 4. Invocation </h1>
+
+<hr size="6">
+<a name="SEC22"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC21" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC23" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC21" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC21" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Files.html#SEC25" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section"> 4.1 Invocation Options </h2>
+<p>The following flags are interpreted by the shell when invoked to determine
+where the shell will read commands from:
+</p>
+<dl compact="compact">
+<dt> <tt>-c</tt></dt>
+<dd><p>Take the first argument as a command to execute, rather than reading commands
+from a script or standard input.  If any further arguments are given, the
+first one is assigned to <tt>$0</tt>, rather than being used as a positional
+parameter.
+</p>
+</dd>
+<dt> <tt>-i</tt></dt>
+<dd><p>Force shell to be interactive.
+</p>
+</dd>
+<dt> <tt>-s</tt></dt>
+<dd><p>Force shell to read commands from the standard input.
+If the <tt>-s</tt> flag is not present and an argument is given,
+the first argument is taken to be the pathname of a script to
+execute.
+</p>
+</dd>
+</dl>
+
+<p>After the first one or two arguments have been appropriated as described above,
+the remaining arguments are assigned to the positional parameters.
+</p>
+<p>For further options, which are common to invocation and the <tt>set</tt>
+builtin, see
+<a href="Options.html#SEC99">Options</a>.
+</p>
+<p>Options may be specified by name using the <tt>-o</tt> option.  <tt>-o</tt> acts like
+a single-letter option, but takes a following string as the option name.
+For example,
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">zsh -x -o shwordsplit scr
+</pre></td></tr></table>
+
+<p>runs the script <tt>scr</tt>, setting the <tt>XTRACE</tt> option by the corresponding
+letter `<tt>-x</tt>' and the <tt>SH_WORD_SPLIT</tt> option by name.
+Options may be turned <em>off</em> by name by using <tt>+o</tt> instead of <tt>-o</tt>.
+<tt>-o</tt> can be stacked up with preceding single-letter options, so for example
+`<tt>-xo shwordsplit</tt>' or `<tt>-xoshwordsplit</tt>' is equivalent to
+`<tt>-x -o shwordsplit</tt>'.
+</p>
+<a name="IDX5"></a>
+<p>Options may also be specified by name in GNU long option style,
+`<tt>-</tt><tt>-</tt><var>option-name</var>'.  When this is done, `<tt>-</tt>' characters in the
+option name are permitted: they are translated into `<tt>_</tt>', and thus ignored.
+So, for example, `<tt>zsh -</tt><tt>-sh-word-split</tt>' invokes zsh with the
+<tt>SH_WORD_SPLIT</tt> option turned on.  Like other option syntaxes, options can
+be turned off by replacing the initial `<tt>-</tt>' with a `<tt>+</tt>'; thus
+`<tt>+-sh-word-split</tt>' is equivalent to `<tt>-</tt><tt>-no-sh-word-split</tt>'.
+Unlike other option syntaxes, GNU-style long options cannot be stacked with
+any other options, so for example `<tt>-x-shwordsplit</tt>' is an error,
+rather than being treated like `<tt>-x -</tt><tt>-shwordsplit</tt>'.
+</p>
+<a name="IDX6"></a>
+<a name="IDX7"></a>
+<p>The special GNU-style option `<tt>-</tt><tt>-version</tt>' is handled; it sends to
+standard output the shell's version information, then exits successfully.
+`<tt>-</tt><tt>-help</tt>' is also handled; it sends to standard output a list of
+options that can be used when invoking the shell, then exits successfully.
+</p>
+<p>Option processing may be finished, allowing following arguments that start with
+`<tt>-</tt>' or `<tt>+</tt>' to be treated as normal arguments, in two ways.
+Firstly, a lone `<tt>-</tt>' (or `<tt>+</tt>') as an argument by itself ends
+option processing.  Secondly, a special option `<tt>-</tt><tt>-</tt>' (or
+`<tt>+-</tt>'), which may be specified on its own (which is the standard
+POSIX usage) or may be stacked with preceding options (so `<tt>-x-</tt>' is
+equivalent to `<tt>-x -</tt><tt>-</tt>').  Options are not permitted to be stacked
+after `<tt>-</tt><tt>-</tt>' (so `<tt>-x-f</tt>' is an error), but note the GNU-style
+option form discussed above, where `<tt>-</tt><tt>-shwordsplit</tt>' is permitted
+and does not end option processing.
+</p>
+<p>Except when the <cite>sh</cite>/<cite>ksh</cite> emulation single-letter options are in effect,
+the option `<tt>-b</tt>' (or `<tt>+b</tt>') ends option processing.
+`<tt>-b</tt>' is like `<tt>-</tt><tt>-</tt>', except that further single-letter options
+can be stacked after the `<tt>-b</tt>' and will take effect as normal.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#SEC23">4.2 Compatibility</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#SEC24">4.3 Restricted Shell</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Compatibility"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC22" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC24" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC21" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC21" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Files.html#SEC25" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+
+<a name="SEC23"></a>
+<h2 class="section"> 4.2 Compatibility </h2>
+<p>Zsh tries to emulate <cite>sh</cite> or <cite>ksh</cite> when it is invoked as
+<tt>sh</tt> or <tt>ksh</tt> respectively; more precisely, it looks at the first
+letter of the name by which it was invoked, excluding any initial `<tt>r</tt>'
+(assumed to stand for `restricted'), and if that is `<tt>s</tt>' or `<tt>k</tt>' it
+will emulate <cite>sh</cite> or <cite>ksh</cite>.  Furthermore, if invoked as <tt>su</tt> (which
+happens on certain systems when the shell is executed by the <tt>su</tt>
+command), the shell will try to find an alternative name from the <tt>SHELL</tt>
+environment variable and perform emulation based on that.
+</p>
+<p>In <cite>sh</cite> and <cite>ksh</cite> compatibility modes the following
+parameters are not special and not initialized by the shell:
+<tt>ARGC</tt>,
+<tt>argv</tt>,
+<tt>cdpath</tt>,
+<tt>fignore</tt>,
+<tt>fpath</tt>,
+<tt>HISTCHARS</tt>,
+<tt>mailpath</tt>,
+<tt>MANPATH</tt>,
+<tt>manpath</tt>,
+<tt>path</tt>,
+<tt>prompt</tt>,
+<tt>PROMPT</tt>,
+<tt>PROMPT2</tt>,
+<tt>PROMPT3</tt>,
+<tt>PROMPT4</tt>,
+<tt>psvar</tt>,
+<tt>status</tt>,
+<tt>watch</tt>.
+</p>
+<a name="IDX8"></a>
+<p>The usual zsh startup/shutdown scripts are not executed.  Login shells
+source <tt>/etc/profile</tt> followed by <tt>$HOME/.profile</tt>.  If the
+<tt>ENV</tt> environment variable is set on invocation, <tt>$ENV</tt> is sourced
+after the profile scripts.  The value of <tt>ENV</tt> is subjected to
+parameter expansion, command substitution, and arithmetic expansion
+before being interpreted as a pathname.  Note that the <tt>PRIVILEGED</tt>
+option also affects the execution of startup files.
+</p>
+<p>The following options are set if the shell is invoked as <tt>sh</tt> or
+<tt>ksh</tt>:
+<tt>NO_BAD_PATTERN</tt>,
+<tt>NO_BANG_HIST</tt>,
+<tt>NO_BG_NICE</tt>,
+<tt>NO_EQUALS</tt>,
+<tt>NO_FUNCTION_ARGZERO</tt>,
+<tt>GLOB_SUBST</tt>,
+<tt>NO_GLOBAL_EXPORT</tt>,
+<tt>NO_HUP</tt>,
+<tt>INTERACTIVE_COMMENTS</tt>,
+<tt>KSH_ARRAYS</tt>,
+<tt>NO_MULTIOS</tt>,
+<tt>NO_NOMATCH</tt>,
+<tt>NO_NOTIFY</tt>,
+<tt>POSIX_BUILTINS</tt>,
+<tt>NO_PROMPT_PERCENT</tt>,
+<tt>RM_STAR_SILENT</tt>,
+<tt>SH_FILE_EXPANSION</tt>,
+<tt>SH_GLOB</tt>,
+<tt>SH_OPTION_LETTERS</tt>,
+<tt>SH_WORD_SPLIT</tt>.
+Additionally the <tt>BSD_ECHO</tt> and <tt>IGNORE_BRACES</tt>
+options are set if zsh is invoked as <tt>sh</tt>.
+Also, the
+<tt>KSH_OPTION_PRINT</tt>,
+<tt>LOCAL_OPTIONS</tt>,
+<tt>PROMPT_BANG</tt>,
+<tt>PROMPT_SUBST</tt>
+and
+<tt>SINGLE_LINE_ZLE</tt>
+options are set if zsh is invoked as <tt>ksh</tt>.
+</p><hr size="6">
+<a name="Restricted-Shell"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC23" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Files.html#SEC25" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC21" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SEC21" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Files.html#SEC25" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+
+<a name="SEC24"></a>
+<h2 class="section"> 4.3 Restricted Shell </h2>
+<p>When the basename of the command used to invoke zsh starts with the letter
+`<tt>r</tt>' or the `<tt>-r</tt>' command line option is supplied at invocation, the
+shell becomes restricted.  Emulation mode is determined after stripping the
+letter `<tt>r</tt>' from the invocation name.  The following are disabled in
+restricted mode:
+</p>
+<ul>
+<li> 
+changing directories with the <tt>cd</tt> builtin
+</li><li> 
+changing or unsetting the <tt>PATH</tt>, <tt>path</tt>, <tt>MODULE_PATH</tt>,
+<tt>module_path</tt>, <tt>SHELL</tt>, <tt>HISTFILE</tt>, <tt>HISTSIZE</tt>, <tt>GID</tt>, <tt>EGID</tt>,
+<tt>UID</tt>, <tt>EUID</tt>, <tt>USERNAME</tt>, <tt>LD_LIBRARY_PATH</tt>,
+<tt>LD_AOUT_LIBRARY_PATH</tt>, <tt>LD_PRELOAD</tt> and  <tt>LD_AOUT_PRELOAD</tt>
+parameters
+</li><li> 
+specifying command names containing <tt>/</tt>
+</li><li> 
+specifying command pathnames using <tt>hash</tt>
+</li><li> 
+redirecting output to files
+</li><li> 
+using the <tt>exec</tt> builtin command to replace the shell with another
+command
+</li><li> 
+using <tt>jobs -Z</tt> to overwrite the shell process' argument and
+environment space
+</li><li> 
+using the <tt>ARGV0</tt> parameter to override <tt>argv[0]</tt> for external
+commands
+</li><li> 
+turning off restricted mode with <tt>set +r</tt> or <tt>unsetopt
+RESTRICTED</tt>
+</li></ul>
+
+<p>These restrictions are enforced after processing the startup files.  The
+startup files should set up <tt>PATH</tt> to point to a directory of commands
+which can be safely invoked in the restricted environment.  They may also
+add further restrictions by disabling selected builtins.
+</p>
+<p>Restricted mode can also be activated any time by setting the
+<tt>RESTRICTED</tt> option.  This immediately enables all the restrictions
+described above even if the shell still has not processed all startup
+files.
+</p><hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC21" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Files.html#SEC25" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Oliver Kiddle</em> on <em>May, 28 2009</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>ZSH 3.0.6 News</title>
+</head>
+
+<body>
+<h1>New features in zsh version 3.0.6</h1>
+Most of these changes are designed to improve compatibility with zsh
+version 3.1.6, the latest development release.  However, this release also
+fixes all known Year 2000 (Y2K) bugs in zsh 3.0.
+<FONT SIZE="+1">History changes:</FONT><BR>
+<ul>
+  <li>
+      whitespace between words is ignored in history searches
+  <li>
+      new option <code>HIST_REDUCE_BLANKS</code> removes extra whitespace in
+      the stored history
+  <li>
+      support for reading (but not writing) version 3.1.6 history files
+</ul>
+<FONT SIZE="+1">Globbing changes:</FONT><BR>
+<ul>
+  <li>
+      the <code>a, c, and m</code> glob qualifiers can now test time in
+      seconds;
+  <li>
+      globbing of number ranges behaves more like character ranges in that
+      it can match a prefix of a number, e.g. <code>`<1-5>*'</code> matches
+      <code>1, 2, 3, 4, 5, 17, 23skiddoo, 5986,</code> etc., but not
+      <code>6, 7, 8ball, 911,</code> etc.
+</ul>
+<FONT SIZE="+1">Parameter and expansion changes:</FONT><BR>
+<ul>
+  <li>
+      expansion of <code>~</code> and other globbing flags via
+      <code>${~param}</code> do not depend upon <code>EXTENDED_GLOB</code>
+      (bug fix)
+  <li>
+      nested parameter substitutions require braces (this was always the
+      documented behavior, but previous parsers didn't enforce it);
+      quote only nested expansion, e.g. <code>${(f)"$(&lt;file)"}</code>
+      reads complete `file', then splits lines into array
+</ul>
+      <FONT SIZE="+1">Builtin and function changes:</FONT><BR>
+<ul>
+  <li>
+      <code>`typeset -U'</code> works on the colon-array version of linked
+      parameters
+  <li>
+      <code>`typeset +f' and `functions +'</code> output the names (only) of
+      functions
+  <li>
+      <code>`emulate -L'</code> has the effect of
+      <code>`setopt localoptions'</code>
+  <li>
+      in <code>fn1() { local foo; unset foo; foo=bar; }</code>,
+      <code>foo</code> is restored at local level, whereas if the
+      <code>`unset foo'</code> appeared in a nested function it would have
+      been restored at global level, which was presumably wrong.
+      <code>`foo=bar >&amp;file'</code> is a redirection, not a
+      <code>NULLCMD</code>
+  <li>
+      any single complex command, such as <code>`case ... esac'</code>,
+      parses as if semicolon-terminated (bug fix)
+  <li>
+      the shell function <code>`preexec'</code>, if defined, is run after
+      parsing each command line but before executing the command
+</ul>
+<FONT SIZE="+1">Other changes:</FONT><BR>
+<ul>
+   <li>
+      the option <code>PRINT_EIGHT_BIT</code> causes zsh to emit raw bytes
+      in prompts and completion lists even if the system <code>ctype(3)</code>
+      package says that those bytes are not "printable."
+</ul>
+<FONT SIZE="+1">Debugging enhancements:</FONT><BR>
+<ul>
+   <li>
+      <code>LINENO</code> is now very much more useful in scripts and
+      functions and is reported correctly in most error messages;
+      <code>ERREXIT</code> behavior is now consistent with newer
+      Bourne-like shells, e.g. with respect to `if' tests that fail
+</ul>
+<FONT SIZE="+1">Configuration changes:</FONT><BR>
+<ul>
+   <li>
+      Large file and 64-bit integers on 32-bit machines supported where
+      provided by OS
+   <li>
+      a few more system features, such as getpwnam/getpwuid, are tested
+      for
+</ul>
+<h1>New features in zsh version 3.0</h1>
+<ul>
+  <li>
+      Traps defined by the trap builtin are now executed in the current shell
+      environment and not as a shell function.  This means that $1 is not set
+      to the signal number.  Of course the <code>TRAPxxx</code>
+      functions continue working as before.
+
+  <li>
+      Traps defined by the trap builtin are reset to their default values in
+      subshells.
+
+  <li>
+      Option names can be prefixed by `no' to unset an
+      option. <code>setopt no_option_name</code> is the same as
+      <code>unsetopt option_name</code>. This change affects the
+      output of the setopt and unsetopt builtins when these are
+      invoked without arguments.  See the zshoptions manual page for
+      more explanation.
+
+  <li>
+      <code>!, {, } and [[</code> are now reserved words.  Things like
+      <code>[[-z $foo]]</code> or <code>{foo}</code> should not be
+      used.  <code>{foo}</code> still works if the
+      <code>IGNORE_BRACES</code> option is not set but this feature
+      may be removed in the future.  <code>[[ -z $foo ]]</code> and
+      <code>{ foo }</code> should be used instead.
+
+  <li>
+      <code>HOSTTYPE</code> special parameter is removed.  The new
+      <code>OSTYPE, MACHTYPE</code> and <code>VENDOR</code> parameters
+      should be used instead.
+
+  <li>
+      exec now saves the history in interactive shells.  If you do not
+      like this behaviour you can alias exec to <code>'unset HISTFILE
+      ; exec</code>'.
+
+  <li>
+      <code> ${~spec}, ${=spec} and ${^spec}</code> used to toggle the
+      effect of <code>globsubst/shwordsplit/rcexpandparam</code>.  Now
+      these force the corresponding option on. <code>~, = or ^</code>
+      can be doubled to force the relevant option off for the substitution.
+
+  <li>
+      Explicitly requested word splitting like <code>${=spec}</code>
+      or<code> ${(s:delim:)spec}</code> will be executed even if the
+      substitution is double quoted.
+
+  <li>
+      The right-hand side of assignments are no longer globbed by
+      default hence assignment <code>foo=*</code> will assign
+      '<code>*</code>' as a value of foo.  Use the 
+      <code>foo=( * )</code> array assignment syntax to get the old
+      behaviour.
+      Alternatively the <code>GLOB_ASSIGN</code> can be set to emulate
+      the old behaviour but the usage of this option is strongly
+      discouraged and this option may be completely removed in the
+      future.
+
+  <li>
+      When foo is an array parameter <code>${#foo}</code> will always
+      return the length of the array even if the substitution is
+      double quoted.  <code>${(c)#foo}</code> should be used to get
+      back the old behaviour.
+
+  <li>
+
+      When the <code>prompt_subst</code> option is set prompts are
+      fully expanded using parameter expansion, command substitution
+      and arithmetic expansion. In 2.5 backquote substitution
+      was not performed in the prompts so this change might cause
+      problems in some startup scripts if<code> ` </code>is used
+      literally in prompts.
+
+  <li>
+      History substitution is now not performed if the history escape
+      character appears in a single-quoted string.  This may break
+      some interactive shell functions which use <code>\!</code> in
+      single-quoted strings.
+
+  <li>
+      The <code>UID, EUID, GID, EGID</code> parameters can be assigned
+      now. The assignment executes the <i>setuid(), seteuid(),
+      setgid(), setegid()</i> respectively.  On systems where
+      <i>setuid</i> and <i>seteuid</i> is not supported these
+      functions are emulated using <i>setreuid</i> which may result in
+      a different behaviour.
+
+  <li>
+      Assigning the <code>USERNAME</code> parameter will call
+      <i>setuid(uid)</i> where uid is the user id of the specified user.
+
+  <li>
+      The privileged (<code>-p</code>) option is automatically set on
+      invocation if euid != uid or egid != gid.  If this option is set
+      no user startup files are sourced. The shell will drop
+      privileges when this option is unset.
+
+  <li>
+      The <code>=number</code> substitution for accessing the
+      directory stack is changed to <code>~number</code> to allow
+      <code>=command</code> substitution when a command name begins
+      with a digit.
+
+  <li>
+      <code>&lt;&gt;</code> is a redirection operator which opens the
+      standard input for both reading and writing.  To match a number
+      use <code>&lt;-&gt;</code>.
+
+  <li>
+      Option letters <code>-1</code> and <code>-C</code> for
+      <code>PRINT_EXIT_VALUE</code>and <code>NO_CLOBBER</code> are
+      swapped: `<code>set -C</code>' sets <code>NO_CLOBBER</code> and
+      `<code>set -1</code>' sets <code>PRINT_EXIT_VALUE</code>.
+
+  <li>
+      <code>AUTO_PUSHD</code> behaviour is changed.  Now cd without
+      arguments will always go to the <code>$HOME</code> directory
+      even if <code>AUTO_PUSHD</code> is set and
+      <code>PUSHD_TO_HOME</code> is not set.  If you preferred the old
+      behaviour you can alias <code>cd</code> to <code>pushd</code>.
+
+  <li>
+      <code>IFS</code> word splitting with <code>SH_WORD_SPLIT</code>
+      and the splitting of the input in the read builtin has changed
+      in cases when <code>IFS</code> contains characters other than
+      <code>&lt;space&gt;, &lt;tab&gt;, &lt;newline&gt;</code>.  See
+      the description of <code>IFS</code> in the zshparam manual page
+      for more details.
+</ul>
+
+<hr>
+<address></address>
+<!-- hhmts start -->
+Last modified: Sat Aug 17 14:42:49 MDT 1996
+<!-- hhmts end -->
+</body> </html>
+

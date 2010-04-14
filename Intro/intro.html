@@ -1,0 +1,2841 @@
+<!-- This HTML file has been created by texi2html 1.4 on 13 June 1994 -->
+
+<TITLE>An Introduction to the Z Shell</TITLE>
+<H1>An Introduction to the Z Shell</H1>
+<P>
+This file is an Introduction to the Z Shell, by Paul Falstad.  It was
+converted from the original intro.troff file distributed with zsh
+v2.2.0.  The conversion was done by Jonathan Hardwick, jch@cs.cmu.edu,
+who would love to hear of any errors he introduced or texinfo rules he
+broke.  The text remains the work of Paul Falstad.
+<P>
+<H1><A NAME="SEC1" HREF="intro_toc.html#SEC1">Introduction</A></H1>
+<P>
+<STRONG>zsh</STRONG> is a shell designed for interactive use, although it is
+also a powerful scripting language.  Many of the useful features of
+bash, ksh, and tcsh were incorporated into zsh; many original features
+were added.  This document details some of the unique features of zsh.
+It assumes basic knowledge of the standard UNIX shells; the intent is to
+show a reader already familiar with one of the other major shells what
+makes zsh more useful or more powerful.  This document is not at all
+comprehensive; read the manual entry for a description of the shell that
+is complete and concise, although somewhat overwhelming and devoid of
+examples.<P>
+<H1><A NAME="SEC2" HREF="intro_toc.html#SEC2">Filename Generation</A></H1>
+<A NAME="IDX1"></A>
+<A NAME="IDX2"></A>
+<P>
+<A NAME="IDX3"></A>
+<P>
+Otherwise known as <EM>globbing</EM>, filename generation is quite
+extensive in zsh.  Of course, it has all the basics:<P>
+<PRE>
+% ls
+Makefile   file.pro   foo.o      main.o     q.c        run234     stuff
+bar.o      foo        link       morestuff  run123     run240     sub
+file.h     foo.c      main.h     pipe       run2       run303
+% ls *.c
+foo.c  q.c
+% ls *.[co]
+bar.o   foo.c   foo.o   main.o  q.c
+% ls foo.?
+foo.c  foo.o
+% ls *.[^c]
+bar.o   file.h  foo.o   main.h  main.o
+% ls *.[^oh]
+foo.c  q.c
+</PRE>
+<P>
+<A NAME="IDX4"></A>
+Also, if the <CODE>EXTENDEDGLOB</CODE> option is set, some new features are
+activated.  For example, the <KBD>^</KBD> character negates the pattern
+following it:<P>
+<PRE>
+% setopt extendedglob
+% ls -d ^*.c
+Makefile   file.pro   link       morestuff  run2       run303
+bar.o      foo        main.h     pipe       run234     stuff
+file.h     foo.o      main.o     run123     run240     sub
+% ls -d ^*.*
+Makefile   link       pipe       run2       run240     stuff
+foo        morestuff  run123     run234     run303     sub
+% ls -d ^Makefile
+bar.o      foo        link       morestuff  run123     run240     sub
+file.h     foo.c      main.h     pipe       run2       run303
+file.pro   foo.o      main.o     q.c        run234     stuff
+% ls -d *.^c
+.rhosts   bar.o     file.h    file.pro  foo.o     main.h    main.o
+</PRE>
+<P>
+An expression of the form <CODE><x-y></CODE> matches a range of integers:
+<P>
+<PRE>
+% ls run<200-300>
+run234  run240
+% ls run<300-400>
+run303
+% ls run<-200>
+run123  run2
+% ls run<300->
+run303
+% ls run<>
+run123  run2    run234  run240  run303
+</PRE>
+<P>
+Grouping is possible:
+<A NAME="IDX5"></A>
+<P>
+<PRE>
+% ls (foo|bar).*
+bar.o  foo.c  foo.o
+% ls *.(c|o|pro)
+bar.o     file.pro  foo.c     foo.o     main.o    q.c
+</PRE>
+<P>
+Also, the string <CODE>**/</CODE> forces a recursive search of subdirectories:
+<A NAME="IDX6"></A>
+<A NAME="IDX7"></A>
+<P>
+<PRE>
+% ls -R
+Makefile   file.pro   foo.o      main.o     q.c        run234     stuff
+bar.o      foo        link       morestuff  run123     run240     sub
+file.h     foo.c      main.h     pipe       run2       run303
+<P>
+morestuff:
+<P>
+stuff:
+file  xxx   yyy
+<P>
+stuff/xxx:
+foobar
+<P>
+stuff/yyy:
+frobar
+% ls **/*bar
+stuff/xxx/foobar  stuff/yyy/frobar
+% ls **/f*
+file.h            foo               foo.o             stuff/xxx/foobar
+file.pro          foo.c             stuff/file        stuff/yyy/frobar
+% ls *bar*
+bar.o
+% ls **/*bar*
+bar.o             stuff/xxx/foobar  stuff/yyy/frobar
+% ls stuff/**/*bar*
+stuff/xxx/foobar  stuff/yyy/frobar
+</PRE>
+<P>
+It is possible to exclude certain files from the patterns using the
+<KBD>~</KBD> character.  A pattern of the form <CODE>*.c~bar.c</CODE> lists all
+files matching <CODE>*.c</CODE>, except for the file <TT>bar.c</TT>.<P>
+<PRE>
+% ls *.c
+foo.c    foob.c    bar.c
+% ls *.c~bar.c
+foo.c    foob.c
+% ls *.c~f*
+bar.c
+</PRE>
+<P>
+<A NAME="IDX8"></A>
+One can add a number of <EM>qualifiers</EM> to the end of any of these
+patterns, to restrict matches to certain file types.  A qualified
+pattern is of the form
+<P>
+<VAR>pattern(...)</VAR>
+<P>
+with single-letter qualifiers inside the parentheses.
+<P>
+<PRE>
+% alias l='ls -dF'
+% l *
+Makefile    foo*        main.h      q.c         run240
+bar.o       foo.c       main.o      run123      run303
+file.h      foo.o       morestuff/  run2        stuff/
+file.pro    link@       pipe        run234      sub
+% l *(/)
+morestuff/  stuff/
+% l *(@)
+link@
+% l *(*)
+foo*        link@       morestuff/  stuff/
+% l *(x)
+foo*        link@       morestuff/  stuff/
+% l *(X)
+foo*        link@       morestuff/  stuff/
+% l *(R)
+bar.o       foo*        link@       morestuff/  run123      run240
+file.h      foo.c       main.h      pipe        run2        run303
+file.pro    foo.o       main.o      q.c         run234      stuff/
+</PRE>
+<P>
+Note that <CODE>*(x)</CODE> and <CODE>*(*)</CODE> both match executables.
+<CODE>*(X)</CODE> matches files executable by others, as opposed to
+<CODE>*(x)</CODE>, which matches files executable by the owner.
+<CODE>*(R)</CODE> and <CODE>*(r)</CODE> match readable files;
+<CODE>*(W)</CODE> and <CODE>*(w)</CODE>, which checks for writable files.
+<CODE>*(W)</CODE> is especially important, since it checks for world-writable
+files:
+<P>
+<PRE>
+% l *(w)
+bar.o       foo*        link@       morestuff/  run123      run240
+file.h      foo.c       main.h      pipe        run2        run303
+file.pro    foo.o       main.o      q.c         run234      stuff/
+% l *(W)
+link@   run240
+% l -l link run240
+lrwxrwxrwx  1 pfalstad       10 May 23 18:12 link -> /bin/false*
+-rw-rw-rw-  1 pfalstad        0 May 23 18:12 run240
+</PRE>
+<P>
+You can filter out the symbolic links with the <KBD>^</KBD> character:
+<P>
+<PRE>
+% l *(W^@)
+run240
+% l *(x)
+foo*        link@       morestuff/  stuff/
+% l *(x^@/)
+foo*
+</PRE>
+<P>
+To find all plain files, you can use <KBD>.</KBD>:
+<P>
+<PRE>
+% l *(.)
+Makefile  file.h    foo*      foo.o     main.o    run123    run234    run303
+bar.o     file.pro  foo.c     main.h    q.c       run2      run240    sub
+% l *(^.)
+link@       morestuff/  pipe        stuff/
+% l s*(.)
+stuff/   sub
+% l *(p)
+pipe
+% l -l *(p)
+prw-r--r--  1 pfalstad        0 May 23 18:12 pipe
+</PRE>
+<P>
+<CODE>*(U)</CODE> matches all files owned by you.  To search for all files not
+owned by you, use <CODE>*(^U)</CODE>:
+<P>
+<PRE>
+% l -l *(^U)
+-rw-------  1 subbarao       29 May 23 18:13 sub
+</PRE>
+<P>
+This searches for setuid files:
+<P>
+<PRE>
+% l -l *(s)
+-rwsr-xr-x  1 pfalstad       16 May 23 18:12 foo*
+</PRE>
+<P>
+This checks for a certain user's files:
+<P>
+<PRE>
+% ypmatch subbarao passwd
+subbarao:*:3338:35:Kartik Subbarao:/u/subbarao:/usr/princeton/bin/zsh
+% l -l *(u3338)
+-rw-------  1 subbarao       29 May 23 18:13 sub
+</PRE>
+<P>
+<H1><A NAME="SEC3" HREF="intro_toc.html#SEC3">Startup Files</A></H1>
+<A NAME="IDX9"></A>
+<A NAME="IDX10"></A>
+<P>
+There are five startup files that zsh will read commands from:
+<P>
+<PRE>
+$ZDOTDIR/.zshenv
+$ZDOTDIR/.zprofile
+$ZDOTDIR/.zshrc
+$ZDOTDIR/.zlogin
+$ZDOTDIR/.zlogout
+</PRE>
+<P>
+If <CODE>ZDOTDIR</CODE> is not set, then the value of <CODE>HOME</CODE> is used;
+this is the usual case.<A NAME="IDX11"></A>
+<A NAME="IDX12"></A>
+<P>
+<A NAME="IDX13"></A>
+<TT>.zshenv</TT> is sourced on all invocations of the shell, unless the
+<CODE>-f</CODE> option is set.  It should contain commands to set the command
+search path, plus other important environment variables.  <TT>.zshenv</TT>
+should not contain commands that produce output or assume the shell is
+attached to a tty.<P>
+<A NAME="IDX14"></A>
+<TT>.zshrc</TT> is sourced in interactive shells.  It should contain
+commands to set up aliases, functions, options, key bindings,
+etc.<P>
+<A NAME="IDX15"></A>
+<A NAME="IDX16"></A>
+<A NAME="IDX17"></A>
+<TT>.zlogin</TT> is sourced in login shells.  It should contain commands
+that should be executed only in login shells.  <TT>.zlogout</TT> is
+sourced when login shells exit.  <TT>.zprofile</TT> is similar to
+<TT>.zlogin</TT>, except that it is sourced before <TT>.zshrc</TT>.
+<TT>.zprofile</TT> is meant as an alternative to <TT>.zlogin</TT> for ksh
+fans; the two are not intended to be used together, although this could
+certainly be done if desired.  <TT>.zlogin</TT> is not the place for alias
+definitions, options, environment variable settings, etc.; as a general
+rule, it should not change the shell environment at all.  Rather, it
+should be used to set the terminal type and run a series of external
+commands (<CODE>fortune</CODE>, <CODE>msgs</CODE>, etc).<P>
+<H1><A NAME="SEC4" HREF="intro_toc.html#SEC4">Shell Functions</A></H1>
+<P>
+zsh also allows you to create your own commands by defining shell
+functions.  For example:
+<A NAME="IDX18"></A>
+<P>
+<PRE>
+% yp () {
+>       ypmatch $1 passwd.byname
+> }
+% yp pfalstad
+pfalstad:*:3564:35:Paul John Falstad:/u/pfalstad:/usr/princeton/bin/zsh
+</PRE>
+<P>
+<A NAME="IDX19"></A>
+This function looks up a user in the NIS password map.  The <CODE>$1</CODE>
+expands to the first argument to <CODE>yp</CODE>.  The function could have
+been equivalently defined in one of the following ways:<A NAME="IDX20"></A>
+<P>
+<PRE>
+% function yp {
+>       ypmatch $1 passwd.byname
+> }
+% function yp () {
+>       ypmatch $1 passwd.byname
+> }
+% function yp () ypmatch $1 passwd.byname
+</PRE>
+<P>
+<A NAME="IDX21"></A>
+Note that aliases are expanded when the function definition is parsed,
+not when the function is executed.  For example:
+<P>
+<PRE>
+% alias ypmatch=echo
+% yp pfalstad
+pfalstad:*:3564:35:Paul John Falstad:/u/pfalstad:/usr/princeton/bin/zsh
+</PRE>
+<P>
+Since the alias was defined after the function was parsed, it has no
+effect on the function's execution.  However, if we define the function
+again with the alias in place:
+<P>
+<PRE>
+% function yp () { ypmatch $1 passwd.byname }
+% yp pfalstad
+pfalstad passwd.byname
+</PRE>
+<P>
+it is parsed with the new alias definition in place.  Therefore, in
+general you must define aliases before functions.
+<P>
+We can make the function take multiple arguments:
+<P>
+<PRE>
+% unalias ypmatch
+% yp () {
+>       for i
+>       do ypmatch $i passwd.byname
+>       done
+> }
+% yp pfalstad subbarao sukthnkr
+pfalstad:*:3564:35:Paul John Falstad:/u/pfalstad:/usr/princeton/bin/zsh
+subbarao:*:3338:35:Kartik Subbarao:/u/subbarao:/usr/princeton/bin/zsh
+sukthnkr:*:1267:35:Rahul Sukthankar:/u/sukthnkr:/usr/princeton/bin/tcsh
+</PRE>
+<P>
+The <CODE>for i</CODE> loops through each of the function's arguments, setting
+<CODE>i</CODE> equal to each of them in turn.  We can also make the function
+do something sensible if no arguments are given:<P>
+<PRE>
+% yp () {
+>       if (( $# == 0 ))
+>       then echo usage: yp name ...; fi
+>       for i; do ypmatch $i passwd.byname; done
+> }
+% yp
+usage: yp name ...
+% yp pfalstad sukthnkr
+pfalstad:*:3564:35:Paul John Falstad:/u/pfalstad:/usr/princeton/bin/zsh
+sukthnkr:*:1267:35:Rahul Sukthankar:/u/sukthnkr:/usr/princeton/bin/tcsh
+</PRE>
+<P>
+<A NAME="IDX22"></A>
+<CODE>$#</CODE> is the number of arguments supplied to the function.  If it is
+equal to zero, we print a usage message; otherwise, we loop through the
+arguments, and <CODE>ypmatch</CODE> all of them.
+<P>
+Here's a function that selects a random line from a file:
+<P>
+<PRE>
+% randline () {
+>       integer z=$(wc -l <$1)
+>       sed -n $[RANDOM % z + 1]p $1
+> }
+% randline /etc/motd
+PHOENIX WILL BE DOWN briefly Friday morning, 5/24/91 from 8 AM to
+% randline /etc/motd
+SunOS Release 4.1.1 (PHOENIX) #19: Tue May 14 19:03:15 EDT 1991
+% randline /etc/motd
+| Please use the "msgs" command to read announcements.  Refer to the   |
+% echo $z
+<P>
+%
+</PRE>
+<P>
+<A NAME="IDX23"></A>
+<CODE>randline</CODE> has a local variable, <CODE>z</CODE>, that holds the number of
+lines in the file.  <CODE>$[RANDOM % z + 1]</CODE> expands to a random number
+between 1 and <CODE>z</CODE>.  An expression of the form <CODE>$[...]</CODE> expands
+to the value of the arithmetic expression within the brackets, and the
+<CODE>RANDOM</CODE> variable returns a random number each time it is
+referenced.  <CODE>%</CODE> is the modulus operator, as in C.  Therefore,
+<CODE>sed -n $[RANDOM%z+1]p</CODE> picks a random line from its input, from 1
+to <CODE>z</CODE>.<P>
+Function definitions can be viewed with the <CODE>functions</CODE> builtin:
+<A NAME="IDX24"></A>
+<P>
+<PRE>
+% functions randline
+randline () {
+        integer z=$(wc -l <$1)
+        sed -n $[RANDOM % z + 1]p $1
+<P>
+}
+% functions
+yp () {
+        if let $# == 0 
+        
+        then
+                echo usage: yp name ...
+        
+        fi
+        for i
+        do
+                ypmatch $i passwd.byname
+        
+                done
+<P>
+}
+randline () {
+        integer z=$(wc -l <$1)
+        sed -n $[RANDOM % z + 1]p $1
+<P>
+}
+</PRE>
+<P>
+Here's another one:
+<P>
+<PRE>
+% cx () { chmod +x $* }
+% ls -l foo bar
+-rw-r--r--  1 pfalstad       29 May 24 04:38 bar
+-rw-r--r--  1 pfalstad       29 May 24 04:38 foo
+% cx foo bar
+% ls -l foo bar
+-rwxr-xr-x  1 pfalstad       29 May 24 04:38 bar
+-rwxr-xr-x  1 pfalstad       29 May 24 04:38 foo
+</PRE>
+<P>
+Note that this could also have been implemented as an alias:
+<P>
+<PRE>
+% chmod 644 foo bar
+% alias cx='chmod +x'
+% cx foo bar
+% ls -l foo bar
+-rwxr-xr-x  1 pfalstad       29 May 24 04:38 bar
+-rwxr-xr-x  1 pfalstad       29 May 24 04:38 foo
+</PRE>
+<P>
+<A NAME="IDX25"></A>
+<A NAME="IDX26"></A>
+Instead of defining a lot of functions in your <TT>.zshrc</TT>, all of
+which you may not use, it is often better to use the <CODE>autoload</CODE>
+builtin.  The idea is, you create a directory where function definitions
+are stored, declare the names in your <TT>.zshrc</TT>, and tell the shell
+where to look for them.  Whenever you reference a function, the shell
+will automatically load it into memory.
+<P>
+<PRE>
+% mkdir /tmp/funs
+% cat >/tmp/funs/yp
+ypmatch $1 passwd.byname
+^D
+% cat >/tmp/funs/cx
+chmod +x $*
+^D
+% FPATH=/tmp/funs
+% autoload cx yp
+% functions cx yp
+undefined cx ()
+undefined yp ()
+% chmod 755 /tmp/funs/{cx,yp}
+% yp egsirer
+egsirer:*:3214:35:Emin Gun Sirer:/u/egsirer:/bin/sh
+% functions yp
+yp () {
+        ypmatch $1 passwd.byname
+}
+</PRE>
+<P>
+<A NAME="IDX27"></A>
+This idea has other benefits.  By adding a <CODE>#!</CODE> header to the
+files, you can make them double as shell scripts.  (Although it is
+faster to use them as functions, since a separate process is not
+created.)<P>
+<PRE>
+% ed /tmp/funs/yp
+25
+i
+#! /usr/local/bin/zsh
+.
+w
+42
+q
+% </tmp/funs/yp
+#! /usr/local/bin/zsh
+ypmatch $1 passwd.byname
+% /tmp/funs/yp sukthnkr
+sukthnkr:*:1267:35:Rahul Sukthankar:/u/sukthnkr:/usr/princeton/bin/tcsh
+</PRE>
+<P>
+Now other people, who may not use zsh, or who don't want to copy all of
+your <TT>.zshrc</TT>, may use these functions as shell scripts.
+<P>
+<H1><A NAME="SEC5" HREF="intro_toc.html#SEC5">Directories</A></H1>
+<A NAME="IDX28"></A>
+<P>
+One nice feature of zsh is the way it prints directories.  For example,
+if we set the prompt like this:
+<P>
+<PRE>
+phoenix% PROMPT='%~> '
+~> cd src
+~/src>
+</PRE>
+<P>
+the shell will print the current directory in the prompt, using the
+<KBD>~</KBD> character.  However, zsh is smarter than most other shells in
+this respect:<P>
+<PRE>
+~/src> cd ~subbarao
+~subbarao> cd ~maruchck
+~maruchck> cd lib
+~maruchck/lib> cd fun
+~maruchck/lib/fun> foo=/usr/princeton/common/src
+~maruchck/lib/fun> cd ~foo
+~foo> cd ..
+/usr/princeton/common> cd src
+~foo> cd news/nntp
+~foo/news/nntp> cd inews
+~foo/news/nntp/inews>
+</PRE>
+<P>
+Note that zsh prints <EM>other</EM> users' directories in the form
+<CODE>~user</CODE>.  Also note that you can set a parameter and use it as a
+directory name; zsh will act as if <CODE>foo</CODE> is a user with the login
+directory <CODE>/usr/princeton/common/src</CODE>.  This is convenient,
+especially if you're sick of seeing prompts like this:<P>
+<PRE>
+phoenix:/usr/princeton/common/src/X.V11R4/contrib/clients/xv/docs>
+</PRE>
+<P>
+If you get stuck in this position, you can give the current directory a
+short name, like this:
+<P>
+<PRE>
+/usr/princeton/common/src/news/nntp/inews> inews=$PWD
+/usr/princeton/common/src/news/nntp/inews> echo ~inews
+/usr/princeton/common/src/news/nntp/inews
+~inews>
+</PRE>
+<P>
+When you reference a directory in the form <CODE>~inews</CODE>, the shell
+assumes that you want the directory displayed in this form; thus simply
+typing <CODE>echo ~inews</CODE> or <CODE>cd ~inews</CODE> causes the prompt to be
+shortened.  You can define a shell function for this purpose:<P>
+<PRE>
+~inews> namedir () { $1=$PWD ;  : ~$1 }
+~inews> cd /usr/princeton/bin
+/usr/princeton/bin> namedir pbin
+~pbin> cd /var/spool/mail
+/var/spool/mail> namedir spool
+~spool> cd .msgs
+~spool/.msgs>
+</PRE>
+<P>
+<A NAME="IDX29"></A>
+You may want to add this one-line function to your <TT>.zshrc</TT>.
+<P>
+<A NAME="IDX30"></A>
+zsh can also put the current directory in your title bar, if you are
+using a windowing system.  One way to do this is with the <CODE>chpwd</CODE>
+function, which is automatically executed by the shell whenever you
+change directory.  If you are using xterm, this will work:
+<A NAME="IDX31"></A>
+<A NAME="IDX32"></A>
+<P>
+<PRE>
+chpwd () { print -Pn '^[]2;%~^G' }
+</PRE>
+<P>
+<A NAME="IDX33"></A>
+The <CODE>-P</CODE> option tells <CODE>print</CODE> to treat its arguments like a
+prompt string; otherwise the <CODE>%~</CODE> would not be expanded.  The
+<CODE>-n</CODE> option suppresses the terminating newline, as with
+<CODE>echo</CODE>.<A NAME="IDX34"></A>
+<P>
+If you are using an IRIS <CODE>wsh</CODE>, do this:
+<P>
+<PRE>
+chpwd () { print -Pn '^[P1.y%~^[' }
+</PRE>
+<P>
+The <CODE>print -D</CODE> command has other uses.  For example, to print the
+current directory to standard output in short form, you can do this:
+<P>
+<PRE>
+% print -D $PWD
+~subbarao/src
+</PRE>
+<P>
+and to print each component of the path in short form:
+<P>
+<PRE>
+% print -D $path
+/bin /usr/bin ~locbin ~locbin/X11 ~/bin
+</PRE>
+<P>
+<H1><A NAME="SEC6" HREF="intro_toc.html#SEC6">Directory Stacks</A></H1>
+<A NAME="IDX35"></A>
+<A NAME="IDX36"></A>
+<P>
+<A NAME="IDX37"></A>
+<A NAME="IDX38"></A>
+If you use csh, you may know about directory stacks.  The <CODE>pushd</CODE>
+command puts the current directory on the stack, and changes to a new
+directory; the <CODE>popd</CODE> command pops a directory off the stack and
+changes to it.<P>
+<PRE>
+phoenix% cd 
+phoenix% PROMPT='Z %~> '
+Z ~> pushd /tmp
+/tmp ~
+Z /tmp> pushd /usr/etc
+/usr/etc /tmp ~
+Z /usr/etc> pushd /usr/bin
+/usr/bin /usr/etc /tmp ~
+Z /usr/bin> popd
+/usr/etc /tmp ~
+Z /usr/etc> popd
+/tmp ~
+Z /tmp> pushd /etc
+/etc /tmp ~
+Z /etc> popd 
+/tmp ~
+</PRE>
+<P>
+zsh's directory stack commands work similarly.  One difference is the
+way <CODE>pushd</CODE> is handled if no arguments are given.  As in csh, this
+exchanges the top two elements of the directory stack:
+<P>
+<PRE>
+Z /tmp> dirs
+/tmp ~
+Z /tmp> pushd
+~ /tmp
+</PRE>
+<P>
+unless the stack only has one entry:
+<P>
+<PRE>
+Z ~> popd
+/tmp
+Z /tmp> dirs
+/tmp
+Z /tmp> pushd
+~ /tmp
+</PRE>
+<P>
+or unless the <CODE>PUSHDTOHOME</CODE> option is set:
+<A NAME="IDX39"></A>
+<P>
+<PRE>
+Z ~> setopt pushdtohome
+Z ~> pushd
+~ ~ /tmp
+</PRE>
+<P>
+<A NAME="IDX40"></A>
+<A NAME="IDX41"></A>
+As an alternative to using directory stacks in this manner, we can get
+something like a <EM>directory history</EM> by setting a few more options
+and parameters:<P>
+<PRE>
+~> DIRSTACKSIZE=8
+~> setopt autopushd pushdminus pushdsilent pushdtohome
+~> alias dh='dirs -v'
+~> cd /tmp
+/tmp> cd /usr
+/usr> cd bin
+/usr/bin> cd ../pub
+/usr/pub> dh
+0       /usr/pub
+1       /usr/bin
+2       /usr
+3       /tmp
+4       ~
+/usr/pub> cd -3
+/tmp> dh
+0       /tmp
+1       /usr/pub
+2       /usr/bin
+3       /usr
+4       ~
+/tmp> ls =2/df
+/usr/bin/df
+/tmp> cd -4
+~>
+</PRE>
+<P>
+Note that <CODE>=2</CODE> expanded to the second directory in the history
+list, and that <CODE>cd -3</CODE> recalled the third directory in the
+list.<P>
+<A NAME="IDX42"></A>
+<A NAME="IDX43"></A>
+You may be wondering what all those options do.  <CODE>AUTOPUSHD</CODE> made
+<CODE>cd</CODE> act like <CODE>pushd</CODE>.  (<CODE>alias cd=pushd</CODE> is not
+sufficient, for various reasons.)  <CODE>PUSHDMINUS</CODE> swapped the meaning
+of <CODE>cd +1</CODE> and <CODE>cd -1</CODE>; we want them to mean the opposite of
+what they mean in csh, because it makes more sense in this scheme, and
+it's easier to type:<P>
+<PRE>
+~> dh
+0       ~
+1       /tmp
+2       /usr/pub
+3       /usr/bin
+4       /usr
+~> unsetopt pushdminus
+~> cd +1
+/tmp> dh
+0       /tmp
+1       ~
+2       /usr/pub
+3       /usr/bin
+4       /usr
+/tmp> cd +2
+/usr/pub>
+</PRE>
+<P>
+<A NAME="IDX44"></A>
+<CODE>PUSHDSILENT</CODE> keeps the shell from printing the directory stack
+each time we do a <CODE>cd</CODE>, and <CODE>PUSHDTOHOME</CODE> we mentioned
+earlier:<P>
+<PRE>
+/usr/pub> unsetopt pushdsilent
+/usr/pub> cd /etc
+/etc /usr/pub /tmp ~ /usr/bin /usr
+/etc> cd
+~ /etc /usr/pub /tmp ~ /usr/bin /usr
+~> unsetopt pushdtohome
+~> cd
+/etc ~ /usr/pub /tmp ~ /usr/bin /usr
+/etc>
+</PRE>
+<P>
+<A NAME="IDX45"></A>
+<A NAME="IDX46"></A>
+<CODE>DIRSTACKSIZE</CODE> keeps the directory stack from getting too large,
+much like <CODE>HISTSIZE</CODE>:<P>
+<PRE>
+/etc> setopt pushdsilent
+/etc> cd /
+/> cd /
+/> cd /
+/> cd /
+/> cd /
+/> cd /
+/> cd /
+/> cd /
+/> dh
+0       /
+1       /
+2       /
+3       /
+4       /
+5       /
+6       /
+7       /
+</PRE>
+<P>
+<H1><A NAME="SEC7" HREF="intro_toc.html#SEC7">Command/Process Substitution</A></H1>
+<P>
+<A NAME="IDX47"></A>
+<A NAME="IDX48"></A>
+<P>
+Command substitution in zsh can take two forms.  In the traditional
+form, a command enclosed in backquotes (<CODE>`...`</CODE>) is replaced on the
+command line with its output.  This is the form used by the older
+shells.  Newer shells (like zsh) also provide another form,
+<CODE>$(...)</CODE>.  This form is much easier to nest.<P>
+<PRE>
+% ls -l `echo /vmunix`
+-rwxr-xr-x  1 root      1209702 May 14 19:04 /vmunix
+% ls -l $(echo /vmunix)
+-rwxr-xr-x  1 root      1209702 May 14 19:04 /vmunix
+% who | grep mad
+subbarao ttyt7   May 23 15:02   (mad55sx15.Prince)
+pfalstad ttyu1   May 23 16:25   (mad55sx14.Prince)
+subbarao ttyu6   May 23 15:04   (mad55sx15.Prince)
+pfalstad ttyv3   May 23 16:25   (mad55sx14.Prince)
+% who | grep mad | awk '{print $2}'
+ttyt7
+ttyu1
+ttyu6
+ttyv3
+% cd /dev; ls -l $(who |
+> grep $(echo mad) |
+> awk '{ print $2 }')
+crwx-w----  1 subbarao  20,  71 May 23 18:35 ttyt7
+crw--w----  1 pfalstad  20,  81 May 23 18:42 ttyu1
+crwx-w----  1 subbarao  20,  86 May 23 18:38 ttyu6
+crw--w----  1 pfalstad  20,  99 May 23 18:41 ttyv3
+</PRE>
+<P>
+Many common uses of command substitution, however, are superseded by
+other mechanisms of zsh:
+<P>
+<PRE>
+% ls -l `tty`
+crw-rw-rw-  1 root      20,  28 May 23 18:35 /dev/ttyqc
+% ls -l $TTY
+crw-rw-rw-  1 root      20,  28 May 23 18:35 /dev/ttyqc
+% ls -l `which rn`
+-rwxr-xr-x  1 root       172032 Mar  6 18:40 /usr/princeton/bin/rn
+% ls -l =rn
+-rwxr-xr-x  1 root       172032 Mar  6 18:40 /usr/princeton/bin/rn
+</PRE>
+<P>
+A command name with a <KBD>=</KBD> prepended is replaced with its full
+pathname.  This can be very convenient.  If it's not convenient for you,
+you can turn it off:<P>
+<PRE>
+% ls
+=foo    =bar
+% ls =foo =bar
+zsh: foo not found
+% setopt noequals
+% ls =foo =bar
+=foo    =bar
+</PRE>
+<P>
+Another nice feature is process substitution:
+<A NAME="IDX49"></A>
+<A NAME="IDX50"></A>
+<P>
+<PRE>
+% who | fgrep -f =(print -l root lemke shgchan subbarao)
+root     console May 19 10:41
+lemke    ttyq0   May 22 10:05   (narnia:0.0)
+lemke    ttyr7   May 22 10:05   (narnia:0.0)
+lemke    ttyrd   May 22 10:05   (narnia:0.0)
+shgchan  ttys1   May 23 16:52   (gaudi.Princeton.)
+subbarao ttyt7   May 23 15:02   (mad55sx15.Prince)
+subbarao ttyu6   May 23 15:04   (mad55sx15.Prince)
+shgchan  ttyvb   May 23 16:51   (gaudi.Princeton.)
+</PRE>
+<P>
+A command of the form <CODE>=(...)</CODE> is replaced with the name of a
+<EM>file</EM> containing its output.  (A command substitution, on the
+other hand, is replaced with the output itself.)  <CODE>print -l</CODE> is
+like <CODE>echo</CODE>, excepts that it prints its arguments one per line, the
+way <CODE>fgrep</CODE> expects them:<A NAME="IDX51"></A>
+<P>
+<PRE>
+% print -l foo bar
+foo
+bar
+</PRE>
+<P>
+We could also have written:
+<P>
+<PRE>
+% who | fgrep -f =(echo 'root
+> lemke
+> shgchan
+> subbarao')
+</PRE>
+<P>
+Using process substitution, you can edit the output of a command:
+<P>
+<PRE>
+% ed =(who | fgrep -f ~/.friends)
+355
+g/lemke/d
+w /tmp/filbar
+226
+q
+% cat /tmp/filbar
+root     console May 19 10:41
+shgchan  ttys1   May 23 16:52   (gaudi.Princeton.)
+subbarao ttyt7   May 23 15:02   (mad55sx15.Prince)
+subbarao ttyu6   May 23 15:04   (mad55sx15.Prince)
+shgchan  ttyvb   May 23 16:51   (gaudi.Princeton.)
+</PRE>
+<P>
+or easily read archived mail:
+<P>
+<PRE>
+% mail -f =(zcat ~/mail/oldzshmail.Z)
+"/tmp/zsha06024": 84 messages, 0 new, 43 unread
+>  1  U  TO: pfalstad, zsh (10)
+   2  U  nytim!tim@uunet.uu.net, Re: Zsh on Sparc1 /SunOS 4.0.3
+   3  U  JAM%TPN@utrcgw.utc.com, zsh fix (15)
+   4  U  djm@eng.umd.edu, way to find out if running zsh? (25)
+   5  U  djm@eng.umd.edu, Re: way to find out if running zsh? (17)
+   6   r djm@eng.umd.edu, Meta . (18)
+   7  U  jack@cs.glasgow.ac.uk, Re: problem building zsh (147)
+   8  U  nytim!tim@uunet.uu.net, Re: Zsh on Sparc1 /SunOS 4.0.3
+   9     ursa!jmd, Another fix... (61)
+  10  U  pplacewa@bbn.com, Re: v18i084: Zsh 2.00 - A small complaint (36)
+  11  U  lubkin@cs.rochester.edu, POSIX job control (34)
+  12  U  yale!bronson!tan@uunet.UU.NET
+  13  U  brett@rpi.edu, zsh (36)
+  14  S  subbarao, zsh sucks!!!! (286)
+  15  U  snibru!d241s008!d241s013!ala@relay.EU.net, zsh (165)
+  16  U  nytim!tim@uunet.UU.NET, Re: Zsh on Sparc1 /SunOS 4.0.3
+  17  U  subbarao, zsh is a junk shell (43)
+  18  U  amaranth@vela.acs.oakland.edu, zsh (33)
+43u/84 1: x
+% ls -l /tmp/zsha06024
+/tmp/zsha06024 not found
+</PRE>
+<P>
+<A NAME="IDX52"></A>
+<A NAME="IDX53"></A>
+Note that the shell creates a temporary file, and deletes it when the
+command is finished.
+<P>
+<PRE>
+% diff =(ls) =(ls -F)
+3c3
+< fortune
+---
+> fortune*
+10c10
+< strfile
+---
+> strfile*
+</PRE>
+<P>
+If you read zsh's man page, you may notice that <CODE><(...)</CODE> is another
+form of process substitution which is similar to <CODE>=(...)</CODE>.  There
+is an important difference between the two.  In the <CODE><(...)</CODE> case,
+the shell creates a named pipe (FIFO) instead of a file.  This is
+better, since it does not fill up the file system; but it does not work
+in all cases.  In fact, if we had replaced <CODE>=(...)</CODE> with
+<CODE><(...)</CODE> in the examples above, all of them would have stopped
+working except for <CODE>fgrep -f <(...)</CODE>.  You can not edit a pipe, or
+open it as a mail folder; <CODE>fgrep</CODE>, however, has no problem with
+reading a list of words from a pipe.  You may wonder why <CODE>diff
+<(foo) bar</CODE> doesn't work, since <CODE>foo | diff - bar</CODE> works; this is
+because <CODE>diff</CODE> creates a temporary file if it notices that one of
+its arguments is <KBD>-</KBD>, and then copies its standard input to the
+temporary file.<P>
+<H1><A NAME="SEC8" HREF="intro_toc.html#SEC8">Aliasing</A></H1>
+<A NAME="IDX54"></A>
+<P>
+Often-used commands can be abbreviated with an alias:
+<A NAME="IDX55"></A>
+<P>
+<PRE>
+% alias uc=uncompress
+% ls
+hanoi.Z
+% uc hanoi
+% ls
+hanoi
+</PRE>
+<P>
+or commands with certain desired options:
+<P>
+<PRE>
+% alias fm='finger -m'
+% fm root
+Login name: root                        In real life: Operator
+Directory: /                            Shell: /bin/csh
+On since May 19 10:41:15 on console     3 days 5 hours Idle Time
+No unread mail
+No Plan.
+<P>
+% alias lock='lock -p -60000'
+% lock
+lock: /dev/ttyr4 on phoenix. timeout in 60000 minutes
+time now is Fri May 24 04:23:18 EDT 1991
+Key: 
+<P>
+% alias l='ls -AF'
+% l /
+.bash_history              kadb*
+.bashrc                    lib@
+.cshrc                     licensed/
+.exrc                      lost+found/
+.login                     macsyma
+...
+</PRE>
+<P>
+Aliases can also be used to replace old commands:
+<P>
+<PRE>
+% alias grep=egrep ps=sps make=gmake
+% alias whoami='echo root'
+% whoami
+root
+</PRE>
+<P>
+or to define new ones:
+<P>
+<PRE>
+% cd /
+% alias sz='ls -l | sort -n +3 | tail -10'
+% sz
+drwxr-sr-x  7 bin          3072 May 23 11:59 etc
+drwxrwxrwx 26 root         5120 May 24 04:20 tmp
+drwxr-xr-x  2 root         8192 Dec 26 19:34 lost+found
+drwxr-sr-x  2 bin         14848 May 23 18:48 dev
+-r--r--r--  1 root       140520 Dec 26 20:08 boot
+-rwxr-xr-x  1 root       311172 Dec 26 20:08 kadb
+-rwxr-xr-x  1 root      1209695 Apr 16 15:33 vmunix.old
+-rwxr-xr-x  1 root      1209702 May 14 19:04 vmunix
+-rwxr-xr-x  1 root      1209758 May 21 12:23 vmunix.new.kernelmap.old
+-rwxr-xr-x  1 root      1711848 Dec 26 20:08 vmunix.org
+% cd
+% alias rable='ls -AFtrd *(R)' nrable='ls -AFtrd *(^R)'
+% rable
+README      func/       bin/        pub/        News/       src/
+nicecolors  etc/        scr/        tmp/        iris/       zsh*
+% nrable
+Mailboxes/  mail/       notes
+</PRE>
+<P>
+(The pattern <CODE>*(R)</CODE> matches all readable files in the current
+directory, and <CODE>*(^R)</CODE> matches all unreadable files.)
+<P>
+<A NAME="IDX56"></A>
+<A NAME="IDX57"></A>
+Most other shells have aliases of this kind (<EM>command</EM> aliases).
+However, zsh also has <EM>global</EM> aliases, which are substituted
+anywhere on a line.  Global aliases can be used to abbreviate
+frequently-typed usernames, hostnames, etc.<P>
+<PRE>
+% alias -g me=pfalstad gun=egsirer mjm=maruchck
+% who | grep me
+pfalstad ttyp0   May 24 03:39   (mickey.Princeton)
+pfalstad ttyp5   May 24 03:42   (mickey.Princeton)
+% fm gun
+Login name: egsirer                     In real life: Emin Gun Sirer
+Directory: /u/egsirer                   Shell: /bin/sh
+Last login Thu May 23 19:05 on ttyq3 from bow.Princeton.ED
+New mail received Fri May 24 02:30:28 1991;
+  unread since Fri May 24 02:30:27 1991
+% alias -g phx=phoenix.princeton.edu warc=wuarchive.wustl.edu
+% ftp warc
+Connected to wuarchive.wustl.edu.
+</PRE>
+<P>
+Here are some more interesting uses.
+<P>
+<PRE>
+% alias -g M='| more' GF='| fgrep -f ~/.friends'
+% who M    <EM># pipes the output of <CODE>who</EM> through <CODE>more</CODE></CODE>
+% who GF   <EM># see if your friends are on</EM>
+% w GF     <EM># see what your friends are doing</EM>
+</PRE>
+<P>
+<A NAME="IDX58"></A>
+<A NAME="IDX59"></A>
+Another example makes use of zsh's process substitution.  If you run
+NIS, and you miss being able to do this:
+<P>
+<PRE>
+% grep pfalstad /etc/passwd
+</PRE>
+<P>
+you can define an alias that will seem more natural than <CODE>ypmatch
+pfalstad passwd</CODE>:
+<P>
+<PRE>
+% alias -g PASS='<(ypcat passwd)'
+% grep pfalstad PASS
+pfalstad:*:3564:35:Paul John Falstad:/u/pfalstad:/usr/princeton/bin/zsh
+</PRE>
+<P>
+If you're really crazy, you can even call it <CODE>/etc/passwd</CODE>:
+<P>
+<PRE>
+% alias -g /etc/passwd='<(ypcat passwd)'
+% grep pfalstad /etc/passwd
+pfalstad:*:3564:35:Paul John Falstad:/u/pfalstad:/usr/princeton/bin/zsh
+</PRE>
+<P>
+<A NAME="IDX60"></A>
+The last example shows one of the perils of global aliases; they have a
+lot of potential to cause confusion.  For example, if you defined a
+global alias called <CODE>|</CODE> (which is possible), zsh would begin to act
+very strangely; every pipe symbol would be replaced with the text of
+your alias.  To some extent, global aliases are like macros in C;
+discretion is advised in using them and in choosing names for them.
+Using names in all caps is not a bad idea, especially for aliases which
+introduce shell metasyntax (like <CODE>M</CODE> and <CODE>GF</CODE> above).<P>
+<A NAME="IDX61"></A>
+<A NAME="IDX62"></A>
+Note that zsh aliases are not like csh aliases.  The syntax for defining
+them is different, and they do not have arguments.  All your favorite
+csh aliases will probably not work under zsh.  For example, if you try:
+<P>
+<PRE>
+alias rm mv '\!* /tmp/wastebasket'
+</PRE>
+<P>
+no aliases will be defined, but zsh will not report an error.  In csh,
+this line defines an alias that makes <CODE>rm</CODE> safe---files that are
+<CODE>rm</CODE>'d will be moved to a temporary directory instead of instantly
+destroyed.  In zsh's syntax, however, this line asks the shell to print
+any existing alias definitions for <CODE>rm</CODE>, <CODE>mv</CODE>, or <CODE>!*
+/tmp/wastebasket</CODE>.  Since there are none, most likely, the shell will
+not print anything, although <CODE>alias</CODE> will return a nonzero exit
+code.  The proper syntax is this:<P>
+<PRE>
+alias rm='mv \!* /tmp/wastebasket'
+</PRE>
+<P>
+However, this won't work either:
+<P>
+<PRE>
+% rm foo.dvi
+zsh: no matches found: !*
+</PRE>
+<P>
+While this makes <CODE>rm</CODE> safe, it is certainly not what the user
+intended.  In zsh, you must use a shell function for this:<P>
+<PRE>
+% unalias rm
+% rm () { mv $* /tmp/wastebasket }
+% rm foo.dvi
+% ls /tmp/wastebasket
+foo.dvi
+</PRE>
+<P>
+While this is much cleaner and easier to read (I hope you will agree),
+it is not csh-compatible.  Therefore, a script to convert csh aliases
+and variables has been provided.  You should only need to use it once,
+to convert all your csh aliases and parameters to zsh format:
+<A NAME="IDX63"></A>
+<P>
+<PRE>
+% csh
+csh> alias
+l       ls -AF
+more    less
+on      last -2 !:1 ; who | grep !:1
+csh> exit
+% c2z >neat_zsh_aliases
+% cat neat_zsh_aliases
+alias l='ls -AF'
+alias more='less'
+on () { last -2 $1 ; who | grep $1 }
+...
+</PRE>
+<P>
+The first two aliases were converted to regular zsh aliases, while the
+third, since it needed to handle arguments, was converted to a function.
+<CODE>c2z</CODE> can convert most aliases to zsh format without any problems.
+However, if you're using some really arcane csh tricks, or if you have
+an alias with a name like <CODE>do</CODE> (which is reserved in zsh), you may
+have to fix some of the aliases by hand.<P>
+The <CODE>c2z</CODE> script checks your csh setup, and produces a list
+of zsh commands which replicate your aliases and parameter settings
+as closely as possible.  You could include its output in your
+startup file, <TT>.zshrc</TT>.<P>
+<H1><A NAME="SEC9" HREF="intro_toc.html#SEC9">History</A></H1>
+<A NAME="IDX64"></A>
+<P>
+There are several ways to manipulate history in zsh.  One way is to use
+csh-style <KBD>!</KBD> history:
+<P>
+<PRE>
+% /usr/local/bin/!:0 !-2*:s/foo/bar/ >>!$
+</PRE>
+<P>
+If you don't want to use this, you can turn it off by typing
+<CODE>setopt nobanghist</CODE>.<P>
+<A NAME="IDX65"></A>
+Another way is to use the <CODE>fc</CODE> command.  For example, if you type
+an erroneous command:<P>
+<PRE>
+% for i in `cat /etc/clients` 
+ do 
+ rpu $i 
+ done
+zsh: command not found: rpu
+zsh: command not found: rpu
+zsh: command not found: rpu
+...
+</PRE>
+<P>
+typing <CODE>fc</CODE> will execute an editor on this command, allowing you to
+fix it.  (The default editor is <CODE>vi</CODE>, by the way, not
+<CODE>ed</CODE>).<A NAME="IDX66"></A>
+<A NAME="IDX67"></A>
+<P>
+<PRE>
+% fc
+49
+/rpu/s//rup/p
+ rup $i 
+w
+49
+q
+for i in `cat /etc/clients` 
+ do 
+ rup $i 
+ done
+        beam    up  2 days, 10:17,    load average: 0.86, 0.80, 0.50
+         bow    up  4 days,  8:41,    load average: 0.91, 0.80, 0.50
+        burn    up          17:18,    load average: 0.91, 0.80, 0.50
+       burst    up  9 days,  1:49,    load average: 0.95, 0.80, 0.50
+         tan    up          11:14,    load average: 0.91, 0.80, 0.50
+       bathe    up  3 days, 17:49,    load average: 1.84, 1.79, 1.50
+        bird    up  1 day,   9:13,    load average: 1.95, 1.82, 1.51
+      bonnet    up  2 days, 21:18,    load average: 0.93, 0.80, 0.50
+...
+</PRE>
+<P>
+A variant of the <CODE>fc</CODE> command is <CODE>r</CODE>, which redoes the last
+command, with optional changes:<A NAME="IDX68"></A>
+<P>
+<PRE>
+% echo foo
+foo
+% r
+echo foo
+foo
+<P>
+% echo foo
+foo
+% r foo=bar
+echo bar
+bar
+</PRE>
+<P>
+<H1><A NAME="SEC10" HREF="intro_toc.html#SEC10">Command Line Editing</A></H1>
+<P>
+<A NAME="IDX69"></A>
+zsh's command line editor, <STRONG>ZLE</STRONG>, is quite powerful.  It is
+designed to emulate either emacs or vi; the default is emacs.  To set
+the bindings for vi mode, type <CODE>bindkey -v</CODE>.
+<A NAME="IDX70"></A>
+<A NAME="IDX71"></A>
+<A NAME="IDX72"></A>
+<A NAME="IDX73"></A>
+<P>
+In addition to basic editing, the shell allows you to recall previous
+lines in the history.  In emacs mode, this is done with @ctrl{P}
+(control-P):<A NAME="IDX74"></A>
+<P>
+<PRE>
+% ls ~
+-           README      file        mail        pub         tmp
+Mailboxes   bin         func        nicecolors  scr         zsh
+News        etc         iris        notes       src
+% echo foobar
+foobar
+% <KBD>^P</KBD>
+% echo foobar<KBD>^P</KBD>
+% ls ~_
+</PRE>
+<P>
+Pressing @ctrl{P} once brings up the previous line (<CODE>echo foobar</CODE>);
+pressing it again brings up the line before that (<CODE>ls ~</CODE>).  The
+cursor is left at the end of the line, allowing you to edit the line if
+desired before executing it.  In many cases, <STRONG>ZLE</STRONG> eliminates the
+need for the <CODE>fc</CODE> command, since it is powerful enough to handle
+even multiline commands:<A NAME="IDX75"></A>
+<P>
+<PRE>
+% for i in a b c d e
+> do
+> echo $i
+> done
+a
+b
+c
+d
+e
+% <KBD>^P</KBD>
+% for i in a b c d e 
+ do 
+ echo $i 
+ done_
+</PRE>
+<P>
+Now you can just move up to the part you want to change...
+<P>
+<PRE>
+% for i in a_ b c d e
+ do 
+ echo $i 
+ done
+</PRE>
+<P>
+change it, and execute the new command.
+<P>
+<PRE>
+% for i in f g h i j
+ do 
+ echo $i 
+ done
+f
+g
+h
+i
+j
+</PRE>
+<P>
+Also, you can search the history for a certain command using
+<KBD><KBD>ESC</KBD>-P</KBD>:<A NAME="IDX76"></A>
+<A NAME="IDX77"></A>
+<P>
+<PRE>
+% set <KBD>ESC-P</KBD>
+% setopt autolist <KBD>ESC-P</KBD>
+% setopt nocorrect_
+</PRE>
+<P>
+Another way is to do an incremental search, emacs-style:
+<A NAME="IDX78"></A>
+<A NAME="IDX79"></A>
+<P>
+<PRE>
+% <KBD>^R</KBD>
+% _
+i-search:
+<P>
+% l_s /usr/bin
+i-search: l
+<P>
+% date > foofil_e.c
+i-search: le
+</PRE>
+<P>
+Another useful feature of the editor is command and filename completion.
+<A NAME="IDX80"></A>
+<A NAME="IDX81"></A>
+<A NAME="IDX82"></A>
+<A NAME="IDX83"></A>
+<A NAME="IDX84"></A>
+<P>
+<PRE>
+% comp<KBD>TAB</KBD>
+% compress _
+<P>
+% ls /nic<KBD>TAB</KBD>
+% ls /nicecolors _
+<P>
+% ls /usr/pr<KBD>TAB</KBD>
+% ls /usr/princeton/_
+<P>
+% ls -l =com<KBD>TAB</KBD>
+% ls -l =compress _
+</PRE>
+<P>
+If the completion is ambiguous, the editor will beep.  You can list
+possible completions by pressing @ctrl{D}:
+<A NAME="IDX85"></A>
+<A NAME="IDX86"></A>
+<P>
+<PRE>
+% ls /vmu<KBD>TAB</KBD> <EM>beep</EM>
+% ls /vmunix_
+% ls /vmunix<KBD>^D</KBD>
+vmunix                    vmunix.old                
+vmunix.new.kernelmap.old  vmunix.org
+</PRE>
+<P>
+Or, you could just set the <CODE>AUTOLIST</CODE> option:
+<A NAME="IDX87"></A>
+<P>
+<PRE>
+% setopt autolist
+% ls /vmu<KBD>TAB</KBD> <EM>beep</EM>
+vmunix                    vmunix.old                
+vmunix.new.kernelmap.old  vmunix.org
+% ls /vmunix_
+</PRE>
+<P>
+<A NAME="IDX88"></A>
+Another option you could set is <CODE>RECEXACT</CODE>, which causes exact
+matches to be accepted, even if there are other possible
+completions:<P>
+<PRE>
+% setopt recexact
+% ls /vmu<KBD>TAB</KBD> <EM>beep</EM>
+vmunix                    vmunix.old                
+vmunix.new.kernelmap.old  vmunix.org
+% ls /vmunix_<KBD>TAB</KBD>
+% ls /vmunix _
+</PRE>
+<P>
+<A NAME="IDX89"></A>
+The <CODE>fignore</CODE> variable lists suffixes of files to ignore during
+completion.
+<P>
+<PRE>
+% ls foo<KBD>TAB</KBD> <EM>beep</EM>
+foofile.c  foofile.o
+% fignore=( .o \~ .bak .junk )
+% ls foo<KBD>TAB</KBD>
+% ls foofile.c _
+</PRE>
+<P>
+Since <CODE>foofile.o</CODE> has a suffix that is in the <CODE>fignore</CODE> list,
+it was not considered a possible completion of <CODE>foo</CODE>.<P>
+Username completion is also supported:
+<A NAME="IDX90"></A>
+<A NAME="IDX91"></A>
+<P>
+<PRE>
+% ls ~pfal<KBD>TAB</KBD>
+% ls ~pfalstad/_
+</PRE>
+<P>
+and parameter name completion:
+<A NAME="IDX92"></A>
+<A NAME="IDX93"></A>
+<P>
+<PRE>
+% echo $ORG<KBD>TAB</KBD>
+% echo $ORGANIZATION _
+</PRE>
+<P>
+and hostname completion, if you give the shell a list of hosts to
+complete:
+<A NAME="IDX94"></A>
+<A NAME="IDX95"></A>
+<A NAME="IDX96"></A>
+<P>
+<PRE>
+% hosts=( phoenix.princeton.edu uunet.uu.net nic.ddn.mil
+> diskfarm.princeton.edu gnu.ai.mit.edu
+> eniac.seas.upenn.edu )
+% telnet disk<KBD>TAB</KBD>
+% telnet diskfarm.princeton.edu _
+<P>
+% ftp uu<KBD>TAB</KBD>
+% ftp uunet.uu.net _
+<P>
+% mail subbarao@ph<KBD>TAB</KBD>
+% mail subbarao@phoenix.princeton.edu _
+</PRE>
+<P>
+and option completion:
+<A NAME="IDX97"></A>
+<A NAME="IDX98"></A>
+<P>
+<PRE>
+% setopt nocl<KBD>TAB</KBD>
+% setopt noclobber _
+</PRE>
+<P>
+and binding completion:
+<A NAME="IDX99"></A>
+<A NAME="IDX100"></A>
+<P>
+<PRE>
+% bindkey '^X^X' pu<KBD>TAB</KBD>
+% bindkey '^X^X' push-line _
+</PRE>
+<P>
+<A NAME="IDX101"></A>
+The <CODE>compctl</CODE> command is used to control how completion works.  For
+example, to specify that certain commands show take commands as
+arguments, you use <CODE>compctl -c</CODE>:<P>
+<PRE>
+% compctl -c man nohup
+% man upt<KBD>TAB</KBD>
+% man uptime _
+</PRE>
+<P>
+To specify that a command should complete filenames, you should use
+<CODE>compctl -f</CODE>.  This is the default.  It can be combined with
+<CODE>-c</CODE>, as well.<P>
+<PRE>
+% compctl -cf echo
+% echo upt<KBD>TAB</KBD>
+% echo uptime _
+<P>
+% echo fo<KBD>TAB</KBD>
+% echo foo.c
+</PRE>
+<P>
+Similarly, use <CODE>-h</CODE> to specify hostnames, <CODE>-o</CODE> to specify
+options, <CODE>-v</CODE> to specify variables, and <CODE>-b</CODE> to specify
+bindings.<P>
+<PRE>
+% compctl -h rlogin
+% compctl -hfc rsh
+% compctl -b bindkey
+</PRE>
+<P>
+You can also use <CODE>-k</CODE> to specify a custom list of keywords to use
+in completion.<A NAME="IDX102"></A>
+<A NAME="IDX103"></A>
+<P>
+<PRE>
+% ftphosts=(ftp.uu.net wuarchive.wustl.edu)
+% compctl -k ftphosts ftp
+% ftp wu<KBD>TAB</KBD>
+% ftp wuarchive.wustl.edu _
+<P>
+% friends=(cpirazzi subbarao sukthnkr)
+% compctl -k friends mail finger su
+% finger cp<KBD>TAB</KBD>
+% finger cpirazzi _
+</PRE>
+<P>
+In addition to completion, <KBD>TAB</KBD> performs expansion if possible.
+<A NAME="IDX104"></A>
+<A NAME="IDX105"></A>
+<P>
+<PRE>
+% ls *.c<KBD>TAB</KBD>
+% ls foofile.c fortune.c rnd.c strfile.c unstr.c_
+</PRE>
+<P>
+For example, suppose you have a bunch of weird files in an important
+directory:
+<A NAME="IDX106"></A>
+<A NAME="IDX107"></A>
+<P>
+<PRE>
+% ls
+  * * *       ; & % $??foo  dspfok        foo.c
+  !"foo"!       ` \ `         foo           rrr
+</PRE>
+<P>
+You want to remove them, but you don't want to damage <CODE>foo.c</CODE>.
+Here is one way to do this:<P>
+<PRE>
+% rm *<KBD>TAB</KBD>
+% rm \ \ \*\ \*\ \*\ \ \  \!\"foo\"\! \;\ \&\ %\ \$'
+'foo \`\ \\\ \` dspfok foo foo.c rrr_
+</PRE>
+<P>
+When you expand <KBD>*</KBD>, zsh inserts the names of all the files into the
+editing buffer, with proper shell quoting.  Now, just move back and
+remove <CODE>foo.c</CODE> from the buffer:
+<P>
+<PRE>
+% rm \ \ \*\ \*\ \*\ \ \  \!\"foo\"\! \;\ \&\ %\ \$'
+'foo \`\ \\\ \` dspfok foo \kxr\l'|\nxu\(ul'rr
+</PRE>
+<P>
+and press return.  Everything except <CODE>foo.c</CODE> will be deleted from
+the directory.<P>
+Here's another trick; let's say you have typed this command in:
+<P>
+<PRE>
+% gcc -o x.out foob.c -g -Wpointer-arith -Wtrigraphs_
+</PRE>
+<P>
+and you forget which library you want.  You need to escape out for a
+minute and check by typing <CODE>ls /usr/lib</CODE>, or some other such
+command; but you don't want to retype the whole command again, and you
+can't press return now because the current command is incomplete.  In
+zsh, you can put the line on the <EM>buffer stack</EM>, using <KBD><KBD>ESC</KBD>-Q</KBD>,
+<A NAME="IDX108"></A>
+<A NAME="IDX109"></A>
+<A NAME="IDX110"></A>
+<A NAME="IDX111"></A>
+and type some other commands.  The next time a prompt is printed, the
+<CODE>gcc</CODE> line will be popped off the stack and put in the editing
+buffer automatically; you can then enter the proper library name and
+press return (or, <KBD><KBD>ESC</KBD>-Q</KBD> again and look for some other
+libraries whose names you forgot).<P>
+A similar situation: what if you forget the option to gcc that finds
+bugs using AI techniques?  You could either use <KBD><KBD>ESC</KBD>-Q</KBD> again,
+and type <CODE>man gcc</CODE>, or you could press <KBD><KBD>ESC</KBD>-H</KBD>, which
+<A NAME="IDX112"></A>
+essentially does the same thing; it puts the current line on the buffer
+stack, and executes the command <CODE>run-help gcc</CODE>, where
+<CODE>run-help</CODE> is an alias for <CODE>man</CODE>.<A NAME="IDX113"></A>
+<P>
+<A NAME="IDX114"></A>
+<A NAME="IDX115"></A>
+Another interesting command is <KBD><KBD>ESC</KBD>-A</KBD>.  This executes the
+current line, but retains it in the buffer, so that it appears again
+when the next prompt is printed.  Also, the cursor stays in the same
+place.  This is useful for executing a series of similar
+commands:<P>
+<PRE>
+% cc grok.c -g -lc -lgl -lsun -lmalloc -Bstatic -o b.out
+% cc fubar.c -g -lc -lgl -lsun -lmalloc -Bstatic -o b.out
+% cc fooble.c -g -lc -lgl -lsun -lmalloc -Bstatic -o b.out
+</PRE>
+<P>
+The <KBD><KBD>ESC</KBD>-'</KBD> command is useful for managing the shell's quoting
+<A NAME="IDX116"></A>
+<A NAME="IDX117"></A>
+<A NAME="IDX118"></A>
+conventions.  Let's say you want to print this string:
+<P>
+<PRE>
+don't do that; type 'rm -rf \*', with a \ before the *.
+</PRE>
+<P>
+All that is necessary is to type it into the editing buffer:
+<P>
+<PRE>
+% don't do that; type 'rm -rf \*', with a \ before the *.
+</PRE>
+<P>
+press <KBD><KBD>ESC</KBD>-'</KBD> (escape-quote):
+<P>
+<PRE>
+% 'don'\''t do that; type '\''rm -rf \*'\'', with a \ before the *.'
+</PRE>
+<P>
+then move to the beginning and add the <CODE>echo</CODE> command.
+<P>
+<PRE>
+% echo 'don'\''t do that; type '\''rm -rf \*'\'', with a \ before the *.'
+don't do that; type 'rm -rf \*', with a \ before the *.
+</PRE>
+<P>
+Let's say you want to create an alias to do this <CODE>echo</CODE> command.
+This can be done by recalling the line with @ctrl{P} and pressing
+<KBD><KBD>ESC</KBD>-'</KBD> again:<P>
+<PRE>
+% 'echo '\''don'\''\'\'''\''t do that; type '\''\'\'''\''rm -rf
+\*'\''\'\'''\'', with a \ before the *.'\'''
+</PRE>
+<P>
+and then move to the beginning and add the command to create an alias.
+<P>
+<PRE>
+% alias zoof='echo '\''don'\''\'\'''\''t do that; type '\''\'\'''\''
+rm -rf \*'\''\'\'''\'', with a \ before the *.'\'''
+% zoof
+don't do that; type 'rm -rf \*', with a \ before the *.
+</PRE>
+<P>
+Another interesting option is <CODE>MENUCOMPLETE</CODE>.  This affects the way
+<KBD>TAB</KBD> works.  Let's look at the <CODE>/vmunix</CODE> example again:
+<A NAME="IDX119"></A>
+<A NAME="IDX120"></A>
+<P>
+<PRE>
+% setopt menucomplete
+% ls /vmu<KBD>TAB</KBD>
+% ls /vmunix<KBD>TAB</KBD>
+% ls /vmunix.new.kernelmap.old<KBD>TAB</KBD>
+% ls /vmunix.old_
+</PRE>
+<P>
+Each time you press <KBD>TAB</KBD>, it displays the next possible completion.
+In this way, you can cycle through the possible completions until you
+find the one you want.<P>
+<A NAME="IDX121"></A>
+The <CODE>AUTOMENU</CODE> option makes a nice compromise between this method
+of completion and the regular method.  If you set this option, pressing
+the <KBD>TAB</KBD> key repeatedly after an ambiguous completion will cycle
+through the possible completions.<P>
+<H1><A NAME="SEC11" HREF="intro_toc.html#SEC11">Bindings</A></H1>
+<A NAME="IDX122"></A>
+<P>
+Each of the above editor commands was actually a function bound by
+default to a certain key.  The real names of the commands are:<P>
+<PRE>
+expand-or-complete   <KBD>TAB</KBD>
+push-line            <KBD><KBD>ESC</KBD>-Q</KBD>
+run-help             <KBD><KBD>ESC</KBD>-H</KBD>
+accept-and-hold      <KBD><KBD>ESC</KBD>-A</KBD>
+quote-line           <KBD><KBD>ESC</KBD>-'</KBD>
+</PRE>
+<P>
+<A NAME="IDX123"></A>
+<A NAME="IDX124"></A>
+<A NAME="IDX125"></A>
+<A NAME="IDX126"></A>
+<A NAME="IDX127"></A>
+<A NAME="IDX128"></A>
+<P>
+These bindings are arbitrary; you could change them if you want.  For
+example, to bind <CODE>accept-line</CODE> to @ctrl{Z}:
+<P>
+<PRE>
+% bindkey '^Z' accept-line
+</PRE>
+<P>
+Another idea would be to bind the delete key to <CODE>delete-char</CODE>; this
+might be convenient if you use @ctrl{H} for backspace.
+<A NAME="IDX129"></A>
+<P>
+<PRE>
+% bindkey '^?' delete-char
+</PRE>
+<P>
+Or, you could bind @ctrl{X}@ctrl{H} to <CODE>run-help</CODE>:
+<P>
+<PRE>
+% bindkey '^X^H' run-help
+</PRE>
+<P>
+Other examples:
+<P>
+<PRE>
+% bindkey '^X^Z' universal-argument
+% bindkey ' ' magic-space
+% bindkey -s '^T' 'uptime
+> '
+</PRE>
+<P>
+<A NAME="IDX130"></A>
+<A NAME="IDX131"></A>
+<CODE>universal-argument</CODE> multiplies the next command by 4.  Thus
+@ctrl{X}@ctrl{Z}@ctrl{W} might delete the last four words on the line.
+If you bind space to <CODE>magic-space</CODE>, then csh-style history
+expansion is done on the line whenever you press the space bar.<P>
+The <CODE>-s</CODE> flag to <CODE>bindkey</CODE> specifies that you are binding the
+key to a string, not a command.  Thus <CODE>bindkey -s '^T' 'uptime\n'</CODE>
+lets you VMS lovers get the load average whenever you press
+@ctrl{T}.<A NAME="IDX132"></A>
+<P>
+<A NAME="IDX133"></A>
+If you have a NeXT keyboard, the one with the <KBD>|</KBD> and <KBD>\</KBD> keys
+very inconveniently placed, the following bindings may come in
+handy:<P>
+<PRE>
+% bindkey -s '\/' '\\'
+% bindkey -s '\=' '|'
+</PRE>
+<P>
+<A NAME="IDX134"></A>
+<A NAME="IDX135"></A>
+Now you can type <KBD><KBD>ALT</KBD>-/</KBD> to get a backslash, and <KBD><KBD>ALT</KBD>-=</KBD>
+to get a vertical bar.  This only works inside zsh, of course;
+<CODE>bindkey</CODE> has no effect on the key mappings inside <CODE>talk</CODE> or
+<CODE>mail</CODE>, etc.<P>
+Another use of the editor is to edit the value of variables.  For
+example, an easy way to change your path is to use the <CODE>vared</CODE>
+command:<A NAME="IDX136"></A>
+<P>
+<PRE>
+% vared PATH
+> /u/pfalstad/scr:/u/pfalstad/bin/sun4:/u/maruchck/scr:/u/subbarao/bin:/u/maruc
+hck/bin:/u/subbarao/scripts:/usr/princeton/bin:/usr/ucb:/usr/bin:/bin:/usr/host
+s:/usr/princeton/bin/X11:/./usr/lang:/./usr/etc:/./etc
+</PRE>
+<P>
+You can now edit the path.  When you press return, the contents of the
+edit buffer will be assigned to <CODE>PATH</CODE>.
+<A NAME="IDX137"></A>
+<P>
+<H1><A NAME="SEC12" HREF="intro_toc.html#SEC12">Parameter Substitution</A></H1>
+<A NAME="IDX138"></A>
+<A NAME="IDX139"></A>
+<P>
+In zsh, parameters are set like this:
+<P>
+<PRE>
+% foo=bar
+% echo $foo
+bar
+</PRE>
+<P>
+Spaces before or after the <KBD>=</KBD> are frowned upon:
+<P>
+<PRE>
+% foo = bar
+zsh: command not found: foo
+</PRE>
+<P>
+Also, <CODE>set</CODE> doesn't work for setting parameters:
+<A NAME="IDX140"></A>
+<P>
+<PRE>
+% set foo=bar
+% set foo = bar
+% echo $foo
+<P>
+%
+</PRE>
+<P>
+Note that no error message was printed.  This is because both of these
+commands were perfectly valid; the <CODE>set</CODE> builtin assigns its
+arguments to the <EM>positional parameters</EM> (<CODE>$1</CODE>, <CODE>$2</CODE>,
+etc.).<A NAME="IDX141"></A>
+<A NAME="IDX142"></A>
+<A NAME="IDX143"></A>
+<A NAME="IDX144"></A>
+<P>
+<PRE>
+% set foo=bar
+% echo $1
+foo=bar
+% set foo = bar
+% echo $3 $2
+bar =
+</PRE>
+<P>
+If you're really intent on using the csh syntax, define a function like
+this:
+<A NAME="IDX145"></A>
+<P>
+<PRE>
+% set () {
+>    eval "$1$2$3"
+> }
+% set foo = bar
+% set fuu=brrr
+% echo $foo $fuu
+bar brrr
+</PRE>
+<P>
+But then, of course you can't use the form of <CODE>set</CODE> with options,
+like <CODE>set -F</CODE> (which turns off filename generation).  Also, the
+<CODE>set</CODE> command by itself won't list all the parameters like it
+should.  To get around that you need a <CODE>case</CODE> statement:<A NAME="IDX146"></A>
+<P>
+<PRE>
+% set () {
+>    case $1 in
+>    -*|+*|'') builtin set $* ;;
+>    *) eval "$1$2$3" ;;
+>    esac
+> }
+</PRE>
+<P>
+For the most part, this should make csh users happy.
+<P>
+The following sh-style operators are supported in zsh:
+<A NAME="IDX147"></A>
+<A NAME="IDX148"></A>
+<P>
+<PRE>
+% unset null
+% echo ${foo-xxx}
+bar
+% echo ${null-xxx}
+xxx
+% unset null
+% echo ${null=xxx}
+xxx
+% echo $null
+xxx
+% echo ${foo=xxx}
+bar
+% echo $foo
+bar
+% unset null
+% echo ${null+set}
+<P>
+% echo ${foo+set}
+set
+</PRE>
+<P>
+Also, csh-style <KBD>:</KBD> modifiers may be appended to a parameter
+<A NAME="IDX149"></A>
+<A NAME="IDX150"></A>
+substitution.
+<P>
+<PRE>
+% echo $PWD
+/home/learning/pf/zsh/zsh2.00/src
+% echo $PWD:h
+/home/learning/pf/zsh/zsh2.00
+% echo $PWD:h:h
+/home/learning/pf/zsh
+% echo $PWD:t
+src
+% name=foo.c
+% echo $name
+foo.c
+% echo $name:r
+foo
+% echo $name:e
+c
+</PRE>
+<P>
+<A NAME="IDX151"></A>
+<A NAME="IDX152"></A>
+The equivalent constructs in ksh (which are also supported in zsh) are a
+bit more general and easier to remember.  When the shell expands
+<CODE>${foo#<VAR>pat</CODE>}</VAR>, it checks to see if <VAR>pat</VAR> matches a
+substring at the beginning of the value of <CODE>foo</CODE>.  If so, it
+removes that portion of <CODE>foo</CODE>, using the shortest possible match.
+With <CODE>${foo##<VAR>pat</CODE>}</VAR>, the longest possible match is removed.
+<CODE>${foo%<VAR>pat</CODE>}</VAR> and <CODE>${foo%%<VAR>pat</CODE>}</VAR> remove the
+match from the end.  Here are the ksh equivalents of the <KBD>:</KBD>
+modifiers:<P>
+<PRE>
+% echo ${PWD%/*}
+/home/learning/pf/zsh/zsh2.00
+% echo ${PWD%/*/*}
+/home/learning/pf/zsh
+% echo ${PWD##*/}
+src
+% echo ${name%.*}
+foo
+% echo ${name#*.}
+c
+</PRE>
+<P>
+zsh also has upper/lowercase modifiers:
+<A NAME="IDX153"></A>
+<A NAME="IDX154"></A>
+<P>
+<PRE>
+% xx=Test
+% echo $xx:u
+TEST
+% echo $xx:l
+test
+</PRE>
+<P>
+and a substitution modifier:
+<A NAME="IDX155"></A>
+<A NAME="IDX156"></A>
+<P>
+<PRE>
+% echo $name:s/foo/bar/
+bar.c
+% ls
+foo.c    foo.h    foo.o    foo.pro
+% for i in foo.*; mv $i $i:s/foo/bar/
+% ls
+bar.c    bar.h    bar.o    bar.pro
+</PRE>
+<P>
+<A NAME="IDX157"></A>
+<A NAME="IDX158"></A>
+One possible source of confusion is the fact that in zsh, the result of
+parameter substitution is <EM>not</EM> split into words.  Thus, this will
+not work:<P>
+<PRE>
+% srcs='glob.c exec.c init.c'
+% ls $srcs
+glob.c exec.c init.c not found
+</PRE>
+<P>
+This is considered a feature, not a bug.  If splitting were done by
+default, as it is in most other shells, functions like this would not
+work properly:
+<P>
+<PRE>
+$ ll () { ls -F $* }
+$ ll 'fuu bar'
+fuu not found
+bar not found
+<P>
+% ll 'fuu bar'
+fuu bar not found
+</PRE>
+<P>
+Of course, a hackish workaround is available in sh (and zsh):
+<P>
+<PRE>
+% setopt shwordsplit
+% ll () { ls -F "$@" }
+% ll 'fuu bar'
+fuu bar not found
+</PRE>
+<P>
+If you like the sh behaviour, zsh can accomodate you:
+<P>
+<PRE>
+% ls ${=srcs}
+exec.c  glob.c  init.c
+% setopt shwordsplit
+% ls $srcs
+exec.c  glob.c  init.c
+</PRE>
+<P>
+Another way to get the <CODE>$srcs</CODE> trick to work is to use an array:
+<A NAME="IDX159"></A>
+<P>
+<PRE>
+% unset srcs
+% srcs=( glob.c exec.c init.c )  
+% ls $srcs
+exec.c  glob.c  init.c
+</PRE>
+<P>
+or an alias:
+<P>
+<PRE>
+% alias -g SRCS='exec.c glob.c init.c'
+% ls SRCS
+exec.c  glob.c  init.c
+</PRE>
+<P>
+Another option that modifies parameter expansion is <CODE>RCEXPANDPARAM</CODE>:
+<A NAME="IDX160"></A>
+<P>
+<PRE>
+% echo foo/$srcs
+foo/glob.c exec.c init.c
+% setopt rcexpandparam
+% echo foo/$srcs
+foo/glob.c foo/exec.c foo/init.c
+% echo foo/${^srcs}
+foo/glob.c foo/exec.c foo/init.c
+% echo foo/$^srcs
+foo/glob.c foo/exec.c foo/init.c
+</PRE>
+<P>
+<H1><A NAME="SEC13" HREF="intro_toc.html#SEC13">Shell Parameters</A></H1>
+<A NAME="IDX161"></A>
+<A NAME="IDX162"></A>
+<P>
+The shell has many predefined parameters that may be accessed.  Here are
+some examples:
+<A NAME="IDX163"></A>
+<A NAME="IDX164"></A>
+<A NAME="IDX165"></A>
+<A NAME="IDX166"></A>
+<A NAME="IDX167"></A>
+<P>
+<PRE>
+% sleep 10 &
+[1] 3820
+% echo $!
+3820
+% set a b c
+% echo $#
+3
+% echo $ARGC
+3
+% ( exit 20 ) ; echo $?
+20
+% false; echo $status
+1
+</PRE>
+<P>
+(<CODE>$?</CODE> and <CODE>$status</CODE> are equivalent.)
+<A NAME="IDX168"></A>
+<A NAME="IDX169"></A>
+<A NAME="IDX170"></A>
+<A NAME="IDX171"></A>
+<A NAME="IDX172"></A>
+<A NAME="IDX173"></A>
+<P>
+<PRE>
+% echo $HOST $HOSTTYPE
+dendrite sun4
+% echo $UID $GID
+701 60
+% cd /tmp
+% cd /home
+% echo $PWD $OLDPWD
+/home /tmp
+% ls $OLDPWD/.getwd 
+/tmp/.getwd
+</PRE>
+<P>
+<CODE>~+</CODE> and <CODE>~-</CODE> are short for <CODE>$PWD</CODE> and <CODE>$OLDPWD</CODE>, 
+respectively.<A NAME="IDX174"></A>
+<A NAME="IDX175"></A>
+<A NAME="IDX176"></A>
+<A NAME="IDX177"></A>
+<A NAME="IDX178"></A>
+<A NAME="IDX179"></A>
+<P>
+<PRE>
+% ls ~-/.getwd
+/tmp/.getwd
+% ls -d ~+/learning
+/home/learning
+% echo $RANDOM
+4880
+% echo $RANDOM
+11785
+% echo $RANDOM
+2062
+% echo $TTY
+/dev/ttyp4
+% echo $VERSION
+zsh v2.00.03
+% echo $USERNAME
+pf
+</PRE>
+<P>
+<A NAME="IDX180"></A>
+<A NAME="IDX181"></A>
+The <CODE>cdpath</CODE> variable sets the search path for the <CODE>cd</CODE>
+command.  If you do not specify <KBD>.</KBD> somewhere in the path, it is
+assumed to be the first component.<P>
+<PRE>
+% cdpath=( /usr ~ ~/zsh )
+% ls /usr
+5bin         dict         lang         net          sccs         sys
+5include     etc          lector       nserve       services     tmp
+5lib         export       lib          oed          share        ucb
+adm          games        local        old          skel         ucbinclude
+bin          geac         lost+found   openwin      spool        ucblib
+boot         hosts        macsyma_417  pat          src          xpg2bin
+demo         include      man          princeton    stand        xpg2include
+diag         kvm          mdec         pub          swap         xpg2lib
+% cd spool
+/usr/spool
+% cd bin
+/usr/bin
+% cd func
+~/func
+% cd 
+% cd pub
+% pwd
+/u/pfalstad/pub
+% ls -d /usr/pub
+/usr/pub
+</PRE>
+<P>
+<A NAME="IDX182"></A>
+<A NAME="IDX183"></A>
+<CODE>PATH</CODE> and <CODE>path</CODE> both set the search path for commands.
+These two variables are equivalent, except that one is a string and one
+is an array.  If the user modifies <CODE>PATH</CODE>, the shell changes
+<CODE>path</CODE> as well, and vice versa.<P>
+<PRE>
+% PATH=/bin:/usr/bin:/tmp:.
+% echo $path
+/bin /usr/bin /tmp .
+% path=( /usr/bin . /usr/local/bin /usr/ucb )
+% echo $PATH
+/usr/bin:.:/usr/local/bin:/usr/ucb
+</PRE>
+<P>
+The same is true of <CODE>CDPATH</CODE> and <CODE>cdpath</CODE>:
+<A NAME="IDX184"></A>
+<A NAME="IDX185"></A>
+<P>
+<PRE>
+% echo $CDPATH
+/usr:/u/pfalstad:/u/pfalstad/zsh
+% CDPATH=/u/subbarao:/usr/src:/tmp
+% echo $cdpath
+/u/subbarao /usr/src /tmp
+</PRE>
+<P>
+<A NAME="IDX186"></A>
+In general, parameters with names in all lowercase are arrays;
+assignments to them take the form:
+<P>
+<PRE>
+<VAR>name</VAR>=(<VAR>elem ...</VAR>)
+</PRE>
+<P>
+<A NAME="IDX187"></A>
+Parameters with names in all uppercase are strings.  If there is both an
+array and a string version of the same parameter, the string version is
+a colon-separated list, like <CODE>PATH</CODE>.
+<P>
+<A NAME="IDX188"></A>
+<A NAME="IDX189"></A>
+<A NAME="IDX190"></A>
+<CODE>HISTFILE</CODE> is the name of the history file, where the history is
+saved when a shell exits.<P>
+<PRE>
+% zsh
+phoenix% HISTFILE=/tmp/history
+phoenix% SAVEHIST=20
+phoenix% echo foo
+foo
+phoenix% date
+Fri May 24 05:39:35 EDT 1991
+phoenix% uptime
+  5:39am  up 4 days, 20:02,  40 users,  load average: 2.30, 2.20, 2.00
+phoenix% exit
+% cat /tmp/history
+HISTFILE=/tmp/history
+SAVEHIST=20
+echo foo
+date
+uptime
+exit
+% HISTSIZE=3
+% history
+   28  rm /tmp/history
+   29  HISTSIZE=3
+   30  history
+</PRE>
+<P>
+In zsh, if you say
+<P>
+<PRE>
+% >file
+</PRE>
+<P>
+the command <CODE>cat</CODE> is normally assumed:
+<P>
+<PRE>
+% >file
+foo!    
+^D
+% cat file
+foo!
+</PRE>
+<P>
+Thus, you can view a file simply by typing:
+<P>
+<PRE>
+% <file
+foo!
+</PRE>
+<P>
+<A NAME="IDX191"></A>
+However, this is not csh or sh compatible.  To correct this, change the
+value of the parameter <CODE>NULLCMD</CODE>, which is <CODE>cat</CODE> by default.
+<A NAME="IDX192"></A>
+<P>
+<PRE>
+% NULLCMD=:
+% >file
+% ls -l file
+-rw-r--r--  1 pfalstad        0 May 24 05:41 file
+</PRE>
+<P>
+If <CODE>NULLCMD</CODE> is unset, the shell reports an error if no command is
+specified (like csh).
+<P>
+<PRE>
+% unset NULLCMD
+% >file
+zsh: redirection with no command
+</PRE>
+<P>
+<A NAME="IDX193"></A>
+Actually, <CODE>READNULLCMD</CODE> is used whenever you have a null command
+reading input from a single file.  Thus, you can set <CODE>READNULLCMD</CODE>
+to <CODE>more</CODE> or <CODE>less</CODE> rather than <CODE>cat</CODE>.  Also, if you set
+<CODE>NULLCMD</CODE> to <KBD>:</KBD> for sh compatibility, you can still read files
+with <CODE>< file</CODE> if you leave <CODE>READNULLCMD</CODE> set to <CODE>more</CODE>.<P>
+<H1><A NAME="SEC14" HREF="intro_toc.html#SEC14">Prompting</A></H1>
+<A NAME="IDX194"></A>
+<P>
+The default prompt for zsh is:
+<P>
+<PRE>
+phoenix% echo $PROMPT
+%m%# 
+</PRE>
+<P>
+The <CODE>%m</CODE> stands for the short form of the current hostname, and the
+<CODE>%#</CODE> stands for a <CODE>%</CODE> or a <CODE>#</CODE>, depending on whether the
+shell is running as root or not.  zsh supports many other control
+sequences in the <CODE>PROMPT</CODE> variable.<A NAME="IDX195"></A>
+<P>
+<PRE>
+% PROMPT='%/> '
+/u/pfalstad/etc/TeX/zsh>
+<P>
+% PROMPT='%~> '   
+~/etc/TeX/zsh> 
+<P>
+% PROMPT='%h %~> '
+6 ~/etc/TeX/zsh> 
+</PRE>
+<P>
+<CODE>%h</CODE> represents the number of current history event.
+<P>
+<PRE>
+% PROMPT='%h %~ %M> '
+10 ~/etc/TeX/zsh apple-gunkies.gnu.ai.mit.edu> 
+<P>
+% PROMPT='%h %~ %m> '
+11 ~/etc/TeX/zsh apple-gunkies> 
+<P>
+% PROMPT='%h %t> '
+12 6:11am> 
+<P>
+% PROMPT='%n %w tty%l>'
+pfalstad Fri 24 ttyp0>
+</PRE>
+<P>
+<A NAME="IDX196"></A>
+Also available is the <CODE>RPROMPT</CODE> parameter.  If this is set, the
+shell puts a prompt on the <EM>right</EM> side of the screen.<P>
+<PRE>
+% RPROMPT='%t'
+%                                                      6:14am
+<P>
+% RPROMPT='%~'
+%                                               ~/etc/TeX/zsh
+<P>
+% PROMPT='%l %T %m[%h] ' RPROMPT=' %~'
+p0 6:15 phoenix[5]                              ~/etc/TeX/zsh
+</PRE>
+<P>
+These special escape sequences can also be used with the <CODE>-P</CODE>
+option to <CODE>print</CODE>:<A NAME="IDX197"></A>
+<A NAME="IDX198"></A>
+<P>
+<PRE>
+% print -P %h tty%l
+15 ttyp1
+</PRE>
+<P>
+<A NAME="IDX199"></A>
+The <CODE>POSTEDIT</CODE> parameter is printed whenever the editor exits.
+This can be useful for termcap tricks.  To highlight the prompt and
+command line while leaving command output unhighlighted, try
+this:<P>
+<PRE>
+% POSTEDIT=`echotc se`
+% PROMPT='%S%% '
+</PRE>
+<P>
+<H1><A NAME="SEC15" HREF="intro_toc.html#SEC15">Login/Logout Watching</A></H1>
+<A NAME="IDX200"></A>
+<P>
+<A NAME="IDX201"></A>
+You can specify login or logout events to monitor by setting the
+<CODE>watch</CODE> variable.  Normally, this is done by specifying a list of
+usernames.<P>
+<PRE>
+% watch=( pfalstad subbarao sukthnkr egsirer )
+</PRE>
+<P>
+<A NAME="IDX202"></A>
+The <CODE>log</CODE> command reports all people logged in that you are
+watching for.<P>
+<PRE>
+% log
+pfalstad has logged on p0 from mickey.
+pfalstad has logged on p5 from mickey.
+% ...
+subbarao has logged on p8 from phoenix.
+% ...
+subbarao has logged off p8 from phoenix.
+% ...
+sukthnkr has logged on p8 from dew.
+% ...
+sukthnkr has logged off p8 from dew.
+</PRE>
+<P>
+If you specify hostnames with an <KBD>@</KBD> prepended, the shell will
+watch for all users logging in from the specified host.<P>
+<PRE>
+% watch=( @mickey @phoenix )
+% log
+djthongs has logged on q2 from phoenix.
+pfalstad has logged on p0 from mickey.
+pfalstad has logged on p5 from mickey.
+</PRE>
+<P>
+If you give a tty name with a <KBD>%</KBD> prepended, the shell will watch
+for all users logging in on that tty.<P>
+<PRE>
+% watch=( %ttyp0 %console )
+% log
+root has logged on console from .
+pfalstad has logged on p0 from mickey.
+</PRE>
+<P>
+The format of the reports may also be changed.
+<P>
+<PRE>
+% watch=( pfalstad gettes eps djthongs jcorr bdavis )
+% log
+jcorr has logged on tf from 128.112.176.3:0.
+jcorr has logged on r0 from 128.112.176.3:0.
+gettes has logged on p4 from yo:0.0.
+djthongs has logged on pe from grumpy:0.0.
+djthongs has logged on q2 from phoenix.
+bdavis has logged on qd from BRUNO.
+eps has logged on p3 from csx30:0.0.
+pfalstad has logged on p0 from mickey.
+pfalstad has logged on p5 from mickey.
+% WATCHFMT='%n on tty%l from %M'
+% log
+jcorr on ttytf from 128.112.176.3:0.
+jcorr on ttyr0 from 128.112.176.3:0.
+gettes on ttyp4 from yo:0.0
+djthongs on ttype from grumpy:0.0
+djthongs on ttyq2 from phoenix.Princeto
+bdavis on ttyqd from BRUNOpl.gov
+eps on ttyp3 from csx30:0.0
+pfalstad on ttyp0 from mickey.Princeton
+pfalstad on ttyp5 from mickey.Princeton
+% WATCHFMT='%n fm %m'
+% log
+jcorr fm 128.112.176.3:0
+jcorr fm 128.112.176.3:0
+gettes fm yo:0.0
+djthongs fm grumpy:0.0
+djthongs fm phoenix
+bdavis fm BRUNO
+eps fm csx30:0.0
+pfalstad fm mickey
+pfalstad fm mickey
+% WATCHFMT='%n %a at %t %w.'
+% log
+jcorr logged on at 3:15pm Mon 20.
+jcorr logged on at 3:16pm Wed 22.
+gettes logged on at 6:54pm Wed 22.
+djthongs logged on at 7:19am Thu 23.
+djthongs logged on at 7:20am Thu 23.
+bdavis logged on at 12:40pm Thu 23.
+eps logged on at 4:19pm Thu 23.
+pfalstad logged on at 3:39am Fri 24.
+pfalstad logged on at 3:42am Fri 24.
+</PRE>
+<P>
+<A NAME="IDX203"></A>
+If you have a <TT>.friends</TT> file in your home directory, a convenient
+way to make zsh watch for all your friends is to do this:<PRE>
+% watch=( $(< ~/.friends) )
+% echo $watch
+subbarao maruchck root sukthnkr ...
+</PRE>
+<P>
+If <CODE>watch</CODE> is set to <CODE>all</CODE>, then all users logging in or out
+will be reported.<P>
+<H1><A NAME="SEC16" HREF="intro_toc.html#SEC16">Options</A></H1>
+<A NAME="IDX204"></A>
+<P>
+Some options have already been mentioned; here are a few more:
+<P>
+<PRE>
+% cd /
+% setopt autocd
+% bin
+% pwd
+/bin
+% ../etc
+% pwd
+/etc
+</PRE>
+<P>
+<A NAME="IDX205"></A>
+Using the <CODE>AUTOCD</CODE> option, you can simply type the name of a
+directory, and it will become the current directory.<P>
+<PRE>
+% setopt cdablevars
+% foo=/tmp
+% cd foo
+/tmp
+</PRE>
+<P>
+<A NAME="IDX206"></A>
+<A NAME="IDX207"></A>
+With <CODE>CDABLEVARS</CODE>, if the argument to <CODE>cd</CODE> is the name of a
+parameter whose value is a valid directory, it will become the current
+directory.<P>
+<A NAME="IDX208"></A>
+<A NAME="IDX209"></A>
+<A NAME="IDX210"></A>
+<A NAME="IDX211"></A>
+<CODE>CORRECT</CODE> turns on spelling correction for commands, and the
+<CODE>CORRECTALL</CODE> option turns on spelling correction for all arguments.
+<P>
+<PRE>
+% setopt correct
+% sl
+zsh: correct `sl' to `ls' [nyae]? y
+% setopt correctall
+% ls x.v11r4
+zsh: correct `x.v11r4' to `X.V11R4' [nyae]? n
+/usr/princton/src/x.v11r4 not found
+% ls /etc/paswd
+zsh: correct to `/etc/paswd' to `/etc/passwd' [nyae]? y
+/etc/passwd
+</PRE>
+<P>
+If you press <KBD>y</KBD> when the shell asks you if you want to correct a
+word, it will be corrected.  If you press <KBD>n</KBD>, it will be left
+alone.  Pressing <KBD>a</KBD> aborts the command, and pressing <KBD>e</KBD> brings
+the line up for editing again, in case you agree the word is spelled
+wrong but you don't like the correction.<P>
+Normally, a quoted expression may contain a newline:
+<P>
+<PRE>
+% echo '
+> foo
+> '
+<P>
+foo
+<P>
+%
+</PRE>
+<P>
+<A NAME="IDX212"></A>
+With <CODE>CSHJUNKIEQUOTES</CODE> set, this is illegal, as it is in csh.
+<P>
+<PRE>
+% setopt cshjunkiequotes
+% ls 'foo
+zsh: unmatched '
+</PRE>
+<P>
+<A NAME="IDX213"></A>
+<A NAME="IDX214"></A>
+<CODE>GLOBDOTS</CODE> lets files beginning with a <KBD>.</KBD> be matched without
+explicitly specifying the dot.<P>
+<PRE>
+% ls -d *x*
+Mailboxes
+% setopt globdots
+% ls -d *x*
+.exrc         .pnewsexpert  .xserverrc
+.mushexpert   .xinitrc      Mailboxes
+</PRE>
+<P>
+<A NAME="IDX215"></A>
+<A NAME="IDX216"></A>
+<A NAME="IDX217"></A>
+<CODE>HISTIGNOREDUPS</CODE> prevents the current line from being saved in the
+history if it is the same as the previous one; <CODE>HISTIGNORESPACE</CODE>
+prevents the current line from being saved if it begins with a space.
+<P>
+<PRE>
+% PROMPT='%h> '
+39> setopt histignoredups
+40> echo foo
+foo
+41> echo foo
+foo
+41> echo foo
+foo
+41> echo bar
+bar
+42> setopt histignorespace
+43>  echo foo
+foo
+43>  echo fubar
+fubar
+43>  echo fubar
+fubar
+</PRE>
+<P>
+<CODE>IGNOREBRACES</CODE> turns off csh-style brace expansion.
+<A NAME="IDX218"></A>
+<A NAME="IDX219"></A>
+<A NAME="IDX220"></A>
+<P>
+<PRE>
+% echo x{y{z,a},{b,c}d}e
+xyze xyae xbde xcde
+% setopt ignorebraces
+% echo x{y{z,a},{b,c}d}e
+x{y{z,a},{b,c}d}e
+</PRE>
+<P>
+<CODE>IGNOREEOF</CODE> forces the user to type <CODE>exit</CODE> or <CODE>logout</CODE>,
+instead of just pressing @ctrl{D}.<A NAME="IDX221"></A>
+<A NAME="IDX222"></A>
+<P>
+<PRE>
+% setopt ignoreeof
+% ^D
+zsh: use 'exit' to exit.
+</PRE>
+<P>
+<CODE>INTERACTIVECOMMENTS</CODE> turns on interactive comments; comments begin
+with a <KBD>#</KBD>.<A NAME="IDX223"></A>
+<P>
+<PRE>
+% setopt interactivecomments
+% date # this is a comment
+Fri May 24 06:54:14 EDT 1991
+</PRE>
+<P>
+<CODE>NOCLOBBER</CODE> prevents you from accidentally overwriting an existing
+file.<A NAME="IDX224"></A>
+<P>
+<PRE>
+% setopt noclobber
+% cat /dev/null >~/.zshrc
+zsh: file exists: /u/pfalstad/.zshrc
+</PRE>
+<P>
+If you really do want to clobber a file, you can use the <CODE>>!</CODE>
+operator.  To make things easier in this case, the <CODE>></CODE> is stored in
+the history list as a <CODE>>!</CODE>:<P>
+<PRE>
+% cat /dev/null >! ~/.zshrc
+% cat /etc/motd > ~/.zshrc
+zsh: file exists: /u/pfalstad/.zshrc
+% !!
+cat /etc/motd >! ~/.zshrc
+% ...
+</PRE>
+<P>
+<CODE>RCQUOTES</CODE> lets you use a more elegant method for including single
+quotes in a singly quoted string:
+<A NAME="IDX225"></A>
+<P>
+<PRE>
+% echo '"don'\''t do that."'
+"don't do that."
+% echo '"don''t do that."'
+"dont do that."
+% setopt rcquotes
+% echo '"don''t do that."'
+"don't do that."
+</PRE>
+<P>
+<A NAME="IDX226"></A>
+<A NAME="IDX227"></A>
+Finally, <CODE>SUNKEYBOARDHACK</CODE> wins the award for the strangest option.
+If a line ends with <KBD>`</KBD>, and there are an odd number of them on the
+line, the shell will ignore the trailing <KBD>`</KBD>.  This is provided for
+keyboards whose RETURN key is too small, and too close to the <KBD>`</KBD>
+key.<P>
+<PRE>
+% setopt sunkeyboardhack
+% date`
+Fri May 24 06:55:38 EDT 1991
+</PRE>
+<P>
+<H1><A NAME="SEC17" HREF="intro_toc.html#SEC17">Closing Comments</A></H1>
+<P>
+I would be happy to receive mail if anyone has any tricks or ideas to
+add to this document, or if there are some points that could be made
+clearer or covered more thoroughly.  Please notify me of any errors in
+this document.
+<P>
+<H1><A NAME="SEC18" HREF="intro_toc.html#SEC18">Concept Index</A></H1>
+<P>
+<MENU>
+<LI><A HREF="intro.html#IDX203">.friends</A>
+<LI><A HREF="intro.html#IDX15">.zlogin</A>
+<LI><A HREF="intro.html#IDX16">.zlogout</A>
+<LI><A HREF="intro.html#IDX17">.zprofile</A>
+<LI><A HREF="intro.html#IDX13">.zshenv</A>
+<LI><A HREF="intro.html#IDX25">.zshrc</A>
+<LI><A HREF="intro.html#IDX133">NeXT</A>
+<LI><A HREF="intro.html#IDX227">Sun keyboard</A>
+<LI><A HREF="intro.html#IDX132">VMS</A>
+<LI><A HREF="intro.html#IDX69">ZLE</A>
+<LI><A HREF="intro.html#IDX61">alias, csh</A>
+<LI><A HREF="intro.html#IDX21">alias, expansion</A>
+<LI><A HREF="intro.html#IDX56">alias, global</A>
+<LI><A HREF="intro.html#IDX60">alias, global, perils of</A>
+<LI><A HREF="intro.html#IDX54">aliasing</A>
+<LI><A HREF="intro.html#IDX186">arrays</A>
+<LI><A HREF="intro.html#IDX99">binding completion</A>
+<LI><A HREF="intro.html#IDX122">bindings</A>
+<LI><A HREF="intro.html#IDX220">brace expansion, csh</A>
+<LI><A HREF="intro.html#IDX108">buffer stack</A>
+<LI><A HREF="intro.html#IDX153">case modifiers</A>
+<LI><A HREF="intro.html#IDX80">command completion</A>
+<LI><A HREF="intro.html#IDX47">command substitution</A>
+<LI><A HREF="intro.html#IDX100">completion, binding</A>
+<LI><A HREF="intro.html#IDX81">completion, command</A>
+<LI><A HREF="intro.html#IDX103">completion, custom</A>
+<LI><A HREF="intro.html#IDX83">completion, filename</A>
+<LI><A HREF="intro.html#IDX95">completion, hostname</A>
+<LI><A HREF="intro.html#IDX98">completion, option</A>
+<LI><A HREF="intro.html#IDX93">completion, parameter name</A>
+<LI><A HREF="intro.html#IDX91">completion, username</A>
+<LI><A HREF="intro.html#IDX85">completions, possible</A>
+<LI><A HREF="intro.html#IDX209">correction, spelling</A>
+<LI><A HREF="intro.html#IDX62">csh aliases</A>
+<LI><A HREF="intro.html#IDX219">csh brace expansion</A>
+<LI><A HREF="intro.html#IDX149">csh modifiers</A>
+<LI><A HREF="intro.html#IDX102">custom completion</A>
+<LI><A HREF="intro.html#IDX28">directories</A>
+<LI><A HREF="intro.html#IDX40">directory history</A>
+<LI><A HREF="intro.html#IDX35">directory stacks</A>
+<LI><A HREF="intro.html#IDX70">emacs mode</A>
+<LI><A HREF="intro.html#IDX104">expansion</A>
+<LI><A HREF="intro.html#IDX190">file, history</A>
+<LI><A HREF="intro.html#IDX82">filename completion</A>
+<LI><A HREF="intro.html#IDX1">filename generation</A>
+<LI><A HREF="intro.html#IDX10">files, startup</A>
+<LI><A HREF="intro.html#IDX53">files, temporary</A>
+<LI><A HREF="intro.html#IDX107">files, wierd</A>
+<LI><A HREF="intro.html#IDX18">functions</A>
+<LI><A HREF="intro.html#IDX2">generation, filename</A>
+<LI><A HREF="intro.html#IDX57">global aliases</A>
+<LI><A HREF="intro.html#IDX3">globbing</A>
+<LI><A HREF="intro.html#IDX214">globbing, matching . files</A>
+<LI><A HREF="intro.html#IDX5">grouping</A>
+<LI><A HREF="intro.html#IDX64">history</A>
+<LI><A HREF="intro.html#IDX189">history file</A>
+<LI><A HREF="intro.html#IDX41">history, directory</A>
+<LI><A HREF="intro.html#IDX78">history, incremental search</A>
+<LI><A HREF="intro.html#IDX216">history, options</A>
+<LI><A HREF="intro.html#IDX76">history, searching</A>
+<LI><A HREF="intro.html#IDX94">hostname completion</A>
+<LI><A HREF="intro.html#IDX151">ksh modifiers</A>
+<LI><A HREF="intro.html#IDX200">login/logout watching</A>
+<LI><A HREF="intro.html#IDX71">mode, emacs</A>
+<LI><A HREF="intro.html#IDX73">mode, vi</A>
+<LI><A HREF="intro.html#IDX154">modifiers, case</A>
+<LI><A HREF="intro.html#IDX150">modifiers, csh</A>
+<LI><A HREF="intro.html#IDX152">modifiers, ksh</A>
+<LI><A HREF="intro.html#IDX156">modifiers, subsitution</A>
+<LI><A HREF="intro.html#IDX148">operators, sh</A>
+<LI><A HREF="intro.html#IDX97">option completion</A>
+<LI><A HREF="intro.html#IDX204">options</A>
+<LI><A HREF="intro.html#IDX92">parameter name completion</A>
+<LI><A HREF="intro.html#IDX138">parameter substitution</A>
+<LI><A HREF="intro.html#IDX157">parameter substitution, splitting</A>
+<LI><A HREF="intro.html#IDX142">parameters, positional</A>
+<LI><A HREF="intro.html#IDX162">parameters, shell</A>
+<LI><A HREF="intro.html#IDX141">positional parameters</A>
+<LI><A HREF="intro.html#IDX198">print, options</A>
+<LI><A HREF="intro.html#IDX58">process substitution</A>
+<LI><A HREF="intro.html#IDX194">prompting</A>
+<LI><A HREF="intro.html#IDX8">qualifiers</A>
+<LI><A HREF="intro.html#IDX118">quoting</A>
+<LI><A HREF="intro.html#IDX6">recursive search</A>
+<LI><A HREF="intro.html#IDX27">scripts</A>
+<LI><A HREF="intro.html#IDX7">search, recursive</A>
+<LI><A HREF="intro.html#IDX147">sh operators</A>
+<LI><A HREF="intro.html#IDX161">shell parameters</A>
+<LI><A HREF="intro.html#IDX208">spelling correction</A>
+<LI><A HREF="intro.html#IDX109">stack, buffer</A>
+<LI><A HREF="intro.html#IDX36">stacks, directory</A>
+<LI><A HREF="intro.html#IDX9">startup files</A>
+<LI><A HREF="intro.html#IDX187">strings</A>
+<LI><A HREF="intro.html#IDX48">subsitution, command</A>
+<LI><A HREF="intro.html#IDX50">subsitution, process</A>
+<LI><A HREF="intro.html#IDX155">substitution modifier</A>
+<LI><A HREF="intro.html#IDX139">substitution, parameter</A>
+<LI><A HREF="intro.html#IDX158">substitution, parameter, splitting</A>
+<LI><A HREF="intro.html#IDX59">substitution, process</A>
+<LI><A HREF="intro.html#IDX52">temporary files</A>
+<LI><A HREF="intro.html#IDX31">title bar, xterm</A>
+<LI><A HREF="intro.html#IDX90">username completion</A>
+<LI><A HREF="intro.html#IDX72">vi mode</A>
+<LI><A HREF="intro.html#IDX106">wierd files</A>
+<LI><A HREF="intro.html#IDX32">xterm, title bar</A>
+</MENU>
+<P>
+<H1><A NAME="SEC19" HREF="intro_toc.html#SEC19">Variables Index</A></H1>
+<P>
+<MENU>
+<LI><A HREF="intro.html#IDX163">#!</A>
+<LI><A HREF="intro.html#IDX164">$#</A>
+<LI><A HREF="intro.html#IDX143">$1</A>
+<LI><A HREF="intro.html#IDX144">$2</A>
+<LI><A HREF="intro.html#IDX166">$?</A>
+<LI><A HREF="intro.html#IDX165">$ARGC</A>
+<LI><A HREF="intro.html#IDX171">$GID</A>
+<LI><A HREF="intro.html#IDX168">$HOST</A>
+<LI><A HREF="intro.html#IDX169">$HOSTTYPE</A>
+<LI><A HREF="intro.html#IDX173">$OLDPWD</A>
+<LI><A HREF="intro.html#IDX172">$PWD</A>
+<LI><A HREF="intro.html#IDX176">$RANDOM</A>
+<LI><A HREF="intro.html#IDX177">$TTY</A>
+<LI><A HREF="intro.html#IDX170">$UID</A>
+<LI><A HREF="intro.html#IDX179">$USERNAME</A>
+<LI><A HREF="intro.html#IDX178">$VERSION</A>
+<LI><A HREF="intro.html#IDX180">$cdpath</A>
+<LI><A HREF="intro.html#IDX167">$status</A>
+<LI><A HREF="intro.html#IDX205">AUTOCD</A>
+<LI><A HREF="intro.html#IDX87">AUTOLIST</A>
+<LI><A HREF="intro.html#IDX121">AUTOMENU</A>
+<LI><A HREF="intro.html#IDX42">AUTOPUSHD</A>
+<LI><A HREF="intro.html#IDX207">CDABLEVARS</A>
+<LI><A HREF="intro.html#IDX184">CDPATH</A>
+<LI><A HREF="intro.html#IDX210">CORRECT</A>
+<LI><A HREF="intro.html#IDX211">CORRECTALL</A>
+<LI><A HREF="intro.html#IDX212">CSHJUNKIEQUOTES</A>
+<LI><A HREF="intro.html#IDX45">DIRSTACKSIZE</A>
+<LI><A HREF="intro.html#IDX4">EXTENDEDGLOB</A>
+<LI><A HREF="intro.html#IDX213">GLOBDOTS</A>
+<LI><A HREF="intro.html#IDX188">HISTFILE</A>
+<LI><A HREF="intro.html#IDX215">HISTIGNOREDUPS</A>
+<LI><A HREF="intro.html#IDX217">HISTIGNORESPACE</A>
+<LI><A HREF="intro.html#IDX46">HISTSIZE</A>
+<LI><A HREF="intro.html#IDX12">HOME</A>
+<LI><A HREF="intro.html#IDX218">IGNOREBRACES</A>
+<LI><A HREF="intro.html#IDX221">IGNOREEOF</A>
+<LI><A HREF="intro.html#IDX223">INTERACTIVECOMMENTS</A>
+<LI><A HREF="intro.html#IDX119">MENUCOMPLETE</A>
+<LI><A HREF="intro.html#IDX224">NOCLOBBER</A>
+<LI><A HREF="intro.html#IDX191">NULLCMD</A>
+<LI><A HREF="intro.html#IDX182">PATH</A>
+<LI><A HREF="intro.html#IDX199">POSTEDIT</A>
+<LI><A HREF="intro.html#IDX195">PROMPT</A>
+<LI><A HREF="intro.html#IDX43">PUSHDMINUS</A>
+<LI><A HREF="intro.html#IDX44">PUSHDSILENT</A>
+<LI><A HREF="intro.html#IDX39">PUSHDTOHOME</A>
+<LI><A HREF="intro.html#IDX160">RCEXPANDPARAM</A>
+<LI><A HREF="intro.html#IDX225">RCQUOTES</A>
+<LI><A HREF="intro.html#IDX193">READNULLCMD</A>
+<LI><A HREF="intro.html#IDX88">RECEXACT</A>
+<LI><A HREF="intro.html#IDX196">RPROMPT</A>
+<LI><A HREF="intro.html#IDX226">SUNKEYBOARDHACK</A>
+<LI><A HREF="intro.html#IDX11">ZDOTDIR</A>
+<LI><A HREF="intro.html#IDX185">cdpath</A>
+<LI><A HREF="intro.html#IDX89">fignore</A>
+<LI><A HREF="intro.html#IDX96">hosts</A>
+<LI><A HREF="intro.html#IDX183">path</A>
+<LI><A HREF="intro.html#IDX201">watch</A>
+<LI><A HREF="intro.html#IDX174">~+</A>
+<LI><A HREF="intro.html#IDX175">~-</A>
+</MENU>
+<P>
+<H1><A NAME="SEC20" HREF="intro_toc.html#SEC20">Functions Index</A></H1>
+<P>
+<MENU>
+<LI><A HREF="intro.html#IDX126">accept-and-hold</A>
+<LI><A HREF="intro.html#IDX55">alias</A>
+<LI><A HREF="intro.html#IDX26">autoload</A>
+<LI><A HREF="intro.html#IDX128">bindkey</A>
+<LI><A HREF="intro.html#IDX63">c2z</A>
+<LI><A HREF="intro.html#IDX146">case</A>
+<LI><A HREF="intro.html#IDX192">cat</A>
+<LI><A HREF="intro.html#IDX206">cd</A>
+<LI><A HREF="intro.html#IDX30">chpwd</A>
+<LI><A HREF="intro.html#IDX101">compctl</A>
+<LI><A HREF="intro.html#IDX34">echo</A>
+<LI><A HREF="intro.html#IDX123">expand-or-complete</A>
+<LI><A HREF="intro.html#IDX75">fc</A>
+<LI><A HREF="intro.html#IDX20">function</A>
+<LI><A HREF="intro.html#IDX24">functions</A>
+<LI><A HREF="intro.html#IDX202">log</A>
+<LI><A HREF="intro.html#IDX131">magic-space</A>
+<LI><A HREF="intro.html#IDX29">namedir</A>
+<LI><A HREF="intro.html#IDX38">popd</A>
+<LI><A HREF="intro.html#IDX197">print</A>
+<LI><A HREF="intro.html#IDX124">push-line</A>
+<LI><A HREF="intro.html#IDX37">pushd</A>
+<LI><A HREF="intro.html#IDX127">quote-line</A>
+<LI><A HREF="intro.html#IDX68">r</A>
+<LI><A HREF="intro.html#IDX23">randline</A>
+<LI><A HREF="intro.html#IDX125">run-help</A>
+<LI><A HREF="intro.html#IDX140">set</A>
+<LI><A HREF="intro.html#IDX145">set, csh-style</A>
+<LI><A HREF="intro.html#IDX130">universal-argument</A>
+<LI><A HREF="intro.html#IDX136">vared</A>
+</MENU>
+<P>
+<H1><A NAME="SEC21" HREF="intro_toc.html#SEC21">Key Index</A></H1>
+<P>
+<MENU>
+<LI><A HREF="intro.html#IDX134">ALT-/</A>
+<LI><A HREF="intro.html#IDX135">ALT-=</A>
+<LI><A HREF="intro.html#IDX222">CTRL-D</A>
+<LI><A HREF="intro.html#IDX129">CTRL-H</A>
+<LI><A HREF="intro.html#IDX74">CTRL-P</A>
+<LI><A HREF="intro.html#IDX79">CTRL-R</A>
+<LI><A HREF="intro.html#IDX114">ESC-A</A>
+<LI><A HREF="intro.html#IDX112">ESC-H</A>
+<LI><A HREF="intro.html#IDX77">ESC-P</A>
+<LI><A HREF="intro.html#IDX110">ESC-Q</A>
+<LI><A HREF="intro.html#IDX120">TAB</A>
+</MENU>
+<P>

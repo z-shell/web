@@ -1,0 +1,180 @@
+<html>
+<head>
+<title>Z-Shell Frequently-Asked Questions </title>
+</head>
+<body  >
+<hr>
+<ul>
+    <li> <a href="zshfaq05.html">Next chapter</a>
+    <li> <a href="zshfaq03.html">Previous chapter</a>
+    <li> <a href="zshfaq.html">Table of contents</a>
+</ul>
+<hr>
+
+<a name="l44"></a>
+<h1>Chapter 4: The mysteries of completion</h1>
+<p><a name="l45"></a>
+<h2>4.1: What is completion?</h2>
+<p>`Completion' is where you hit a particular command key (TAB is the
+  standard one) and the shell tries to guess the word you are typing
+  and finish it for you --- a godsend for long file names, in
+  particular, but in zsh there are many, many more possibilities than
+  that.
+<p>There is also a related process, `expansion', where the shell sees
+  you have typed something which would be turned by the shell into
+  something else, such as a variable turning into its value ($PWD
+  becomes /home/users/mydir) or a history reference (!! becomes
+  everything on the last command line).  In zsh, when you hit TAB it
+  will look to see if there is an expansion to be done; if there is,
+  it does that, otherwise it tries to perform completion.  (You can
+  see if the word would be expanded --- not completed --- by TAB by
+  typing <code>\C-x g</code>, which lists expansions.)  Expansion is generally
+  fairly intuitive and not under user control; for the rest of the
+  chapter I will discuss completion only.
+<p>An elegant completion system appeared in version 4, replacing the old
+  <code>compctl</code> command.  This is based on functions called automatically for
+  completion in particular contexts (for example, there is a function
+  called <code>_cd</code> to handle completion for the <code>cd</code> command) and is
+  installed automatically with the shell, so all you need to do, in
+  principal, is to arrange for this to be loaded.  Putting `<code>autoload -U
+  compinit; compinit</code>' in your <code>.zshrc</code> should be enough if the system is
+  installed properly.
+<p><a name="l46"></a>
+<h2>4.2: What sorts of things can be completed?</h2>
+<a name="42"></a>
+<p>The simplest sort is filename completion, mentioned above.  Unless
+  you have made special arrangements, as described below, then after
+  you type a command name, anything else you type is assumed by the
+  completion system to be a filename.  If you type part of a word and
+  hit TAB, zsh will see if it matches the first part a filename and
+  if it does it will automatically insert the rest.
+<p>The other simple type is command completion, which applies
+  (naturally) to the first word on the line.  In this case, zsh
+  assumes the word is some command to be executed lying in your $PATH
+  (or something else you can execute, like a builtin command, a
+  function or an alias) and tries to complete that.
+<p>However, the new completion system is highly sensitive to context
+  and comes with completions for many UNIX commands.  These are
+  automatically loaded when you run <code>compinit</code> as described above.
+  So the real answer to the question `what can be completed?' is
+  `anything where an automated guess is possible'.  Just hit TAB
+  and see if the shell manages to guess correctly.
+<p><a name="l47"></a>
+<h2>4.3: How does zsh deal with ambiguous completions?</h2>
+<p>Often there will be more than one possible completion: two files
+  start with the same characters, for example.  Zsh has a lot of
+  flexibility for what it does here via its options.  The default is
+  for it to beep and completion to stop until you type another
+  character.  You can type <code>\C-D</code> to see all the possible completions.
+  (That's assuming you're at the end of the line, otherwise <code>\C-D</code> will
+  delete the next character and you have to use <code>ESC-\C-D</code>.)  This can be
+  changed by the following options, among others:
+  <dl>
+   <li > with <code>NO_BEEP</code> set, that annoying beep goes away
+   <li > with <code>NO_LIST_BEEP</code>, beeping is only turned off for ambiguous
+      completions
+   <li > with <code>AUTO_LIST</code> set, when the completion is ambiguous you get a
+      list without having to type <code>\C-D</code>
+   <li > with <code>BASH_AUTO_LIST</code> set, the list only happens the second
+      time you hit tab on an ambiguous completion
+   <li > with <code>LIST_AMBIGUOUS</code>, this is modified so that nothing is listed if
+      there is an unambiguous prefix or suffix to be inserted --- this
+      can be combined with <code>BASH_AUTO_LIST</code>, so that where both are
+      applicable you need to hit tab three times for a listing.
+   <li > with <code>MENU_COMPLETE</code> set, one completion is always inserted
+      completely, then when you hit TAB it changes to the next, and so
+      on until you get back to where you started
+   <li > with <code>AUTO_MENU</code>, you only get the menu behaviour when you hit TAB
+      again on the ambiguous completion.
+   <li > Finally, although it affects all completion lists, including
+      those explicitly requested, note also <code>ALWAYS_LAST_PROMPT</code>, which
+      causes the cursor to return to the line you were editing after
+      printing the list, provided that is short enough.
+  </dl>
+  Combinations of these are possible; for example, <code>AUTO_LIST</code> and
+  <code>AUTO_MENU</code> together give an intuitive combination.  Note that
+  from version 3.1 <code>LIST_AMBIGUOUS</code> is set by default; if you use
+  autolist, you may well want to `unsetopt listambiguous'.
+<p><a name="l48"></a>
+<h2>4.4: How do I complete in the middle of words / just what's before the cursor?</h2>
+<p>Sometimes you have a word on the command-line which is incomplete in the
+  middle.  Normally if you hit tab in zsh, it will simply go to the end of
+  the word and try to complete there.  However, there are two ways of
+  changing this.
+<p>First, there is the option COMPLETE_IN_WORD.  This tries to fill in
+  the word at the point of the cursor.  For example, if the current
+  directory contains <code>foobar</code>, then with the option set, you can
+  complete <code>fbar</code> to <code>foobar</code> by moving the cursor to the
+  <code>b</code> and hitting tab.
+<p>To complete just what's before the cursor, ignoring anything after, you
+  need the function <code>expand-or-complete-prefix</code>: it works mostly like the
+  usual function bound to tab, but it ignores anything on the right of the
+  cursor.  If you always want this behaviour (some other shells do this),
+  bind it to tab; otherwise put another binding, e.g. <code>^X TAB</code> in
+  <code>~/.zshrc</code>:
+  <pre>
+
+    bindkey "^X^I" expand-or-complete-prefix
+  
+</pre>
+
+<p>The completion system's handling of filenames allows you to complete
+  multiple segments of a path in one go, so for example <code>/u/l/b</code>
+  can expand to <code>/usr/local/bin</code> or anything else that matches.  This
+  saves you having to expand the middle part of the path separately.
+<p><a name="l49"></a>
+<h2>4.5: How do I get started with programmable completion?</h2>
+<a name="45"></a>
+<p>The main resource is the <code>zshcompsys</code> manual page.  It's complicated,
+  I'm afraid, far too much to go into here.  See also the user guide
+  referred to above, or copy one of the very many existing functions.  For
+  a professionally produced guide, see the book `From Bash to Z Shell:
+  Conquering the Command Line' by Oliver Kiddle, Jerry Peek and Peter
+  Stephenson (me), published by Apress, ISBN 1-59059-376-6.  Chapter 10
+  tells you how to configure the completion system and chapter 15 how
+  to write your own completion functions.
+<p><a name="l50"></a>
+<h2>4.6: Suppose I want to complete all files during a special completion?</h2>
+<p>If you're using the completion system the shell will decide what
+  to complete when you hit TAB.  That's usually the right thing for
+  the context, but sometimes you just want to complete files, like
+  TAB used to do in the old days.  You can set up this up as follows:
+  <pre>
+
+    zle -C complete-file complete-word _generic
+    zstyle ':completion:complete-file::::' completer _files
+    bindkey '^xF' complete-file
+  
+</pre>
+
+  This turns the key <code>\C-x F</code> into a command <code>complete-file</code> which
+  goes straight to the completion system's file completion command,
+  ignoring the normal context.  Change the binding how you like.
+<p>Note the way the form of completion to use is specified by picking a
+  `completer' called `<code>_files</code>'.  You can define any completion
+  to be bound to a keystroke by putting the appropriate completion
+  function at that point.  Then change all occurrences of
+  `<code>complete-file</code>' to a name of your own.
+<p>If you simply want to try filename completion as a default when other
+  completions fail, add it to the `<code>completer</code>' style for normal
+  completion, for example:
+  <pre>
+
+    zstyle ':completion:*' completer _complete _ignored _files
+  
+</pre>
+
+  This adds filename completion to the end of the default types of
+  completion.  Your actual completer style may include other actions,
+  such as expansion or approximate completion.
+<p>
+
+<hr>
+<ul>
+    <li> <a href="zshfaq05.html">Next chapter</a>
+    <li> <a href="zshfaq03.html">Previous chapter</a>
+    <li> <a href="zshfaq.html">Table of contents</a>
+</ul>
+<hr>
+</body>
+</html>

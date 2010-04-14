@@ -1,0 +1,92 @@
+#!/bin/zsh
+#
+# dual - automatically updates path-array combinations.
+# i.e. setting BLAH=a:b:c also sets blah=(a b c) and
+# vice versa.
+# 
+# This behaviour is planned for release in version 2.6 of zsh, where
+# it will presumably be as transparent as every other variable
+# type.  In the mean time, this will accomplish the same thing.
+#
+# Usage:
+#   dual [var[=val]] . . .
+#
+# where
+#   var   is a variable to mark as being dual, that is, when dual
+#         sets foo, it also sets FOO.
+#   val   is the value to assign to var.  Because it is interpreted
+#         by the shell twice, replace every \ by \\\ to receive the
+#         same behaviour.
+#
+# Note that because this is not really a part of zsh, but just an
+# add-on, doing
+#   foo=(a b c d)
+# will not set FOO to A:B:C:D.  You must explicitly say
+#   dual foo=(a b c d)
+# Likewise, FOO=a:b:c:d will not work on its own.  Prefix it with dual.
+#
+# To do:
+# This is a little over-large.  There's no real need to keep a list of
+# variables that are dual, at least not with this small implementation.
+# As a result undual isn't necessary either, though one does exist.
+# I did it mainly for interest's sake.
+# Currently this function assumes unsetopt shwordsplit
+
+# scan each variable given
+for var
+do
+  # get name
+  name=${var%%\=*}
+  # This next bit needed because for some reason ${foo%%\=*} doesn't strip
+  # the = if it's all there is.  Use ${foo%\=*} and it does.  This
+  # doesn't happen with the equivalent # or ## format.  Bizarre.
+  if [[ $name[-1] = "=" ]]
+  then
+    name=$name[1,-2]
+  fi
+  # value to assign. 
+  if [[ "$var" = *\=* ]]
+  then
+    eval "val=${var#$name\=}"
+  else
+    val=
+  fi
+  # get lower- and upper-case versions.
+  lower=${(L)name}
+  upper=${(U)name}
+  # check for obvious errors - no letters, mixed case
+  if [[ $upper = $lower ]]
+  then
+    echo "dual: $name has no letters"
+  elif [[ $name != $upper && $name != $lower ]]
+  then
+    echo "dual: $name has both cases"
+  else
+    # Update DUAL and dual environment variables
+    if [[ -z "$dual" || -z "$DUAL" ]]
+    then
+      dual=(dual)
+      DUAL=DUAL
+    fi
+    if [[ $DUAL != (*:|)$upper(|:*) ]]
+    then
+      dual=($dual "$lower")
+      DUAL="$DUAL:$upper"
+    fi
+    if [[ $name = $upper ]]
+    then
+      # upper-case given - split into tokens at : 
+      upperval=$val
+      lowerval=${(s,:,)=upperval}
+    else
+      # lower-case.  Join with :
+      lowerval=$val
+      upperval=${(j,:,)=lowerval}
+    fi
+    # assign.
+    $upper=$upperval
+    $lower=$lowerval
+  fi
+done
+return 0
+

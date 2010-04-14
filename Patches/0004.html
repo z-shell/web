@@ -1,0 +1,183 @@
+<!-- received="Wed Jan 14 10:36:34 1998 PST" -->
+<!-- sent="Wed, 14 Jan 1998 21:06:33 +0300 (MSK)" -->
+<!-- name="Andrej Borsenkow" -->
+<!-- email="borsenkow.msk@sni.de" -->
+<!-- subject="PATCH: zsh-3.1.2-zefram3: libzsh install" -->
+<!-- id="199711201339.OAA01692@hydra.ifh.de" -->
+<!-- inreplyto="" -->
+<title>ZSH Patches: PATCH: zsh-3.1.2-zefram3: libzsh install</title>
+<h1>PATCH: zsh-3.1.2-zefram3: libzsh install</h1>
+Andrej Borsenkow (<i>borsenkow.msk@sni.de</i>)<br>
+<i>Wed, 14 Jan 1998 21:06:33 +0300 (MSK)</i>
+<p>
+<ul>
+<li> <b>Messages sorted by:</b> <a href="date.html#4">[ date ]</a><a href="index.html#4">[ thread ]</a><a href="subject.html#4">[ subject ]</a><a href="author.html#4">[ author ]</a>
+<!-- next="start" -->
+<li> <b>Next message:</b> <a href="0005.html">Andrej Borsenkow: "PATCH: zsh-3.1.2-zefram3: libzsh install"</a>
+<li> <b>Previous message:</b> <a href="0003.html">Peter Stephenson: "PATCH: allow scalars as completion variables"</a>
+<!-- nextthread="start" -->
+</ul>
+<!-- body="start" -->
+<pre>
+Date: Wed, 14 Jan 1998 21:06:33 +0300 (MSK)<br>
+From: Andrej Borsenkow &lt;borsenkow.msk@sni.de&gt;<br>
+To: Zsh workers mailing list &lt;zsh-workers@math.gatech.edu&gt;, zsh@peak.org<br>
+Subject: PATCH: zsh-3.1.2-zefram3: libzsh install<br>
+</pre>
+<p>
+Here is a patch for several problems with dynamic ZSH<br>
+<p>
+  - libzsh.so was changed to libzsh.$(VERSION).so; zsh is linked<br>
+    with it explicitly<br>
+<p>
+  - problem with staic libraries (looks, like no one else has it :)<br>
+    Our system lacks shared libcurses, so linking failed because<br>
+    zsh itself doesn't contains references to -lcurses. Now it just<br>
+    links with $(LIBZSH) $(LIBS) and is quite happy.<br>
+    (I discussed it with Zoltan awhile ago, but it looks like the most<br>
+    easy solution)<br>
+<p>
+  - libzsh is now (un)installed. <br>
+<p>
+  - if I give relative pathname to configure, installation fails. The <br>
+    reason is, configure figures out correct relative path for every<br>
+    directory level, but top level Makefile simply overrides it with<br>
+    it's own. I changed Makefile.in, Src/Makefile.in, Src/Makemod.in.in,<br>
+    but probably other Makefiles should be ajusted just for <br>
+    consistency<br>
+<p>
+  - I changed uninstall.bin to restore zsh.old to zsh - otherweise, I <br>
+    don't see any need to make backup copy (we always have zsh-$(VERSION)   <br>
+    around)<br>
+<p>
+I tried changes with both static and dynamic zsh, and they seem to work.<br>
+<p>
+Aside: I tried to build ZSH on a system without RTLD_GLOBAL, and it was<br>
+screwd up. It did run, but it lost the whole environment, and had massive<br>
+problems with line refresh. I have no idea, if it is because of buggy OS<br>
+or ZSH has some problems in this case. Anybody tried this?<br>
+<p>
+-------------------------------------------------------------------------<br>
+Andrej Borsenkow 		Fax:   +7 (095) 252 01 05<br>
+SNI ITS Moscow			Tel:   +7 (095) 252 13 88<br>
+<p>
+NERV:  borsenkow.msk		E-Mail: borsenkow.msk@sni.de<br>
+-------------------------------------------------------------------------<br>
+--- zsh-3.1.2-zefram3/configure.in.org	Mon Jan 12 19:19:18 1998<br>
++++ zsh-3.1.2-zefram3/configure.in	Wed Jan 14 18:16:50 1998<br>
+@@ -961,7 +961,7 @@<br>
+   RTLD_GLOBAL_OK=$zsh_cv_sys_dynamic_rtld_global<br>
+   zsh_SYS_DYNAMIC_EXECSYMS<br>
+   if test "$zsh_cv_sys_dynamic_execsyms" != yes; then<br>
+-    L=L LIBS="$LIBS -L. -lzsh"<br>
++    L=L<br>
+   fi<br>
+   zsh_SYS_DYNAMIC_STRIP_EXE<br>
+   zsh_SYS_DYNAMIC_STRIP_LIB<br>
+--- zsh-3.1.2-zefram3/Makefile.in.org	Mon Jan 12 19:18:56 1998<br>
++++ zsh-3.1.2-zefram3/Makefile.in	Wed Jan 14 18:54:31 1998<br>
+@@ -82,8 +82,7 @@<br>
+ DLCFLAGS='$(DLCFLAGS)' DLLDFLAGS='$(DLLDFLAGS)' \<br>
+ LIBLDFLAGS='$(LIBLDFLAGS)' EXELDFLAGS='$(EXELDFLAGS)' \<br>
+ LIBS='$(LIBS)' DL_EXT='$(DL_EXT)' DLLD='$(DLLD)' \<br>
+-AWK='$(AWK)' YODL='$(YODL)' INSTALL='$(INSTALL)' \<br>
+-INSTALL_PROGRAM='$(INSTALL_PROGRAM)' INSTALL_DATA='$(INSTALL_DATA)'<br>
++AWK='$(AWK)' YODL='$(YODL)'<br>
+ <br>
+ .SUFFIXES:<br>
+ <br>
+@@ -110,11 +109,15 @@<br>
+ 	@cd Src &amp;&amp; $(MAKE) $(MAKEDEFS) $@<br>
+ <br>
+ # install/uninstall everything<br>
+-install: install.bin install.modules install.man install.info<br>
+-uninstall: uninstall.bin uninstall.modules uninstall.man uninstall.info<br>
++install: install.bin install.lib install.modules install.man install.info<br>
++uninstall: uninstall.bin uninstall.lib uninstall.modules uninstall.man uninstall.info<br>
+ <br>
+ # install/uninstall just the binary<br>
+ install.bin uninstall.bin:<br>
++	@cd Src &amp;&amp; $(MAKE) $(MAKEDEFS) $@<br>
++<br>
++# install/uninstall just the library<br>
++install.lib uninstall.lib:<br>
+ 	@cd Src &amp;&amp; $(MAKE) $(MAKEDEFS) $@<br>
+ <br>
+ # install/uninstall just the modules<br>
+--- zsh-3.1.2-zefram3/Src/Makefile.in.org	Mon Jan 12 19:18:59 1998<br>
++++ zsh-3.1.2-zefram3/Src/Makefile.in	Wed Jan 14 20:57:50 1998<br>
+@@ -102,17 +102,16 @@<br>
+ NSTMP = stamp-modobjs<br>
+ NLIST = `cat stamp-modobjs`<br>
+ <br>
+-LIBZSH = libzsh.so.$(VERSION)<br>
++LIBZSH = libzsh.$(VERSION).so<br>
+ NIBZSH =<br>
+ <br>
+ zsh: $(@L@IBZSH) $(@L@STMP) $(MAIN_OBJS)<br>
+ 	rm -f $@<br>
+-	$(LINK) $(MAIN_OBJS) $(@L@LIST) $(LIBS)<br>
++	$(LINK) $(MAIN_OBJS) $(@L@LIST) $(@L@IBZSH) $(LIBS)<br>
+ <br>
+ $(LIBZSH): $(LIBOBJS) $(NSTMP)<br>
+ 	rm -f $@<br>
+ 	$(DLLINK) $(LIBOBJS) $(NLIST)<br>
+-	ln -sf $(LIBZSH) libzsh.so<br>
+ <br>
+ stamp-modobjs: modobjs<br>
+ 	@if cmp -s stamp-modobjs.tmp stamp-modobjs; then \<br>
+@@ -178,8 +177,8 @@<br>
+ <br>
+ # ========== DEPENDENCIES FOR INSTALLING ==========<br>
+ <br>
+-install: install.bin install.modules<br>
+-uninstall: uninstall.bin uninstall.modules<br>
++install: install.bin install.modules install.lib<br>
++uninstall: uninstall.bin uninstall.modules install.lib<br>
+ <br>
+ install.bin: install.bin-here<br>
+ uninstall.bin: uninstall.bin-here<br>
+@@ -196,6 +195,23 @@<br>
+ uninstall.bin-here:<br>
+ 	-if [ -f $(bindir)/zsh ]; then rm -f $(bindir)/zsh; fi<br>
+ 	-if [ -f $(bindir)/zsh-$(VERSION) ]; then rm -f $(bindir)/zsh-$(VERSION); fi<br>
++	-if [ -f $(bindir)/zsh.old ]; then mv $(bindir)/zsh $(bindir)/zsh; fi<br>
++<br>
++# install ZSH shared library if was built<br>
++install.lib: install.lib.@L@<br>
++<br>
++install.lib.L: $(LIBZSH)<br>
++	$(INSTALL_PROGRAM) $(LIBZSH) $(libdir)/$(LIBZSH)<br>
++<br>
++install.lib.N:<br>
++<br>
++# uninstall ZSH shared library if was built<br>
++uninstall.lib: uninstall.lib.@L@<br>
++<br>
++uninstall.lib.L: $(LIBZSH)<br>
++	-if [ -f $(libdir)/$(LIBZSH) ]; then rm -f $(libdir)/$(LIBZSH); fi<br>
++<br>
++uninstall.lib.N:<br>
+ <br>
+ # ========== DEPENDENCIES FOR CLEANUP ==========<br>
+ <br>
+--- zsh-3.1.2-zefram3/Src/Makemod.in.in.org	Tue Jan 13 12:33:58 1998<br>
++++ zsh-3.1.2-zefram3/Src/Makemod.in.in	Wed Jan 14 20:11:57 1998<br>
+@@ -81,8 +81,7 @@<br>
+ DLCFLAGS='$(DLCFLAGS)' DLLDFLAGS='$(DLLDFLAGS)' \<br>
+ LIBLDFLAGS='$(LIBLDFLAGS)' EXELDFLAGS='$(EXELDFLAGS)' \<br>
+ LIBS='$(LIBS)' DL_EXT='$(DL_EXT)' DLLD='$(DLLD)' \<br>
+-AWK='$(AWK)' YODL='$(YODL)' INSTALL='$(INSTALL)' \<br>
+-INSTALL_PROGRAM='$(INSTALL_PROGRAM)' INSTALL_DATA='$(INSTALL_DATA)'<br>
++AWK='$(AWK)' YODL='$(YODL)'<br>
+ <br>
+ # ========== COMPILATION RULES ==========<br>
+ <br>
+<!-- body="end" -->
+<p>
+<ul>
+<!-- next="start" -->
+<li> <b>Next message:</b> <a href="0005.html">Andrej Borsenkow: "PATCH: zsh-3.1.2-zefram3: libzsh install"</a>
+<li> <b>Previous message:</b> <a href="0003.html">Peter Stephenson: "PATCH: allow scalars as completion variables"</a>
+<!-- nextthread="start" -->
+</ul>

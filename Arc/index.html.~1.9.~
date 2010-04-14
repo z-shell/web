@@ -1,0 +1,53 @@
+<html>
+<head>
+  <title>ZSH - Mirrors</title>
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="up" href="../">
+  <link rel="top" href="../">
+  <link rel="prev" href="list-contents.html">
+  <link rel="next" href="cvs.html">
+  <link rel="first" href="list-contents.html">
+  <link rel="last" href="cvs.html">
+  <link rev="made" href="mailto:zsh@sunsite.dk">
+</head>
+
+<body bgcolor="#ffffff" text="#000000">
+
+<table width="100%">
+<tr><td>
+<a href="list-contents.html"><img src="../Images/prev.png" alt="[prev]" width=30 height=30></a>
+<a href="cvs.html"><img src="../Images/next.png" alt="[next]" width=30 height=30></a>
+<a href="../"><img src="../Images/up.png" alt="[up]" width=30 height=30></a>
+<a href="../"><img src="../Images/top.png" alt="[top]" width=30 height=30></a>
+</td><td>
+<font size="+3" align=center><strong>ZSH Mirrors</strong></font>
+</td>
+</tr>
+</table>
+<hr size=1 noshade>
+
+You can get a list of the FTP mirrors from a number of places:
+<ul> 
+  <li> <a href="../FAQ/META.html">
+      Anonymous Ftp distribution list in the META FAQ</a>
+
+  <li> <a href="../FAQ/zshfaq01.html#17">The same in the FAQ</a>
+
+  <li> <a href="http://www.zsh.org/"><b>www.zsh.org</b></a> serves
+       as a very good list of zsh sites - FTP and otherwise.
+
+</ul>
+
+For information on what you will find in the ftp sites, see the
+<a href="list-contents.html">Descriptive list of ftp contents</a>
+
+<hr>
+<div align=right>
+<address>
+<a name=Signature href="../disclaimer.html">Disclaimer</a>
+Last modified: $Date: 2002/03/13 16:00:36 $
+</address>
+</div>
+
+</body>
+</html>

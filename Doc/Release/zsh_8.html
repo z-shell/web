@@ -1,0 +1,362 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on March, 19  2004 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>zsh: Functions</TITLE>
+
+<META NAME="description" CONTENT="zsh: Functions">
+<META NAME="keywords" CONTENT="zsh: Functions">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC32"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_7.html#SEC31"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_8.html#SEC33"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_7.html#SEC31"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_9.html#SEC35"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 8. Functions </H1>
+<!--docid::SEC32::-->
+<A NAME="IDX104"></A>
+<A NAME="IDX105"></A>
+Shell functions are defined with the <TT>function</TT> reserved word or the
+special syntax `<VAR>funcname</VAR> <TT>()</TT>'.
+Shell functions are read in and stored internally.
+Alias names are resolved when the function is read.
+Functions are executed like commands with the arguments
+passed as positional parameters.
+(See <A HREF="zsh_7.html#SEC31">7. Command Execution</A>.)
+<P>
+
+Functions execute in the same process as the caller and
+share all files
+and present working directory with the
+caller.  A trap on <TT>EXIT</TT> set inside a function
+is executed after the function completes in the environment
+of the caller.
+</P><P>
+
+<A NAME="IDX106"></A>
+The <TT>return</TT> builtin is used to return from function calls.
+</P><P>
+
+<A NAME="IDX107"></A>
+Function identifiers can be listed with the <TT>functions</TT> builtin.
+<A NAME="IDX108"></A>
+Functions can be undefined with the <TT>unfunction</TT> builtin.
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC33"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_8.html#SEC32"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_8.html#SEC34"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_8.html#SEC34"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 8.1 Autoloading Functions </H2>
+<!--docid::SEC33::-->
+<A NAME="IDX109"></A>
+<A NAME="IDX110"></A>
+<P>
+
+<A NAME="IDX111"></A>
+<A NAME="IDX112"></A>
+A function can be marked as <EM>undefined</EM> using the <TT>autoload</TT> builtin
+(or `<TT>functions -u</TT>' or `<TT>typeset -fu</TT>').  Such a function has no
+body.  When the function is first executed, the shell searches for its
+definition using the elements of the <TT>fpath</TT> variable.  Thus to define
+functions for autoloading, a typical sequence is:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>fpath=(~/myfuncs $fpath)
+autoload myfunc1 myfunc2 ...
+</pre></td></tr></table></P><P>
+
+The usual alias expansion during reading will be suppressed if the
+<TT>autoload</TT> builtin or its equivalent is given the option <TT>-U</TT>. This is
+recommended for the use of functions supplied with the zsh distribution.
+<A NAME="IDX113"></A>
+Note that for functions precompiled with the <TT>zcompile</TT> builtin command
+the flag <TT>-U</TT> must be provided when the <TT>.zwc</TT> file is created, as the
+corresponding information is compiled into the latter.
+</P><P>
+
+For each <VAR>element</VAR> in <TT>fpath</TT>, the shell looks for three possible
+files, the newest of which is used to load the definition for the function:
+</P><P>
+
+<DL COMPACT>
+<DT><VAR>element</VAR><TT>.zwc</TT>
+<DD>A file created with the <TT>zcompile</TT> builtin command, which is expected to
+contain the definitions for all functions in the directory named
+<VAR>element</VAR>.  The file is treated in the same manner as a directory
+containing files for functions and is searched for the definition of the
+function.   If the definition is not found, the search for a definition
+proceeds with the other two possibilities described below.
+<P>
+
+If <VAR>element</VAR> already includes a <TT>.zwc</TT> extension (i.e. the extension
+was explicitly given by the user), <VAR>element</VAR> is searched for the
+definition of the function without comparing its age to that of other
+files; in fact, there does not need to be any directory named <VAR>element</VAR>
+without the suffix.  Thus including an element such as
+`<TT>/usr/local/funcs.zwc</TT>' in <TT>fpath</TT> will speed up the search for
+functions, with the disadvantage that functions included must be explicitly
+recompiled by hand before the shell notices any changes.
+</P><P>
+
+<DT><VAR>element</VAR><TT>/</TT><VAR>function</VAR><TT>.zwc</TT>
+<DD>A file created with <TT>zcompile</TT>, which is expected to contain the
+definition for <VAR>function</VAR>.  It may include other function definitions
+as well, but those are neither loaded nor executed; a file found in this
+way is searched <EM>only</EM> for the definition of <VAR>function</VAR>.
+<P>
+
+<DT><VAR>element</VAR><TT>/</TT><VAR>function</VAR>
+<DD>A file of zsh command text, taken to be the definition for <VAR>function</VAR>.
+<P>
+
+</DL>
+<P>
+
+In summary, the order of searching is, first, in the <EM>parents of</EM>
+directories in <TT>fpath</TT> for the newer of either a compiled directory or
+a directory in <TT>fpath</TT>; second, if more than one of these contains a
+definition for the function that is sought, the leftmost in the <TT>fpath</TT>
+is chosen; and third, within a directory, the newer of either a compiled
+function or an ordinary function definition is used.
+</P><P>
+
+<A NAME="IDX114"></A>
+If the <TT>KSH_AUTOLOAD</TT> option is set, or the file contains only a
+simple definition of the function, the file's contents will be executed.
+This will normally define the function in question, but may also perform
+initialization, which is executed in the context of the function execution,
+and may therefore define local parameters.  It is an error if the function
+is not defined by loading the file.
+</P><P>
+
+Otherwise, the function body (with no surrounding `<VAR>funcname</VAR><TT>()
+{</TT><VAR>...</VAR><TT>}</TT>') is taken to be the complete contents of the file.  This
+form allows the file to be used directly as an executable shell script.  If
+processing of the file results in the function being re-defined, the
+function itself is not re-executed.  To force the shell to perform
+initialization and then call the function defined, the file should contain
+initialization code (which will be executed then discarded) in addition to
+a complete function definition (which will be retained for subsequent calls
+to the function), and a call to the shell function, including any
+arguments, at the end.
+</P><P>
+
+For example, suppose the autoload file <TT>func</TT> contains
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>func() { print This is func; }
+print func is initialized
+
+</pre></td></tr></table></P><P>
+
+then `<TT>func; func</TT>' with <TT>KSH_AUTOLOAD</TT> set will produce both messages
+on the first call, but only the message `<TT>This is func</TT>' on the second
+and subsequent calls.  Without <TT>KSH_AUTOLOAD</TT> set, it will produce
+the initialization message on the first call, and the other message on the
+second and subsequent calls.
+</P><P>
+
+It is also possible to create a function that is not marked as autoloaded,
+but which loads its own definition by searching <TT>fpath</TT>, by using
+`<TT>autoload -X</TT>' within a shell function.  For example, the following are
+equivalent:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>myfunc() {
+  autoload -X
+}
+myfunc args...
+</pre></td></tr></table></P><P>
+
+and
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>unfunction myfunc   # if myfunc was defined
+autoload myfunc
+myfunc args...
+</pre></td></tr></table></P><P>
+
+In fact, the <TT>functions</TT> command outputs `<TT>builtin autoload -X</TT>' as
+the body of an autoloaded function.  This is done so that
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>eval "$(functions)"
+</pre></td></tr></table></P><P>
+
+produces a reasonable result.  A true autoloaded function can be
+identified by the presence of the comment `<TT># undefined</TT>' in the body,
+because all comments are discarded from defined functions.
+</P><P>
+
+To load the definition of an autoloaded function <TT>myfunc</TT> without
+executing <TT>myfunc</TT>, use:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>autoload +X myfunc
+</pre></td></tr></table></P><P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC34"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_8.html#SEC33"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_9.html#SEC35"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 8.2 Special Functions </H2>
+<!--docid::SEC34::-->
+The following functions, if defined, have special meaning to
+the shell:
+<P>
+
+<DL COMPACT>
+<A NAME="IDX115"></A>
+<DT><TT>chpwd</TT>
+<DD>Executed whenever the current working directory is changed.
+<P>
+
+<A NAME="IDX116"></A>
+<DT><TT>periodic</TT>
+<DD><A NAME="IDX117"></A>
+If the parameter <TT>PERIOD</TT>
+is set, this function is executed every <TT>$PERIOD</TT>
+seconds, just before a prompt.
+<P>
+
+<A NAME="IDX118"></A>
+<DT><TT>precmd</TT>
+<DD>Executed before each prompt.
+<P>
+
+<A NAME="IDX119"></A>
+<DT><TT>preexec</TT>
+<DD>Executed just after a command has been read and is about to be
+executed.  If the history mechanism is active (and the line was not
+discarded from the history buffer), the string that the user typed is
+passed as the first argument, otherwise it is an empty string.  The
+actual command that will be executed (including expanded aliases) is
+passed in two different forms: the second argument is a single-line,
+size-limited version of the command (with things like function bodies
+elided); the third argument contains the full text that is being
+executed.
+<P>
+
+<DT><TT>TRAP</TT><VAR>NAL</VAR>
+<DD><A NAME="IDX120"></A>
+<A NAME="IDX121"></A>
+If defined and non-null,
+this function will be executed whenever the shell
+catches a signal <TT>SIG</TT><VAR>NAL</VAR>, where <VAR>NAL</VAR> is a signal
+name as specified for the <TT>kill</TT> builtin.
+The signal number will be passed as the first parameter to the function.
+<P>
+
+If a function of this form is defined and null,
+the shell and processes spawned by it will ignore <TT>SIG</TT><VAR>NAL</VAR>.
+</P><P>
+
+<A NAME="IDX122"></A>
+<DT><TT>TRAPDEBUG</TT>
+<DD>Executed after each command.
+<P>
+
+<A NAME="IDX123"></A>
+<DT><TT>TRAPEXIT</TT>
+<DD>Executed when the shell exits,
+or when the current function exits if defined inside a function.
+<P>
+
+<A NAME="IDX124"></A>
+<DT><TT>TRAPZERR</TT>
+<DD>Executed whenever a command has a non-zero exit status.  However, the
+function is not executed if the command occurred in a sublist followed by
+`<TT>&#38;&#38;</TT>' or `<TT>||</TT>'; only the final command in a sublist of this type
+causes the trap to be executed.
+<P>
+
+</DL>
+<P>
+
+<A NAME="IDX125"></A>
+The functions beginning `<TT>TRAP</TT>' may alternatively be defined with the
+<TT>trap</TT> builtin:  this may be preferable for some uses, as they are then
+run in the environment of the calling process, rather than in their own
+function environment.  Apart from the difference in calling procedure and
+the fact that the function form appears in lists of functions, the forms
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>TRAPNAL() { 
+ # code
+}
+</pre></td></tr></table></P><P>
+
+and
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>trap '
+ # code
+' NAL
+</pre></td></tr></table></P><P>
+
+are equivalent.
+<A NAME="Jobs &#38; Signals"></A>
+</P><P>
+
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Peter Stephenson</I> on <I>March, 19  2004</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+
+</BODY>
+</HTML>

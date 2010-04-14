@@ -1,0 +1,24 @@
+/3655-zsh-3.1.2-zefram3:_libzsh_install.txt/1.1.1.1/Sun Apr 26 13:47:13 1998//
+/3713-build_script_fixes.txt/1.1.1.1/Sun Apr 26 13:47:14 1998//
+/3714-$(LIBZSH)_installation.txt/1.1.1.1/Sun Apr 26 13:47:13 1998//
+/3715-Re:_Bug_in_zsh_3.1.0_on_RedHat_5.0.txt/1.1.1.1/Sun Apr 26 13:47:14 1998//
+/3716-relative_pathname_to_install.txt/1.1.1.1/Sun Apr 26 13:47:13 1998//
+/3718-3.1.2-zefram3:_history_completion.txt/1.1.1.1/Sun Apr 26 13:47:14 1998//
+/3720-zsh-3.1.2-zefram3:_12_hour_clock_in_prompts.txt/1.1.1.1/Sun Apr 26 13:47:14 1998//
+/3730-zsh-3.1.2-zefram3:_12_hour_clock_(2).txt/1.1.1.1/Sun Apr 26 13:47:14 1998//
+/3731-zsh-3.1.2-zefram3:_12_hour_clock_(3).txt/1.1.1.1/Sun Apr 26 13:47:14 1998//
+/3733-3.1.2-zefram3:_completion_widgets.txt/1.1.1.1/Sun Apr 26 13:47:14 1998//
+/3737-zsh-3.1.2-zefram3:_CLOBBERS_TYPEAHEAD_for_SINIX.txt/1.1.1.1/Sun Apr 26 13:47:14 1998//
+/3739-zsh-3.1.2-zefram3+:_LD_RUN_PATH_for_libzsh.so.txt/1.1.1.1/Sun Apr 26 13:47:14 1998//
+/3764-zsh-3.1.2-zefram3:_ksh_globbing_syntax.txt/1.1.1.1/Sun Apr 26 13:47:14 1998//
+/3770-expand-or-complete-prefix.txt/1.1.1.1/Sun Apr 26 13:47:14 1998//
+/3777-complete-history.txt/1.1.1.1/Sun Apr 26 13:47:14 1998//
+/3796-Patch:_select.txt/1.1.1.1/Sun Apr 26 13:47:14 1998//
+/3797-Patch:_getopts_(zsh-3.1.2-zefram3).txt/1.1.1.1/Sun Apr 26 13:47:14 1998//
+/3806-parameter_substitution_close_brace_tidy_up.txt/1.1.1.1/Sun Apr 26 13:47:14 1998//
+/3809-3.0.5_Glob_qualifier_close_parenthesis_tidy_up.txt/1.1.1.1/Sun Apr 26 13:47:15 1998//
+/3815-3.1_Re:_Weird_bug_with_"bindkey".txt/1.1.1.1/Sun Apr 26 13:47:15 1998//
+/3816-3.0.5_Re:_Weird_bug_with_"bindkey".txt/1.1.1.1/Sun Apr 26 13:47:15 1998//
+/3818-don't_read_tty_settings_in_zle.txt/1.1.1.1/Sun Apr 26 13:47:15 1998//
+/about.html/1.1/Mon Apr 27 10:33:40 1998//
+D

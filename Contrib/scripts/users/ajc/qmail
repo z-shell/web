@@ -1,0 +1,30 @@
+#! /usr/local/bin/zsh
+# Quickly send a text file to someone...Prompts you for parameters if
+# you don't specify them on the command line.
+#
+# Send a given file to the given address
+local addr file text
+if [[ $# -lt 2 ]]
+then
+  echo -n 'Enter address to send to : '
+  read addr
+  if [[ "$addr" = "" ]]
+  then
+    return 1
+  fi
+  echo -n 'Enter file name : '
+  read file
+  if [[ "$file" = "" ]]
+  then
+    return 1
+  fi
+  echo -n 'Enter subject text : '
+  read text
+else
+  addr=$1
+  file=$2
+  shift ; shift
+text=$*
+fi
+mail -s "[File] ${text:-${file}}" $addr < $file
+

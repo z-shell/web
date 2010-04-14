@@ -1,0 +1,489 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on March, 19  2004 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>zsh: Prompt Expansion</TITLE>
+
+<META NAME="description" CONTENT="zsh: Prompt Expansion">
+<META NAME="keywords" CONTENT="zsh: Prompt Expansion">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC40"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_11.html#SEC39"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC41"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_11.html#SEC39"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_13.html#SEC47"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 12. Prompt Expansion </H1>
+<!--docid::SEC40::-->
+<A NAME="IDX160"></A>
+<A NAME="IDX161"></A>
+Prompt sequences undergo a special form of expansion.  This type of expansion
+is also available using the <TT>-P</TT> option to the <TT>print</TT> builtin.
+<P>
+
+<A NAME="IDX162"></A>
+If the <TT>PROMPT_SUBST</TT> option is set, the prompt string is first subjected to
+<EM>parameter expansion</EM>,
+<EM>command substitution</EM> and
+<EM>arithmetic expansion</EM>.
+See
+<A HREF="zsh_13.html#SEC47">13. Expansion</A>.
+</P><P>
+
+Certain escape sequences may be recognised in the prompt string.
+</P><P>
+
+<A NAME="IDX163"></A>
+If the <TT>PROMPT_BANG</TT> option is set, a `<TT>!</TT>' in the prompt is replaced
+by the current history event number.  A literal `<TT>!</TT>' may then be
+represented as `<TT>!!</TT>'.
+</P><P>
+
+<A NAME="IDX164"></A>
+If the <TT>PROMPT_PERCENT</TT> option is set, certain escape sequences that
+start with `<TT>%</TT>' are expanded.
+Some escapes take an optional integer argument, which
+should appear between the `<TT>%</TT>' and the next character of the
+sequence.  The following escape sequences are recognized:
+</P><P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC41"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC40"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC42"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC42"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 12.0.1 Special characters </H3>
+<!--docid::SEC41::-->
+<DL COMPACT>
+<DT><TT>%%</TT>
+<DD>A `<TT>%</TT>'.
+<P>
+
+<DT><TT>%)</TT>
+<DD>A `<TT>)</TT>'.
+<P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC42"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC41"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC43"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC43"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC43"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 12.0.2 Login information </H3>
+<!--docid::SEC42::-->
+<DL COMPACT>
+<DT><TT>%l</TT>
+<DD>The line (tty) the user is logged in on, without `<TT>/dev/</TT>' prefix.
+If the name starts with `<TT>/dev/tty</TT>', that prefix is stripped.
+<P>
+
+<DT><TT>%M</TT>
+<DD>The full machine hostname.
+<P>
+
+<DT><TT>%m</TT>
+<DD>The hostname up to the first `<TT>.</TT>'.
+An integer may follow the `<TT>%</TT>' to specify
+how many components of the hostname are desired.  With a negative integer,
+trailing components of the hostname are shown.
+<P>
+
+<DT><TT>%n</TT>
+<DD><TT>$USERNAME</TT>.
+<P>
+
+<DT><TT>%y</TT>
+<DD>The line (tty) the user is logged in on, without `<TT>/dev/</TT>' prefix.
+This does not treat `<TT>/dev/tty</TT>' names specially.
+<P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC43"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC42"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC44"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC44"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC44"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 12.0.3 Shell state </H3>
+<!--docid::SEC43::-->
+<DL COMPACT>
+<DT><TT>%#</TT>
+<DD>A `<TT>#</TT>' if the shell is running with privileges, a `<TT>%</TT>' if not.
+Equivalent to `<TT>%(!.#.%%)</TT>'.
+The definition of `privileged', for these purposes, is that either the
+effective user ID is zero, or, if POSIX.1e capabilities are supported, that
+at least one capability is raised in either the Effective or Inheritable
+capability vectors.
+<P>
+
+<DT><TT>%?</TT>
+<DD>The return code of the last command executed just before the prompt.
+<P>
+
+<DT><TT>%_</TT>
+<DD>The status of the parser, i.e. the shell constructs (like `<TT>if</TT>' and
+`<TT>for</TT>') that have been started on the command line. If given an integer
+number that many strings will be printed; zero or negative or no integer means
+print as many as there are.  This is most useful in prompts <TT>PS2</TT> for
+continuation lines and <TT>PS4</TT> for debugging with the <TT>XTRACE</TT> option; in
+the latter case it will also work non-interactively.
+<P>
+
+<DT><TT>%d</TT>
+<DD><DT><TT>%/</TT>
+<DD>Present working directory (<TT>$PWD</TT>).  If an integer follows the `<TT>%</TT>',
+it specifies a number of trailing components of <TT>$PWD</TT> to show; zero
+means the whole path.  A negative integer specifies leading components,
+i.e. <TT>%-1d</TT> specifies the first component.
+<P>
+
+<DT><TT>%~</TT>
+<DD>As <TT>%d</TT> and <TT>%/</TT>, but if <TT>$PWD</TT> has a named directory as its prefix,
+that part is replaced by a `<TT>~</TT>' followed by the name of the directory.
+If it starts with <TT>$HOME</TT>, that part is replaced by a `<TT>~</TT>'.
+<P>
+
+<DT><TT>%h</TT>
+<DD><DT><TT>%!</TT>
+<DD>Current history event number.
+<P>
+
+<DT><TT>%i</TT>
+<DD>The line number currently being executed in the script, sourced file, or
+shell function given by <TT>%N</TT>.  This is most useful for debugging as part
+of <TT>$PS4</TT>.
+<P>
+
+<DT><TT>%j</TT>
+<DD>The number of jobs.
+<P>
+
+<DT><TT>%L</TT>
+<DD>The current value of <TT>$SHLVL</TT>.
+<P>
+
+<DT><TT>%N</TT>
+<DD>The name of the script, sourced file, or shell function that zsh is
+currently executing, whichever was started most recently.  If there is
+none, this is equivalent to the parameter <TT>$0</TT>.  An integer may follow
+the `<TT>%</TT>' to specify a number of trailing path components to show; zero
+means the full path.  A negative integer specifies leading components.
+<P>
+
+<DT><TT>%c</TT>
+<DD><DT><TT>%.</TT>
+<DD><DT><TT>%C</TT>
+<DD>Trailing component of <TT>$PWD</TT>.
+An integer may follow the `<TT>%</TT>' to get more than one component.
+Unless `<TT>%C</TT>' is used, tilde contraction is performed first.  These are
+deprecated as <TT>%c</TT> and <TT>%C</TT> are equivalent to <TT>%1~</TT> and <TT>%1/</TT>,
+respectively, while explicit positive integers have the same effect as for
+the latter two sequences.
+<P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC44"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC43"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC45"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC45"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC45"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 12.0.4 Date and time </H3>
+<!--docid::SEC44::-->
+<DL COMPACT>
+<DT><TT>%D</TT>
+<DD>The date in <VAR>yy</VAR><TT>-</TT><VAR>mm</VAR><TT>-</TT><VAR>dd</VAR> format.
+<P>
+
+<DT><TT>%T</TT>
+<DD>Current time of day, in 24-hour format.
+<P>
+
+<DT><TT>%t</TT>
+<DD><DT><TT>%@</TT>
+<DD>Current time of day, in 12-hour, am/pm format.
+<P>
+
+<DT><TT>%*</TT>
+<DD>Current time of day in 24-hour format, with seconds.
+<P>
+
+<DT><TT>%w</TT>
+<DD>The date in <VAR>day</VAR><TT>-</TT><VAR>dd</VAR> format.
+<P>
+
+<DT><TT>%W</TT>
+<DD>The date in <VAR>mm</VAR><TT>/</TT><VAR>dd</VAR><TT>/</TT><VAR>yy</VAR> format.
+<P>
+
+<DT><TT>%D{</TT><VAR>string</VAR><TT>}</TT>
+<DD><VAR>string</VAR> is formatted using the <TT>strftime</TT> function.
+See man page strftime(3) for more details.  Three additional codes are
+available:  <TT>%f</TT> prints the day of the month, like <TT>%e</TT> but
+without any preceding space if the day is a single digit, and
+<TT>%K</TT>/<TT>%L</TT> correspond to <TT>%k</TT>/<TT>%l</TT> for the hour of the day
+(24/12 hour clock) in the same way.
+<P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC45"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC44"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC46"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC46"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC46"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 12.0.5 Visual effects </H3>
+<!--docid::SEC45::-->
+<DL COMPACT>
+<DT><TT>%B</TT> (<TT>%b</TT>)
+<DD>Start (stop) boldface mode.
+<P>
+
+<DT><TT>%E</TT>
+<DD>Clear to end of line.
+<P>
+
+<DT><TT>%U</TT> (<TT>%u</TT>)
+<DD>Start (stop) underline mode.
+<P>
+
+<DT><TT>%S</TT> (<TT>%s</TT>)
+<DD>Start (stop) standout mode.
+<P>
+
+<DT><TT>%{</TT>...<TT>%}</TT>
+<DD>Include a string as a literal escape sequence.
+The string within the braces should not change the cursor
+position.  Brace pairs can nest.
+<P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC46"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC45"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_13.html#SEC47"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 12.0.6 Conditional substrings </H3>
+<!--docid::SEC46::-->
+<DL COMPACT>
+<DT><TT>%v</TT>
+<DD><A NAME="IDX165"></A>
+The value of the first element of the <TT>psvar</TT> array parameter.  Following
+the `<TT>%</TT>' with an integer gives that element of the array.  Negative
+integers count from the end of the array.
+<P>
+
+<DT><TT>%(</TT><VAR>x.true-text.false-text</VAR><TT>)</TT>
+<DD>Specifies a ternary expression.  The character following the <VAR>x</VAR> is
+arbitrary; the same character is used to separate the text for the
+`true' result from that for the `false' result.
+This separator may not appear in the <VAR>true-text</VAR>, except as part of a
+%-escape
+sequence.  A `<TT>)</TT>' may appear in the <VAR>false-text</VAR> as `<TT>%)</TT>'.
+<VAR>true-text</VAR>
+and <VAR>false-text</VAR> may both contain arbitrarily-nested escape
+sequences, including further ternary expressions.
+<P>
+
+The left parenthesis may be preceded or followed by a positive integer <VAR>n</VAR>,
+which defaults to zero.  A negative integer will be multiplied by -1.
+The test character <VAR>x</VAR> may be any of the following:
+</P><P>
+
+<DL COMPACT>
+<DT><TT>!</TT>
+<DD>True if the shell is running with privileges.
+<DT><TT>#</TT>
+<DD>True if the effective uid of the current process is <VAR>n</VAR>.
+<DT><TT>?</TT>
+<DD>True if the exit status of the last command was <VAR>n</VAR>.
+<DT><TT>_</TT>
+<DD>True if at least <VAR>n</VAR> shell constructs were started.
+<DT><TT>C</TT>
+<DD><DT><TT>/</TT>
+<DD>True if the current absolute path has at least <VAR>n</VAR> elements.
+<DT><TT>c</TT>
+<DD><DT><TT>.</TT>
+<DD><DT><TT>~</TT>
+<DD>True if the current path, with prefix replacement, has at
+least <VAR>n</VAR> elements.
+<DT><TT>D</TT>
+<DD>True if the month is equal to <VAR>n</VAR> (January = 0).
+<DT><TT>d</TT>
+<DD>True if the day of the month is equal to <VAR>n</VAR>.
+<DT><TT>g</TT>
+<DD>True if the effective gid of the current process is <VAR>n</VAR>.
+<DT><TT>j</TT>
+<DD>True if the number of jobs is at least <VAR>n</VAR>.
+<DT><TT>L</TT>
+<DD>True if the <TT>SHLVL</TT> parameter is at least <VAR>n</VAR>.
+<DT><TT>l</TT>
+<DD>True if at least <VAR>n</VAR> characters have already been
+printed on the current line.
+<DT><TT>S</TT>
+<DD>True if the <TT>SECONDS</TT> parameter is at least <VAR>n</VAR>.
+<DT><TT>T</TT>
+<DD>True if the time in hours is equal to <VAR>n</VAR>.
+<DT><TT>t</TT>
+<DD>True if the time in minutes is equal to <VAR>n</VAR>.
+<DT><TT>v</TT>
+<DD>True if the array <TT>psvar</TT> has at least <VAR>n</VAR> elements.
+<DT><TT>w</TT>
+<DD>True if the day of the week is equal to <VAR>n</VAR> (Sunday = 0).
+</DL>
+<P>
+
+<DT><TT>%&#60;</TT><VAR>string</VAR><TT>&#60;</TT>
+<DD><DT><TT>%&#62;</TT><VAR>string</VAR><TT>&#62;</TT>
+<DD><DT><TT>%[</TT><VAR>xstring</VAR><TT>]</TT>
+<DD>Specifies truncation behaviour for the remainder of the prompt string.
+The third, deprecated, form is equivalent to `<TT>%</TT><VAR>xstringx</VAR>',
+i.e. <VAR>x</VAR> may be `<TT>&#60;</TT>' or `<TT>&#62;</TT>'.
+The numeric argument, which in the third form may appear immediately
+after the `<TT>[</TT>', specifies the maximum permitted length of
+the various strings that can be displayed in the prompt.
+The <VAR>string</VAR> will be displayed in
+place of the truncated portion of any string; note this does not
+undergo prompt expansion.
+<P>
+
+The forms with `<TT>&#60;</TT>' truncate at the left of the string,
+and the forms with `<TT>&#62;</TT>' truncate at the right of the string.
+For example, if the current directory is `<TT>/home/pike</TT>',
+the prompt `<TT>%8&#60;..&#60;%/</TT>' will expand to `<TT>..e/pike</TT>'.
+In this string, the terminating character (`<TT>&#60;</TT>', `<TT>&#62;</TT>' or `<TT>]</TT>'),
+or in fact any character, may be quoted by a preceding `<TT>\</TT>'; note
+when using <TT>print -P</TT>, however, that this must be doubled as the
+string is also subject to standard <TT>print</TT> processing, in addition
+to any backslashes removed by a double quoted string:  the worst case
+is therefore `<TT>print -P "%<\\\\&#60;&#60;..."</TT>'.
+</P><P>
+
+If the <VAR>string</VAR> is longer than the specified truncation length,
+it will appear in full, completely replacing the truncated string.
+</P><P>
+
+The part of the prompt string to be truncated runs to the end of the
+string, or to the end of the next enclosing group of the `<TT>%(</TT>'
+construct, or to the next truncation encountered at the same grouping
+level (i.e. truncations inside a `<TT>%(</TT>' are separate), which
+ever comes first.  In particular, a truncation with argument zero
+(e.g. `<TT>%&#60;&#60;</TT>') marks the end of the range of the string to be
+truncated while turning off truncation from there on. For example, the
+prompt '%10&#60;...&#60;%~%&#60;&#60;%# ' will print a truncated representation of the
+current directory, followed by a `<TT>%</TT>' or `<TT>#</TT>', followed by a
+space.  Without the `<TT>%&#60;&#60;</TT>', those two characters would be included
+in the string to be truncated.
+</P><P>
+
+</DL>
+<A NAME="Expansion"></A>
+<P>
+
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Peter Stephenson</I> on <I>March, 19  2004</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+
+</BODY>
+</HTML>

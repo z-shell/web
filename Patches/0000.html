@@ -1,0 +1,154 @@
+<!-- received="Mon Oct 13 06:08:09 1997 PDT" -->
+<!-- sent="Mon, 13 Oct 1997 15:07:35 +0200" -->
+<!-- name="Peter Stephenson" -->
+<!-- email="pws@ifh.de" -->
+<!-- subject="PATCH: zsh 3.1.2+: implementation of keyboard macros" -->
+<!-- id="199710131307.PAA28866@hydra.ifh.de" -->
+<!-- inreplyto="" -->
+<title>ZSH Patches: PATCH: zsh 3.1.2+: implementation of keyboard macros</title>
+<h1>PATCH: zsh 3.1.2+: implementation of keyboard macros</h1>
+Peter Stephenson (<i>pws@ifh.de</i>)<br>
+<i>Mon, 13 Oct 1997 15:07:35 +0200</i>
+<p>
+<ul>
+<li> <b>Messages sorted by:</b> <a href="date.html#0">[ date ]</a><a href="index.html#0">[ thread ]</a><a href="subject.html#0">[ subject ]</a><a href="author.html#0">[ author ]</a>
+<!-- next="start" -->
+<li> <b>Next message:</b> <a href="0001.html">Peter Stephenson: "PATCH: 3.1.2: keyboard macros (2) [needed]"</a>
+<!-- nextthread="start" -->
+</ul>
+<!-- body="start" -->
+<pre>
+Message-Id: &lt;199710131307.PAA28866@hydra.ifh.de&gt;<br>
+To: zsh-workers@math.gatech.edu (Zsh hackers list), zsh@peak.org<br>
+Subject: PATCH: zsh 3.1.2+: implementation of keyboard macros<br>
+Date: Mon, 13 Oct 1997 15:07:35 +0200<br>
+From: Peter Stephenson &lt;pws@ifh.de&gt;<br>
+</pre>
+<p>
+Here's an implementation of keyboard macros for zsh 3.1, providing<br>
+^X(, ^X) and ^Xe, as well as `bindkey -k' which maps the macro to a<br>
+key sequence.  It's quite possible I've missed something from Zefram<br>
+which would stop parts of this applying properly.  I can't answer the<br>
+question whether we need this, or can make do with `bindkey -s';<br>
+unfortunately it's not possible to turn this into an add-on module as<br>
+it has to interact with the low-level routine to read a key.  It does<br>
+do one thing better than `bindkey -s' at the moment: a numerical<br>
+prefix repeats the macro instead of just applying to the first command<br>
+in the string.<br>
+<p>
+One glitch is that I've forgotten how to get yodl to make ( or )<br>
+inside ()'s, so the documentation currently says `&lt;left-paren&gt;' and<br>
+`&lt;right-paren&gt;'.<br>
+<p>
+begin 644 macros.dif.gz<br>
+M'XL(`*H;0C0``]5;;7/;-A+^[/P*V#&gt;32C;%B'J7W+3C)DZ;JQUG8J5OF9R/<br>
+M(B&amp;+8XI42&lt;J.D_J_WRY&gt;2``$G;CMW,UY,C&amp;YQ#Y8["Z&gt;!4!Z?W^?/$^#)[_E<br>
+MJR&gt;+;10749*[MZE[M=XY31/RSVU"2(]T)[/A=#88$F\Z'3_J=#HV':9P%A3$<br>
+MZ\._V7`\Z_6YPK[^@_=DVG6F0\)N$0]O1P2N.H\(^1`5=-TJBM8B2L(K&gt;MLF<br>
+M[\BUG[7231&amp;E2=XF[PD\[*S;[2]OG+69-$HZ&gt;9%%R66;N*[[`/W&lt;T"?IMM"A<br>
+M#KX4ZLHTY0O-T/L/TO7:3\)R')_7?V=ZX'V[!8J*SE&lt;Y$&gt;U)X"=D04D874&lt;A<br>
+M#4F4%"DI5AFE\*2@EVD6T7Q&amp;0&amp;GM;TA.8QJ@GF.-M3?J.MY(B;8W\D`PE?$N<br>
+MS;]GA&amp;CI=V`FH7ZP,@&lt;"MI5BJ&gt;5"0#`H=&gt;`V@!UPL&amp;)%+5@HC?V\P.$M4C\+<br>
+MR=H/LI3D19K1T%4M;O#I2&lt;2U"7H6Y+E+R,LE`9\:S:.&lt;Y!L:1,N(A@[K6&amp;B0<br>
+M=,E\)R?:QYB*&gt;?DBBV!&gt;QH0,B#&gt;&lt;=;U9OU^?E[RY-B4'."6][CU3&lt;CIUO&amp;YW<br>
+MH,Q*)NE-9*"$;\F_(6&gt;R;=)9T7C#DSE8A^VO''*SHADM!3@Z'%*PS3*:%!6`<br>
+MR[*N0H!V29JM_3B^)7X&lt;^3ED',0!&lt;:!YFWO\@`#1A/1#*R_\K.A&lt;+&lt;(."TL9<br>
+M9(`T'Y'6OW[Y.J;+HK/QP81O0+!-%ND6LZJ\8NEP%,&lt;8,(A+&gt;D5SLDV**$8C<br>
+M:1*J&gt;(!",AJD6&lt;CBE&gt;(&lt;V&lt;3^+1B\\(,K`+J)BA4J!C":#F:1HLZS($DMP"L_<br>
+M!RR:$'`4^#`$I`5=0KXQ#T)C2`B&gt;F%%"'9)F&gt;`-/P760533+TLP1EF'V1#D`<br>
+M^`OP=9J`;;[(]4U&amp;KZ-TFXN$SFCA`QS&amp;8YX2?[/!?F!0B/@!4AB0`(:U=0@.<br>
+MB%A\S-(V:1HR!F&gt;]IF$$K!'?RDDI(JG[0(FCX1R,8A9=KCX?QF,QT-K,!9O!<br>
+M#S(XM3Q!!['I#28`##B&gt;;'.8C+?WA'(._7!X099^GD&gt;7"&lt;]='U#*?`(L#$K%<br>
+MM`2*@.&amp;+)N&lt;)C]@&gt;HU]HLR]&gt;)CG-"N8.6;.6S*8R@\7X;-Y`PVIQ2!/!CE&amp;R<br>
+MV18P7A*QI+R%]`UY^A:W&amp;\RW2\@K'.!\%6&amp;RW:)[MCBM;U913)5$]4E";V2*<br>
+M10D^!R(/@`*TA)5I"!&amp;$+%R@!3@X`$R3@,)_R!PB]CQ14SX"J]]"J%&gt;HN\S2<br>
+M-5,I;8"P_HPYXB&lt;X?S*X7-,B"M".9?1!3H(R\,7*+^`R`3=&amp;:YKSD!(9TNNH<br>
+MD].BL]@NES13:[3^0`W@GAY$0LY9=8#!$=Y:&lt;`[S);@+35FF&lt;9S&gt;*!73971^<br>
+MGD$IB.F3Z"8*+VF1NS',:%E`6%'H8E$8&gt;+/!N"H@5BU-!6K.&gt;-;WFNM(;^CT<br>
+MNU41P5M/5I"]!;V,D@2,[:3+#B0'S+G;/8&gt;4XG0IA`[IUMHC]^F-.1O:6S+X<br>
+M&gt;G.4HLH!V;,DQQZ/,0I!)O*2X0?^)BJ@.GVDG1M(7M902E`@F\74SSIY`$NE<br>
+M!-O@+;]SR&amp;\GQQ&gt;GQZ_&gt;/CM]3?Y@=S\&gt;'[\^?_OBQ&lt;M?A.#DZ'S^[.R$(:7K<br>
+M#&gt;9IV9VXYYW=AV4-R\!S!J,J+(.&gt;,R@+^UZ8WB3&lt;:2D8#R8'*^@1I2A,,R[B<br>
+MO9Z\?'5\&gt;O;3&lt;=UB"O[*.U@(;X![I=U,*H6*IWAKH-I:8R&amp;3;2%2&amp;A%A,Z!1<br>
+M/3S8`@+/9PF.HDHN&gt;)0N^8,TT]-+:!EMK6U$\K$&amp;,NVLRZB^,YTH:Z@A+*&amp;J<br>
+M_,\1;9%1_PJP\(9=BYZ0%-9^=M41$YDU*5`B!`]-(5A;0H8+U[(;Q:&lt;&amp;[6,+<br>
+ME!A^+3(_R3=I3CO!"C(96I42)J@UPQZT9DP@F@&amp;O`9%"C&gt;Q`(8)&amp;Y3W&lt;"H&gt;6<br>
+M%%2L8,["-N-AQ*5IF&lt;0UF7F#9N+R)@YL6:M="MP.9.#FK2;JZL*R]\+&amp;7\7%<br>
+M\[JX;&lt;$2F64"\23345#6!"'YSH;#2:^.A7)&lt;9@"&gt;G0P96)T1`&lt;D4"K/J-"D@<br>
+M=*YD`*I(JNOTR755#D7%ZEYJ&amp;53)U32^1#U%T+9F0'_@]*=5!O2'SL!3,L#.<br>
+MDJRS.E5"AZ906&amp;NG209CX4K`J4DU((-!*QR-1B6,(A2!-[F5`Z@$B[K5O&gt;R\<br>
+MF7`E@H5U.53M@8YI0ZHA6#75J:0PM=3AT\&lt;6^&lt;G(F7I5Y"&lt;39ZK.?8VV&amp;;K"<br>
+MW8!&gt;WK5E^QJ3"RV=SIFJ*I+Z*G%SS8J]44G&gt;B1C6N9PKZ82.BJI$=%:G&gt;*9L<br>
+M\CQHZZ*:NJ1^75WPOZK.1$+=+`E,6:\+H*H*[!'T)EW'FZBG3),^"*9*%-T&amp;<br>
+M"I__&lt;/'R]/3LS?SHI)G,&amp;[G&lt;M9%Y,Z3,2#NKU\$DK=^/*`F^F=]=.\$;L#:J<br>
+M;V!ZMT[U-3"3]*V&lt;[QJD;Z+H]%]G?]&gt;D?Q/`*`2?KP/&gt;=.3TN@H?]+I=$(S4<br>
+M7+(7`Z-K6UEHJ`JNO2P8@-8"T50?7&amp;N!L"$:I:*A4KAFJ3"A]*)1KQGN/46C<br>
+MCF4M'_=4#[=6/FR8)I8=PSZ-M9+RF8K2&amp;\#Z&lt;=A7-\)]$&amp;A\I)45HR^MP)CU<br>
+MQ;44F)J^66JLE&lt;;52HV)H18=L^:X]:)CJIOEQU9]W'KY,6#JA&lt;A:A]QZ(6H"<br>
+M*DN2M2*Y9DDR8,SB5*M-Y6;D3QV]W'_R`GOX/[6!^;G5M5&lt;QV^%+VZK`$]]2<br>
+MM^Q-&gt;4EJ*$A"I5YN;,6F;*R7DWHQ^;GUY?MCHY9H1S6?QS+KB'X\\_#=!&gt;_-<br>
+M?K1B*QKUPQG%498B82T1:G.M`MCX7S96.=Y@^*J)A;J;B%M5TALW-.)I^!?6<br>
+M\P),(5B-7A^:1";1UFE6=EBQJ&lt;:E\K'.EC6N%,UJ;%CC0K.A9+L:UXF&amp;.I\U<br>
+MLQF^5%R9-#:&lt;]2&gt;S8:].8ZRU\0:R!ZW']YP&lt;P[*KKRV[F*`\IH1_X/M?YL=O<br>
+M7N$KC2W@!MM"'(Q?1W#QKC]\?X@M#\B3?&gt;,M4$[VGX`&lt;_I4@45+P9Q?\C&lt;3A<br>
+M#FB5+R=F9!G[EWCB#GP,6*TV1RC5T&gt;-D']GJ@J$P=?Z66+X@8*?U]`,%.T&amp;H<br>
+MJV/O7#FFR&gt;$.*L/%9;'"%S45JD5+VKRA?L$Z35*7O2#$MQ#8*7_$WV(K(.`9<br>
+M:+S)TB+%%S7,(\RM_^`Q)]^?G'UW='+Q^LW9_&amp;S^Z^OC&lt;S,!P*0H&lt;8-Z,?/&amp;<br>
+M,V]BS0*A8J;"Y-Z7T3UOZO1Z8YX*8!_.]VB)5_+BT2[!GVA)6E?;!"(4%)C3<br>
+M.QDMR%-R/C][^TP\P+SH=&amp;2C]^U#H4KCG))/J,-`Z&amp;VQ3K=%FXM*;!"#5^$!<br>
+M^88,NUW6QP[]L/&amp;ZW6*50U&lt;@/.39BC97[SJ^S&amp;;RQQ]:.+'[76[1;CDN+D-5<br>
+M)L&amp;7&gt;*TJ09PJB]C86$,5L]-AXKN'N&gt;?N;W60-&lt;A#6*&amp;,U"7RJ`&gt;":&gt;5!9D+9<br>
+M6QH4&lt;&gt;O\A_G\5UB3/3L_GA\YY'&amp;^*HK;*%FF;A&amp;E[4.AQAQ^4%FISG+DW)T=<br>
+M+O'#L-7*R-=/2;=-OB7'9R_(C+1@CK6YBX*@S3`9$/ANFR6DUCX(#FWQMJX!<br>
+MO*'3[RFOQ_H]#P0EQ&gt;U&lt;1\'J$D,B+S9%=G#P'MP(O6,W+#3B-\VR)(5':1Q&gt;<br>
+ML.M#&amp;%KCD*L1\[$!(!^&lt;,C;1"79@M[\W=OK]GF(_+&amp;/ZU3J&amp;YZAX#\[Y,9==<br>
+M('.5EH+5PN+J(4LO&gt;`")&amp;&amp;W\S%^W]N:G9V_G&gt;^UR7((R^?M8:-H]%`06+8'"<br>
+MR`]'/QU?G!^?'#^;"]PX92]&amp;\V*]C0M[&amp;@Y@W@YZ`_7=V,09](=E3!`'RG&amp;Q<br>
+MS7'!`;V^&gt;GMR4F;%=812**Z75!HDLH5_%\4_DFJQ,93YN%N-0DU'5O1S^GNK<br>
+M2CKVR0!W"B`%ZU!YQI%B\O@QB?)EE.5%G.!-0)Z"&gt;],E!D!,UQVXA64.NM=K<br>
+M&lt;$-O!*-6JN^@/W8&amp;@[[FACNU:V9:B0]%#MA^N4T"\8`-&gt;$&lt;+%[_`LLK&amp;L+."<br>
+M%5),N93F8F18T/`+C.N(K-,0UGIK_XJ2?"L^A@FV60Y/HSSYJB!YNJ;\JZ,H<br>
+MCNFE'_.2ML,8*TI@$JU#!(':C7[)@:.@T(6+-&amp;82NR/PW:C&lt;N2/6B^&gt;04W/)<br>
+M/(^7:;H,A:G83:NX=HOKBRTLP6"(F&amp;MDOTRY-F?%KB1&amp;])W6GC]D!*VS/AK,<br>
+M,XCW?.`YI,5S^^+HS?&lt;7O8LY#($P:QRF#C^8F0[A_S\NKMN&lt;J&lt;J&gt;P=&amp;0EBLE<br>
+MA&gt;XDQ0K2JIEQGS(/WY+2C1#&gt;\&lt;09#IS!J#PM^U\Z&lt;%&gt;M@QCP70'Q0,^"QM_O<br>
+MVIJ!#_2U-7E',&amp;G'"D$/)EUG,*F"(2BL9;!TFZQIX2]O6RUYS_=9&lt;&gt;R04ZBT<br>
+M%V^.CTY.SIZUS1H$,Q4&amp;&lt;T'#J,A;)5%7M09*9*ECJ5=:]&lt;$N&gt;?FQ#6T\[CKC<br>
+M2;&gt;&lt;E[#1XI6_52T":N:APZ$KI)PV1J#TO:#J.UX_D-ZC0.XJ@+_P]`5_%_[B<br>
+M'5;?3V)5](GLB8^X^+L*N+D0`G;?\=BO/7KMG\;A\Z-7ZRP_&gt;0-M90)UR9TC<br>
+M;`.L:Q\V"^RIP&amp;("O`&lt;&lt;,F987$__L6$!^^[Q=@(+!.6]M"L&amp;DT[VG$:L.[Z6<br>
+M'4\&amp;SKC:,O]E7VO3\+_F^BOI^_\7U^\;NZUM$&lt;4YWV[-5UOV/7YO1#QOUAV5<br>
+MVR=SNR5TM/T6^U#8N^?HL#_M.X-N.;&gt;NTRA\I'$.2I"&gt;/I5[F!;*&gt;:PA018E<br>
+M,3%2$(^T4+/E(NNG)_/J8?WPE8;L25O1&lt;I8YT-+1:H1M\".OZXP\91\R\GK.<br>
+MN'K=@]F/RQBDIVJ,);WO;),PY1;=\0,&amp;6,#\V'#V(+*=DRPL9&gt;3)`2YZQ"&gt;.<br>
+ME'UF++Z:CF^5KR492`U!+AK92&lt;`FQ35RE)`26WR5S&lt;X"Y"$E'HVPU1E4FWVH<br>
+MA;]O*7Y'"2NF(-ZRKL3:5'XZ6S:N6&lt;!C`+L4/@;6/\WX7PQ4-AC#1QO90\O)<br>
+M1Z7DQW&amp;*?VX0ENI/]MD52YL#I&lt;BP0Y$`5]*?E!V0X"*VQ0[(US#/X&amp;I7VQ&gt;Q<br>
+M]CNJB&amp;?+`=_S2AM%.P3^"(69MDHCG7(&lt;U0*_&amp;H$D/G`/KFR48)6["%4'4,KN<br>
+M,95V&gt;%VL$ILY00YOM^RY&amp;D/5D31`UO./S)LMI1]O5$X9MM.O-HV(TE%1GA+#<br>
+M$^AP92C:R+[5;U6@F1B&lt;:N#'C"JF&lt;9_V]G6OV@=W4.60!#5LDNW**5)VCB[8<br>
+M?TIZ%M]6*7UP@!$,M)E=3\!RT\:YJ\I!PZ!JIC3A:6&gt;^-3AV=,&lt;V4FOJ)SF!<br>
+MQ,&gt;S/C:QY03!'SLK&amp;CGN-1JA'.K73&amp;!I5SM8T+,4VU2'4ZP!GS--)U9F1K.8<br>
+MX4S5_`&lt;"W9]*A$52*F&gt;FRNPJNY)3JR)OK@9^#5;I!KAGB90#];O`;^1C6$?@<br>
+MH42J&gt;H0[6N_)F&amp;%J?TT3@6?U\]=OY^?\*(`IP!KAN[??S]@1,G+P1YJE'4&amp;,<br>
+M_//T/3$=Z#K8W&amp;H.529/W;=WC9EAS0#S'9P]#908&lt;S\NJ\)&lt;YRV1P"^7#/WS<br>
+M?PE0_NV"\B&lt;`?':2E+V&amp;W!;*N0#4S##%\P!8;P).CC4#^\GYWW-%[--\KO[D<br>
+M\T=D%K8V.&amp;TF:;O51#JU&gt;2=6OA]Q3TN^@50$3'XS(YV/_'0*7?4?6KC]_Y,Y<br>
+"``!D<br>
+`<br>
+end<br>
+<p>
+<pre>
+-- 
+Peter Stephenson &lt;pws@ifh.de&gt;       Tel: +49 33762 77366
+WWW:  <a href="http://www.ifh.de/~pws/">http://www.ifh.de/~pws/</a>       Fax: +49 33762 77413
+Deutsches Elektronen-Synchrotron --- Institut fuer Hochenergiephysik Zeuthen
+DESY-IfH, Platanenallee 6, 15738 Zeuthen, Germany.
+</pre>
+<!-- body="end" -->
+<p>
+<ul>
+<!-- next="start" -->
+<li> <b>Next message:</b> <a href="0001.html">Peter Stephenson: "PATCH: 3.1.2: keyboard macros (2) [needed]"</a>
+<!-- nextthread="start" -->
+</ul>

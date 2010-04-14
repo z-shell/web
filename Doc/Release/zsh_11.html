@@ -1,0 +1,280 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on March, 19  2004 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>zsh: Conditional Expressions</TITLE>
+
+<META NAME="description" CONTENT="zsh: Conditional Expressions">
+<META NAME="keywords" CONTENT="zsh: Conditional Expressions">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC39"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_10.html#SEC38"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC40"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_10.html#SEC38"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC40"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 11. Conditional Expressions </H1>
+<!--docid::SEC39::-->
+<A NAME="IDX158"></A>
+<A NAME="IDX159"></A>
+A <EM>conditional expression</EM> is used with the <TT>[[</TT>
+compound command to test attributes of files and to compare strings.
+Each expression can be constructed from one or more
+of the following unary or binary expressions:
+<P>
+
+<DL COMPACT>
+<DT><TT>-a</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists.
+<P>
+
+<DT><TT>-b</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and is a block special file.
+<P>
+
+<DT><TT>-c</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and is a character special file.
+<P>
+
+<DT><TT>-d</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and is a directory.
+<P>
+
+<DT><TT>-e</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists.
+<P>
+
+<DT><TT>-f</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and is a regular file.
+<P>
+
+<DT><TT>-g</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and has its setgid bit set.
+<P>
+
+<DT><TT>-h</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and is a symbolic link.
+<P>
+
+<DT><TT>-k</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and has its sticky bit set.
+<P>
+
+<DT><TT>-n</TT> <VAR>string</VAR>
+<DD>true if length of <VAR>string</VAR> is non-zero.
+<P>
+
+<DT><TT>-o</TT> <VAR>option</VAR>
+<DD>true if option named <VAR>option</VAR> is on.  <VAR>option</VAR>
+may be a single character, in which case it is a single letter option name.
+(See <A HREF="zsh_15.html#SEC82">15.1 Specifying Options</A>.)
+<P>
+
+<DT><TT>-p</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and is a FIFO special file (named pipe).
+<P>
+
+<DT><TT>-r</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and is readable by current process.
+<P>
+
+<DT><TT>-s</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and has size greater than zero.
+<P>
+
+<DT><TT>-t</TT> <VAR>fd</VAR>
+<DD>true if file descriptor number <VAR>fd</VAR>
+is open and associated with a terminal device.
+(note: <VAR>fd</VAR> is not optional)
+<P>
+
+<DT><TT>-u</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and has its setuid bit set.
+<P>
+
+<DT><TT>-w</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and is writable by current process.
+<P>
+
+<DT><TT>-x</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and is executable by current process.
+If <VAR>file</VAR> exists and is a directory, then the current process
+has permission to search in the directory.
+<P>
+
+<DT><TT>-z</TT> <VAR>string</VAR>
+<DD>true if length of <VAR>string</VAR> is zero.
+<P>
+
+<DT><TT>-L</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and is a symbolic link.
+<P>
+
+<DT><TT>-O</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and is owned by the effective user ID of this process.
+<P>
+
+<DT><TT>-G</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and its group matches
+the effective group ID of this process.
+<P>
+
+<DT><TT>-S</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and is a socket.
+<P>
+
+<DT><TT>-N</TT> <VAR>file</VAR>
+<DD>true if <VAR>file</VAR> exists and its access time is
+not newer than its modification time.
+<P>
+
+<DT><VAR>file1</VAR> <TT>-nt</TT> <VAR>file2</VAR>
+<DD>true if <VAR>file1</VAR> exists and is newer than <VAR>file2</VAR>.
+<P>
+
+<DT><VAR>file1</VAR> <TT>-ot</TT> <VAR>file2</VAR>
+<DD>true if <VAR>file1</VAR> exists and is older than <VAR>file2</VAR>.
+<P>
+
+<DT><VAR>file1</VAR> <TT>-ef</TT> <VAR>file2</VAR>
+<DD>true if <VAR>file1</VAR> and <VAR>file2</VAR> exist and refer to the same file.
+<P>
+
+<DT><VAR>string</VAR> <TT>=</TT> <VAR>pattern</VAR>
+<DD><DT><VAR>string</VAR> <TT>==</TT> <VAR>pattern</VAR>
+<DD>true if <VAR>string</VAR> matches <VAR>pattern</VAR>.
+The `<TT>==</TT>' form is the preferred one.  The `<TT>=</TT>' form is for
+backward compatibility and should be considered obsolete.
+<P>
+
+<DT><VAR>string</VAR> <TT>!=</TT> <VAR>pattern</VAR>
+<DD>true if <VAR>string</VAR> does not match <VAR>pattern</VAR>.
+<P>
+
+<DT><VAR>string1</VAR> <TT>&#60;</TT> <VAR>string2</VAR>
+<DD>true if <VAR>string1</VAR> comes before <VAR>string2</VAR>
+based on ASCII value of their characters.
+<P>
+
+<DT><VAR>string1</VAR> <TT>&#62;</TT> <VAR>string2</VAR>
+<DD>true if <VAR>string1</VAR> comes after <VAR>string2</VAR>
+based on ASCII value of their characters.
+<P>
+
+<DT><VAR>exp1</VAR> <TT>-eq</TT> <VAR>exp2</VAR>
+<DD>true if <VAR>exp1</VAR> is numerically equal to <VAR>exp2</VAR>.
+<P>
+
+<DT><VAR>exp1</VAR> <TT>-ne</TT> <VAR>exp2</VAR>
+<DD>true if <VAR>exp1</VAR> is numerically not equal to <VAR>exp2</VAR>.
+<P>
+
+<DT><VAR>exp1</VAR> <TT>-lt</TT> <VAR>exp2</VAR>
+<DD>true if <VAR>exp1</VAR> is numerically less than <VAR>exp2</VAR>.
+<P>
+
+<DT><VAR>exp1</VAR> <TT>-gt</TT> <VAR>exp2</VAR>
+<DD>true if <VAR>exp1</VAR> is numerically greater than <VAR>exp2</VAR>.
+<P>
+
+<DT><VAR>exp1</VAR> <TT>-le</TT> <VAR>exp2</VAR>
+<DD>true if <VAR>exp1</VAR> is numerically less than or equal to <VAR>exp2</VAR>.
+<P>
+
+<DT><VAR>exp1</VAR> <TT>-ge</TT> <VAR>exp2</VAR>
+<DD>true if <VAR>exp1</VAR> is numerically greater than or equal to <VAR>exp2</VAR>.
+<P>
+
+<DT><TT>(</TT> <VAR>exp</VAR> <TT>)</TT>
+<DD>true if <VAR>exp</VAR> is true.
+<P>
+
+<DT><TT>!</TT> <VAR>exp</VAR>
+<DD>true if <VAR>exp</VAR> is false.
+<P>
+
+<DT><VAR>exp1</VAR> <TT>&#38;&#38;</TT> <VAR>exp2</VAR>
+<DD>true if <VAR>exp1</VAR> and <VAR>exp2</VAR> are both true.
+<P>
+
+<DT><VAR>exp1</VAR> <TT>||</TT> <VAR>exp2</VAR>
+<DD>true if either <VAR>exp1</VAR> or <VAR>exp2</VAR> is true.
+<P>
+
+</DL>
+<P>
+
+Normal shell expansion is performed on the <VAR>file</VAR>, <VAR>string</VAR> and
+<VAR>pattern</VAR> arguments, but the result of each expansion is constrained to
+be a single word, similar to the effect of double quotes.  However, pattern
+metacharacters are active for the <VAR>pattern</VAR> arguments; the patterns
+are the same as those used for filename generation, see
+<A HREF="zsh_13.html#SEC62">13.8 Filename Generation</A>, but there is no special behaviour
+of `<TT>/</TT>' nor initial dots, and no glob qualifiers are allowed.
+</P><P>
+
+In each of the above expressions, if
+<VAR>file</VAR> is of the form `<TT>/dev/fd/</TT><VAR>n</VAR>',
+where <VAR>n</VAR> is an integer,
+then the test applied to the open file whose
+descriptor number is <VAR>n</VAR>,
+even if the underlying system does not support
+the <TT>/dev/fd</TT> directory.
+</P><P>
+
+In the forms which do numeric comparison, the expressions <VAR>exp</VAR>
+undergo arithmetic expansion as if they were enclosed in <TT>$((...))</TT>.
+</P><P>
+
+For example, the following:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>[[ ( -f foo || -f bar ) &#38;&#38; $report = y* ]] &#38;&#38; print File exists.
+</pre></td></tr></table></P><P>
+
+tests if either file <TT>foo</TT> or file <TT>bar</TT> exists, and if so, if the
+value of the parameter <TT>report</TT> begins with `<TT>y</TT>'; if the complete
+condition is true, the message `<TT>File exists.</TT>' is printed.
+<A NAME="Prompt Expansion"></A>
+</P><P>
+
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_10.html#SEC38"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_12.html#SEC40"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Peter Stephenson</I> on <I>March, 19  2004</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+
+</BODY>
+</HTML>

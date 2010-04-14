@@ -1,0 +1,4 @@
+The ZSH FAQ (maintained by Peter Stephenson <pws@ifh.de>).
+The zshfaq.yo file is the main source, which generates zshfaq.html
+and zshfaq??.html.  index.html is a copy of zshfaq.html.  See the
+Makefile.

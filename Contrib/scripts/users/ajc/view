@@ -1,0 +1,173 @@
+#! /bin/zsh
+#
+# Here's a hack to automatically view compressed/zipped/tarred files
+#
+#       l file.zip
+#       l file.tar.gz
+#       l file.lha
+#
+# views the contents of each file (assuming the relevant programs are
+# in the path...)
+#
+#        l -v file.tar.gz README
+#
+# views *README* in the tar.gz'd file (currenly only works for one
+# argument, fixes welcome, as I haven't had time yet, and i only
+# really use it to read readmes or changelogs :)
+#
+#
+# view - list all sorts of archive-type files.
+#        optionally view the files inside them, too.
+#
+# 1993-1994 Andrew J. Cosgriff
+# andrew@bing.apana.org.au (home)
+# andrew@unico.com.au      (work)
+#
+# (Re)Creation Date : Tue Aug 30 21:18:22 1994
+# $Revision: 1.1.1.1 $
+# $Date: 1998/04/26 13:47:07 $
+#
+# Free for use as long as you don't claim you wrote it or charge money for it.
+# I'm not responsible for your inability to use this program for its intended
+# purpose.  Use at your own risk.
+#
+##############################################################################
+local view
+local usage="Syntax : $0 [-v filespec]
+  -v        : View file(s) given by filespec.  '*' is put on either side."
+
+if [[ $# -lt 1 ]]
+then
+  if [[ "$(tty)" = "not a tty" ]]
+  then
+    ${PAGER:-more}
+  else
+    echo $usage
+    return 1
+  fi
+fi
+
+while getopts vh opt
+do
+  case $opt
+{
+  v) view=1 ;;
+  h) echo $usage ;
+    return 1;;
+}
+done
+shift `expr $OPTIND - 1`
+
+file=$1 && shift
+
+while [[ "$file" != "" ]]
+do
+  [[ "$view" = 1 ]] && view=$1 && shift
+
+  if [[ -s $file ]]
+  then
+  case $file(:e)
+{
+  #
+  # Compressed or GZipped files.
+  # It might be a tar file, so deal with that.
+  #
+  gz|z|Z)
+  if [[ $(echo $file(:r) | awk -F. '{print $NF}') = tar ]]
+  then
+    if [[ "$view" != "" ]]
+    then
+      gzip -dc $file | ${tar:-tar} xOf - "*${view}*" | ${PAGER:-more}
+    else
+      gzip -dc $file | tar tvf - | ${PAGER:-more}
+    fi
+  else
+    if [[ "$view" = "" ]]
+    then
+      gzip -dc $file | sed "s/$//g" | ${PAGER:-more}
+    else
+      echo "Not a tar file."
+      return 1
+    fi
+    fi ;;
+  #
+  # Plain old tar file
+  #
+  tar)
+    if [[ "$view" != "" ]]
+    then
+      ${tar:-tar} xOf $file "*${view}*" | sed "s/$//g" | ${PAGER:-more}
+    else
+      tar tvf $file | ${PAGER:-more}
+    fi ;;
+  #
+  # Compressed/GZipped tar files without "tar" in the name...
+  #
+  tgz|tz|tpz)
+    if [[ "$view" != "" ]]
+    then
+      gzip -dc $file | tar xOf - "*${view}*" | sed "s/$//g" | ${PAGER:-more}
+    else
+      gzip -dc $file | tar tvf - | ${PAGER:-more}
+    fi ;;
+  #
+  # Zip files
+  #
+  zip)
+    if [[ "$view" != "" ]]
+    then
+      unzip -p $file "*${view}*" | sed "s/$//g" | ${PAGER:-more}
+    else
+      unzip -l $file | ${PAGER:-more}
+    fi ;;
+  #
+  # LHa(rc) files
+  #
+  lha|lzh)
+    if [[ "$view" != "" ]]
+    then
+      lha p $file "*${view}*" | sed "s/$//g" | ${PAGER:-more}
+    else
+      lha l $file | ${PAGER:-more}
+    fi ;;
+  #
+  # ARJ files. (unix 'unarj' doesn't extract to stdout tho')
+  #
+  arj)
+    if [[ "$view" != "" ]]
+    then
+      echo "Sorry, I can't display something from an ARJ file..."
+      return 2 ;
+    else
+      unarj l $file | ${PAGER:-more}
+    fi ;;
+  #
+  # Anything else - list directories or just view the file.
+  #
+  *)
+    if [[ -d $file ]]
+    then
+      if [[ "$view" != "" ]]
+      then
+        #
+        # Call ourselves recursively, just for the hell of it.
+        #
+        $0 ${file}/*${view}*
+      else
+        ls -Flag ${file} | ${PAGER:-more}
+      fi
+    else
+      ${PAGER:-more} ${file}
+    fi ;;
+}
+  else
+    echo No such file $file
+    return 1
+  fi
+
+  file=$1 && shift
+done
+
+#
+# $Id: view,v 1.1.1.1 1998/04/26 13:47:07 karthy Exp $
+#

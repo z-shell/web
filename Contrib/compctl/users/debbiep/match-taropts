@@ -1,0 +1,54 @@
+#!/usr/local/bin/zsh
+#
+
+local option
+local -i argpos
+local -i counter
+
+read -cn argpos
+
+#echo 
+#echo $1_$2($argpos)
+
+if [[ "$1" = *[bCfFgKLNTVX]* ]]
+then
+  # option with parameter present, before cursor.  
+  option=$1
+  # check that the option with parameter is at the end of the string.
+  if [[ $option[(i)[bCfFgKLNTVX]] = $#option ]]
+  then
+    # accept it, put a space after it.
+    reply=($1$2\ )
+  else
+    # Very little we can do - best to disable completion.
+    reply=( )
+  fi
+  return
+else
+  # let $option contain the stripped-off options.
+  option="$1${2%%[bCfFgKLNTVX]*}"
+  #echo "{$option}"
+  if [[ "$option" = *[Acdrtux]*[Acdrtux]* ]]
+  then
+    # multiple mandatory options; only one allowed - no completions.
+    reply=( )
+  elif [[ $argpos -gt 2 || "$option" = *[Acdrtux]* ]]
+  then
+    # single mandatory option already given; don't prompt for others.
+    if [[ -n "$2" ]]
+    then
+      # not at end of string - only permit simple options.
+      reply=(B G h i k l m M o O p P R s S v w W z Z)
+    else
+      # at end of string - permit options taking values.
+      reply=(b C f F g K L N T V X B G h i k l m M o O p P R s S v w W z Z)
+    fi
+  else
+    # prompt for mandatory option before allowing others.
+    reply=(A c d r t u x)
+  fi
+fi
+
+reply=($1${^reply}$2)
+
+#echo "($reply)"

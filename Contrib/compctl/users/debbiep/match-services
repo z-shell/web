@@ -1,0 +1,10 @@
+#!/usr/local/bin/zsh
+
+# match-services - match lines in /etc/services
+# Just use simple grep and sed stuff to pull out the lines that
+# match the current word.
+
+reply=(`grep -v "^#" /etc/services | \
+  grep "^$1[a-zA-Z0-9_-]*$2[ 	]*.*tcp" | \
+  sed 's/^\([a-zA-Z0-9_-]*\).*$/\1/'`)
+

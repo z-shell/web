@@ -1,0 +1,4 @@
+#!/usr/local/bin/zsh
+
+reply=($(sched | sed 's/^ *\([0-9]*\) .*/\1/'))
+

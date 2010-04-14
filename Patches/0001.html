@@ -1,0 +1,122 @@
+<!-- received="Mon Oct 13 08:36:00 1997 PDT" -->
+<!-- sent="Mon, 13 Oct 1997 17:35:46 +0200" -->
+<!-- name="Peter Stephenson" -->
+<!-- email="pws@ifh.de" -->
+<!-- subject="PATCH: 3.1.2: keyboard macros (2) [needed]" -->
+<!-- id="199710131535.RAA14039@hydra.ifh.de" -->
+<!-- inreplyto="" -->
+<title>ZSH Patches: PATCH: 3.1.2: keyboard macros (2) [needed]</title>
+<h1>PATCH: 3.1.2: keyboard macros (2) [needed]</h1>
+Peter Stephenson (<i>pws@ifh.de</i>)<br>
+<i>Mon, 13 Oct 1997 17:35:46 +0200</i>
+<p>
+<ul>
+<li> <b>Messages sorted by:</b> <a href="date.html#1">[ date ]</a><a href="index.html#1">[ thread ]</a><a href="subject.html#1">[ subject ]</a><a href="author.html#1">[ author ]</a>
+<!-- next="start" -->
+<li> <b>Next message:</b> <a href="0002.html">Peter Stephenson: "PATCH: User-defined completion listing"</a>
+<li> <b>Previous message:</b> <a href="0000.html">Peter Stephenson: "PATCH: zsh 3.1.2+: implementation of keyboard macros"</a>
+<!-- nextthread="start" -->
+</ul>
+<!-- body="start" -->
+<pre>
+Message-Id: &lt;199710131535.RAA14039@hydra.ifh.de&gt;<br>
+To: zsh-workers@math.gatech.edu (Zsh hackers list), zsh@peak.org<br>
+Subject: PATCH: 3.1.2: keyboard macros (2) [needed]<br>
+Date: Mon, 13 Oct 1997 17:35:46 +0200<br>
+From: Peter Stephenson &lt;pws@ifh.de&gt;<br>
+</pre>
+<p>
+Somehow I forgot to include the zle_keymap.c segment of the last<br>
+patch, with the bindkey changes.  This also includes a bugfix: if zle<br>
+read a complete key sequence but didn't need it, such as when in<br>
+isearch the next sequence wasn't one of the ones specially handled,<br>
+you got it twice.<br>
+<p>
+*** Src/Zle/zle_keymap.c.km2	Mon Oct 13 17:18:42 1997<br>
+--- Src/Zle/zle_keymap.c	Mon Oct 13 17:24:06 1997<br>
+***************<br>
+*** 581,586 ****<br>
+--- 581,587 ----<br>
+  	{ 'A', 0, bin_bindkey_link,   2,  2 },<br>
+  	{ 'N', 0, bin_bindkey_new,    1,  2 },<br>
+  	{ 'm', 1, bin_bindkey_meta,   0,  0 },<br>
++ 	{ 'k', 1, bin_bindkey_bind,   1,  1 },<br>
+  	{ 'r', 1, bin_bindkey_bind,   1, -1 },<br>
+  	{ 's', 1, bin_bindkey_bind,   2, -1 },<br>
+  	{ 0,   1, bin_bindkey_bind,   0, -1 },<br>
+***************<br>
+*** 815,821 ****<br>
+  	int len;<br>
+  	Thingy fn;<br>
+  <br>
+! 	if(func == 'r') {<br>
+  	    fn = refthingy(t_undefinedkey);<br>
+  	    str = NULL;<br>
+  	} else if(func == 's') {<br>
+--- 816,829 ----<br>
+  	int len;<br>
+  	Thingy fn;<br>
+  <br>
+! 	if(func == 'k') {<br>
+! 	    if (!last_macro) {<br>
+! 		zwarnnam(name, "no keyboard macro defined", NULL, 0);<br>
+! 		return 1;<br>
+! 	    }<br>
+! 	    fn = NULL;<br>
+! 	    str = metafy(last_macro, last_mlen, META_DUP);<br>
+! 	} else if(func == 'r') {<br>
+  	    fn = refthingy(t_undefinedkey);<br>
+  	    str = NULL;<br>
+  	} else if(func == 's') {<br>
+***************<br>
+*** 1175,1180 ****<br>
+--- 1183,1192 ----<br>
+  ungetkeycmd(void)<br>
+  {<br>
+      ungetkeys(keybuf, keybuflen);<br>
++     /* So we don't do this twice when recording a macro, delete the<br>
++      * first occurrence<br>
++      */<br>
++     macro_del(keybuflen);<br>
+  }<br>
+  <br>
+  /* read a command from the current keymap, with widgets */<br>
+*** Src/Zle/zle_utils.c.km2	Mon Oct 13 17:20:45 1997<br>
+--- Src/Zle/zle_utils.c	Mon Oct 13 17:28:16 1997<br>
+***************<br>
+*** 653,658 ****<br>
+--- 653,670 ----<br>
+  <br>
+  /**/<br>
+  void<br>
++ macro_del(int nc)<br>
++ {<br>
++     if (!macro_record)<br>
++ 	return;<br>
++     if (nc &gt; macro_ptr - cur_macro)<br>
++ 	cur_startseq = macro_ptr = cur_macro;<br>
++     else<br>
++ 	macro_ptr -= nc;<br>
++ }<br>
++ <br>
++ /**/<br>
++ void<br>
+  macro_startseq(void)<br>
+  {<br>
+      cur_startseq = macro_ptr;<br>
+<p>
+<pre>
+-- 
+Peter Stephenson &lt;pws@ifh.de&gt;       Tel: +49 33762 77366
+WWW:  <a href="http://www.ifh.de/~pws/">http://www.ifh.de/~pws/</a>       Fax: +49 33762 77413
+Deutsches Elektronen-Synchrotron --- Institut fuer Hochenergiephysik Zeuthen
+DESY-IfH, Platanenallee 6, 15738 Zeuthen, Germany.
+</pre>
+<!-- body="end" -->
+<p>
+<ul>
+<!-- next="start" -->
+<li> <b>Next message:</b> <a href="0002.html">Peter Stephenson: "PATCH: User-defined completion listing"</a>
+<li> <b>Previous message:</b> <a href="0000.html">Peter Stephenson: "PATCH: zsh 3.1.2+: implementation of keyboard macros"</a>
+<!-- nextthread="start" -->
+</ul>

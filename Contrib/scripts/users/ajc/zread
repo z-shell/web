@@ -1,0 +1,61 @@
+<PRE>
+#!/nfs/zardoz/abyss/home/andrew/bin/zsh
+#
+# Here's a modification of 'zed' intended as a replacement for
+# 'read'. the only arguments it takes are arguments to the 'compctl'
+# command so you can change the default completion for the
+# user...(only while the line is being edited though, it gets set back
+# afterwards).
+#
+# The result is available in the variable $lineread
+#
+# readline()
+#
+# Andrew J. Cosgriff
+#
+# Modified from zed()
+# Read a line using zsh's funky line editor.
+# Result is available in variable 'lineread'.
+#
+# Creation Date : Mon Apr 18 09:01:23 1994.
+#
+# $Revision: 1.1.1.1 $
+# $Date: 1998/04/26 13:47:07 $
+# $State: Exp $
+#
+
+local nb
+
+local oldcomp=$(compctl | sed -n 's/^COMMAND //p') 
+compctl -C ${*:-'-f'}
+
+# catch interrupts
+# TRAPINT() {
+#   bindkey "^M" accept-line
+#   [[ $nb = 1 ]] || unsetopt nobanghist
+#  trap - INT
+#  (($1 > 0)) && return $[128+$1]
+# }
+
+# don't mangle !'s
+[[ -o nobanghist ]] && nb=1
+setopt nobanghist
+
+# bindkey "^M" self-insert-unmeta
+# Depending on your stty's, you may be able to use ^J as accept-line, else:
+# bindkey "^X^W" accept-line
+
+lineread=""
+vared lineread
+
+# bindkey "^X^W" undefined-key
+
+# Restore setup
+[[ $nb = 1 ]] || unsetopt nobanghist
+compctl -C $oldcomp
+# TRAPINT 0
+return 0
+
+# End
+
+</PRE>

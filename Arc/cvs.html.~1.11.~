@@ -1,0 +1,71 @@
+<html>
+<head>
+  <title>ZSH - CVS</title>
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="up" href="../">
+  <link rel="top" href="../">
+  <link rel="prev" href="./">
+  <link rel="first" href="list-contents.html">
+  <link rev="made" href="mailto:zsh@sunsite.dk">
+</head>
+
+<body bgcolor="#ffffff" text="#000000">
+
+<table width="100%">
+<tr><td>
+<a href="./"><img src="../Images/prev.png" ALT="[prev]" width=30 height=30></a>
+<a href="../"><img src="../Images/next.png" ALT="[next]" width=30 height=30></a>
+<a href="../"><img src="../Images/up.png" ALT="[up]" width=30 height=30></a>
+<a href="../"><img src="../Images/top.png" ALT="[top]" width=30 height=30></a>
+</td>
+<td>
+<font size="+3" align=center><strong>CVS</strong></font>
+</td>
+</tr>
+</table>
+<hr size=1 noshade>
+
+<p>
+The very latest and greatest version of Zsh is held in a CVS repository
+hosted by <a href="http://sourceforge.net/">SourceForge</a>. Instructions
+on how to access this is on the
+<a href="http://sourceforge.net/cvs/?group_id=4068">Zsh CVS Repository web page</a>.
+To build it, you will need to run <tt>Util/preconfig</tt> to build the
+configure script. This requires that you have a copy of
+<a href="http://www.gnu.org/software/autoconf/autoconf.html">autoconf</a>
+installed. Documentation is pre-built for the releases so unless you have
+<a href="http://www.xs4all.nl/~jantien/yodl/">Yodl</a> installed builds
+from cvs sources will fail when they come to build documentation. This is
+after zsh itself has been built so don't let that error worry you.
+
+<p>
+Currently we have two active branches in the CVS repository. The cvs
+<i>HEAD</i> branch contains the latest 4.3.x changes while the 4.2.x
+branch is tagged <i>zsh-4_2-patches</i>. You can check out the latter
+with the <tt>-r</tt> option to <tt>cvs checkout</tt>.
+<p>
+If you don't have a CVS client, you can download a snapshot of the cvs
+repository. The following snapshots are available:
+<ul>
+<li><a href="http://zsh.sourceforge.net/zsh-4.3-daily-snapshot.tar.bz2">4.3 branch, bzip2 compressed</a>
+<li><a href="http://zsh.sourceforge.net/zsh-4.3-daily-snapshot.tar.gz">4.3 branch, gzip compressed</a>
+<li><a href="http://zsh.sourceforge.net/zsh-4.2-daily-snapshot.tar.bz2">4.2 branch, bzip2 compressed</a>
+<li><a href="http://zsh.sourceforge.net/zsh-4.2-daily-snapshot.tar.gz">4.2 branch, gzip compressed</a>
+</ul>
+These are updated periodically. It used to be daily but sourceforge have disabled cron.
+<p>
+Be aware that if you obtain your copy of Zsh in any of the ways described on
+this page, it is likely to contain many more bugs than the official releases. If
+you're not interested in having the very latest features and just want to get on
+with some real work get the latest stable release.
+
+<hr>
+<div align=right>
+<address>
+<a name=Signature href="../disclaimer.html">Disclaimer</a>
+Last modified: $Date: 2005/04/11 12:54:27 $
+</address>
+</div>
+
+</body>
+</html>

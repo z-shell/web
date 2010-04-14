@@ -1,0 +1,659 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on March, 19  2004 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>zsh: Shell Grammar</TITLE>
+
+<META NAME="description" CONTENT="zsh: Shell Grammar">
+<META NAME="keywords" CONTENT="zsh: Shell Grammar">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC19"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_4.html#SEC18"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC20"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_4.html#SEC16"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_6.html#SEC28"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 5. Shell Grammar </H1>
+<!--docid::SEC19::-->
+<A NAME="IDX39"></A>
+<A NAME="IDX40"></A>
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_5.html#SEC20">5.1 Simple Commands &#38; Pipelines</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_5.html#SEC21">5.2 Precommand Modifiers</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_5.html#SEC22">5.3 Complex Commands</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_5.html#SEC23">5.4 Alternate Forms For Complex Commands</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_5.html#SEC24">5.5 Reserved Words</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_5.html#SEC25">5.6 Comments</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_5.html#SEC26">5.7 Aliasing</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_5.html#SEC27">5.8 Quoting</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<A NAME="Simple Commands &#38; Pipelines"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC20"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC21"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_6.html#SEC28"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 5.1 Simple Commands &#38; Pipelines </H2>
+<!--docid::SEC20::-->
+<A NAME="IDX41"></A>
+<A NAME="IDX42"></A>
+A <EM>simple command</EM> is a sequence of optional parameter
+assignments followed by blank-separated words,
+with optional redirections interspersed.
+The first word is the command to be executed, and the remaining
+words, if any, are arguments to the command.
+If a command name is given, the parameter assignments modify
+the environment of the command when it is executed.
+The value of a simple command is its exit status,
+or 128 plus the signal number if terminated by a signal.
+For example,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>echo foo
+</pre></td></tr></table></P><P>
+
+is a simple command with arguments.
+</P><P>
+
+<A NAME="IDX43"></A>
+A <EM>pipeline</EM> is either a simple command, or a sequence of two or more
+simple commands where each command is separated from the next by `<TT>|</TT>'
+or `<TT>|&#38;</TT>'.  Where commands are separated by `<TT>|</TT>', the standard
+output of the first command is connected to the
+standard input of the next.  `<TT>|&#38;</TT>' is shorthand for `<TT>2&#62;&#38;1 |</TT>', which
+connects both the standard output and the standard error of the
+command to the standard input of the next.  The value of a pipeline
+is the value of the last command, unless the pipeline is preceded by
+`<TT>!</TT>' in which case the value is the logical inverse of the value of the
+last command.
+For example,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>echo foo | sed 's/foo/bar/'
+</pre></td></tr></table></P><P>
+
+is a pipeline, where the output (`<TT>foo</TT>' plus a newline) of the first
+command will be passed to the input of the second.
+</P><P>
+
+<A NAME="IDX44"></A>
+<A NAME="IDX45"></A>
+If a pipeline is preceded by `<TT>coproc</TT>', it is executed as a coprocess;
+a two-way pipe is established between it and the parent shell.  The
+shell can read from or write to the coprocess by means of the `<TT>&#62;&#38;p</TT>'
+and `<TT>&#60;&#38;p</TT>' redirection operators or with `<TT>print -p</TT>' and `<TT>read -p</TT>'.
+A pipeline cannot be preceded by both `<TT>coproc</TT>' and `<TT>!</TT>'.
+If job control is active, the coprocess can be treated in other than input
+and output as an ordinary background job.
+</P><P>
+
+<A NAME="IDX46"></A>
+A <EM>sublist</EM> is either a single pipeline, or a sequence of two or more
+pipelines separated by `<TT>&#38;&#38;</TT>' or `<TT>||</TT>'.  If two pipelines are separated
+by `<TT>&#38;&#38;</TT>', the second pipeline is executed only if the first succeeds
+(returns a zero value).  If two pipelines are separated by `<TT>||</TT>', the
+second is executed only if the first fails (returns a nonzero value).
+Both operators have equal precedence and are left associative.
+The value of the sublist is the value of the last pipeline executed.
+For example,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>dmesg | grep panic &#38;&#38; print yes
+</pre></td></tr></table></P><P>
+
+is a sublist consisting of two pipelines, the second just a simple command
+which will be executed if and only if the <TT>grep</TT> command returns a zero
+value.  If it does not, the value of the sublist is that return value, else
+it is the value returned by the <TT>print</TT> (almost certainly zero).
+</P><P>
+
+<A NAME="IDX47"></A>
+A <EM>list</EM> is a sequence of zero or more sublists, in which each sublist
+is terminated by `<TT>;</TT>', `<TT>&#38;</TT>', `<TT>&#38;|</TT>', `<TT>&#38;!</TT>', or a newline.
+This terminator
+may optionally be omitted from the last sublist in the list when the
+list appears as a complex command inside `<TT>(</TT>...<TT>)</TT>'
+or `<TT>{</TT>...<TT>}</TT>'.  When a
+sublist is terminated by `<TT>;</TT>' or newline, the shell waits for it to
+finish before executing the next sublist.  If a sublist is terminated
+by a `<TT>&#38;</TT>', `<TT>&#38;|</TT>', or `<TT>&#38;!</TT>',
+the shell executes the last pipeline in it in the background, and
+does not wait for it to finish (note the difference from other shells
+which execute the whole sublist in the background).
+A backgrounded pipeline returns a status of zero.
+</P><P>
+
+More generally, a list can be seen as a set of any shell commands
+whatsoever, including the complex commands below; this is implied wherever
+the word `list' appears in later descriptions.  For example, the commands
+in a shell function form a special sort of list.
+<A NAME="Precommand Modifiers"></A>
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC21"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC20"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC22"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_6.html#SEC28"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 5.2 Precommand Modifiers </H2>
+<!--docid::SEC21::-->
+<A NAME="IDX48"></A>
+<A NAME="IDX49"></A>
+A simple command may be preceded by a <EM>precommand modifier</EM>,
+which will alter how the command is interpreted.  These modifiers are
+shell builtin commands with the exception of <TT>nocorrect</TT> which is
+a reserved word.
+<P>
+
+<DL COMPACT>
+<DT><TT>-</TT>
+<DD>The command is executed with a `<TT>-</TT>' prepended to its
+<TT>argv[0]</TT> string.
+<P>
+
+<DT><TT>noglob</TT>
+<DD>Filename generation (globbing) is not performed on any of
+the words.
+<P>
+
+<DT><TT>nocorrect</TT>
+<DD>Spelling correction is not done on any of the words.  This must appear
+before any other precommand modifier, as it is interpreted immediately,
+before any parsing is done.  It has no effect in non-interactive shells.
+<P>
+
+<DT><TT>exec</TT>
+<DD>The command is executed in the parent shell without forking.
+<P>
+
+<DT><TT>command</TT>
+<DD>The command word is taken to be the name of an external command,
+rather than a shell function or builtin.
+<P>
+
+<DT><TT>builtin</TT>
+<DD>The command word is taken to be the name of a builtin command,
+rather than a shell function or external command.
+<P>
+
+</DL>
+<A NAME="Complex Commands"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC22"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC21"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC23"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_6.html#SEC28"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 5.3 Complex Commands </H2>
+<!--docid::SEC22::-->
+<A NAME="IDX50"></A>
+<A NAME="IDX51"></A>
+A <EM>complex command</EM> in zsh is one of the following:
+<P>
+
+<DL COMPACT>
+<A NAME="IDX52"></A>
+<A NAME="IDX53"></A>
+<DT><TT>if</TT> <VAR>list</VAR> <TT>then</TT> <VAR>list</VAR> [ <TT>elif</TT> <VAR>list</VAR> <TT>then</TT> <VAR>list</VAR> ] ... [ <TT>else</TT> <VAR>list</VAR> ] <TT>fi</TT>
+<DD>The <TT>if</TT> <VAR>list</VAR> is executed, and if it returns a zero exit status,
+the <TT>then</TT> <VAR>list</VAR> is executed.
+Otherwise, the <TT>elif</TT> <VAR>list</VAR> is executed and if its value is zero,
+the <TT>then</TT> <VAR>list</VAR> is executed.
+If each <TT>elif</TT> <VAR>list</VAR> returns nonzero, the <TT>else</TT> <VAR>list</VAR> is executed.
+<P>
+
+<A NAME="IDX54"></A>
+<A NAME="IDX55"></A>
+<A NAME="IDX56"></A>
+<DT><TT>for</TT> <VAR>name</VAR> ... [ <TT>in</TT> <VAR>word</VAR> ... ] <VAR>term</VAR> <TT>do</TT> <VAR>list</VAR> <TT>done</TT>
+<DD>where <VAR>term</VAR> is at least one newline or <TT>;</TT>.
+Expand the list of <VAR>word</VAR>s, and set the parameter
+<VAR>name</VAR> to each of them in turn, executing
+<VAR>list</VAR> each time.  If the <TT>in</TT> <VAR>word</VAR> is omitted,
+use the positional parameters instead of the <VAR>word</VAR>s.
+<P>
+
+More than one parameter <VAR>name</VAR> can appear before the list of
+<VAR>word</VAR>s.  If <VAR>N</VAR> <VAR>name</VAR>s are given, then on each execution of the
+loop the next <TT>N</TT> <VAR>word</VAR>s are assigned to the corresponding
+parameters.  If there are more <VAR>name</VAR>s than remaining <VAR>word</VAR>s, the
+remaining parameters are each set to the empty string.  Execution of the
+loop ends when there is no remaining <VAR>word</VAR> to assign to the first
+<VAR>name</VAR>.  It is only possible for <TT>in</TT> to appear as the first <VAR>name</VAR>
+in the list, else it will be treated as marking the end of the list.
+</P><P>
+
+<DT><TT>for ((</TT> [<VAR>expr1</VAR>] <TT>;</TT> [<VAR>expr2</VAR>] <TT>;</TT> [<VAR>expr3</VAR>] <TT>)) do</TT> <VAR>list</VAR> <TT>done</TT>
+<DD>The arithmetic expression <VAR>expr1</VAR> is evaluated first (see
+<A HREF="zsh_10.html#SEC38">10. Arithmetic Evaluation</A>).  The arithmetic expression
+<VAR>expr2</VAR> is repeatedly evaluated until it evaluates to zero and
+when non-zero, <VAR>list</VAR> is executed and the arithmetic expression
+<VAR>expr3</VAR> evaluated.  If any expression is omitted, then it behaves
+as if it evaluated to 1.
+<P>
+
+<A NAME="IDX57"></A>
+<A NAME="IDX58"></A>
+<A NAME="IDX59"></A>
+<DT><TT>while</TT> <VAR>list</VAR> <TT>do</TT> <VAR>list</VAR> <TT>done</TT>
+<DD>Execute the <TT>do</TT> <VAR>list</VAR> as long as the <TT>while</TT> <VAR>list</VAR>
+returns a zero exit status.
+<P>
+
+<A NAME="IDX60"></A>
+<A NAME="IDX61"></A>
+<A NAME="IDX62"></A>
+<DT><TT>until</TT> <VAR>list</VAR> <TT>do</TT> <VAR>list</VAR> <TT>done</TT>
+<DD>Execute the <TT>do</TT> <VAR>list</VAR> as long as <TT>until</TT> <VAR>list</VAR>
+returns a nonzero exit status.
+<P>
+
+<A NAME="IDX63"></A>
+<A NAME="IDX64"></A>
+<A NAME="IDX65"></A>
+<DT><TT>repeat</TT> <VAR>word</VAR> <TT>do</TT> <VAR>list</VAR> <TT>done</TT>
+<DD><VAR>word</VAR> is expanded and treated as an arithmetic expression,
+which must evaluate to a number <VAR>n</VAR>.
+<VAR>list</VAR> is then executed <VAR>n</VAR> times.
+<P>
+
+<A NAME="IDX66"></A>
+<A NAME="IDX67"></A>
+<A NAME="IDX68"></A>
+<DT><TT>case</TT> <VAR>word</VAR> <TT>in</TT> [ [<TT>(</TT>] <VAR>pattern</VAR> [ <TT>|</TT> <VAR>pattern</VAR> ] ... <TT>)</TT> <VAR>list</VAR> (<TT>;;</TT>|<TT>;&#38;</TT>) ] ... <TT>esac</TT>
+<DD>Execute the <VAR>list</VAR> associated with the first <VAR>pattern</VAR>
+that matches <VAR>word</VAR>, if any.  The form of the patterns
+is the same as that used for filename generation.  See
+<A HREF="zsh_13.html#SEC62">13.8 Filename Generation</A>.
+If the <VAR>list</VAR> that is executed is terminated with <TT>;&#38;</TT> rather than
+<TT>;;</TT>, the following list is also executed.  This continues until either
+a list is terminated with <TT>;;</TT> or the <TT>esac</TT> is reached.
+<P>
+
+<A NAME="IDX69"></A>
+<A NAME="IDX70"></A>
+<A NAME="IDX71"></A>
+<DT><TT>select</TT> <VAR>name</VAR> [ <TT>in</TT> <VAR>word</VAR> ... <VAR>term</VAR> ] <TT>do</TT> <VAR>list</VAR> <TT>done</TT>
+<DD>where <VAR>term</VAR> is one or more newline or <TT>;</TT> to terminate the <VAR>word</VAR>s.
+<A NAME="IDX72"></A>
+Print the set of <VAR>word</VAR>s, each preceded by a number.
+If the <TT>in</TT> <VAR>word</VAR> is omitted, use the positional parameters.
+The <TT>PROMPT3</TT> prompt is printed and a line is read from the line editor
+if the shell is interactive and that is active, or else standard input.
+If this line consists of the
+number of one of the listed <VAR>word</VAR>s, then the parameter <VAR>name</VAR>
+is set to the <VAR>word</VAR> corresponding to this number.
+If this line is empty, the selection list is printed again.
+Otherwise, the value of the parameter <VAR>name</VAR> is set to null.
+The contents of the line read from standard input is saved
+in the parameter <TT>REPLY</TT>.  <VAR>list</VAR> is executed
+for each selection until a break or end-of-file is encountered.
+<P>
+
+<A NAME="IDX73"></A>
+<DT><TT>(</TT> <VAR>list</VAR> <TT>)</TT>
+<DD>Execute <VAR>list</VAR> in a subshell.  Traps set by the <TT>trap</TT> builtin
+are reset to their default values while executing <VAR>list</VAR>.
+<P>
+
+<DT><TT>{</TT> <VAR>list</VAR> <TT>}</TT>
+<DD>Execute <VAR>list</VAR>.
+<P>
+
+<A NAME="IDX74"></A>
+<DT><TT>function</TT> <VAR>word</VAR> ... [ <TT>()</TT> ] [ <VAR>term</VAR> ] <TT>{</TT> <VAR>list</VAR> <TT>}</TT>
+<DD><DT><VAR>word</VAR> ... <TT>()</TT> [ <VAR>term</VAR> ] <TT>{</TT> <VAR>list</VAR> <TT>}</TT>
+<DD><DT><VAR>word</VAR> ... <TT>()</TT> [ <VAR>term</VAR> ] <VAR>command</VAR>
+<DD>where <VAR>term</VAR> is one or more newline or <TT>;</TT>.
+Define a function which is referenced by any one of <VAR>word</VAR>.
+Normally, only one <VAR>word</VAR> is provided; multiple <VAR>word</VAR>s
+are usually only useful for setting traps.
+The body of the function is the <VAR>list</VAR> between
+the <TT>{</TT> and <TT>}</TT>.  See <A HREF="zsh_8.html#SEC32">8. Functions</A>.
+<P>
+
+If the option <TT>SH_GLOB</TT> is set for compatibility with other shells, then
+whitespace may appear between between the left and right parentheses when
+there is a single <VAR>word</VAR>;  otherwise, the parentheses will be treated as
+forming a globbing pattern in that case.
+</P><P>
+
+<A NAME="IDX75"></A>
+<A NAME="IDX76"></A>
+<DT><TT>time</TT> [ <VAR>pipeline</VAR> ]
+<DD>The <VAR>pipeline</VAR> is executed, and timing statistics are
+reported on the standard error in the form specified
+by the <TT>TIMEFMT</TT> parameter.
+If <VAR>pipeline</VAR> is omitted, print statistics about the
+shell process and its children.
+<P>
+
+<A NAME="IDX77"></A>
+<A NAME="IDX78"></A>
+<DT><TT>[[</TT> <VAR>exp</VAR> <TT>]]</TT>
+<DD>Evaluates the conditional expression <VAR>exp</VAR>
+and return a zero exit status if it is true.
+See <A HREF="zsh_11.html#SEC39">11. Conditional Expressions</A>
+for a description of <VAR>exp</VAR>.
+<P>
+
+</DL>
+<A NAME="Alternate Forms For Complex Commands"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC23"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC22"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC24"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_6.html#SEC28"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 5.4 Alternate Forms For Complex Commands </H2>
+<!--docid::SEC23::-->
+<A NAME="IDX79"></A>
+<A NAME="IDX80"></A>
+Many of zsh's complex commands have alternate forms.  These particular
+versions of complex commands should be considered deprecated and may be
+removed in the future.  The versions in the previous section should be
+preferred instead.
+<P>
+
+The short versions below only work if <VAR>sublist</VAR> is of the form `<TT>{</TT>
+<VAR>list</VAR> <TT>}</TT>' or if the <TT>SHORT_LOOPS</TT> option is set.  For the <TT>if</TT>,
+<TT>while</TT> and <TT>until</TT> commands, in both these cases the test part of the
+loop must also be suitably delimited, such as by `<TT>[[ ... ]]</TT>' or `<TT>((
+... ))</TT>', else the end of the test will not be recognized.  For the
+<TT>for</TT>, <TT>repeat</TT>, <TT>case</TT> and <TT>select</TT> commands no such special form
+for the arguments is necessary, but the other condition (the special form
+of <VAR>sublist</VAR> or use of the <TT>SHORT_LOOPS</TT> option) still applies.
+</P><P>
+
+<DL COMPACT>
+<DT><TT>if</TT> <VAR>list</VAR> <TT>{</TT> <VAR>list</VAR> <TT>}</TT> [ <TT>elif</TT> <VAR>list</VAR> <TT>{</TT> <VAR>list</VAR> <TT>}</TT> ] ... [ <TT>else {</TT> <VAR>list</VAR> <TT>}</TT> ]
+<DD>An alternate form of <TT>if</TT>.  The rules mean that
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>if [[ -o ignorebraces ]] {
+  print yes
+}
+</pre></td></tr></table></P><P>
+
+works, but
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>if true {  # Does not work!
+  print yes
+}
+
+</pre></td></tr></table></P><P>
+
+does <EM>not</EM>, since the test is not suitably delimited.
+</P><P>
+
+<DT><TT>if</TT> <VAR>list</VAR> <VAR>sublist</VAR>
+<DD>A short form of the alternate `if'.  The same limitations on the form of
+<VAR>list</VAR> apply as for the previous form.
+<P>
+
+<DT><TT>for</TT> <VAR>name</VAR> ... <TT>(</TT> <VAR>word</VAR> ... <TT>)</TT> <VAR>sublist</VAR>
+<DD>A short form of <TT>for</TT>.
+<P>
+
+<DT><TT>for</TT> <VAR>name</VAR> ... [ <TT>in</TT> <VAR>word</VAR> ... ] <VAR>term</VAR> <VAR>sublist</VAR>
+<DD>where <VAR>term</VAR> is at least one newline or <TT>;</TT>.
+Another short form of <TT>for</TT>.
+<P>
+
+<DT><TT>for ((</TT> [<VAR>expr1</VAR>] <TT>;</TT> [<VAR>expr2</VAR>] <TT>;</TT> [<VAR>expr3</VAR>] <TT>))</TT> <VAR>sublist</VAR>
+<DD>A short form of the arithmetic <TT>for</TT> command.
+<P>
+
+<A NAME="IDX81"></A>
+<DT><TT>foreach</TT> <VAR>name</VAR> ... <TT>(</TT> <VAR>word</VAR> ... <TT>)</TT> <VAR>list</VAR> <TT>end</TT>
+<DD>Another form of <TT>for</TT>.
+<P>
+
+<DT><TT>while</TT> <VAR>list</VAR> <TT>{</TT> <VAR>list</VAR> <TT>}</TT>
+<DD>An alternative form of <TT>while</TT>.  Note the limitations on the form of
+<VAR>list</VAR> mentioned above.
+<P>
+
+<DT><TT>until</TT> <VAR>list</VAR> <TT>{</TT> <VAR>list</VAR> <TT>}</TT>
+<DD>An alternative form of <TT>until</TT>.  Note the limitations on the form of
+<VAR>list</VAR> mentioned above.
+<P>
+
+<DT><TT>repeat</TT> <VAR>word</VAR> <VAR>sublist</VAR>
+<DD>This is a short form of <TT>repeat</TT>.
+<P>
+
+<DT><TT>case</TT> <VAR>word</VAR> <TT>{</TT> [ [<TT>(</TT>] <VAR>pattern</VAR> [ <TT>|</TT> <VAR>pattern</VAR> ] ... <TT>)</TT> <VAR>list</VAR> (<TT>;;</TT>|<TT>;&#38;</TT>) ] ... <TT>}</TT>
+<DD>An alternative form of <TT>case</TT>.
+<P>
+
+<DT><TT>select</TT> <VAR>name</VAR> [ <TT>in</TT> <VAR>word</VAR> <VAR>term</VAR> ] <VAR>sublist</VAR>
+<DD>where <VAR>term</VAR> is at least one newline or <TT>;</TT>.
+A short form of <TT>select</TT>.
+<P>
+
+</DL>
+<A NAME="Reserved Words"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC24"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC23"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC25"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_6.html#SEC28"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 5.5 Reserved Words </H2>
+<!--docid::SEC24::-->
+<A NAME="IDX82"></A>
+<A NAME="IDX83"></A>
+The following words are recognized as reserved words when used as the first
+word of a command unless quoted or disabled using <TT>disable -r</TT>:
+<P>
+
+<TT>do done esac then elif else fi for case
+if while function repeat time until
+select coproc nocorrect foreach end ! [[ { }</TT>
+</P><P>
+
+Additionally, `<TT>}</TT>' is recognized in any position if the <TT>IGNORE_BRACES</TT> option
+is not set.
+<A NAME="Comments"></A>
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC25"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC24"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC26"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_6.html#SEC28"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 5.6 Comments </H2>
+<!--docid::SEC25::-->
+<A NAME="IDX84"></A>
+<A NAME="IDX85"></A>
+<A NAME="IDX86"></A>
+In noninteractive shells, or in interactive shells with the
+<TT>INTERACTIVE_COMMENTS</TT> option set, a word beginning
+with the third character of the <TT>histchars</TT> parameter
+(`<TT>#</TT>' by default) causes that word and all the following
+characters up to a newline to be ignored.
+<A NAME="Aliasing"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC26"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC25"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC27"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_6.html#SEC28"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 5.7 Aliasing </H2>
+<!--docid::SEC26::-->
+<A NAME="IDX87"></A>
+Every token in the shell input is checked to see if there
+is an alias defined for it.
+If so, it is replaced by the text of the alias if it is in command
+position (if it could be the first word of a simple command),
+or if the alias is global.
+If the text ends with a space, the next word in the shell input
+is treated as though it were in command position for purposes of alias
+expansion.
+<A NAME="IDX88"></A>
+<A NAME="IDX89"></A>
+An alias is defined using the <TT>alias</TT> builtin; global aliases
+may be defined using the <TT>-g</TT> option to that builtin.
+<P>
+
+Alias expansion is done on the shell input before any
+other expansion except history expansion.  Therefore,
+if an alias is defined for the word <TT>foo</TT>, alias expansion
+may be avoided by quoting part of the word, e.g. <TT>\foo</TT>.
+But there is nothing to prevent an alias being defined
+for <TT>\foo</TT> as well.
+<A NAME="Quoting"></A>
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC27"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC26"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_6.html#SEC28"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_6.html#SEC28"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 5.8 Quoting </H2>
+<!--docid::SEC27::-->
+<A NAME="IDX90"></A>
+A character may be <VAR>quoted</VAR> (that is, made
+to stand for itself) by preceding it with a `<TT>\</TT>'.
+`<TT>\</TT>' followed by a newline is ignored.
+<P>
+
+A string enclosed between `<TT>$'</TT>' and `<TT>'</TT>' is
+processed the same way as the string arguments of the
+<TT>print</TT> builtin, and the resulting string is considered to be
+entirely quoted.  A literal `<TT>'</TT>' character can be included in the
+string by using the `<TT>\'</TT>' escape.
+</P><P>
+
+<A NAME="IDX91"></A>
+All characters enclosed between a pair of single quotes (<TT>"</TT>) that
+is not preceded by a `<TT>$</TT>' are quoted.  A single quote cannot appear
+within single quotes unless the option <TT>RC_QUOTES</TT> is set, in which case
+a pair of single quotes are turned into a single quote.  For example,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>print ''''
+</pre></td></tr></table></P><P>
+
+outputs nothing apart from a newline if <TT>RC_QUOTES</TT> is not set, but one
+single quote if it is set.
+</P><P>
+
+Inside double quotes (<TT>""</TT>), parameter and
+command substitution occur, and `<TT>\</TT>' quotes the characters
+`<TT>\</TT>', `<TT>`</TT>', `<TT>"</TT>', and `<TT>$</TT>'.
+<A NAME="Redirection"></A>
+</P><P>
+
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_6.html#SEC28"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Peter Stephenson</I> on <I>March, 19  2004</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+
+</BODY>
+</HTML>

@@ -1,0 +1,94 @@
+<html>
+<head>
+  <title>ZSH - Archive contents</title>
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="up" href="./">
+  <link rel="top" href="./">
+  <link rel="prev" href="../Contrib/">
+  <link rel="next" href="./">
+  <link rel="first" href="News/">
+  <link rel="last" href="links.html">
+  <link rev="made" href="mailto:zsh@sunsite.dk">
+</head>
+
+<body bgcolor="#ffffff" text="#000000">
+
+<table width="100%">
+<tr><td>
+<a href="../Contrib/"><img src="../Images/prev.png" alt="[prev]" width=30 height=30></a>
+<a href="./"><img src="../Images/next.png" alt="[next]" width=30 height=30></a>
+<a href="./"><img src="../Images/up.png" alt="[up]" width=30 height=30></a>
+<a href="../"><img src="../Images/top.png" alt="[top]" width=30 height=30></a>
+</td><td>
+<font size="+3" align=center><strong>ZSH Archive contents</strong></font>
+ </td>
+</tr>
+</table>
+<hr size=1 noshade>
+
+<p>The following is a list of the files for the current release  found at the
+master archive and its mirrors. The archives also  contain beta versions of
+zsh. The developers would like to caution use of these beta versions as the
+code may not be very  stable. In each archive you should be able to  find an
+MD5SUM file containing Message digest checksums for all files  within the
+archive and pubring.pgp file containing some of the developer's public pgp
+keys. Filenames ending in <tt>.gz</tt> are compressed using GNU gzip and those
+ending in <tt>.bz2</tt> are compressed using
+<a href="http://sources.redhat.com/bzip2/">bzip2</a>.</p>
+
+<h4>General</h4>
+<blockquote><dl>
+  <dt><strong>MD5SUM</strong>
+  <dd>Message digest checksums for download verification.</dd>
+
+  <dt><a href="../FAQ/META.html"><strong>META-FAQ</strong></a></dt>
+  <dd>Information about zsh ftp sites, web sites, and mailing lists.</dd>
+
+  <dt><a href="../FAQ/index.html"><strong>FAQ</strong></a></dt>
+  <dd>The zsh Frequently Asked Questions (FAQ) list.</dd>
+</dl></blockquote>
+
+<h4>Source Code</h4>
+<blockquote><dl>
+  <dt><strong>zsh.tar.gz</strong>
+  <br><strong>zsh.tar.bz2</strong>
+    <dd>The complete source for the latest production release of zsh,
+	including source files of all documentation.</dd>
+
+  <dt><strong>zsh-3.0.7-3.0.8.diff.gz</strong></dt>
+  <dd>At the time of writing, there aren't any but you may see files with
+  names of this form. They contain patches, for consecutive releases. So, for
+  example, if you already have zsh-3.0.7 go to the zsh-3.0.7 source directory
+  and do:
+  <pre>
+      gzip -cd zsh-3.0.7-3.0.8.diff.gz | patch -p
+      touch configure stamp-h.in
+  </pre>
+  Then change the name of the directory to correlate to the applicable
+  revision. Further patches sometimes appear on the
+  <a href="http://sourceforge.net/tracker/?group_id=4068&atid=304068">sourceforge patched list</a></dd>
+      
+  <dt><strong>development</strong></dt>
+  <dd>This is a directory which will sometimes contain development (alpha) or
+  pre-release versions of zsh.</dd>
+</dl></blockquote>
+
+<h4>Documentation</h4>
+<blockquote><dl>
+  <dt><strong>zsh-doc.tar.gz</strong>
+  <br><strong>zsh-doc.tar.bz2</strong></dt>
+  <dd><em>zsh-doc.tar.gz</em> contains preformatted PostScript, dvi, html and info
+  documentation for those who do not have the necessary tools to compile these
+  from the sources.</dd>
+</dl></blockquote>
+
+<hr>
+<div align=right>
+<address>
+<a name=Signature href="../disclaimer.html">Disclaimer</A>
+Last modified: $Date: 2004/08/23 12:59:40 $
+</address>
+</div>
+
+</body>
+</html>

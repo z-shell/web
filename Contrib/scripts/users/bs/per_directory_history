@@ -1,0 +1,25 @@
+# From: "Bart Schaefer" <schaefer>
+# Subject: Re: per-directory history?
+# 
+# On Apr 11, 12:08pm, Matt Pharr wrote:
+# } Subject: per-directory history?
+# } 
+# } I was thinking about the history stuff in zsh last night, and it struck me
+# } that it would be neat to have a per-directory history mechanism.
+# } 
+# } Is this easily done at the user level given zsh's current set of features?
+# 
+# Relatively easily, yes.  The main issues are security (avoid loading a
+# history left for you by someone malicious (though this isn't too bad as
+# the commands aren't actually executed)), collision-avoidance in shared
+# directories, and handling of non-writable directories.
+# 
+# The solution looks something like
+
+chpwd() {
+    local ohistsize=$HISTSIZE
+    fc -W ~-/.history.$UID
+    HISTSIZE=0		# Discard previous dir's history
+    HISTSIZE=$ohistsize	# Prepare for new dir's history
+    fc -R ./.history.$UID
+}

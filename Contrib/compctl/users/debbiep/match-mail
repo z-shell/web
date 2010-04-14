@@ -1,0 +1,13 @@
+# match-mail - match non-empty folders.  Used in the COMMAND (-C) compctl.
+# Uses the shell variable $mailpathfiles set in ~/.zshrc.
+local folder=
+reply=
+for folder in $mailpathfiles
+do
+  if [[ -s $folder ]]
+  then
+    # Add the folder to the $reply array.
+    reply=($reply +${folder##*/})
+  fi
+done
+

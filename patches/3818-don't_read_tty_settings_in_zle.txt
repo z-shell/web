@@ -1,0 +1,40 @@
+(Look! There's real grammar in the subject line this time.  Or,
+subject line grammar reality surprise, as I would usually put it.)
+
+Some time ago I complained that zsh was messing up my tty settings
+when I killed jobs in the background.  I've had a closer look and
+found out it wasn't that simple.  I have a completion function for
+kill which prints the job name as a comment after %no, and I
+habitually use it for killing things since I'm lazy.  It was _this_
+job exiting which caused the tty setting to be read, and since zle was
+active they were messed up:  nothing to do with genuine job control.
+
+The answer is easy:  don't get the current tty settings when zle is
+active.  This patch is for 3.1.x, but probably applies to 3.0.5, too.
+
+*** Src/jobs.c.stty	Tue Jan 13 11:41:56 1998
+--- Src/jobs.c	Wed Mar 25 15:07:12 1998
+***************
+*** 190,196 ****
+  	}
+      }
+  
+!     if (shout && !ttyfrozen && !jn->stty_in_env &&
+  	job == thisjob && !somestopped && !(jn->stat & STAT_NOSTTY))
+  	gettyinfo(&shttyinfo);
+  
+--- 190,196 ----
+  	}
+      }
+  
+!     if (shout && !ttyfrozen && !jn->stty_in_env && !zleactive &&
+  	job == thisjob && !somestopped && !(jn->stat & STAT_NOSTTY))
+  	gettyinfo(&shttyinfo);
+  
+
+-- 
+Peter Stephenson <pws@ifh.de>       Tel: +39 50 844536
+WWW:  http://www.ifh.de/~pws/
+Gruppo Teorico, Dipartimento di Fisica
+Piazza Torricelli 2, 56100 Pisa, Italy
+

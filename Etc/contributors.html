@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>ZSH Contributors</title>
+</head>
+
+<body>
+<h1>ZSH Contributors</h1>
+
+Zsh was originally written by Paul Falstad.  Zsh is now maintained by
+the zsh-workers mailing list <a
+href="mailto:zsh-workers@math.gatech.edu">zsh-workers@math.gatech.edu</a>.
+The development is coordinated by Zoltán Hidvégi <a
+href="mailto:hzoli@cs.elte.hu">hzoli@cs.elte.hu</a>.
+
+<p>
+This file credits only the major contributors to the 3.0 release.  See the
+<a href="../Etc/changelog.html">ChangeLog file</a> for a complete list
+of people who have submitted patches to this release.  If you feel
+that you or someone else have been unfairly omitted from this list
+please mail me (<a href="hzoli@cs.elte.hu">hzoli@cs.elte.hu</a>).
+<ul>
+  <li>
+      Richard Coleman <a href="coleman@math.gatech.edu">&lt;coleman@math.gatech.edu&gt;</a> manintained the code till the
+      release of zsh-2.6-beta16.  Converted zsh to use autoconf thus greatly
+      improving the portability.  Rewrote signal handling code.  Reorganized
+      internal hash tables and rewrote the related builtins (enable, disable,
+      hash, unhash).  Made some cleanups in exec.c.
+
+  <li>
+      Zoltán Hidvégi <a href="hzoli@cs.elte.hu">&lt;hzoli@cs.elte.hu&gt;</a> the current maintainer.  Rewrore most
+      of the lexer and substitution and the related completion code.  Improved
+      sh/ksh/POSIX comapibility.  Fixed lots of bugs in completion, parameter
+      and history code.  Made zsh fully 8-bit clean.  Made some
+      reorganizations in exec.c.  Fixed signal handling bugs.  Fixed lots of
+      bugs in various places.
+
+  <li>
+      Peter W. Stephenson <a href="pws@ifh.de">&lt;pws@ifh.de&gt;</a> the maintainer of the zsh FAQ.
+      Reorganizations in exec.c.  Rewrote and reorganized the history code.
+      Rewrote the zshcompctl manual page.  Fixed several bugs related to
+      programmable completion.  Fixed several signal handling bugs.  Rewrote
+      test and read builtins.  Lots of other bugfixes.
+
+  <li>
+      Andrew Main (Zefram) <a href="mailto:A.Main@dcs.warwick.ac.uk">&lt;A.Main@dcs.warwick.ac.uk&gt;</a> reorganized builtin.c.
+      Rewrote large parts of the zle vi mode.  Redirection fixes.  Reorganized
+      parts of the completion code, added some enhancements and fixed lots of
+      bugs.  Made zle fully 8-bit clean.  Fixed several zle bugs.  Reorganized
+      zsh option handling.  Lots of other bugfixes.
+
+  <li>
+      Sven Wischnowsky <a href="mailto:wischnow@informatik.hu-berlin.de">&lt;wischnow@informatik.hu-berlin.de&gt;</a> wrote most of the
+      programmable completion code in zsh-2.5.0.  Several bugfixes in exec.c
+      and jobs.c.  Lots of completion bugfixes and enhancements.
+
+  <li>
+      Geoff Wing <a href="mailto:mason@werple.net.au">&lt;mason@werple.net.au&gt;</a> rewrote most of zle_refresh.c.  Some
+      other bugfixes.
+
+  <li>
+      Clive Messer <a href="mailto:clive@epos.demon.co.uk">&lt;clive@epos.demon.co.uk&gt;</a> brought the texinfo documentation
+      up-to-date.
+
+  <li>
+      Mark Borges <a href="mailto:mdb@cdc.noaa.gov">&lt;mdb@cdc.noaa.gov&gt;</a> maintains the zsh web page
+      (http://www.mal.com/zsh/).  Several documentation fixes.  Maintains the
+      texinfo documentation together with Clive.
+
+  <li>
+      Wayne Davison <a href="mailto:wayne@clari.net">&lt;wayne@clari.net&gt;</a> improved the the zle search functions
+      and made them 8-bit clean.  Some other little bugfixes.
+
+  <li>
+      Bart Schaefer <a href="mailto:schaefer@candle.brasslantern.com">&lt;schaefer@candle.brasslantern.com&gt;</a> submitted several
+      bugfixes, reported lots of bugs and gave many very useful suggestions.
+</ul>
+<p>
+Bas de Bakker maintained zsh till the release of zsh-2.5.0.  People who
+have contributed to zsh-2.5.0 are (in lexical order):
+
+<ul>
+  
+  <li>
+  <a
+  href="mailto:Chris.Moore@src.bae.co.uk">Chris.Moore@src.bae.co.uk</a> (Chris Moore)
+  <li>
+      <a
+      href="mailto:Harald.Eikrem@delab.sintef.no">Harald.Eikrem@delab.sintef.no</a> (Harald Eikrem)
+  <li>
+      <a
+      href="mailto:Irving_Wolfe@happy-man.com">Irving_Wolfe@happy-man.com</a> (Irving Wolfe)
+  <li>
+      <a href="mailto:Jarkko.Hietaniemi@hut.fi">Jarkko.Hietaniemi@hut.fi</a>
+      (Jarkko Hietanimi)
+  <li>
+      <a
+      href="mailto:P.Stephenson@swansea.ac.uk">P.Stephenson@swansea.ac.uk</a> (Peter Stephenson)
+  <li>
+      <a
+      href="mailto:Richard.Sharman@software.mitel.com">Richard.Sharman@software.mitel.com</a> (Richard Sharman)
+  <li>
+      <a href="mailto:Tero_Kivinen@hut.FI">Tero_Kivinen@hut.FI</a> (Tero
+      Kivinen)
+  <li>
+      <a href="mailto:arf@maths.nott.ac.uk">arf@maths.nott.ac.uk</a>
+      (Anthony Iano-Fletcher)
+  <li>
+      <a href="mailto:bas@phys.uva.nl">bas@phys.uva.nl</a> (Bas de Bakker)
+  <li>
+      <a href="mailto:benson@odi.com">benson@odi.com</a> (Benson Margulies)
+  <li>
+      <a
+      href="mailto:billb@bedford.progress.com">billb@bedford.progress.com</a> (Bill Burton)
+  <li>
+      <a href="mailto:brown@wi.extrel.com">brown@wi.extrel.com</a>
+      (M. Brown)
+  <li>
+      <a href="mailto:carlos@snfep1.if.usp.br">carlos@snfep1.if.usp.br</a>
+      (Carlos Carvalho)
+  <li>
+      <a
+      href="mailto:cedman@capitalist.princeton.edu">cedman@capitalist.princeton.edu</a> (Carl Edman)
+  <li>
+      <a
+      href="mailto:chip%fin@myrddin.sybus.com">chip%fin@myrddin.sybus.com</a> (Chip Salzenberg)
+  <li>
+      <a href="mailto:chs@apu.fi">chs@apu.fi</a> (Hannu Strang)
+  <li>
+      <a href="mailto:coleman@math.gatech.edu">coleman@math.gatech.edu</a>
+      (Richard Coleman)
+  <li>
+      <a href="mailto:cross@eng.umd.edu">cross@eng.umd.edu</a> (Chris Ross)
+  <li>
+      <a href="mailto:dm@cs.brown.edu">dm@cs.brown.edu</a> (Dimitris
+      Michailidis)
+  <li>
+      <a
+      href="mailto:dmm0t@rincewind.mech.virginia.edu">dmm0t@rincewind.mech.virginia.edu</a> (David M. Meyer)
+  <li>
+      <a href="mailto:esky@CS.UCLA.EDU">esky@CS.UCLA.EDU</a> (Eskandar
+      Ensafi)
+  <li>
+      <a href="mailto:franl@centerline.com">franl@centerline.com</a> (Fran
+      Litterio)
+  <li>
+      <a href="mailto:gansevle@cs.utwente.nl">gansevle@cs.utwente.nl</a>
+      (Fred Gansevles)
+  <li>
+      <a href="mailto:gnohmon@ssiny.com">gnohmon@ssiny.com</a> (Ralph Betza)
+  <li>
+      <a href="mailto:guillaum@clipper.ens.fr">guillaum@clipper.ens.fr</a>
+      (Florent Guillaume)
+  <li>
+      <a href="mailto:guthrie@math.upenn.edu">guthrie@math.upenn.edu</a>
+      (John Guthrie)
+  <li>
+      <a
+      href="mailto:hegedus@celeste.eng.yale.edu">hegedus@celeste.eng.yale.edu</a> (Peter Hegedus)
+  <li>
+      <a href="mailto:hoh@approve.se">hoh@approve.se</a> (Goran Larsson)
+  <li>
+      <a href="mailto:hooft@chem.ruu.nl">hooft@chem.ruu.nl</a> (Rob Hooft)
+  <li>
+      <a href="mailto:hsw1@papa.attmail.com">hsw1@papa.attmail.com</a>
+      (Stephen Harris)
+  <li>
+      <a href="mailto:jch@cs.cmu.edu">jch@cs.cmu.edu</a> (Jonathan Hardwick)
+  <li>
+      <a href="mailto:jos@oce.nl">jos@oce.nl</a> (Jos Backus)
+  <li>
+      <a href="mailto:liblit@cs.psu.edu">liblit@cs.psu.edu</a> (Benjamin
+      Liblit)
+  <li>
+      <a href="mailto:marc@cam.org">marc@cam.org</a> (Marc Boucher)
+  <li>
+      <a
+      href="mailto:mason@werple.apana.org.au">mason@werple.apana.org.au</a> (Geoff Wing)
+  <li>
+      <a href="mailto:mycroft@gnu.ai.mit.edu">mycroft@gnu.ai.mit.edu</a>
+      (Charles Hannum)
+  <li>
+      <a href="mailto:mystic@axposf.pa.dec.com">mystic@axposf.pa.dec.com</a>
+      (D. Hall)
+  <li>
+      <a
+      href="mailto:norbert@i3.informatik.rwth-aachen.de">norbert@i3.informatik.rwth-aachen.de</a> (Norbert Kiesel)
+  <li>
+      <a href="mailto:oberon@cs.tu-berlin.de">oberon@cs.tu-berlin.de</a>
+      (Sven Wischnowsky)
+  <li>
+      <a href="mailto:pclink@qld.tne.oz.au">pclink@qld.tne.oz.au</a> (Rick)
+  <li>
+      <a href="mailto:pem@aaii.oz.au">pem@aaii.oz.au</a> (Paul Maisano)
+  <li>
+      <a href="mailto:per@efd.lth.se">per@efd.lth.se</a> (Per Foreby)
+  <li>
+      <a href="mailto:pf@z-code.com">pf@z-code.com</a> (Paul Falstad)
+  <li>
+      <a href="mailto:roderick@ibcinc.com">roderick@ibcinc.com</a> (Roderick
+      Schertler)
+  <li>
+      <a href="mailto:schaefer@z-code.com">schaefer@z-code.com</a> (Bart
+      Schaefer)
+  <li>
+      <a
+      href="mailto:schlangm@informatik.uni-muenchen.de">schlangm@informatik.uni-muenchen.de</a> (Harald Schlangmann)
+  <li>
+      <a href="mailto:seniorr@teleport.com">seniorr@teleport.com</a>
+      (Russell Senior)
+  <li>
+      <a href="mailto:sinclair@dcs.gla.ac.uk">sinclair@dcs.gla.ac.uk</a>
+      (Duncan Sinclair)
+  <li>
+      <a href="mailto:sterling@oldcolo.com">sterling@oldcolo.com</a> (Bruce
+      Sterling Woodcock)
+  <li>
+      <a href="mailto:suzuki@otsl.oki.co.jp">suzuki@otsl.oki.co.jp</a>
+      (Hisao Suzuki)
+  <li>
+      <a href="mailto:tsm@cs.brown.edu">tsm@cs.brown.edu</a> (Timothy
+      Miller)
+  <li>
+      <a
+      href="mailto:wacker@physik.uni-dortmund.de">wacker@physik.uni-dortmund.de</a> (Klaus Wacker)
+  <li>
+      <a
+      href="mailto:wacren@cis10.ens-cachan.fr">wacren@cis10.ens-cachan.fr</a> (Laurent Wacrenier)
+      
+</ul>
+
+
+<hr>
+<div align=right>
+<address>
+<a name=Signature href="../disclaimer.html">Disclaimer</a>
+</address>
+</body> </html>

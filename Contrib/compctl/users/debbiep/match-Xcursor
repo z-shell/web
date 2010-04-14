@@ -1,0 +1,7 @@
+#!/usr/local/bin/zsh
+
+# strip off the information from the cursorfont.h include file.
+# Remember to ignore num_glyphs, which is not a cursor.
+reply=($(sed -n '/num_glyphs/b;s/^#define XC_\([^ ]*\) .*$/\1/p' \
+  < /usr/include/X11/cursorfont.h)) 
+

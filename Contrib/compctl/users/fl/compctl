@@ -1,0 +1,22 @@
+# The "compctl" command is very powerful, and I'm not using it to its
+# fullest, but I like the completions that I have. FYI, "mailrc" is a
+# just a little script that greps through my ~/.mailrc file and shows
+# me lines that match the argument.
+
+printers="doc mailroom"
+unset hosts
+function hosts { hosts=($(ypcat hosts | cut -f2)); reply=($hosts) }
+function mailaliases { reply=($(egrep ^alias ~/.mailrc | cut -f2)) }
+#
+compctl -f -x 'p[1]' -c -- function whence which
+compctl -f -x 'p[1]' -v -- set
+compctl -F func functions unfunc unfunction
+compctl -g '.*(-/) *(-/)' cd
+compctl -f -x 'p[1]' -k hosts + -K hosts -- dig ftp remsh rlogin rsh telnet ping
+compctl -K mailaliases mailrc
+compctl -f -x 'p[1]' -R -- alias unalias
+compctl -s '-${^signals[1,-3]}' kill
+compctl -u expn mail finger write
+compctl -v -P '$' echo
+compctl -f -x 'p[1] S[-][-P]' -P "-P" -k "($printers)" -- lpr laser
+compctl -P "-P" -k "($printers)" lpq

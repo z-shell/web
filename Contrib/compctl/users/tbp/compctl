@@ -1,0 +1,198 @@
+# Command Completion
+
+# disable completion.
+compctl -k '( )' pushln pwd
+
+# complete commands.
+compctl -c whence type which hash unhash
+
+# complete function names.
+compctl -F functions unfunction reload autoload
+
+# complete alias names.
+compctl -a unalias alias
+
+# complete builtin commands.
+compctl -B disable enable
+
+# complete arrays.
+compctl -A shift
+
+# complete variable names.
+compctl -v unset
+
+# complete as if command of its own.
+compctl -l '' eval command
+
+# complete jobs - insert a '%' before the job name.
+compctl -j -P '%' bg fg disown jobs wait
+
+# complete directories (symlinks resolved).
+compctl -g '*(-/)' mkdir
+
+# complete current directory files and commands, first argument only.
+compctl -x 'p[1]' -f -c -- source .
+
+# typeset, declare, export, local, integer, readonly: match variable
+# names by default.
+compctl -v -x 'R[-*f,^*]' -F \
+ - 's[-][+]' -k '(L R Z f i l r t u x m)' \
+ -- typeset declare local integer export readonly
+
+# getopts: match names, second parameter only.
+compctl -x 'p[2]' -v -- getopts
+
+# limit: match keywords, allow optional -h beforehand.
+compctl -x 'p[1],p[2] c[-1,-h]' \
+  -k '(cputime filesize datasize stacksize coredumpsize resident
+memoryuse memorylocked descriptors openfiles vmemorysize)' \
+  -- limit unlimit
+
+# ulimit: match option letters.  Complete the word 'unlimited' if started.
+compctl -x 'S[u]' -k '(unlimited)' \
+  - 's[-]' -k '(a c d f l m n o p s t u H)' \
+  -- ulimit
+
+# fc: Match options, expect command for editor after -c,
+# forbid mutually incompatible options.
+compctl -x 'R[-[ARWI],^*] s[-]' -k '(A R W I)' \
+  - 'R[-[ARWI],^*]' -f \
+  - 's[-e],c[-1,-e]' -c \
+  - 'R[-[enlrdDfEm],^*] s[-]' -k '(e n l r d D f E m)' \
+  - 's[-]' -k '(A R W I e n l r d D f E m)' \
+  -- fc
+
+# r: much-reduced version of fc; now just does options.
+compctl -x 's[-]' -k '(n l r)' -- r
+
+# vared: match options, allow entry of prompts after -p and -r,
+# match variables by default.
+compctl -v -x 's[-p][-r],C[-1,-[pr]]' -k '( )' \
+  - 's[-]' -k '(c p r)' \
+  -- vared
+
+# echotc: match termcap entries, for first word.  Only works if
+# $TERMCAP is set, otherwise no completion.  match-echotc isn't
+# smart enough to seek out the /etc/termcap file itself.
+compctl -x 'p[1]' -K match-echotc -- echotc
+
+# print: after -R, no options allowed.  After -u, need number,
+# otherwise, prompt for options.
+compctl -x 'R[-*R,^*]' -k '( )' \
+  - 's[-u]' -k '( )' \
+  - 's[-]' -k '(R n r s l z p N D P o O i c u)' \
+  -- print
+
+# read: Need number after -u, so disable completion, otherwise
+# present options after a -.
+compctl -v -x 's[-u]' -k '( )' \
+  - 's[-]' -k '(r z p q A c l n e E k u)' \
+  -- read
+
+# sched: if first word starts with a -, present waiting jobs (match-sched).
+# Otherwise, complete as if second command were the real command.
+compctl -c -x 'p[1] s[-]' -K match-sched \
+  - 'p[1]' -k '( )' \
+  - 'p[2,-1]' -l '' \
+  -- sched
+
+# builtin: complete first word as builtin command, then treat as arguments to
+# that command.
+# doing: compctl -B -x 'p[2,-1]' -l '' -- builtin
+# might seem to (but doesn't) work, but the following does.
+compctl -x 'p[1]' -B - 'p[1,-1]' -l '' -- builtin
+
+# trap: complete commands for first argument, then signals.
+compctl -k signals -x 'p[1]' -c -- trap
+
+# ls, dir: complete files, options (both - and -- kind), and option params.
+# This is for GNU ls.
+compctl -f \
+  -x s'[--format]' -P '=' -k '(long verbose commas horizontal across vertical single-column)' \
+  - s'[--sort]' -P '=' -k '(none time size extension)' \
+  - s'[--time]' -P '=' -k '(atime ctime access use status)' \
+  - s'[--width=][--tabsize=][--ignore=][-w][-T][-I],c[-1,-w][-1,-T][-1,-I]' \
+    -k '( )' \
+  - s'[--]' -S '' -k '(all\  escape\  directory\  inode\  kilobytes\  numeric-uid-gid\  no-group\  hide-control-chars\  reverse\  size\  width= tabsize= almost-all\  ignore-backups\  classify\  file-type\  full-time\  ignore= dereference\  literal\  quote-name\  no-color\  7bit\  8bit\  recursive\  sort= format= time= help\  version\ )' \
+  - s'[-]' -k '(a b c d f g i k l m n o p q r s t u x A B C F G L N Q R S U X 1 w T I)' \
+  -- ls dir
+
+# elm: mail users, but if -f or -i is given, complete files,
+# and if -f+ (or -f=) is given, complete folders in ~/Mail.
+# Also complete options after -.  This entry was butchered from
+# the one in the zsh man page and altered for elm.
+compctl -u -x 's[+] c[-1,-f],s[-f+],s[-f=]' -g '~/Mail/*(:t)' \
+  - 's[-f],s[-i],C[-1,-[fi]]' -f \
+  - 's[-]' -k '(a c d f h i k K m s t V v z)' -- elm
+
+# man: complete commands, otherwise complete by search of $MANPATH.
+# This is placed as an all-encompassing pattern at the end because
+# making it the default before the -x doesn't work.  (It becomes
+# '-c + (-K 'match-man' -x ...), not (-c + -K 'match-man') -x ...).
+# We also complete paths for -M (override manpath), commands for
+# -P (pager) and disable for -S (search sections).  After an explicit
+# number (which it helps to complete for you), these completion rules
+# assume a thorough search is needed and no longer uses the '-c' hashed
+# commands, relying entirely on what's really in the manpath.
+compctl -x 'S[1][2][3][4][5][6][7][8][9]' -k '(1 2 3 4 5 6 7 8 9)' \
+  - 'R[[1-9nlo]|[1-9](|[a-z]),^*]' -K 'match-man' \
+  - 's[-M],c[-1,-M]' -g '*(-/)' \
+  - 's[-P],c[-1,-P]' -c \
+  - 's[-S],s[-1,-S]' -k '( )' \
+  - 's[-]' -k '(a d f h k t M P)' \
+  - 'p[1,-1]' -c + -K 'match-man' \
+  -- man
+
+# tar: complete tar files (only .tar or .tar.* format) after -f, disable
+# completion for certain options, let user choose directory with -C,
+# complete GNU tar long options beginning with --.  The match-taropts
+# function prompts for GNU tar options, ensures one of the seven
+# mandatory options is given in the first argument to tar, and enforces
+# spaces after options that take an argument (this is required by GNU
+# tar and also makes filename completion possible for the -f option).
+# Note that the -[0-7][lmh] options are not completed, but they're
+# hardly ever used.
+compctl -f \
+  -x 'C[-1,-*f],p[2] C[-1,*f],c[-1,--file]' -g '*.tar(|.*)' + -g '*(-/)' \
+  - 'C[-1,-*[bLN]],p[2] C[-1,*[bLN]],c[-1,--block-size][-1,tape-length][-1,--after-date][-1,--newer]' -k '( )' \
+  - 'C[-1,-*C],p[2] C[-1,*C],c[-1,directory]' -g '*(-/)' \
+  - 'C[-1,-*[FgKTV]],p[2] C[-1,*[FgKTV]],c[-1,--info-script][-1,--new-volume-script][-1,--starting-file][-1,--files-from][-1,--label][-1,--exclude]' -f \
+  - 's[--]' -k '(catenate concatenate create diff compare delete append list update extract get atime-preserve block-size read-full-blocks directory checkpoint file force-local info-script new-volume-script incremental dereference ignore-zeros ignore-failed-read keep-old-files starting-file one-file-system tape-length modification-time multi-volume after-date newer old-archive portability to-stdout same-permissions preserve-permissions absolute-paths preserve record-number remove-files same-order preserve-order same-owner sparse files-from null totals verbose label version interactive confirmation verify exclude exclude-from compress uncompress gzip ungzip use-compress-program block-compress)' \
+  - 's[-],p[1]' -S '' -K 'match-taropts' \
+  -- tar
+
+# compctl: complete using command names (and + ) by default, then
+# [1] After --, complete command names *only*;
+# [2] Between -x and --, just after -x or -, complete match characters
+#     (And add a '[' as a prompt for more);
+# [3] Match functions with -K;
+# [4] Arrays with -k;
+# [5] commands with -l;
+# [6] Disable completion on -X, -P, -S, -g, -s (all for one argument)
+#     and -H for two arguments.
+# [7] complete option letters when given a -.
+# This isn't as robust as it could be but it is as good as can be done
+# cleanly without adding several more cases.
+compctl -c -k '( + )' -x 'R[--,^*]' -c \
+  - 'r[-x,--] s[-x],r[-x,--] c[-1,-x][-1,-]' -k '( s S p c C w W n N m r R )' -S '[' \
+  - 's[-K],c[-1,-K]' -F \
+  - 's[-k],c[-1,-k]' -A \
+  - 's[-l],c[-1,-l]' -c \
+  - 's[-X][-P][-S][-g][-s][-H],C[-1,-[XPSgsH]],C[-1,-H?*],c[-2,-H]' -k '( )' \
+  - 's[-]' -k '( - c f q o v b C D A I F p E j B a R G u d e r z N O Z n k X K P S g s H l x )' \
+  -- compctl
+
+# xsetroot: complete options, bitmaps, and colour names.
+# This version stolen from the zsh distribution and altered so that it
+# works.  See match-Xcolours for some truly weird parsing of the
+# rgb.txt file to ensure spaces are correctly handled.
+# match-Xcursor is in the zsh distribution.
+compctl -P '-' -k '(help default display cursor cursor_name bitmap mod fg foreground bg background grey gray rv reverse solid name)' \
+  -x 'c[-1,-display]' -k hosts -S ':0.0' \
+  - 'c[-1,-cursor][-2,-cursor][-1,-bitmap]' -f \
+  - 'c[-1,-cursor_name]' -K 'match-Xcursor' \
+  - 'C[-1,-(solid|fg|bg)]' -K 'match-Xcolours' \
+  -- xsetroot
+
+# xhost: complete host names (set by you in $hosts), even if after a + or -.
+compctl -k hosts -x 's[-][+]' -k hosts -- xhost

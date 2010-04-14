@@ -1,0 +1,31 @@
+setopt magic_equal_subst		# for `export foo=~/bar`
+function export() { EXPORT=${1%%\=*} ; typeset -Ux $* }
+function +() { eval builtin export ${EXPORT}=\$\{$EXPORT\}:\$1 }
+
+# now you can do
+#
+# export PATH=/home/$USER/bin/$OSTYPE	# arch dependent binaries
+# 	  +	/home/$USER/bin		# arch independent scripts
+# 	  +	/usr/local/bin		# local apps
+# 	  +	/opt/gnu/bin		# gnu tools
+# 	  +	...
+#
+# or even stuff like:
+# 
+# export PATH=~/bin/$OSTYPE		# arch dependent binaries
+# 	  +	~/bin			# arch independent scripts
+# 				      case $OSTYPE in
+# 				      sun*)
+# 	  +	$OPENWINHOME/bin	# openwindows applications
+# 	  +	/usr/ccs/bin		# compiler tools
+# 	  +	/opt/bin		# optional packages
+# 				      ;;
+# 				      *)
+# 	  +	/usr/bin/X11		# X11 applications
+# 				      ;;
+# 				      esac
+# 	  +	/usr/local/bin		# local apps
+# 	  +	/opt/gnu/bin		# gnu tools
+# 	  +	...
+
+unfunction export +

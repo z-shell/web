@@ -1,0 +1,407 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on March, 19  2004 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>zsh: Introduction</TITLE>
+
+<META NAME="description" CONTENT="zsh: Introduction">
+<META NAME="keywords" CONTENT="zsh: Introduction">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC3"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_1.html#SEC2"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC4"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_1.html#SEC1"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_3.html#SEC12"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 2. Introduction </H1>
+<!--docid::SEC3::-->
+<A NAME="IDX2"></A>
+Zsh is a UNIX command interpreter (shell) usable as an interactive
+login shell and as a shell script command processor.  Of the standard shells,
+zsh most closely resembles <CITE>ksh</CITE> but includes many enhancements.  Zsh
+has command line editing, builtin spelling correction, programmable
+command completion, shell functions (with autoloading), a history
+mechanism, and a host of other features.
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_2.html#SEC4">2.1 Author</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_2.html#SEC5">2.2 Availability</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_2.html#SEC6">2.3 Mailing Lists</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_2.html#SEC7">2.4 The Zsh FAQ</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_2.html#SEC8">2.5 The Zsh Web Page</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_2.html#SEC9">2.6 The Zsh Userguide</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_2.html#SEC11">2.8 See Also</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<A NAME="Author"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC4"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC3"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC5"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC3"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC3"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_3.html#SEC12"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 2.1 Author </H2>
+<!--docid::SEC4::-->
+<A NAME="IDX3"></A>
+Zsh was originally written by Paul Falstad <TT>&#60;pf@zsh.org&#62;</TT>.
+Zsh is now maintained by the members of the zsh-workers mailing
+list <TT>&#60;zsh-workers@sunsite.dk&#62;</TT>.  The development is currently
+coordinated by Peter Stephenson <TT>&#60;pws@zsh.org&#62;</TT>.  The coordinator
+can be contacted at <TT>&#60;coordinator@zsh.org&#62;</TT>, but matters relating to
+the code should generally go to the mailing list.
+<A NAME="Availability"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC5"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC4"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC6"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC3"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC3"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_3.html#SEC12"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 2.2 Availability </H2>
+<!--docid::SEC5::-->
+Zsh is available from the following anonymous FTP sites.  These mirror
+sites are kept frequently up to date.  The sites marked with <EM>(H)</EM> may be
+mirroring <TT>ftp.cs.elte.hu</TT> instead of the primary site.
+<P>
+
+<A NAME="IDX4"></A>
+<A NAME="IDX5"></A>
+<A NAME="IDX6"></A>
+<DL COMPACT>
+<DT>Primary site
+<DD><TT>ftp://ftp.zsh.org/pub/zsh/</TT><BR>
+<TT>http://www.zsh.org/pub/zsh/</TT>
+<P>
+
+<DT>Australia
+<DD><TT>ftp://ftp.zsh.org/pub/zsh/</TT><BR>
+<TT>http://www.zsh.org/pub/zsh/</TT>
+<P>
+
+<DT>Denmark
+<DD><TT>ftp://sunsite.dk/pub/unix/shells/zsh/</TT>
+<P>
+
+<DT>Finland
+<DD><TT>ftp://ftp.funet.fi/pub/unix/shells/zsh/</TT>
+<P>
+
+<DT>Germany
+<DD><TT>ftp://ftp.fu-berlin.de/pub/unix/shells/zsh/</TT>  <EM>(H)</EM><BR>
+<TT>ftp://ftp.gmd.de/packages/zsh/</TT><BR>
+<TT>ftp://ftp.uni-trier.de/pub/unix/shell/zsh/</TT>
+<P>
+
+<DT>Hungary
+<DD><TT>ftp://ftp.cs.elte.hu/pub/zsh/</TT><BR>
+<TT>http://www.cs.elte.hu/pub/zsh/</TT><BR>
+<TT>ftp://ftp.kfki.hu/pub/packages/zsh/</TT>
+<P>
+
+<DT>Israel
+<DD><TT>ftp://ftp.math.technion.ac.il/pub/zsh/</TT><BR>
+<TT>http://www.math.technion.ac.il/pub/zsh/</TT>
+<P>
+
+<DT>Japan
+<DD><TT>ftp://ftp.win.ne.jp/pub/shell/zsh/</TT><BR>
+<TT>ftp://ftp.ayamura.org/pub/zsh/</TT>
+<P>
+
+<DT>Korea
+<DD><TT>ftp://linux.sarang.net/mirror/system/shell/zsh/</TT>
+<P>
+
+<DT>Netherlands
+<DD><TT>ftp://ftp.demon.nl/pub/mirrors/zsh/</TT>
+<P>
+
+<DT>Norway
+<DD><TT>ftp://ftp.uit.no/pub/unix/shells/zsh/</TT>
+<P>
+
+<DT>Poland
+<DD><TT>ftp://sunsite.icm.edu.pl/pub/unix/shells/zsh/</TT>
+<P>
+
+<DT>Romania
+<DD><TT>ftp://ftp.roedu.net/pub/mirrors/ftp.zsh.org/pub/zsh/</TT><BR>
+<TT>ftp://ftp.kappa.ro/pub/mirrors/ftp.zsh.org/pub/zsh/</TT>
+<P>
+
+<DT>Slovenia
+<DD><TT>ftp://ftp.siol.net/mirrors/zsh/</TT>
+<P>
+
+<DT>Sweden
+<DD><TT>ftp://ftp.lysator.liu.se/pub/unix/zsh/</TT>
+<P>
+
+<DT>UK
+<DD><TT>ftp://ftp.net.lut.ac.uk/zsh/</TT><BR>
+<TT>ftp://sunsite.org.uk/packages/zsh/</TT>
+<P>
+
+<DT>USA
+<DD><TT>ftp://uiarchive.uiuc.edu/mirrors/ftp/ftp.zsh.org/pub/</TT><BR>
+<TT>ftp://ftp.rge.com/pub/shells/zsh/</TT><BR>
+<TT>http://zsh.disillusion.org/</TT><BR>
+<TT>http://foad.org/zsh/</TT>
+<P>
+
+</DL>
+<P>
+
+The up-to-date source code is available via anonymous CVS from Sourceforge.
+See <TT>http://sourceforge.net/projects/zsh/</TT> for details.
+</P><P>
+
+<A NAME="Mailing Lists"></A>
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC6"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC5"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC7"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC3"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC3"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_3.html#SEC12"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 2.3 Mailing Lists </H2>
+<!--docid::SEC6::-->
+<A NAME="IDX7"></A>
+Zsh has 3 mailing lists:
+<P>
+
+<DL COMPACT>
+<DT><TT>&#60;zsh-announce@sunsite.dk&#62;</TT>
+<DD>Announcements about releases, major changes in the shell and the
+monthly posting of the Zsh FAQ.  (moderated)
+<P>
+
+<DT><TT>&#60;zsh-users@sunsite.dk&#62;</TT>
+<DD>User discussions.
+<P>
+
+<DT><TT>&#60;zsh-workers@sunsite.dk&#62;</TT>
+<DD>Hacking, development, bug reports and patches.
+<P>
+
+</DL>
+<P>
+
+To subscribe or unsubscribe, send mail
+to the associated administrative address for the mailing list.
+</P><P>
+
+<DL COMPACT>
+<DT><TT>&#60;zsh-announce-subscribe@sunsite.dk&#62;</TT>
+<DD><DT><TT>&#60;zsh-users-subscribe@sunsite.dk&#62;</TT>
+<DD><DT><TT>&#60;zsh-workers-subscribe@sunsite.dk&#62;</TT>
+<DD><P>
+
+<DT><TT>&#60;zsh-announce-unsubscribe@sunsite.dk&#62;</TT>
+<DD><DT><TT>&#60;zsh-users-unsubscribe@sunsite.dk&#62;</TT>
+<DD><DT><TT>&#60;zsh-workers-unsubscribe@sunsite.dk&#62;</TT>
+<DD><DT>
+<DD></DL>
+<P>
+
+YOU ONLY NEED TO JOIN ONE OF THE MAILING LISTS AS THEY ARE NESTED.
+All submissions to <CITE>zsh-announce</CITE> are automatically forwarded to
+<CITE>zsh-users</CITE>.  All submissions to <CITE>zsh-users</CITE> are automatically
+forwarded to <CITE>zsh-workers</CITE>.
+</P><P>
+
+If you have problems subscribing/unsubscribing to any of the mailing
+lists, send mail to <TT>&#60;listmaster@zsh.org&#62;</TT>.  The mailing lists are
+maintained by Karsten Thygesen <TT>&#60;karthy@kom.auc.dk&#62;</TT>.
+</P><P>
+
+The mailing lists are archived; the archives can be accessed via the
+administrative addresses listed above.  There is also a hypertext
+archive, maintained by Geoff Wing <TT>&#60;gcw@zsh.org&#62;</TT>, available at
+<TT>http://www.zsh.org/mla/</TT>.
+<A NAME="The Zsh FAQ"></A>
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC7"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC6"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC8"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC3"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC3"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_3.html#SEC12"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 2.4 The Zsh FAQ </H2>
+<!--docid::SEC7::-->
+Zsh has a list of Frequently Asked Questions (FAQ), maintained by
+Peter Stephenson <TT>&#60;pws@zsh.org&#62;</TT>.  It is regularly posted to the
+newsgroup <CITE>comp.unix.shell</CITE> and the <CITE>zsh-announce</CITE> mailing list.
+The latest version can be found at any of the Zsh FTP sites, or at
+<TT>http://www.zsh.org/FAQ/</TT>.  The contact address for FAQ-related matters
+is <TT>&#60;faqmaster@zsh.org&#62;</TT>.
+<A NAME="The Zsh Web Page"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC8"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC7"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC9"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC3"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC3"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_3.html#SEC12"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 2.5 The Zsh Web Page </H2>
+<!--docid::SEC8::-->
+Zsh has a web page which is located at <TT>http://www.zsh.org/</TT>.  This is
+maintained by Karsten Thygesen <TT>&#60;karthy@zsh.org&#62;</TT>, of SunSITE Denmark.
+The contact address for web-related matters is <TT>&#60;webmaster@zsh.org&#62;</TT>.
+<A NAME="The Zsh Userguide"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC9"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC8"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC10"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC3"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC3"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC11"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 2.6 The Zsh Userguide </H2>
+<!--docid::SEC9::-->
+A userguide is currently in preparation.  It is intended to complement the
+manual, with explanations and hints on issues where the manual can be
+cabbalistic, hierographic, or downright mystifying (for example, the word
+`hierographic' does not exist).  It can be viewed in its current state at
+<TT>http://zsh.sunsite.dk/Guide/</TT>.  At the time of writing, chapters
+dealing with startup files and their contents and the new completion system
+were essentially complete.
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC10"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC9"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC11"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC11"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC3"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_3.html#SEC12"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 2.7 The Zsh Wiki </H2>
+<!--docid::SEC10::-->
+A `wiki' website for zsh has been created at <TT>http://www.zshwiki.org/</TT>.
+This is a site which can be added to and modified directly by users without
+any special permission.  You can add your own zsh tips and configurations.
+<A NAME="See Also"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC11"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC10"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_3.html#SEC12"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC9"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC3"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_3.html#SEC12"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 2.8 See Also </H2>
+<!--docid::SEC11::-->
+man page sh(1),
+man page csh(1),
+man page tcsh(1),
+man page rc(1),
+man page bash(1),
+man page ksh(1)
+<P>
+
+<CITE>IEEE Standard for information Technology -
+Portable Operating System Interface (POSIX) -
+Part 2: Shell and Utilities</CITE>,
+IEEE Inc, 1993, ISBN 1-55937-255-9.
+<A NAME="Invocation"></A>
+</P><P>
+
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_2.html#SEC9"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_3.html#SEC12"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Peter Stephenson</I> on <I>March, 19  2004</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+
+</BODY>
+</HTML>

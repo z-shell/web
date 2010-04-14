@@ -1,0 +1,17 @@
+#!/bin/zsh
+#
+# manwhence - searches for an entry in the manpath.
+#
+# usage:
+#   manwhence command . . .
+#
+
+local name
+
+# Get a manpath if there isn't one already set.
+[[ ${+MANPATH} -eq 0 ]] && local MANPATH="`manpath`"
+
+# Search the path for a man?/name.* file
+
+for name
+  gwhence -s "${MANPATH-$(manpath)}" -m '{man,cat}?/'"$name"'.*'

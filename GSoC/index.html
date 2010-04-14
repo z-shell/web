@@ -1,0 +1,72 @@
+<html>
+<head>
+  <title>zsh GSoC ideas</title>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="bookmark" href="http://www.zsh.org/" title="zsh.org">
+  <link rel="bookmark" href="http://www.zsh.org/mla/" title="Mailing list archives">
+  <link rel="bookmark" href="http://sourceforge.net/projects/zsh/" title="Sourceforge project page">
+  <link rel="alternate" href="http://www.b2pi.com/zsh/" title="US east coast mirror">
+  <link rel="alternate" href="http://zsh.sourceforge.net/" title="US west coast mirror">
+  <link rev="made" href="mailto:zsh-workers@zsh.org">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+
+<h1>GSoC Ideas</h1>
+
+<h2>Internationalization interface</h2>
+
+Finalize design and implement in C and Z-Shell an
+internationalization interface for strings in shell code.
+
+<h3>Design</h3>
+<ul>
+<li>finalize the rule for $"..." (or equivalent)</li>
+<li>invent rules for finding the catalogue which should probably be
+flexible, ideally allowing both per-fpath-directory and
+per-autoloadable-function files while still allowing the user to have
+all their own translations collected in one place.  For the last case it
+would probably be OK to fall back on NLSPATH.  (I'm not implying
+people will use all the mechanisms, just that at this stage we should
+plan on flexibility.)</li>
+<li>decide if we want strings in the source to use a similar scheme
+or (perhaps better) just normal gettext() rules.</li>
+</ul>
+
+<h3>Shell source</h3>
+<ul>
+<li>add parsing for $"..."</li>
+<li>add config support for locating libraries for language catalogues and
+(where necessary) determining their abilities</li>
+<li>also (a separate job) we should prepare the C code for use of
+gettext() --- as I said, this is conceptually simpler but still a lot
+of work.  Someone needs to look at gettextize:  this is really part of
+the previous point except that we won't want to rely just on the GNU
+version; a quick look suggests it assumes a bit to much of a standard
+GNU interface in some areas, but I haven't gone into any detail.</li>
+<li>add some trial mechanism behind $"..." using catopen() / catgets() /
+catclose().  This is where we're going to need the most fiddling to get
+the interface right.</li>
+</ul>
+
+<h3>Shell functions etc.</h3>
+<ul>
+<li>add a few trial translation files for the completion system and
+possibly other files to test the water</li>
+<li>ditto translations for strings in the shell's source code</li>
+<li>write a whole set of utilities that</li>
+<ul>
+<li>create bare catalogues</li>
+<li>update catalogues with untranslated strings</li>
+<li>check for uniqueness of the zsh msgid (needs some subtlety since
+  obviously reuse is a good thing:  presumably we need to check that
+  the English text after the colon is the same in both cases)</li>
+<li>install catalogues</li>
+<li>manipulate (e.g. agglomerate) catalogues</li>
+<li>list or query what translations are available</li>
+<li>check catalogues for redundant translations</li>
+</ul>
+</ul>
+
+</body>
+</html>

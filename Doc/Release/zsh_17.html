@@ -1,0 +1,2422 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on March, 19  2004 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>zsh: Zsh Line Editor</TITLE>
+
+<META NAME="description" CONTENT="zsh: Zsh Line Editor">
+<META NAME="keywords" CONTENT="zsh: Zsh Line Editor">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC90"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_16.html#SEC89"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC91"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_16.html#SEC89"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_18.html#SEC105"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 17. Zsh Line Editor </H1>
+<!--docid::SEC90::-->
+<A NAME="IDX862"></A>
+<A NAME="IDX863"></A>
+<A NAME="IDX864"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC91"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC90"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC92"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC92"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 17.1 Description </H2>
+<!--docid::SEC91::-->
+<A NAME="IDX865"></A>
+If the <TT>ZLE</TT> option is set (which it is by default in interactive shells)
+and the shell input is attached to the terminal, the user
+is able to edit command lines.
+<P>
+
+There are two display modes.  The first, multiline mode, is the
+default.  It only works if the <TT>TERM</TT> parameter is set to a valid
+terminal type that can move the cursor up.  The second, single line
+mode, is used if <TT>TERM</TT> is invalid or incapable of moving the
+cursor up, or if the <TT>SINGLE_LINE_ZLE</TT> option is set.
+<A NAME="IDX866"></A>
+<A NAME="IDX867"></A>
+<A NAME="IDX868"></A>
+This mode
+is similar to <CITE>ksh</CITE>, and uses no termcap sequences.  If <TT>TERM</TT> is
+"emacs", the <TT>ZLE</TT> option will be unset by default.
+</P><P>
+
+<A NAME="IDX869"></A>
+<A NAME="IDX870"></A>
+<A NAME="IDX871"></A>
+The parameters <TT>BAUD</TT>, <TT>COLUMNS</TT>, and <TT>LINES</TT> are also used by the
+line editor.
+<A HREF="zsh_14.html#SEC80">14.6 Parameters Used By The Shell</A>.
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_17.html#SEC92">17.2 Keymaps</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_17.html#SEC94">17.3 Zle Builtins</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_17.html#SEC95">17.4 Widgets</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="Keymaps"></A>
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC92"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC91"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC93"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC94"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC90"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC94"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 17.2 Keymaps </H2>
+<!--docid::SEC92::-->
+<A NAME="IDX872"></A>
+<A NAME="IDX873"></A>
+<A NAME="IDX874"></A>
+A keymap in ZLE contains a set of bindings between key sequences
+and ZLE commands.  The empty key sequence cannot be bound.
+<P>
+
+There can be any number of keymaps at any time, and each keymap has one
+or more names.  If all of a keymap's names are deleted, it disappears.
+<A NAME="IDX875"></A>
+<TT>bindkey</TT> can be used to manipulate keymap names.
+</P><P>
+
+Initially, there are four keymaps:
+</P><P>
+
+<DL COMPACT>
+<DT><TT>emacs</TT>
+<DD>EMACS emulation
+<DT><TT>viins</TT>
+<DD>vi emulation - insert mode
+<DT><TT>vicmd</TT>
+<DD>vi emulation - command mode
+<DT><TT>.safe</TT>
+<DD>fallback keymap
+</DL>
+<P>
+
+The `<TT>.safe</TT>' keymap is special.  It can never be altered, and the name
+can never be removed.  However, it can be linked to other names, which can
+be removed.  In the future other special keymaps may be added; users should
+avoid using names beginning with `<TT>.</TT>' for their own keymaps.
+</P><P>
+
+<A NAME="IDX876"></A>
+<A NAME="IDX877"></A>
+In addition to these four names, either `<TT>emacs</TT>' or `<TT>viins</TT>' is
+also linked to the name `<TT>main</TT>'.  If one of the <TT>VISUAL</TT> or
+<TT>EDITOR</TT> environment variables contain the string `<TT>vi</TT>' when the shell
+starts up then it will be `<TT>viins</TT>', otherwise it will be `<TT>emacs</TT>'.
+<TT>bindkey</TT>'s <TT>-e</TT> and <TT>-v</TT>
+options provide a convenient way to override this default choice.
+</P><P>
+
+When the editor starts up, it will select the `<TT>main</TT>' keymap.
+If that keymap doesn't exist, it will use `<TT>.safe</TT>' instead.
+</P><P>
+
+In the `<TT>.safe</TT>' keymap, each single key is bound to <TT>self-insert</TT>,
+except for ^J (line feed) and ^M (return) which are bound to <TT>accept-line</TT>.
+This is deliberately not pleasant to use; if you are using it, it
+means you deleted the main keymap, and you should put it back.
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC93"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC92"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC94"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC90"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC90"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_18.html#SEC105"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 17.2.1 Reading Commands </H3>
+<!--docid::SEC93::-->
+When ZLE is reading a command from the terminal, it may read a sequence
+that is bound to some command and is also a prefix of a longer bound string.
+In this case ZLE will wait a certain time to see if more characters
+are typed, and if not (or they don't match any longer string) it will
+execute the binding.  This timeout is defined by the <TT>KEYTIMEOUT</TT> parameter;
+its default is 0.4 sec.  There is no timeout if the prefix string is not
+itself bound to a command.
+<P>
+
+As well as ZLE commands, key sequences can be bound to other strings, by using
+`<TT>bindkey -s</TT>'.
+When such a sequence is read, the replacement string is pushed back as input,
+and the command reading process starts again using these fake keystrokes.
+This input can itself invoke further replacement strings, but in order to
+detect loops the process will be stopped if there are twenty such replacements
+without a real command being read.
+</P><P>
+
+<A NAME="Zle Builtins"></A>
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC94"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC93"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC95"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC92"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC90"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_18.html#SEC105"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 17.3 Zle Builtins </H2>
+<!--docid::SEC94::-->
+<A NAME="IDX878"></A>
+The ZLE module contains three related builtin commands. The <TT>bindkey</TT>
+command manipulates keymaps and key bindings; the <TT>vared</TT> command invokes
+ZLE on the value of a shell parameter; and the <TT>zle</TT> command manipulates
+editing widgets and allows command line access to ZLE commands from within
+shell functions.
+<P>
+
+<DL COMPACT>
+<A NAME="IDX879"></A>
+<A NAME="IDX880"></A>
+<A NAME="IDX881"></A>
+<A NAME="IDX882"></A>
+<A NAME="IDX883"></A>
+<A NAME="IDX884"></A>
+<DT><TT>bindkey</TT> [ <VAR>options</VAR> ] <TT>-l</TT>
+<DD><DT><TT>bindkey</TT> [ <VAR>options</VAR> ] <TT>-d</TT>
+<DD><DT><TT>bindkey</TT> [ <VAR>options</VAR> ] <TT>-D</TT> <VAR>keymap</VAR> ...
+<DD><DT><TT>bindkey</TT> [ <VAR>options</VAR> ] <TT>-A</TT> <VAR>old-keymap new-keymap</VAR>
+<DD><DT><TT>bindkey</TT> [ <VAR>options</VAR> ] <TT>-N</TT> <VAR>new-keymap</VAR> [ <VAR>old-keymap</VAR> ]
+<DD><DT><TT>bindkey</TT> [ <VAR>options</VAR> ] <TT>-m</TT>
+<DD><DT><TT>bindkey</TT> [ <VAR>options</VAR> ] <TT>-r</TT> <VAR>in-string</VAR> ...
+<DD><DT><TT>bindkey</TT> [ <VAR>options</VAR> ] <TT>-s</TT> <VAR>in-string out-string</VAR> ...
+<DD><DT><TT>bindkey</TT> [ <VAR>options</VAR> ] <VAR>in-string command</VAR> ...
+<DD><DT><TT>bindkey</TT> [ <VAR>options</VAR> ] [ <VAR>in-string</VAR> ]
+<DD><TT>bindkey</TT>'s options can be divided into three categories: keymap selection,
+operation selection, and others.  The keymap selection options are:
+<P>
+
+<DL COMPACT>
+<DT><TT>-e</TT>
+<DD>Selects keymap `<TT>emacs</TT>', and also links it to `<TT>main</TT>'.
+<P>
+
+<DT><TT>-v</TT>
+<DD>Selects keymap `<TT>viins</TT>', and also links it to `<TT>main</TT>'.
+<P>
+
+<DT><TT>-a</TT>
+<DD>Selects keymap `<TT>vicmd</TT>'.
+<P>
+
+<DT><TT>-M</TT> <VAR>keymap</VAR>
+<DD>The <VAR>keymap</VAR> specifies a keymap name.
+<P>
+
+</DL>
+<P>
+
+If a keymap selection is required and none of the options above are used, the
+`<TT>main</TT>' keymap is used.  Some operations do not permit a keymap to be
+selected, namely:
+</P><P>
+
+<DL COMPACT>
+<DT><TT>-l</TT>
+<DD>List all existing keymap names.  If the <TT>-L</TT>
+option is also used, list in the form of <TT>bindkey</TT>
+commands to create the keymaps.
+<P>
+
+<DT><TT>-d</TT>
+<DD>Delete all existing keymaps and reset to the default state.
+<P>
+
+<DT><TT>-D</TT> <VAR>keymap</VAR> ...
+<DD>Delete the named <VAR>keymap</VAR>s.
+<P>
+
+<DT><TT>-A</TT> <VAR>old-keymap new-keymap</VAR>
+<DD>Make the <VAR>new-keymap</VAR> name an alias for <VAR>old-keymap</VAR>, so that
+both names refer to the same keymap.  The names have equal standing;
+if either is deleted, the other remains.  If there is already a keymap
+with the <VAR>new-keymap</VAR> name, it is deleted.
+<P>
+
+<DT><TT>-N</TT> <VAR>new-keymap</VAR> [ <VAR>old-keymap</VAR> ]
+<DD>Create a new keymap, named <VAR>new-keymap</VAR>.  If a keymap already has that
+name, it is deleted.  If an <VAR>old-keymap</VAR> name is given, the new keymap
+is initialized to be a duplicate of it, otherwise the new keymap will
+be empty.
+<P>
+
+</DL>
+<P>
+
+To use a newly created keymap, it should be linked to <TT>main</TT>.  Hence
+the sequence of commands to create and use a new keymap `<TT>mymap</TT>'
+initialized from the <TT>emacs</TT> keymap (which remains unchanged) is:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>bindkey -N mymap emacs
+bindkey -A mymap main
+</pre></td></tr></table></P><P>
+
+Note that while `<TT>bindkey -A</TT> <VAR>newmap</VAR> <TT>main</TT>' will work when
+<VAR>newmap</VAR> is <TT>emacs</TT> or <TT>viins</TT>, it will not work for <TT>vicmd</TT>, as
+switching from vi insert to command mode becomes impossible.
+</P><P>
+
+The following operations act on the `<TT>main</TT>' keymap if no keymap
+selection option was given:
+</P><P>
+
+<DL COMPACT>
+<DT><TT>-m</TT>
+<DD>Add the built-in set of meta-key bindings to the selected keymap.
+Only keys that are unbound or bound to <TT>self-insert</TT> are affected.
+<P>
+
+<DT><TT>-r</TT> <VAR>in-string</VAR> ...
+<DD>Unbind the specified <VAR>in-string</VAR>s in the selected keymap.
+This is exactly equivalent to binding the strings to <TT>undefined-key</TT>.
+<P>
+
+When <TT>-R</TT> is also used, interpret the <VAR>in-string</VAR>s as ranges.
+</P><P>
+
+When <TT>-p</TT> is also used, the <VAR>in-string</VAR>s specify prefixes.  Any
+binding that has the given <VAR>in-string</VAR> as a prefix, not including the
+binding for the <VAR>in-string</VAR> itself, if any, will be removed.  For
+example,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>bindkey -rpM viins '^['
+</pre></td></tr></table></P><P>
+
+will remove all bindings in the vi-insert keymap beginning with an escape
+character (probably cursor keys), but leave the binding for the escape
+character itself (probably <TT>vi-cmd-mode</TT>).  This is incompatible with the
+option <TT>-R</TT>.
+</P><P>
+
+<DT><TT>-s</TT> <VAR>in-string out-string</VAR> ...
+<DD>Bind each <VAR>in-string</VAR> to each <VAR>out-string</VAR>.
+When <VAR>in-string</VAR> is typed, <VAR>out-string</VAR> will be
+pushed back and treated as input to the line editor.
+When <TT>-R</TT> is also used, interpret the <VAR>in-string</VAR>s as ranges.
+<P>
+
+<DT><VAR>in-string command</VAR> ...
+<DD>Bind each <VAR>in-string</VAR> to each <VAR>command</VAR>.
+When <TT>-R</TT> is used, interpret the <VAR>in-string</VAR>s as ranges.
+<P>
+
+<DT>[ <VAR>in-string</VAR> ]
+<DD>List key bindings.  If an <VAR>in-string</VAR> is specified, the binding of
+that string in the selected keymap is displayed.  Otherwise, all key
+bindings in the selected keymap are displayed.  (As a special case,
+if the <TT>-e</TT> or <TT>-v</TT> option is used alone, the keymap is <EM>not</EM>
+displayed - the implicit linking of keymaps is the only thing that
+happens.)
+<P>
+
+When the option <TT>-p</TT> is used, the <VAR>in-string</VAR> must be present.
+The listing shows all bindings which have the given key sequence as a
+prefix, not including any bindings for the key sequence itself.
+</P><P>
+
+When the <TT>-L</TT> option is used, the list is in the form of <TT>bindkey</TT>
+commands to create the key bindings.
+</P><P>
+
+</DL>
+<P>
+
+When the <TT>-R</TT> option is used as noted above, a valid range consists of
+two characters, with an optional `<TT>-</TT>' between them.  All characters
+between the two specified, inclusive, are bound as specified.
+</P><P>
+
+For either <VAR>in-string</VAR> or <VAR>out-string</VAR>, the following
+escape sequences are recognised:
+</P><P>
+
+<DL COMPACT>
+<DT><TT>\a</TT>
+<DD>bell character
+<DT><TT>\b</TT>
+<DD>backspace
+<DT><TT>\e</TT>, <TT>\E</TT>
+<DD>escape
+<DT><TT>\f</TT>
+<DD>form feed
+<DT><TT>\n</TT>
+<DD>linefeed (newline)
+<DT><TT>\r</TT>
+<DD>carriage return
+<DT><TT>\t</TT>
+<DD>horizontal tab
+<DT><TT>\v</TT>
+<DD>vertical tab
+<DT><TT>\</TT><VAR>NNN</VAR>
+<DD>character code in octal
+<DT><TT>\x</TT><VAR>NN</VAR>
+<DD>character code in hexadecimal
+<DT><TT>\M</TT>[<TT>-</TT>]<VAR>X</VAR>
+<DD>character with meta bit set
+<DT><TT>\C</TT>[<TT>-</TT>]<VAR>X</VAR>
+<DD>control character
+<DT><TT>^</TT><VAR>X</VAR>
+<DD>control character
+</DL>
+<P>
+
+In all other cases, `<TT>\</TT>' escapes the following character.  Delete is
+written as `<TT>^?</TT>'.  Note that `<TT>\M^?</TT>' and `<TT>^\M?</TT>' are not the same,
+and that (unlike emacs), the bindings `<TT>\M-</TT><VAR>X</VAR>' and `<TT>\e</TT><VAR>X</VAR>'
+are entirely distinct, although they are initialized to the same bindings
+by `<TT>bindkey -m</TT>'.
+</P><P>
+
+<A NAME="IDX885"></A>
+<A NAME="IDX886"></A>
+<A NAME="IDX887"></A>
+<DT><TT>vared</TT> [ <TT>-Aache</TT> ] [ <TT>-p</TT> <VAR>prompt</VAR> ] [ <TT>-r</TT> <VAR>rprompt</VAR> ] <VAR>name</VAR>
+<DD>The value of the parameter <VAR>name</VAR> is loaded into the edit
+buffer, and the line editor is invoked.  When the editor exits,
+<VAR>name</VAR> is set to the string value returned by the editor.
+When the <TT>-c</TT> flag is given, the parameter is created if it doesn't
+already exist.  The <TT>-a</TT> flag may be given with <TT>-c</TT> to create
+an array parameter, or the <TT>-A</TT> flag to create an associative array.
+If the type of an existing parameter does not match the type to be
+created, the parameter is unset and recreated.
+<P>
+
+If an array or array slice is being edited, separator characters as defined
+in <TT>$IFS</TT> will be shown quoted with a backslash, as will backslashes
+themselves.  Conversely, when the edited text is split into an array, a
+backslash quotes an immediately following separator character or backslash;
+no other special handling of backslashes, or any handling of quotes, is
+performed.
+</P><P>
+
+Individual elements of existing array or associative array parameters
+may be edited by using subscript syntax on <VAR>name</VAR>.  New elements are
+created automatically, even without <TT>-c</TT>.
+</P><P>
+
+If the <TT>-p</TT> flag is given, the following string will be taken as
+the prompt to display at the left.  If the <TT>-r</TT> flag is given,
+the following string gives the prompt to display at the right.  If the
+<TT>-h</TT> flag is specified, the history can be accessed from ZLE. If the 
+<TT>-e</TT> flag is given, typing <TT>^D</TT> (Control-D) on an empty line
+causes <TT>vared</TT> to exit immediately with a non-zero return value.
+</P><P>
+
+<A NAME="IDX888"></A>
+<A NAME="IDX889"></A>
+<A NAME="IDX890"></A>
+<A NAME="IDX891"></A>
+<A NAME="IDX892"></A>
+<A NAME="IDX893"></A>
+<A NAME="IDX894"></A>
+<A NAME="IDX895"></A>
+<A NAME="IDX896"></A>
+<A NAME="IDX897"></A>
+<A NAME="IDX898"></A>
+<DT><TT>zle</TT> <TT>-l</TT> [ <TT>-L</TT> | <TT>-a</TT> ] [ <VAR>string</VAR> ... ]
+<DD><DT><TT>zle</TT> <TT>-D</TT> <VAR>widget</VAR> ...
+<DD><DT><TT>zle</TT> <TT>-A</TT> <VAR>old-widget</VAR> <VAR>new-widget</VAR>
+<DD><DT><TT>zle</TT> <TT>-N</TT> <VAR>widget</VAR> [ <VAR>function</VAR> ]
+<DD><DT><TT>zle</TT> <TT>-C</TT> <VAR>widget</VAR> <VAR>completion-widget</VAR> <VAR>function</VAR>
+<DD><DT><TT>zle</TT> <TT>-R</TT> [ <TT>-c</TT> ] [ <VAR>display-string</VAR> ] [ <VAR>string</VAR> ... ]
+<DD><DT><TT>zle</TT> <TT>-M</TT> <VAR>string</VAR>
+<DD><DT><TT>zle</TT> <TT>-U</TT> <VAR>string</VAR>
+<DD><DT><TT>zle</TT> <TT>-K</TT> <VAR>keymap</VAR>
+<DD><DT><TT>zle</TT> <TT>-F</TT> [ <TT>-L</TT> ] [ <VAR>fd</VAR> [ <VAR>handler</VAR> ] ]
+<DD><DT><TT>zle</TT> <TT>-I</TT>
+<DD><DT><TT>zle</TT> <VAR>widget</VAR> <TT>[ -n</TT> <VAR>num</VAR> <TT>]</TT> <TT>[ -N ]</TT> <VAR>args</VAR> ...
+<DD><DT><TT>zle</TT>
+<DD>The <TT>zle</TT> builtin performs a number of different actions concerning
+ZLE.  Which operation it performs depends on its options:
+<P>
+
+<DL COMPACT>
+<DT><TT>-l</TT> [ <TT>-L</TT> | <TT>-a</TT> ]
+<DD>List all existing user-defined widgets.  If the <TT>-L</TT>
+option is used, list in the form of <TT>zle</TT>
+commands to create the widgets.
+<P>
+
+When combined with the <TT>-a</TT> option, all widget names are listed,
+including the builtin ones. In this case the <TT>-L</TT> option is ignored.
+</P><P>
+
+If at least one <VAR>string</VAR> is given, nothing will be printed but the
+return status will be zero if all <VAR>string</VAR>s are names of existing
+widgets (or of user-defined widgets if the <TT>-a</TT> flag is not given)
+and non-zero if at least one <VAR>string</VAR> is not a name of an defined
+widget.
+</P><P>
+
+<DT><TT>-D</TT> <VAR>widget</VAR> ...
+<DD>Delete the named <VAR>widget</VAR>s.
+<P>
+
+<DT><TT>-A</TT> <VAR>old-widget</VAR> <VAR>new-widget</VAR>
+<DD>Make the <VAR>new-widget</VAR> name an alias for <VAR>old-widget</VAR>, so that
+both names refer to the same widget.  The names have equal standing;
+if either is deleted, the other remains.  If there is already a widget
+with the <VAR>new-widget</VAR> name, it is deleted.
+<P>
+
+<DT><TT>-N</TT> <VAR>widget</VAR> [ <VAR>function</VAR> ]
+<DD>Create a user-defined widget.  If there is already a widget with the
+specified name, it is overwritten.  When the new
+widget is invoked from within the editor, the specified shell <VAR>function</VAR>
+is called.  If no function name is specified, it defaults to
+the same name as the widget.  For further information, see the section
+<EM>Widgets</EM> in
+<A HREF="zsh_17.html#SEC90">17. Zsh Line Editor</A>.
+<P>
+
+<A NAME="IDX899"></A>
+<DT><TT>-C</TT> <VAR>widget</VAR> <VAR>completion-widget</VAR> <VAR>function</VAR>
+<DD>Create a user-defined completion widget named <VAR>widget</VAR>. The 
+completion widget will behave like the built-in completion-widget
+whose name is given as <VAR>completion-widget</VAR>. To generate the
+completions, the shell function <VAR>function</VAR> will be called.
+For further information, see
+<A HREF="zsh_18.html#SEC105">18. Completion Widgets</A>.
+<P>
+
+<DT><TT>-R</TT> [ <TT>-c</TT> ] [ <VAR>display-string</VAR> ] [ <VAR>string</VAR> ... ]
+<DD>Redisplay the command line; this is to be called from within a user-defined
+widget to allow changes to become visible.  If a <VAR>display-string</VAR> is
+given and not empty, this is shown in the status line (immediately
+below the line being edited).
+<P>
+
+If the optional <VAR>string</VAR>s are given they are listed below the
+prompt in the same way as completion lists are printed. If no
+<VAR>string</VAR>s are given but the <TT>-c</TT> option is used such a list is
+cleared.
+</P><P>
+
+Note that this option is only useful for widgets that do not exit
+immediately after using it because the strings displayed will be erased 
+immediately after return from the widget.
+</P><P>
+
+This command can safely be called outside user defined widgets; if zle is
+active, the display will be refreshed, while if zle is not active, the
+command has no effect.  In this case there will usually be no other
+arguments.  The status is zero if zle was active, else one.
+</P><P>
+
+<DT><TT>-M</TT> <VAR>string</VAR>
+<DD>As with the <TT>-R</TT> option, the <VAR>string</VAR> will be displayed below the 
+command line; unlike the <TT>-R</TT> option, the string will not be put into
+the status line but will instead be printed normally below the
+prompt.  This means that the <VAR>string</VAR> will still be displayed after
+the widget returns (until it is overwritten by subsequent commands).
+<P>
+
+<DT><TT>-U</TT> <VAR>string</VAR>
+<DD>This pushes the characters in the <VAR>string</VAR> onto the input stack of
+ZLE.  After the widget currently executed finishes ZLE will behave as
+if the characters in the <VAR>string</VAR> were typed by the user.
+<P>
+
+As ZLE uses a stack, if this option is used repeatedly
+the last string pushed onto the stack will be processed first.  However,
+the characters in each <VAR>string</VAR> will be processed in the order in which
+they appear in the string.
+</P><P>
+
+<DT><TT>-K</TT> <VAR>keymap</VAR>
+<DD>Selects the keymap named <VAR>keymap</VAR>.  An error message will be displayed if
+there is no such keymap.
+<P>
+
+This keymap selection affects the interpretation of following keystrokes
+within this invocation of ZLE.  Any following invocation (e.g., the next
+command line) will start as usual with the `<TT>main</TT>' keymap selected.
+</P><P>
+
+<DT><TT>-F</TT> [ <TT>-L</TT> ] [ <VAR>fd</VAR> [ <VAR>handler</VAR> ] ]
+<DD>Only available if your system supports one of the `poll' or `select' system
+calls; most modern systems do.
+<P>
+
+Installs <VAR>handler</VAR> (the name of a shell function) to handle input from
+file descriptor <VAR>fd</VAR>.  When zle is attempting to read data, it will
+examine both the terminal and the list of handled <VAR>fd</VAR>'s.  If data
+becomes available on a handled <VAR>fd</VAR>, zle will call <VAR>handler</VAR> with
+the fd which is ready for reading as the only argument.  If the handler
+produces output to the terminal, it should call `<TT>zle -I</TT>' before doing
+so (see below).  The handler should not attempt to read from the terminal.
+Note that zle makes no attempt to check whether this fd is actually
+readable when installing the handler.  The user must make their own
+arrangements for handling the file descriptor when zle is not active.
+</P><P>
+
+Any number of handlers for any number of readable file descriptors may be
+installed.  Installing a handler for an <VAR>fd</VAR> which is already handled
+causes the existing handler to be replaced.
+</P><P>
+
+If no <VAR>handler</VAR> is given, but an <VAR>fd</VAR> is present, any handler for
+that <VAR>fd</VAR> is removed.  If there is none, an error message is printed
+and status 1 is returned.
+</P><P>
+
+If no arguments are given, or the <TT>-L</TT> option is supplied, a list of
+handlers is printed in a form which can be stored for later execution.
+</P><P>
+
+An <VAR>fd</VAR> (but not a <VAR>handler</VAR>) may optionally be given with the <TT>-L</TT>
+option; in this case, the function will list the handler if any, else
+silently return status 1.
+</P><P>
+
+Note that this feature should be used with care.  Activity on one of the
+<VAR>fd</VAR>'s which is not properly handled can cause the terminal to become
+unusable.
+</P><P>
+
+Here is a simple example of using this feature.  A connection to a remote
+TCP port is created using the ztcp command; see 
+<A HREF="zsh_21.html#SEC165">21.22 The zsh/net/tcp Module</A>.  Then a handler is installed
+which simply prints out any data which arrives on this connection.  Note
+that `select' will indicate that the file descriptor needs handling
+if the remote side has closed the connection; we handle that by testing
+for a failed read.
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>if ztcp pwspc 2811; then
+  tcpfd=$REPLY
+  handler() {
+    zle -I
+    local line
+    if ! read -r line &#60;&#38;$1; then
+      # select marks this fd if we reach EOF,
+      # so handle this specially.
+      print "[Read on fd $1 failed, removing.]" &#62;&#38;2
+      zle -F $1
+      return 1
+    fi
+    print -r - $line
+  }
+  zle -F $tcpfd handler
+fi
+</pre></td></tr></table></P><P>
+
+<DT><TT>-I</TT>
+<DD>Unusually, this option is most useful outside ordinary widget functions,
+though it may be used within if normal output to the terminal is required.
+It invalidates the current zle display in preparation for output; typically
+this will be from a trap function.  It has no effect if zle is not
+active.  When a trap exits, the shell checks to see if the display needs
+restoring, hence the following will print output in such a way as not to
+disturb the line being edited:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>TRAPUSR1() {
+    # Invalidate zle display
+  [[ -o zle ]] &#38;&#38; zle -I
+    # Show output
+  print Hello
+}
+</pre></td></tr></table></P><P>
+
+In general, the trap function may need to test whether zle is active before
+using this method (as shown in the example), since the <TT>zsh/zle</TT> module
+may not even be loaded; if it is not, the command can be skipped.
+</P><P>
+
+It is possible to call `<TT>zle -I</TT>' several times before control is
+returned to the editor; the display will only be invalidated the first time
+to minimise disruption.
+</P><P>
+
+Note that there are normally better ways of manipulating the display from
+within zle widgets; see, for example, `<TT>zle -R</TT>' above.
+</P><P>
+
+The status is zero if zle is active and the current zle display has
+been invalidated (even if this was by a previous call to `<TT>zle -I</TT>'),
+else one.
+</P><P>
+
+<DT><VAR>widget</VAR> <TT>[ -n</TT> <VAR>num</VAR> <TT>]</TT> <TT>[ -N ]</TT> <VAR>args</VAR> ...
+<DD>Invoke the specified widget.  This can only be done when ZLE is
+active; normally this will be within a user-defined widget.
+<P>
+
+With the options <TT>-n</TT> and <TT>-N</TT>, the current numerical argument will be
+saved and then restored after the call to <TT>widget</TT>; `<TT>-n</TT> <VAR>num</VAR>'
+sets the numerical argument temporarily to <VAR>num</VAR>, while `<TT>-N</TT>' sets it
+to the default, i.e. as if there were none.
+</P><P>
+
+Any further arguments will be passed to the widget.  If it is a shell
+function, these are passed down as positional parameters; for builtin
+widgets it is up to the widget in question what it does with them.
+Currently arguments are only handled by the incremental-search commands,
+the <TT>history-search-forward</TT> and <TT>-backward</TT> and the corresponding
+functions prefixed by <TT>vi-</TT>, and by <TT>universal-argument</TT>.  No error is
+flagged if the command does not use the arguments, or only uses some of
+them.
+</P><P>
+
+The return status reflects the success or failure of the operation carried
+out by the widget, or if it is a user-defined widget the return status of
+the shell function.  
+</P><P>
+
+A non-zero return status causes the shell to beep when the widget exits,
+unless the <TT>BEEP</TT> options was unset or the widget was called via the
+<TT>zle</TT> command.  Thus if a user defined widget requires an immediate beep,
+it should call the <TT>beep</TT> widget directly.
+</P><P>
+
+</DL>
+<P>
+
+With no options and no arguments, only the return status will be
+set. It is zero if ZLE is currently active and widgets could be
+invoked using this builtin command and non-zero if ZLE is not active.
+</P><P>
+
+</DL>
+<P>
+
+<A NAME="Zle Widgets"></A>
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC95"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC94"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC96"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC90"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC90"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_18.html#SEC105"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 17.4 Widgets </H2>
+<!--docid::SEC95::-->
+<A NAME="IDX900"></A>
+All actions in the editor are performed by `widgets'.  A widget's job is
+simply to perform some small action.  The ZLE commands that key sequences
+in keymaps are bound to are in fact widgets.  Widgets can be user-defined
+or built in.
+<P>
+
+The standard widgets built in to ZLE are listed in Standard Widgets below.
+Other built-in widgets can be defined by other modules (see
+<A HREF="zsh_21.html#SEC137">21. Zsh Modules</A>).  Each built-in widget has two names: its normal canonical name, and the
+same name preceded by a `<TT>.</TT>'.  The `<TT>.</TT>' name is special: it can't be
+rebound to a different widget.  This makes the widget available even when
+its usual name has been redefined.
+</P><P>
+
+User-defined widgets are defined using `<TT>zle -N</TT>', and implemented
+as shell functions.  When the widget is executed, the corresponding
+shell function is executed, and can perform editing (or other) actions.
+It is recommended that user-defined widgets should not have names
+starting with `<TT>.</TT>'.
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC96"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC95"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC97"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC98"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC90"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC98"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 17.5 User-Defined Widgets </H2>
+<!--docid::SEC96::-->
+<A NAME="IDX901"></A>
+User-defined widgets, being implemented as shell functions,
+can execute any normal shell command.  They can also run other widgets
+(whether built-in or user-defined) using the <TT>zle</TT> builtin command.
+The standard input of the function is closed to prevent external commands
+from unintentionally blocking ZLE by reading from the terminal, but
+<TT>read -k</TT> or <TT>read -q</TT> can be used to read characters.  Finally,
+they can examine and edit the ZLE buffer being edited by
+reading and setting the special parameters described below.
+<P>
+
+<A NAME="IDX902"></A>
+<A NAME="IDX903"></A>
+These special parameters are always available in widget functions, but
+are not in any way special outside ZLE.  If they have some normal value
+outside ZLE, that value is temporarily inaccessible, but will return
+when the widget function exits.  These special parameters in fact have
+local scope, like parameters created in a function using <TT>local</TT>.
+</P><P>
+
+Inside completion widgets and traps called while ZLE is active, these
+parameters are available read-only.
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX904"></A>
+<DT><TT>BUFFER</TT> (scalar)
+<DD>The entire contents of the edit buffer.  If it is written to, the
+cursor remains at the same offset, unless that would put it outside the
+buffer.
+<P>
+
+<A NAME="IDX905"></A>
+<DT><TT>BUFFERLINES</TT> (integer)
+<DD>The number of screen lines needed for the edit buffer currently
+displayed on screen (i.e. without any changes to the preceding
+parameters done after the last redisplay); read-only.
+<P>
+
+<A NAME="IDX906"></A>
+<DT><TT>CONTEXT</TT> (scalar)
+<DD>The context in which zle was called to read a line; read-only.  One of
+the values:
+<DL COMPACT>
+<DT>start
+<DD>The start of a command line (at prompt <TT>PS1</TT>).
+<P>
+
+<DT>cont
+<DD>A continuation to a command line (at prompt <TT>PS2</TT>).
+<P>
+
+<DT>select
+<DD>In a <TT>select</TT> loop.
+<P>
+
+<DT>vared
+<DD>Editing a variable in <TT>vared</TT>.
+<P>
+
+</DL>
+<P>
+
+<A NAME="IDX907"></A>
+<DT><TT>CURSOR</TT> (integer)
+<DD>The offset of the cursor, within the edit buffer.  This is in the range
+0 to <TT>$#BUFFER</TT>, and is by definition equal to <TT>$#LBUFFER</TT>.
+Attempts to move the cursor outside the buffer will result in the
+cursor being moved to the appropriate end of the buffer.
+<P>
+
+<A NAME="IDX908"></A>
+<DT><TT>CUTBUFFER</TT> (scalar)
+<DD>The last item to be cut using one of the `<TT>kill-</TT>' commands; the
+string which the next yank would insert in the line.
+<P>
+
+<A NAME="IDX909"></A>
+<DT><TT>HISTNO</TT> (integer)
+<DD>The current history number; read-only.
+<P>
+
+<A NAME="IDX910"></A>
+<DT><TT>KEYMAP</TT> (scalar)
+<DD>The name of the currently selected keymap; read-only.
+<P>
+
+<A NAME="IDX911"></A>
+<DT><TT>KEYS</TT> (scalar)
+<DD>The keys typed to invoke this widget, as a literal string; read-only.
+<P>
+
+<A NAME="IDX912"></A>
+<DT><TT>killring</TT> (array)
+<DD>The array of previously killed items, with the most recently killed first.
+This gives the items that would be retrieved by a <TT>yank-pop</TT> in the
+same order.
+<P>
+
+The default size for the kill ring is eight, however the length may be
+changed by normal array operations.  Any empty string in the kill ring is
+ignored by the <TT>yank-pop</TT> command, hence the size of the array
+effectively sets the maximum length of the kill ring, while the number of
+non-zero strings gives the current length, both as seen by the user at the
+command line.
+</P><P>
+
+<A NAME="IDX913"></A>
+<DT><TT>LASTSEARCH</TT> (scalar)
+<DD>The last search string used by an interactive search ; read-only.
+<P>
+
+<A NAME="IDX914"></A>
+<DT><TT>LASTWIDGET</TT> (scalar)
+<DD>The name of the last widget that was executed; read-only.
+<P>
+
+<A NAME="IDX915"></A>
+<DT><TT>LBUFFER</TT> (scalar)
+<DD>The part of the buffer that lies to the left of the cursor position.
+If it is assigned to, only that part of the buffer is replaced, and the
+cursor remains between the new <TT>$LBUFFER</TT> and the old <TT>$RBUFFER</TT>.
+<P>
+
+<A NAME="IDX916"></A>
+<DT><TT>MARK</TT> (integer)
+<DD>Like <TT>CURSOR</TT>, but for the mark.
+<P>
+
+<A NAME="IDX917"></A>
+<DT><TT>NUMERIC</TT> (integer)
+<DD>The numeric argument. If no numeric argument was given, this parameter
+is unset. When this is set inside a widget function, builtin widgets
+called with the <TT>zle</TT> builtin command will use the value
+assigned. If it is unset inside a widget function, builtin widgets
+called behave as if no numeric argument was given.
+<P>
+
+<A NAME="IDX918"></A>
+<DT><TT>PENDING</TT> (integer)
+<DD>The number of bytes pending for input, i.e. the number of bytes which have
+already been typed and can immediately be read. On systems where the shell
+is not able to get this information, this parameter will always have a
+value of zero.  Read-only.
+<P>
+
+<A NAME="IDX919"></A>
+<DT><TT>PREBUFFER</TT> (scalar)
+<DD>In a multi-line input at the secondary prompt, this read-only parameter
+contains the contents of the lines before the one the cursor is
+currently in.
+<P>
+
+<A NAME="IDX920"></A>
+<DT><TT>PREDISPLAY</TT> (scalar)
+<DD>Text to be displayed before the start of the editable text buffer.  This
+does not have to be a complete line; to display a complete line, a newline
+must be appended explicitly.    The text is reset on each new invocation
+(but not recursive invocation) of zle.
+<P>
+
+<A NAME="IDX921"></A>
+<DT><TT>POSTDISPLAY</TT> (scalar)
+<DD>Text to be displayed after the end of the editable text buffer.  This
+does not have to be a complete line; to display a complete line, a newline
+must be prepended explicitly.  The text is reset on each new invocation
+(but not recursive invocation) of zle.
+<P>
+
+<A NAME="IDX922"></A>
+<DT><TT>RBUFFER</TT> (scalar)
+<DD>The part of the buffer that lies to the right of the cursor position.
+If it is assigned to, only that part of the buffer is replaced, and the
+cursor remains between the old <TT>$LBUFFER</TT> and the new <TT>$RBUFFER</TT>.
+<P>
+
+<A NAME="IDX923"></A>
+<DT><TT>WIDGET</TT> (scalar)
+<DD>The name of the widget currently being executed; read-only.
+<P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC97"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC96"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC98"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC90"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC90"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_18.html#SEC105"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 17.5.1 Special Widget </H3>
+<!--docid::SEC97::-->
+<P>
+
+There is one user-defined widget which is special to the shell.
+If it does not exist, no special action is taken.  The environment
+provided is identical to that for any other editing widget.
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX924"></A>
+<DT><TT>zle-line-init</TT>
+<DD>Executed every time the line editor is started to read a new line
+of input.  The following example puts the line editor into vi command
+mode when it starts up.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>zle-line-init() { zle -K vicmd; }
+zle -N zle-line-init
+</pre></td></tr></table></P><P>
+
+(The command inside the function sets the keymap directly; it is
+equivalent to <TT>zle vi-cmd-mode</TT>.)
+</P><P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC98"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC97"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC99"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC90"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC90"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_18.html#SEC105"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 17.6 Standard Widgets </H2>
+<!--docid::SEC98::-->
+<A NAME="IDX925"></A>
+The following is a list of all the standard widgets,
+and their default bindings in emacs mode,
+vi command mode and vi insert mode
+(the `<TT>emacs</TT>', `<TT>vicmd</TT>' and `<TT>viins</TT>' keymaps, respectively).
+<P>
+
+Note that cursor keys are bound to movement keys in all three keymaps;
+the shell assumes that the cursor keys send the key sequences reported
+by the terminal-handling library (termcap or terminfo).  The key sequences
+shown in the list are those based on the VT100, common on many modern
+terminals, but in fact these are not necessarily bound.  In the case of the
+<TT>viins</TT> keymap, the initial escape character of the sequences serves also
+to return to the <TT>vicmd</TT> keymap: whether this happens is determined by
+the <TT>KEYTIMEOUT</TT> parameter, see <A HREF="zsh_14.html#SEC70">14. Parameters</A>.
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_17.html#SEC99">17.6.1 Movement</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_17.html#SEC100">17.6.2 History Control</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_17.html#SEC101">17.6.3 Modifying Text</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_17.html#SEC102">17.6.4 Arguments</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_17.html#SEC103">17.6.5 Completion</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_17.html#SEC104">17.6.6 Miscellaneous</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<A NAME="Movement"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC99"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC98"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC100"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC94"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC95"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC96"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 17.6.1 Movement </H3>
+<!--docid::SEC99::-->
+<DL COMPACT>
+<A NAME="IDX926"></A>
+<DT><TT>vi-backward-blank-word</TT> (unbound) (B) (unbound)
+<DD>Move backward one word, where a word is defined as a series of
+non-blank characters.
+<P>
+
+<A NAME="IDX927"></A>
+<DT><TT>backward-char</TT> (^B ESC-[D) (unbound) (unbound)
+<DD>Move backward one character.
+<P>
+
+<A NAME="IDX928"></A>
+<DT><TT>vi-backward-char</TT> (unbound) (^H h ^?) (ESC-[D)
+<DD>Move backward one character, without changing lines.
+<P>
+
+<A NAME="IDX929"></A>
+<DT><TT>backward-word</TT> (ESC-B ESC-b) (unbound) (unbound)
+<DD>Move to the beginning of the previous word.
+<P>
+
+<A NAME="IDX930"></A>
+<DT><TT>emacs-backward-word</TT>
+<DD>Move to the beginning of the previous word.
+<P>
+
+<A NAME="IDX931"></A>
+<DT><TT>vi-backward-word</TT> (unbound) (b) (unbound)
+<DD>Move to the beginning of the previous word, vi-style.
+<P>
+
+<A NAME="IDX932"></A>
+<DT><TT>beginning-of-line</TT> (^A) (unbound) (unbound)
+<DD>Move to the beginning of the line.  If already at the beginning
+of the line, move to the beginning of the previous line, if any.
+<P>
+
+<A NAME="IDX933"></A>
+<DT><TT>vi-beginning-of-line</TT>
+<DD>Move to the beginning of the line, without changing lines.
+<P>
+
+<A NAME="IDX934"></A>
+<DT><TT>end-of-line</TT> (^E) (unbound) (unbound)
+<DD>Move to the end of the line.  If already at the end
+of the line, move to the end of the next line, if any.
+<P>
+
+<A NAME="IDX935"></A>
+<DT><TT>vi-end-of-line</TT> (unbound) ($) (unbound)
+<DD>Move to the end of the line.
+If an argument is given to this command, the cursor will be moved to
+the end of the line (argument - 1) lines down.
+<P>
+
+<A NAME="IDX936"></A>
+<DT><TT>vi-forward-blank-word</TT> (unbound) (W) (unbound)
+<DD>Move forward one word, where a word is defined as a series of
+non-blank characters.
+<P>
+
+<A NAME="IDX937"></A>
+<DT><TT>vi-forward-blank-word-end</TT> (unbound) (E) (unbound)
+<DD>Move to the end of the current word, or, if at the end of the current word,
+to the end of the next word,
+where a word is defined as a series of non-blank characters.
+<P>
+
+<A NAME="IDX938"></A>
+<DT><TT>forward-char</TT> (^F ESC-[C) (unbound) (unbound)
+<DD>Move forward one character.
+<P>
+
+<A NAME="IDX939"></A>
+<DT><TT>vi-forward-char</TT> (unbound) (space l) (ESC-[C)
+<DD>Move forward one character.
+<P>
+
+<A NAME="IDX940"></A>
+<DT><TT>vi-find-next-char</TT> (^X^F) (f) (unbound)
+<DD>Read a character from the keyboard, and move to
+the next occurrence of it in the line.
+<P>
+
+<A NAME="IDX941"></A>
+<DT><TT>vi-find-next-char-skip</TT> (unbound) (t) (unbound)
+<DD>Read a character from the keyboard, and move to
+the position just before the next occurrence of it in the line.
+<P>
+
+<A NAME="IDX942"></A>
+<DT><TT>vi-find-prev-char</TT> (unbound) (F) (unbound)
+<DD>Read a character from the keyboard, and move to
+the previous occurrence of it in the line.
+<P>
+
+<A NAME="IDX943"></A>
+<DT><TT>vi-find-prev-char-skip</TT> (unbound) (T) (unbound)
+<DD>Read a character from the keyboard, and move to
+the position just after the previous occurrence of it in the line.
+<P>
+
+<A NAME="IDX944"></A>
+<DT><TT>vi-first-non-blank</TT> (unbound) (^) (unbound)
+<DD>Move to the first non-blank character in the line.
+<P>
+
+<A NAME="IDX945"></A>
+<DT><TT>vi-forward-word</TT> (unbound) (w) (unbound)
+<DD>Move forward one word, vi-style.
+<P>
+
+<A NAME="IDX946"></A>
+<DT><TT>forward-word</TT> (ESC-F ESC-f) (unbound) (unbound)
+<DD>Move to the beginning of the next word.
+The editor's idea of a word is specified with the <TT>WORDCHARS</TT>
+parameter.
+<P>
+
+<A NAME="IDX947"></A>
+<DT><TT>emacs-forward-word</TT>
+<DD>Move to the end of the next word.
+<P>
+
+<A NAME="IDX948"></A>
+<DT><TT>vi-forward-word-end</TT> (unbound) (e) (unbound)
+<DD>Move to the end of the next word.
+<P>
+
+<A NAME="IDX949"></A>
+<DT><TT>vi-goto-column</TT> (ESC-|) (|) (unbound)
+<DD>Move to the column specified by the numeric argument.
+<P>
+
+<A NAME="IDX950"></A>
+<DT><TT>vi-goto-mark</TT> (unbound) (`) (unbound)
+<DD>Move to the specified mark.
+<P>
+
+<A NAME="IDX951"></A>
+<DT><TT>vi-goto-mark-line</TT> (unbound) (') (unbound)
+<DD>Move to beginning of the line containing the specified mark.
+<P>
+
+<A NAME="IDX952"></A>
+<DT><TT>vi-repeat-find</TT> (unbound) (;) (unbound)
+<DD>Repeat the last <TT>vi-find</TT> command.
+<P>
+
+<A NAME="IDX953"></A>
+<DT><TT>vi-rev-repeat-find</TT> (unbound) (,) (unbound)
+<DD>Repeat the last <TT>vi-find</TT> command in the opposite direction.
+<P>
+
+</DL>
+<A NAME="History Control"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC100"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC99"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC101"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC94"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC95"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC96"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 17.6.2 History Control </H3>
+<!--docid::SEC100::-->
+<DL COMPACT>
+<A NAME="IDX954"></A>
+<DT><TT>beginning-of-buffer-or-history</TT> (ESC-&#60;) (unbound) (unbound)
+<DD>Move to the beginning of the buffer, or if already there,
+move to the first event in the history list.
+<P>
+
+<A NAME="IDX955"></A>
+<DT><TT>beginning-of-line-hist</TT>
+<DD>Move to the beginning of the line.  If already at the
+beginning of the buffer, move to the previous history line.
+<P>
+
+<A NAME="IDX956"></A>
+<DT><TT>beginning-of-history</TT>
+<DD>Move to the first event in the history list.
+<P>
+
+<A NAME="IDX957"></A>
+<DT><TT>down-line-or-history</TT> (^N ESC-[B) (j) (ESC-[B)
+<DD>Move down a line in the buffer, or if already at the bottom line,
+move to the next event in the history list.
+<P>
+
+<A NAME="IDX958"></A>
+<DT><TT>vi-down-line-or-history</TT> (unbound) (+) (unbound)
+<DD>Move down a line in the buffer, or if already at the bottom line,
+move to the next event in the history list.
+Then move to the first non-blank character on the line.
+<P>
+
+<A NAME="IDX959"></A>
+<DT><TT>down-line-or-search</TT>
+<DD>Move down a line in the buffer, or if already at the bottom line,
+search forward in the history for a line beginning with the first
+word in the buffer.
+<P>
+
+If called from a function by the <TT>zle</TT> command with arguments, the first
+argument is taken as the string for which to search, rather than the
+first word in the buffer.
+</P><P>
+
+<A NAME="IDX960"></A>
+<DT><TT>down-history</TT> (unbound) (^N) (unbound)
+<DD>Move to the next event in the history list.
+<P>
+
+<A NAME="IDX961"></A>
+<DT><TT>history-beginning-search-backward</TT>
+<DD>Search backward in the history for a line beginning with the current
+line up to the cursor.
+This leaves the cursor in its original position.
+<P>
+
+<A NAME="IDX962"></A>
+<DT><TT>end-of-buffer-or-history</TT> (ESC-&#62;) (unbound) (unbound)
+<DD>Move to the end of the buffer, or if already there,
+move to the last event in the history list.
+<P>
+
+<A NAME="IDX963"></A>
+<DT><TT>end-of-line-hist</TT>
+<DD>Move to the end of the line.  If already at the end of
+the buffer, move to the next history line.
+<P>
+
+<A NAME="IDX964"></A>
+<DT><TT>end-of-history</TT>
+<DD>Move to the last event in the history list.
+<P>
+
+<A NAME="IDX965"></A>
+<DT><TT>vi-fetch-history</TT> (unbound) (G) (unbound)
+<DD>Fetch the history line specified by the numeric argument.
+This defaults to the current history line
+(i.e. the one that isn't history yet).
+<P>
+
+<A NAME="IDX966"></A>
+<DT><TT>history-incremental-search-backward</TT> (^R ^Xr) (unbound) (unbound)
+<DD>Search backward incrementally for a specified string.  The search is
+case-insensitive if the search string does not have uppercase letters and no
+numeric argument was given.  The string may begin with `<TT>^</TT>' to anchor the
+search to the beginning of the line.
+<P>
+
+A restricted set of editing functions
+is available in the mini-buffer.  An interrupt signal, as defined by the stty
+setting, will stop the search and go back to the original line.  An undefined
+key will have the same effect. The supported functions are:
+<TT>backward-delete-char</TT>,
+<TT>vi-backward-delete-char</TT>,
+<TT>clear-screen</TT>,
+<TT>redisplay</TT>,
+<TT>quoted-insert</TT>,
+<TT>vi-quoted-insert</TT>,
+<TT>accept-and-hold</TT>,
+<TT>accept-and-infer-next-history</TT>,
+<TT>accept-line</TT> and
+<TT>accept-line-and-down-history</TT>.
+</P><P>
+
+<TT>magic-space</TT> just inserts a space.
+<TT>vi-cmd-mode</TT> toggles between the `<TT>main</TT>' and `<TT>vicmd</TT>' keymaps;
+the `<TT>main</TT>' keymap (insert mode) will be selected initially.
+<TT>history-incremental-search-backward</TT> will get the
+next occurrence of the contents of the mini-buffer.
+<TT>history-incremental-search-forward</TT> inverts the sense of the search.
+<TT>vi-repeat-search</TT> and <TT>vi-rev-repeat-search</TT> are similarly supported.
+The direction of the search is indicated in the mini-buffer.
+</P><P>
+
+Any multi-character string
+that is not bound to one of the above functions will beep and interrupt the
+search, leaving the last found line in the buffer. Any single character that
+is not bound to one of the above functions, or <TT>self-insert</TT> or
+<TT>self-insert-unmeta</TT>, will have the same effect but the function will be
+executed.
+</P><P>
+
+When called from a widget function by the <TT>zle</TT> command, the incremental
+search commands can take a string argument.  This will be treated as a
+string of keys, as for arguments to the <TT>bindkey</TT> command, and used as
+initial input for the command.  Any characters in the string which are
+unused by the incremental search will be silently ignored.  For example,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>zle history-incremental-search-backward forceps
+</pre></td></tr></table></P><P>
+
+will search backwards for <TT>forceps</TT>, leaving the minibuffer containing
+the string `<TT>forceps</TT>'.
+</P><P>
+
+<A NAME="IDX967"></A>
+<DT><TT>history-incremental-search-forward</TT> (^S ^Xs) (unbound) (unbound)
+<DD>Search forward incrementally for a specified string.  The search is
+case-insensitive if the search string does not have uppercase letters and no
+numeric argument was given.  The string may begin with `<TT>^</TT>' to anchor the
+search to the beginning of the line.  The functions available in the
+mini-buffer are the same as for <TT>history-incremental-search-backward</TT>.
+<P>
+
+<A NAME="IDX968"></A>
+<DT><TT>history-search-backward</TT> (ESC-P ESC-p) (unbound) (unbound)
+<DD>Search backward in the history for a line beginning with the first
+word in the buffer.
+<P>
+
+If called from a function by the <TT>zle</TT> command with arguments, the first
+argument is taken as the string for which to search, rather than the
+first word in the buffer.
+</P><P>
+
+<A NAME="IDX969"></A>
+<DT><TT>vi-history-search-backward</TT> (unbound) (/) (unbound)
+<DD>Search backward in the history for a specified string.
+The string may begin with `<TT>^</TT>' to anchor the search to the
+beginning of the line.
+<P>
+
+A restricted set of editing functions is available in
+the mini-buffer.  An interrupt signal, as defined by the stty setting,  will
+stop the search.
+The functions available in the mini-buffer are:
+<TT>accept-line</TT>,
+<TT>backward-delete-char</TT>,
+<TT>vi-backward-delete-char</TT>,
+<TT>backward-kill-word</TT>,
+<TT>vi-backward-kill-word</TT>,
+<TT>clear-screen</TT>,
+<TT>redisplay</TT>,
+<TT>quoted-insert</TT>
+and
+<TT>vi-quoted-insert</TT>.
+</P><P>
+
+<TT>vi-cmd-mode</TT> is treated the same as accept-line, and
+<TT>magic-space</TT> is treated as a space.
+Any other character that is not bound to self-insert or
+self-insert-unmeta will beep and be ignored. If the function is called from vi
+command mode, the bindings of the current insert mode will be used.
+</P><P>
+
+If called from a function by the <TT>zle</TT> command with arguments, the first
+argument is taken as the string for which to search, rather than the
+first word in the buffer.
+</P><P>
+
+<A NAME="IDX970"></A>
+<DT><TT>history-search-forward</TT> (ESC-N ESC-n) (unbound) (unbound)
+<DD>Search forward in the history for a line beginning with the first
+word in the buffer.
+<P>
+
+If called from a function by the <TT>zle</TT> command with arguments, the first
+argument is taken as the string for which to search, rather than the
+first word in the buffer.
+</P><P>
+
+<A NAME="IDX971"></A>
+<DT><TT>vi-history-search-forward</TT> (unbound) (?) (unbound)
+<DD>Search forward in the history for a specified string.
+The string may begin with `<TT>^</TT>' to anchor the search to the
+beginning of the line. The functions available in the mini-buffer are the same
+as for <TT>vi-history-search-backward</TT>.  Argument handling is also the same
+as for that command.
+<P>
+
+<A NAME="IDX972"></A>
+<DT><TT>infer-next-history</TT> (^X^N) (unbound) (unbound)
+<DD>Search in the history list for a line matching the current one and
+fetch the event following it.
+<P>
+
+<A NAME="IDX973"></A>
+<DT><TT>insert-last-word</TT> (ESC-_ ESC-.) (unbound) (unbound)
+<DD>Insert the last word from the previous history event at the
+cursor position.  If a positive numeric argument is given,
+insert that word from the end of the previous history event.
+If the argument is zero or negative insert that word from the
+left (zero inserts the previous command word).  Repeating this command
+replaces the word just inserted with the last word from the
+history event prior to the one just used; numeric arguments can be used in
+the same way to pick a word from that event.
+<P>
+
+When called from a shell function invoked from a user-defined widget, the
+command can take one to three arguments.  The first argument specifies a
+history offset which applies to successive calls to this widget: if is -1,
+the default behaviour is used, while if it is 1, successive calls will move
+forwards through the history.  The value 0 can be used to indicate that the
+history line examined by the previous execution of the command will be
+reexamined.  Note that negative numbers should be preceded with a
+`<TT>-</TT><TT>-</TT>' argument to avoid confusing them with options.
+</P><P>
+
+If two arguments are given, the second specifies the word on the command
+line in normal array index notation (as a more natural alternative to the
+prefix argument).  Hence 1 is the first word, and -1 (the default) is the
+last word.
+</P><P>
+
+If a third argument is given, its value is ignored, but it is used to
+signify that the history offset is relative to the current history line,
+rather than the one remembered after the previous invocations of
+<TT>insert-last-word</TT>.
+</P><P>
+
+For example, the default behaviour of the command corresponds to
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>zle insert-last-word -- -1 -1
+</pre></td></tr></table></P><P>
+
+while the command
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>zle insert-last-word -- -1 1 -
+</pre></td></tr></table></P><P>
+
+always copies the first word of the line in the history immediately before
+the line being edited.  This has the side effect that later invocations of
+the widget will be relative to that line.
+</P><P>
+
+<A NAME="IDX974"></A>
+<DT><TT>vi-repeat-search</TT> (unbound) (n) (unbound)
+<DD>Repeat the last vi history search.
+<P>
+
+<A NAME="IDX975"></A>
+<DT><TT>vi-rev-repeat-search</TT> (unbound) (N) (unbound)
+<DD>Repeat the last vi history search, but in reverse.
+<P>
+
+<A NAME="IDX976"></A>
+<DT><TT>up-line-or-history</TT> (^P ESC-[A) (k) (ESC-[A)
+<DD>Move up a line in the buffer, or if already at the top line,
+move to the previous event in the history list.
+<P>
+
+<A NAME="IDX977"></A>
+<DT><TT>vi-up-line-or-history</TT> (unbound) (-) (unbound)
+<DD>Move up a line in the buffer, or if already at the top line,
+move to the previous event in the history list.
+Then move to the first non-blank character on the line.
+<P>
+
+<A NAME="IDX978"></A>
+<DT><TT>up-line-or-search</TT>
+<DD>Move up a line in the buffer, or if already at the top line,
+search backward in the history for a line beginning with the
+first word in the buffer.
+<P>
+
+If called from a function by the <TT>zle</TT> command with arguments, the first
+argument is taken as the string for which to search, rather than the
+first word in the buffer.
+</P><P>
+
+<A NAME="IDX979"></A>
+<DT><TT>up-history</TT> (unbound) (^P) (unbound)
+<DD>Move to the previous event in the history list.
+<P>
+
+<A NAME="IDX980"></A>
+<DT><TT>history-beginning-search-forward</TT>
+<DD>Search forward in the history for a line beginning with the current
+line up to the cursor.
+This leaves the cursor in its original position.
+<P>
+
+</DL>
+<A NAME="Modifying Text"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC101"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC100"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC102"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC94"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC95"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC96"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 17.6.3 Modifying Text </H3>
+<!--docid::SEC101::-->
+<DL COMPACT>
+<A NAME="IDX981"></A>
+<DT><TT>vi-add-eol</TT> (unbound) (A) (unbound)
+<DD>Move to the end of the line and enter insert mode.
+<P>
+
+<A NAME="IDX982"></A>
+<DT><TT>vi-add-next</TT> (unbound) (a) (unbound)
+<DD>Enter insert mode after the current cursor position, without changing lines.
+<P>
+
+<A NAME="IDX983"></A>
+<DT><TT>backward-delete-char</TT> (^H ^?) (unbound) (unbound)
+<DD>Delete the character behind the cursor.
+<P>
+
+<A NAME="IDX984"></A>
+<DT><TT>vi-backward-delete-char</TT> (unbound) (X) (^H)
+<DD>Delete the character behind the cursor, without changing lines.
+If in insert mode, this won't delete past the point where insert mode was
+last entered.
+<P>
+
+<A NAME="IDX985"></A>
+<DT><TT>backward-delete-word</TT>
+<DD>Delete the word behind the cursor.
+<P>
+
+<A NAME="IDX986"></A>
+<DT><TT>backward-kill-line</TT>
+<DD>Kill from the beginning of the line to the cursor position.
+<P>
+
+<A NAME="IDX987"></A>
+<DT><TT>backward-kill-word</TT> (^W ESC-^H ESC-^?) (unbound) (unbound)
+<DD>Kill the word behind the cursor.
+<P>
+
+<A NAME="IDX988"></A>
+<DT><TT>vi-backward-kill-word</TT> (unbound) (unbound) (^W)
+<DD>Kill the word behind the cursor, without going past the point where insert
+mode was last entered.
+<P>
+
+<A NAME="IDX989"></A>
+<DT><TT>capitalize-word</TT> (ESC-C ESC-c) (unbound) (unbound)
+<DD>Capitalize the current word and move past it.
+<P>
+
+<A NAME="IDX990"></A>
+<DT><TT>vi-change</TT> (unbound) (c) (unbound)
+<DD>Read a movement command from the keyboard, and kill
+from the cursor position to the endpoint of the movement.
+Then enter insert mode.
+If the command is <TT>vi-change</TT>, change the current line.
+<P>
+
+<A NAME="IDX991"></A>
+<DT><TT>vi-change-eol</TT> (unbound) (C) (unbound)
+<DD>Kill to the end of the line and enter insert mode.
+<P>
+
+<A NAME="IDX992"></A>
+<DT><TT>vi-change-whole-line</TT> (unbound) (S) (unbound)
+<DD>Kill the current line and enter insert mode.
+<P>
+
+<A NAME="IDX993"></A>
+<DT><TT>copy-region-as-kill</TT> (ESC-W ESC-w) (unbound) (unbound)
+<DD>Copy the area from the cursor to the mark to the kill buffer.
+<P>
+
+<A NAME="IDX994"></A>
+<DT><TT>copy-prev-word</TT> (ESC-^_) (unbound) (unbound)
+<DD>Duplicate the word to the left of the cursor.
+<P>
+
+<A NAME="IDX995"></A>
+<DT><TT>copy-prev-shell-word</TT> (ESC-^_) (unbound) (unbound)
+<DD>Like <TT>copy-prev-word</TT>, but the word is found by using shell parsing, 
+whereas <TT>copy-prev-word</TT> looks for blanks. This makes a difference
+when the word is quoted and contains spaces.
+<P>
+
+<A NAME="IDX996"></A>
+<DT><TT>vi-delete</TT> (unbound) (d) (unbound)
+<DD>Read a movement command from the keyboard, and kill
+from the cursor position to the endpoint of the movement.
+If the command is <TT>vi-delete</TT>, kill the current line.
+<P>
+
+<A NAME="IDX997"></A>
+<DT><TT>delete-char</TT>
+<DD>Delete the character under the cursor.
+<P>
+
+<A NAME="IDX998"></A>
+<DT><TT>vi-delete-char</TT> (unbound) (x) (unbound)
+<DD>Delete the character under the cursor,
+without going past the end of the line.
+<P>
+
+<A NAME="IDX999"></A>
+<DT><TT>delete-word</TT>
+<DD>Delete the current word.
+<P>
+
+<A NAME="IDX1000"></A>
+<DT><TT>down-case-word</TT> (ESC-L ESC-l) (unbound) (unbound)
+<DD>Convert the current word to all lowercase and move past it.
+<P>
+
+<A NAME="IDX1001"></A>
+<DT><TT>kill-word</TT> (ESC-D ESC-d) (unbound) (unbound)
+<DD>Kill the current word.
+<P>
+
+<A NAME="IDX1002"></A>
+<DT><TT>gosmacs-transpose-chars</TT>
+<DD>Exchange the two characters behind the cursor.
+<P>
+
+<A NAME="IDX1003"></A>
+<DT><TT>vi-indent</TT> (unbound) (&#62;) (unbound)
+<DD>Indent a number of lines.
+<P>
+
+<A NAME="IDX1004"></A>
+<DT><TT>vi-insert</TT> (unbound) (i) (unbound)
+<DD>Enter insert mode.
+<P>
+
+<A NAME="IDX1005"></A>
+<DT><TT>vi-insert-bol</TT> (unbound) (I) (unbound)
+<DD>Move to the first non-blank character on the line and enter insert mode.
+<P>
+
+<A NAME="IDX1006"></A>
+<DT><TT>vi-join</TT> (^X^J) (J) (unbound)
+<DD>Join the current line with the next one.
+<P>
+
+<A NAME="IDX1007"></A>
+<DT><TT>kill-line</TT> (^K) (unbound) (unbound)
+<DD>Kill from the cursor to the end of the line.
+If already on the end of the line, kill the newline character.
+<P>
+
+<A NAME="IDX1008"></A>
+<DT><TT>vi-kill-line</TT> (unbound) (unbound) (^U)
+<DD>Kill from the cursor back to wherever insert mode was last entered.
+<P>
+
+<A NAME="IDX1009"></A>
+<DT><TT>vi-kill-eol</TT> (unbound) (D) (unbound)
+<DD>Kill from the cursor to the end of the line.
+<P>
+
+<A NAME="IDX1010"></A>
+<DT><TT>kill-region</TT>
+<DD>Kill from the cursor to the mark.
+<P>
+
+<A NAME="IDX1011"></A>
+<DT><TT>kill-buffer</TT> (^X^K) (unbound) (unbound)
+<DD>Kill the entire buffer.
+<P>
+
+<A NAME="IDX1012"></A>
+<DT><TT>kill-whole-line</TT> (^U) (unbound) (unbound)
+<DD>Kill the current line.
+<P>
+
+<A NAME="IDX1013"></A>
+<DT><TT>vi-match-bracket</TT> (^X^B) (%) (unbound)
+<DD>Move to the bracket character (one of <TT>{}</TT>, <TT>()</TT> or <TT>[]</TT>) that
+matches the one under the cursor.
+If the cursor is not on a bracket character, move forward without going
+past the end of the line to find one, and then go to the matching bracket.
+<P>
+
+<A NAME="IDX1014"></A>
+<DT><TT>vi-open-line-above</TT> (unbound) (O) (unbound)
+<DD>Open a line above the cursor and enter insert mode.
+<P>
+
+<A NAME="IDX1015"></A>
+<DT><TT>vi-open-line-below</TT> (unbound) (o) (unbound)
+<DD>Open a line below the cursor and enter insert mode.
+<P>
+
+<A NAME="IDX1016"></A>
+<DT><TT>vi-oper-swap-case</TT>
+<DD>Read a movement command from the keyboard, and swap
+the case of all characters
+from the cursor position to the endpoint of the movement.
+If the movement command is <TT>vi-oper-swap-case</TT>,
+swap the case of all characters on the current line.
+<P>
+
+<A NAME="IDX1017"></A>
+<DT><TT>overwrite-mode</TT> (^X^O) (unbound) (unbound)
+<DD>Toggle between overwrite mode and insert mode.
+<P>
+
+<A NAME="IDX1018"></A>
+<DT><TT>vi-put-before</TT> (unbound) (P) (unbound)
+<DD>Insert the contents of the kill buffer before the cursor.
+If the kill buffer contains a sequence of lines (as opposed to characters),
+paste it above the current line.
+<P>
+
+<A NAME="IDX1019"></A>
+<DT><TT>vi-put-after</TT> (unbound) (p) (unbound)
+<DD>Insert the contents of the kill buffer after the cursor.
+If the kill buffer contains a sequence of lines (as opposed to characters),
+paste it below the current line.
+<P>
+
+<A NAME="IDX1020"></A>
+<DT><TT>quoted-insert</TT> (^V) (unbound) (unbound)
+<DD>Insert the next character typed into the buffer literally.
+An interrupt character will not be inserted.
+<P>
+
+<A NAME="IDX1021"></A>
+<DT><TT>vi-quoted-insert</TT> (unbound) (unbound) (^Q ^V)
+<DD>Display a `<TT>^</TT>' at the cursor position, and
+insert the next character typed into the buffer literally.
+An interrupt character will not be inserted.
+<P>
+
+<A NAME="IDX1022"></A>
+<DT><TT>quote-line</TT> (ESC-') (unbound) (unbound)
+<DD>Quote the current line; that is, put a `<TT>'</TT>' character at the
+beginning and the end, and convert all `<TT>'</TT>' characters
+to `<TT>'\"</TT>'.
+<P>
+
+<A NAME="IDX1023"></A>
+<DT><TT>quote-region</TT> (ESC-") (unbound) (unbound)
+<DD>Quote the region from the cursor to the mark.
+<P>
+
+<A NAME="IDX1024"></A>
+<DT><TT>vi-replace</TT> (unbound) (R) (unbound)
+<DD>Enter overwrite mode.
+<P>
+
+<A NAME="IDX1025"></A>
+<DT><TT>vi-repeat-change</TT> (unbound) (.) (unbound)
+<DD>Repeat the last vi mode text modification.
+If a count was used with the modification, it is remembered.
+If a count is given to this command, it overrides the remembered count,
+and is remembered for future uses of this command.
+The cut buffer specification is similarly remembered.
+<P>
+
+<A NAME="IDX1026"></A>
+<DT><TT>vi-replace-chars</TT> (unbound) (r) (unbound)
+<DD>Replace the character under the cursor with a character
+read from the keyboard.
+<P>
+
+<A NAME="IDX1027"></A>
+<DT><TT>self-insert</TT> (printable characters) (unbound) (printable characters and some control characters)
+<DD>Insert a character into the buffer at the cursor position.
+<P>
+
+<A NAME="IDX1028"></A>
+<DT><TT>self-insert-unmeta</TT> (ESC-^I ESC-^J ESC-^M) (unbound) (unbound)
+<DD>Insert a character into the buffer after stripping the meta bit
+and converting ^M to ^J.
+<P>
+
+<A NAME="IDX1029"></A>
+<DT><TT>vi-substitute</TT> (unbound) (s) (unbound)
+<DD>Substitute the next character(s).
+<P>
+
+<A NAME="IDX1030"></A>
+<DT><TT>vi-swap-case</TT> (unbound) (~) (unbound)
+<DD>Swap the case of the character under the cursor and move past it.
+<P>
+
+<A NAME="IDX1031"></A>
+<DT><TT>transpose-chars</TT> (^T) (unbound) (unbound)
+<DD>Exchange the two characters to the left of the
+cursor if at end of line, else exchange the
+character under the cursor with the character
+to the left.
+<P>
+
+<A NAME="IDX1032"></A>
+<DT><TT>transpose-words</TT> (ESC-T ESC-t) (unbound) (unbound)
+<DD>Exchange the current word with the one before it.
+<P>
+
+<A NAME="IDX1033"></A>
+<DT><TT>vi-unindent</TT> (unbound) (&#60;) (unbound)
+<DD>Unindent a number of lines.
+<P>
+
+<A NAME="IDX1034"></A>
+<DT><TT>up-case-word</TT> (ESC-U ESC-u) (unbound) (unbound)
+<DD>Convert the current word to all caps and move past it.
+<P>
+
+<A NAME="IDX1035"></A>
+<DT><TT>yank</TT> (^Y) (unbound) (unbound)
+<DD>Insert the contents of the kill buffer at the cursor position.
+<P>
+
+<A NAME="IDX1036"></A>
+<DT><TT>yank-pop</TT> (ESC-y) (unbound) (unbound)
+<DD>Remove the text just yanked, rotate the kill-ring,
+and yank the new top.  Only works following
+<TT>yank</TT> or <TT>yank-pop</TT>.
+<P>
+
+<A NAME="IDX1037"></A>
+<DT><TT>vi-yank</TT> (unbound) (y) (unbound)
+<DD>Read a movement command from the keyboard, and copy the region
+from the cursor position to the endpoint of the movement
+into the kill buffer.
+If the command is <TT>vi-yank</TT>, copy the current line.
+<P>
+
+<A NAME="IDX1038"></A>
+<DT><TT>vi-yank-whole-line</TT> (unbound) (Y) (unbound)
+<DD>Copy the current line into the kill buffer.
+<P>
+
+<A NAME="IDX1039"></A>
+<DT><TT>vi-yank-eol</TT>
+<DD>Copy the region from the cursor position to the end of the line
+into the kill buffer.
+Arguably, this is what Y should do in vi, but it isn't what it actually does.
+<P>
+
+</DL>
+<A NAME="Arguments"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC102"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC101"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC103"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC94"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC95"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC96"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 17.6.4 Arguments </H3>
+<!--docid::SEC102::-->
+<DL COMPACT>
+<A NAME="IDX1040"></A>
+<DT><TT>digit-argument</TT> (ESC-0..ESC-9) (1-9) (unbound)
+<DD>Start a new numeric argument, or add to the current one.
+See also <TT>vi-digit-or-beginning-of-line</TT>.  This only works if bound to a
+key sequence ending in a decimal digit.
+<P>
+
+Inside a widget function, a call to this function treats the last key of
+the key sequence which called the widget as the digit.
+</P><P>
+
+<A NAME="IDX1041"></A>
+<DT><TT>neg-argument</TT> (ESC--) (unbound) (unbound)
+<DD>Changes the sign of the following argument.
+<P>
+
+<A NAME="IDX1042"></A>
+<DT><TT>universal-argument</TT>
+<DD>Multiply the argument of the next command by 4.  Alternatively, if
+this command is followed by an integer (positive or negative), use
+that as the argument for the next command.  Thus digits cannot be
+repeated using this command.  For example, if this command occurs
+twice, followed immediately by <TT>forward-char</TT>, move forward sixteen
+spaces; if instead it is followed by <TT>-2</TT>, then <TT>forward-char</TT>,
+move backward two spaces.
+<P>
+
+Inside a widget function, if passed an argument, i.e. `<TT>zle
+universal-argument</TT> <VAR>num</VAR>', the numerical argument will be set to
+<VAR>num</VAR>; this is equivalent to `<TT>NUMERIC=</TT><VAR>num</VAR>'.
+</P><P>
+
+</DL>
+<A NAME="Completion"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC103"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC102"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC104"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC94"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC95"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC96"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 17.6.5 Completion </H3>
+<!--docid::SEC103::-->
+<DL COMPACT>
+<A NAME="IDX1043"></A>
+<DT><TT>accept-and-menu-complete</TT>
+<DD>In a menu completion, insert the current completion into the buffer,
+and advance to the next possible completion.
+<P>
+
+<A NAME="IDX1044"></A>
+<DT><TT>complete-word</TT>
+<DD>Attempt completion on the current word.
+<P>
+
+<A NAME="IDX1045"></A>
+<DT><TT>delete-char-or-list</TT> (^D) (unbound) (unbound)
+<DD>Delete the character under the cursor.  If the cursor
+is at the end of the line, list possible completions for the
+current word.
+<P>
+
+<A NAME="IDX1046"></A>
+<DT><TT>expand-cmd-path</TT>
+<DD>Expand the current command to its full pathname.
+<P>
+
+<A NAME="IDX1047"></A>
+<DT><TT>expand-or-complete</TT> (TAB) (unbound) (TAB)
+<DD>Attempt shell expansion on the current word.
+If that fails,
+attempt completion.
+<P>
+
+<A NAME="IDX1048"></A>
+<DT><TT>expand-or-complete-prefix</TT>
+<DD>Attempt shell expansion on the current word up to cursor.
+<P>
+
+<A NAME="IDX1049"></A>
+<DT><TT>expand-history</TT> (ESC-space ESC-!) (unbound) (unbound)
+<DD>Perform history expansion on the edit buffer.
+<P>
+
+<A NAME="IDX1050"></A>
+<DT><TT>expand-word</TT> (^X*) (unbound) (unbound)
+<DD>Attempt shell expansion on the current word.
+<P>
+
+<A NAME="IDX1051"></A>
+<DT><TT>list-choices</TT> (ESC-^D) (^D =) (^D)
+<DD>List possible completions for the current word.
+<P>
+
+<A NAME="IDX1052"></A>
+<DT><TT>list-expand</TT> (^Xg ^XG) (^G) (^G)
+<DD>List the expansion of the current word.
+<P>
+
+<A NAME="IDX1053"></A>
+<DT><TT>magic-space</TT>
+<DD>Perform history expansion and insert a space into the
+buffer.  This is intended to be bound to space.
+<P>
+
+<A NAME="IDX1054"></A>
+<A NAME="IDX1055"></A>
+<DT><TT>menu-complete</TT>
+<DD>Like <TT>complete-word</TT>, except that menu completion is used.
+See the <TT>MENU_COMPLETE</TT> option.
+<P>
+
+<A NAME="IDX1056"></A>
+<DT><TT>menu-expand-or-complete</TT>
+<DD>Like <TT>expand-or-complete</TT>, except that menu completion is used.
+<P>
+
+<A NAME="IDX1057"></A>
+<DT><TT>reverse-menu-complete</TT>
+<DD>Perform menu completion, like <TT>menu-complete</TT>, except that if
+a menu completion is already in progress, move to the <EM>previous</EM>
+completion rather than the next.
+<P>
+
+<A NAME="IDX1058"></A>
+<DT><TT>end-of-list</TT>
+<DD>When a previous completion displayed a list below the prompt, this
+widget can be used to move the prompt below the list.
+<P>
+
+</DL>
+<A NAME="Miscellaneous"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC104"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC103"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_18.html#SEC105"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC94"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC95"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC96"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 17.6.6 Miscellaneous </H3>
+<!--docid::SEC104::-->
+<DL COMPACT>
+<A NAME="IDX1059"></A>
+<DT><TT>accept-and-hold</TT> (ESC-A ESC-a) (unbound) (unbound)
+<DD>Push the contents of the buffer on the buffer stack
+and execute it.
+<P>
+
+<A NAME="IDX1060"></A>
+<DT><TT>accept-and-infer-next-history</TT>
+<DD>Execute the contents of the buffer.
+Then search the history list for a line matching the current one
+and push the event following onto the buffer stack.
+<P>
+
+<A NAME="IDX1061"></A>
+<DT><TT>accept-line</TT> (^J ^M) (^J ^M) (^J ^M)
+<DD>Finish editing the buffer.  Normally this causes the buffer to be
+executed as a shell command.
+<P>
+
+<A NAME="IDX1062"></A>
+<DT><TT>accept-line-and-down-history</TT> (^O) (unbound) (unbound)
+<DD>Execute the current line, and push the next history
+event on the the buffer stack.
+<P>
+
+<A NAME="IDX1063"></A>
+<DT><TT>beep</TT>
+<DD>Beep, unless the <TT>BEEP</TT> option is unset.
+<P>
+
+<A NAME="IDX1064"></A>
+<DT><TT>vi-cmd-mode</TT> (^X^V) (unbound) (^[)
+<DD>Enter command mode; that is, select the `<TT>vicmd</TT>' keymap.
+Yes, this is bound by default in emacs mode.
+<P>
+
+<A NAME="IDX1065"></A>
+<DT><TT>vi-caps-lock-panic</TT>
+<DD>Hang until any lowercase key is pressed.
+This is for vi users without the mental capacity to keep
+track of their caps lock key (like the author).
+<P>
+
+<A NAME="IDX1066"></A>
+<DT><TT>clear-screen</TT> (^L ESC-^L) (^L) (^L)
+<DD>Clear the screen and redraw the prompt.
+<P>
+
+<A NAME="IDX1067"></A>
+<DT><TT>describe-key-briefly</TT>
+<DD>Reads a key sequence, then prints the function bound to that sequence.
+<P>
+
+<A NAME="IDX1068"></A>
+<DT><TT>exchange-point-and-mark</TT> (^X^X) (unbound) (unbound)
+<DD>Exchange the cursor position with the position of the mark.
+<P>
+
+<A NAME="IDX1069"></A>
+<DT><TT>execute-named-cmd</TT> (ESC-x) (unbound) (unbound)
+<DD>Read the name of an editor command and
+execute it.  A restricted set of editing functions is available in the
+mini-buffer.  An interrupt signal, as defined by the stty setting, will
+abort the function. The allowed functions are:
+<TT>backward-delete-char</TT>,
+<TT>vi-backward-delete-char</TT>,
+<TT>clear-screen</TT>,
+<TT>redisplay</TT>,
+<TT>quoted-insert</TT>,
+<TT>vi-quoted-insert</TT>,
+<TT>backward-kill-word</TT>,
+<TT>vi-backward-kill-word</TT>,
+<TT>kill-whole-line</TT>,
+<TT>vi-kill-line</TT>,
+<TT>backward-kill-line</TT>,
+<TT>list-choices</TT>,
+<TT>delete-char-or-list</TT>,
+<TT>complete-word</TT>,
+<TT>accept-line</TT>,
+<TT>expand-or-complete</TT> and
+<TT>expand-or-complete-prefix</TT>.
+<P>
+
+<TT>kill-region</TT> kills the last word,
+and vi-cmd-mode is treated the same as accept-line.
+The space and tab characters, if not bound to one of
+these functions, will complete the name and then list the
+possibilities if the <TT>AUTO_LIST</TT> option is set.
+Any other character that is not bound to <TT>self-insert</TT> or
+<TT>self-insert-unmeta</TT> will beep and be ignored.
+The bindings of the current insert mode will be used.
+</P><P>
+
+<A NAME="IDX1070"></A>
+<DT><TT>execute-last-named-cmd</TT> (ESC-z) (unbound) (unbound)
+<DD>Redo the last function executed with <TT>execute-named-cmd</TT>.
+<P>
+
+<A NAME="IDX1071"></A>
+<DT><TT>get-line</TT> (ESC-G ESC-g) (unbound) (unbound)
+<DD>Pop the top line off the buffer stack and insert it at the
+cursor position.
+<P>
+
+<A NAME="IDX1072"></A>
+<DT><TT>pound-insert</TT> (unbound) (#) (unbound)
+<DD>If there is no # character at the beginning of the buffer,
+add one to the beginning of each line.
+If there is one, remove a # from each line that has one.
+In either case, accept the current line.
+The <TT>INTERACTIVE_COMMENTS</TT> option must be set
+for this to have any usefulness.
+<P>
+
+<A NAME="IDX1073"></A>
+<DT><TT>vi-pound-insert</TT>
+<DD>If there is no # character at the beginning of the current line,
+add one.  If there is one, remove it.
+The <TT>INTERACTIVE_COMMENTS</TT> option must be set
+for this to have any usefulness.
+<P>
+
+<A NAME="IDX1074"></A>
+<DT><TT>push-input</TT>
+<DD>Push the entire current multiline construct onto the buffer stack and
+return to the top-level (<TT>PS1</TT>) prompt.
+If the current parser construct is only a single line, this is exactly
+like <TT>push-line</TT>.
+Next time the editor starts up or is popped with <TT>get-line</TT>, the
+construct will be popped off the top of the buffer stack and loaded
+into the editing buffer.
+<P>
+
+<A NAME="IDX1075"></A>
+<DT><TT>push-line</TT> (^Q ESC-Q ESC-q) (unbound) (unbound)
+<DD>Push the current buffer onto the buffer stack and clear
+the buffer.
+Next time the editor starts up, the buffer will be popped
+off the top of the buffer stack and loaded into the editing
+buffer.
+<P>
+
+<A NAME="IDX1076"></A>
+<DT><TT>push-line-or-edit</TT>
+<DD>At the top-level (<TT>PS1</TT>) prompt, equivalent to <TT>push-line</TT>.
+At a secondary (<TT>PS2</TT>) prompt, move the entire current multiline
+construct into the editor buffer.
+The latter is equivalent to <TT>push-input</TT> followed by <TT>get-line</TT>.
+<P>
+
+<A NAME="IDX1077"></A>
+<DT><TT>recursive-edit</TT>
+<DD>Only useful from a user-defined widget.  At this point in the function,
+the editor regains control until one of the standard widgets which would
+normally cause zle to exit (typically an <TT>accept-line</TT> caused by
+hitting the return key) is executed.  Instead, control returns to the
+user-defined widget.  The status returned is non-zero if the return was
+caused by an error, but the function still continues executing and hence
+may tidy up.  This makes it safe for the user-defined widget to alter
+the command line or key bindings temporarily.
+<P>
+
+The following widget, <TT>caps-lock</TT>, serves as an example.
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>self-insert-ucase() {
+  LBUFFER+=${(U)KEYS[-1]}
+}
+
+integer stat
+
+zle -N self-insert self-insert-ucase
+zle -A caps-lock save-caps-lock
+zle -A accept-line caps-lock
+
+zle recursive-edit
+stat=$?
+
+zle -A .self-insert self-insert
+zle -A save-caps-lock caps-lock
+zle -D save-caps-lock
+
+(( stat )) &#38;&#38; zle send-break
+
+return $stat
+
+</pre></td></tr></table>This causes typed letters to be inserted capitalised until either
+<TT>accept-line</TT> (i.e. typically the return key) is typed or the
+<TT>caps-lock</TT> widget is invoked again; the later is handled by saving
+the old definition of <TT>caps-lock</TT> as <TT>save-caps-lock</TT> and then
+rebinding it to invoke <TT>accept-line</TT>.  Note that an error from the
+recursive edit is detected as a non-zero return status and propagated by
+using the <TT>send-break</TT> widget.
+</P><P>
+
+<A NAME="IDX1078"></A>
+<DT><TT>redisplay</TT> (unbound) (^R) (^R)
+<DD>Redisplays the edit buffer.
+<P>
+
+<A NAME="IDX1079"></A>
+<DT><TT>send-break</TT> (^G ESC-^G) (unbound) (unbound)
+<DD>Abort the current editor function, e.g. <TT>execute-named-command</TT>, or the
+editor itself, e.g. if you are in <TT>vared</TT>. Otherwise abort the parsing of
+the current line.
+<P>
+
+<A NAME="IDX1080"></A>
+<DT><TT>run-help</TT> (ESC-H ESC-h) (unbound) (unbound)
+<DD>Push the buffer onto the buffer stack, and execute the
+command `<TT>run-help</TT> <VAR>cmd</VAR>', where <VAR>cmd</VAR> is the current
+command.  <TT>run-help</TT> is normally aliased to <TT>man</TT>.
+<P>
+
+<A NAME="IDX1081"></A>
+<DT><TT>vi-set-buffer</TT> (unbound) (") (unbound)
+<DD>Specify a buffer to be used in the following command.
+There are 35 buffers that can be specified:
+the 26 `named' buffers <TT>"a</TT> to <TT>"z</TT>
+and the nine `queued' buffers <TT>"1</TT> to <TT>"9</TT>.  The named buffers can also
+be specified as <TT>"A</TT> to <TT>"Z</TT>.
+<P>
+
+When a buffer is specified for a cut command, the text being cut replaces
+the previous contents of the specified buffer.  If a named buffer
+is specified using a capital, the newly cut text is appended to the buffer
+instead of overwriting it.
+</P><P>
+
+If no buffer is specified for a cut command, <TT>"1</TT> is used, and the
+contents of <TT>"1</TT> to <TT>"8</TT> are each shifted along one buffer; the contents of
+<TT>"9</TT> is lost.
+</P><P>
+
+<A NAME="IDX1082"></A>
+<DT><TT>vi-set-mark</TT> (unbound) (m) (unbound)
+<DD>Set the specified mark at the cursor position.
+<P>
+
+<A NAME="IDX1083"></A>
+<DT><TT>set-mark-command</TT> (^@) (unbound) (unbound)
+<DD>Set the mark at the cursor position.
+<P>
+
+<A NAME="IDX1084"></A>
+<DT><TT>spell-word</TT> (ESC-$ ESC-S ESC-s) (unbound) (unbound)
+<DD>Attempt spelling correction on the current word.
+<P>
+
+<A NAME="IDX1085"></A>
+<DT><TT>undefined-key</TT>
+<DD>This command is executed when a key sequence that is not bound to any
+command is typed.  By default it beeps.
+<P>
+
+<A NAME="IDX1086"></A>
+<DT><TT>undo</TT> (^_ ^Xu ^X^U) (unbound) (unbound)
+<DD>Incrementally undo the last text modification.
+<P>
+
+<A NAME="IDX1087"></A>
+<DT><TT>redo</TT>
+<DD>Incrementally redo undone text modifications.
+<P>
+
+<A NAME="IDX1088"></A>
+<DT><TT>vi-undo-change</TT> (unbound) (u) (unbound)
+<DD>Undo the last text modification.
+If repeated, redo the modification.
+<P>
+
+<A NAME="IDX1089"></A>
+<DT><TT>what-cursor-position</TT> (^X=) (unbound) (unbound)
+<DD>Print the character under the cursor, its code as an octal, decimal and
+hexadecimal number, the current cursor position within the buffer and the
+column of the cursor in the current line.
+<P>
+
+<A NAME="IDX1090"></A>
+<DT><TT>where-is</TT>
+<DD>Read the name of an editor command and and print the listing of key
+sequences that invoke the specified command.
+<P>
+
+<A NAME="IDX1091"></A>
+<DT><TT>which-command</TT> (ESC-?) (unbound) (unbound)
+<DD>Push the buffer onto the buffer stack, and execute the
+command `<TT>which-command</TT> <VAR>cmd</VAR>'. where <VAR>cmd</VAR> is the current
+command.  <TT>which-command</TT> is normally aliased to <VAR>whence</VAR>.
+<P>
+
+<A NAME="IDX1092"></A>
+<DT><TT>vi-digit-or-beginning-of-line</TT> (unbound) (0) (unbound)
+<DD>If the last command executed was a digit as part of an argument,
+continue the argument.  Otherwise, execute vi-beginning-of-line.
+<P>
+
+</DL>
+<A NAME="Completion Widgets"></A>
+<P>
+
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC94"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_17.html#SEC96"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Peter Stephenson</I> on <I>March, 19  2004</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+
+</BODY>
+</HTML>

@@ -1,0 +1,34 @@
+#!zsh -f
+# Here's a little zsh script that I call "manpath".  You give it a
+# single argument, and it searches for man pages whose names contain
+# that argument.  It searches all the directories named in your
+# "manpath" environment variable.
+#
+# For instance, "manpath wait" prints this on my HP700:  
+#
+# -r--r--r--   1 root     root        6652 Sep  2  1993 /usr/local/man/mann/tkwait.n
+# -r--r--r--   1 bin      bin         1202 Sep 23  1993 /usr/man/man1.Z/wait.1
+# -r--r--r--   3 bin      bin         4739 Sep 10  1992 /usr/man/man2.Z/wait.2
+# -r--r--r--   3 bin      bin         4739 Sep 10  1992 /usr/man/man2.Z/wait3.2
+# -r--r--r--   3 bin      bin         4739 Sep 10  1992 /usr/man/man2.Z/waitpid.2
+# -r--r--r--   1 bin      bin         2440 Sep 10  1992 /usr/man/man3.Z/await_event.3g
+# -r--r--r--   1 bin      bin         1627 Sep 10  1992 /usr/man/man3.Z/await_retra.3g
+# -r--r--r--   1 bin      bin         2136 Sep 10  1992 /usr/man/man3.Z/hpib_wait_o.3i
+# -r--r--r--   1 bin      bin          816 Sep 10  1992 /usr/man/man3.Z/wait.3f
+# -rw-rw-rw-   1 franl    code        1201 Mar 23 13:06 /usr/man/cat1.Z/wait.1
+# -rw-rw-rw-   1 franl    code        6146 Mar 23 13:06 /usr/man/cat2.Z/wait.2
+
+[[ ! -o nonomatch ]] && setopt nonomatch
+
+if (($# == 0))
+then
+	echo $manpath | tr " " "\012"
+else
+	for dir in $manpath
+	do
+		for subdir in $dir/man* $dir/cat*
+		do
+			/bin/ls -l $subdir/*$1*
+		done
+	done |& egrep -v '([Nn]o(t found| such|t a))'
+fi

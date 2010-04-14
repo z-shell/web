@@ -1,0 +1,24 @@
+#!/usr/local/bin/zsh
+#
+
+# match-echotc
+# sets the array "reply" with the termcap entries given in $TERMCAP.
+#
+# This sed script first removes the first termcap entry because it is
+# the name of the termcap entry.  Then, in the loop 'start', it makes a
+# copy of the pattern space into the hold space, removes the first entry
+# from the hold space, leaves just the two-letter entry in the pattern space
+# (not its value), prints it if it isn't made up of just spaces and tabs,
+# replaces the pattern space with the slightly shortened hold space,
+# resets the replacement-checking by a dummy jump, then reads in the
+# next line of input if these are no colons left in the pattern space.
+# regardless, it jumps back to the 'start' label.  When EOF is reached,
+# ends.
+
+reply=( $(echo $TERMCAP | sed -n 's/[^:]*://
+:start
+h;s/^[^:]*://;x;s/^\([^=#:]*\).*$/\1/;/^[ 	]*$/'\\\!'p;g;t reset
+:reset
+s/:/:/;t start
+n;b start') )
+

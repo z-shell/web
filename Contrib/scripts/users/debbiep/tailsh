@@ -1,0 +1,175 @@
+#!/bin/zsh
+#
+# tailsh - runs a file through sh, ignoring lines before
+# the line reading "#!".  Useful if someone mails you a shell
+# script and you're too lazy to save to a temp file, strip the stuff
+# from the top, chmod it to be executable, run the script and
+# delete the temporary file.
+#
+# It works on things other than /bin/sh.  What it actually
+# does is pass the lines following the first #! line into the
+# command named on the #! line.
+#
+# Usage:
+#   tailsh [-p path] [-c command] [-o options] [file . . .]
+#
+# Where
+#   -p path    means tailsh will perform a cd to path before running
+#              each file.  Files given as parameters to tailsh
+#              are intelligently renamed so that they can still be found
+#              if relative paths were given.
+#   -c command overrides the command to run the script through.
+#              useful if the script was written by someone who puts
+#              /bin/sh in a different place.  This switch overrides
+#              *all* files given on the line, even though each file
+#              may have a different command in its #! line
+#   -o options supplies options to the file, making it believe
+#              they were supplied as command-line options.
+#              This really only works with scripts that invoke
+#              a shell of some sort with any reliability.  All it
+#              does is put them after the temp file name it creates.
+#              Importantly, it works with sh and zsh.
+#   file       is the name of a file to be sourced in this fashion.
+#              If no files are supplied, tailsh will run the entire
+#              standard input as if it were a single file.  tailsh is
+#              more efficient in stdin mode.
+#
+# Examples:
+#   tailsh -o '-c' part1of3.shar part2of3.shar part3of3.shar
+#     Run each of the three shar files you were just mailed.
+#     Depending on what your version of shar is like it should
+#     completely decode the whole thing.  
+#
+# Written by Deborah Pickett <debbiep@csse.monash.edu.au>
+#
+# To do: Maybe find a way of doing the stdin style on a filename
+# provided.  On the other hand, it's more general if you can supply
+# a filename rather than rely on stdin.  The present compromise
+# is probably best.  Redirect from stdin if you can, otherwise
+# name a file.  The down side is that it doesn't appear to work for
+# substituted files, i.e., <(some command).  Use =(some command)
+# instead.
+# Also need a better mechanism for passing perceived parameters;
+# the -o switch isn't very portable.
+
+# local variables
+local neg sws file line linenum opt newpath overridecmd passopts\
+  usage="Usage: $0:t [-p path] [-c command] [-o options] file . . ." \
+  excl=!
+
+# fetch options
+while getopts :p:c:o: opt
+do
+  case $opt in
+    'p') newpath=$OPTARG ;;
+    'c') overridecmd=$OPTARG ;;
+    'o') passopts=$OPTARG ;;
+    ':') echo $usage >&2 ; return 1 ;;
+    '?') echo $usage >&2 ; return 1 ;;
+  esac
+done
+
+# put options behind us
+shift $[ $OPTIND - 1 ]
+
+# extendedglob and shwordsplit need to be set thusly
+[[ -o extendedglob ]] || neg=1
+setopt extendedglob
+[[ -o shwordsplit ]] && sws=1
+unsetopt shwordsplit
+
+# tailsh proper
+if [[ $# -ne 0 ]]
+then
+  # files specified - read them in one at a time
+  for file
+  do
+    # if file doesn't start with "/" it was relative and needs $PWD
+    # prepended so that it still can be found when -c was used.
+    if [[ "$newpath" != "" && "$file[1]" != "/" ]]
+    then
+      file=$PWD/$file
+    fi
+    # check for existence of file
+    if [[ ! -r $file ]]
+    then
+      echo "${0:t}: $file: no such file" >&2
+      continue
+    fi
+    # find first line containing a #!
+    # This sed script outputs the line number followed by the command
+    # itself.  It exits after the first #! is found; this avoids
+    # duplicates.  It's simpler to extract it from an array, thus
+    # the surrounding brackets. 
+    # (This looks hideous and there's good reason.
+    # Owing to what I think is a misfeature of zsh's handling of
+    # ! characters, I can't quote any as "\!" or '\!' because it
+    # is treated as ! in a zsh function if nobanghist is off,
+    # \! in a zsh function if nobanghist is on,
+    # and \! in a zsh script regardless of the settings of nobanghist.
+    # I solve this by setting a shell variable to contain the
+    # exclamation mark.  [This has probably been solved in zsh version 3,
+    # but I haven't changed it because this way we get backwards
+    # compatibility.] )
+    line=($(sed -n '/#'$excl'/{=;s/#'$excl' *//p;q;}' < $file))
+    if [[ "$line" != "" ]]
+    then
+      # there was a #! - find its line number.
+      linenum=${line[1]}
+      # cd to the path given by -c if it was specified
+      if [[ "$newpath" != "" ]]
+      then
+        cd $newpath
+      fi
+      # run the command.  "eval" is used in case the command
+      # was somthing like "cat >foo" and the shell needs to
+      # see it.  It also helps sidestep that annoying ! feature.
+      eval ${overridecmd:-${line[2,-1]}} \
+        =(tail +$[$linenum+1] $file) ${=passopts}
+      # cd back to the old path to make it look like nothing happened.
+      if [[ "$newpath" != "" ]]
+      then
+        cd $OLDPWD
+      fi
+    else
+      # file didn't have a #! - ignore it.
+      echo "${0:t}: $file: no #"\!" line" >&2
+    fi
+  done
+else
+  # no files named - must be wanting stdin mode.
+  linenum=0;
+  # keep reading lines till something happens.
+  while read -r -u0 line
+  do
+    if [[ $line[1,2] = \#\! ]]
+    then
+      # found a #! - flag the fact we have found it.
+      linenum=1
+      if [[ "$newpath" != "" ]]
+      then
+        cd $newpath
+      fi
+      # duplicate our stdin and give it to the command.
+      # If no command is supplied (i.e. the line was #! and nothing
+      # else), it's a null command, which defaults to calling
+      # cat(1) implicitly.  Just an interesting side-effect.
+      eval ${overridecmd:-${line##\#\! #}} "<&0" "${=passopts}"
+      if [[ "$newpath" != "" ]]
+      then
+        cd $OLDPWD
+      fi
+      # and break out of the loop.
+      break
+    fi
+  done
+  if [[ $linenum = 0 ]]
+  then
+    # No #! line - output warning message.
+    echo "${0:t}: stdin: no #"\!" line" >&2
+  fi
+fi
+
+# restore option settings
+[[ "$neg" = 1 ]] && unsetopt extendedglob
+[[ "$sws" = 1 ]] && setopt shwordsplit

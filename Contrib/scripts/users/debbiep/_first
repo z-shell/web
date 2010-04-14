@@ -1,0 +1,61 @@
+#compdef -first-
+
+# Mail folder shortcuts - any command starting with "+" should be
+# a mail folder - complete only those which actually exist.
+
+if [[ "$compstate[context]" = command &&
+      $CURRENT -eq 1 &&
+      "$PREFIX" = +* ]]
+then
+  local thisfolder thisentry expl ret=1
+  local readmail unreadmail
+  local mailstat
+  readmail=( )
+  unreadmail=( )
+  mailstat=( )
+  
+  # Find each mailpath file that exists.
+  for thisentry in "$mailpath[@]"
+  do
+    thisfolder="${thisentry%%\?*}"
+    if [[ -s $thisfolder ]]
+    then
+      # Is it unread mail?
+      # element 10 is mtime, element 9 is atime
+      stat -A mailstat "$thisfolder"
+      if [[ $mailstat[10] -gt $mailstat[9] ]]
+      then
+        unreadmail=("$unreadmail[@]" "${thisfolder##*/}")
+      else
+        readmail=("$readmail[@]" "${thisfolder##*/}")
+      fi
+    fi
+  done
+
+  if zsh-version 3.1.7
+  then
+    # Proper tag-handling completion.
+    _tags -C mail-shortcuts unread-mail-folders read-mail-folders
+    while _tags
+    do
+      _requested -J unread-mail-folders expl "unread mail" \
+        compadd -P '+' -a unreadmail && ret=0
+      _requested -J read-mail-folders expl "read mail" \
+        compadd -P '+' -a readmail && ret=0
+      (( ret )) || break
+    done
+  else
+    # Just do regular compadds.
+    compadd -P '+' -J "new mail folder" \
+      -X "These folders contain new mail" \
+      -- "${unreadmail[@]}"
+    compadd -P '+' -J "mail folder" \
+      -X "These folders contain mail" \
+      -- "${readmail[@]}"
+  fi
+
+  # Skip all remaining completions.
+  _compskip=all
+
+  return 0
+fi

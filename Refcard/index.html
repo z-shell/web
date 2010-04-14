@@ -1,0 +1,64 @@
+<html>
+<head>
+  <title>ZSH - Reference Card</title>
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="up" href="../">
+  <link rel="top" href="../">
+  <link rel="prev" href="../Guide/">
+  <link rel="next" href="../FAQ/">
+  <link rev="made" href="mailto:zsh@sunsite.dk">
+</head>
+
+<body bgcolor="#ffffff" text="#000000">
+
+<table width="100%">
+<tr><td>
+<a href="../Guide/"><img src="../Images/prev.png" alt="[prev]" width=30 height=30></a>
+<a href="../FAQ/"><img src="../Images/next.png" alt="[next]" width=30 height=30></a>
+<a href="../"><img src="../Images/up.png" alt="[up]" width=30 height=30></a>
+<a href="../"><img src="../Images/top.png" alt="[top]" width=30 height=30></a>
+</td><td>
+<font size="+3" align=center><strong>ZSH Reference Card</strong></font>
+ </td>
+</tr>
+</table>
+<hr size=1 noshade>
+
+<p>This is a reference <q>card</q> for zsh. It was created based on
+version 3.1.9 so is a little out-of-date.  It is seven pages long, even
+with three columns per page, so you will need a very big piece of card
+to stick it to.</p>
+
+<p>It is only formatted for A4 paper, since it tries to use the paper to the
+maximum; I would be glad to support letter format if someone sends me
+appropriate changes.  Meanwhile, Maciej Kalisiak
+suggests simply rescaling using the widely available
+<tt>psnup</tt> program from psutils:</p>
+<pre>
+  psnup -1 -Pa4 -pletter < refcard.ps > refcard-letter.ps
+</pre>
+
+<p>The reference card does not currently cover the shell's line editor
+(zle), which may (or may not) appear in a separate card.</p>
+
+<ul>
+  <li><a href="refcard.tex">LaTeX 2e source.</a> You will also need
+  various extra packages which are bundled with the complete
+  LaTeX distribution, and a driver which understands the use
+  of landscape (as <code>dvips</code> does).</li>
+
+  <li><a href="refcard.ps.gz">Gzipped PostScript for A4</a>
+  Note that <code>gv</code> displays this upside down.  Sorry.</li>
+</ul>
+
+<hr>
+<div align=right>
+<address>
+<a href="../disclaimer.html">Disclaimer</A>
+Peter Stephenson &lt;pws@pwstephenson.fsnet.co.uk&gt;<br>
+Last modified: $Date: 2005/02/08 11:16:17 $
+</address>
+</div>
+
+</body>
+</html>

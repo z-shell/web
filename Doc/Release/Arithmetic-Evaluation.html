@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on May, 28 2009 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>zsh: 11. Arithmetic Evaluation</title>
+
+<meta name="description" content="zsh: 11. Arithmetic Evaluation">
+<meta name="keywords" content="zsh: 11. Arithmetic Evaluation">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Arithmetic-Evaluation"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#SEC49" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Conditional-Expressions.html#SEC51" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#SEC47" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Conditional-Expressions.html#SEC51" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+
+<a name="SEC50"></a>
+<h1 class="chapter"> 11. Arithmetic Evaluation </h1>
+<p>The shell can perform integer and floating point arithmetic, either using
+the builtin <tt>let</tt>, or via a substitution of the form <tt>$((...))</tt>.  For
+integers, the shell is usually compiled to use 8-byte precision where this
+is available, otherwise precision is 4 bytes.  This can be tested, for
+example, by giving the command `<tt>print - $(( 12345678901 ))</tt>'; if the
+number appears unchanged, the precision is at least 8 bytes.  Floating
+point arithmetic always uses the `double' type with whatever corresponding
+precision is provided by the compiler and the library.
+</p>
+<p>The <tt>let</tt> builtin command takes arithmetic expressions as arguments; each
+is evaluated separately.  Since many of the arithmetic operators, as well
+as spaces, require quoting, an alternative form is provided: for any
+command which begins with a `<tt>((</tt>', all the characters until a
+matching `<tt>))</tt>' are treated as a quoted expression and
+arithmetic expansion performed as for an argument of <tt>let</tt>.  More
+precisely, `<tt>((</tt><var>...</var><tt>))</tt>' is equivalent to
+`<tt>let &quot;</tt><var>...</var><tt>&quot;</tt>'.  The return status is 0 if the arithmetic value
+of the expression is non-zero, 1 if it is zero, and 2 if an error occurred.
+</p>
+<p>For example, the following statement
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(( val = 2 + 1 ))
+</pre></td></tr></table>
+
+<p>is equivalent to
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">let &quot;val = 2 + 1&quot;
+</pre></td></tr></table>
+
+<p>both assigning the value 3 to the shell variable <tt>val</tt> and returning a
+zero status.
+</p>
+<a name="IDX104"></a>
+<a name="IDX105"></a>
+<p>Integers can be in bases other than 10.
+A leading `<tt>0x</tt>' or `<tt>0X</tt>' denotes hexadecimal.
+Integers may also be of the form `<var>base</var><tt>#</tt><var>n</var>',
+where <var>base</var> is a decimal number between two and thirty-six
+representing the arithmetic base and <var>n</var>
+is a number in that base (for example, `<tt>16#ff</tt>' is 255 in hexadecimal).
+The <var>base</var><tt>#</tt> may also be omitted, in which case
+base 10 is used.  For backwards compatibility the form
+`<tt>[</tt><var>base</var><tt>]</tt><var>n</var>' is also accepted.
+</p>
+<p>It is also possible to specify a base to be used for output in the form
+`<tt>[#</tt><var>base</var><tt>]</tt>', for example `<tt>[#16]</tt>'.  This is used when
+outputting arithmetical substitutions or when assigning to scalar
+parameters, but an explicitly defined integer or floating point parameter
+will not be affected.  If an integer variable is implicitly defined by an
+arithmetic expression, any base specified in this way will be set as the
+variable's output arithmetic base as if the option `<tt>-i</tt> <var>base</var>' to
+the <tt>typeset</tt> builtin had been used.  The expression has no precedence
+and if it occurs more than once in a mathematical expression, the last
+encountered is used.  For clarity it is recommended that it appear at the
+beginning of an expression.  As an example:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">typeset -i 16 y
+print $(( [#8] x = 32, y = 32 ))
+print $x $y
+</pre></td></tr></table>
+
+<p>outputs first `<tt>8#40</tt>', the rightmost value in the given output base, and
+then `<tt>8#40 16#20</tt>', because <tt>y</tt> has been explicitly declared to
+have output base 16, while <tt>x</tt> (assuming it does not already exist) is
+implicitly typed by the arithmetic evaluation, where it acquires the output
+base 8.
+</p>
+<a name="IDX106"></a>
+<a name="IDX107"></a>
+<p>If the <tt>C_BASES</tt> option is set, hexadecimal numbers in the standard C
+format, for example <tt>0xFF</tt> instead of the usual `<tt>16#FF</tt>'.  If the
+option <tt>OCTAL_ZEROES</tt> is also set (it is not by default), octal numbers
+will be treated similarly and hence appear as `<tt>077</tt>' instead of
+`<tt>8#77</tt>'.  This option has no effect on the output of bases other than
+hexadecimal and octal, and these formats are always understood on input.
+</p>
+<p>When an output base is specified using the `<tt>[#</tt><var>base</var><tt>]</tt>' syntax,
+an appropriate base prefix will be output if necessary, so that the value
+output is valid syntax for input.  If the <tt>#</tt> is doubled, for example
+`<tt>[##16]</tt>', then no base prefix is output.
+</p>
+<p>Floating point constants are recognized by the presence of a decimal point
+or an exponent.  The decimal point may be the first character of the
+constant, but the exponent character <tt>e</tt> or <tt>E</tt> may not, as it will be
+taken for a parameter name.
+</p>
+<a name="IDX108"></a>
+<a name="IDX109"></a>
+<p>An arithmetic expression uses nearly the same syntax and
+associativity of expressions as in C.
+</p>
+<p>In the native mode of operation, the following operators are supported
+(listed in decreasing order of precedence):
+</p>
+<dl compact="compact">
+<dt> <tt>+ - ! ~ ++ &ndash;</tt></dt>
+<dd><p>unary plus/minus, logical NOT, complement, {pre,post}{in,de}crement
+</p></dd>
+<dt> <tt>&lt;&lt; &gt;&gt;</tt></dt>
+<dd><p>bitwise shift left, right
+</p></dd>
+<dt> <tt>&amp;</tt></dt>
+<dd><p>bitwise AND
+</p></dd>
+<dt> <tt>^</tt></dt>
+<dd><p>bitwise XOR
+</p></dd>
+<dt> <tt>|</tt></dt>
+<dd><p>bitwise OR
+</p></dd>
+<dt> <tt>**</tt></dt>
+<dd><p>exponentiation
+</p></dd>
+<dt> <tt>* / %</tt></dt>
+<dd><p>multiplication, division, modulus (remainder)
+</p></dd>
+<dt> <tt>+ -</tt></dt>
+<dd><p>addition, subtraction
+</p></dd>
+<dt> <tt>&lt; &gt; &lt;= &gt;=</tt></dt>
+<dd><p>comparison
+</p></dd>
+<dt> <tt>== !=</tt></dt>
+<dd><p>equality and inequality
+</p></dd>
+<dt> <tt>&amp;&amp;</tt></dt>
+<dd><p>logical AND
+</p></dd>
+<dt> <tt>|| ^^</tt></dt>
+<dd><p>logical OR, XOR
+</p></dd>
+<dt> <tt>? :</tt></dt>
+<dd><p>ternary operator
+</p></dd>
+<dt> <tt>= += -= *= /= %= &amp;= ^= |= &lt;&lt;= &gt;&gt;= &amp;&amp;= ||= ^^= **=</tt></dt>
+<dd><p>assignment
+</p></dd>
+<dt> <tt>,</tt></dt>
+<dd><p>comma operator
+</p></dd>
+</dl>
+
+<p>The operators `<tt>&amp;&amp;</tt>', `<tt>||</tt>', `<tt>&amp;&amp;=</tt>', and `<tt>||=</tt>' are
+short-circuiting, and only one of the latter two expressions in a ternary
+operator is evaluated.  Note the precedence of the bitwise AND, OR,
+and XOR operators.
+</p>
+<p>With the option <tt>C_PRECEDENCES</tt> the precedences (but no other
+properties) of the operators are altered to be the same as those in
+most other languages that support the relevant operators:
+</p>
+<dl compact="compact">
+<dt> <tt>+ - ! ~ ++ &ndash;</tt></dt>
+<dd><p>unary plus/minus, logical NOT, complement, {pre,post}{in,de}crement
+</p></dd>
+<dt> <tt>**</tt></dt>
+<dd><p>exponentiation
+</p></dd>
+<dt> <tt>* / %</tt></dt>
+<dd><p>multiplication, division, modulus (remainder)
+</p></dd>
+<dt> <tt>+ -</tt></dt>
+<dd><p>addition, subtraction
+</p></dd>
+<dt> <tt>&lt;&lt; &gt;&gt;</tt></dt>
+<dd><p>bitwise shift left, right
+</p></dd>
+<dt> <tt>&lt; &gt; &lt;= &gt;=</tt></dt>
+<dd><p>comparison
+</p></dd>
+<dt> <tt>== !=</tt></dt>
+<dd><p>equality and inequality
+</p></dd>
+<dt> <tt>&amp;</tt></dt>
+<dd><p>bitwise AND
+</p></dd>
+<dt> <tt>^</tt></dt>
+<dd><p>bitwise XOR
+</p></dd>
+<dt> <tt>|</tt></dt>
+<dd><p>bitwise OR
+</p></dd>
+<dt> <tt>&amp;&amp;</tt></dt>
+<dd><p>logical AND
+</p></dd>
+<dt> <tt>^^</tt></dt>
+<dd><p>logical XOR
+</p></dd>
+<dt> <tt>||</tt></dt>
+<dd><p>logical OR
+</p></dd>
+<dt> <tt>? :</tt></dt>
+<dd><p>ternary operator
+</p></dd>
+<dt> <tt>= += -= *= /= %= &amp;= ^= |= &lt;&lt;= &gt;&gt;= &amp;&amp;= ||= ^^= **=</tt></dt>
+<dd><p>assignment
+</p></dd>
+<dt> <tt>,</tt></dt>
+<dd><p>comma operator
+</p></dd>
+</dl>
+
+<p>Note the precedence of exponentiation in both cases is below
+that of unary operators, hence `<tt>-3**2</tt>' evaluates as `<tt>9</tt>', not
+<tt>-9</tt>.  Use parentheses where necessary: `<tt>-(3**2)</tt>'.  This is
+for compatibility with other shells.
+</p>
+<a name="IDX110"></a>
+<a name="IDX111"></a>
+<p>Mathematical functions can be called with the syntax
+`<var>func</var><tt>(</tt><var>args</var><tt>)</tt>', where the function decides
+if the <var>args</var> is used as a string or a comma-separated list of
+arithmetic expressions. The shell currently defines no mathematical
+functions by default, but the module <tt>zsh/mathfunc</tt> may be loaded with
+the <tt>zmodload</tt> builtin to provide standard floating point mathematical
+functions.
+</p>
+<p>An expression of the form `<tt>##</tt><var>x</var>' where <var>x</var> is any character
+sequence such as `<tt>a</tt>', `<tt>^A</tt>', or `<tt>\M-\C-x</tt>' gives the value of
+this character and an expression of the form `<tt>#</tt><var>foo</var>' gives the
+value of the first character of the contents of the parameter <var>foo</var>.
+Character values are according to the character set used in the current
+locale; for multibyte character handling the option <tt>MULTIBYTE</tt> must be
+set.  Note that this form is different from `<tt>$#</tt><var>foo</var>', a standard
+parameter substitution which gives the length of the parameter <var>foo</var>.
+`<tt>#\</tt>' is accepted instead of `<tt>##</tt>', but its use is deprecated.
+</p>
+<p>Named parameters and subscripted arrays can be referenced by name within an
+arithmetic expression without using the parameter expansion syntax.  For
+example,
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">((val2 = val1 * 2))
+</pre></td></tr></table>
+
+<p>assigns twice the value of <tt>$val1</tt> to the parameter named <tt>val2</tt>.
+</p>
+<p>An internal integer representation of a named parameter
+can be specified with the <tt>integer</tt> builtin.
+<a name="IDX112"></a>
+<a name="IDX113"></a>
+<a name="IDX114"></a>
+Arithmetic evaluation is performed on the value of each
+assignment to a named parameter declared integer
+in this manner.  Assigning a floating point number to an integer results in
+rounding down to the next integer.
+</p>
+<a name="IDX115"></a>
+<a name="IDX116"></a>
+<a name="IDX117"></a>
+<p>Likewise, floating point numbers can be declared with the <tt>float</tt>
+builtin; there are two types, differing only in their output format, as
+described for the <tt>typeset</tt> builtin.  The output format can be bypassed
+by using arithmetic substitution instead of the parameter substitution,
+i.e. `<tt>${</tt><var>float</var><tt>}</tt>' uses the defined format, but
+`<tt>$((</tt><var>float</var><tt>))</tt>' uses a generic floating point
+format.
+</p>
+<p>Promotion of integer to floating point values is performed where
+necessary.  In addition, if any operator which requires an integer
+(`<tt>~</tt>', `<tt>&amp;</tt>', `<tt>|</tt>', `<tt>^</tt>', `<tt>%</tt>', `<tt>&lt;&lt;</tt>', `<tt>&gt;&gt;</tt>' and their
+equivalents with assignment) is given a floating point argument, it will be
+silently rounded down to the next integer.
+</p>
+<p>Scalar variables can hold integer or floating point values at different
+times; there is no memory of the numeric type in this case.
+</p>
+<p>If a variable is first assigned in a numeric context without previously
+being declared, it will be implicitly typed as <tt>integer</tt> or <tt>float</tt> and
+retain that type either until the type is explicitly changed or until the
+end of the scope.  This can have unforeseen consequences.  For example, in
+the loop
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">for (( f = 0; f &lt; 1; f += 0.1 )); do
+# use $f
+done
+</pre></td></tr></table>
+
+<p>if <tt>f</tt> has not already been declared, the first assignment will cause it
+to be created as an integer, and consequently the operation `<tt>f += 0.1</tt>'
+will always cause the result to be truncated to zero, so that the loop will
+fail.  A simple fix would be to turn the initialization into `<tt>f = 0.0</tt>'.
+It is therefore best to declare numeric variables with explicit types.
+</p><hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#SEC47" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Conditional-Expressions.html#SEC51" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Oliver Kiddle</em> on <em>May, 28 2009</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

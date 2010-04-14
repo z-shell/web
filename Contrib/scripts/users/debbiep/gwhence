@@ -1,0 +1,94 @@
+#!/bin/zsh
+#
+# gwhence - generic version of builtin "whence" that works on a user-
+# specifiable path.
+#
+# usage:
+#   gwhence [-a] [-m] [-s path] name . . .
+#
+# where
+#   -a   causes all matching names to be printed, not just the first
+#        one that occurs in the path.
+#   -m   allows name(s) to be shell patterns (implies -a)
+#   -s   lets you supply a colon-separated path for gwhence to
+#        search for name(s) (default is $PATH)
+#
+
+local opt elem names found all pattern ng
+
+local usage="Usage: $0:t [-am] [-s path] name . . ."
+
+# no arguments - return with zero exit status
+if [[ $# -eq 0 ]]
+then
+  return 0
+fi
+
+# search path defaults to $PATH
+local search="$PATH"
+
+# fetch options
+while getopts :ams: opt
+do
+  case "$opt" in
+    'a') all=true ;;
+    'm') pattern=true ;;
+    's') search="$OPTARG" ;;
+    ':') [[ "$OPTARG" = 's' ]] && echo "$usage" ;;
+    '?') echo "$usage" ; return 1 ;;
+  esac
+done
+
+# put options behind us
+shift $[ $OPTIND - 1 ]
+
+# remember state of nullglob
+[[ -o nullglob ]] && ng=true
+setopt nullglob
+
+# if none found, must report it by nonzero exit status at end
+found=
+
+# for each name supplied . . .
+for names
+do
+  # scan path, in pieces (colon is separator)
+  for elem in ${(s/:/)=search}
+  do
+    # pattern matching (-m)
+    if [[ "$pattern" = "true" ]]
+    then
+      # for compatibility with whence, must put next line here, not inside
+      # following if construct
+      found=true
+      if [[ -n "$(eval 'echo -n $elem/'$names'')" ]]
+      then
+        # Must output them on separate lines
+        eval 'echo $elem/'$names' | tr '\'' '\'' '\''\n'\'
+      fi
+    else
+      if [[ -a $elem/$names ]]
+      then
+        echo $elem/$names
+        # we found one - remember it
+        found=true
+      fi
+      # note that "found" only applies if -m was not specified
+      if [[ "$found" = "true" && "$all" != "true" ]]
+      then
+        break
+      fi 
+    fi
+  done
+done
+
+# reset nullglob status
+[[ "$ng" = "true" ]] || unsetopt nullglob
+
+# a name not found? 
+if [[ "$found" != "true" ]]
+then
+  return 1
+fi
+# exit safely
+return 0

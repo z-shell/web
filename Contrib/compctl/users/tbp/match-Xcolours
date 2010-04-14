@@ -1,0 +1,12 @@
+#!/usr/local/bin/zsh
+
+# keep a copy of IFS so it can be restored afterwards
+local oldIFS=$IFS
+# set IFS to newline (only) so that spaces are not treated specially
+IFS="
+"
+# strip leading rubbish off rgb.txt file and treat them a line at a time.
+reply=($(sed 's/^[0-9 	]*[ 	]*//' </usr/lib/X11/rgb.txt )) 
+IFS=$oldIFS
+
+

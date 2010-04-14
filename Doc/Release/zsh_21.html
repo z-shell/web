@@ -1,0 +1,4079 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on March, 19  2004 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>zsh: Zsh Modules</TITLE>
+
+<META NAME="description" CONTENT="zsh: Zsh Modules">
+<META NAME="keywords" CONTENT="zsh: Zsh Modules">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC137"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_20.html#SEC136"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC138"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_20.html#SEC126"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 21. Zsh Modules </H1>
+<!--docid::SEC137::-->
+<A NAME="IDX1422"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC138"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC139"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC139"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.1 Description </H2>
+<!--docid::SEC138::-->
+Some optional parts of zsh are in modules, separate from the core
+of the shell.  Each of these modules may be linked in to the
+shell at build time,
+or can be dynamically linked while the shell is running
+if the installation supports this feature.  The modules that
+are bundled with the zsh distribution are:
+<P>
+
+<DL COMPACT>
+<DT><TT>zsh/cap</TT>
+<DD>Builtins for manipulating POSIX.1e (POSIX.6) capability (privilege) sets.
+<P>
+
+<DT><TT>zsh/clone</TT>
+<DD>A builtin that can clone a running shell onto another terminal.
+<P>
+
+<DT><TT>zsh/compctl</TT>
+<DD>The <TT>compctl</TT> builtin for controlling completion.
+<P>
+
+<DT><TT>zsh/complete</TT>
+<DD>The basic completion code.
+<P>
+
+<DT><TT>zsh/complist</TT>
+<DD>Completion listing extensions.
+<P>
+
+<DT><TT>zsh/computil</TT>
+<DD>A module with utility builtins needed for the shell function based
+completion system.
+<P>
+
+<DT><TT>zsh/datetime</TT>
+<DD>Some date/time commands and parameters.
+<P>
+
+<DT><TT>zsh/deltochar</TT>
+<DD>A ZLE function duplicating EMACS' <TT>zap-to-char</TT>.
+<P>
+
+<DT><TT>zsh/example</TT>
+<DD>An example of how to write a module.
+<P>
+
+<DT><TT>zsh/files</TT>
+<DD>Some basic file manipulation commands as builtins.
+<P>
+
+<DT><TT>zsh/mapfile</TT>
+<DD>Access to external files via a special associative array.
+<P>
+
+<DT><TT>zsh/mathfunc</TT>
+<DD>Standard scientific functions for use in mathematical evaluations.
+<P>
+
+<DT><TT>zsh/parameter</TT>
+<DD>Access to internal hash tables via special associative arrays.
+<P>
+
+<DT><TT>zsh/pcre</TT>
+<DD>Interface to the PCRE library.
+<P>
+
+<DT><TT>zsh/sched</TT>
+<DD>A builtin that provides a timed execution facility within the shell.
+<P>
+
+<DT><TT>zsh/net/socket</TT>
+<DD>Manipulation of Unix domain sockets
+<P>
+
+<DT><TT>zsh/stat</TT>
+<DD>A builtin command interface to the <TT>stat</TT> system call.
+<P>
+
+<DT><TT>zsh/system</TT>
+<DD>A builtin interface to various low-level system features.
+<P>
+
+<DT><TT>zsh/net/tcp</TT>
+<DD>Manipulation of TCP sockets
+<P>
+
+<DT><TT>zsh/termcap</TT>
+<DD>Interface to the termcap database.
+<P>
+
+<DT><TT>zsh/terminfo</TT>
+<DD>Interface to the terminfo database.
+<P>
+
+<DT><TT>zsh/zftp</TT>
+<DD>A builtin FTP client.
+<P>
+
+<DT><TT>zsh/zle</TT>
+<DD>The Zsh Line Editor, including the <TT>bindkey</TT> and <TT>vared</TT> builtins.
+<P>
+
+<DT><TT>zsh/zleparameter</TT>
+<DD>Access to internals of the Zsh Line Editor via parameters.
+<P>
+
+<DT><TT>zsh/zprof</TT>
+<DD>A module allowing profiling for shell functions.
+<P>
+
+<DT><TT>zsh/zpty</TT>
+<DD>A builtin for starting a command in a pseudo-terminal.
+<P>
+
+<DT><TT>zsh/zselect</TT>
+<DD>Block and return when file descriptors are ready.
+<P>
+
+<DT><TT>zsh/zutil</TT>
+<DD>Some utility builtins, e.g. the one for supporting configuration via 
+styles.
+<P>
+
+</DL>
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC139">21.2 The zsh/cap Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC140">21.3 The zsh/clone Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC141">21.4 The zsh/compctl Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC142">21.5 The zsh/complete Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC143">21.6 The zsh/complist Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC147">21.7 The zsh/computil Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC148">21.8 The zsh/datetime Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC149">21.9 The zsh/deltochar Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC150">21.10 The zsh/example Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC151">21.11 The zsh/files Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC152">21.12 The zsh/mapfile Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC154">21.13 The zsh/mathfunc Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC155">21.14 The zsh/parameter Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC156">21.15 The zsh/pcre Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC157">21.16 The zsh/sched Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC158">21.17 The zsh/net/socket Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC161">21.18 The zsh/stat Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC162">21.19 The zsh/system Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC165">21.22 The zsh/net/tcp Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC170">21.23 The zsh/termcap Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC171">21.24 The zsh/terminfo Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC172">21.25 The zsh/zftp Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC177">21.26 The zsh/zle Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC178">21.27 The zsh/zleparameter Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC179">21.28 The zsh/zprof Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC180">21.29 The zsh/zpty Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC181">21.30 The zsh/zselect Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="zsh_21.html#SEC182">21.31 The zsh/zutil Module</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<A NAME="The zsh/cap Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC139"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC138"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC140"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC140"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.2 The zsh/cap Module </H2>
+<!--docid::SEC139::-->
+<P>
+
+The <TT>zsh/cap</TT> module is used for manipulating POSIX.1e (POSIX.6) capability
+sets.  If the operating system does not support this interface, the
+builtins defined by this module will do nothing.
+The builtins in this module are:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1423"></A>
+<A NAME="IDX1424"></A>
+<DT><TT>cap</TT> [ <VAR>capabilities</VAR> ]
+<DD>Change the shell's process capability sets to the specified <VAR>capabilities</VAR>,
+otherwise display the shell's current capabilities.
+<P>
+
+<A NAME="IDX1425"></A>
+<A NAME="IDX1426"></A>
+<DT><TT>getcap</TT> <VAR>filename</VAR> ...
+<DD>This is a built-in implementation of the POSIX standard utility.  It displays
+the capability sets on each specified <VAR>filename</VAR>.
+<P>
+
+<A NAME="IDX1427"></A>
+<A NAME="IDX1428"></A>
+<DT><TT>setcap</TT> <VAR>capabilities</VAR> <VAR>filename</VAR> ...
+<DD>This is a built-in implementation of the POSIX standard utility.  It sets
+the capability sets on each specified <VAR>filename</VAR> to the specified
+<VAR>capabilities</VAR>.
+<P>
+
+</DL>
+<A NAME="The zsh/clone Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC140"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC139"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC141"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.3 The zsh/clone Module </H2>
+<!--docid::SEC140::-->
+<P>
+
+The <TT>zsh/clone</TT> module makes available one builtin command:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1429"></A>
+<A NAME="IDX1430"></A>
+<A NAME="IDX1431"></A>
+<A NAME="IDX1432"></A>
+<DT><TT>clone</TT> <VAR>tty</VAR>
+<DD>Creates a forked instance of the current shell, attached to the specified
+<VAR>tty</VAR>.  In the new shell, the <TT>PID</TT>, <TT>PPID</TT> and <TT>TTY</TT> special
+parameters are changed appropriately.  <TT>$!</TT> is set to zero in the new
+shell, and to the new shell's PID in the original shell.
+<P>
+
+The return value of the builtin is zero in both shells if successful,
+and non-zero on error.
+</P><P>
+
+</DL>
+<A NAME="The zsh/compctl Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC141"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC140"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC142"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.4 The zsh/compctl Module </H2>
+<!--docid::SEC141::-->
+<P>
+
+The <TT>zsh/compctl</TT> module makes available two builtin commands. <TT>compctl</TT>,
+is the old, deprecated way to control completions for ZLE.  See
+<A HREF="zsh_20.html#SEC126">20. Completion Using compctl</A>.
+The other builtin command, <TT>compcall</TT> can be used in user-defined
+completion widgets, see
+<A HREF="zsh_18.html#SEC105">18. Completion Widgets</A>.
+<A NAME="The zsh/complete Module"></A>
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC142"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC141"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC143"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.5 The zsh/complete Module </H2>
+<!--docid::SEC142::-->
+<P>
+
+The <TT>zsh/complete</TT> module makes available several builtin commands which
+can be used in user-defined completion widgets, see
+<A HREF="zsh_18.html#SEC105">18. Completion Widgets</A>.
+<A NAME="The zsh/complist Module"></A>
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC143"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC142"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC144"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC147"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.6 The zsh/complist Module </H2>
+<!--docid::SEC143::-->
+<P>
+
+<A NAME="IDX1433"></A>
+<A NAME="IDX1434"></A>
+<A NAME="IDX1435"></A>
+The <TT>zsh/complist</TT> module offers three extensions to completion listings:
+the ability to highlight matches in such a list, the ability to
+scroll through long lists and a different style of menu completion.
+</P><P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC144"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC143"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC145"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 21.6.1 Colored completion listings </H3>
+<!--docid::SEC144::-->
+Whenever one of the parameters <TT>ZLS_COLORS</TT> or <TT>ZLS_COLOURS</TT> is set 
+and the <TT>zsh/complist</TT> module is loaded or linked into the shell,
+completion lists will be colored.  Note, however, that <TT>complist</TT> will
+not automatically be loaded if it is not linked in:  on systems with
+dynamic loading, `<TT>zmodload zsh/complist</TT>' is required.
+<P>
+
+<A NAME="IDX1436"></A>
+<A NAME="IDX1437"></A>
+The parameters <TT>ZLS_COLORS</TT> and <TT>ZLS_COLOURS</TT> describe how matches
+are highlighted.  To turn on highlighting an empty value suffices, in
+which case all the default values given below will be used.  The format of
+the value of these parameters is the same as used by the GNU version of the
+<TT>ls</TT> command: a colon-separated list of specifications of the form
+`<VAR>name</VAR>=<VAR>value</VAR>'.  The <VAR>name</VAR> may be one of the following strings,
+most of which specify file types for which the <VAR>value</VAR> will be used.
+The strings and their default values are:
+</P><P>
+
+<DL COMPACT>
+<DT><TT>no 0</TT>
+<DD>for normal text (i.e. when displaying something other than a matched file)
+<P>
+
+<DT><TT>fi 0</TT>
+<DD>for regular files
+<P>
+
+<DT><TT>di 32</TT>
+<DD>for directories
+<P>
+
+<DT><TT>ln 36</TT>
+<DD>for symbolic links
+<P>
+
+<DT><TT>pi 31</TT>
+<DD>for named pipes (FIFOs)
+<P>
+
+<DT><TT>so 33</TT>
+<DD>for sockets
+<P>
+
+<DT><TT>bd 44;37</TT>
+<DD>for block devices
+<P>
+
+<DT><TT>cd 44;37</TT>
+<DD>for character devices
+<P>
+
+<DT><TT>ex 35</TT>
+<DD>for executable files
+<P>
+
+<DT><TT>mi</TT> <VAR>none</VAR>
+<DD>for a non-existent file (default is the value defined for <TT>fi</TT>)
+<P>
+
+<DT><TT>lc \e[</TT>
+<DD>for the left code (see below)
+<P>
+
+<DT><TT>rc m</TT>
+<DD>for the right code
+<P>
+
+<DT><TT>tc 0</TT>
+<DD>for the character indicating the file type  printed after filenames if
+the <TT>LIST_TYPES</TT> option is set
+<P>
+
+<DT><TT>sp 0</TT>
+<DD>for the spaces printed after matches to align the next column
+<P>
+
+<DT><TT>ec</TT> <VAR>none</VAR>
+<DD>for the end code
+<P>
+
+</DL>
+<P>
+
+Apart from these strings, the <VAR>name</VAR> may also be an asterisk
+(`<TT>*</TT>') followed by any string. The <VAR>value</VAR> given for such a
+string will be used for all files whose name ends with the string.
+The <VAR>name</VAR> may also be an equals sign (`<TT>=</TT>') followed by a
+pattern.  The <VAR>value</VAR> given for this pattern will be used for all
+matches (not just filenames) whose display string are matched by
+the pattern.  Definitions for both of these take precedence over the
+values defined for file types and the form with the leading asterisk 
+takes precedence over the form with the leading equal sign.
+</P><P>
+
+The last form also allows different parts of the displayed
+strings to be colored differently.  For this, the pattern has to use the
+`<TT>(#b)</TT>' globbing flag and pairs of parentheses surrounding the
+parts of the strings that are to be colored differently.  In this case 
+the <VAR>value</VAR> may consist of more than one color code separated by
+equal signs.  The first code will be used for all parts for which no
+explicit code is specified and the following codes will be used for
+the parts matched by the sub-patterns in parentheses.  For example,
+the specification `<TT>=(#b)(?)*(?)=0=3=7</TT>' will be used for all
+matches which are at least two characters long and will use
+the code `<TT>3</TT>' for the first character, `<TT>7</TT>' for the last
+character and `<TT>0</TT>' for the rest.
+</P><P>
+
+All three forms of <VAR>name</VAR> may be preceded by a pattern in
+parentheses.  If this is given, the <VAR>value</VAR> will be used
+only for matches in groups whose names are matched by the pattern
+given in the parentheses.  For example, `<TT>(g*)m*=43</TT>' highlights all
+matches beginning with `<TT>m</TT>' in groups whose names  begin with
+`<TT>g</TT>' using the color code `<TT>43</TT>'.  In case of the `<TT>lc</TT>',
+`<TT>rc</TT>', and `<TT>ec</TT>' codes, the group pattern is ignored.
+</P><P>
+
+Note also that all patterns are tried in the order in which they
+appear in the parameter value until the first one matches which is
+then used.
+</P><P>
+
+When printing a match, the code prints the value of <TT>lc</TT>, the value
+for the file-type or the last matching specification with a `<TT>*</TT>',
+the value of <TT>rc</TT>, the string to display for the match itself, and
+then the value of <TT>ec</TT> if that is defined or the values of <TT>lc</TT>,
+<TT>no</TT>, and <TT>rc</TT> if <TT>ec</TT> is not defined.
+</P><P>
+
+The default values are ISO 6429 (ANSI) compliant and can be used on
+vt100 compatible terminals such as <TT>xterm</TT>s.  On monochrome terminals
+the default values will have no visible effect.  The <TT>colors</TT>
+function from the contribution can be used to get associative arrays
+containing the codes for ANSI terminals (see
+<A HREF="zsh_24.html#SEC229">24.6 Other Functions</A>).  For example, after loading <TT>colors</TT>, one could use
+`<TT>$colors[red]</TT>' to get the code for foreground color red and
+`<TT>$colors[bg-green]</TT>' for the code for background color green.
+</P><P>
+
+If the completion system invoked by compinit is used, these
+parameters should not be set directly because the system controls them 
+itself.  Instead, the <TT>list-colors</TT> style should be used (see
+<A HREF="zsh_19.html#SEC118">19.3 Completion System Configuration</A>).
+</P><P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC145"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC144"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC146"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC146"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 21.6.2 Scrolling in completion listings </H3>
+<!--docid::SEC145::-->
+To enable scrolling through a completion list, the <TT>LISTPROMPT</TT>
+parameter must be set.  Its value will be used as the prompt; if it
+is the empty string, a default prompt will be used.  The value may
+contain escapes of the form `<TT>%x</TT>'.  It supports the escapes
+`<TT>%B</TT>', `<TT>%b</TT>', `<TT>%S</TT>', `<TT>%s</TT>', `<TT>%U</TT>', `<TT>%u</TT>' and
+`<TT>%{...%}</TT>' used also in shell prompts as well as three pairs of
+additional sequences: a `<TT>%l</TT>' or `<TT>%L</TT>' is replaced by the number
+of the last line shown and the total number of lines in the form
+`<VAR>number</VAR><TT>/</TT><VAR>total</VAR>'; a `<TT>%m</TT>' or `<TT>%M</TT>' is replaced with
+the number of the last match shown and the total number of matches; and 
+`<TT>%p</TT>' or `<TT>%P</TT>' is replaced with `<TT>Top</TT>', `<TT>Bottom</TT>' or the
+position of the first line shown in percent of the total number of
+lines, respectively.  In each of these cases the form with the uppercase
+letter will be replaced with a string of fixed width, padded to the
+right with spaces, while the lowercase form will not be padded.
+<P>
+
+If the parameter <TT>LISTPROMPT</TT> is set, the completion code will not ask if
+the list should be shown.  Instead it immediately starts displaying the
+list, stopping after the first screenful, showing the prompt at the bottom,
+waiting for a keypress after temporarily switching to the <TT>listscroll</TT>
+keymap.  Some of the zle functions have a special meaning while scrolling
+lists:
+</P><P>
+
+<DL COMPACT>
+<DT><TT>send-break</TT>
+<DD>stops listing discarding the key pressed
+<P>
+
+<DT><TT>accept-line</TT>, <TT>down-history</TT>, <TT>down-line-or-history</TT>
+<DD><DT><TT>down-line-or-search</TT>, <TT>vi-down-line-or-history</TT>
+<DD>scrolls forward one line
+<P>
+
+<DT><TT>complete-word</TT>, <TT>menu-complete</TT>, <TT>expand-or-complete</TT>
+<DD><DT><TT>expand-or-complete-prefix</TT>, <TT>menu-complete-or-expand</TT>
+<DD>scrolls forward one screenful
+<P>
+
+</DL>
+<P>
+
+Every other character stops listing and immediately processes the key
+as usual.  Any key that is not bound in the <TT>listscroll</TT> keymap or
+that is bound to <TT>undefined-key</TT> is looked up in the keymap
+currently selected.
+</P><P>
+
+As for the <TT>ZLS_COLORS</TT> and <TT>ZLS_COLOURS</TT> parameters,
+<TT>LISTPROMPT</TT> should not be set directly when using the shell
+function based completion system.  Instead, the <TT>list-prompt</TT> style
+should be used.
+</P><P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC146"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC145"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC147"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 21.6.3 Menu selection </H3>
+<!--docid::SEC146::-->
+<A NAME="IDX1438"></A>
+<A NAME="IDX1439"></A>
+<A NAME="IDX1440"></A>
+The <TT>zsh/complist</TT> module also offers an alternative style of selecting
+matches from a list, called menu selection, which can be used if the
+shell is set up to return to the last prompt after showing a
+completion list (see the <TT>ALWAYS_LAST_PROMPT</TT> option in
+<A HREF="zsh_15.html#SEC81">15. Options</A>).  It can be invoked directly by
+the widget <TT>menu-select</TT> defined by the module.  Alternatively,
+the parameter <TT>MENUSELECT</TT> can be set to an integer, which gives the
+minimum number of matches that must be present before menu selection is
+automatically turned on.  This second method requires that menu completion
+be started, either directly from a widget such as <TT>menu-complete</TT>, or due
+to one of the options <TT>MENU_COMPLETE</TT> or <TT>AUTO_MENU</TT> being set.  If
+<TT>MENUSELECT</TT> is set, but is 0, 1 or empty, menu selection will always be
+started during an ambiguous menu completion.
+<P>
+
+When using the completion system based on shell functions, the
+<TT>MENUSELECT</TT> parameter should not be used (like the <TT>ZLS_COLORS</TT>
+and <TT>ZLS_COLOURS</TT> parameters described above).  Instead, the <TT>menu</TT> 
+style should be used with the <TT>select=</TT><VAR>...</VAR> keyword.
+</P><P>
+
+After menu selection is started, the matches will be listed. If there
+are more matches than fit on the screen, only the first screenful is
+shown.  The
+matches to insert into the command line can be selected from this
+list.  In the list one match is highlighted using the value for <TT>ma</TT>
+from the <TT>ZLS_COLORS</TT> or <TT>ZLS_COLOURS</TT> parameter.  The default
+value for this is `<TT>7</TT>' which forces the selected match to be
+highlighted using standout mode on a vt100-compatible terminal.  If
+neither <TT>ZLS_COLORS</TT> nor <TT>ZLS_COLOURS</TT> is set, the same terminal
+control sequence as for the `<TT>%S</TT>' escape in prompts is used.
+</P><P>
+
+If there are more matches than fit on the screen and the parameter
+<TT>MENUPROMPT</TT> is set, its value will be shown below the matches.  It
+supports the same escape sequences as <TT>LISTPROMPT</TT>, but the number
+of the match or line shown will be that of the one where the mark is
+placed.  If its value is the empty string, a default prompt will be
+used.
+</P><P>
+
+The <TT>MENUSCROLL</TT> parameter can be used to specify how the list is
+scrolled.  If the parameter is unset, this is done line by line, if it
+is set to `<TT>0</TT>' (zero), the list will scroll half the number of
+lines of the screen.  If the value is positive, it gives the number of
+lines to scroll and if it is negative, the list will be scrolled
+the number of lines of the screen minus the (absolute) value.
+</P><P>
+
+As for the <TT>ZLS_COLORS</TT>, <TT>ZLS_COLOURS</TT> and <TT>LISTPROMPT</TT>
+parameters, neither <TT>MENUPROMPT</TT> nor <TT>MENUSCROLL</TT> should be
+set directly when using the shell function based completion
+system.  Instead, the <TT>select-prompt</TT> and <TT>select-scroll</TT> styles
+should be used.
+</P><P>
+
+The completion code sometimes decides not to show all of the matches
+in the list.  These hidden matches are either matches for which the
+completion function which added them explicitly requested that they
+not appear in the list (using the <TT>-n</TT> option of the <TT>compadd</TT>
+builtin command) or they are matches which duplicate a string already
+in the list (because they differ only in things like prefixes or
+suffixes that are not displayed).  In the list used for menu selection,
+however, even these matches are shown so that it is possible to select
+them.  To highlight such matches the <TT>hi</TT> and <TT>du</TT> capabilities in
+the <TT>ZLS_COLORS</TT> and <TT>ZLS_COLOURS</TT> parameters are supported for
+hidden matches of the first and second kind, respectively.
+</P><P>
+
+Selecting matches is done by moving the mark around using the zle movement
+functions.  When not all matches can be shown on the screen at the same 
+time, the list will scroll up and down when crossing the top or
+bottom line.  The following zle functions have special meaning during
+menu selection:
+</P><P>
+
+<DL COMPACT>
+<DT><TT>accept-line</TT>
+<DD>accepts the current match and leaves menu selection
+<P>
+
+<DT><TT>send-break</TT>
+<DD>leaves menu selection and restores the previous contents of the
+command line
+<P>
+
+<DT><TT>redisplay</TT>, <TT>clear-screen</TT>
+<DD>execute their normal function without leaving menu selection
+<P>
+
+<DT><TT>accept-and-hold</TT>, <TT>accept-and-menu-complete</TT>
+<DD>accept the currently inserted match and continue selection allowing to 
+select the next match to insert into the line
+<P>
+
+<DT><TT>accept-and-infer-next-history</TT>
+<DD>accepts the current match and then tries completion with
+menu selection again;  in the case of files this allows one to select
+a directory and immediately attempt to complete files in it;  if there 
+are no matches, a message is shown and one can use <TT>undo</TT> to go back 
+to completion on the previous level, every other key leaves menu
+selection (including the other zle functions which are otherwise
+special during menu selection)
+<P>
+
+<DT><TT>undo</TT>
+<DD>removes matches inserted during the menu selection by one of the three 
+functions before
+<P>
+
+<DT><TT>down-history</TT>, <TT>down-line-or-history</TT>
+<DD><DT><TT>vi-down-line-or-history</TT>,  <TT>down-line-or-search</TT>
+<DD>moves the mark one line down
+<P>
+
+<DT><TT>up-history</TT>, <TT>up-line-or-history</TT>
+<DD><DT><TT>vi-up-line-or-history</TT>, <TT>up-line-or-search</TT>
+<DD>moves the mark one line up
+<P>
+
+<DT><TT>forward-char</TT>, <TT>vi-forward-char</TT>
+<DD>moves the mark one column right
+<P>
+
+<DT><TT>backward-char</TT>, <TT>vi-backward-char</TT>
+<DD>moves the mark one column left
+<P>
+
+<DT><TT>forward-word</TT>, <TT>vi-forward-word</TT>
+<DD><DT><TT>vi-forward-word-end</TT>, <TT>emacs-forward-word</TT>
+<DD>moves the mark one screenful down
+<P>
+
+<DT><TT>backward-word</TT>, <TT>vi-backward-word</TT>, <TT>emacs-backward-word</TT>
+<DD>moves the mark one screenful up
+<P>
+
+<DT><TT>vi-forward-blank-word</TT>, <TT>vi-forward-blank-word-end</TT>
+<DD>moves the mark to the first line of the next group of matches
+<P>
+
+<DT><TT>vi-backward-blank-word</TT>
+<DD>moves the mark to the last line of the previous group of matches
+<P>
+
+<DT><TT>beginning-of-history</TT>
+<DD>moves the mark to the first line
+<P>
+
+<DT><TT>end-of-history</TT>
+<DD>moves the mark to the last line
+<P>
+
+<DT><TT>beginning-of-buffer-or-history</TT>, <TT>beginning-of-line</TT>
+<DD><DT><TT>beginning-of-line-hist</TT>, <TT>vi-beginning-of-line</TT>
+<DD>moves the mark to the leftmost column
+<P>
+
+<DT><TT>end-of-buffer-or-history</TT>, <TT>end-of-line</TT>
+<DD><DT><TT>end-of-line-hist</TT>, <TT>vi-end-of-line</TT>
+<DD>moves the mark to the rightmost column
+<P>
+
+<DT><TT>complete-word</TT>, <TT>menu-complete</TT>, <TT>expand-or-complete</TT>
+<DD><DT><TT>expand-or-complete-prefix</TT>, <TT>menu-expand-or-complete</TT>
+<DD>moves the mark to the next match
+<P>
+
+<DT><TT>reverse-menu-complete</TT>
+<DD>moves the mark to the previous match
+<P>
+
+<DT><TT>vi-insert</TT>
+<DD>this toggles between normal and interactive mode; in interactive mode
+the keys bound to <TT>self-insert</TT> and <TT>self-insert-unmeta</TT> insert
+into the command line as in normal editing mode but without leaving
+menu selection; after each character completion is tried again and the
+list changes to contain only the new matches; the completion widgets
+make the longest unambiguous string be inserted in the command line
+and <TT>undo</TT> and <TT>backward-delete-char</TT> go back to the previous set
+of matches
+<P>
+
+<DT><TT>history-incremental-search-forward</TT>,
+<DD><TT>history-incremental-search-backward</TT>
+this starts incremental searches in the list of completions displayed;
+in this mode, <TT>accept-line</TT> only leaves incremental search, going
+back to the normal menu selection mode
+<P>
+
+</DL>
+<P>
+
+All movement functions wrap around at the edges; any other zle function not
+listed leaves menu selection and executes that function.  It is possible to
+make widgets in the above list do the same by using the form of the widget
+with a `<TT>.</TT>' in front.  For example, the widget `<TT>.accept-line</TT>' has
+the effect of leaving menu selection and accepting the entire command line.
+</P><P>
+
+During this selection the widget uses the keymap <TT>menuselect</TT>.  Any
+key that is not defined in this keymap or that is bound to
+<TT>undefined-key</TT> is looked up in the keymap currently selected.  This
+is used to ensure that the most important keys used during selection
+(namely the cursor keys, return, and TAB) have sensible defaults.  However,
+keys in the <TT>menuselect</TT> keymap can be modified directly using the
+<TT>bindkey</TT> builtin command (see
+<A HREF="zsh_21.html#SEC177">21.26 The zsh/zle Module</A>). For example, to make the return key leave menu selection without
+accepting the match currently selected one could call
+</P><P>
+
+<BLOCKQUOTE>
+<TT>bindkey -M menuselect '^M' send-break</TT>
+</BLOCKQUOTE>
+<P>
+
+after loading the <TT>zsh/complist</TT> module.
+<A NAME="The zsh/computil Module"></A>
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC147"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC146"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC148"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC143"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.7 The zsh/computil Module </H2>
+<!--docid::SEC147::-->
+<P>
+
+<A NAME="IDX1441"></A>
+The <TT>zsh/computil</TT> module adds several builtin commands that are used by
+some of the completion functions in the completion system based on shell
+functions (see 
+<A HREF="zsh_19.html#SEC112">19. Completion System</A>
+).  Except for <TT>compquote</TT> these builtin commands are very
+specialised and thus not very interesting when writing your own
+completion functions.  In summary, these builtin commands are:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1442"></A>
+<DT><TT>comparguments</TT>
+<DD>This is used by the <TT>_arguments</TT> function to do the argument and
+command line parsing.  Like <TT>compdescribe</TT> it has an option <TT>-i</TT> to 
+do the parsing and initialize some internal state and various options
+to access the state information to decide what should be completed.
+<P>
+
+<A NAME="IDX1443"></A>
+<DT><TT>compdescribe</TT>
+<DD>This is used by the <TT>_describe</TT> function to build the displays for
+the matches and to get the strings to add as matches with their
+options.  On the first call one of the options <TT>-i</TT> or <TT>-I</TT> should be
+supplied as the first argument.  In the first case, display strings without
+the descriptions will be generated, in the second case, the string used to
+separate the matches from their descriptions must be given as the
+second argument and the descriptions (if any) will be shown.  All other 
+arguments are like the definition arguments to <TT>_describe</TT> itself.
+<P>
+
+Once <TT>compdescribe</TT> has been called with either the <TT>-i</TT> or the
+<TT>-I</TT> option, it can be repeatedly called with the <TT>-g</TT> option and
+the names of five arrays as its arguments.  This will step through the
+different sets of matches and store the options in the first array,
+the strings with descriptions in the second, the matches for these in
+the third, the strings without descriptions in the fourth, and the
+matches for them in the fifth array.  These are then directly given to
+<TT>compadd</TT> to register the matches with the completion code.
+</P><P>
+
+<A NAME="IDX1444"></A>
+<DT><TT>compfiles</TT>
+<DD>Used by the <TT>_path_files</TT> function to optimize complex recursive
+filename generation (globbing).  It does three things.  With the
+<TT>-p</TT> and <TT>-P</TT> options it builds the glob patterns to use,
+including the paths already handled and trying to optimize the
+patterns with respect to the prefix and suffix from the line and the
+match specification currently used.  The <TT>-i</TT> option does the
+directory tests for the <TT>ignore-parents</TT> style and the <TT>-r</TT> option 
+tests if a component for some of the matches are equal to the string
+on the line and removes all other matches if that is true.
+<P>
+
+<A NAME="IDX1445"></A>
+<DT><TT>compgroups</TT>
+<DD>Used by the <TT>_tags</TT> function to implement the internals of the
+<TT>group-order</TT> style.  This only takes its arguments as names of
+completion groups and creates the groups for it (all six types: sorted 
+and unsorted, both without removing duplicates, with removing all
+duplicates and with removing consecutive duplicates).
+<P>
+
+<A NAME="IDX1446"></A>
+<DT><TT>compquote</TT> [ <TT>-p</TT> ] <VAR>names</VAR> ...
+<DD>There may be reasons to write completion functions that have to add
+the matches using the <TT>-Q</TT> option to <TT>compadd</TT> and perform quoting
+themselves.  Instead of interpreting the first character of the
+<TT>all_quotes</TT> key of the <TT>compstate</TT> special association and using
+the <TT>q</TT> flag for parameter expansions, one can use this builtin
+command.  The arguments are the names of scalar or array parameters
+and the values of these parameters are quoted as needed for the
+innermost quoting level.  If the <TT>-p</TT> option is given, quoting is
+done as if there is some prefix before the values of the parameters,
+so that a leading equal sign will not be quoted.
+<P>
+
+The return value is non-zero in case of an error and zero otherwise.
+</P><P>
+
+<A NAME="IDX1447"></A>
+<A NAME="IDX1448"></A>
+<DT><TT>comptags</TT>
+<DD><DT><TT>comptry</TT>
+<DD>These implement the internals of the tags mechanism.
+<P>
+
+<A NAME="IDX1449"></A>
+<DT><TT>compvalues</TT>
+<DD>Like <TT>comparguments</TT>, but for the <TT>_values</TT> function.
+<P>
+
+</DL>
+<A NAME="The zsh/datetime Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC148"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC147"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC149"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.8 The zsh/datetime Module </H2>
+<!--docid::SEC148::-->
+<P>
+
+The <TT>zsh/datetime</TT> module makes available one builtin command:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1450"></A>
+<A NAME="IDX1451"></A>
+<DT><TT>strftime</TT> [ <TT>-s</TT> <VAR>scalar</VAR> ] <VAR>format</VAR> <VAR>epochtime</VAR>
+<DD>Output the date denoted by <VAR>epochtime</VAR> in the <VAR>format</VAR>
+specified.
+<P>
+
+If <TT>-s</TT> <VAR>scalar</VAR> is given, assign the date to <VAR>scalar</VAR> instead
+of printing it.
+</P><P>
+
+</DL>
+<P>
+
+The <TT>zsh/datetime</TT> module makes available one parameter:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1452"></A>
+<DT><TT>EPOCHSECONDS</TT>
+<DD>An integer value representing the number of seconds since the
+epoch.
+<P>
+
+</DL>
+<A NAME="The zsh/deltochar Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC149"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC148"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC150"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.9 The zsh/deltochar Module </H2>
+<!--docid::SEC149::-->
+<P>
+
+The <TT>zsh/deltochar</TT> module makes available two ZLE functions:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1453"></A>
+<DT><TT>delete-to-char</TT>
+<DD>Read a character from the keyboard, and
+delete from the cursor position up to and including the next
+(or, with repeat count <VAR>n</VAR>, the <VAR>n</VAR>th) instance of that character.
+Negative repeat counts mean delete backwards.
+<P>
+
+<A NAME="IDX1454"></A>
+<DT><TT>zap-to-char</TT>
+<DD>This behaves like <TT>delete-to-char</TT>, except that the final occurrence of
+the character itself is not deleted.
+<P>
+
+</DL>
+<A NAME="The zsh/example Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC150"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC149"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC151"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.10 The zsh/example Module </H2>
+<!--docid::SEC150::-->
+<P>
+
+The <TT>zsh/example</TT> module makes available one builtin command:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1455"></A>
+<A NAME="IDX1456"></A>
+<A NAME="IDX1457"></A>
+<A NAME="IDX1458"></A>
+<DT><TT>example</TT> [ <TT>-flags</TT> ] [ <VAR>args</VAR> ... ]
+<DD>Displays the flags and arguments it is invoked with.
+<P>
+
+</DL>
+<P>
+
+The purpose of the module is to serve as an example of how to write a
+module.
+<A NAME="The zsh/files Module"></A>
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC151"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC150"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC152"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.11 The zsh/files Module </H2>
+<!--docid::SEC151::-->
+<P>
+
+<A NAME="IDX1459"></A>
+The <TT>zsh/files</TT> module makes some standard commands available as builtins:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1460"></A>
+<DT><TT>chgrp</TT> [ <TT>-Rs</TT> ] <VAR>group</VAR> <VAR>filename</VAR> ...
+<DD>Changes group of files specified.  This is equivalent to <TT>chown</TT> with
+a <VAR>user-spec</VAR> argument of `<TT>:</TT><VAR>group</VAR>'.
+<P>
+
+<A NAME="IDX1461"></A>
+<DT><TT>chown</TT> [ <TT>-Rs</TT> ] <VAR>user-spec</VAR> <VAR>filename</VAR> ...
+<DD>Changes ownership and group of files specified.
+<P>
+
+The <VAR>user-spec</VAR> can be in four forms:
+</P><P>
+
+<DL COMPACT>
+<DT><VAR>user</VAR>
+<DD>change owner to <VAR>user</VAR>; do not change group
+<DT><VAR>user</VAR><TT>::</TT>
+<DD>change owner to <VAR>user</VAR>; do not change group
+<DT><VAR>user</VAR><TT>:</TT>
+<DD>change owner to <VAR>user</VAR>; change group to <VAR>user</VAR>'s primary group
+<DT><VAR>user</VAR><TT>:</TT><VAR>group</VAR>
+<DD>change owner to <VAR>user</VAR>; change group to <VAR>group</VAR>
+<DT><TT>:</TT><VAR>group</VAR>
+<DD>do not change owner; change group to <VAR>group</VAR>
+</DL>
+<P>
+
+In each case, the `<TT>:</TT>' may instead be a `<TT>.</TT>'.  The rule is that
+if there is a `<TT>:</TT>' then the separator is `<TT>:</TT>', otherwise
+if there is a `<TT>.</TT>' then the separator is `<TT>.</TT>', otherwise
+there is no separator.
+</P><P>
+
+Each of <VAR>user</VAR> and <VAR>group</VAR> may be either a username (or group name, as
+appropriate) or a decimal user ID (group ID).  Interpretation as a name
+takes precedence, if there is an all-numeric username (or group name).
+</P><P>
+
+The <TT>-R</TT> option causes <TT>chown</TT> to recursively descend into directories,
+changing the ownership of all files in the directory after
+changing the ownership of the directory itself.
+</P><P>
+
+The <TT>-s</TT> option is a zsh extension to <TT>chown</TT> functionality.  It enables
+paranoid behaviour, intended to avoid security problems involving
+a <TT>chown</TT> being tricked into affecting files other than the ones
+intended.  It will refuse to follow symbolic links, so that (for example)
+"<TT>chown luser /tmp/foo/passwd</TT>" can't accidentally chown <TT>/etc/passwd</TT>
+if <TT>/tmp/foo</TT> happens to be a link to <TT>/etc</TT>.  It will also check
+where it is after leaving directories, so that a recursive chown of
+a deep directory tree can't end up recursively chowning <TT>/usr</TT> as
+a result of directories being moved up the tree.
+</P><P>
+
+<A NAME="IDX1462"></A>
+<DT><TT>ln</TT> [ <TT>-dfis</TT> ] <VAR>filename</VAR> <VAR>dest</VAR>
+<DD><DT><TT>ln</TT> [ <TT>-dfis</TT> ] <VAR>filename</VAR> ... <VAR>dir</VAR>
+<DD>Creates hard (or, with <TT>-s</TT>, symbolic) links.  In the first form, the
+specified <VAR>dest</VAR>ination is created, as a link to the specified
+<VAR>filename</VAR>.  In the second form, each of the <VAR>filename</VAR>s is
+taken in turn, and linked to a pathname in the specified <VAR>dir</VAR>ectory
+that has the same last pathname component.
+<P>
+
+Normally, <TT>ln</TT> will not attempt to create hard links to
+directories.  This check can be overridden using the <TT>-d</TT> option.
+Typically only the super-user can actually succeed in creating
+hard links to directories.
+This does not apply to symbolic links in any case.
+</P><P>
+
+By default, existing files cannot be replaced by links.
+The <TT>-i</TT> option causes the user to be queried about replacing
+existing files.  The <TT>-f</TT> option causes existing files to be
+silently deleted, without querying.  <TT>-f</TT> takes precedence.
+</P><P>
+
+<A NAME="IDX1463"></A>
+<DT><TT>mkdir</TT> [ <TT>-p</TT> ] [ <TT>-m</TT> <VAR>mode</VAR> ] <VAR>dir</VAR> ...
+<DD>Creates directories.  With the <TT>-p</TT> option, non-existing parent
+directories are first created if necessary, and there will be
+no complaint if the directory already exists.
+The <TT>-m</TT> option can be used to specify (in octal) a set of file permissions
+for the created directories, otherwise mode 777 modified by the current
+<TT>umask</TT> (see man page umask(2)) is used.
+<P>
+
+<A NAME="IDX1464"></A>
+<DT><TT>mv</TT> [ <TT>-fi</TT> ] <VAR>filename</VAR> <VAR>dest</VAR>
+<DD><DT><TT>mv</TT> [ <TT>-fi</TT> ] <VAR>filename</VAR> ... <VAR>dir</VAR>
+<DD>Moves files.  In the first form, the specified <VAR>filename</VAR> is moved
+to the specified <VAR>dest</VAR>ination.  In the second form, each of the
+<VAR>filename</VAR>s is
+taken in turn, and moved to a pathname in the specified <VAR>dir</VAR>ectory
+that has the same last pathname component.
+<P>
+
+By default, the user will be queried before replacing any file
+that the user cannot write to, but writable files will be silently
+removed.
+The <TT>-i</TT> option causes the user to be queried about replacing
+any existing files.  The <TT>-f</TT> option causes any existing files to be
+silently deleted, without querying.  <TT>-f</TT> takes precedence.
+</P><P>
+
+Note that this <TT>mv</TT> will not move files across devices.
+Historical versions of <TT>mv</TT>, when actual renaming is impossible,
+fall back on copying and removing files; if this behaviour is desired,
+use <TT>cp</TT> and <TT>rm</TT> manually.  This may change in a future version.
+</P><P>
+
+<A NAME="IDX1465"></A>
+<DT><TT>rm</TT> [ <TT>-dfirs</TT> ] <VAR>filename</VAR> ...
+<DD>Removes files and directories specified.
+<P>
+
+Normally, <TT>rm</TT> will not remove directories (except with the <TT>-r</TT>
+option).  The <TT>-d</TT> option causes <TT>rm</TT> to try removing directories
+with <TT>unlink</TT> (see man page unlink(2)), the same method used for files.
+Typically only the super-user can actually succeed in unlinking
+directories in this way.
+<TT>-d</TT> takes precedence over <TT>-r</TT>.
+</P><P>
+
+By default, the user will be queried before removing any file
+that the user cannot write to, but writable files will be silently
+removed.
+The <TT>-i</TT> option causes the user to be queried about removing
+any files.  The <TT>-f</TT> option causes files to be
+silently deleted, without querying, and suppresses all error indications.
+<TT>-f</TT> takes precedence.
+</P><P>
+
+The <TT>-r</TT> option causes <TT>rm</TT> to recursively descend into directories,
+deleting all files in the directory before removing the directory with
+the <TT>rmdir</TT> system call (see man page rmdir(2)).
+</P><P>
+
+The <TT>-s</TT> option is a zsh extension to <TT>rm</TT> functionality.  It enables
+paranoid behaviour, intended to avoid common security problems involving
+a root-run <TT>rm</TT> being tricked into removing files other than the ones
+intended.  It will refuse to follow symbolic links, so that (for example)
+"<TT>rm /tmp/foo/passwd</TT>" can't accidentally remove <TT>/etc/passwd</TT>
+if <TT>/tmp/foo</TT> happens to be a link to <TT>/etc</TT>.  It will also check
+where it is after leaving directories, so that a recursive removal of
+a deep directory tree can't end up recursively removing <TT>/usr</TT> as
+a result of directories being moved up the tree.
+</P><P>
+
+<A NAME="IDX1466"></A>
+<DT><TT>rmdir</TT> <VAR>dir</VAR> ...
+<DD>Removes empty directories specified.
+<P>
+
+<A NAME="IDX1467"></A>
+<DT><TT>sync</TT>
+<DD>Calls the system call of the same name (see man page sync(2)), which
+flushes dirty buffers to disk.  It might return before the I/O has
+actually been completed.
+<P>
+
+</DL>
+<A NAME="The zsh/mapfile Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC152"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC151"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC153"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC154"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.12 The zsh/mapfile Module </H2>
+<!--docid::SEC152::-->
+<P>
+
+<A NAME="IDX1468"></A>
+The <TT>zsh/mapfile</TT> module provides one special associative array parameter of
+the same name.
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1469"></A>
+<DT><TT>mapfile</TT>
+<DD>This associative array takes as keys the names of files; the resulting
+value is the content of the file.  The value is treated identically to any
+other text coming from a parameter.  The value may also be assigned to, in
+which case the file in question is written (whether or not it originally
+existed); or an element may be unset, which will delete the file in
+question.  For example, `<TT>vared mapfile[myfile]</TT>' works as expected,
+editing the file `<TT>myfile</TT>'.
+<P>
+
+When the array is accessed as a whole, the keys are the names of files in
+the current directory, and the values are empty (to save a huge overhead in
+memory).  Thus <TT>${(k)mapfile}</TT> has the same affect as the glob operator
+<TT>*(D)</TT>, since files beginning with a dot are not special.  Care must be
+taken with expressions such as <TT>rm ${(k)mapfile}</TT>, which will delete
+every file in the current directory without the usual `<TT>rm *</TT>' test.
+</P><P>
+
+The parameter <TT>mapfile</TT> may be made read-only; in that case, files
+referenced may not be written or deleted.
+</P><P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC153"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC152"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC154"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 21.12.1 Limitations </H3>
+<!--docid::SEC153::-->
+<P>
+
+Although reading and writing of the file in question is efficiently
+handled, zsh's internal memory management may be arbitrarily baroque.  Thus
+it should not automatically be assumed that use of <TT>mapfile</TT> represents a
+gain in efficiency over use of other mechanisms.  Note in particular that
+the whole contents of the file will always reside physically in memory when
+accessed (possibly multiple times, due to standard parameter substitution
+operations).  In particular, this means handling of sufficiently long files
+(greater than the machine's swap space, or than the range of the pointer
+type) will be incorrect.
+</P><P>
+
+No errors are printed or flagged for non-existent, unreadable, or
+unwritable files, as the parameter mechanism is too low in the shell
+execution hierarchy to make this convenient.
+</P><P>
+
+It is unfortunate that the mechanism for loading modules does not yet allow
+the user to specify the name of the shell parameter to be given the special
+behaviour.
+<A NAME="The zsh/mathfunc Module"></A>
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC154"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC153"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC155"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC152"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.13 The zsh/mathfunc Module </H2>
+<!--docid::SEC154::-->
+<P>
+
+<A NAME="IDX1470"></A>
+<A NAME="IDX1471"></A>
+The <TT>zsh/mathfunc</TT> module provides standard
+mathematical functions for use when
+evaluating mathematical formulae.  The syntax agrees with normal C and
+FORTRAN conventions, for example,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(( f = sin(0.3) ))
+</pre></td></tr></table></P><P>
+
+assigns the sine of 0.3 to the parameter f.
+</P><P>
+
+Most functions take floating point arguments and return a floating point
+value.  However, any necessary conversions from or to integer type will be
+performed automatically by the shell.  Apart from <TT>atan</TT> with a second
+argument and the <TT>abs</TT>, <TT>int</TT> and <TT>float</TT> functions, all functions
+behave as noted in the manual page for the corresponding C function,
+except that any arguments out of range for the function in question will be
+detected by the shell and an error reported.
+</P><P>
+
+The following functions take a single floating point argument: <TT>acos</TT>,
+<TT>acosh</TT>, <TT>asin</TT>, <TT>asinh</TT>, <TT>atan</TT>, <TT>atanh</TT>, <TT>cbrt</TT>, <TT>ceil</TT>,
+<TT>cos</TT>, <TT>cosh</TT>, <TT>erf</TT>, <TT>erfc</TT>, <TT>exp</TT>, <TT>expm1</TT>, <TT>fabs</TT>,
+<TT>floor</TT>, <TT>gamma</TT>, <TT>j0</TT>, <TT>j1</TT>, <TT>lgamma</TT>, <TT>log</TT>, <TT>log10</TT>,
+<TT>log1p</TT>, <TT>logb</TT>, <TT>sin</TT>, <TT>sinh</TT>, <TT>sqrt</TT>, <TT>tan</TT>, <TT>tanh</TT>,
+<TT>y0</TT>, <TT>y1</TT>.  The <TT>atan</TT> function can optionally take a second
+argument, in which case it behaves like the C function <TT>atan2</TT>.
+The <TT>ilogb</TT> function takes a single floating point argument, but
+returns an integer.
+</P><P>
+
+The function <TT>signgam</TT> takes no arguments, and returns an integer, which
+is the C variable of the same name, as described in man page gamma(3).  Note
+that it is therefore only useful immediately after a call to <TT>gamma</TT> or
+<TT>lgamma</TT>.  Note also that `<TT>signgam()</TT>' and `<TT>signgam</TT>' are distinct
+expressions.
+</P><P>
+
+The following functions take two floating point arguments: <TT>copysign</TT>,
+<TT>fmod</TT>, <TT>hypot</TT>, <TT>nextafter</TT>.
+</P><P>
+
+The following take an integer first argument and a floating point second
+argument: <TT>jn</TT>, <TT>yn</TT>.
+</P><P>
+
+The following take a floating point first argument and an integer second
+argument: <TT>ldexp</TT>, <TT>scalb</TT>.
+</P><P>
+
+The function <TT>abs</TT> does not convert the type of its single argument; it
+returns the absolute value of either a floating point number or an
+integer.  The functions <TT>float</TT> and <TT>int</TT> convert their arguments into
+a floating point or integer value (by truncation) respectively.
+</P><P>
+
+Note that the C <TT>pow</TT> function is available in ordinary math evaluation
+as the `<TT>**</TT>' operator and is not provided here.
+</P><P>
+
+The function <TT>rand48</TT> is available if your system's mathematical library
+has the function <TT>erand48(3)</TT>.  It returns a pseudo-random floating point
+number between 0 and 1.  It takes a single string optional argument.
+</P><P>
+
+If the argument is not present, the random number seed is initialised by
+three calls to the <TT>rand(3)</TT> function -- this produces the same random
+numbers as the next three values of <TT>$RANDOM</TT>.
+</P><P>
+
+If the argument is present, it gives the name of a scalar parameter where
+the current random number seed will be stored.  On the first call, the
+value must contain at least twelve hexadecimal digits (the remainder of the
+string is ignored), or the seed will be initialised in the same manner as
+for a call to <TT>rand48</TT> with no argument.  Subsequent calls to
+<TT>rand48</TT>(<VAR>param</VAR>) will then maintain the seed in the
+parameter <VAR>param</VAR> as a string of twelve hexadecimal digits, with no base
+signifier.  The random number sequences for different parameters are
+completely independent, and are also independent from that used by calls to
+<TT>rand48</TT> with no argument.
+</P><P>
+
+For example, consider
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>print $(( rand48(seed) ))
+print $(( rand48() ))
+print $(( rand48(seed) ))
+</pre></td></tr></table></P><P>
+
+Assuming <TT>$seed</TT> does not exist, it will be initialised by the first
+call.  In the second call, the default seed is initialised; note, however,
+that because of the properties of <TT>rand()</TT> there is a correlation between
+the seeds used for the two initialisations, so for more secure uses, you
+should generate your own 12-byte seed.  The third call returns to the same
+sequence of random numbers used in the first call, unaffected by the
+intervening <TT>rand48()</TT>.
+<A NAME="The zsh/parameter Module"></A>
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC155"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC154"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC156"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.14 The zsh/parameter Module </H2>
+<!--docid::SEC155::-->
+<P>
+
+<A NAME="IDX1472"></A>
+The <TT>zsh/parameter</TT> module gives access to some of the internal hash
+tables used by the shell by defining some special parameters.
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1473"></A>
+<DT><TT>options</TT>
+<DD>The keys for this associative array are the names of the options that
+can be set and unset using the <TT>setopt</TT> and <TT>unsetopt</TT>
+builtins. The value of each key is either the string <TT>on</TT> if the
+option is currently set, or the string <TT>off</TT> if the option is unset.
+Setting a key to one of these strings is like setting or unsetting
+the option, respectively. Unsetting a key in this array is like
+setting it to the value <TT>off</TT>.
+<P>
+
+<A NAME="IDX1474"></A>
+<DT><TT>commands</TT>
+<DD>This array gives access to the command hash table. The keys are the
+names of external commands, the values are the pathnames of the files
+that would be executed when the command would be invoked. Setting a
+key in this array defines a new entry in this table in the same way as
+with the <TT>hash</TT> builtin. Unsetting a key as in `<TT>unset
+"commands[foo]"</TT>' removes the entry for the given key from the command 
+hash table.
+<P>
+
+<A NAME="IDX1475"></A>
+<DT><TT>functions</TT>
+<DD>This associative array maps names of enabled functions to their
+definitions. Setting a key in it is like defining a function with the
+name given by the key and the body given by the value. Unsetting a key
+removes the definition for the function named by the key.
+<P>
+
+<A NAME="IDX1476"></A>
+<DT><TT>dis_functions</TT>
+<DD>Like <TT>functions</TT> but for disabled functions.
+<P>
+
+<A NAME="IDX1477"></A>
+<DT><TT>builtins</TT>
+<DD>This associative array gives information about the builtin commands
+currently enabled. The keys are the names of the builtin commands and
+the values are either `<TT>undefined</TT>' for builtin commands that will
+automatically be loaded from a module if invoked or `<TT>defined</TT>' for
+builtin commands that are already loaded.
+<P>
+
+<A NAME="IDX1478"></A>
+<DT><TT>dis_builtins</TT>
+<DD>Like <TT>builtins</TT> but for disabled builtin commands.
+<P>
+
+<A NAME="IDX1479"></A>
+<DT><TT>reswords</TT>
+<DD>This array contains the enabled reserved words.
+<P>
+
+<A NAME="IDX1480"></A>
+<DT><TT>dis_reswords</TT>
+<DD>Like <TT>reswords</TT> but for disabled reserved words.
+<P>
+
+<A NAME="IDX1481"></A>
+<DT><TT>aliases</TT>
+<DD>This maps the names of the regular aliases currently enabled to their
+expansions.
+<P>
+
+<A NAME="IDX1482"></A>
+<DT><TT>dis_aliases</TT>
+<DD>Like <TT>aliases</TT> but for disabled regular aliases.
+<P>
+
+<A NAME="IDX1483"></A>
+<DT><TT>galiases</TT>
+<DD>Like <TT>aliases</TT>, but for global aliases.
+<P>
+
+<A NAME="IDX1484"></A>
+<DT><TT>dis_galiases</TT>
+<DD>Like <TT>galiases</TT> but for disabled global aliases.
+<P>
+
+<A NAME="IDX1485"></A>
+<DT><TT>saliases</TT>
+<DD>Like <TT>raliases</TT>, but for suffix aliases.
+<P>
+
+<A NAME="IDX1486"></A>
+<DT><TT>dis_saliases</TT>
+<DD>Like <TT>saliases</TT> but for disabled suffix aliases.
+<P>
+
+<A NAME="IDX1487"></A>
+<DT><TT>parameters</TT>
+<DD>The keys in this associative array are the names of the parameters
+currently defined. The values are strings describing the type of the
+parameter, in the same format used by the <TT>t</TT> parameter flag, see
+<A HREF="zsh_13.html#SEC54">13.3 Parameter Expansion</A>
+.
+Setting or unsetting keys in this array is not possible.
+<P>
+
+<A NAME="IDX1488"></A>
+<DT><TT>modules</TT>
+<DD>An associative array giving information about modules. The keys are the names
+of the modules loaded, registered to be autoloaded, or aliased. The
+value says which state the named module is in and is one of the
+strings `<TT>loaded</TT>', `<TT>autoloaded</TT>', or `<TT>alias:</TT><VAR>name</VAR>',
+where <VAR>name</VAR> is the name the module is aliased to.
+<P>
+
+Setting or unsetting keys in this array is not possible.
+</P><P>
+
+<A NAME="IDX1489"></A>
+<DT><TT>dirstack</TT>
+<DD>A normal array holding the elements of the directory stack. Note that
+the output of the <TT>dirs</TT> builtin command includes one more
+directory, the current working directory.
+<P>
+
+<A NAME="IDX1490"></A>
+<DT><TT>history</TT>
+<DD>This associative array maps history event numbers to the full history lines.
+<P>
+
+<A NAME="IDX1491"></A>
+<DT><TT>historywords</TT>
+<DD>A special array containing the words stored in the history.
+<P>
+
+<A NAME="IDX1492"></A>
+<DT><TT>jobdirs</TT>
+<DD>This associative array maps job numbers to the directories from which the
+job was started (which may not be the current directory of the job).
+<P>
+
+<A NAME="IDX1493"></A>
+<DT><TT>jobtexts</TT>
+<DD>This associative array maps job numbers to the texts of the command lines
+that were used to start the jobs.
+<P>
+
+<A NAME="IDX1494"></A>
+<DT><TT>jobstates</TT>
+<DD>This associative array gives information about the states of the jobs
+currently known. The keys are the job numbers and the values are
+strings of the form
+`<VAR>job-state</VAR>:<VAR>mark</VAR>:<VAR>pid</VAR><TT>=</TT><VAR>state</VAR><TT>...</TT>'. The
+<VAR>job-state</VAR> gives the state the whole job is currently in, one of
+`<TT>running</TT>', `<TT>suspended</TT>', or `<TT>done</TT>'. The <VAR>mark</VAR> is
+`<TT>+</TT>' for the current job, `<TT>-</TT>' for the previous job and empty
+otherwise. This is followed by one `<VAR>pid</VAR><TT>=</TT><VAR>state</VAR>' for every
+process in the job. The <VAR>pid</VAR>s are, of course, the process IDs and
+the <VAR>state</VAR> describes the state of that process.
+<P>
+
+<A NAME="IDX1495"></A>
+<DT><TT>nameddirs</TT>
+<DD>This associative array maps the names of named directories to the pathnames
+they stand for.
+<P>
+
+<A NAME="IDX1496"></A>
+<DT><TT>userdirs</TT>
+<DD>This associative array maps user names to the pathnames of their home
+directories.
+<P>
+
+<A NAME="IDX1497"></A>
+<DT><TT>funcstack</TT>
+<DD>This array contains the names of the functions currently being
+executed. The first element is the name of the function using the
+parameter.
+<P>
+
+</DL>
+<A NAME="The zsh/pcre Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC156"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC155"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC157"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.15 The zsh/pcre Module </H2>
+<!--docid::SEC156::-->
+<P>
+
+<A NAME="IDX1498"></A>
+The <TT>zsh/pcre</TT> module makes some commands available as builtins:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1499"></A>
+<DT><TT>pcre_compile</TT> [ <TT>-aimx</TT> ] <VAR>PCRE</VAR>
+<DD>Compiles a perl-compatible regular expression.
+<P>
+
+Option <TT>-a</TT> will force the pattern to be anchored.
+Option <TT>-i</TT> will compile a case-insensitive pattern.
+Option <TT>-m</TT> will compile a multi-line pattern; that is,
+<TT>^</TT> and <TT>$</TT> will match newlines within the pattern.
+Option <TT>-x</TT> will compile an extended pattern, wherein
+whitespace and <TT>#</TT> comments are ignored.
+</P><P>
+
+<A NAME="IDX1500"></A>
+<DT><TT>pcre_study</TT>
+<DD>Studies the previously-compiled PCRE which may result in faster
+matching.
+<P>
+
+<A NAME="IDX1501"></A>
+<DT><TT>pcre_match</TT> [ <TT>-a</TT> <VAR>arr</VAR> ] <VAR>string</VAR>
+<DD>Returns successfully if <TT>string</TT> matches the previously-compiled
+PCRE.
+<P>
+
+If the expression captures substrings within parentheses,
+<TT>pcre_match</TT> will set the array <VAR>$match</VAR> to those
+substrings, unless the <TT>-a</TT> option is given, in which
+case it will set the array <VAR>arr</VAR>.
+</P><P>
+
+</DL>
+<A NAME="The zsh/sched Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC157"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC156"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC158"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.16 The zsh/sched Module </H2>
+<!--docid::SEC157::-->
+<P>
+
+The <TT>zsh/sched</TT> module makes available one builtin command:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1502"></A>
+<A NAME="IDX1503"></A>
+<A NAME="IDX1504"></A>
+<DT><TT>sched</TT> [<TT>+</TT>]<VAR>hh</VAR><TT>:</TT><VAR>mm</VAR> <VAR>command</VAR> ...
+<DD><DT><TT>sched</TT> [ <TT>-</TT><VAR>item</VAR> ]
+<DD>Make an entry in the scheduled list of commands to execute.
+The time may be specified in either absolute or relative time.
+With no arguments, prints the list of scheduled commands.
+With the argument `<TT>-</TT><VAR>item</VAR>', removes the given item
+from the list.
+<P>
+
+</DL>
+<A NAME="The zsh/net/socket Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC158"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC157"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC159"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC161"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.17 The zsh/net/socket Module </H2>
+<!--docid::SEC158::-->
+<P>
+
+The <TT>zsh/net/socket</TT> module makes available one builtin command:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1505"></A>
+<A NAME="IDX1506"></A>
+<A NAME="IDX1507"></A>
+<DT><TT>zsocket</TT> [ <TT>-altv</TT> ] [ <TT>-d</TT> <VAR>fd</VAR> ] [ <VAR>args</VAR> ]
+<DD><TT>zsocket</TT> is implemented as a builtin to allow full use of shell
+command line editing, file I/O, and job control mechanisms.
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC159"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC158"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC160"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 21.17.1 Outbound Connections </H3>
+<!--docid::SEC159::-->
+<A NAME="IDX1508"></A>
+<P>
+
+<DL COMPACT>
+<DT><TT>zsocket</TT> [ <TT>-v</TT> ] [ <TT>-d</TT> <VAR>fd</VAR> ] <VAR>filename</VAR>
+<DD>Open a new Unix domain connection to <VAR>filename</VAR>.
+The shell parameter <TT>REPLY</TT> will be set to the file descriptor
+associated with that connection.  Currently, only stream connections
+are supported.
+<P>
+
+If <TT>-d</TT> is specified, its argument
+will be taken as the target file descriptor for the
+connection.
+</P><P>
+
+In order to elicit more verbose output, use <TT>-v</TT>.
+</P><P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC160"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC159"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC161"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 21.17.2 Inbound Connections </H3>
+<!--docid::SEC160::-->
+<A NAME="IDX1509"></A>
+<P>
+
+<DL COMPACT>
+<DT><TT>zsocket</TT> <TT>-l</TT> [ <TT>-v</TT> ] [ <TT>-d</TT> <VAR>fd</VAR> ] <VAR>filename</VAR>
+<DD><TT>zsocket -l</TT> will open a socket listening on <VAR>filename</VAR>.
+The shell parameter <TT>REPLY</TT> will be set to the file descriptor
+associated with that listener.
+<P>
+
+If <TT>-d</TT> is specified, its argument
+will be taken as the target file descriptor for
+the connection.
+</P><P>
+
+In order to elicit more verbose output, use <TT>-v</TT>.
+</P><P>
+
+<DT><TT>zsocket</TT> <TT>-a</TT> [ <TT>-tv</TT> ] [ <TT>-d</TT> <VAR>targetfd</VAR> ] <VAR>listenfd</VAR>
+<DD><TT>zsocket -a</TT> will accept an incoming connection
+to the socket associated with <VAR>listenfd</VAR>.
+The shell parameter <TT>REPLY</TT> will
+be set to the file descriptor associated with
+the inbound connection.
+<P>
+
+If <TT>-d</TT> is specified, its argument
+will be taken as the target file descriptor for the
+connection.
+</P><P>
+
+If <TT>-t</TT> is specified, <TT>zsocket</TT> will return
+if no incoming connection is pending.  Otherwise
+it will wait for one.
+</P><P>
+
+In order to elicit more verbose output, use <TT>-v</TT>.
+</P><P>
+
+</DL>
+<P>
+
+</DL>
+<A NAME="The zsh/stat Module"></A>
+
+<HR SIZE="6">
+<A NAME="SEC161"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC160"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC162"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC158"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.18 The zsh/stat Module </H2>
+<!--docid::SEC161::-->
+<P>
+
+The <TT>zsh/stat</TT> module makes available one builtin command:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1510"></A>
+<A NAME="IDX1511"></A>
+<A NAME="IDX1512"></A>
+<DT><TT>stat</TT> [ <TT>-gnNolLtTrs</TT> ] [ <TT>-f</TT> <VAR>fd</VAR> ] [ <TT>-H</TT> <VAR>hash</VAR> ] [ <TT>-A</TT> <VAR>array</VAR> ] [ <TT>-F</TT> <VAR>fmt</VAR> ] [ <TT>+</TT><VAR>element</VAR> ] [ <VAR>file</VAR> ... ]
+<DD>The command acts as a front end to the <TT>stat</TT> system call (see
+man page stat(2)).
+If the <TT>stat</TT> call fails, the appropriate system error message
+printed and status 1 is returned.
+The fields of <TT>struct stat</TT> give information about
+the files provided as arguments to the command.  In addition to those
+available from the <TT>stat</TT> call, an extra element `<TT>link</TT>' is provided.
+These elements are:
+<P>
+
+<DL COMPACT>
+<DT><TT>device</TT>
+<DD>The number of the device on which the file resides.
+<P>
+
+<DT><TT>inode</TT>
+<DD>The unique number of the file on this device (`<EM>inode</EM>' number).
+<P>
+
+<DT><TT>mode</TT>
+<DD>The mode of the file; that is, the file's type and access permissions.
+With the <TT>-s</TT> option, this will
+be returned as a string corresponding to the first column in the
+display of the <TT>ls -l</TT> command.
+<P>
+
+<DT><TT>nlink</TT>
+<DD>The number of hard links to the file.
+<P>
+
+<DT><TT>uid</TT>
+<DD>The user ID of the owner of the file.  With the <TT>-s</TT>
+option, this is displayed as a user name.
+<P>
+
+<DT><TT>gid</TT>
+<DD>The group ID of the file.  With the <TT>-s</TT> option, this
+is displayed as a group name.
+<P>
+
+<DT><TT>rdev</TT>
+<DD>The raw device number.  This is only useful for special devices.
+<P>
+
+<DT><TT>size</TT>
+<DD>The size of the file in bytes.
+<P>
+
+<DT><TT>atime</TT>
+<DD><DT><TT>mtime</TT>
+<DD><DT><TT>ctime</TT>
+<DD>The last access, modification and inode change times
+of the file, respectively, as the number of seconds since
+midnight GMT on 1st January, 1970.  With the <TT>-s</TT> option,
+these are printed as strings for the local time zone; the format
+can be altered with the <TT>-F</TT> option, and with the <TT>-g</TT>
+option the times are in GMT.
+<P>
+
+<DT><TT>blksize</TT>
+<DD>The number of bytes in one allocation block on the
+device on which the file resides.
+<P>
+
+<DT><TT>block</TT>
+<DD>The number of disk blocks used by the file.
+<P>
+
+<DT><TT>link</TT>
+<DD>If the file is a link and the <TT>-L</TT> option is in
+effect, this contains the name of the file linked to, otherwise
+it is empty.  Note that if this element is selected ("<TT>stat +link</TT>")
+then the <TT>-L</TT> option is automatically used.
+<P>
+
+</DL>
+<P>
+
+A particular element may be selected by including its name
+preceded by a `<TT>+</TT>' in the option list; only one element is allowed.
+The element may be shortened to any unique set of leading
+characters.  Otherwise, all elements will be shown for all files.
+</P><P>
+
+Options:
+</P><P>
+
+<DL COMPACT>
+<DT><TT>-A</TT> <VAR>array</VAR>
+<DD>Instead of displaying the results on standard
+output, assign them to an <VAR>array</VAR>, one <TT>struct stat</TT> element per array
+element for each file in order.  In this case neither the name
+of the element nor the name of the files appears in <VAR>array</VAR> unless the
+<TT>-t</TT> or <TT>-n</TT> options were given, respectively.  If <TT>-t</TT> is given,
+the element name appears as a prefix to the
+appropriate array element; if <TT>-n</TT> is given, the file name
+appears as a separate array element preceding all the others.
+Other formatting options are respected.
+<P>
+
+<DT><TT>-H</TT> <VAR>hash</VAR>
+<DD>Similar to <TT>-A</TT>, but instead assign the values to <VAR>hash</VAR>.  The keys
+are the elements listed above.  If the <TT>-n</TT> option is provided then the
+name of the file is included in the hash with key <TT>name</TT>.
+<P>
+
+<DT><TT>-f</TT> <VAR>fd</VAR>
+<DD>Use the file on file descriptor <VAR>fd</VAR> instead of
+named files; no list of file names is allowed in this case.
+<P>
+
+<DT><TT>-F</TT> <VAR>fmt</VAR>
+<DD>Supplies a <TT>strftime</TT> (see man page strftime(3)) string for the
+formatting of the time elements.  The <TT>-s</TT> option is implied.
+<P>
+
+<DT><TT>-g</TT>
+<DD>Show the time elements in the GMT time zone.  The
+<TT>-s</TT> option is implied.
+<P>
+
+<DT><TT>-l</TT>
+<DD>List the names of the type elements (to standard
+output or an array as appropriate) and return immediately;
+options other than <TT>-A</TT> and arguments are ignored.
+<P>
+
+<DT><TT>-L</TT>
+<DD>Perform an <TT>lstat</TT> (see man page lstat(2)) rather than a <TT>stat</TT>
+system call.  In this case, if the file is a link, information
+about the link itself rather than the target file is returned.
+This option is required to make the <TT>link</TT> element useful.
+<P>
+
+<DT><TT>-n</TT>
+<DD>Always show the names of files.  Usually these are
+only shown when output is to standard output and there is more
+than one file in the list.
+<P>
+
+<DT><TT>-N</TT>
+<DD>Never show the names of files.
+<P>
+
+<DT><TT>-o</TT>
+<DD>If a raw file mode is printed, show it in octal, which is more useful for
+human consumption than the default of decimal.  A leading zero will be
+printed in this case.  Note that this does not affect whether a raw or
+formatted file mode is shown, which is controlled by the <TT>-r</TT> and <TT>-s</TT>
+options, nor whether a mode is shown at all.
+<P>
+
+<DT><TT>-r</TT>
+<DD>Print raw data (the default format) alongside string
+data (the <TT>-s</TT> format); the string data appears in parentheses
+after the raw data.
+<P>
+
+<DT><TT>-s</TT>
+<DD>Print <TT>mode</TT>, <TT>uid</TT>, <TT>gid</TT> and the three time
+elements as strings instead of numbers.  In each case the format
+is like that of <TT>ls -l</TT>.
+<P>
+
+<DT><TT>-t</TT>
+<DD>Always show the type names for the elements of
+<TT>struct stat</TT>.  Usually these are only shown when output is to
+standard output and no individual element has been selected.
+<P>
+
+<DT><TT>-T</TT>
+<DD>Never show the type names of the <TT>struct stat</TT> elements.
+<P>
+
+</DL>
+<P>
+
+</DL>
+<A NAME="The zsh/system Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC162"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC161"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC163"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC165"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.19 The zsh/system Module </H2>
+<!--docid::SEC162::-->
+<P>
+
+The <TT>zsh/system</TT> module makes available three builtin commands and
+a parameter.
+</P><P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC163"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC162"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC164"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC140"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.20 Builtins </H2>
+<!--docid::SEC163::-->
+<P>
+
+<DL COMPACT>
+<A NAME="IDX1513"></A>
+<DT><TT>syserror</TT> <TT>[ -e</TT> <VAR>errvar</VAR> <TT>] [ -p</TT> <VAR>prefix</VAR> <TT>] [</TT> <VAR>errno</VAR> <TT>|</TT> <VAR>errname</VAR> <TT>]</TT>
+<DD>This command prints out the error message associated with <VAR>errno</VAR>, a
+system error number, followed by a newline to standard error.
+<P>
+
+Instead of the error number, a name <VAR>errname</VAR>, for example
+<TT>ENOENT</TT>, may be used.  The set of names is the same as the contents
+of the array <TT>errnos</TT>, see below.
+</P><P>
+
+If the string <VAR>prefix</VAR> is given, it is printed in front of the error
+message, with no intervening space.
+</P><P>
+
+If <VAR>errvar</VAR> is supplied, the entire message, without a newline, is
+assigned to the parameter names <VAR>errvar</VAR> and nothing is output.
+</P><P>
+
+A return value of 0 indicates the message was successfully printed
+(although it may not be useful if the error number was out of the
+system's range), a return value of 1 indicates an error in the
+parameters, and a return value of 2 indicates the error name was
+not recognised (no message is printed for this).
+</P><P>
+
+<A NAME="IDX1514"></A>
+<DT><TT>sysread [ -c</TT> <VAR>countvar</VAR> <TT>] [ -i</TT> <VAR>infd</VAR> <TT>] [ -o</TT> <VAR>outfd</VAR> <TT>]</TT>
+<DD><DT><TT>[ -s</TT> <VAR>bufsize</VAR> <TT>] [ -t</TT> <VAR>timeout</VAR> <TT>] [</TT> <VAR>param</VAR> <TT>]</TT>
+<DD>Perform a single system read from file descriptor <VAR>infd</VAR>, or zero if
+that is not given.  The result of the read is stored in <VAR>param</VAR> or
+<VAR>REPLY</VAR> if that is not given.  If <VAR>countvar</VAR> is given, the number
+of bytes read is assigned to the parameter named by <VAR>countvar</VAR>.
+<P>
+
+The maximum number of bytes read is <VAR>bufsize</VAR> or 8192 if that is not
+given, however the command returns as soon as any number of bytes was
+successfully read.
+</P><P>
+
+If <VAR>timeout</VAR> is given, it specifies a timeout in seconds, which may
+be zero to poll the file descriptor.  This is handled by the <TT>poll</TT>
+system call if available, otherwise the <TT>select</TT> system call if
+available.
+</P><P>
+
+If <VAR>outfd</VAR> is given, an attempt is made to write all the bytes just
+read to the file descriptor <VAR>outfd</VAR>.  If this fails, because of a
+system error other than <TT>EINTR</TT> or because of an internal zsh error
+during an interrupt, the bytes read but not written are stored in the
+parameter named by <VAR>param</VAR> if supplied (no default is used in this
+case), and the number of bytes read but not written is stored in the
+parameter named by <VAR>countvar</VAR> if that is supplied.  If it was
+successful, <VAR>countvar</VAR> contains the full number of bytes transferred,
+as usual, and <VAR>param</VAR> is not set.
+</P><P>
+
+The error <TT>EINTR</TT> (interrupted system call) is handled internally so
+that shell interrupts are transparent to the caller.  Any other error
+causes a return.
+</P><P>
+
+The possible return values are
+<DL COMPACT>
+<DT>0
+<DD>At least one byte of data was successfully read and, if appropriate,
+written.
+<P>
+
+<DT>1
+<DD>There was an error in the parameters to the command.  This is the only
+error for which a message is printed to standard error.
+<P>
+
+<DT>2
+<DD>There was an error on the read, or on polling the input file descriptor
+for a timeout.  The parameter <TT>ERRNO</TT> gives the error.
+<P>
+
+<DT>3
+<DD>Data were successfully read, but there was an error writing them
+to <VAR>outfd</VAR>.  The parameter <TT>ERRNO</TT> gives the error.
+<P>
+
+<DT>4
+<DD>The attempt to read timed out.  Note this does not set <TT>ERRNO</TT> as this
+is not a system error.
+<P>
+
+<DT>5
+<DD>No system error occurred, but zero bytes were read.  This usually
+indicates end of file.  The parameters are set according to the
+usual rules; no write to <VAR>outfd</VAR> is attempted.
+<P>
+
+</DL>
+<P>
+
+<DT><TT>syswrite [ -c</TT> <VAR>countvar</VAR> <TT>] [ -o</TT> <VAR>outfd</VAR> <TT>]</TT> <VAR>data</VAR>
+<DD>The data (a single string of bytes) are written to the file descriptor
+<VAR>outfd</VAR>, or 1 if that is not given, using the <TT>write</TT> system call.
+Multiple write operations may be used if the first does not write all
+the data.
+<P>
+
+If <VAR>countvar</VAR> is given, the number of byte written is stored in the
+parameter named by <VAR>countvar</VAR>; this may not be the full length of
+<VAR>data</VAR> if an error occurred.
+</P><P>
+
+The error <TT>EINTR</TT> (interrupted system call) is handled internally by
+retrying; otherwise an error causes the command to return.  For example,
+if the file descriptor is set to non-blocking output, an error
+<TT>EAGAIN</TT> (on some systems, <TT>EWOULDBLOCK</TT>) may result in the command
+returning early.
+</P><P>
+
+The return status may be 0 for success, 1 for an error in the parameters
+to the command, or 2 for an error on the write; no error message is
+printed in the last case, but the parameter <TT>ERRNO</TT> will reflect
+the error that occurred.
+</P><P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC164"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC163"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC165"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC140"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.21 Parameters </H2>
+<!--docid::SEC164::-->
+<P>
+
+<DL COMPACT>
+<DT><TT>errnos</TT>
+<DD>A readonly array of the names of errors defined on the system.  These
+are typically macros defined in C by including the system header file
+<TT>errno.h</TT>.  The index of each name (assuming the option <TT>KSH_ARRAYS</TT>
+is unset) corresponds to the error number.  Error numbers <VAR>num</VAR>
+before the last known error which have no name are given the name
+<TT>E</TT><VAR>num</VAR> in the array.
+<P>
+
+Note that aliases for errors are not handled; only the canonical name is
+used.
+</P><P>
+
+</DL>
+<A NAME="The zsh/net/tcp Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC165"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC164"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC166"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC162"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC170"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.22 The zsh/net/tcp Module </H2>
+<!--docid::SEC165::-->
+<P>
+
+The <TT>zsh/net/tcp</TT> module makes available one builtin command:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1515"></A>
+<A NAME="IDX1516"></A>
+<A NAME="IDX1517"></A>
+<DT><TT>ztcp</TT> [ <TT>-acflLtv</TT> ] [ <TT>-d</TT> <VAR>fd</VAR> ] [ <VAR>args</VAR> ]
+<DD><TT>ztcp</TT> is implemented as a builtin to allow full use of shell
+command line editing, file I/O, and job control mechanisms.
+<P>
+
+If <TT>ztcp</TT> is run with no options, it will output
+the contents of its session table.
+</P><P>
+
+If it is run with only the option <TT>-L</TT>, it will output the contents of
+the session table in a format suitable for automatic parsing.  The option
+is ignored if given with a command to open or close a session.  The output
+consists of a set of lines, one per session, each containing the following
+elements separated by spaces:
+</P><P>
+
+<DL COMPACT>
+<DT>File descriptor
+<DD>The file descriptor in use for the connection.  For normal inbound (<TT>I</TT>)
+and outbound (<TT>O</TT>) connections this may be read and written by the usual
+shell mechanisms.  However, it should only be close with `<TT>ztcp -c</TT>'.
+<P>
+
+<DT>Connection type
+<DD>A letter indicating how the session was created:
+<P>
+
+<DL COMPACT>
+<DT><TT>Z</TT>
+<DD>A session created with the <TT>zftp</TT> command.
+<P>
+
+<DT><TT>L</TT>
+<DD>A connection opened for listening with `<TT>ztcp -l</TT>'.
+<P>
+
+<DT><TT>I</TT>
+<DD>An inbound connection accepted with `<TT>ztcp -a</TT>'.
+<P>
+
+<DT><TT>O</TT>
+<DD>An outbound connection created with `<TT>ztcp</TT> <VAR>host</VAR> <VAR>...</VAR>'.
+<P>
+
+</DL>
+<P>
+
+</P><P>
+
+<DT>The local host
+<DD>This is usually set to an all-zero IP address as the address of the
+localhost is irrelevant.
+<P>
+
+<DT>The local port
+<DD>This is likely to be zero unless the connection is for listening.
+<P>
+
+<DT>The remote host
+<DD>This is the fully qualified domain name of the peer, if available, else an
+IP address.  It is an all-zero IP address for a session opened for
+listening.
+<P>
+
+<DT>The remote port
+<DD>This is zero for a connection opened for listening.
+<P>
+
+</DL>
+<P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC166"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC165"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC167"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 21.22.1 Outbound Connections </H3>
+<!--docid::SEC166::-->
+<A NAME="IDX1518"></A>
+<P>
+
+<DL COMPACT>
+<DT><TT>ztcp</TT> [ <TT>-v</TT> ] [ <TT>-d</TT> <VAR>fd</VAR> ] <VAR>host</VAR> [ <VAR>port</VAR> ]
+<DD>Open a new TCP connection to <VAR>host</VAR>.  If the <VAR>port</VAR> is
+omitted, it will default to port 23.  The connection will
+be added to the session table and the shell parameter
+<TT>REPLY</TT> will be set to the file descriptor associated
+with that connection.
+<P>
+
+If <TT>-d</TT> is specified, its argument will be taken as the target file
+descriptor for the connection.
+</P><P>
+
+In order to elicit more verbose output, use <TT>-v</TT>.
+</P><P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC167"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC166"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC168"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC168"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 21.22.2 Inbound Connections </H3>
+<!--docid::SEC167::-->
+<A NAME="IDX1519"></A>
+<P>
+
+<DL COMPACT>
+<DT><TT>ztcp</TT> <TT>-l</TT> [ <TT>-v</TT> ] [ <TT>-d</TT> <VAR>fd</VAR> ] <VAR>port</VAR>
+<DD><TT>ztcp -l</TT> will open a socket listening on TCP
+<VAR>port</VAR>.  The socket will be added to the
+session table and the shell parameter <TT>REPLY</TT>
+will be set to the file descriptor associated
+with that listener.
+<P>
+
+If <TT>-d</TT> is specified, its argument will be taken as the target file
+descriptor for the connection.
+</P><P>
+
+In order to elicit more verbose output, use <TT>-v</TT>.
+</P><P>
+
+<DT><TT>ztcp</TT> <TT>-a</TT> [ <TT>-tv</TT> ] [ <TT>-d</TT> <VAR>targetfd</VAR> ] <VAR>listenfd</VAR>
+<DD><TT>ztcp -a</TT> will accept an incoming connection
+to the port associated with <VAR>listenfd</VAR>.
+The connection will be added to the session
+table and the shell parameter <TT>REPLY</TT> will
+be set to the file descriptor associated with
+the inbound connection.
+<P>
+
+If <TT>-d</TT> is specified, its argument
+will be taken as the target file descriptor for the
+connection.
+</P><P>
+
+If <TT>-t</TT> is specified, <TT>ztcp</TT> will return
+if no incoming connection is pending.  Otherwise
+it will wait for one.
+</P><P>
+
+In order to elicit more verbose output, use <TT>-v</TT>.
+</P><P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC168"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC167"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC169"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC169"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 21.22.3 Closing Connections </H3>
+<!--docid::SEC168::-->
+<A NAME="IDX1520"></A>
+<P>
+
+<DL COMPACT>
+<DT><TT>ztcp</TT> <TT>-cf</TT> [ <TT>-v</TT> ] [ <VAR>fd</VAR> ]
+<DD><DT><TT>ztcp</TT> <TT>-c</TT> [ <TT>-v</TT> ] [ <VAR>fd</VAR> ]
+<DD><TT>ztcp -c</TT> will close the socket associated
+with <VAR>fd</VAR>.  The socket will be removed from the
+session table.  If <VAR>fd</VAR> is not specified,
+<TT>ztcp</TT> will close everything in the session table.
+<P>
+
+Normally, sockets registered by zftp (see
+<A HREF="zsh_21.html#SEC172">21.25 The zsh/zftp Module</A>
+) cannot be closed this way.  In order
+to force such a socket closed, use <TT>-f</TT>.
+</P><P>
+
+In order to elicit more verbose output, use <TT>-v</TT>.
+</P><P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC169"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC168"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC170"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 21.22.4 Example </H3>
+<!--docid::SEC169::-->
+<A NAME="IDX1521"></A>
+Here is how to create a TCP connection between two instances of zsh.  We
+need to pick an unassigned port; here we use the randomly chosen 5123.
+<P>
+
+On <TT>host1</TT>,
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>zmodload zsh/net/tcp
+ztcp -l 5123
+listenfd=$REPLY
+ztcp -a $listenfd
+fd=$REPLY
+</pre></td></tr></table>The second from last command blocks until there is an incoming connection.
+</P><P>
+
+Now create a connection from <TT>host2</TT> (which may, of course, be the same
+machine):
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>zmodload zsh/net/tcp
+ztcp host1 5123
+fd=$REPLY
+</pre></td></tr></table></P><P>
+
+Now on each host, <TT>$fd</TT> contains a file descriptor for talking to the
+other.  For example, on <TT>host1</TT>:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>print This is a message &#62;&#38;$fd
+</pre></td></tr></table>and on <TT>host2</TT>:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>read -r line &#60;&#38;$fd; print -r - $line
+</pre></td></tr></table>prints `<TT>This is a message</TT>'.
+</P><P>
+
+To tidy up, on <TT>host1</TT>:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>ztcp -c $listenfd
+ztcp -c $fd
+</pre></td></tr></table>and on <TT>host2</TT>
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>ztcp -c $fd
+</pre></td></tr></table><A NAME="The zsh/termcap Module"></A>
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC170"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC169"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC171"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC165"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.23 The zsh/termcap Module </H2>
+<!--docid::SEC170::-->
+<P>
+
+The <TT>zsh/termcap</TT> module makes available one builtin command:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1522"></A>
+<A NAME="IDX1523"></A>
+<DT><TT>echotc</TT> <VAR>cap</VAR> [ <VAR>arg</VAR> ... ]
+<DD>Output the termcap value corresponding to the capability
+<VAR>cap</VAR>, with optional arguments.
+<P>
+
+</DL>
+<P>
+
+The <TT>zsh/termcap</TT> module makes available one parameter:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1524"></A>
+<DT><TT>termcap</TT>
+<DD>An associative array that maps termcap capability codes to
+their values.
+<P>
+
+</DL>
+<A NAME="The zsh/terminfo Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC171"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC170"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC172"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.24 The zsh/terminfo Module </H2>
+<!--docid::SEC171::-->
+<P>
+
+The <TT>zsh/terminfo</TT> module makes available one builtin command:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1525"></A>
+<A NAME="IDX1526"></A>
+<DT><TT>echoti</TT> <VAR>cap</VAR> [ <VAR>arg</VAR> ]
+<DD>Output the terminfo value corresponding to the capability
+<VAR>cap</VAR>, instantiated with <VAR>arg</VAR> if applicable.
+<P>
+
+</DL>
+<P>
+
+The <TT>zsh/terminfo</TT> module makes available one parameter:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1527"></A>
+<DT><TT>terminfo</TT>
+<DD>An associative array that maps terminfo capability names to
+their values.
+<P>
+
+</DL>
+<A NAME="The zsh/zftp Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC172"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC171"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC173"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC177"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.25 The zsh/zftp Module </H2>
+<!--docid::SEC172::-->
+<P>
+
+The <TT>zsh/zftp</TT> module makes available one builtin command:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1528"></A>
+<A NAME="IDX1529"></A>
+<A NAME="IDX1530"></A>
+<DT><TT>zftp</TT> <VAR>subcommand</VAR> [ <VAR>args</VAR> ]
+<DD>The <TT>zsh/zftp</TT> module is a client for FTP (file transfer protocol).  It
+is implemented as a builtin to allow full use of shell command line
+editing, file I/O, and job control mechanisms.  Often, users will
+access it via shell functions providing a more powerful interface; a set is
+provided with the <TT>zsh</TT> distribution and is described in
+<A HREF="zsh_23.html#SEC197">23. Zftp Function System</A>.  However, the <TT>zftp</TT> command is entirely usable in its
+own right.
+<P>
+
+All commands consist of the command name <TT>zftp</TT> followed by the name
+of a subcommand.  These are listed below.  The return status of each
+subcommand is supposed to reflect the success or failure of the remote
+operation.  See a description of the variable <TT>ZFTP_VERBOSE</TT> for
+more information on how responses from the server may be printed.
+</P><P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC173"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC172"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC174"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 21.25.1 Subcommands </H3>
+<!--docid::SEC173::-->
+<A NAME="IDX1531"></A>
+<P>
+
+<DL COMPACT>
+<A NAME="IDX1532"></A>
+<DT><TT>open</TT> <VAR>host</VAR> [ <VAR>user</VAR> [ <VAR>password</VAR> [ <VAR>account</VAR> ] ] ]
+<DD>Open a new FTP session to <VAR>host</VAR>, which may be the name of a TCP/IP
+connected host or an IP number in the standard dot notation.
+Remaining arguments are passed to the <TT>login</TT> subcommand.  Note that
+if no arguments beyond <VAR>host</VAR> are supplied, <TT>open</TT> will <EM>not</EM>
+automatically call <TT>login</TT>.  If no arguments at all are supplied,
+<TT>open</TT> will use the parameters set by the <TT>params</TT> subcommand.
+<P>
+
+After a successful open, the shell variables <TT>ZFTP_HOST</TT>,
+<TT>ZFTP_IP</TT> and <TT>ZFTP_SYSTEM</TT> are available; see `Variables'
+below.
+</P><P>
+
+<DT><TT>login</TT> [ <VAR>name</VAR> [ <VAR>password</VAR> [ <VAR>account</VAR> ] ] ]
+<DD><DT><TT>user</TT> [ <VAR>name</VAR> [ <VAR>password</VAR> [ <VAR>account</VAR> ] ] ]
+<DD>Login the user <VAR>name</VAR> with parameters <VAR>password</VAR> and <VAR>account</VAR>.
+Any of the parameters can be omitted, and will be read from standard
+input if needed (<VAR>name</VAR> is always needed).  If 
+standard input is a terminal, a prompt for each one will be printed on
+standard error and <VAR>password</VAR> will not be echoed.  If any of the
+parameters are not used, a warning message is printed.
+<P>
+
+After a successful login, the shell variables <TT>ZFTP_USER</TT>,
+<TT>ZFTP_ACCOUNT</TT> and <TT>ZFTP_PWD</TT> are available; see `Variables'
+below.
+</P><P>
+
+This command may be re-issued when a user is already logged in, and
+the server will first be reinitialized for a new user.
+</P><P>
+
+<DT><TT>params</TT> [ <VAR>host</VAR> [ <VAR>user</VAR> [ <VAR>password</VAR> [ <VAR>account</VAR> ] ] ] ]
+<DD><DT><TT>params</TT> <TT>-</TT>
+<DD>Store the given parameters for a later <TT>open</TT> command with no
+arguments.  Only those given on the command line will be remembered.
+If no arguments are given, the parameters currently set are printed,
+although the password will appear as a line of stars; the return value is
+one if no parameters were set, zero otherwise.
+<P>
+
+Any of the parameters may be specified as a `<TT>?</TT>', which
+may need to be quoted to protect it from shell expansion.  In this case,
+the appropriate parameter will be read from stdin as with the
+<TT>login</TT> subcommand, including special handling of <VAR>password</VAR>.  If the
+`<TT>?</TT>' is followed by a string, that is used as the prompt for reading the
+parameter instead of the default message (any necessary punctuation and
+whitespace should be included at the end of the prompt).  The first letter
+of the parameter (only) may be quoted with a `<TT>\</TT>'; hence an argument
+<TT>"\\$word"</TT> guarantees that the string from the shell parameter <TT>$word</TT>
+will be treated literally, whether or not it begins with a `<TT>?</TT>'.
+</P><P>
+
+If instead a single `<TT>-</TT>' is given, the existing parameters, if any,
+are deleted.  In that case, calling <TT>open</TT> with no arguments will
+cause an error.
+</P><P>
+
+The list of parameters is not deleted after a <TT>close</TT>, however it
+will be deleted if the <TT>zsh/zftp</TT> module is unloaded.
+</P><P>
+
+For example,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>zftp params ftp.elsewhere.xx juser '?Password for juser: '
+</pre></td></tr></table></P><P>
+
+will store the host <TT>ftp.elsewhere.xx</TT> and the user <TT>juser</TT> and
+then prompt the user for the corresponding password with the given prompt.
+</P><P>
+
+<DT><TT>test</TT>
+<DD>Test the connection; if the server has reported
+that it has closed the connection (maybe due to a timeout), return
+status 2; if no connection was open anyway, return status 1; else
+return status 0.  The <TT>test</TT> subcommand is
+silent, apart from messages printed by the <TT>$ZFTP_VERBOSE</TT>
+mechanism, or error messages if the connection closes.  There is no
+network overhead for this test.
+<P>
+
+The test is only supported on systems with either the <TT>select(2)</TT> or
+<TT>poll(2)</TT> system calls; otherwise the message `<TT>not
+supported on this system</TT>' is printed instead.
+</P><P>
+
+The <TT>test</TT> subcommand will automatically be called at the start of any
+other subcommand for the current session when a connection is open.
+</P><P>
+
+<DT><TT>cd</TT> <VAR>directory</VAR>
+<DD>Change the remote directory to <VAR>directory</VAR>.  Also alters the shell
+variable <TT>ZFTP_PWD</TT>.
+<P>
+
+<DT><TT>cdup</TT>
+<DD>Change the remote directory to the one higher in the directory tree.
+Note that <TT>cd ..</TT> will also work correctly on non-UNIX systems.
+<P>
+
+<DT><TT>dir</TT> [ <VAR>args...</VAR> ]
+<DD>Give a (verbose) listing of the remote directory.  The <VAR>args</VAR> are
+passed directly to the server. The command's behaviour is implementation
+dependent, but a UNIX server will typically interpret <VAR>args</VAR> as
+arguments to the <TT>ls</TT> command and with no arguments return the
+result of `<TT>ls -l</TT>'. The directory is listed to standard output.
+<P>
+
+<DT><TT>ls</TT> [ <VAR>args</VAR> ]
+<DD>Give a (short) listing of the remote directory.  With no <VAR>args</VAR>,
+produces a raw list of the files in the directory, one per line.
+Otherwise, up to vagaries of the server implementation, behaves
+similar to <TT>dir</TT>.
+<P>
+
+<DT><TT>type</TT> [ <VAR>type</VAR> ]
+<DD>Change the type for the transfer to <VAR>type</VAR>, or print the current type
+if <VAR>type</VAR> is absent.  The allowed values are `<TT>A</TT>' (ASCII),
+`<TT>I</TT>' (Image, i.e. binary), or `<TT>B</TT>' (a synonym for `<TT>I</TT>').
+<P>
+
+The FTP default for a transfer is ASCII.  However, if <TT>zftp</TT> finds
+that the remote host is a UNIX machine with 8-bit byes, it will
+automatically switch to using binary for file transfers upon
+<TT>open</TT>.  This can subsequently be overridden.
+</P><P>
+
+The transfer type is only passed to the remote host when a data
+connection is established; this command involves no network overhead.
+</P><P>
+
+<DT><TT>ascii</TT>
+<DD>The same as <TT>type A</TT>.
+<P>
+
+<DT><TT>binary</TT>
+<DD>The same as <TT>type I</TT>.
+<P>
+
+<DT><TT>mode</TT> [ <TT>S</TT> | <TT>B</TT> ]
+<DD>Set the mode type to stream (<TT>S</TT>) or block (<TT>B</TT>).  Stream mode is
+the default; block mode is not widely supported.
+<P>
+
+<DT><TT>remote</TT> <VAR>files...</VAR>
+<DD><DT><TT>local</TT> [ <VAR>files...</VAR> ]
+<DD>Print the size and last modification time of the remote or local
+files.  If there is more than one item on the list, the name of the
+file is printed first.  The first number is the file size, the second
+is the last modification time of the file in the format
+<TT>CCYYMMDDhhmmSS</TT> consisting of year, month, date, hour, minutes and
+seconds in GMT.  Note that this format, including the length, is
+guaranteed, so that time strings can be directly compared via the
+<TT>[[</TT> builtin's <TT>&#60;</TT> and <TT>&#62;</TT> operators, even if they are too long
+to be represented as integers.
+<P>
+
+Not all servers support the commands for retrieving this information.
+In that case, the <TT>remote</TT> command will print nothing and return
+status 2, compared with status 1 for a file not found.
+</P><P>
+
+The <TT>local</TT> command (but not <TT>remote</TT>) may be used with no
+arguments, in which case the information comes from examining file
+descriptor zero.  This is the same file as seen by a <TT>put</TT> command
+with no further redirection.
+</P><P>
+
+<DT><TT>get</TT> <VAR>file</VAR> [...]
+<DD>Retrieve all <VAR>file</VAR>s from the server, concatenating them
+and sending them to standard output.
+<P>
+
+<DT><TT>put</TT> <VAR>file</VAR> [...]
+<DD>For each <VAR>file</VAR>, read a file from standard input and send that to
+the remote host with the given name.
+<P>
+
+<DT><TT>append</TT> <VAR>file</VAR> [...]
+<DD>As <TT>put</TT>, but if the remote <VAR>file</VAR> already exists, data is
+appended to it instead of overwriting it.
+<P>
+
+<DT><TT>getat</TT> <VAR>file</VAR> <VAR>point</VAR>
+<DD><DT><TT>putat</TT> <VAR>file</VAR> <VAR>point</VAR>
+<DD><DT><TT>appendat</TT> <VAR>file</VAR> <VAR>point</VAR>
+<DD>Versions of <TT>get</TT>, <TT>put</TT> and <TT>append</TT> which will start the
+transfer at the given <VAR>point</VAR> in the remote <VAR>file</VAR>.  This is
+useful for appending to an incomplete local file.  However, note that
+this ability is not universally supported by servers (and is not quite
+the behaviour specified by the standard).
+<P>
+
+<DT><TT>delete</TT> <VAR>file</VAR> [...]
+<DD>Delete the list of files on the server.
+<P>
+
+<DT><TT>mkdir</TT> <VAR>directory</VAR>
+<DD>Create a new directory <VAR>directory</VAR> on the server.
+<P>
+
+<DT><TT>rmdir</TT> <VAR>directory</VAR>
+<DD>Delete the directory <VAR>directory</VAR>  on the server.
+<P>
+
+<DT><TT>rename</TT> <VAR>old-name</VAR> <VAR>new-name</VAR>
+<DD>Rename file <VAR>old-name</VAR> to <VAR>new-name</VAR> on the server.
+<P>
+
+<DT><TT>site</TT> <VAR>args...</VAR>
+<DD>Send a host-specific command to the server.  You will probably
+only need this if instructed by the server to use it.
+<P>
+
+<DT><TT>quote</TT> <VAR>args...</VAR>
+<DD>Send the raw FTP command sequence to the server.  You should be
+familiar with the FTP command set as defined in RFC959 before doing
+this.  Useful commands may include <TT>STAT</TT> and <TT>HELP</TT>.  Note also
+the mechanism for returning messages as described for the variable
+<TT>ZFTP_VERBOSE</TT> below, in particular that all messages from the
+control connection are sent to standard error.
+<P>
+
+<DT><TT>close</TT>
+<DD><DT><TT>quit</TT>
+<DD>Close the current data connection.  This unsets the shell parameters
+<TT>ZFTP_HOST</TT>, <TT>ZFTP_IP</TT>, <TT>ZFTP_SYSTEM</TT>, <TT>ZFTP_USER</TT>,
+<TT>ZFTP_ACCOUNT</TT>, <TT>ZFTP_PWD</TT>, <TT>ZFTP_TYPE</TT> and <TT>ZFTP_MODE</TT>.
+<P>
+
+<DT><TT>session</TT> [ <VAR>sessname</VAR> ]
+<DD>Allows multiple FTP sessions to be used at once.  The name of the session
+is an arbitrary string of characters; the default session is called
+`<TT>default</TT>'.  If this command is called without an argument, it will list
+all the current sessions; with an argument, it will either switch to the
+existing session called <VAR>sessname</VAR>, or create a new session of that name.
+<P>
+
+Each session remembers the status of the connection, the set of
+connection-specific shell parameters (the same set as are unset when a
+connection closes, as given in the description of <TT>close</TT>), and any user
+parameters specified with the <TT>params</TT> subcommand.  Changing to a
+previous session restores those values; changing to a new session
+initialises them in the same way as if <TT>zftp</TT> had just been loaded.  The
+name of the current session is given by the parameter <TT>ZFTP_SESSION</TT>.
+</P><P>
+
+<DT><TT>rmsession</TT> [ <VAR>sessname</VAR> ]
+<DD>Delete a session; if a name is not given, the current session is deleted.
+If the current session is deleted, the earliest existing session becomes
+the new current session, otherwise the current session is not changed.
+If the session being deleted is the only one, a new session called
+`<TT>default</TT>' is created and becomes the current session; note that this is
+a new session even if the session being deleted is also called
+`<TT>default</TT>'. It is recommended that sessions not be deleted while
+background commands which use <TT>zftp</TT> are still active.
+<P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC174"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC173"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC175"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC175"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 21.25.2 Parameters </H3>
+<!--docid::SEC174::-->
+<A NAME="IDX1533"></A>
+The following shell parameters are used by <TT>zftp</TT>.  Currently none
+of them are special.
+<P>
+
+<DL COMPACT>
+<A NAME="IDX1534"></A>
+<DT><TT>ZFTP_TMOUT</TT>
+<DD>Integer.  The time in seconds to wait for a network operation to
+complete before returning an error.  If this is not set when the
+module is loaded, it will be given the default value 60.  A value of
+zero turns off timeouts.  If a timeout occurs on the control
+connection it will be closed.  Use a larger value if this occurs too
+frequently.
+<P>
+
+<A NAME="IDX1535"></A>
+<DT><TT>ZFTP_IP</TT>
+<DD>Readonly.  The IP address of the current connection in dot notation.
+<P>
+
+<A NAME="IDX1536"></A>
+<DT><TT>ZFTP_HOST</TT>
+<DD>Readonly.  The hostname of the current remote server.  If the host was
+opened as an IP number, <TT>ZFTP_HOST</TT> contains that instead; this
+saves the overhead for a name lookup, as IP numbers are most commonly
+used when a nameserver is unavailable.
+<P>
+
+<A NAME="IDX1537"></A>
+<DT><TT>ZFTP_SYSTEM</TT>
+<DD>Readonly.  The system type string returned by the server in response
+to an FTP <TT>SYST</TT> request.  The most interesting case is a string
+beginning <TT>"UNIX Type: L8"</TT>, which ensures maximum compatibility
+with a local UNIX host.
+<P>
+
+<A NAME="IDX1538"></A>
+<DT><TT>ZFTP_TYPE</TT>
+<DD>Readonly.  The type to be used for data transfers , either `<TT>A</TT>' or
+`<TT>I</TT>'.   Use the <TT>type</TT> subcommand to change this.
+<P>
+
+<A NAME="IDX1539"></A>
+<DT><TT>ZFTP_USER</TT>
+<DD>Readonly.  The username currently logged in, if any.
+<P>
+
+<A NAME="IDX1540"></A>
+<DT><TT>ZFTP_ACCOUNT</TT>
+<DD>Readonly.  The account name of the current user, if any.  Most servers
+do not require an account name.
+<P>
+
+<A NAME="IDX1541"></A>
+<DT><TT>ZFTP_PWD</TT>
+<DD>Readonly.  The current directory on the server.
+<P>
+
+<A NAME="IDX1542"></A>
+<DT><TT>ZFTP_CODE</TT>
+<DD>Readonly.  The three digit code of the last FTP reply from the server
+as a string.  This can still be read after the connection is closed, and
+is not changed when the current session changes.
+<P>
+
+<A NAME="IDX1543"></A>
+<DT><TT>ZFTP_REPLY</TT>
+<DD>Readonly.  The last line of the last reply sent by the server.  This
+can still be read after the connection is closed, and is not changed when
+the current session changes.
+<P>
+
+<A NAME="IDX1544"></A>
+<DT><TT>ZFTP_SESSION</TT>
+<DD>Readonly.  The name of the current FTP session; see the description of the
+<TT>session</TT> subcommand.
+<P>
+
+<A NAME="IDX1545"></A>
+<DT><TT>ZFTP_PREFS</TT>
+<DD>A string of preferences for altering aspects of <TT>zftp</TT>'s behaviour.
+Each preference is a single character.  The following are defined:
+<P>
+
+<DL COMPACT>
+<DT><TT>P</TT>
+<DD>Passive:  attempt to make the remote server initiate data transfers.
+This is slightly more efficient than sendport mode.  If the letter
+<TT>S</TT> occurs later in the string, <TT>zftp</TT> will use sendport mode if
+passive mode is not available.
+<P>
+
+<DT><TT>S</TT>
+<DD>Sendport:  initiate transfers by the FTP <TT>PORT</TT> command.  If this
+occurs before any <TT>P</TT> in the string, passive mode will never be
+attempted.
+<P>
+
+<DT><TT>D</TT>
+<DD>Dumb:  use only the bare minimum of FTP commands.  This prevents
+the variables <TT>ZFTP_SYSTEM</TT> and <TT>ZFTP_PWD</TT> from being set, and
+will mean all connections default to ASCII type.  It may prevent
+<TT>ZFTP_SIZE</TT> from being set during a transfer if the server
+does not send it anyway (many servers do).
+<P>
+
+</DL>
+<P>
+
+If <TT>ZFTP_PREFS</TT> is not set when <TT>zftp</TT> is loaded, it will be set to a
+default of `<TT>PS</TT>', i.e. use passive mode if available, otherwise
+fall back to sendport mode.
+</P><P>
+
+<A NAME="IDX1546"></A>
+<DT><TT>ZFTP_VERBOSE</TT>
+<DD>A string of digits between 0 and 5 inclusive, specifying which
+responses from the server should be printed.  All responses go to
+standard error.  If any of the numbers 1 to 5 appear in the string,
+raw responses from the server with reply codes beginning with that
+digit will be printed to standard error.  The first digit of the three
+digit reply code is defined by RFC959 to correspond to:
+<P>
+
+<DL COMPACT>
+<DT>1.
+<DD>A positive preliminary reply.
+<P>
+
+<DT>2.
+<DD>A positive completion reply.
+<P>
+
+<DT>3.
+<DD>A positive intermediate reply.
+<P>
+
+<DT>4.
+<DD>A transient negative completion reply.
+<P>
+
+<DT>5.
+<DD>A permanent negative completion reply.
+<P>
+
+</DL>
+<P>
+
+It should be noted that, for unknown reasons, the reply `Service not
+available', which forces termination of a connection, is classified as
+421, i.e. `transient negative', an interesting interpretation of the word
+`transient'.
+</P><P>
+
+The code 0 is special:  it indicates that all but the last line of
+multiline replies read from the server will be printed to standard
+error in a processed format.  By convention, servers use this
+mechanism for sending information for the user to read.  The
+appropriate reply code, if it matches the same response, takes
+priority.
+</P><P>
+
+If <TT>ZFTP_VERBOSE</TT> is not set when <TT>zftp</TT> is loaded, it will be
+set to the default value <TT>450</TT>, i.e., messages destined for the user
+and all errors will be printed.  A null string is valid and
+specifies that no messages should be printed.
+</P><P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC175"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC174"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC176"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC176"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 21.25.3 Functions </H3>
+<!--docid::SEC175::-->
+<A NAME="IDX1547"></A>
+<P>
+
+<DL COMPACT>
+<A NAME="IDX1548"></A>
+<DT><TT>zftp_chpwd</TT>
+<DD>If this function is set by the user, it is called every time the
+directory changes on the server, including when a user is logged
+in, or when a connection is closed.  In the last case, <TT>$ZFTP_PWD</TT>
+will be unset; otherwise it will reflect the new directory.
+<P>
+
+<A NAME="IDX1549"></A>
+<DT><TT>zftp_progress</TT>
+<DD>If this function is set by the user, it will be called during
+a <TT>get</TT>, <TT>put</TT> or <TT>append</TT> operation each time sufficient data
+has been received from the host.  During a <TT>get</TT>, the data is sent
+to standard output, so it is vital that this function should write
+to standard error or directly to the terminal, <EM>not</EM> to standard
+output.
+<P>
+
+When it is called with a transfer in progress, the following
+additional shell parameters are set:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1550"></A>
+<DT><TT>ZFTP_FILE</TT>
+<DD>The name of the remote file being transferred from or to.
+<P>
+
+<A NAME="IDX1551"></A>
+<DT><TT>ZFTP_TRANSFER</TT>
+<DD>A <TT>G</TT> for a <TT>get</TT> operation and a <TT>P</TT> for a <TT>put</TT> operation.
+<P>
+
+<A NAME="IDX1552"></A>
+<DT><TT>ZFTP_SIZE</TT>
+<DD>The total size of the complete file being transferred:
+the same as the first value provided by the
+<TT>remote</TT> and <TT>local</TT> subcommands for a particular file.
+If the server cannot supply this value for a remote file being
+retrieved, it will not be set.  If input is from a pipe the value may
+be incorrect and correspond simply to a full pipe buffer.
+<P>
+
+<A NAME="IDX1553"></A>
+<DT><TT>ZFTP_COUNT</TT>
+<DD>The amount of data so far transferred; a number between zero and
+<TT>$ZFTP_SIZE</TT>, if that is set.  This number is always available.
+<P>
+
+</DL>
+<P>
+
+The function is initially called with <TT>ZFTP_TRANSFER</TT> set
+appropriately and <TT>ZFTP_COUNT</TT> set to zero.  After the transfer is
+finished, the function will be called one more time with
+<TT>ZFTP_TRANSFER</TT> set to <TT>GF</TT> or <TT>PF</TT>, in case it wishes to tidy
+up.  It is otherwise never called twice with the same value of
+<TT>ZFTP_COUNT</TT>.
+</P><P>
+
+Sometimes the progress meter may cause disruption.  It is up to the
+user to decide whether the function should be defined and to use
+<TT>unfunction</TT> when necessary.
+</P><P>
+
+</DL>
+<P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC176"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC175"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC177"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 21.25.4 Problems </H3>
+<!--docid::SEC176::-->
+<A NAME="IDX1554"></A>
+<P>
+
+A connection may not be opened in the left hand side of a pipe as this
+occurs in a subshell and the file information is not updated in the main
+shell.  In the case of type or mode changes or closing the connection in a
+subshell, the information is returned but variables are not updated until
+the next call to <TT>zftp</TT>.  Other status changes in subshells will not be
+reflected by changes to the variables (but should be otherwise harmless).
+</P><P>
+
+Deleting sessions while a <TT>zftp</TT> command is active in the background can
+have unexpected effects, even if it does not use the session being deleted.
+This is because all shell subprocesses share information on the state of
+all connections, and deleting a session changes the ordering of that
+information.
+</P><P>
+
+On some operating systems, the control connection is not valid after a
+fork(), so that operations in subshells, on the left hand side of a
+pipeline, or in the background are not possible, as they should be.  This
+is presumably a bug in the operating system.
+<A NAME="The zsh/zle Module"></A>
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC177"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC176"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC178"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC172"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.26 The zsh/zle Module </H2>
+<!--docid::SEC177::-->
+<P>
+
+The <TT>zsh/zle</TT> module contains the Zsh Line Editor.  See
+<A HREF="zsh_17.html#SEC90">17. Zsh Line Editor</A>.
+<A NAME="The zsh/zleparameter Module"></A>
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC178"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC177"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC179"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.27 The zsh/zleparameter Module </H2>
+<!--docid::SEC178::-->
+<P>
+
+<A NAME="IDX1555"></A>
+The <TT>zsh/zleparameter</TT> module defines two special parameters that can be 
+used to access internal information of the Zsh Line Editor (see
+<A HREF="zsh_17.html#SEC90">17. Zsh Line Editor</A>).
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1556"></A>
+<DT><TT>keymaps</TT>
+<DD>This array contains the names of the keymaps currently defined.
+<P>
+
+<A NAME="IDX1557"></A>
+<DT><TT>widgets</TT>
+<DD>This associative array contains one entry per widget defined. The name 
+of the widget is the key and the value gives information about the
+widget. It is either the string `<TT>builtin</TT>' for builtin widgets, a
+string of the form `<TT>user:</TT><VAR>name</VAR>' for user-defined widgets,
+where <VAR>name</VAR> is the name of the shell function implementing the
+widget, or it is a string of the form
+`<TT>completion:</TT><VAR>type</VAR><TT>:</TT><VAR>name</VAR>', for completion widgets. In
+the last case <VAR>type</VAR> is the name of the builtin widgets the
+completion widget imitates in its behavior and <VAR>name</VAR> is the name
+of the shell function implementing the completion widget.
+<P>
+
+</DL>
+<A NAME="The zsh/zprof Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC179"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC178"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC180"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.28 The zsh/zprof Module </H2>
+<!--docid::SEC179::-->
+<P>
+
+<A NAME="IDX1558"></A>
+When loaded, the <TT>zsh/zprof</TT> causes shell functions to be profiled.
+The profiling results can be obtained with the <TT>zprof</TT>
+builtin command made available by this module.  There is no way to turn 
+profiling off other than unloading the module.
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1559"></A>
+<DT><TT>zprof</TT> [ <TT>-c</TT> ]
+<DD>Without the <TT>-c</TT> option, <TT>zprof</TT> lists profiling results to
+standard output.  The format is comparable to that of commands like
+<TT>gprof</TT>.
+<P>
+
+At the top there is a summary listing all functions that were called
+at least once.  This summary is sorted in decreasing order of the
+amount of time spent in each.  The lines contain
+the number of the function in order, which is used in 
+other parts of the list in suffixes of the form
+`<TT>[</TT><VAR>num</VAR><TT>]</TT>', then the number of calls made to the function.
+The next three columns list the time in
+milliseconds spent in the function and its descendents, the average
+time in milliseconds spent in the function and its descendents per
+call and the percentage of time spent in all shell functions used in
+this function and its descendents.  The following three columns give
+the same information, but counting only the time spent in the function 
+itself.  The final column shows the name of the function.
+</P><P>
+
+After the summary, detailed information about every function that was
+invoked is listed, sorted in decreasing order of the amount of time spent
+in each function and its descendents.  Each of these entries consists of
+descriptions for the functions that called the function described, the
+function itself, and the functions that were called from it.  The
+description for the function itself has the same format as in the summary
+(and shows the same information).  The other lines don't show the number of
+the function at the beginning and have their function named indented to
+make it easier to distinguish the line showing the function described in
+the section from the surrounding lines.
+</P><P>
+
+The information shown in this case is almost the same as in the summary,
+but only refers to the call hierarchy being displayed.  For example, for a
+calling function the column showing the total running time lists the time
+spent in the described function and its descendents only for the times when
+it was called from that particular calling function.  Likewise, for a
+called function, this columns lists the total time spent in the called
+function and its descendents only for the times when it was called from the
+function described.
+</P><P>
+
+Also in this case, the column showing the number of calls to a function
+also shows a slash and then the total number of invocations made to the
+called function.
+</P><P>
+
+As long as the <TT>zsh/zprof</TT> module is loaded, profiling will be done and
+multiple invocations of the <TT>zprof</TT> builtin command will show the
+times and numbers of calls since the module was loaded.  With the
+<TT>-c</TT> option, the <TT>zprof</TT> builtin command will reset its internal
+counters and will not show the listing.
+)
+</DL>
+<A NAME="The zsh/zpty Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC180"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC179"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC181"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.29 The zsh/zpty Module </H2>
+<!--docid::SEC180::-->
+<P>
+
+The <TT>zsh/zpty</TT> module offers one builtin:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1560"></A>
+<DT><TT>zpty</TT> [ <TT>-e</TT> ] [ <TT>-b</TT> ] <VAR>name</VAR> [ <VAR>arg ...</VAR> ]
+<DD>The arguments following <VAR>name</VAR> are concatenated with spaces between,
+then executed as a command, as if passed to the <TT>eval</TT> builtin.  The
+command runs under a newly assigned pseudo-terminal; this is useful for
+running commands non-interactively which expect an interactive
+environment.  The <VAR>name</VAR> is not part of the command, but is used to
+refer to this command in later calls to <TT>zpty</TT>.
+<P>
+
+With the <TT>-e</TT> option, the pseudo-terminal is set up so that input
+characters are echoed.
+</P><P>
+
+With the <TT>-b</TT> option, input to and output from the pseudo-terminal are
+made non-blocking.
+</P><P>
+
+<DT><TT>zpty</TT> <TT>-d</TT> [ <VAR>names</VAR> ... ]
+<DD>The second form, with the <TT>-d</TT> option, is used to delete commands
+previously started, by supplying a list of their <VAR>name</VAR>s.  If no
+<VAR>names</VAR> are given, all commands are deleted.  Deleting a command causes
+the HUP signal to be sent to the corresponding process.
+<P>
+
+<DT><TT>zpty</TT> <TT>-w</TT> [ <TT>-n</TT> ] <VAR>name</VAR> [ <VAR>strings ...</VAR> ]
+<DD>The <TT>-w</TT> option can be used to send the to command <VAR>name</VAR> the given
+<VAR>strings</VAR> as input (separated by spaces).  If the <TT>-n</TT> option is
+<EM>not</EM> given, a newline is added at the end.
+<P>
+
+If no <VAR>strings</VAR> are provided, the standard input is copied to the
+pseudo-terminal; this may stop before copying the full input if the
+pseudo-terminal is non-blocking.
+</P><P>
+
+Note that the command under the pseudo-terminal sees this input as if it
+were typed, so beware when sending special tty driver characters such as
+word-erase, line-kill, and end-of-file.
+</P><P>
+
+<DT><TT>zpty</TT> <TT>-r</TT> [ <TT>-t</TT> ] <VAR>name</VAR> [ <VAR>param</VAR> [ <VAR>pattern</VAR> ] ]
+<DD>The <TT>-r</TT> option can be used to read the output of the command <VAR>name</VAR>.
+With only a <VAR>name</VAR> argument, the output read is copied to the standard
+output.  Unless the pseudo-terminal is non-blocking, copying continues
+until the command under the pseudo-terminal exits; when non-blocking, only
+as much output as is immediately available is copied.  The return value is
+zero if any output is copied.
+<P>
+
+When also given a <VAR>param</VAR> argument, at most one line is read and stored
+in the parameter named <VAR>param</VAR>.  Less than a full line may be read if
+the pseudo-terminal is non-blocking.  The return value is zero if at least
+one character is stored in <VAR>param</VAR>.
+</P><P>
+
+If a <VAR>pattern</VAR> is given as well, output is read until the whole string
+read matches the <VAR>pattern</VAR>, even in the non-blocking case.  The return
+value is zero if the string read matches the pattern, or if the command
+has exited but at least one character could still be read.  As of this
+writing, a maximum of one megabyte of output can be consumed this way; if
+a full megabyte is read without matching the pattern, the return value is
+non-zero.
+</P><P>
+
+In all cases, the return value is non-zero if nothing could be read, and
+is <TT>2</TT> if this is because the command has finished.
+</P><P>
+
+If the <TT>-r</TT> option is combined with the <TT>-t</TT> option, <TT>zpty</TT> tests
+whether output is available before trying to read.  If no output is
+available, <TT>zpty</TT> immediately returns the value <TT>1</TT>.
+</P><P>
+
+<DT><TT>zpty</TT> <TT>-t</TT> <VAR>name</VAR>
+<DD>The <TT>-t</TT> option without the <TT>-r</TT> option can be used to test
+whether the command <VAR>name</VAR> is still running.  It returns a zero
+value if the command is running and a non-zero value otherwise.
+<P>
+
+<DT><TT>zpty</TT> [ <TT>-L</TT> ]
+<DD>The last form, without any arguments, is used to list the commands
+currently defined.  If the <TT>-L</TT> option is given, this is done in the
+form of calls to the <TT>zpty</TT> builtin.
+<P>
+
+</DL>
+<A NAME="The zsh/zselect Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC181"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC180"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC182"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.30 The zsh/zselect Module </H2>
+<!--docid::SEC181::-->
+<P>
+
+The <TT>zsh/zselect</TT> module makes available one builtin command:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1561"></A>
+<A NAME="IDX1562"></A>
+<A NAME="IDX1563"></A>
+<DT><TT>zselect</TT> [ <TT>-rwe</TT> <TT>-t</TT> <VAR>timeout</VAR> <TT>-a</TT> <VAR>array</VAR> ] [ <VAR>fd</VAR> ... ]
+<DD>The <TT>zselect</TT> builtin is a front-end to the `select' system call, which
+blocks until a file descriptor is ready for reading or writing, or has an
+error condition, with an optional timeout.  If this is not available on
+your system, the command prints an error message and returns status 2
+(normal errors return status 1).  For more information, see your systems
+documentation for man page select(3).  Note there is no connection with the
+shell builtin of the same name.
+<P>
+
+Arguments and options may be intermingled in any order.  Non-option
+arguments are file descriptors, which must be decimal integers.  By
+default, file descriptors are to be tested for reading, i.e. <TT>zselect</TT>
+will return when data is available to be read from the file descriptor, or
+more precisely, when a read operation from the file descriptor will not
+block.  After a <TT>-r</TT>, <TT>-w</TT> and <TT>-e</TT>, the given file descriptors are
+to be tested for reading, writing, or error conditions.  These options and
+an arbitrary list of file descriptors may be given in any order.
+</P><P>
+
+(The presence of an `error condition' is not well defined in the
+documentation for many implementations of the select system call.
+According to recent versions of the POSIX specification, it is really an
+<EM>exception</EM> condition, of which the only standard example is out-of-band
+data received on a socket.  So zsh users are unlikely to find the <TT>-e</TT>
+option useful.)
+</P><P>
+
+The option `<TT>-t</TT> <VAR>timeout</VAR>' specifies a timeout in hundredths of a
+second.  This may be zero, in which case the file descriptors will simply
+be polled and <TT>zselect</TT> will return immediately.  It is possible to call
+zselect with no file descriptors and a non-zero timeout for use as a
+finer-grained replacement for `sleep'; not, however, the return status is
+always 1 for a timeout.
+</P><P>
+
+The option `<TT>-a</TT> <VAR>array</VAR>' indicates that <TT>array</TT> should be set to
+indicate the file descriptor(s) which are ready.  If the option is not
+given, the array <TT>reply</TT> will be used for this purpose.  The array will
+contain a string similar to the arguments for <TT>zselect</TT>.  For example,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>zselect -t 0 -r 0 -w 1
+</pre></td></tr></table></P><P>
+
+might return immediately with status 0 and <TT>$reply</TT> containing `<TT>-r 0 -w
+1</TT>' to show that both file descriptors are ready for the requested
+operations.
+</P><P>
+
+The option `<TT>-A</TT> <VAR>assoc</VAR>' indicates that the associative array
+<TT>assoc</TT> should be set to indicate the file descriptor(s) which are
+ready.  This option overrides the option <TT>-a</TT>, nor will <TT>reply</TT> be
+modified.  The keys of <TT>assoc</TT> are the file descriptors, and the
+corresponding values are any of the characters `<TT>rwe</TT>' to indicate the
+condition.
+</P><P>
+
+The command returns 0 if some file descriptors are ready for reading.  If
+the operation timed out, or a timeout of 0 was given and no file
+descriptors were ready, or there was an error, it returns status 1 and
+the array will not be set (nor modified in any way).  If there was an error
+in the select operation the appropriate error message is printed.
+</P><P>
+
+</DL>
+<A NAME="The zsh/zutil Module"></A>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC182"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC181"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 21.31 The zsh/zutil Module </H2>
+<!--docid::SEC182::-->
+<P>
+
+<A NAME="IDX1564"></A>
+The <TT>zsh/zutil</TT> module only adds some builtins:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX1565"></A>
+<DT><TT>zstyle</TT> [ <TT>-L</TT> ]
+<DD><DT><TT>zstyle</TT> [ <TT>-e</TT> | <TT>-</TT> | <TT>-</TT><TT>-</TT> ] <VAR>pattern</VAR> <VAR>style</VAR> <VAR>strings</VAR> ...
+<DD><DT><TT>zstyle -d</TT> [ <VAR>pattern</VAR> [ <VAR>styles</VAR> ... ] ]
+<DD><DT><TT>zstyle -g</TT> <VAR>name</VAR> [ <VAR>pattern</VAR> [ <VAR>style</VAR> ] ]
+<DD><DT><TT>zstyle -abs</TT> <VAR>context</VAR> <VAR>style</VAR> <VAR>name</VAR> [ <VAR>sep</VAR> ]
+<DD><DT><TT>zstyle -Tt</TT> <VAR>context</VAR> <VAR>style</VAR> [ <VAR>strings</VAR> ...]
+<DD><DT><TT>zstyle -m</TT> <VAR>context</VAR> <VAR>style</VAR> <VAR>pattern</VAR>
+<DD>This builtin command is used to define and lookup styles.  Styles are
+pairs of names and values, where the values consist of any number of
+strings.  They are stored together with patterns and lookup is done by
+giving a string, called the `context', which is compared to the
+patterns.  The definition stored for the first matching pattern will be 
+returned.
+<P>
+
+For ordering of comparisons, patterns are searched from most specific to
+least specific, and patterns that are equally specific keep the order in 
+which they were defined.  A pattern is considered to be more specific
+than another if it contains more components (substrings separated by
+colons) or if the patterns for the components are more specific, where 
+simple strings are considered to be more specific than patterns and
+complex patterns are considered to be more specific than the pattern
+`<TT>*</TT>'.
+</P><P>
+
+The first form (without arguments) lists the definitions in the order
+<TT>zstyle</TT> will test them. If the <TT>-L</TT> option is given, listing is
+done in the form of calls to <TT>zstyle</TT>.  Forms with arguments:
+</P><P>
+
+<DL COMPACT>
+<DT><TT>zstyle</TT> [ <TT>-</TT> | <TT>-</TT><TT>-</TT> | <TT>-e</TT> ] <VAR>pattern</VAR> <VAR>style</VAR> <VAR>strings</VAR> ...
+<DD><A NAME="IDX1566"></A>
+Defines the given <VAR>style</VAR> for the <VAR>pattern</VAR> with the <VAR>strings</VAR> as
+the value.  If the <TT>-e</TT> option is given, the <VAR>strings</VAR> will be
+concatenated (separated by spaces) and the resulting string will be
+evaluated (in the same way as it is done by the <TT>eval</TT> builtin
+command) when the style is looked up.  In this case the parameter
+`<TT>reply</TT>' must be assigned to set the strings returned after the
+evaluation.  Before evaluating the value, <TT>reply</TT> is unset, and
+if it is still unset after the evaluation, the style is treated as if
+it were not set.
+<P>
+
+<DT><TT>zstyle -d</TT> [ <VAR>pattern</VAR> [ <VAR>styles</VAR> ... ] ]
+<DD>Delete style definitions. Without arguments all definitions are deleted,
+with a <VAR>pattern</VAR> all definitions for that pattern are deleted and if
+any <VAR>styles</VAR> are given, then only those styles are deleted for the
+<VAR>pattern</VAR>.
+<P>
+
+<DT><TT>zstyle -g</TT> <VAR>name</VAR> [ <VAR>pattern</VAR> [ <VAR>style</VAR> ] ]
+<DD>Retrieve a style definition. The <VAR>name</VAR> is
+used as the name of an array in which the results are stored. Without
+any further arguments, all <VAR>patterns</VAR> defined are returned. With a
+<VAR>pattern</VAR> the styles defined for that pattern are returned and with 
+both a <VAR>pattern</VAR> and a <VAR>style</VAR>, the value strings of that
+combination is returned.
+<P>
+
+</DL>
+<P>
+
+The other forms can be used to look up or test patterns.
+</P><P>
+
+<DL COMPACT>
+<DT><TT>zstyle -s</TT> <VAR>context</VAR> <VAR>style</VAR> <VAR>name</VAR> [ <VAR>sep</VAR> ]
+<DD>The parameter <VAR>name</VAR> is set to the value of the style interpreted as a
+string.  If the value contains several strings they are concatenated with
+spaces (or with the <VAR>sep</VAR> string if that is given) between them.
+<P>
+
+<DT><TT>zstyle -b</TT> <VAR>context</VAR> <VAR>style</VAR> <VAR>name</VAR>
+<DD>The value is stored in <VAR>name</VAR> as a boolean, i.e. as the string
+`<TT>yes</TT>' if the value has only one string and that string is equal to one
+of `<TT>yes</TT>', `<TT>true</TT>', `<TT>on</TT>', or `<TT>1</TT>'. If the value is any other
+string or has more than one string, the parameter is set to `<TT>no</TT>'.
+<P>
+
+<DT><TT>zstyle -a</TT> <VAR>context</VAR> <VAR>style</VAR> <VAR>name</VAR>
+<DD>The value is stored in <VAR>name</VAR> as an array. If <VAR>name</VAR> is declared 
+as an associative array,  the first, third, etc. strings are used as the
+keys and the other strings are used as the values.
+<P>
+
+<DT><TT>zstyle -t</TT> <VAR>context</VAR> <VAR>style</VAR> [ <VAR>strings</VAR> ...]
+<DD><DT><TT>zstyle -T</TT> <VAR>context</VAR> <VAR>style</VAR> [ <VAR>strings</VAR> ...]
+<DD>Test the value of a style, i.e. the <TT>-t</TT> option only returns a status
+(sets <TT>$?</TT>).  Without any <VAR>strings</VAR> the return status is zero if the
+style is defined for at least one matching pattern, has only one string in
+its value, and that is equal to one of `<TT>true</TT>', `<TT>yes</TT>', `<TT>on</TT>' or
+`<TT>1</TT>'. If any <VAR>strings</VAR> are given the status is zero if and only if
+at least one of the <VAR>strings</VAR> is equal to at least one of the strings
+in the value. If the style is not defined, the status is <TT>2</TT>.
+<P>
+
+The <TT>-T</TT> option tests the values of the style like <TT>-t</TT>, but it
+returns zero (rather than <TT>2</TT>) if the style is not defined for any
+matching pattern.
+</P><P>
+
+<DT><TT>zstyle -m</TT> <VAR>context</VAR> <VAR>style</VAR> <VAR>pattern</VAR>
+<DD>Match a value. Returns status zero if the 
+<VAR>pattern</VAR> matches at least one of the strings in the value.
+<P>
+
+</DL>
+<P>
+
+<A NAME="IDX1567"></A>
+<DT><TT>zformat -f</TT> <VAR>param</VAR> <VAR>format</VAR> <VAR>specs</VAR> ...
+<DD><DT><TT>zformat -a</TT> <VAR>array</VAR> <VAR>sep</VAR> <VAR>specs</VAR> ...
+<DD>This builtin provides two different forms of formatting. The first form 
+is selected with the <TT>-f</TT> option. In this case the <VAR>format</VAR>
+string will be modified by replacing sequences starting with a percent 
+sign in it with strings from the <VAR>specs</VAR>.  Each <VAR>spec</VAR> should be
+of the form `<VAR>char</VAR><TT>:</TT><VAR>string</VAR>' which will cause every
+appearance of the sequence `<TT>%</TT><VAR>char</VAR>' in <VAR>format</VAR> to be replaced 
+by the <VAR>string</VAR>.  The `<TT>%</TT>' sequence may also contain optional
+minimum and maximum field width specifications between the `<TT>%</TT>' and 
+the `<VAR>char</VAR>' in the form `<TT>%</TT><VAR>min</VAR><TT>.</TT><VAR>max</VAR><TT>c</TT>',
+i.e. the minimum field width is given first and if the maximum field
+width is used, it has to be preceded by a dot.  Specifying a minimum field
+width makes the result be padded with spaces to the right if the
+<VAR>string</VAR> is shorter than the requested width.  Padding to the left
+can be achieved by giving a negative minimum field width.  If a maximum 
+field width is specified, the <VAR>string</VAR> will be truncated after that
+many characters.  After all `<TT>%</TT>' sequences for the given <VAR>specs</VAR>
+have been processed, the resulting string is stored in the parameter
+<VAR>param</VAR>.
+<P>
+
+The <TT>%</TT>-escapes also understand ternary expressions in the form used by
+prompts.  The <TT>%</TT> is followed by a `<TT>(</TT>' and then an ordinary
+format specifier character as described above.  There may be a set of
+digits either before or after the `<TT>(</TT>'; these specify a test
+number, which defaults to zero.  Negative numbers are also allowed.  An
+arbitrary delimiter character follows the format specifier, which is
+followed by a piece of `true' text, the delimiter character again, a piece
+of `false' text, and a closing parenthesis.  The complete expression
+(without the digits) thus looks like
+`<TT>%(</TT><VAR>X</VAR><TT>.</TT><VAR>text1</VAR><TT>.</TT><VAR>text2</VAR><TT>)</TT>', except that
+the `<TT>.</TT>' character is arbitrary.  The value given for the format
+specifier in the <VAR>char</VAR><TT>:</TT><VAR>string</VAR> expressions is evaluated as a
+mathematical expression, and compared with the test number.  If they are
+the same, <VAR>text1</VAR> is output, else <VAR>text2</VAR> is output.  A parenthesis
+may be escaped in <VAR>text2</VAR> as <TT>%)</TT>.  Either of <VAR>text1</VAR> or
+<VAR>text2</VAR> may contain nested <TT>%</TT>-escapes.
+</P><P>
+
+For example:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>zformat -f REPLY "The answer is '%3(c.yes.no)'." c:3
+</pre></td></tr></table></P><P>
+
+outputs "The answer is 'yes'." to <TT>REPLY</TT> since the value for the format
+specifier <TT>c</TT> is 3, agreeing with the digit argument to the ternary
+expression.
+</P><P>
+
+The second form, using the <TT>-a</TT> option, can be used for aligning
+strings.  Here, the <VAR>specs</VAR> are of the form
+`<VAR>left</VAR><TT>:</TT><VAR>right</VAR>' where `<VAR>left</VAR>' and `<VAR>right</VAR>' are
+arbitrary strings.  These strings are modified by replacing the colons
+by the <VAR>sep</VAR> string and padding the <VAR>left</VAR> strings with spaces 
+to the right so that the <VAR>sep</VAR> strings in the result (and hence the 
+<VAR>right</VAR> strings after them) are all aligned if the strings are
+printed below each other.  All strings without a colon are left
+unchanged and all strings with an empty <VAR>right</VAR> string have the
+trailing colon removed.  In both cases the lengths of the strings
+are not used to determine how the other strings are to be aligned.
+The resulting strings are stored in the <VAR>array</VAR>.
+</P><P>
+
+<A NAME="IDX1568"></A>
+<DT><TT>zregexparse</TT>
+<DD>This implements some internals of the <TT>_regex_arguments</TT> function.
+<P>
+
+<A NAME="IDX1569"></A>
+<DT><TT>zparseopts</TT> [ <TT>-D</TT> ] [ <TT>-K</TT> ] [ <TT>-E</TT> ] [ <TT>-a</TT> <VAR>array</VAR> ] [ <TT>-A</TT> <VAR>assoc</VAR> ] <VAR>specs</VAR>
+<DD>This builtin simplifies the parsing of options in positional parameters,
+i.e. the set of arguments given by <TT>$*</TT>.  Each <VAR>spec</VAR> describes one
+option and must be of the form `<VAR>opt</VAR>[<TT>=</TT><VAR>array</VAR>]'.  If an option
+described by <VAR>opt</VAR> is found in the positional parameters it is copied
+into the <VAR>array</VAR> specified with the <TT>-a</TT> option; if the optional
+`<TT>=</TT><VAR>array</VAR>' is given, it is instead copied into that array.
+<P>
+
+Note that it is an error to give any <VAR>spec</VAR> without an
+`<TT>=</TT><VAR>array</VAR>' unless one of the <TT>-a</TT> or <TT>-A</TT> options is used.
+</P><P>
+
+Unless the <TT>-E</TT> option is given, parsing stops at the first string
+that isn't described by one of the <VAR>specs</VAR>.  Even with <TT>-E</TT>,
+parsing always stops at a positional parameter equal to `<TT>-</TT>' or
+`<TT>-</TT><TT>-</TT>'.
+</P><P>
+
+The <VAR>opt</VAR> description must be one of the following.  Any of the special
+characters can appear in the option name provided it is preceded by a
+backslash.
+</P><P>
+
+<DL COMPACT>
+<DT><VAR>name</VAR>
+<DD><DT><VAR>name</VAR><TT>+</TT>
+<DD>The <VAR>name</VAR> is the name of the option without the leading `<TT>-</TT>'.  To
+specify a GNU-style long option, one of the usual two leading `<TT>-</TT>' must
+be included in <VAR>name</VAR>; for example, a `<TT>--file</TT>' option is
+represented by a <VAR>name</VAR> of `<TT>-file</TT>'.
+<P>
+
+If a `<TT>+</TT>' appears after <VAR>name</VAR>, the option is appended to <VAR>array</VAR>
+each time it is found in the positional parameters; without the `<TT>+</TT>'
+only the <EM>last</EM> occurrence of the option is preserved.
+</P><P>
+
+If one of these forms is used, the option takes no argument, so parsing
+stops if the next positional parameter does not also begin with `<TT>-</TT>'
+(unless the <TT>-E</TT> option is used).
+</P><P>
+
+<DT><VAR>name</VAR><TT>:</TT>
+<DD><DT><VAR>name</VAR><TT>:-</TT>
+<DD><DT><VAR>name</VAR><TT>::</TT>
+<DD>If one or two colons are given, the option takes an argument; with one
+colon, the argument is mandatory and with two colons it is optional.  The
+argument is appended to the <VAR>array</VAR> after the option itself.
+<P>
+
+An optional argument is put into the same array element as the option name
+(note that this makes empty strings as arguments indistinguishable).  A
+mandatory argument is added as a separate element unless the `<TT>:-</TT>' form
+is used, in which case the argument is put into the same element.
+</P><P>
+
+A `<TT>+</TT>' as described above may appear between the <VAR>name</VAR> and the
+first colon.
+</P><P>
+
+</DL>
+<P>
+
+The options of <TT>zparseopts</TT> itself are:
+</P><P>
+
+<DL COMPACT>
+<DT><TT>-a</TT> <VAR>array</VAR>
+<DD>As described above, this names the default array in which to store the
+recognised options.
+<P>
+
+<DT><TT>-A</TT> <VAR>assoc</VAR>
+<DD>If this is given, the options and their values are also put into an
+associative array with the option names as keys and the arguments (if any)
+as the values.
+<P>
+
+<DT><TT>-D</TT>
+<DD>If this option is given, all options found are removed from the positional
+parameters of the calling shell or shell function, up to but not including
+any not described by the <VAR>specs</VAR>.  This is similar to using the <TT>shift</TT>
+builtin.
+<P>
+
+<DT><TT>-K</TT>
+<DD>With this option, the arrays specified with the <TT>-a</TT> and <TT>-A</TT>
+options and with the `<TT>=</TT><VAR>array</VAR>' forms are kept unchanged when none
+of the <VAR>specs</VAR> for them is used.  This allows assignment of default
+values to them before calling <TT>zparseopts</TT>.
+<P>
+
+<DT><TT>-E</TT>
+<DD>This changes the parsing rules to <EM>not</EM> stop at the first string
+that isn't described by one of the <VAR>spec</VAR>s.  It can be used to test
+for or (if used together with <TT>-D</TT>) extract options and their
+arguments, ignoring all other options and arguments that may be in the
+positional parameters.
+<P>
+
+</DL>
+<P>
+
+For example,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>set -- -a -bx -c y -cz baz -cend
+zparseopts a=foo b:=bar c+:=bar
+</pre></td></tr></table></P><P>
+
+will have the effect of
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>foo=(-a)
+bar=(-b x -c y -c z)
+</pre></td></tr></table></P><P>
+
+The arguments from `<TT>baz</TT>' on will not be used.
+</P><P>
+
+As an example for the <TT>-E</TT> option, consider:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>set -- -a x -b y -c z arg1 arg2
+zparseopts -E -D b:=bar
+</pre></td></tr></table></P><P>
+
+will have the effect of
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>bar=(-b y)
+set -- -a x -c z arg1 arg2
+</pre></td></tr></table></P><P>
+
+I.e., the option <TT>-b</TT> and its arguments are taken from the
+positional parameters and put into the array <TT>bar</TT>.
+</P><P>
+
+</DL>
+<A NAME="TCP Function System"></A>
+<P>
+
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_21.html#SEC137"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_22.html#SEC183"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Peter Stephenson</I> on <I>March, 19  2004</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+
+</BODY>
+</HTML>

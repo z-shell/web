@@ -1,0 +1,39 @@
+#!/bin/zsh
+#
+# undual - remove a name from the dual list
+# 
+# [2000-09-29]
+# Version 3.1.6 of zsh automates this functionality with
+# typeset -T.  I'll leave this function here for historical purposes.
+#
+# Usage:
+#   undual [name] . . .
+#
+# where
+#   name   is the name of a shell variable to remove from the
+#          dual list.  See dual for more.  You can't remove
+#          dual itself from the dual list, which is kind of
+#          good.
+#
+# assumes unsetopt shwordsplit
+# Might require a POSIX sed, on account of the
+# \(:\|$\) (colon or end of line) construct.  In awk it becomes
+# (:|$) which is much easier to read.  I use sed because it's a little
+# less memory-hungry.
+#
+
+# each name . . .
+for name
+do
+  # get uppercase version
+  upper=${(U)name}
+  # if there is no dual list, quit now.
+  if [[ -z "$dual" || -z "$DUAL" ]]
+  then
+    break
+  fi
+  # remove the item from the dual list - with dual!
+  dual DUAL=$(echo $DUAL | sed "s/:$upper\(:\|$\)/\1/")
+  # and remap the dual array to lower case.
+  dual=(${(L)dual})
+done

@@ -1,0 +1,12 @@
+#!/usr/local/bin/zsh
+#
+# reverses all arguments by a divide-and-conquer method.  Not very
+# efficient (takes log base 2 of n shells to do it) but kinda fun.
+
+if [[ $# -gt 1 ]]
+then
+  local mid=$[$# / 2]
+  echo $(reverse ${argv[$mid + 1, -1]}) $(reverse ${argv[1, $mid]})
+else
+  echo ${argv[1]}
+fi

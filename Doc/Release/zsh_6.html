@@ -1,0 +1,402 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on March, 19  2004 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>zsh: Redirection</TITLE>
+
+<META NAME="description" CONTENT="zsh: Redirection">
+<META NAME="keywords" CONTENT="zsh: Redirection">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC28"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC27"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_6.html#SEC29"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_5.html#SEC19"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_7.html#SEC31"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 6. Redirection </H1>
+<!--docid::SEC28::-->
+<A NAME="IDX92"></A>
+<A NAME="IDX93"></A>
+<A NAME="IDX94"></A>
+If a command is followed by <TT>&#38;</TT>
+and job control is not active,
+then the default standard input
+for the command is the empty file <TT>/dev/null</TT>.
+Otherwise, the environment for the execution of a command contains the
+file descriptors of the invoking shell as modified by
+input/output specifications.
+<P>
+
+The following may appear anywhere in a simple command
+or may precede or follow a complex command.
+Expansion occurs before <VAR>word</VAR> or <VAR>digit</VAR>
+is used except as noted below.
+If the result of substitution on <VAR>word</VAR>
+produces more than one filename,
+redirection occurs for each
+separate filename in turn.
+</P><P>
+
+<DL COMPACT>
+<DT><TT>&#60;</TT> <VAR>word</VAR>
+<DD>Open file <VAR>word</VAR> for reading as standard input.
+<P>
+
+<DT><TT>&#60;&#62;</TT> <VAR>word</VAR>
+<DD>Open file <VAR>word</VAR> for reading and writing as standard input.
+If the file does not exist then it is created.
+<P>
+
+<DT><TT>&#62;</TT> <VAR>word</VAR>
+<DD>Open file <VAR>word</VAR> for writing as standard output.
+If the file does not exist then it is created.
+If the file exists, and the <TT>CLOBBER</TT> option is unset,
+this causes an error;
+otherwise, it is truncated to zero length.
+<P>
+
+<DT><TT>&#62;|</TT> <VAR>word</VAR>
+<DD><DT><TT>&#62;!</TT> <VAR>word</VAR>
+<DD>Same as <TT>&#62;</TT>, except that the file is truncated to zero length
+if it exists, even if <TT>CLOBBER</TT> is unset.
+<P>
+
+<DT><TT>&#62;&#62;</TT> <VAR>word</VAR>
+<DD>Open file <VAR>word</VAR> for writing in append mode as standard output.
+If the file does not exist, and the <TT>CLOBBER</TT>
+option is unset, this causes an error;
+otherwise, the file is created.
+<P>
+
+<DT><TT>&#62;&#62;|</TT> <VAR>word</VAR>
+<DD><DT><TT>&#62;&#62;!</TT> <VAR>word</VAR>
+<DD>Same as <TT>&#62;&#62;</TT>, except that the file is created if it does not
+exist, even if <TT>CLOBBER</TT> is unset.
+<P>
+
+<DT><TT>&#60;&#60;</TT>[<TT>-</TT>] <VAR>word</VAR>
+<DD>The shell input is read up to a line that is the same as
+<VAR>word</VAR>, or to an end-of-file.
+No parameter expansion, command substitution or
+filename generation is performed on <VAR>word</VAR>.
+The resulting document, called a
+<EM>here-document</EM>, becomes the standard input.
+<P>
+
+If any character of <VAR>word</VAR> is quoted with
+single or double quotes or a `<TT>\</TT>',
+no interpretation is placed upon the characters of the document.
+Otherwise, parameter and command substitution
+occurs, `<TT>\</TT>' followed by a newline is removed,
+and `<TT>\</TT>' must be used to quote the characters
+`<TT>\</TT>', `<TT>$</TT>', `<TT>`</TT>' and the first character of <VAR>word</VAR>.
+</P><P>
+
+If <TT>&#60;&#60;-</TT> is used, then all leading
+tabs are stripped from <VAR>word</VAR> and from the document.
+</P><P>
+
+<DT><TT>&#60;&#60;&#60;</TT> <VAR>word</VAR>
+<DD>Perform shell expansion on <VAR>word</VAR> and pass the result
+to standard input.  This is known as a <EM>here-string</EM>.
+<P>
+
+<DT><TT>&#60;&#38;</TT> <VAR>number</VAR>
+<DD><DT><TT>&#62;&#38;</TT> <VAR>number</VAR>
+<DD>The standard input/output is duplicated from file descriptor
+<VAR>number</VAR> (see man page dup2(2)).
+<P>
+
+<DT><TT>&#60;&#38; -</TT>
+<DD><DT><TT>&#62;&#38; -</TT>
+<DD>Close the standard input/output.
+<P>
+
+<DT><TT>&#60;&#38; p</TT>
+<DD><DT><TT>&#62;&#38; p</TT>
+<DD>The input/output from/to the coprocess is moved to the standard input/output.
+<P>
+
+<DT><TT>&#62;&#38;</TT> <VAR>word</VAR>
+<DD><DT><TT>&#38;&#62;</TT> <VAR>word</VAR>
+<DD>(Except where `<TT>&#62;&#38;</TT> <VAR>word</VAR>' matches one of the above syntaxes;
+`<TT>&#38;&#62;</TT>' can always be used to avoid this ambiguity.)
+Redirects both standard output and standard error (file descriptor 2)
+in the manner of `<TT>&#62;</TT> <VAR>word</VAR>'.
+Note that this does <EM>not</EM> have the same effect as `<TT>&#62;</TT> <VAR>word</VAR> <TT>2&#62;&#38;1</TT>'
+in the presence of multios (see the section below).
+<P>
+
+<DT><TT>&#62;&#38;|</TT> <VAR>word</VAR>
+<DD><DT><TT>&#62;&#38;!</TT> <VAR>word</VAR>
+<DD><DT><TT>&#38;&#62;|</TT> <VAR>word</VAR>
+<DD><DT><TT>&#38;&#62;!</TT> <VAR>word</VAR>
+<DD>Redirects both standard output and standard error (file descriptor 2)
+in the manner of `<TT>&#62;|</TT> <VAR>word</VAR>'.
+<P>
+
+<DT><TT>&#62;&#62;&#38;</TT> <VAR>word</VAR>
+<DD><DT><TT>&#38;&#62;&#62;</TT> <VAR>word</VAR>
+<DD>Redirects both standard output and standard error (file descriptor 2)
+in the manner of `<TT>&#62;&#62;</TT> <VAR>word</VAR>'.
+<P>
+
+<DT><TT>&#62;&#62;&#38;|</TT> <VAR>word</VAR>
+<DD><DT><TT>&#62;&#62;&#38;!</TT> <VAR>word</VAR>
+<DD><DT><TT>&#38;&#62;&#62;|</TT> <VAR>word</VAR>
+<DD><DT><TT>&#38;&#62;&#62;!</TT> <VAR>word</VAR>
+<DD>Redirects both standard output and standard error (file descriptor 2)
+in the manner of `<TT>&#62;&#62;|</TT> <VAR>word</VAR>'.
+<P>
+
+</DL>
+<P>
+
+If one of the above is preceded by a digit, then the file
+descriptor referred to is that specified by the digit
+instead of the default 0 or 1.
+The order in which redirections are specified is significant.
+The shell evaluates each redirection in terms of the
+(<EM>file descriptor</EM>, <EM>file</EM>)
+association at the time of evaluation.
+For example:
+</P><P>
+
+<BLOCKQUOTE>
+... <TT>1&#62;</TT><VAR>fname</VAR> <TT>2&#62;&#38;1</TT>
+</BLOCKQUOTE>
+<P>
+
+first associates file descriptor 1 with file <VAR>fname</VAR>.
+It then associates file descriptor 2 with the file associated with file
+descriptor 1 (that is, <VAR>fname</VAR>).
+If the order of redirections were reversed,
+file descriptor 2 would be associated
+with the terminal (assuming file descriptor 1 had been)
+and then file descriptor 1 would be associated with file <VAR>fname</VAR>.
+</P><P>
+
+The `<TT>|&#38;</TT>' command separator described in
+<A HREF="zsh_5.html#SEC20">5.1 Simple Commands &#38; Pipelines</A>
+is a shorthand for `<TT>2&#62;&#38;1 |</TT>'.
+</P><P>
+
+For output redirections only, if <VAR>word</VAR> is of the form
+`<TT>&#62;(</TT><VAR>list</VAR><TT>)</TT>' then the output is piped to the command
+represented by <VAR>list</VAR>.  See
+<A HREF="zsh_13.html#SEC53">13.2 Process Substitution</A>.
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC29"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_6.html#SEC28"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_6.html#SEC30"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_6.html#SEC30"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 6.1 Multios </H2>
+<!--docid::SEC29::-->
+<A NAME="IDX95"></A>
+<A NAME="IDX96"></A>
+If the user tries to open a file descriptor for writing more than once,
+the shell opens the file descriptor as a pipe to a process that copies
+its input to all the specified outputs, similar to <CITE>tee</CITE>,
+provided the <TT>MULTIOS</TT> option is set, as it is by default.  Thus:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>date &#62;foo &#62;bar
+</pre></td></tr></table></P><P>
+
+writes the date to two files, named `<TT>foo</TT>' and `<TT>bar</TT>'.
+Note that a pipe is an implicit redirection; thus
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>date &#62;foo | cat
+</pre></td></tr></table></P><P>
+
+writes the date to the file `<TT>foo</TT>', and also pipes it to cat.
+</P><P>
+
+If the <TT>MULTIOS</TT>
+option is set, the word after a redirection operator is also subjected
+to filename generation (globbing).  Thus
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>: &#62; *
+</pre></td></tr></table></P><P>
+
+will truncate all files in the current directory,
+assuming there's at least one.  (Without the <TT>MULTIOS</TT>
+option, it would create an empty file called `<TT>*</TT>'.)
+Similarly, you can do
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>echo exit 0 &#62;&#62; *.sh
+</pre></td></tr></table></P><P>
+
+If the user tries to open a file descriptor for reading more than once,
+the shell opens the file descriptor as a pipe to a process that copies
+all the specified inputs to its output in the order
+specified, similar to <CITE>cat</CITE>,
+provided the <TT>MULTIOS</TT> option is set.  Thus
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>sort &#60;foo &#60;fubar
+</pre></td></tr></table></P><P>
+
+or even
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>sort &#60;f{oo,ubar}
+</pre></td></tr></table></P><P>
+
+is equivalent to `<TT>cat foo fubar | sort</TT>'.
+</P><P>
+
+Note that a pipe is an implicit redirection; thus
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>cat bar | sort &#60;foo
+</pre></td></tr></table></P><P>
+
+is equivalent to `<TT>cat bar foo | sort</TT>' (note the order of the inputs).
+</P><P>
+
+If the <TT>MULTIOS</TT> option is <EM>un</EM>set,
+each redirection replaces the previous redirection for that file descriptor.
+However, all files redirected to are actually opened, so
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>echo foo &#62; bar &#62; baz
+</pre></td></tr></table></P><P>
+
+when <TT>MULTIOS</TT> is unset will truncate bar, and write `<TT>foo</TT>' into baz.
+</P><P>
+
+There is a problem when an output multio is attached to an external
+program.  A simple example shows this:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>cat file &#62;file1 &#62;file2
+cat file1 file2
+</pre></td></tr></table></P><P>
+
+Here, it is possible that the second `<TT>cat</TT>' will not display the full
+contents of <TT>file1</TT> and <TT>file2</TT> (i.e. the original contents of
+<TT>file</TT> repeated twice).
+</P><P>
+
+The reason for this is that the multios are spawned after the <TT>cat</TT>
+process is forked from the parent shell, so the parent shell does not
+wait for the multios to finish writing data.  This means the command as
+shown can exit before <TT>file1</TT> and <TT>file2</TT> are completely written.
+As a workaround, it is possible to run the <TT>cat</TT> process as part of a
+job in the current shell:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>{ cat file } &#62;file &#62;file2
+</pre></td></tr></table></P><P>
+
+Here, the <TT>{</TT><VAR>...</VAR><TT>}</TT> job will pause to wait for both files to be
+written.
+</P><P>
+
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC30"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_6.html#SEC29"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_7.html#SEC31"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 6.2 Redirections with no command </H2>
+<!--docid::SEC30::-->
+When a simple command consists of one or more redirection operators
+and zero or more parameter assignments, but no command name, zsh can
+behave in several ways.
+<P>
+
+<A NAME="IDX97"></A>
+<A NAME="IDX98"></A>
+If the parameter <TT>NULLCMD</TT> is not set or the option <TT>CSH_NULLCMD</TT> is
+set, an error is caused.  This is the <CITE>csh</CITE> behavior and <TT>CSH_NULLCMD</TT>
+is set by default when emulating <CITE>csh</CITE>.
+</P><P>
+
+<A NAME="IDX99"></A>
+If the option <TT>SH_NULLCMD</TT> is set, the builtin `<TT>:</TT>' is inserted as a
+command with the given redirections.  This is the default when emulating
+<CITE>sh</CITE> or <CITE>ksh</CITE>.
+</P><P>
+
+<A NAME="IDX100"></A>
+Otherwise, if the parameter <TT>NULLCMD</TT> is set, its value will be used as a
+command with the given redirections.  If both <TT>NULLCMD</TT> and
+<TT>READNULLCMD</TT> are set, then the value of the latter will be used instead
+of that of the former when the redirection is an input.  The default for
+<TT>NULLCMD</TT> is `<TT>cat</TT>' and for <TT>READNULLCMD</TT> is `<TT>more</TT>'. Thus
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#60; file
+</pre></td></tr></table></P><P>
+
+shows the contents of <TT>file</TT> on standard output, with paging if that is a
+terminal.  <TT>NULLCMD</TT> and <TT>READNULLCMD</TT> may refer to shell functions.
+</P><P>
+
+<A NAME="Command Execution"></A>
+</P><P>
+
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_25.html#SEC232">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="zsh_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Peter Stephenson</I> on <I>March, 19  2004</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+
+</BODY>
+</HTML>

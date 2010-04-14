@@ -1,0 +1,293 @@
+<html>
+<head>
+  <title>News about ZSH</title>
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="up" href="../">
+  <link rel="top" href="../">
+  <link rel="next" href="../about.html">
+  <link rel="last" href="links.html">
+  <link rev="made" href="mailto:zsh@sunsite.dk">
+</head>
+
+<body bgcolor="#ffffff" text="#000000">
+
+<table width="100%">
+<tr><td>
+<a href="../"><img src="../Images/prev.png" alt="[prev]" width=30 height=30></a>
+<a href="../about.html"><img src="../Images/next.png" alt="[next]" width=30 height=30></a>
+<a href="../"><img src="../Images/up.png" alt="[up]" width=30 height=30></a>
+<a href="../"><img src="../Images/top.png" alt="[top]" width=30 height=30></a>
+</td><td>
+<font size="+3" align=center><strong>News about ZSH</strong></font>
+</td></tr>
+</table>
+<hr size=1 noshade>
+
+<dl>
+
+<dt><font size="+1"><font color="red">2008-08-29</font> : <b>Zsh for Symbian OS.</b></font></dt>
+<dd><a href="http://www.symbian.com/">Symbian</a> has released a port of
+Zsh, together with telnetd, onto Symbian OS using its P.I.P.S. layer.
+The combination of Zsh and a telnet daemon running on a real phone or
+emulator allows users to launch a Unix-like shell from a PC running a
+generic telnet client, over a pre-established TCP/IP connection. More information at
+<a href="http://developer.symbian.com/wiki/display/pub/P.I.P.S.">http://developer.symbian.com/wiki/display/pub/P.I.P.S.</a>
+
+<dt><font size="+1"><font color="red">2008-04-02</font> : <b>Release 4.3.6</b></font></dt>
+<dd>Contains mostly bug fixes, but there are some small
+improvements. No incompatibilities with previous versions are known.
+
+<dt><font size="+1"><font color="red">2008-02-04</font> : <b>Releases 4.2.7 and 4.3.5</b></font></dt>
+<dd>The stable (4.2.7) release was actually out in December containing various
+bug fixes and completion improvements backported from the development branch. 4.3.5 contains both bugfixes and improvements. Further progress
+has been made in support for multibyte character sets. In most cases,
+this is thought to be stable, although a few glitches remain.
+Combining characters are still not supported. There have been
+enhancements to the module system to allow selective loading. There
+is a new module for access to the curses screen manipulation package.
+
+<dt><font size="+1"><font color="red">2007-04-19</font> : <b>Release 4.3.4</b></font></dt>
+<dd>This now contains most of the planned support for multibyte
+characters. There are still some problems notably with Unicode combining
+characters and composition of characters (notably on MacOS). 
+
+<dt><font size="+1"><font color="red">2006-03-02</font> : <b>Release 4.3.2</b></font></dt>
+<dd>This is a bug-fix release for two minor build problems that some users experienced.
+
+<dt><font size="+1"><font color="red">2006-02-28</font> : <b>Release 4.3.1</b></font></dt>
+<dd>This is the first release of the 4.3 series, which
+contains initial support for multibyte characters in the
+shell's line editor (in particular UTF-8, although any character set
+supported by the system library is usable). Please read the appropriate
+sections of the file INSTALL as this support might not be turned on by default
+on some systems where it can be used. The release also contains a few
+enhancements to shell syntax and supplied functions, as well as numerous
+bug fixes. See the file NEWS for more detail. There are only a few
+unavoidable incompatibilities with previous versions, mostly to enhance
+compatibility with other shells and standards; see the README file.
+
+<dt><font size="+1"><font color="red">2005-12-05</font> : <b>Release 4.2.6</b></font></dt>
+<dd>This is a bug fix release for the stable 4.2 series. A new development version 4.3.1 will be released soon, containing support in the line editor for multibyte character sets such as UTF-8.</dd>
+
+<dt><font size="+1"><font color="red">2005-04-06</font> : <b>Release 4.2.5</b></font></dt>
+<dd>This is a bug fix release for the stable 4.2 series. It fixes a few configuration problems, notably on Mac OS X, as well as a number of other minor issues. There are also some upgrades to completion functions. Upgrading from 4.2.4 should not cause any incompatibilities.</dd>
+
+<dt><font size="+1"><font color="red">2005-02-08</font> : <b>Work starts on Unicode support</b></font></dt>
+<dd>Work has now begun on what has recently become the most requested
+feature: support for multibyte character sets. Initial changes are
+focussing on the line editor (ZLE). In advance of this commencing, 4.2.2
+was released. Further bug fixes to the 4.2 series are taking place on
+a branch and once there is something useful to test, a 4.3 series will
+begin. The latest stable release is now actually <b>4.2.4</b>: there
+were a few bugs and compilation issues which needed fixing.</dd>
+
+<dt><font size="+1"><font color="red">2004-12-16</font> : <b>Zsh book published</b></font></dt>
+<dd>
+Last month, a book titled <i>From Bash to Z Shell: Conquering the
+Command Line</i> was published and it is now available. It covers zsh
+in detail. More information and a sample chapter is available on the <a
+href="http://www.apress.com/book/bookDisplay.html?bID=361">publisher's
+web page</a>. You can also read <a
+href="http://www.amazon.com/exec/obidos/tg/detail/-/1590593766/">reviews
+on Amazon</a>.
+</dd>
+<dt><font size="+1"><font color="red">2004-08-13</font> : <b>Release 4.2.1</b></font>
+<dd>
+This adds a number of minor new features along with bug fixes. For more
+information, see the <a href="../Etc/changelog-4.2.html">detailed changelog</a>.
+<dt><font size="+1"><font color="red">2004-03-19</font> : <b>Release 4.2.0</b></font>
+<dd>
+This is a stable release containing a number of improvemtents over the
+4.0 series. For details of the changes, see the
+<a href="../releases.html">release notes</a> or
+<a href="../Etc/changelog-4.1.html">detailed changelog</a>.
+<dt><font size="+1"><font color="red">2003-12-18</font> : <b>Release 4.0.8</b></font>
+<dd>
+This is a maintenance release of the stable 4.0 series. Most of the
+changes are bug fixes. There are some local improvements to various
+completion functions too. The 4.0.9 release which followed shortly after
+fixed a compile problem so if you have 4.0.8, there is not need to upgrade.
+<p>
+This is likely to be the last 4.0 release. After 4.1.2, there will be
+a 4.2.0 as the 4.1 line looks stable. The
+<a href="../Etc/changelog-4.0.html">detailed changelog</a> for the 4.0 series
+is available.
+</dd>
+<dt><font size="+1"><font color="red">2003-07-04</font> : <b>qconfirm enabled on mailing lists</b></font>
+<dd>
+Due to the excessive amount on Viruses getting through on the mailing
+lists, qconfirm has now been enabled for them. This means that if you
+don't subscribe, you will have to confirm any messages you send. Apologies
+for this inconvenience.
+</dd>
+<dt><font size="+1"><font color="red">2003-06-19</font> : <b>Releases 4.1.1 &amp; 4.0.7</b></font>
+<dd>
+Not one but two new releases. Changes in 4.0.7 are mostly bug fixes
+with some enhancements to completion functions. 4.1.1 is the first
+full release of the 4.1 branch. For those who haven't been following
+development all that closely, 4.1.1 has been a long while in gestation
+and should be relatively stable. Unless you are particularly paranoid,
+it is probably reasonable to upgrade from 4.0.
+</dd>
+<dt><font size="+1"><font color="red">2002-08-14</font> : <b>Release 4.0.6</b></font>
+<dd>
+This is a maintenance release of the stable 4.0 series. The majority of changes
+are bug fixes or minor enhancements to the function based completion system.
+</dd>
+<dt><font size="+1"><font color="red">2002-08-08</font> : <b>New zsh wiki</b></font>
+<dd>
+Thanks to Bruno Bonfils, there is now a <a href="http://www.zshwiki.org/">wiki about zsh</a>. 
+Anyone can add information (that being the purpose of a wiki) into the website.
+</dd>
+<dt><font size="+1"><font color="red">2001-10-26</font> : <b>Release 4.0.4</b></font>
+<dd>
+This is a maintenance release of the stable 4.0 series. A large number
+of small bugfixes have been made covering the whole shell. There are
+very few user-visible changes, mostly minor enhancements to the
+completion function system. Some configuration and compilation issues
+have been addressed to improve compatibility with AIX, MacOS X/Darwin,
+and QNX Neutrino.
+</dd>
+<dt><font size="+1"><font color="red">2001-10-15</font> : <b>Daily CVS snapshots now available</b></font>
+<dd>
+It is now possible to download daily snapshots of the zsh source which are
+taken from the CVS respository. Details on where to get them are on the
+<a href="../Arc/cvs.html">page for cvs related stuff</a>.
+</dd>
+
+<dt><font size="+1"><font color="red">2001-06-27</font> : <b>Release 4.0.2</b></font>
+<dd>This is a maintenance release for the (stable) 4.0 branch. Most of the
+changes are bug fixes, including a fix for a bug which caused the test
+suite to fail. On fully supported systems, all tests should now pass.
+<p>
+There is one new feature: the option KSH_TYPESET provides compatibility
+with other shells for assignment arguments of `typeset', `export' and
+related builtins.
+<p>
+Work has also started on the 4.1 branch. New features include `for' loops
+taking multiple parameter names before the `in' or left parenthesis, each of
+which takes one word from the list on each iteration.
+</dd>
+
+<dt><font size="+1"><font color="red">2001-06-01</font> : <b>Release 4.0.1</b></font>
+<dd>Version 4.0.1 of zsh, has been released. This is a stable release with many
+enhancements over the previous stable release, particulary in the areas of
+completion, line editing, modularity and parameter substitution.
+
+<dt> <font size="+1"><font color=red>2000-06-05</font> : <b>Release 3.1.9</b></font>
+ <dd>
+     Version 3.1.8 and 3.1.9 are primarily bug fix releases.
+<p>
+
+<dt> <font size="+1"><font color=red>2000-05-31</font> : <b>Release 3.1.7</b></font>
+ <dd>
+     The new improved Zsh, now with more features than ever before is available
+     from Zsh distributions sites. The beta branch is recommended for anyone
+     wanting all these extra features at the expense of having to cope with a
+     few obscure bugs. This is intended to be the last 3.1 release before 4.0.
+     See the <a href="../Etc/changelog-3.1.html">detailed changelog</a>.
+<p>
+<DT> <FONT SIZE="+1"><FONT COLOR=RED>2000-05-16</FONT> : <B>Release 3.0.8</B></FONT>
+ <DD>
+     Maintenance release 3.0.8 is available from Zsh distributions sites. See
+     the <A HREF="../Etc/changelog-3.0.html">detailed changelog</A>.
+<P>
+<DT> <FONT SIZE="+1"><FONT COLOR=RED>2000-04-03</FONT> : <B>Use of SourceForge</B></FONT>
+ <DD>
+     We are now making use of <A HREF="http://sourceforge.net/">SourceForge</A>.
+     This means that we now have an official CVS repository. See our
+     <A HREF="http://sourceforge.net/project/?group_id=4068">summary page there</A>.
+<P>
+<DT> <FONT SIZE="+1"><FONT COLOR=RED>1999-10-19</FONT> : <B>Release 3.0.7</B></FONT>
+  <DD>
+     Maintenance release 3.0.7 is available from Zsh distribution sites.
+<P>
+<DT> <FONT SIZE="+1"><FONT COLOR=RED>1999-08-01</FONT> : <B>Releases 3.0.6 &amp; 3.1.6</B></FONT>
+  <DD>
+     Yes, not one but two releases.<BR>
+     &gt; Version <B>3.0.6</B> is out. After just
+     under two years since the last release, a major effort by Bart Schaefer
+     brings this well loved and bugfixed version to the public. This stable
+     version is recommended for the hardy production sites that need the
+     proven stability of the 3.0 series.
+     <BR>
+     &gt; Version <B>3.1.6</B> is also available. Peter Stephenson has brought
+     you the latest development version of Zsh. Now with more features than
+     ever, 3.1.6 does it all...<CITE>well, nearly</CITE>... This beta version is
+     recommended for everyone who is wanting the shell with the most...
+     <CITE>something</CITE>.
+<P>
+<DT> <FONT SIZE="+1"><FONT COLOR=RED>1999-06-29</FONT> : <B>The New Maintainers</B></FONT>
+  <DD>
+     Head's up!  There is not one new Zsh co-ordinator - there are <U>two</U>!<BR>
+     &gt; Bart Schaefer has rolled up his sleaves and is taking on the nitty
+     gritty of the next (and maybe final) maintenance release for the 3.0
+     series, to provide you with a more stable, less bug-prone shell. 
+     (<CITE>They're not bugs, they're just undocumented features</CITE>)<BR>
+     &gt; Peter Stephenson is down in the dirt, cleaning off the mud from
+     the next series of the shell you love. With binary modules, it can be
+     everything you could want it to be, even your new FTP client!
+     (<CITE>Put it up to your ear and you can hear the sea</CITE>)
+<P>
+<DT> <FONT SIZE="+1"><FONT COLOR=RED>1999-02-26</FONT> : <B>Zefram (Andrew Main) Lives</B></FONT>
+  <DD>
+     After a period of walkabout, Zefram - the Zsh co-ordinator -
+     reemerges from the desert and proclaims life for Zsh.
+<P>
+<DT> <FONT SIZE="+1"><FONT COLOR=RED>1999-02-22</FONT> : <B>3.1 development branch is firing</B></FONT>
+  <DD>
+     Peter Stephenson (pro tem. co-ordinator) and Sven Wischnowsky are way
+     out in front with new ideas and masses of new contributions. The rest
+     of the Zsh workers crew aren't disgracing themselves either. Peter
+     is making releases available from his own pages. Joining the zsh-workers
+     <A HREF="../Arc/mlist.html">mailing list</A> is a must to follow all
+     this development so there won't be links to them here - get the
+     announcements on zsh-workers.
+<P>
+<DT> <FONT SIZE="+1"><FONT COLOR=RED>1999-02-11</FONT> : <B>www.zsh.org mailing list archive up</B></FONT>
+  <DD>
+     The mailing list archive at www.zsh.org is resynchronised with the
+     lists and actively tracking.
+<P>
+<DT> <FONT SIZE="+1"><FONT COLOR=RED>1999-01-27</FONT> : <B>Mailing List location changes</B></FONT>
+  <DD>
+      The mailing list has changed its address. See the
+      <A HREF="../Arc/mlist.html">Mailing List</A> page for new
+      information. The archive on www.zsh.org will be down until
+      teething problems are sorted out.
+<P>
+<DT> <FONT SIZE="+1"><B>Version 3.1 in beta test release.</B></FONT>
+  <DD>
+      Work on version 3.1 of zsh is well underway, with the major new
+      feature being support for binary modules. There is a preliminary
+      version, but you should join the zsh-worker mailing list before
+      you consider downloading it. Preliminary tests using ELF on
+      Linux, SunOS, and Solaris have been encouraging; the hardest part
+      will be to make it portable. Some ideas on portability issues
+      are being borrowed from version 5 of perl.
+      Version 3.1.5 of zsh was <a href="release-3.1.5-announce.html">
+      released October 30 1998</a>.
+<P>      
+<DT> <FONT SIZE="+1"><B>Version 3.0.5 released!</B></FONT>
+  <DD>
+      Version 3.0.5 of zsh was released September 26 1997.
+<P>      
+<DT> <FONT SIZE="+1"><B>Version 2.5</B></FONT>
+  <DD>
+      This version is still available, but it is deprecated and its
+      continued use is <STRONG>strongly</STRONG> discouraged.
+</DL>
+
+
+<!-- end main body -->
+
+<hr>
+<div align=right>
+<address>
+<a name=Signature href="../disclaimer.html">Disclaimer</a>
+Last modified: $Date: 2008/08/29 19:32:21 $
+</address>
+</div>
+
+</body>
+</html>

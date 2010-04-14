@@ -1,0 +1,556 @@
+<!-- received="Wed Nov 19 11:46:58 1997 PST" -->
+<!-- sent="Wed, 19 Nov 1997 18:00:55 +0100" -->
+<!-- name="Peter Stephenson" -->
+<!-- email="pws@ifh.de" -->
+<!-- subject="PATCH: User-defined completion listing" -->
+<!-- id="199711191700.SAA08643@hydra.ifh.de" -->
+<!-- inreplyto="" -->
+<title>ZSH Patches: PATCH: User-defined completion listing</title>
+<h1>PATCH: User-defined completion listing</h1>
+Peter Stephenson (<i>pws@ifh.de</i>)<br>
+<i>Wed, 19 Nov 1997 18:00:55 +0100</i>
+<p>
+<ul>
+<li> <b>Messages sorted by:</b> <a href="date.html#2">[ date ]</a><a href="index.html#2">[ thread ]</a><a href="subject.html#2">[ subject ]</a><a href="author.html#2">[ author ]</a>
+<!-- next="start" -->
+<li> <b>Next message:</b> <a href="0003.html">Peter Stephenson: "PATCH: allow scalars as completion variables"</a>
+<li> <b>Previous message:</b> <a href="0001.html">Peter Stephenson: "PATCH: 3.1.2: keyboard macros (2) [needed]"</a>
+<!-- nextthread="start" -->
+</ul>
+<!-- body="start" -->
+<pre>
+Message-Id: &lt;199711191700.SAA08643@hydra.ifh.de&gt;<br>
+To: zsh-workers@math.gatech.edu (Zsh hackers list), zsh@peak.org<br>
+Subject: PATCH: User-defined completion listing<br>
+Date: Wed, 19 Nov 1997 18:00:55 +0100<br>
+From: Peter Stephenson &lt;pws@ifh.de&gt;<br>
+</pre>
+<p>
+This implements something like the outcome of the recent discussion of<br>
+a new option for showing a user-defined list instead of the actual<br>
+completions.  First, the bad <a href="news:">news:</a> this patch is simply against my own<br>
+current adaption of 3.1.2, which probably doesn't correspond to anyone<br>
+else's.  In particular, it has my compctl -/ and -W patches in, but it<br>
+doesn't have Sven's big patch, which may make a difference.  I could<br>
+probably do it against vanilla 3.1.2 if that becomes sensible.<br>
+<p>
+Now the good <a href="news:">news:</a>  the syntax (see manual patch for more) is either<br>
+<p>
+  compctl ... -Y '$array'<br>
+<p>
+or<br>
+<p>
+  compctl ... -Y 'func'<br>
+<p>
+In the first case, $array is, err, an array, in the second, func is<br>
+called and must set $reply, just like a -K function.  (They're<br>
+evaluated at different times, so there's no clash.)  func is also<br>
+passed the complete list of matches, with full prefix expansion, so it<br>
+can process the matches to produce a display. For example,<br>
+<p>
+  llfn() { reply=("$(ls -fld $*)"); }<br>
+  compctl -f -Y llfn foo<br>
+<p>
+foo has ordinary file name completion, but the list of matches will be<br>
+made line by line in ls -l format.  read -c and read -l are available<br>
+if you want them.<br>
+<p>
+The output is literal in this case, since you have control over what<br>
+comes out, though only newline is specially handled; other control<br>
+sequences could mess up the formatting and are best avoided (at least<br>
+with always_last_prompt set).  Note, however, that all the other<br>
+formatting capabilities are retained, so a -Y function like<br>
+<p>
+  func() { reply=($*); }<br>
+<p>
+produces full columnated output just as without the -Y func (assuming<br>
+there are no funny characters in the $* which would be massaged in<br>
+that case).<br>
+<p>
+So the suggestion for job completion is along the lines of:<br>
+<p>
+  joblist() {<br>
+      local jf=/tmp/zjobs$$ line<br>
+      jobs &gt;&amp; $jf<br>
+      reply=() joblist=()<br>
+      while read line; do<br>
+  	  joblist=($joblist $line)<br>
+  	  reply=($reply ${${line#\[}%%\]*})<br>
+      done &lt; $jf<br>
+  # The above allows the output to appear in columns.  If you want the<br>
+  # exact output of 'jobs', you can instead use:<br>
+  #    joblist=("$(&lt;$jf)")<br>
+  # It must still be an array, though.<br>
+      rm -f $jf<br>
+  }<br>
+  compctl -P% -K joblist -Y '$joblist' \<br>
+      -x 's[-]' -k signals -- kill   # ... and friends<br>
+<p>
+Note that in the current implementation you need a completion list: if<br>
+there are no completions, nothing is displayed, so you can't just<br>
+display a memo and let the user complete by hand.  That could probably<br>
+be remedied.  Obviously, '$joblist' could be a static variable as well.<br>
+<p>
+One thing to check for with the patch is that I haven't somehow gummed<br>
+up the logic for displaying other types of completion in my zeal to<br>
+get -Y displays to appear OK; I obviously couldn't check everything<br>
+directly myself.  (I think I caught the only memory leak, though.)<br>
+Also, a -Y func is blindly passed the fully expanded completion<br>
+possibilities (necessary for the llfn example above, which needs the<br>
+full path to the candidate file): maybe there are occasions where<br>
+that's wrong.<br>
+<p>
+Another thing under the `could perhaps be better, but it's time I did<br>
+some work' heading:  literal arrays are allowed as with -k, i.e. -Y<br>
+'(option1 option2 ...)', but there's no way of getting a literal<br>
+string there.  It might be nice to enhance get_user_var() to understand<br>
+a double quote at the beginning and return the text as an array with a<br>
+single element.  (The name of a real array with just one element is<br>
+fine, of course.)<br>
+<p>
+While I'm getting picky:  the fact that the completion function gets<br>
+the full path could be something of a memory hog if you are completing<br>
+in a full directory with a long path name, but until the Commodore 64<br>
+version of zsh appears...<br>
+<p>
+*** Doc/Zsh/compctl.yo.YoY	Thu Sep 18 09:58:39 1997<br>
+--- Doc/Zsh/compctl.yo	Wed Nov 19 17:34:51 1997<br>
+***************<br>
+*** 103,111 ****<br>
+    [ tt(-s) var(subststring) ])<br>
+  list([ tt(-K) var(function) ] [ tt(-H) var(num pattern) ])<br>
+  list([ tt(-Q) ] [ tt(-P) var(prefix) ] [ tt(-S) var(suffix) ])<br>
+! liat([ tt(-W) var(file-prefix) ]<br>
+  list([ tt(-q) ] [ tt(-X) var(explanation) ])<br>
+! list([ tt(-l) var(cmd) ] [ tt(-U) ])<br>
+  endlist()<br>
+  <br>
+  The remaining var(options) specify the type of command arguments<br>
+--- 103,111 ----<br>
+    [ tt(-s) var(subststring) ])<br>
+  list([ tt(-K) var(function) ] [ tt(-H) var(num pattern) ])<br>
+  list([ tt(-Q) ] [ tt(-P) var(prefix) ] [ tt(-S) var(suffix) ])<br>
+! list([ tt(-W) var(file-prefix) ])<br>
+  list([ tt(-q) ] [ tt(-X) var(explanation) ])<br>
+! list([ tt(-Y) var(func-or-var) ] [ tt(-l) var(cmd) ] [ tt(-U) ])<br>
+  endlist()<br>
+  <br>
+  The remaining var(options) specify the type of command arguments<br>
+***************<br>
+*** 360,365 ****<br>
+--- 360,385 ----<br>
+  options. A `tt(%n)' in this string is replaced by the number of matches.<br>
+  The explanation only appears if completion was tried and there was<br>
+  no unique match.<br>
++ )<br>
++ item(tt(-Y) var(func-or-var))(<br>
++ The list provided by var(func-or-var) is displayed instead of the list<br>
++ of completions whenever a listing is required; the actual completions<br>
++ to be inserted are not affected.  It can be provided in two<br>
++ ways. Firstly, if var(func-or-var) begins with a tt($) it defines an<br>
++ array variable, or if it begins with a left parenthesis a literal<br>
++ array, which contains the list.  A variable may have been set by a<br>
++ call to a function using the tt(-K) option.  Otherwise it contains the<br>
++ name of a function which will be executed to create the list.  The<br>
++ function will be passed as an argument list all matching completions,<br>
++ including prefixes and suffixes expanded in full, and should set the<br>
++ array var(reply) to the result.  In both cases, the display list will<br>
++ only be retrieved after a complete list of matches has been created.<br>
++ <br>
++ Note that the returned list does not have to correspond, even in<br>
++ length, to the original set of matches; the use of an array is purely<br>
++ a convenience for formatting.  No special formatting of characters is<br>
++ performed on the output in this case; in particular, newlines are<br>
++ printed literally and if they appear output in columns is suppressed.<br>
+  )<br>
+  enditem()<br>
+  texinode(Alternative Completion)(Extended Completion)(Option Flags)(Programmable Completion)<br>
+*** Src/Zle/comp.h.YoY	Thu Sep 18 09:58:39 1997<br>
+--- Src/Zle/comp.h	Wed Nov 19 11:45:01 1997<br>
+***************<br>
+*** 102,107 ****<br>
+--- 102,108 ----<br>
+      char *str;			/* for -s (expansion)                      */<br>
+      char *func;			/* for -K (function)                       */<br>
+      char *explain;		/* for -X (explanation)                    */<br>
++     char *ylist;		/* for -Y (user-defined desc. for listing) */<br>
+      char *prefix, *suffix;	/* for -P and -S (prefix, suffix)          */<br>
+      char *subcmd;		/* for -l (command name to use)            */<br>
+      char *withd;		/* for -w (with directory                  */<br>
+*** Src/Zle/comp1.c.YoY	Thu Sep 18 09:58:40 1997<br>
+--- Src/Zle/comp1.c	Wed Nov 19 12:18:44 1997<br>
+***************<br>
+*** 80,85 ****<br>
+--- 80,86 ----<br>
+      zsfree(cc-&gt;str);<br>
+      zsfree(cc-&gt;func);<br>
+      zsfree(cc-&gt;explain);<br>
++     zsfree(cc-&gt;ylist);<br>
+      zsfree(cc-&gt;prefix);<br>
+      zsfree(cc-&gt;suffix);<br>
+      zsfree(cc-&gt;hpat);<br>
+*** Src/Zle/compctl.c.YoY	Thu Sep 18 09:59:17 1997<br>
+--- Src/Zle/compctl.c	Wed Nov 19 12:18:41 1997<br>
+***************<br>
+*** 217,222 ****<br>
+--- 217,234 ----<br>
+  		    *argv = "" - 1;<br>
+  		}<br>
+  		break;<br>
++ 	    case 'Y':<br>
++ 		if ((*argv)[1]) {<br>
++ 		    cct.ylist = (*argv) + 1;<br>
++ 		    *argv = "" - 1;<br>
++ 		} else if (!argv[1]) {<br>
++ 		    zwarnnam(name, "function/variable expect after -%c",<br>
++ 			     NULL, **argv);<br>
++ 		} else {<br>
++ 		    cct.ylist = *++argv;<br>
++ 		    *argv = "" - 1;<br>
++ 		}<br>
++ 		break;<br>
+  	    case 'P':<br>
+  		if ((*argv)[1]) {<br>
+  		    cct.prefix = (*argv) + 1;<br>
+***************<br>
+*** 687,693 ****<br>
+      Compctl cc;<br>
+  <br>
+      if (cct-&gt;subcmd &amp;&amp; (cct-&gt;keyvar || cct-&gt;glob || cct-&gt;str ||<br>
+! 			cct-&gt;func || cct-&gt;explain || cct-&gt;prefix)) {<br>
+  	zwarnnam(name, "illegal combination of options", NULL, 0);<br>
+  	return 1;<br>
+      }<br>
+--- 699,706 ----<br>
+      Compctl cc;<br>
+  <br>
+      if (cct-&gt;subcmd &amp;&amp; (cct-&gt;keyvar || cct-&gt;glob || cct-&gt;str ||<br>
+! 			cct-&gt;func || cct-&gt;explain || cct-&gt;ylist ||<br>
+! 			cct-&gt;prefix)) {<br>
+  	zwarnnam(name, "illegal combination of options", NULL, 0);<br>
+  	return 1;<br>
+      }<br>
+***************<br>
+*** 725,730 ****<br>
+--- 738,744 ----<br>
+      zsfree(cc-&gt;str);<br>
+      zsfree(cc-&gt;func);<br>
+      zsfree(cc-&gt;explain);<br>
++     zsfree(cc-&gt;ylist);<br>
+      zsfree(cc-&gt;prefix);<br>
+      zsfree(cc-&gt;suffix);<br>
+      zsfree(cc-&gt;subcmd);<br>
+***************<br>
+*** 740,745 ****<br>
+--- 754,760 ----<br>
+      cc-&gt;str = ztrdup(cct-&gt;str);<br>
+      cc-&gt;func = ztrdup(cct-&gt;func);<br>
+      cc-&gt;explain = ztrdup(cct-&gt;explain);<br>
++     cc-&gt;ylist = ztrdup(cct-&gt;ylist);<br>
+      cc-&gt;prefix = ztrdup(cct-&gt;prefix);<br>
+      cc-&gt;suffix = ztrdup(cct-&gt;suffix);<br>
+      cc-&gt;subcmd = ztrdup(cct-&gt;subcmd);<br>
+***************<br>
+*** 857,862 ****<br>
+--- 872,878 ----<br>
+      printif(cc-&gt;keyvar, 'k');<br>
+      printif(cc-&gt;func, 'K');<br>
+      printif(cc-&gt;explain, 'X');<br>
++     printif(cc-&gt;ylist, 'Y');<br>
+      printif(cc-&gt;prefix, 'P');<br>
+      printif(cc-&gt;suffix, 'S');<br>
+      printif(cc-&gt;glob, 'g');<br>
+*** Src/Zle/zle_tricky.c.YoY	Thu Sep 18 10:01:00 1997<br>
+--- Src/Zle/zle_tricky.c	Wed Nov 19 17:46:32 1997<br>
+***************<br>
+*** 123,128 ****<br>
+--- 123,133 ----<br>
+  <br>
+  static int nmatches;<br>
+  <br>
++ /* A list of user-defined explanations for the completions to be shown *<br>
++  * instead of amatches when listing completions.                       */<br>
++ <br>
++ static char **aylist;<br>
++ <br>
+  /* !=0 if we have a valid completion list. */<br>
+  <br>
+  static int validlist;<br>
+***************<br>
+*** 2996,3003 ****<br>
+      ccsuffix = cc-&gt;suffix;<br>
+  <br>
+      validlist = 1;<br>
+!     if ((nmatches || expl) &amp;&amp; !errflag)<br>
+  	return 0;<br>
+  <br>
+      if ((isf || cc-&gt;xor) &amp;&amp; !parampre) {<br>
+  	/* We found no matches, but there is a xor'ed completion: *<br>
+--- 3001,3045 ----<br>
+      ccsuffix = cc-&gt;suffix;<br>
+  <br>
+      validlist = 1;<br>
+!     if ((nmatches || expl) &amp;&amp; !errflag) {<br>
+! 	/* generating the user-defined explanations must happen last: *<br>
+! 	 * if anything fails, we silently allow the normal completion *<br>
+! 	 * list to be used.                                           */<br>
+! 	if (cc-&gt;ylist) {<br>
+! 	    char **yaptr, *uv = NULL;<br>
+! 	    List list;<br>
+! <br>
+! 	    if (cc-&gt;ylist[0] == '$' || cc-&gt;ylist[0] == '(') {<br>
+! 		/* from variable: must be an array */<br>
+! 		uv = cc-&gt;ylist + (cc-&gt;ylist[0] == '$');<br>
+! 	    } else if ((list = getshfunc(cc-&gt;ylist)) != &amp;dummy_list) {<br>
+! 		/* from function:  pass completions as arg list */<br>
+! 		LinkList args = newlinklist();<br>
+! 		int addlen = strlen(rpre) + strlen(rsuf) + 1;<br>
+! <br>
+! 		addlinknode(args, cc-&gt;ylist);<br>
+! 		for (yaptr = amatches; *yaptr; yaptr++) {<br>
+! 		    /* can't use tricat(). rats. */<br>
+! 		    char *ptr = (char *)halloc(addlen + strlen(*yaptr));<br>
+! 		    sprintf(ptr, "%s%s%s", rpre, *yaptr, rsuf);<br>
+! 		    addlinknode(args, ptr);<br>
+! 		}<br>
+! <br>
+! 		/* No harm in allowing read -l and -c here, too */<br>
+! 		incompctlfunc = 1;<br>
+! 		doshfunc(list, args, 0, 1);<br>
+! 		incompctlfunc = 0;<br>
+! 		uv = "reply";<br>
+! 	    } else<br>
+! 		return 0;<br>
+! 	    if (uv &amp;&amp; (yaptr = get_user_var(uv))) {<br>
+! 		PERMALLOC {<br>
+! 		    aylist = arrdup(yaptr);<br>
+! 		} LASTALLOC;<br>
+! 	    }<br>
+! 	}<br>
+  	return 0;<br>
++     }<br>
+  <br>
+      if ((isf || cc-&gt;xor) &amp;&amp; !parampre) {<br>
+  	/* We found no matches, but there is a xor'ed completion: *<br>
+***************<br>
+*** 3045,3050 ****<br>
+--- 3087,3095 ----<br>
+  	listmatches();<br>
+      if(validlist) {<br>
+  	freearray(amatches);<br>
++ 	if (aylist)<br>
++ 	    freearray(aylist);<br>
++ 	aylist = 0;<br>
+  	zsfree(rpre);<br>
+  	zsfree(rsuf);<br>
+  	zsfree(lpre);<br>
+***************<br>
+*** 3516,3526 ****<br>
+  listmatches(void)<br>
+  {<br>
+      int longest = 1, fct, fw, colsz, t0, t1, ct, up, cl, xup = 0;<br>
+!     int off, boff, nboff;<br>
+!     int of = (isset(LISTTYPES) &amp;&amp; !(haswhat &amp; HAS_MISC));<br>
+      char **arr, **ap, sav;<br>
+      int nfpl, nfsl, nlpl, nlsl;<br>
+!     int listmax = getiparam("LISTMAX");<br>
+  <br>
+  #ifdef DEBUG<br>
+      /* Sanity check */<br>
+--- 3561,3572 ----<br>
+  listmatches(void)<br>
+  {<br>
+      int longest = 1, fct, fw, colsz, t0, t1, ct, up, cl, xup = 0;<br>
+!     int off = 0, boff = 0, nboff = 0;<br>
+!     int of = (!aylist &amp;&amp; isset(LISTTYPES) &amp;&amp; !(haswhat &amp; HAS_MISC));<br>
+      char **arr, **ap, sav;<br>
+      int nfpl, nfsl, nlpl, nlsl;<br>
+!     int listmax = getiparam("LISTMAX"), litnl = 0;<br>
+!     size_t (*strlenfn) _((char const *));<br>
+  <br>
+  #ifdef DEBUG<br>
+      /* Sanity check */<br>
+***************<br>
+*** 3538,3549 ****<br>
+  <br>
+      /* Calculate the lengths of the prefixes/suffixes we have to ignore<br>
+         during printing. */<br>
+!     off = ispattern &amp;&amp; ppre &amp;&amp; *ppre &amp;&amp;<br>
+! 	!(haswhat &amp; (HAS_MISC | HAS_PATHPAT)) ? strlen(ppre) : 0;<br>
+!     boff = ispattern &amp;&amp; psuf &amp;&amp; *psuf &amp;&amp;<br>
+! 	!(haswhat &amp; (HAS_MISC | HAS_PATHPAT)) ? strlen(psuf) : 0;<br>
+!     nboff = ispattern &amp;&amp; psuf &amp;&amp; *psuf &amp;&amp;<br>
+! 	!(haswhat &amp; (HAS_MISC | HAS_PATHPAT)) ? niceztrlen(psuf) : 0;<br>
+  <br>
+      /* When called from expandorcompleteprefix, we probably have to<br>
+         remove a space now. */<br>
+--- 3584,3597 ----<br>
+  <br>
+      /* Calculate the lengths of the prefixes/suffixes we have to ignore<br>
+         during printing. */<br>
+!     if (ispattern &amp;&amp; !aylist &amp;&amp; !(haswhat &amp; (HAS_MISC | HAS_PATHPAT))) {<br>
+! 	if (ppre &amp;&amp; *ppre)<br>
+! 	    off = strlen(ppre);<br>
+! 	if (psuf &amp;&amp; *psuf) {<br>
+! 	    boff = strlen(psuf);<br>
+! 	    nboff = niceztrlen(psuf);<br>
+! 	}<br>
+!     }<br>
+  <br>
+      /* When called from expandorcompleteprefix, we probably have to<br>
+         remove a space now. */<br>
+***************<br>
+*** 3558,3595 ****<br>
+  <br>
+      /* Set the cursor below the prompt. */<br>
+      trashzle();<br>
+-     ct = nmatches;<br>
+      showinglist = 0;<br>
+  <br>
+      clearflag = (isset(USEZLE) &amp;&amp; !termflags &amp;&amp;<br>
+  		 (isset(ALWAYSLASTPROMPT) &amp;&amp; zmult == 1)) ||<br>
+  	(unset(ALWAYSLASTPROMPT) &amp;&amp; zmult != 1);<br>
+  <br>
+!     arr = amatches;<br>
+  <br>
+!     /* Calculate the column width, the number of columns and the number<br>
+!        of lines. */<br>
+!     for (ap = arr; *ap; ap++)<br>
+! 	if ((cl = niceztrlen(*ap + off) - nboff +<br>
+! 	     (ispattern ? 0 :<br>
+! 	      (!(haswhat &amp; HAS_MISC) ? nfpl + nfsl : nlpl + nlsl))) &gt; longest)<br>
+! 	    longest = cl;<br>
+!     if (of)<br>
+! 	longest++;<br>
+! <br>
+!     fw = longest + 2;<br>
+!     fct = (columns + 1) / fw;<br>
+!     if (fct == 0) {<br>
+! 	fct = 1;<br>
+! 	colsz = ct;<br>
+! 	up = colsz + nlnct - clearflag;<br>
+  	for (ap = arr; *ap; ap++)<br>
+! 	    up += (niceztrlen(*ap + off) - nboff + of +<br>
+! 		(ispattern ? 0 :<br>
+! 		(!(haswhat &amp; HAS_MISC) ? nfpl + nfsl : nlpl + nlsl))) / columns;<br>
+!     } else {<br>
+! 	colsz = (ct + fct - 1) / fct;<br>
+! 	up = colsz + nlnct - clearflag + (ct == 0);<br>
+      }<br>
+  <br>
+      /* Print the explanation string, if any. */<br>
+--- 3606,3683 ----<br>
+  <br>
+      /* Set the cursor below the prompt. */<br>
+      trashzle();<br>
+      showinglist = 0;<br>
+  <br>
+      clearflag = (isset(USEZLE) &amp;&amp; !termflags &amp;&amp;<br>
+  		 (isset(ALWAYSLASTPROMPT) &amp;&amp; zmult == 1)) ||<br>
+  	(unset(ALWAYSLASTPROMPT) &amp;&amp; zmult != 1);<br>
+  <br>
+!     /* just to keep gcc happy */<br>
+!     fw = colsz = up = 0;<br>
+!     if (aylist) {<br>
+! 	arr = aylist;<br>
+! 	/* If no literal newlines, the remaining code should use strlen() */<br>
+! 	strlenfn = (size_t (*) _((char const *)))strlen;<br>
+! <br>
+! 	/* The hard bit here is that we are handling newlines literally.   *<br>
+! 	 * In fact, we are in principle handling all characters literally, *<br>
+! 	 * but it's quite enough work with just newlines.                  *<br>
+! 	 * If there are such, we give up trying to print the list as       *<br>
+! 	 * columns and print as rows, counting the extra newlines.         */<br>
+! 	ct = 0;<br>
+! 	for (ap = arr; *ap; ap++) {<br>
+! 	    ct++;<br>
+! 	    if (strchr(*ap, '\n'))<br>
+! 		litnl++;<br>
+! 	}<br>
+! 	if (litnl) {<br>
+! 	    colsz = ct;<br>
+! 	    up = colsz + nlnct - clearflag;<br>
+! 	    /* Count real newlines, as well as overflowing lines. */<br>
+! 	    for (ap = arr; *ap; ap++) {<br>
+! 		char *nlptr, *sptr = *ap;<br>
+! 		while (sptr &amp;&amp; *sptr) {<br>
+! 		    up += (nlptr = strchr(sptr, '\n'))<br>
+! 			? 1 + (nlptr-sptr)/columns<br>
+! 			   : strlen(sptr)/columns;<br>
+! 		    sptr = nlptr ? nlptr+1 : NULL;<br>
+! 		}<br>
+! 	    }<br>
+! 	}<br>
+!     } else {<br>
+! 	arr = amatches;<br>
+! 	ct = nmatches;<br>
+! 	strlenfn = niceztrlen;<br>
+!     }<br>
+  <br>
+! <br>
+!     if (!litnl) {<br>
+! 	/* Calculate the column width, the number of columns and the<br>
+! 	   number of lines. */<br>
+  	for (ap = arr; *ap; ap++)<br>
+! 	    if ((cl = strlenfn(*ap + off) - nboff +<br>
+! 		 ((ispattern || aylist) ? 0 :<br>
+! 		  (!(haswhat &amp; HAS_MISC) ?<br>
+! 		   nfpl + nfsl : nlpl + nlsl))) &gt; longest)<br>
+! 		longest = cl;<br>
+! 	if (of)<br>
+! 	    longest++;<br>
+! <br>
+! 	fw = longest + 2;<br>
+! 	fct = (columns + 1) / fw;<br>
+! 	if (fct == 0) {<br>
+! 	    fct = 1;<br>
+! 	    colsz = ct;<br>
+! 	    up = colsz + nlnct - clearflag;<br>
+! 	    for (ap = arr; *ap; ap++)<br>
+! 		up += (strlenfn(*ap + off) - nboff + of +<br>
+! 		       ((ispattern || aylist) ? 0 :<br>
+! 			(!(haswhat &amp; HAS_MISC) ?<br>
+! 			 nfpl + nfsl : nlpl + nlsl))) / columns;<br>
+! 	} else {<br>
+! 	    colsz = (ct + fct - 1) / fct;<br>
+! 	    up = colsz + nlnct - clearflag + (ct == 0);<br>
+! 	}<br>
+      }<br>
+  <br>
+      /* Print the explanation string, if any. */<br>
+***************<br>
+*** 3671,3677 ****<br>
+  	    while (*ap) {<br>
+  		int t2;<br>
+  <br>
+! 		if (ispattern) {<br>
+  		    int cut = strlen(*ap) - boff;<br>
+  <br>
+  		    sav = ap[0][cut];<br>
+--- 3759,3768 ----<br>
+  	    while (*ap) {<br>
+  		int t2;<br>
+  <br>
+! 		if (aylist) {<br>
+! 		    zputs(*ap, shout);<br>
+! 		    t2 = strlen(*ap);		    <br>
+! 		} else if (ispattern) {<br>
+  		    int cut = strlen(*ap) - boff;<br>
+  <br>
+  		    sav = ap[0][cut];<br>
+<p>
+<pre>
+-- 
+Peter Stephenson &lt;pws@ifh.de&gt;       Tel: +49 33762 77366
+WWW:  <a href="http://www.ifh.de/~pws/">http://www.ifh.de/~pws/</a>       Fax: +49 33762 77413
+Deutsches Elektronen-Synchrotron --- Institut fuer Hochenergiephysik Zeuthen
+DESY-IfH, Platanenallee 6, 15738 Zeuthen, Germany.
+</pre>
+<!-- body="end" -->
+<p>
+<ul>
+<!-- next="start" -->
+<li> <b>Next message:</b> <a href="0003.html">Peter Stephenson: "PATCH: allow scalars as completion variables"</a>
+<li> <b>Previous message:</b> <a href="0001.html">Peter Stephenson: "PATCH: 3.1.2: keyboard macros (2) [needed]"</a>
+<!-- nextthread="start" -->
+</ul>
