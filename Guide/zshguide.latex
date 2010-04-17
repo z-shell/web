@@ -15206,9 +15206,9 @@ separated by colons or `\texttt{@}', it doesn't matter which.
 
 Completion for URLs is done by setting a parallel path somewhere on your
 local machine.  The \texttt{urls} style specifies the top directory for this.
-For example, to complete the URL \texttt{http://zsh.sunsite.dk/}, you
+For example, to complete the URL \texttt{http://zsh.org/}, you
 need to make a set of subdirectories of the \texttt{path} directory
-\texttt{http/zsh.sunsite.ac.dk/}.  You can extend this for however many levels of
+\texttt{http/zsh.org/}.  You can extend this for however many levels of
 directory you need; as you would expect, if the last object is a file
 rather than a directory you should create it with `\texttt{touch}' rather than
 `\texttt{mkdir}'.  The style will always use the tag `\texttt{urls}' for this
