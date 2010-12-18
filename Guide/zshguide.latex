@@ -1,6 +1,5 @@
 \documentclass[a4paper]{book}
-\usepackage{a4wide}
-\usepackage[T1]{fontenc}
+SCALAR(0x18763a0)\usepackage[T1]{fontenc}
 \usepackage{newcent}
 \usepackage{courier}
 \pretolerance=10000
@@ -13,7 +12,7 @@
 %   See below on copyright stuff etc.
 %   Distributed with Yodl 1.31.18
 % 
-%% xlatin1.tex derived from $Id: zshguide.latex,v 1.13 2006/11/01 23:48:02 pws Exp $
+%% xlatin1.tex derived from $Id: xlatin1.doc,v 1.25 1992/01/28 06:58:52 kris Exp kris $
 %%
 %% Interpret the full ISO Latin1 (8859-1) input character set for TeX.
 %% Copyright (c) 1991  Kristoffer Høgsbro Rose <kris@diku.dk>
@@ -223,22 +222,22 @@ However, if all you're doing is typing simple commands like that, why do
 you need anything complicated?  In that case, you don't; but real life's
 not that simple.  In the rest of this guide, I describe how, with zsh's
 help, you can:
-\begin{description}
-  \item[] customise the environment in which you work, by using startup files,
-  \item[] write your own commands to shorten tasks and store things in
+\begin{itemize}
+  \item  customise the environment in which you work, by using startup files,
+  \item  write your own commands to shorten tasks and store things in
      shell variables (`parameters') so you don't have to remember them,
-  \item[] use zle to minimise the amount of typing you have to do ---
+  \item  use zle to minimise the amount of typing you have to do ---
      in zsh, you can even edit small files that way,
-  \item[] pick the files you want to use for a particular command such
+  \item  pick the files you want to use for a particular command such
      as \texttt{mv} or \texttt{ls} using zsh's very sophisticated filename generation
      (known colloquially as `globbing') system,
-  \item[] tell the editor what sort of arguments you use with particular
+  \item  tell the editor what sort of arguments you use with particular
      commands, so that you only need to type part of the name and it will
      complete the rest, using zsh's unrivalled programmable completion
      system,
-  \item[] use the extra add-ons (`modules') supplied with the latest version
+  \item  use the extra add-ons (`modules') supplied with the latest version
      of zsh to do other things you usually can't do in a shell at all.
-\end{description}
+\end{itemize}
 That's only a tiny sample.  Since there's so much to say, this guide will
 concentrate on the things zsh does best, and in particular the things it
 has which other shells don't.  The next chapter gives a few of the basics,
@@ -15206,9 +15205,9 @@ separated by colons or `\texttt{@}', it doesn't matter which.
 
 Completion for URLs is done by setting a parallel path somewhere on your
 local machine.  The \texttt{urls} style specifies the top directory for this.
-For example, to complete the URL \texttt{http://zsh.org/}, you
+For example, to complete the URL \texttt{http://zsh.sunsite.dk/}, you
 need to make a set of subdirectories of the \texttt{path} directory
-\texttt{http/zsh.org/}.  You can extend this for however many levels of
+\texttt{http/zsh.sunsite.ac.dk/}.  You can extend this for however many levels of
 directory you need; as you would expect, if the last object is a file
 rather than a directory you should create it with `\texttt{touch}' rather than
 `\texttt{mkdir}'.  The style will always use the tag `\texttt{urls}' for this
