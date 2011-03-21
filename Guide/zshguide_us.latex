@@ -1,5 +1,4 @@
-\documentclass[a4paper]{book}
-\usepackage{a4wide}
+\documentclass{book}
 \usepackage[T1]{fontenc}
 \usepackage{newcent}
 \usepackage{courier}
