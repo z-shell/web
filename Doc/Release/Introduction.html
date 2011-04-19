@@ -1,14 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on May, 28 2009 by texi2html 1.78 -->
-<!--
-Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+<!-- Created on April 20, 2011 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
             Olaf Bachmann <obachman@mathematik.uni-kl.de>
             and many others.
 Maintained by: Many creative people.
 Send bugs and suggestions to <texi2html-bug@nongnu.org>
-
 -->
 <head>
 <title>zsh: 2. Introduction</title>
@@ -17,11 +16,12 @@ Send bugs and suggestions to <texi2html-bug@nongnu.org>
 <meta name="keywords" content="zsh: 2. Introduction">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 1.78">
+<meta name="Generator" content="texi2html 1.82">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
 pre.display {font-family: serif}
 pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
@@ -43,24 +43,25 @@ ul.toc {list-style: none}
 
 <a name="Introduction"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="The-Z-Shell-Manual.html#SEC2" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC4" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="The-Z-Shell-Manual.html#Producing-documentation-from-zsh_002etexi" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Author" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="The-Z-Shell-Manual.html#SEC1" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Roadmap.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="The-Z-Shell-Manual.html#The-Z-Shell-Manual" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC3"></a>
-<h1 class="chapter"> 2. Introduction </h1>
+<a name="Introduction-1"></a>
+<h1 class="chapter">2. Introduction</h1>
+<a name="index-introduction"></a>
 <p>Zsh is a UNIX command interpreter (shell) usable as an interactive
 login shell and as a shell script command processor.  Of the standard shells,
 zsh most closely resembles <cite>ksh</cite> but includes many enhancements.  Zsh
@@ -68,193 +69,154 @@ has command line editing, builtin spelling correction, programmable
 command completion, shell functions (with autoloading), a history
 mechanism, and a host of other features.
 </p><table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="#SEC4">2.1 Author</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Author">2.1 Author</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#SEC5">2.2 Availability</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Availability">2.2 Availability</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#SEC6">2.3 Mailing Lists</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Mailing-Lists">2.3 Mailing Lists</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#SEC7">2.4 The Zsh FAQ</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-Zsh-FAQ">2.4 The Zsh FAQ</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#SEC8">2.5 The Zsh Web Page</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-Zsh-Web-Page">2.5 The Zsh Web Page</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#SEC9">2.6 The Zsh Userguide</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-Zsh-Userguide">2.6 The Zsh Userguide</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#SEC11">2.8 See Also</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#See-Also">2.8 See Also</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 <hr size="6">
 <a name="Author"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC3" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC5" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Introduction" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Availability" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC3" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC3" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Roadmap.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC4"></a>
-<h2 class="section"> 2.1 Author </h2>
+<a name="Author-1"></a>
+<h2 class="section">2.1 Author</h2>
+<a name="index-author"></a>
 <p>Zsh was originally written by Paul Falstad <tt>&lt;pf@zsh.org&gt;</tt>.
 Zsh is now maintained by the members of the zsh-workers mailing
-list <tt>&lt;zsh-workers@sunsite.dk&gt;</tt>.  The development is currently
+list <tt>&lt;zsh-workers@zsh.org&gt;</tt>.  The development is currently
 coordinated by Peter Stephenson <tt>&lt;pws@zsh.org&gt;</tt>.  The coordinator
 can be contacted at <tt>&lt;coordinator@zsh.org&gt;</tt>, but matters relating to
 the code should generally go to the mailing list.
 </p><hr size="6">
 <a name="Availability"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC4" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC6" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Author" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Mailing-Lists" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC3" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC3" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Roadmap.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC5"></a>
-<h2 class="section"> 2.2 Availability </h2>
+<a name="Availability-1"></a>
+<h2 class="section">2.2 Availability</h2>
 <p>Zsh is available from the following anonymous FTP sites.  These mirror
 sites are kept frequently up to date.  The sites marked with <em>(H)</em> may be
 mirroring <tt>ftp.cs.elte.hu</tt> instead of the primary site.
 </p>
-<a name="IDX2"></a>
-<a name="IDX3"></a>
-<a name="IDX4"></a>
+<a name="index-FTP-sites-for-zsh"></a>
+<a name="index-acquiring-zsh-by-FTP"></a>
+<a name="index-availability-of-zsh"></a>
 <dl compact="compact">
 <dt> Primary site</dt>
-<dd><p><tt>ftp://ftp.zsh.org/pub/zsh/</tt><br>
-<tt>http://www.zsh.org/pub/zsh/</tt>
+<dd><p><tt>ftp://ftp.zsh.org/pub/</tt><br>
+<tt>http://www.zsh.org/pub/</tt>
 </p>
 </dd>
 <dt> Australia</dt>
-<dd><p><tt>ftp://ftp.zsh.org/pub/zsh/</tt><br>
-<tt>http://www.zsh.org/pub/zsh/</tt>
+<dd><p><tt>ftp://ftp.zsh.org/pub/</tt><br>
+<tt>http://www.zsh.org/pub/</tt>
 </p>
 </dd>
 <dt> Denmark</dt>
-<dd><p><tt>ftp://sunsite.dk/pub/unix/shells/zsh/</tt>
+<dd><p><tt>ftp://mirrors.dotsrc.org/zsh/</tt>
 </p>
 </dd>
 <dt> Finland</dt>
 <dd><p><tt>ftp://ftp.funet.fi/pub/unix/shells/zsh/</tt>
 </p>
 </dd>
+<dt> France</dt>
+<dd><p><tt>ftp://nephtys.lip6.fr/pub/unix/shells/zsh/</tt>
+</p>
+</dd>
 <dt> Germany</dt>
-<dd><p><tt>ftp://ftp.fu-berlin.de/pub/unix/shells/zsh/</tt>  <em>(H)</em><br>
-<tt>ftp://ftp.gmd.de/packages/zsh/</tt><br>
-<tt>ftp://ftp.uni-trier.de/pub/unix/shell/zsh/</tt>
+<dd><p><tt>ftp://ftp.fu-berlin.de/pub/unix/shells/zsh/</tt>
 </p>
 </dd>
 <dt> Hungary</dt>
-<dd><p><tt>ftp://ftp.cs.elte.hu/pub/zsh/</tt><br>
-<tt>http://www.cs.elte.hu/pub/zsh/</tt><br>
-<tt>ftp://ftp.kfki.hu/pub/packages/zsh/</tt>
-</p>
-</dd>
-<dt> Israel</dt>
-<dd><p><tt>ftp://ftp.math.technion.ac.il/pub/zsh/</tt><br>
-<tt>http://www.math.technion.ac.il/pub/zsh/</tt>
-</p>
-</dd>
-<dt> Japan</dt>
-<dd><p><tt>ftp://ftp.win.ne.jp/pub/shell/zsh/</tt>
-</p>
-</dd>
-<dt> Korea</dt>
-<dd><p><tt>ftp://linux.sarang.net/mirror/system/shell/zsh/</tt>
-</p>
-</dd>
-<dt> Netherlands</dt>
-<dd><p><tt>ftp://ftp.demon.nl/pub/mirrors/zsh/</tt>
-</p>
-</dd>
-<dt> Norway</dt>
-<dd><p><tt>ftp://ftp.uit.no/pub/unix/shells/zsh/</tt>
+<dd><p><tt>ftp://ftp.kfki.hu/pub/packages/zsh/</tt>
 </p>
 </dd>
 <dt> Poland</dt>
 <dd><p><tt>ftp://sunsite.icm.edu.pl/pub/unix/shells/zsh/</tt>
 </p>
 </dd>
-<dt> Romania</dt>
-<dd><p><tt>ftp://ftp.roedu.net/pub/mirrors/ftp.zsh.org/pub/zsh/</tt><br>
-<tt>ftp://ftp.kappa.ro/pub/mirrors/ftp.zsh.org/pub/zsh/</tt>
-</p>
-</dd>
-<dt> Slovenia</dt>
-<dd><p><tt>ftp://ftp.siol.net/mirrors/zsh/</tt>
-</p>
-</dd>
-<dt> Sweden</dt>
-<dd><p><tt>ftp://ftp.lysator.liu.se/pub/unix/zsh/</tt>
-</p>
-</dd>
-<dt> UK</dt>
-<dd><p><tt>ftp://ftp.net.lut.ac.uk/zsh/</tt><br>
-<tt>ftp://sunsite.org.uk/packages/zsh/</tt>
-</p>
-</dd>
-<dt> USA</dt>
-<dd><p><tt>http://zsh.open-mirror.com/</tt>
-</p>
-</dd>
 </dl>
 
-<p>The up-to-date source code is available via anonymous CVS from Sourceforge.
-See <tt>http://sourceforge.net/projects/zsh/</tt> for details.
+<p>The up-to-date source code is available via anonymous CVS and Git from
+Sourceforge.  See <tt>http://sourceforge.net/projects/zsh/</tt> for details.
+A summary of instructions for the CVS and Git archives can be found at
+<tt>http://zsh.sourceforget.net/</tt>.
 </p>
 <hr size="6">
 <a name="Mailing-Lists"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC5" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC7" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Availability" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-Zsh-FAQ" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC3" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC3" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Roadmap.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC6"></a>
-<h2 class="section"> 2.3 Mailing Lists </h2>
+<a name="Mailing-Lists-1"></a>
+<h2 class="section">2.3 Mailing Lists</h2>
+<a name="index-mailing-lists"></a>
 <p>Zsh has 3 mailing lists:
 </p>
 <dl compact="compact">
-<dt> <tt>&lt;zsh-announce@sunsite.dk&gt;</tt></dt>
+<dt> <tt>&lt;zsh-announce@zsh.org&gt;</tt></dt>
 <dd><p>Announcements about releases, major changes in the shell and the
 monthly posting of the Zsh FAQ.  (moderated)
 </p>
 </dd>
-<dt> <tt>&lt;zsh-users@sunsite.dk&gt;</tt></dt>
+<dt> <tt>&lt;zsh-users@zsh.org&gt;</tt></dt>
 <dd><p>User discussions.
 </p>
 </dd>
-<dt> <tt>&lt;zsh-workers@sunsite.dk&gt;</tt></dt>
+<dt> <tt>&lt;zsh-workers@zsh.org&gt;</tt></dt>
 <dd><p>Hacking, development, bug reports and patches.
 </p>
 </dd>
@@ -264,12 +226,12 @@ monthly posting of the Zsh FAQ.  (moderated)
 to the associated administrative address for the mailing list.
 </p>
 <dl compact="compact">
-<dt> <tt>&lt;zsh-announce-subscribe@sunsite.dk&gt;</tt></dt>
-<dt> <tt>&lt;zsh-users-subscribe@sunsite.dk&gt;</tt></dt>
-<dt> <tt>&lt;zsh-workers-subscribe@sunsite.dk&gt;</tt></dt>
-<dt> <tt>&lt;zsh-announce-unsubscribe@sunsite.dk&gt;</tt></dt>
-<dt> <tt>&lt;zsh-users-unsubscribe@sunsite.dk&gt;</tt></dt>
-<dt> <tt>&lt;zsh-workers-unsubscribe@sunsite.dk&gt;</tt></dt>
+<dt> <tt>&lt;zsh-announce-subscribe@zsh.org&gt;</tt></dt>
+<dt> <tt>&lt;zsh-users-subscribe@zsh.org&gt;</tt></dt>
+<dt> <tt>&lt;zsh-workers-subscribe@zsh.org&gt;</tt></dt>
+<dt> <tt>&lt;zsh-announce-unsubscribe@zsh.org&gt;</tt></dt>
+<dt> <tt>&lt;zsh-users-unsubscribe@zsh.org&gt;</tt></dt>
+<dt> <tt>&lt;zsh-workers-unsubscribe@zsh.org&gt;</tt></dt>
 <dt></dt>
 </dl>
 
@@ -289,24 +251,24 @@ archive, maintained by Geoff Wing <tt>&lt;gcw@zsh.org&gt;</tt>, available at
 </p><hr size="6">
 <a name="The-Zsh-FAQ"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC6" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC8" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Mailing-Lists" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-Zsh-Web-Page" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC3" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC3" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Roadmap.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC7"></a>
-<h2 class="section"> 2.4 The Zsh FAQ </h2>
+<a name="The-Zsh-FAQ-1"></a>
+<h2 class="section">2.4 The Zsh FAQ</h2>
 <p>Zsh has a list of Frequently Asked Questions (FAQ), maintained by
 Peter Stephenson <tt>&lt;pws@zsh.org&gt;</tt>.  It is regularly posted to the
 newsgroup <cite>comp.unix.shell</cite> and the <cite>zsh-announce</cite> mailing list.
@@ -316,99 +278,99 @@ is <tt>&lt;faqmaster@zsh.org&gt;</tt>.
 </p><hr size="6">
 <a name="The-Zsh-Web-Page"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC7" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC9" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#The-Zsh-FAQ" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-Zsh-Userguide" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC3" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC3" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Roadmap.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC8"></a>
-<h2 class="section"> 2.5 The Zsh Web Page </h2>
+<a name="The-Zsh-Web-Page-1"></a>
+<h2 class="section">2.5 The Zsh Web Page</h2>
 <p>Zsh has a web page which is located at <tt>http://www.zsh.org/</tt>.  This is
 maintained by Karsten Thygesen <tt>&lt;karthy@zsh.org&gt;</tt>, of SunSITE Denmark.
 The contact address for web-related matters is <tt>&lt;webmaster@zsh.org&gt;</tt>.
 </p><hr size="6">
 <a name="The-Zsh-Userguide"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC8" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC10" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#The-Zsh-Web-Page" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-Zsh-Wiki" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC3" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC3" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Roadmap.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC9"></a>
-<h2 class="section"> 2.6 The Zsh Userguide </h2>
+<a name="The-Zsh-Userguide-1"></a>
+<h2 class="section">2.6 The Zsh Userguide</h2>
 <p>A userguide is currently in preparation.  It is intended to complement the
 manual, with explanations and hints on issues where the manual can be
 cabbalistic, hierographic, or downright mystifying (for example, the word
-`hierographic' does not exist).  It can be viewed in its current state at
-<tt>http://zsh.sunsite.dk/Guide/</tt>.  At the time of writing, chapters
+&lsquo;hierographic&rsquo; does not exist).  It can be viewed in its current state at
+<tt>http://zsh.sourceforge.net/Guide/</tt>.  At the time of writing, chapters
 dealing with startup files and their contents and the new completion system
 were essentially complete.
 </p>
 <hr size="6">
-<a name="SEC10"></a>
+<a name="The-Zsh-Wiki"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC9" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC11" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#The-Zsh-Userguide" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#See-Also" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC3" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC3" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Roadmap.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h2 class="section"> 2.7 The Zsh Wiki </h2>
-<p>A `wiki' website for zsh has been created at <tt>http://www.zshwiki.org/</tt>.
+<h2 class="section">2.7 The Zsh Wiki</h2>
+<p>A &lsquo;wiki&rsquo; website for zsh has been created at <tt>http://www.zshwiki.org/</tt>.
 This is a site which can be added to and modified directly by users without
 any special permission.  You can add your own zsh tips and configurations.
 </p><hr size="6">
 <a name="See-Also"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC10" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Roadmap.html#SEC12" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#The-Zsh-Wiki" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC3" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC3" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Roadmap.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC11"></a>
-<h2 class="section"> 2.8 See Also </h2>
+<a name="See-Also-1"></a>
+<h2 class="section">2.8 See Also</h2>
 <p>man page sh(1),
 man page csh(1),
 man page tcsh(1),
@@ -422,21 +384,21 @@ Part 2: Shell and Utilities</cite>,
 IEEE Inc, 1993, ISBN 1-55937-255-9.
 </p><hr size="6">
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC3" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Roadmap.html#SEC12" title="Next chapter"> &gt;&gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Oliver Kiddle</em> on <em>May, 28 2009</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>April 20, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

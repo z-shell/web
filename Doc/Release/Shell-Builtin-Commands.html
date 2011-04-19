@@ -1,14 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on May, 28 2009 by texi2html 1.78 -->
-<!--
-Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+<!-- Created on April 20, 2011 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
             Olaf Bachmann <obachman@mathematik.uni-kl.de>
             and many others.
 Maintained by: Many creative people.
 Send bugs and suggestions to <texi2html-bug@nongnu.org>
-
 -->
 <head>
 <title>zsh: 17. Shell Builtin Commands</title>
@@ -17,11 +16,12 @@ Send bugs and suggestions to <texi2html-bug@nongnu.org>
 <meta name="keywords" content="zsh: 17. Shell Builtin Commands">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 1.78">
+<meta name="Generator" content="texi2html 1.82">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
 pre.display {font-family: serif}
 pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
@@ -43,29 +43,31 @@ ul.toc {list-style: none}
 
 <a name="Shell-Builtin-Commands"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="Options.html#SEC118" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Zsh-Line-Editor.html#SEC120" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="Options.html#Also-note" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Zsh-Line-Editor.html#Zsh-Line-Editor" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="Options.html#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Zsh-Line-Editor.html#SEC120" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Options.html#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Zsh-Line-Editor.html#Zsh-Line-Editor" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC119"></a>
-<h1 class="chapter"> 17. Shell Builtin Commands </h1>
+<a name="Shell-Builtin-Commands-1"></a>
+<h1 class="chapter">17. Shell Builtin Commands</h1>
+<a name="index-builtin-commands"></a>
+<a name="index-commands_002c-builtin"></a>
 <dl compact="compact">
 <dt> <tt>-</tt> <var>simple command</var></dt>
-<dd><p>See <a href="Shell-Grammar.html#SEC30">Precommand Modifiers</a>.
+<dd><p>See <a href="Shell-Grammar.html#Precommand-Modifiers">Precommand Modifiers</a>.
 </p>
-<a name="IDX1137"></a>
+<a name="index-_002e"></a>
 </dd>
 <dt> <tt>.</tt> <var>file</var> [ <var>arg</var> ... ]</dt>
 <dd><p>Read commands from <var>file</var> and execute them in the current shell
@@ -74,28 +76,30 @@ environment.
 <p>If <var>file</var> does not contain a slash, or if <tt>PATH_DIRS</tt> is set,
 the shell looks in the components of <tt>$path</tt> to find the directory
 containing <var>file</var>.  Files in the current directory are not read
-unless `<tt>.</tt>' appears somewhere in <tt>$path</tt>.  If a file named
-`<var>file</var><tt>.zwc</tt>' is found, is newer than <var>file</var>, and is the
+unless &lsquo;<tt>.</tt>&rsquo; appears somewhere in <tt>$path</tt>.  If a file named
+&lsquo;<var>file</var><tt>.zwc</tt>&rsquo; is found, is newer than <var>file</var>, and is the
 compiled form (created with the <tt>zcompile</tt> builtin) of <var>file</var>,
 then commands are read from that file instead of <var>file</var>.
 </p>
 <p>If any arguments <var>arg</var> are given,
 they become the positional parameters; the old positional
 parameters are restored when the <var>file</var> is done executing.
-The exit status is the exit status of the last command executed.
+If <var>file</var> was not found the return status is 127; if <var>file</var> was found
+but contained a syntax error the return status is 126; else the return
+status is the exit status of the last command executed.
 </p>
-<a name="IDX1138"></a>
-<a name="IDX1139"></a>
-<a name="IDX1140"></a>
-<a name="IDX1141"></a>
+<a name="index-_003a"></a>
+<a name="index-expanding-parameters"></a>
+<a name="index-parameters_002c-expanding"></a>
+<a name="index-doing-nothing"></a>
 </dd>
 <dt> <tt>:</tt> [ <var>arg</var> ... ]</dt>
 <dd><p>This command does nothing, although normal argument expansions is performed
 which may have effects on shell parameters.  A zero exit status is returned.
 </p>
-<a name="IDX1142"></a>
-<a name="IDX1143"></a>
-<a name="IDX1144"></a>
+<a name="index-alias"></a>
+<a name="index-aliases_002c-defining"></a>
+<a name="index-aliases_002c-listing"></a>
 </dd>
 <dt> <tt>alias</tt> [ {<tt>+|<tt>-</tt></tt>}<tt>gmrsL</tt> ] [ <var>name</var>[<tt>=</tt><var>value</var>] ... ]</dt>
 <dd><p>For each <var>name</var> with a corresponding <var>value</var>, define an alias
@@ -105,17 +109,17 @@ define a global alias; global aliases are expanded even if they do not
 occur in command position.
 </p>
 <p>If the <tt>-s</tt> flags is present, define a suffix alias: if the command
-word on a command line is in the form `<var>text</var><tt>.</tt><var>name</var>', where
+word on a command line is in the form &lsquo;<var>text</var><tt>.</tt><var>name</var>&rsquo;, where
 <var>text</var> is any non-empty string, it is replaced by the text
-`<var>value</var> <var>text</var><tt>.</tt><var>name</var>'.  Note that <var>name</var> is treated as
+&lsquo;<var>value</var> <var>text</var><tt>.</tt><var>name</var>&rsquo;.  Note that <var>name</var> is treated as
 a literal string, not a pattern.  A trailing space in <var>value</var> is not
 special in this case.  For example,
 </p>
 <table><tr><td>&nbsp;</td><td><pre class="example">alias -s ps=gv
 </pre></td></tr></table>
 
-<p>will cause the command `<tt>*.ps</tt>' to be expanded to `<tt>gv *.ps</tt>'.  As
-alias expansion is carried out earlier than globbing, the `<tt>*.ps</tt>' will
+<p>will cause the command &lsquo;<tt>*.ps</tt>&rsquo; to be expanded to &lsquo;<tt>gv *.ps</tt>&rsquo;.  As
+alias expansion is carried out earlier than globbing, the &lsquo;<tt>*.ps</tt>&rsquo; will
 then be expanded.  Suffix aliases constitute a different name space from
 other aliases (so in the above example it is still possible
 to create an alias for the command <tt>ps</tt>) and the two sets are never
@@ -129,9 +133,9 @@ preserve them from being interpreted as glob patterns), and the aliases
 matching these patterns are printed.  When printing aliases and one of
 the <tt>-g</tt>, <tt>-r</tt> or <tt>-s</tt> flags is present, restrict the printing to
 global, regular or suffix aliases, respectively; a regular alias is one
-which is neither a global nor a suffix alias.   Using `<tt>+</tt>'
-instead of `<tt>-</tt>', or ending the option list with a single
-`<tt>+</tt>', prevents the values of the aliases from being printed.
+which is neither a global nor a suffix alias.   Using &lsquo;<tt>+</tt>&rsquo;
+instead of &lsquo;<tt>-</tt>&rsquo;, or ending the option list with a single
+&lsquo;<tt>+</tt>&rsquo;, prevents the values of the aliases from being printed.
 </p>
 <p>If the <tt>-L</tt> flag is present, then print each
 alias in a manner suitable for putting in a startup script.  The exit
@@ -139,11 +143,11 @@ status is nonzero if a <var>name</var> (with no <var>value</var>) is given for
 which no alias has been defined.
 </p>
 <p>For more on aliases, include common problems,
-<a href="Shell-Grammar.html#SEC35">Aliasing</a>.
+<a href="Shell-Grammar.html#Aliasing">Aliasing</a>.
 </p>
-<a name="IDX1145"></a>
-<a name="IDX1146"></a>
-<a name="IDX1147"></a>
+<a name="index-autoload"></a>
+<a name="index-functions_002c-autoloading-1"></a>
+<a name="index-autoloading-functions-1"></a>
 </dd>
 <dt> <tt>autoload</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>UXktz</tt> ] [ <tt>-w</tt> ] [ <var>name</var> ... ]</dt>
 <dd><p>Equivalent to <tt>functions -u</tt>, with the exception of <tt>-X</tt>/<tt>+X</tt> and
@@ -176,8 +180,8 @@ native or ksh emulation, as if the option <tt>KSH_AUTOLOAD</tt> were
 unset or were set, respectively.  The flags override the setting of
 the option at the time the function is loaded.
 </p>
-<a name="IDX1148"></a>
-<a name="IDX1149"></a>
+<a name="index-bg"></a>
+<a name="index-jobs_002c-backgrounding"></a>
 </dd>
 <dt> <tt>bg</tt> [ <var>job</var> ... ]</dt>
 <dt> <var>job</var> ... <tt>&amp;</tt></dt>
@@ -186,53 +190,56 @@ or the current job if none is specified.
 </p>
 </dd>
 <dt> <tt>bindkey</tt></dt>
-<dd><p>See <a href="Zsh-Line-Editor.html#SEC124">Zle Builtins</a>.
+<dd><p>See <a href="Zsh-Line-Editor.html#Zle-Builtins">Zle Builtins</a>.
 </p>
-<a name="IDX1150"></a>
-<a name="IDX1151"></a>
-<a name="IDX1152"></a>
+<a name="index-break"></a>
+<a name="index-exiting-loops"></a>
+<a name="index-loops_002c-exiting"></a>
 </dd>
 <dt> <tt>break</tt> [ <var>n</var> ]</dt>
 <dd><p>Exit from an enclosing <tt>for</tt>, <tt>while</tt>,
 <tt>until</tt>, <tt>select</tt> or <tt>repeat</tt> loop.  If <var>n</var>
 is specified, then break <var>n</var> levels instead of just one.
 </p>
-<a name="IDX1153"></a>
+<a name="index-builtin-1"></a>
 </dd>
 <dt> <tt>builtin</tt> <var>name</var> [ <var>args</var> ... ]</dt>
 <dd><p>Executes the builtin <var>name</var>, with the given <var>args</var>.
 </p>
-<a name="IDX1154"></a>
+<a name="index-bye"></a>
 </dd>
 <dt> <tt>bye</tt></dt>
 <dd><p>Same as <tt>exit</tt>.
 </p>
 </dd>
 <dt> <tt>cap</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC171">The zsh/cap Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fcap-Module">The zsh/cap Module</a>.
 </p>
-<a name="IDX1155"></a>
-<a name="IDX1156"></a>
+<a name="index-cd"></a>
+<a name="index-directories_002c-changing"></a>
 </dd>
 <dt> <tt>cd</tt> [ <tt>-qsLP</tt> ] [ <var>arg</var> ]</dt>
 <dt> <tt>cd</tt> [ <tt>-qsLP</tt> ] <var>old</var> <var>new</var></dt>
 <dt> <tt>cd</tt> [ <tt>-qsLP</tt> ] {<tt>+</tt>|<tt>-</tt>}<var>n</var></dt>
 <dd><p>Change the current directory.  In the first form, change the
 current directory to <var>arg</var>, or to the value of <tt>$HOME</tt> if
-<var>arg</var> is not specified.  If <var>arg</var> is `<tt>-</tt>', change to the
-value of <tt>$OLDPWD</tt>, the previous directory.
+<var>arg</var> is not specified.  If <var>arg</var> is &lsquo;<tt>-</tt>&rsquo;, change to the
+previous directory.
 </p>
 <p>Otherwise, if <var>arg</var> begins with a slash, attempt to change to the
 directory given by <var>arg</var>.
 </p>
 <p>If <var>arg</var> does not begin with a slash, the behaviour depends on whether
-the current directory `<tt>.</tt>' occurs in the list of directories contained
+the current directory &lsquo;<tt>.</tt>&rsquo; occurs in the list of directories contained
 in the shell parameter <tt>cdpath</tt>.  If it does not, first attempt to change
 to the directory <var>arg</var> under the current directory, and if that fails
 but <tt>cdpath</tt> is set and contains at least one element attempt to change
 to the directory <var>arg</var> under each component of <tt>cdpath</tt> in turn until
-successful.  If `<tt>.</tt>' occurs in <tt>cdpath</tt>, then <tt>cdpath</tt> is searched
-strictly in order so that `<tt>.</tt>' is only tried at the appropriate point.
+successful.  If &lsquo;<tt>.</tt>&rsquo; occurs in <tt>cdpath</tt>, then <tt>cdpath</tt> is searched
+strictly in order so that &lsquo;<tt>.</tt>&rsquo; is only tried at the appropriate point.
+</p>
+<p>The order of testing <tt>cdpath</tt> is modified if the option <tt>POSIX_CD</tt>
+is set, as described in the documentation for the option.
 </p>
 <p>If no directory is found, the option <tt>CDABLE_VARS</tt> is set, and a
 parameter named <var>arg</var> exists whose value begins with a slash, treat its
@@ -245,11 +252,11 @@ and tries to change to this new directory.
 </p>
 <p>The third form of <tt>cd</tt> extracts an entry from the directory
 stack, and changes to that directory.  An argument of the form
-`<tt>+</tt><var>n</var>' identifies a stack entry by counting from the left
+&lsquo;<tt>+</tt><var>n</var>&rsquo; identifies a stack entry by counting from the left
 of the list shown by the <tt>dirs</tt> command, starting with zero.
-An argument of the form `<tt>-</tt><var>n</var>' counts from the right.
-If the <tt>PUSHD_MINUS</tt> option is set, the meanings of `<tt>+</tt>'
-and `<tt>-</tt>' in this context are swapped.
+An argument of the form &lsquo;<tt>-</tt><var>n</var>&rsquo; counts from the right.
+If the <tt>PUSHD_MINUS</tt> option is set, the meanings of &lsquo;<tt>+</tt>&rsquo;
+and &lsquo;<tt>-</tt>&rsquo; in this context are swapped.
 </p>
 <p>If the <tt>-q</tt> (quiet) option is specified, the hook function <tt>chpwd</tt>
 and the functions in the array <tt>chpwd_functions</tt> are not called.
@@ -263,16 +270,16 @@ to their true values.  If the <tt>-L</tt> option is given symbolic links are
 retained in the directory (and not resolved) regardless of the state of
 the <tt>CHASE_LINKS</tt> option.
 </p>
-<a name="IDX1157"></a>
+<a name="index-chdir"></a>
 </dd>
 <dt> <tt>chdir</tt></dt>
 <dd><p>Same as <tt>cd</tt>.
 </p>
 </dd>
 <dt> <tt>clone</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC172">The zsh/clone Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fclone-Module">The zsh/clone Module</a>.
 </p>
-<a name="IDX1158"></a>
+<a name="index-command-1"></a>
 </dd>
 <dt> <tt>command</tt> [ <tt>-pvV</tt> ] <var>simple command</var></dt>
 <dd><p>The simple command argument is taken as an external command instead of
@@ -283,51 +290,51 @@ searched instead of that in <tt>$path</tt>. With the <tt>-v</tt> flag, <tt>comma
 is similar to <tt>whence</tt> and with <tt>-V</tt>, it is equivalent to <tt>whence
 -v</tt>.
 </p>
-<p>See also <a href="Shell-Grammar.html#SEC30">Precommand Modifiers</a>.
+<p>See also <a href="Shell-Grammar.html#Precommand-Modifiers">Precommand Modifiers</a>.
 </p>
 </dd>
 <dt> <tt>comparguments</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC179">The zsh/computil Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fcomputil-Module">The zsh/computil Module</a>.
 </p>
 </dd>
 <dt> <tt>compcall</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC173">The zsh/compctl Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fcompctl-Module">The zsh/compctl Module</a>.
 </p>
 </dd>
 <dt> <tt>compctl</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC173">The zsh/compctl Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fcompctl-Module">The zsh/compctl Module</a>.
 </p>
 </dd>
 <dt> <tt>compdescribe</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC179">The zsh/computil Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fcomputil-Module">The zsh/computil Module</a>.
 </p>
 </dd>
 <dt> <tt>compfiles</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC179">The zsh/computil Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fcomputil-Module">The zsh/computil Module</a>.
 </p>
 </dd>
 <dt> <tt>compgroups</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC179">The zsh/computil Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fcomputil-Module">The zsh/computil Module</a>.
 </p>
 </dd>
 <dt> <tt>compquote</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC179">The zsh/computil Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fcomputil-Module">The zsh/computil Module</a>.
 </p>
 </dd>
 <dt> <tt>comptags</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC179">The zsh/computil Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fcomputil-Module">The zsh/computil Module</a>.
 </p>
 </dd>
 <dt> <tt>comptry</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC179">The zsh/computil Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fcomputil-Module">The zsh/computil Module</a>.
 </p>
 </dd>
 <dt> <tt>compvalues</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC179">The zsh/computil Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fcomputil-Module">The zsh/computil Module</a>.
 </p>
-<a name="IDX1159"></a>
-<a name="IDX1160"></a>
-<a name="IDX1161"></a>
+<a name="index-continue"></a>
+<a name="index-loops_002c-continuing"></a>
+<a name="index-continuing-loops"></a>
 </dd>
 <dt> <tt>continue</tt> [ <var>n</var> ]</dt>
 <dd><p>Resume the next iteration of the enclosing
@@ -335,13 +342,13 @@ is similar to <tt>whence</tt> and with <tt>-V</tt>, it is equivalent to <tt>when
 <tt>repeat</tt> loop.  If <var>n</var> is specified, break out of
 <var>n</var>-1 loops and resume at the <var>n</var>th enclosing loop.
 </p>
-<a name="IDX1162"></a>
+<a name="index-declare"></a>
 </dd>
 <dt> <tt>declare</tt></dt>
 <dd><p>Same as <tt>typeset</tt>.
 </p>
-<a name="IDX1163"></a>
-<a name="IDX1164"></a>
+<a name="index-dirs"></a>
+<a name="index-directory-stack_002c-printing"></a>
 </dd>
 <dt> <tt>dirs</tt> [ <tt>-c</tt> ] [ <var>arg</var> ... ]</dt>
 <dt> <tt>dirs</tt> [ <tt>-lpv</tt> ]</dt>
@@ -372,9 +379,9 @@ onto the stack.
 </dl>
 
 
-<a name="IDX1165"></a>
-<a name="IDX1166"></a>
-<a name="IDX1167"></a>
+<a name="index-disable"></a>
+<a name="index-disabling-commands"></a>
+<a name="index-commands_002c-disabling"></a>
 </dd>
 <dt> <tt>disable</tt> [ <tt>-afmrs</tt> ] <var>name</var> ...</dt>
 <dd><p>Temporarily disable the <var>name</var>d hash table elements.  The default
@@ -391,8 +398,8 @@ table elements from the corresponding hash table matching these patterns
 are disabled.  Disabled objects can be enabled with the <tt>enable</tt>
 command.
 </p>
-<a name="IDX1168"></a>
-<a name="IDX1169"></a>
+<a name="index-disown"></a>
+<a name="index-jobs_002c-disowning-1"></a>
 </dd>
 <dt> <tt>disown</tt> [ <var>job</var> ... ]</dt>
 <dt> <var>job</var> ... <tt>&amp;|</tt></dt>
@@ -408,7 +415,7 @@ make them running after they have been disowned.  If one of the latter
 two forms is used, the <var>job</var>s will automatically be made running,
 independent of the setting of the <tt>AUTO_CONTINUE</tt> option.
 </p>
-<a name="IDX1170"></a>
+<a name="index-echo"></a>
 </dd>
 <dt> <tt>echo</tt> [ <tt>-neE</tt> ] [ <var>arg</var> ... ]</dt>
 <dd><p>Write each <var>arg</var> on the standard output, with a space separating
@@ -461,26 +468,26 @@ If the <tt>-n</tt> flag is not present, print a newline at the end.
 </p></dd>
 </dl>
 
-<a name="IDX1171"></a>
+<a name="index-BSD_005fECHO_002c-use-of"></a>
 <p>The <tt>-E</tt> flag, or the <tt>BSD_ECHO</tt> option, can be used to disable
 these escape sequences.  In the latter case, <tt>-e</tt> flag can be used to
 enable them.
 </p>
 </dd>
 <dt> <tt>echotc</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC207">The zsh/termcap Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002ftermcap-Module">The zsh/termcap Module</a>.
 </p>
 </dd>
 <dt> <tt>echoti</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC208">The zsh/terminfo Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fterminfo-Module">The zsh/terminfo Module</a>.
 </p>
-<a name="IDX1172"></a>
-<a name="IDX1173"></a>
-<a name="IDX1174"></a>
-<a name="IDX1175"></a>
-<a name="IDX1176"></a>
-<a name="IDX1177"></a>
-<a name="IDX1178"></a>
+<a name="index-emulate"></a>
+<a name="index-compatibility_002c-sh"></a>
+<a name="index-compatibility_002c-ksh"></a>
+<a name="index-compatibility_002c-csh"></a>
+<a name="index-sh_002c-compatibility"></a>
+<a name="index-ksh_002c-compatibility"></a>
+<a name="index-csh_002c-compatibility"></a>
 </dd>
 <dt> <tt>emulate</tt> [ <tt>-LR</tt> ] [ {<tt>zsh</tt>|<tt>sh</tt>|<tt>ksh</tt>|<tt>csh</tt>} [ <tt>-c</tt> <tt>arg</tt> ] ]</dt>
 <dd><p>Without any argument print current emulation mode.
@@ -492,7 +499,7 @@ If the argument is not one of the shells listed above, <tt>zsh</tt>
 will be used as a default; more precisely, the tests performed on the
 argument are the same as those used to determine the emulation at startup
 based on the shell name, see
-<a href="Invocation.html#SEC23">Compatibility</a>
+<a href="Invocation.html#Compatibility">Compatibility</a>
 .
 </p>
 <p>If the <tt>-R</tt> option is given, all options
@@ -511,13 +518,13 @@ emulation is temporarily in effect.  The emulation and all options will
 be restored to their original values before <tt>emulate</tt> returns.  The
 <tt>-R</tt> flag may be used.
 </p>
-<p>Use of <tt>-c</tt> enables `sticky' emulation mode for functions defined
+<p>Use of <tt>-c</tt> enables &lsquo;sticky&rsquo; emulation mode for functions defined
 within the evaluated expression:  the emulation mode is associated
 thereafter with the function so that whenever the function is executed
 the emulation (respecting the <tt>-R</tt> flag, if present) and all
 options are set before entry to the function, and restored after exit.
 If the function is called when the sticky emulation is already in
-effect, either within an `<tt>emulate</tt> <var>shell</var> <tt>-c</tt>' expression or
+effect, either within an &lsquo;<tt>emulate</tt> <var>shell</var> <tt>-c</tt>&rsquo; expression or
 within another function with the same sticky emulation, entry and exit
 from the function do not cause options to be altered (except due to
 standard processing such as the <tt>LOCAL_OPTIONS</tt> option).
@@ -545,8 +552,8 @@ purpose of executing code designed for other shells in a suitable
 environment.  More detailed rules follow.
 </p><dl compact="compact">
 <dt> 1.</dt>
-<dd><p>The sticky emulation environment provided by `<tt>emulate</tt>
-<var>shell</var> <tt>-c</tt>' is identical to that provided by entry to
+<dd><p>The sticky emulation environment provided by &lsquo;<tt>emulate</tt>
+<var>shell</var> <tt>-c</tt>&rsquo; is identical to that provided by entry to
 a function marked for sticky emulation as a consequence of being
 defined in such an environment.  Hence, for example, the sticky
 emulation is inherited by subfunctions defined within functions
@@ -566,14 +573,14 @@ the <tt>zcompile</tt> command.
 <dt> 4.</dt>
 <dd><p>The presence or absence of the <tt>-R</tt> flag to <tt>emulate</tt>
 corresponds to different sticky emulation modes, so for example
-`<tt>emulate sh -c</tt>', `<tt>emulate -R sh -c</tt>' and `<tt>emulate csh -c</tt>'
+&lsquo;<tt>emulate sh -c</tt>&rsquo;, &lsquo;<tt>emulate -R sh -c</tt>&rsquo; and &lsquo;<tt>emulate csh -c</tt>&rsquo;
 are treated as three distinct sticky emulations.
 </p></dd>
 </dl>
 
-<a name="IDX1179"></a>
-<a name="IDX1180"></a>
-<a name="IDX1181"></a>
+<a name="index-enable"></a>
+<a name="index-enabling-commands"></a>
+<a name="index-commands_002c-enabling"></a>
 </dd>
 <dt> <tt>enable</tt> [ <tt>-afmrs</tt> ] <var>name</var> ...</dt>
 <dd><p>Enable the <var>name</var>d hash table elements, presumably disabled
@@ -588,8 +595,8 @@ printed.  With the <tt>-m</tt> flag the arguments are taken as patterns
 hash table matching these patterns are enabled.  Enabled objects can be
 disabled with the <tt>disable</tt> builtin command.
 </p>
-<a name="IDX1182"></a>
-<a name="IDX1183"></a>
+<a name="index-eval"></a>
+<a name="index-evaluating-arguments-as-commands"></a>
 </dd>
 <dt> <tt>eval</tt> [ <var>arg</var> ... ]</dt>
 <dd><p>Read the arguments as input to the shell and execute the resulting
@@ -604,18 +611,18 @@ an empty string or whitespace) the return status is zero.
 With <tt>-c</tt> clear the environment; with <tt>-l</tt> prepend <tt>-</tt> to the
 <tt>argv[0]</tt> string of the command executed (to simulate a login shell);
 with <tt>-a</tt> <var>argv0</var> set the <tt>argv[0]</tt> string of the command
-executed.  See <a href="Shell-Grammar.html#SEC30">Precommand Modifiers</a>.
+executed.  See <a href="Shell-Grammar.html#Precommand-Modifiers">Precommand Modifiers</a>.
 </p>
-<a name="IDX1184"></a>
+<a name="index-exit"></a>
 </dd>
 <dt> <tt>exit</tt> [ <var>n</var> ]</dt>
 <dd><p>Exit the shell with the exit status specified by <var>n</var>; if none
 is specified, use the exit status from the last command executed.
-<a name="IDX1185"></a>
+<a name="index-IGNORE_005fEOF_002c-use-of"></a>
 An EOF condition will also cause the shell to exit, unless
 the <tt>IGNORE_EOF</tt> option is set.
 </p>
-<a name="IDX1186"></a>
+<a name="index-export"></a>
 </dd>
 <dt> <tt>export</tt> [ <var>name</var>[<tt>=</tt><var>value</var>] ... ]</dt>
 <dd><p>The specified <var>name</var>s are marked for automatic export
@@ -624,15 +631,15 @@ Equivalent to <tt>typeset -gx</tt>.
 If a parameter specified does not
 already exist, it is created in the global scope.
 </p>
-<a name="IDX1187"></a>
-<a name="IDX1188"></a>
+<a name="index-false"></a>
+<a name="index-doing-nothing_002c-unsuccessfully"></a>
 </dd>
 <dt> <tt>false</tt> [ <var>arg</var> ... ]</dt>
 <dd><p>Do nothing and return an exit status of 1.
 </p>
-<a name="IDX1189"></a>
-<a name="IDX1190"></a>
-<a name="IDX1191"></a>
+<a name="index-fc"></a>
+<a name="index-history_002c-editing"></a>
+<a name="index-editing-history"></a>
 </dd>
 <dt> <tt>fc</tt> [ <tt>-e</tt> <var>ename</var> ] [ <tt>-m</tt> <var>match</var> ] [ <var>old</var><tt>=</tt><var>new</var> ... ] [ <var>first</var> [ <var>last</var> ] ]</dt>
 <dt> <tt>fc</tt> <tt>-l</tt> [ <tt>-nrdfEiD</tt> ] [ <tt>-t</tt> <var>timefmt</var> ] [ <tt>-m</tt> <var>match</var> ]</dt>
@@ -658,7 +665,7 @@ Otherwise the editor program <var>ename</var> is invoked on a file containing
 these history events.  If <var>ename</var> is not given, the value
 of the parameter <tt>FCEDIT</tt> is used; if that is not set the value of the
 parameter <tt>EDITOR</tt> is used; if that is not set a builtin default, usually
-`<tt>vi</tt>' is used.  If <var>ename</var> is `<tt>-</tt>',
+&lsquo;<tt>vi</tt>&rsquo; is used.  If <var>ename</var> is &lsquo;<tt>-</tt>&rsquo;,
 no editor is invoked.  When editing is complete, the edited
 command is executed.
 </p>
@@ -677,21 +684,21 @@ flag <tt>-n</tt> suppresses command numbers when listing.
 </p></dd>
 <dt> <tt>-f</tt></dt>
 <dd><p>prints full time-date stamps in the US
-`<var>MM</var><tt>/</tt><var>DD</var><tt>/</tt><var>YY</var> <var>hh</var>:<var>mm</var>' format
+&lsquo;<var>MM</var><tt>/</tt><var>DD</var><tt>/</tt><var>YY</var> <var>hh</var>:<var>mm</var>&rsquo; format
 </p></dd>
 <dt> <tt>-E</tt></dt>
 <dd><p>prints full time-date stamps in the European
-`<var>dd</var><tt>.</tt><var>mm</var><tt>.</tt><var>yyyy</var> <var>hh</var>:<var>mm</var>' format
+&lsquo;<var>dd</var><tt>.</tt><var>mm</var><tt>.</tt><var>yyyy</var> <var>hh</var>:<var>mm</var>&rsquo; format
 </p></dd>
 <dt> <tt>-i</tt></dt>
 <dd><p>prints full time-date stamps in ISO8601
-`<var>yyyy</var><tt>-</tt><var>mm</var><tt>-</tt><var>dd</var> <var>hh</var>:<var>mm</var>' format
+&lsquo;<var>yyyy</var><tt>-</tt><var>mm</var><tt>-</tt><var>dd</var> <var>hh</var>:<var>mm</var>&rsquo; format
 </p></dd>
 <dt> <tt>-t</tt> <var>fmt</var></dt>
 <dd><p>prints time and date stamps in the given format;
 <var>fmt</var> is formatted with the strftime function with the zsh extensions
 described for the <tt>%D{</tt><var>string</var><tt>}</tt> prompt format in
-<a href="Prompt-Expansion.html#SEC52">Prompt Expansion</a>.  The resulting formatted string must be
+<a href="Prompt-Expansion.html#Prompt-Expansion">Prompt Expansion</a>.  The resulting formatted string must be
 no more than 256 characters or will not be printed.
 </p>
 </dd>
@@ -701,13 +708,13 @@ options above.
 </p></dd>
 </dl>
 
-<a name="IDX1192"></a>
-<a name="IDX1193"></a>
+<a name="index-history_002c-stack"></a>
+<a name="index-stack_002c-history"></a>
 
-<p>`<tt>fc -p</tt>' pushes the current history list onto a stack and switches to a
+<p>&lsquo;<tt>fc -p</tt>&rsquo; pushes the current history list onto a stack and switches to a
 new history list.  If the <tt>-a</tt> option is also specified, this history list
 will be automatically popped when the current function scope is exited, which
-is a much better solution than creating a trap function to call `<tt>fc -P</tt>'
+is a much better solution than creating a trap function to call &lsquo;<tt>fc -P</tt>&rsquo;
 manually.  If no arguments are specified, the history list is left empty,
 <tt>$HISTFILE</tt> is unset, and <tt>$HISTSIZE</tt> &amp; <tt>$SAVEHIST</tt> are set to their
 default values.  If one argument is given, <tt>$HISTFILE</tt> is set to that
@@ -719,24 +726,24 @@ single specified numeric value.  Finally, if a third argument is specified,
 change these environment values for the new history list however you desire
 in order to manipulate the new history list.
 </p>
-<p>`<tt>fc -P</tt>' pops the history list back to an older list saved by `<tt>fc -p</tt>'.
+<p>&lsquo;<tt>fc -P</tt>&rsquo; pops the history list back to an older list saved by &lsquo;<tt>fc -p</tt>&rsquo;.
 The current list is saved to its <tt>$HISTFILE</tt> before it is destroyed
 (assuming that <tt>$HISTFILE</tt> and <tt>$SAVEHIST</tt> are set appropriately, of
 course).  The values of <tt>$HISTFILE</tt>, <tt>$HISTSIZE</tt>, and <tt>$SAVEHIST</tt> are
-restored to the values they had when `<tt>fc -p</tt>' was called.  Note that this
+restored to the values they had when &lsquo;<tt>fc -p</tt>&rsquo; was called.  Note that this
 restoration can conflict with making these variables &quot;local&quot;, so your best
 bet is to avoid local declarations for these variables in functions that use
-`<tt>fc -p</tt>'.  The one other guaranteed-safe combination is declaring these
+&lsquo;<tt>fc -p</tt>&rsquo;.  The one other guaranteed-safe combination is declaring these
 variables to be local at the top of your function and using the automatic
-option (<tt>-a</tt>) with `<tt>fc -p</tt>'.  Finally, note that it is legal to manually
+option (<tt>-a</tt>) with &lsquo;<tt>fc -p</tt>&rsquo;.  Finally, note that it is legal to manually
 pop a push marked for automatic popping if you need to do so before the
 function exits.
 </p>
-<a name="IDX1194"></a>
-<a name="IDX1195"></a>
-<p>`<tt>fc -R</tt>' reads the history from the given file,
-`<tt>fc -W</tt>' writes the history out to the given file,
-and `<tt>fc -A</tt>' appends the history out to the given file.
+<a name="index-history_002c-file"></a>
+<a name="index-file_002c-history"></a>
+<p>&lsquo;<tt>fc -R</tt>&rsquo; reads the history from the given file,
+&lsquo;<tt>fc -W</tt>&rsquo; writes the history out to the given file,
+and &lsquo;<tt>fc -A</tt>&rsquo; appends the history out to the given file.
 If no filename is specified, the <tt>$HISTFILE</tt> is assumed.
 If the <tt>-I</tt> option is added to <tt>-R</tt>, only those events that are
 not already contained within the internal history list are added.
@@ -746,22 +753,22 @@ the history file are appended/written.
 In any case, the created file will have no more than <tt>$SAVEHIST</tt>
 entries.
 </p>
-<a name="IDX1196"></a>
-<a name="IDX1197"></a>
-<a name="IDX1198"></a>
+<a name="index-fg"></a>
+<a name="index-jobs_002c-foregrounding"></a>
+<a name="index-jobs_002c-resuming"></a>
 </dd>
 <dt> <tt>fg</tt> [ <var>job</var> ... ]</dt>
 <dt> <var>job</var> ...</dt>
 <dd><p>Bring each specified <var>job</var> in turn to the foreground.
 If no <var>job</var> is specified, resume the current job.
 </p>
-<a name="IDX1199"></a>
+<a name="index-float"></a>
 </dd>
 <dt> <tt>float</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>EFHghlprtux</tt> ] [ <tt>-LRZ</tt> [ <var>n</var> ]] [ <var>name</var>[<tt>=</tt><var>value</var>] ... ]</dt>
 <dd><p>Equivalent to <tt>typeset -E</tt>, except that options irrelevant to floating
 point numbers are not permitted.
 </p>
-<a name="IDX1200"></a>
+<a name="index-functions-1"></a>
 </dd>
 <dt> <tt>functions</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>UXkmtuz</tt> ] [ <var>name</var> ... ]</dt>
 <dt> <tt>functions -M</tt> <var>mathfn</var> [ <var>min</var> [ <var>max</var> [ <var>shellfn</var> ] ] ]</dt>
@@ -774,7 +781,7 @@ handled by <tt>typeset -f</tt>.
 <p><tt>functions -M</tt> <var>mathfn</var> defines <var>mathfn</var> as the name of
 a mathematical function recognised in all forms of arithmetical expressions;
 see
-<a href="Arithmetic-Evaluation.html#SEC50">Arithmetic Evaluation</a>.  By default <var>mathfn</var> may take
+<a href="Arithmetic-Evaluation.html#Arithmetic-Evaluation">Arithmetic Evaluation</a>.  By default <var>mathfn</var> may take
 any number of comma-separated arguments.  If <var>min</var> is given,
 it must have exactly <var>min</var> args; if <var>min</var> and <var>max</var> are
 both given, it must have at least <var>min</var> and and at most <var>max</var>
@@ -811,38 +818,38 @@ print $(( cube(3) ))
 
 </dd>
 <dt> <tt>getcap</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC171">The zsh/cap Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fcap-Module">The zsh/cap Module</a>.
 </p>
-<a name="IDX1201"></a>
-<a name="IDX1202"></a>
-<a name="IDX1203"></a>
+<a name="index-getln"></a>
+<a name="index-line_002c-reading"></a>
+<a name="index-reading-a-line"></a>
 </dd>
 <dt> <tt>getln</tt> [ <tt>-AclneE</tt> ] <var>name</var> ...</dt>
 <dd><p>Read the top value from the buffer stack and put it in
 the shell parameter <tt>name</tt>.  Equivalent to
 <tt>read -zr</tt>.
 </p>
-<a name="IDX1204"></a>
-<a name="IDX1205"></a>
+<a name="index-getopts"></a>
+<a name="index-options_002c-processing"></a>
 </dd>
 <dt> <tt>getopts</tt> <var>optstring</var> <var>name</var> [ <var>arg</var> ... ]</dt>
 <dd><p>Checks the <var>arg</var>s for legal options.  If the <var>arg</var>s are omitted,
 use the positional parameters.  A valid option argument
-begins with a `<tt>+</tt>' or a `<tt>-</tt>'.  An argument not beginning with
-a `<tt>+</tt>' or a `<tt>-</tt>', or the argument `<tt>-</tt><tt>-</tt>', ends the options.
-Note that a single `<tt>-</tt>' is not considered a valid option argument.
+begins with a &lsquo;<tt>+</tt>&rsquo; or a &lsquo;<tt>-</tt>&rsquo;.  An argument not beginning with
+a &lsquo;<tt>+</tt>&rsquo; or a &lsquo;<tt>-</tt>&rsquo;, or the argument &lsquo;<tt>-</tt><tt>-</tt>&rsquo;, ends the options.
+Note that a single &lsquo;<tt>-</tt>&rsquo; is not considered a valid option argument.
 <var>optstring</var> contains the letters that <tt>getopts</tt>
-recognizes.  If a letter is followed by a `<tt>:</tt>', that option
-is expected to have an argument.  The options can be
+recognizes.  If a letter is followed by a &lsquo;<tt>:</tt>&rsquo;, that option
+requires an argument.  The options can be
 separated from the argument by blanks.
 </p>
 <p>Each time it is invoked, <tt>getopts</tt> places the option letter it finds
-in the shell parameter <var>name</var>, prepended with a `<tt>+</tt>' when
-<var>arg</var> begins with a `<tt>+</tt>'.  The index of the next <var>arg</var>
+in the shell parameter <var>name</var>, prepended with a &lsquo;<tt>+</tt>&rsquo; when
+<var>arg</var> begins with a &lsquo;<tt>+</tt>&rsquo;.  The index of the next <var>arg</var>
 is stored in <tt>OPTIND</tt>.  The option argument, if any,
 is stored in <tt>OPTARG</tt>.
-<a name="IDX1206"></a>
-<a name="IDX1207"></a>
+<a name="index-OPTIND_002c-use-of"></a>
+<a name="index-OPTARG_002c-use-of"></a>
 </p>
 <p>The first option to be examined may be changed by explicitly assigning
 to <tt>OPTIND</tt>.  <tt>OPTIND</tt> has an initial value of <tt>1</tt>, and is
@@ -852,19 +859,19 @@ is not reset and retains its value from the most recent call to
 unset, it remains unset, and the index or option argument is not
 stored.  The option itself is still stored in <var>name</var> in this case.
 </p>
-<p>A leading `<tt>:</tt>' in <var>optstring</var> causes <tt>getopts</tt> to store the
+<p>A leading &lsquo;<tt>:</tt>&rsquo; in <var>optstring</var> causes <tt>getopts</tt> to store the
 letter of any invalid option in <tt>OPTARG</tt>, and to set <var>name</var> to
-`<tt>?</tt>' for an unknown option and to `<tt>:</tt>' when a required option is
-missing.  Otherwise, <tt>getopts</tt> sets <var>name</var> to `<tt>?</tt>' and prints
+&lsquo;<tt>?</tt>&rsquo; for an unknown option and to &lsquo;<tt>:</tt>&rsquo; when a required argument is
+missing.  Otherwise, <tt>getopts</tt> sets <var>name</var> to &lsquo;<tt>?</tt>&rsquo; and prints
 an error message when an option is invalid.  The exit status is
 nonzero when there are no more options.
 </p>
-<a name="IDX1208"></a>
+<a name="index-hash"></a>
 </dd>
 <dt> <tt>hash</tt> [ <tt>-Ldfmrv</tt> ] [ <var>name</var>[<tt>=</tt><var>value</var>] ] ...</dt>
 <dd><p><tt>hash</tt> can be used to directly modify the contents of the command
 hash table, and the named directory hash table.  Normally one would
-modify these tables by modifying one's <tt>PATH</tt>
+modify these tables by modifying one&rsquo;s <tt>PATH</tt>
 (for the command hash table) or by creating appropriate shell parameters
 (for the named directory hash table).
 The choice of hash table to work on is determined by the <tt>-d</tt> option;
@@ -879,7 +886,7 @@ It will be subsequently rebuilt in the normal fashion.
 The <tt>-f</tt> option causes the selected hash table to be fully
 rebuilt immediately.  For the command hash table this hashes
 all the absolute directories in the <tt>PATH</tt>,
-and for the named directory hash table this adds all users' home directories.
+and for the named directory hash table this adds all users&rsquo; home directories.
 These two options cannot be used with any arguments.
 </p>
 <p>The <tt>-m</tt> option causes the arguments to be taken as patterns
@@ -887,18 +894,18 @@ These two options cannot be used with any arguments.
 matching those patterns are printed.  This is the only way to display
 a limited selection of hash table elements.
 </p>
-<p>For each <var>name</var> with a corresponding <var>value</var>, put `<var>name</var>' in
-the selected hash table, associating it with the pathname `<var>value</var>'.
+<p>For each <var>name</var> with a corresponding <var>value</var>, put &lsquo;<var>name</var>&rsquo; in
+the selected hash table, associating it with the pathname &lsquo;<var>value</var>&rsquo;.
 In the command hash table, this means that
-whenever `<var>name</var>' is used as a command argument, the shell will try
-to execute the file given by `<var>value</var>'.
+whenever &lsquo;<var>name</var>&rsquo; is used as a command argument, the shell will try
+to execute the file given by &lsquo;<var>value</var>&rsquo;.
 In the named directory hash table, this means
-that `<var>value</var>' may be referred to as `<tt>~</tt><var>name</var>'.
+that &lsquo;<var>value</var>&rsquo; may be referred to as &lsquo;<tt>~</tt><var>name</var>&rsquo;.
 </p>
 <p>For each <var>name</var> with no
 corresponding <var>value</var>, attempt to add <var>name</var> to the hash table,
 checking what the appropriate <tt>value</tt> is in the normal manner for
-that hash table.  If an appropriate <tt>value</tt> can't be found, then
+that hash table.  If an appropriate <tt>value</tt> can&rsquo;t be found, then
 the hash table will be unchanged.
 </p>
 <p>The <tt>-v</tt> option causes hash table entries to be listed as they are
@@ -907,18 +914,18 @@ added by explicit specification.  If has no effect if used with <tt>-f</tt>.
 <p>If the <tt>-L</tt> flag is present, then each hash table entry is printed in
 the form of a call to hash.
 </p>
-<a name="IDX1209"></a>
+<a name="index-history-1"></a>
 </dd>
 <dt> <tt>history</tt></dt>
 <dd><p>Same as <tt>fc -l</tt>.
 </p>
-<a name="IDX1210"></a>
+<a name="index-integer"></a>
 </dd>
 <dt> <tt>integer</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>Hghilprtux</tt> ] [ <tt>-LRZ</tt> [ <var>n</var> ]] [ <var>name</var>[<tt>=</tt><var>value</var>] ... ]</dt>
 <dd><p>Equivalent to <tt>typeset -i</tt>, except that options irrelevant to
 integers are not permitted.
 </p>
-<a name="IDX1211"></a>
+<a name="index-jobs-1"></a>
 </dd>
 <dt> <tt>jobs</tt> [ <tt>-dlprs</tt> ] [ <var>job</var> ... ]</dt>
 <dt> <tt>jobs -Z</tt> <var>string</var></dt>
@@ -931,23 +938,23 @@ If the <tt>-d</tt> flag is given, the directory from which the job was
 started (which may not be the current directory of the job) will also
 be shown.
 </p>
-<p>The <tt>-Z</tt> option replaces the shell's argument and environment space with
+<p>The <tt>-Z</tt> option replaces the shell&rsquo;s argument and environment space with
 the given string, truncated if necessary to fit.  This will normally be
 visible in <tt>ps</tt> (man page ps(1)) listings.  This feature is typically
 used by daemons, to indicate their state.
 </p>
-<a name="IDX1212"></a>
-<a name="IDX1213"></a>
-<a name="IDX1214"></a>
+<a name="index-kill"></a>
+<a name="index-killing-jobs"></a>
+<a name="index-jobs_002c-killing"></a>
 </dd>
 <dt> <tt>kill</tt> [ <tt>-s</tt> <var>signal_name</var> | <tt>-n</tt> <var>signal_number</var> | <tt>-</tt><var>sig</var> ] <var>job</var> ...</dt>
 <dt> <tt>kill</tt> <tt>-l</tt> [ <var>sig</var> ... ]</dt>
 <dd><p>Sends either <tt>SIGTERM</tt> or the specified signal to the given
 jobs or processes.
-Signals are given by number or by names, with or without the `<tt>SIG</tt>'
+Signals are given by number or by names, with or without the &lsquo;<tt>SIG</tt>&rsquo;
 prefix.
-If the signal being sent is not `<tt>KILL</tt>' or `<tt>CONT</tt>', then the job
-will be sent a `<tt>CONT</tt>' signal if it is stopped.
+If the signal being sent is not &lsquo;<tt>KILL</tt>&rsquo; or &lsquo;<tt>CONT</tt>&rsquo;, then the job
+will be sent a &lsquo;<tt>CONT</tt>&rsquo; signal if it is stopped.
 The argument <var>job</var> can be the process ID of a job
 not in the job list.
 In the second form, <tt>kill -l</tt>, if <var>sig</var> is not
@@ -968,19 +975,19 @@ under Linux <tt>kill -l IO</tt> and <tt>kill -l POLL</tt> both output 29, hence
 <p>Many systems will allow process IDs to be negative to kill a process
 group or zero to kill the current process group.
 </p>
-<a name="IDX1215"></a>
+<a name="index-let"></a>
 </dd>
 <dt> <tt>let</tt> <var>arg</var> ...</dt>
 <dd><p>Evaluate each <var>arg</var> as an arithmetic expression.
 See
-<a href="Arithmetic-Evaluation.html#SEC50">Arithmetic Evaluation</a>
+<a href="Arithmetic-Evaluation.html#Arithmetic-Evaluation">Arithmetic Evaluation</a>
 for a description of arithmetic expressions.  The exit status is 0 if the
 value of the last expression is nonzero, 1 if it is zero, and 2 if
 an error occurred.
 </p>
-<a name="IDX1216"></a>
-<a name="IDX1217"></a>
-<a name="IDX1218"></a>
+<a name="index-limit"></a>
+<a name="index-resource-limits"></a>
+<a name="index-limits_002c-resource"></a>
 </dd>
 <dt> <tt>limit</tt> [ <tt>-hs</tt> ] [ <var>resource</var> [ <var>limit</var> ] ] ...</dt>
 <dd><p>Set or display resource limits.  Unless the <tt>-s</tt> flag is given,
@@ -1088,61 +1095,65 @@ fail unless the <tt>-s</tt> option is present.
 </p></dd>
 </dl>
 
-<a name="IDX1219"></a>
+<p>The <tt>limit</tt> command is not made available by default when the
+shell starts in a mode emulating another shell.  It can be made available
+with the command &lsquo;<tt>zmodload -F zsh/rlimits b:limit</tt>&rsquo;.
+</p>
+<a name="index-local"></a>
 </dd>
 <dt> <tt>local</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>AEFHUahlprtux</tt> ] [ <tt>-LRZi</tt> [ <var>n</var> ]] [ <var>name</var>[<tt>=</tt><var>value</var>] ] ...</dt>
 <dd><p>Same as <tt>typeset</tt>, except that the options <tt>-g</tt>, and
 <tt>-f</tt> are not permitted.  In this case the <tt>-x</tt> option does not force
 the use of <tt>-g</tt>, i.e. exported variables will be local to functions.
 </p>
-<a name="IDX1220"></a>
-<a name="IDX1221"></a>
-<a name="IDX1222"></a>
-<a name="IDX1223"></a>
+<a name="index-log"></a>
+<a name="index-watch_002c-use-of"></a>
+<a name="index-watching-users"></a>
+<a name="index-users_002c-watching"></a>
 </dd>
 <dt> <tt>log</tt></dt>
 <dd><p>List all users currently logged in who are affected by
 the current setting of the <tt>watch</tt> parameter.
 </p>
-<a name="IDX1224"></a>
+<a name="index-logout"></a>
 </dd>
 <dt> <tt>logout</tt> [ <var>n</var> ]</dt>
 <dd><p>Same as <tt>exit</tt>, except that it only works in a login shell.
 </p>
 </dd>
 <dt> <tt>noglob</tt> <var>simple command</var></dt>
-<dd><p>See <a href="Shell-Grammar.html#SEC30">Precommand Modifiers</a>.
+<dd><p>See <a href="Shell-Grammar.html#Precommand-Modifiers">Precommand Modifiers</a>.
 </p>
-<a name="IDX1225"></a>
+<a name="index-popd"></a>
 </dd>
 <dt> <tt>popd</tt> [ [-q] {<tt>+</tt>|<tt>-</tt>}<var>n</var> ]</dt>
 <dd><p>Remove an entry from the directory stack, and perform a <tt>cd</tt> to
 the new top directory.  With no argument, the current top entry is
-removed.  An argument of the form `<tt>+</tt><var>n</var>' identifies a stack
+removed.  An argument of the form &lsquo;<tt>+</tt><var>n</var>&rsquo; identifies a stack
 entry by counting from the left of the list shown by the <tt>dirs</tt> command,
 starting with zero.  An argument of the form <tt>-n</tt> counts from the right.
-<a name="IDX1226"></a>
-If the <tt>PUSHD_MINUS</tt> option is set, the meanings of `<tt>+</tt>' and
-`<tt>-</tt>' in this context are swapped.
+<a name="index-PUSHD_005fMINUS_002c-use-of-1"></a>
+If the <tt>PUSHD_MINUS</tt> option is set, the meanings of &lsquo;<tt>+</tt>&rsquo; and
+&lsquo;<tt>-</tt>&rsquo; in this context are swapped.
 </p>
 <p>If the <tt>-q</tt> (quiet) option is specified, the hook function <tt>chpwd</tt>
 and the functions in the array <tt>$chpwd_functions</tt> are not called,
 and the new directory stack is not printed.  This is useful for calls to
 <tt>popd</tt> that do not change the environment seen by an interactive user.
 </p>
-<a name="IDX1227"></a>
+<a name="index-print"></a>
 </dd>
 <dt> <tt>print</tt> [ <tt>-abcDilmnNoOpPrsz</tt> ] [ <tt>-u</tt> <var>n</var> ] [ <tt>-f</tt> <var>format</var> ] [ <tt>-C</tt> <var>cols</var> ]</dt>
 <dt>   [ <tt>-R</tt> [ <tt>-en</tt> ]] [ <var>arg</var> ... ]</dt>
-<dd><p>With the `<tt>-f</tt>' option the arguments are printed as described by <tt>printf</tt>.
-With no flags or with the flag `<tt>-</tt>', the arguments are printed on
+<dd><p>With the &lsquo;<tt>-f</tt>&rsquo; option the arguments are printed as described by <tt>printf</tt>.
+With no flags or with the flag &lsquo;<tt>-</tt>&rsquo;, the arguments are printed on
 the standard output as described by <tt>echo</tt>, with the following differences:
-the escape sequence `<tt>\M-</tt><var>x</var>' metafies the character
+the escape sequence &lsquo;<tt>\M-</tt><var>x</var>&rsquo; metafies the character
 <var>x</var> (sets the highest bit),
-`<tt>\C-</tt><var>x</var>' produces a control character (`<tt>\C-@</tt>' and `<tt>\C-?</tt>' give the
-characters NUL and delete), and `<tt>\E</tt>' is a synonym for `<tt>\e</tt>'.
+&lsquo;<tt>\C-</tt><var>x</var>&rsquo; produces a control character (&lsquo;<tt>\C-@</tt>&rsquo; and &lsquo;<tt>\C-?</tt>&rsquo; give the
+characters NUL and delete), and &lsquo;<tt>\E</tt>&rsquo; is a synonym for &lsquo;<tt>\e</tt>&rsquo;.
 Finally, if not in an escape
-sequence, `<tt>\</tt>' escapes the following character and is not printed.
+sequence, &lsquo;<tt>\</tt>&rsquo; escapes the following character and is not printed.
 </p>
 <dl compact="compact">
 <dt> <tt>-a</tt></dt>
@@ -1153,7 +1164,7 @@ sequence, `<tt>\</tt>' escapes the following character and is not printed.
 <dt> <tt>-b</tt></dt>
 <dd><p>Recognize all the escape sequences defined for the <tt>bindkey</tt> command,
 see 
-<a href="Zsh-Line-Editor.html#SEC124">Zle Builtins</a>.
+<a href="Zsh-Line-Editor.html#Zle-Builtins">Zle Builtins</a>.
 </p>
 </dd>
 <dt> <tt>-c</tt></dt>
@@ -1208,7 +1219,7 @@ do not match this pattern.
 </dd>
 <dt> <tt>-P</tt></dt>
 <dd><p>Perform prompt expansion (see
-<a href="Prompt-Expansion.html#SEC52">Prompt Expansion</a>).
+<a href="Prompt-Expansion.html#Prompt-Expansion">Prompt Expansion</a>).
 </p>
 </dd>
 <dt> <tt>-r</tt></dt>
@@ -1236,31 +1247,31 @@ newline.  Only the <tt>-e</tt> and <tt>-n</tt> flags are recognized after
 </dd>
 </dl>
 
-<p>If any of `<tt>-m</tt>', `<tt>-o</tt>' or `<tt>-O</tt>' are used in combination with
-`<tt>-f</tt>' and there are no arguments (after the removal process in the
-case of `<tt>-m</tt>') then nothing is printed.
+<p>If any of &lsquo;<tt>-m</tt>&rsquo;, &lsquo;<tt>-o</tt>&rsquo; or &lsquo;<tt>-O</tt>&rsquo; are used in combination with
+&lsquo;<tt>-f</tt>&rsquo; and there are no arguments (after the removal process in the
+case of &lsquo;<tt>-m</tt>&rsquo;) then nothing is printed.
 </p>
-<a name="IDX1228"></a>
+<a name="index-printf"></a>
 </dd>
 <dt> <tt>printf</tt> <var>format</var> [ <var>arg</var> ... ]</dt>
 <dd><p>Print the arguments according to the format specification. Formatting
 rules are the same as used in C. The same escape sequences as for <tt>echo</tt>
 are recognised in the format. All C conversion specifications ending in
-one of csdiouxXeEfgGn are handled. In addition to this, `<tt>%b</tt>' can be
-used instead of `<tt>%s</tt>' to cause escape sequences in the argument to be
-recognised and `<tt>%q</tt>' can be used to quote the argument in such a way
+one of csdiouxXeEfgGn are handled. In addition to this, &lsquo;<tt>%b</tt>&rsquo; can be
+used instead of &lsquo;<tt>%s</tt>&rsquo; to cause escape sequences in the argument to be
+recognised and &lsquo;<tt>%q</tt>&rsquo; can be used to quote the argument in such a way
 that allows it to be reused as shell input. With the numeric format
 specifiers, if the corresponding argument starts with a quote character,
 the numeric value of the following character is used as the number to
 print otherwise the argument is evaluated as an arithmetic expression. See
-<a href="Arithmetic-Evaluation.html#SEC50">Arithmetic Evaluation</a>
+<a href="Arithmetic-Evaluation.html#Arithmetic-Evaluation">Arithmetic Evaluation</a>
 for a description of arithmetic
-expressions. With `<tt>%n</tt>', the corresponding argument is taken as an
+expressions. With &lsquo;<tt>%n</tt>&rsquo;, the corresponding argument is taken as an
 identifier which is created as an integer parameter.
 </p>
 <p>Normally, conversion specifications are applied to each argument in order
 but they can explicitly specify the <var>n</var>th argument is to be used by
-replacing `<tt>%</tt>' by `<tt>%</tt><var>n</var><tt>$</tt>' and `<tt>*</tt>' by `<tt>*</tt><var>n</var><tt>$</tt>'.
+replacing &lsquo;<tt>%</tt>&rsquo; by &lsquo;<tt>%</tt><var>n</var><tt>$</tt>&rsquo; and &lsquo;<tt>*</tt>&rsquo; by &lsquo;<tt>*</tt><var>n</var><tt>$</tt>&rsquo;.
 It is recommended that you do not mix references of this explicit style
 with the normal style and the handling of such mixed styles may be subject
 to future change.
@@ -1271,11 +1282,11 @@ can be suppressed by using the <tt>-r</tt> option. If more arguments are
 required by the format than have been specified, the behaviour is as if
 zero or an empty string had been specified as the argument.
 </p>
-<a name="IDX1229"></a>
-<a name="IDX1230"></a>
-<a name="IDX1231"></a>
-<a name="IDX1232"></a>
-<a name="IDX1233"></a>
+<a name="index-pushd"></a>
+<a name="index-PUSHD_005fTO_005fHOME_002c-use-of"></a>
+<a name="index-PUSHD_005fMINUS_002c-use-of-2"></a>
+<a name="index-CDABLE_005fVARS_002c-use-of"></a>
+<a name="index-PUSHD_005fSILENT_002c-use-of"></a>
 </dd>
 <dt> <tt>pushd</tt> [ <tt>-qsLP</tt> ] [ <var>arg</var> ]</dt>
 <dt> <tt>pushd</tt> [ <tt>-qsLP</tt> ] <var>old</var> <var>new</var></dt>
@@ -1292,11 +1303,11 @@ The meaning of <var>old</var> and <var>new</var> in the second form is also
 the same as for <tt>cd</tt>.
 </p>
 <p>The third form of <tt>pushd</tt> changes directory by rotating the
-directory list.  An argument of the form `<tt>+</tt><var>n</var>' identifies a stack
+directory list.  An argument of the form &lsquo;<tt>+</tt><var>n</var>&rsquo; identifies a stack
 entry by counting from the left of the list shown by the <tt>dirs</tt>
-command, starting with zero.  An argument of the form `<tt>-</tt><var>n</var>' counts
+command, starting with zero.  An argument of the form &lsquo;<tt>-</tt><var>n</var>&rsquo; counts
 from the right.  If the <tt>PUSHD_MINUS</tt> option is set, the meanings
-of `<tt>+</tt>' and `<tt>-</tt>' in this context are swapped.
+of &lsquo;<tt>+</tt>&rsquo; and &lsquo;<tt>-</tt>&rsquo; in this context are swapped.
 </p>
 <p>If the <tt>-q</tt> (quiet) option is specified, the hook function <tt>chpwd</tt>
 and the functions in the array <tt>$chpwd_functions</tt> are not called,
@@ -1310,13 +1321,13 @@ performed.
 <p>The options <tt>-s</tt>, <tt>-L</tt> and <tt>-P</tt> have the same meanings as for the
 <tt>cd</tt> builtin.
 </p>
-<a name="IDX1234"></a>
+<a name="index-pushln"></a>
 </dd>
 <dt> <tt>pushln</tt> [ <var>arg</var> ... ]</dt>
 <dd><p>Equivalent to <tt>print -nz</tt>.
 </p>
-<a name="IDX1235"></a>
-<a name="IDX1236"></a>
+<a name="index-pwd"></a>
+<a name="index-CHASE_005fLINKS_002c-use-of"></a>
 </dd>
 <dt> <tt>pwd</tt> [ <tt>-rLP</tt> ]</dt>
 <dd><p>Print the absolute pathname of the current working directory.
@@ -1324,18 +1335,18 @@ If the <tt>-r</tt> or the <tt>-P</tt> flag is specified, or the <tt>CHASE_LINKS<
 option is set and the <tt>-L</tt> flag is not given, the printed path will not
 contain symbolic links.
 </p>
-<a name="IDX1237"></a>
+<a name="index-r"></a>
 </dd>
 <dt> <tt>r</tt></dt>
 <dd><p>Same as <tt>fc -e -</tt>.
 </p>
-<a name="IDX1238"></a>
-<a name="IDX1239"></a>
+<a name="index-read"></a>
+<a name="index-IFS_002c-use-of-2"></a>
 
 </dd>
 <dt> <tt>read</tt> [ <tt>-rszpqAclneE</tt> ] [ <tt>-t</tt> [ <var>num</var> ] ] [ <tt>-k</tt> [ <var>num</var> ] ] [ <tt>-d</tt> <var>delim</var> ] [ <tt>-u</tt> <var>n</var> ] [ <var>name</var>[<tt>?</tt><var>prompt</var>] ] [ <var>name</var> ...  ]</dt>
-<dd><a name="IDX1240"></a>
-<a name="IDX1241"></a>
+<dd><a name="index-REPLY_002c-use-of-2"></a>
+<a name="index-reply_002c-use-of-1"></a>
 <p>Read one line and break it into fields using the characters
 in <tt>$IFS</tt> as separators, except as noted below.
 The first field is assigned to the first <var>name</var>, the second field
@@ -1346,23 +1357,24 @@ If <var>name</var> is omitted then
 </p>
 <dl compact="compact">
 <dt> <tt>-r</tt></dt>
-<dd><p>Raw mode: a `<tt>\</tt>' at the end of a line does not signify line
-continuation and backslashes in the line don't quote the following
+<dd><p>Raw mode: a &lsquo;<tt>\</tt>&rsquo; at the end of a line does not signify line
+continuation and backslashes in the line don&rsquo;t quote the following
 character and are not removed.
 </p>
 </dd>
 <dt> <tt>-s</tt></dt>
-<dd><p>Don't echo back characters if reading from the terminal.  Currently does
+<dd><p>Don&rsquo;t echo back characters if reading from the terminal.  Currently does
 not work with the <tt>-q</tt> option.
 </p>
 </dd>
 <dt> <tt>-q</tt></dt>
 <dd><p>Read only one character from the terminal and set <var>name</var> to
-`<tt>y</tt>' if this character was `<tt>y</tt>' or `<tt>Y</tt>' and to `<tt>n</tt>' otherwise.
+&lsquo;<tt>y</tt>&rsquo; if this character was &lsquo;<tt>y</tt>&rsquo; or &lsquo;<tt>Y</tt>&rsquo; and to &lsquo;<tt>n</tt>&rsquo; otherwise.
 With this flag set the return status is zero only if the character was
-`<tt>y</tt>' or `<tt>Y</tt>'.  Note that this always reads from the terminal, even
-if used with the <tt>-p</tt> or <tt>-u</tt> or <tt>-z</tt> flags or with redirected input.
-This option may also be used within zle widgets.
+&lsquo;<tt>y</tt>&rsquo; or &lsquo;<tt>Y</tt>&rsquo;.  This option may be used with a timeout; if
+the read times out, or encounters end of file, status 2 is returned.
+Input is read from the terminal unless one of <tt>-u</tt>
+or <tt>-p</tt> is present.  This option may also be used within zle widgets.
 </p>
 </dd>
 <dt> <tt>-k</tt> [ <var>num</var> ]</dt>
@@ -1371,7 +1383,7 @@ This option may also be used within zle widgets.
 present.  Input is read from the terminal unless one of <tt>-u</tt> or <tt>-p</tt>
 is present.  This option may also be used within zle widgets.
 </p>
-<p>Note that despite the mnemonic `key' this option does read full
+<p>Note that despite the mnemonic &lsquo;key&rsquo; this option does read full
 characters, which may consist of multiple bytes if the option
 <tt>MULTIBYTE</tt> is set.
 </p>
@@ -1379,8 +1391,8 @@ characters, which may consist of multiple bytes if the option
 <dt> <tt>-z</tt></dt>
 <dd><p>Read one entry from the editor buffer stack and assign it to the first
 <var>name</var>, without word splitting.  Text is pushed onto the stack with
-`<tt>print -z</tt>' or with <tt>push-line</tt> from the line editor (see
-<a href="Zsh-Line-Editor.html#SEC120">Zsh Line Editor</a>).  This flag is ignored when the <tt>-k</tt> or <tt>-q</tt> flags are present.
+&lsquo;<tt>print -z</tt>&rsquo; or with <tt>push-line</tt> from the line editor (see
+<a href="Zsh-Line-Editor.html#Zsh-Line-Editor">Zsh Line Editor</a>).  This flag is ignored when the <tt>-k</tt> or <tt>-q</tt> flags are present.
 </p>
 </dd>
 <dt> <tt>-e</tt></dt>
@@ -1441,16 +1453,17 @@ other mechanisms should be used to test for input.
 </p>
 <p>Note that read does not attempt to alter the input processing mode.  The
 default mode is canonical input, in which an entire line is read at a time,
-so usually `<tt>read -t</tt>' will not read anything until an entire line has
+so usually &lsquo;<tt>read -t</tt>&rsquo; will not read anything until an entire line has
 been typed.  However, when reading from the terminal with <tt>-k</tt>
 input is processed one key at a time; in this case, only availability of
-the first character is tested, so that e.g. `<tt>read -t -k 2</tt>' can still
-block on the second character.  Use two instances of `<tt>read -t -k</tt>' if
+the first character is tested, so that e.g. &lsquo;<tt>read -t -k 2</tt>&rsquo; can still
+block on the second character.  Use two instances of &lsquo;<tt>read -t -k</tt>&rsquo; if
 this is not what is wanted.
 </p>
 </dd>
 </dl>
-<p>If the first argument contains a `<tt>?</tt>', the remainder of this
+
+<p>If the first argument contains a &lsquo;<tt>?</tt>&rsquo;, the remainder of this
 word is used as a <var>prompt</var> on standard error when the shell
 is interactive.
 </p>
@@ -1466,22 +1479,22 @@ cancels both <tt>-p</tt> and <tt>-u</tt>.
 </p>
 <p>The <tt>-c</tt> or <tt>-l</tt> flags cancel any and all of <tt>-kpquz</tt>.
 </p>
-<a name="IDX1242"></a>
-<a name="IDX1243"></a>
+<a name="index-parameters_002c-marking-readonly"></a>
+<a name="index-readonly"></a>
 </dd>
 <dt> <tt>readonly</tt></dt>
 <dd><p>Same as <tt>typeset -r</tt>.
 </p>
-<a name="IDX1244"></a>
+<a name="index-rehash"></a>
 </dd>
 <dt> <tt>rehash</tt></dt>
 <dd><p>Same as <tt>hash -r</tt>.
 </p>
-<a name="IDX1245"></a>
-<a name="IDX1246"></a>
+<a name="index-return"></a>
+<a name="index-functions_002c-returning-from"></a>
 </dd>
 <dt> <tt>return</tt> [ <var>n</var> ]</dt>
-<dd><p>Causes a shell function or `<tt>.</tt>' script to return to
+<dd><p>Causes a shell function or &lsquo;<tt>.</tt>&rsquo; script to return to
 the invoking script with the return status specified by <var>n</var>.  If <var>n</var>
 is omitted, the return status is that of the last command
 executed.
@@ -1493,19 +1506,19 @@ will return to whatever it was previously processing; with a non-zero
 status, the shell will behave as interrupted except that the return
 status of the trap is retained.  Note that the numeric value of the signal
 which caused the trap is passed as the first argument, so the statement
-`<tt>return $((128+$1))</tt>' will return the same status as if the signal
+&lsquo;<tt>return $((128+$1))</tt>&rsquo; will return the same status as if the signal
 had not been trapped.
 </p>
 </dd>
 <dt> <tt>sched</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC194">The zsh/sched Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fsched-Module">The zsh/sched Module</a>.
 </p>
-<a name="IDX1247"></a>
-<a name="IDX1248"></a>
-<a name="IDX1249"></a>
-<a name="IDX1250"></a>
-<a name="IDX1251"></a>
-<a name="IDX1252"></a>
+<a name="index-set"></a>
+<a name="index-parameters_002c-listing"></a>
+<a name="index-parameters_002c-positional"></a>
+<a name="index-parameters_002c-setting-array"></a>
+<a name="index-array-parameters_002c-setting"></a>
+<a name="index-KSH_005fARRAYS_002c-use-of-1"></a>
 </dd>
 <dt> <tt>set</tt> [ {<tt>+</tt>|<tt>-</tt>}<var>options</var> | {<tt>+</tt>|<tt>-</tt>}<tt>o</tt> [ <var>option_name</var> ] ] ... [ {<tt>+</tt>|<tt>-</tt>}<tt>A</tt> [ <var>name</var> ] ] [ <var>arg</var> ... ]</dt>
 <dd><p>Set the options for the shell and/or set the positional parameters, or
@@ -1513,7 +1526,7 @@ declare and set an array.  If the <tt>-s</tt> option is given, it causes the
 specified arguments to be sorted before assigning them to the positional
 parameters (or to the array <var>name</var> if <tt>-A</tt> is used).  With <tt>+s</tt>
 sort arguments in descending order.  For the meaning of the other flags, see
-<a href="Options.html#SEC99">Options</a>.  Flags may be specified by name using the <tt>-o</tt> option. If no option
+<a href="Options.html#Options">Options</a>.  Flags may be specified by name using the <tt>-o</tt> option. If no option
 name is supplied with <tt>-o</tt>, the current option states are printed:  see
 the description of <tt>setopt</tt> below for more information on the format.
 With <tt>+o</tt> they are printed in a form that can be used as input
@@ -1537,28 +1550,32 @@ the array.  This means that
 <table><tr><td>&nbsp;</td><td><pre class="example">set -A array -x -- foo
 </pre></td></tr></table>
 
-<p>sets <tt>array</tt> to `<tt>-x -</tt><tt>- foo</tt>' if <tt>KSH_ARRAYS</tt> is not set, but sets
-the array to <tt>foo</tt> and turns on the option `<tt>-x</tt>' if it is set.
+<p>sets <tt>array</tt> to &lsquo;<tt>-x -</tt><tt>- foo</tt>&rsquo; if <tt>KSH_ARRAYS</tt> is not set, but sets
+the array to <tt>foo</tt> and turns on the option &lsquo;<tt>-x</tt>&rsquo; if it is set.
 </p>
 <p>If the <tt>-A</tt> flag is not present, but there are arguments beyond the
 options, the positional parameters are set.  If the option list (if any)
-is terminated by `<tt>-</tt><tt>-</tt>', and there are no further arguments, the
+is terminated by &lsquo;<tt>-</tt><tt>-</tt>&rsquo;, and there are no further arguments, the
 positional parameters will be unset.
 </p>
-<p>If no arguments and no `<tt>-</tt><tt>-</tt>' are given, then the names and values of
+<p>If no arguments and no &lsquo;<tt>-</tt><tt>-</tt>&rsquo; are given, then the names and values of
 all parameters are printed on the standard output.  If the only argument is
-`<tt>+</tt>', the names of all parameters are printed.
+&lsquo;<tt>+</tt>&rsquo;, the names of all parameters are printed.
 </p>
-<p>For historical reasons, `<tt>set -</tt>' is treated as `<tt>set +xv</tt>'
-and `<tt>set -</tt> <var>args</var>' as `<tt>set +xv &ndash;</tt> <var>args</var>' when in
-any other emulation mode than zsh's native mode.
+<p>For historical reasons, &lsquo;<tt>set -</tt>&rsquo; is treated as &lsquo;<tt>set +xv</tt>&rsquo;
+and &lsquo;<tt>set -</tt> <var>args</var>&rsquo; as &lsquo;<tt>set +xv &ndash;</tt> <var>args</var>&rsquo; when in
+any other emulation mode than zsh&rsquo;s native mode.
+</p>
+<p>The <tt>sched</tt> builtin is not made available by default when the shell
+starts in a mode emulating another shell.  It can be made available
+with the command &lsquo;<tt>zmodload -F zsh/sched b:sched</tt>&rsquo;.
 </p>
 </dd>
 <dt> <tt>setcap</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC171">The zsh/cap Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fcap-Module">The zsh/cap Module</a>.
 </p>
-<a name="IDX1253"></a>
-<a name="IDX1254"></a>
+<a name="index-setopt"></a>
+<a name="index-options_002c-setting"></a>
 </dd>
 <dt> <tt>setopt</tt> [ {<tt>+</tt>|<tt>-</tt>}<var>options</var> | {<tt>+</tt>|<tt>-</tt>}<tt>o</tt> <var>option_name</var> ] [ <var>name</var> ... ]</dt>
 <dd><p>Set the options for the shell.  All options specified either
@@ -1568,7 +1585,7 @@ with flags or by name are set.
 printed.  The form is chosen so as to minimize the differences from the
 default options for the current emulation (the default emulation being
 native <tt>zsh</tt>, shown as <tt>&lt;Z&gt;</tt> in
-<a href="Options.html#SEC101">Description of Options</a>).
+<a href="Options.html#Description-of-Options">Description of Options</a>).
 Options that are on by default for the emulation are
 shown with the prefix <tt>no</tt> only if they are off, while other options are
 shown without the prefix <tt>no</tt> and only if they are on.  In addition to
@@ -1582,8 +1599,8 @@ or without the <tt>no</tt> prefix remains the same in this case.
 (which should be quoted to protect them from filename expansion), and all
 options with names matching these patterns are set.
 </p>
-<a name="IDX1255"></a>
-<a name="IDX1256"></a>
+<a name="index-shift"></a>
+<a name="index-parameters_002c-positional-1"></a>
 </dd>
 <dt> <tt>shift</tt> [ <var>n</var> ] [ <var>name</var> ... ]</dt>
 <dd><p>The positional parameters <tt>${</tt><var>n</var>+1<tt>}</tt> ... are renamed
@@ -1592,31 +1609,31 @@ defaults to 1.
 If any <var>name</var>s are given then the arrays with these names are
 shifted instead of the positional parameters.
 </p>
-<a name="IDX1257"></a>
+<a name="index-source"></a>
 </dd>
 <dt> <tt>source</tt> <var>file</var> [ <var>arg</var> ... ]</dt>
-<dd><p>Same as `<tt>.</tt>', except that the current directory is always searched and
+<dd><p>Same as &lsquo;<tt>.</tt>&rsquo;, except that the current directory is always searched and
 is always searched first, before directories in <tt>$path</tt>.
 </p>
 </dd>
 <dt> <tt>stat</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC198">The zsh/stat Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fstat-Module">The zsh/stat Module</a>.
 </p>
-<a name="IDX1258"></a>
-<a name="IDX1259"></a>
-<a name="IDX1260"></a>
+<a name="index-suspend"></a>
+<a name="index-shell_002c-suspending"></a>
+<a name="index-suspending-the-shell"></a>
 </dd>
 <dt> <tt>suspend</tt> [ <tt>-f</tt> ]</dt>
 <dd><p>Suspend the execution of the shell (send it a <tt>SIGTSTP</tt>)
 until it receives a <tt>SIGCONT</tt>.
 Unless the <tt>-f</tt> option is given, this will refuse to suspend a login shell.
 </p>
-<a name="IDX1261"></a>
+<a name="index-test"></a>
 </dd>
 <dt> <tt>test</tt> [ <var>arg</var> ... ]</dt>
 <dt> <tt>[</tt> [ <var>arg</var> ... ] <tt>]</tt></dt>
 <dd><p>Like the system version of <tt>test</tt>.  Added for compatibility;
-use conditional expressions instead (see <a href="Conditional-Expressions.html#SEC51">Conditional Expressions</a>).
+use conditional expressions instead (see <a href="Conditional-Expressions.html#Conditional-Expressions">Conditional Expressions</a>).
 The main differences between the conditional expression syntax and the
 <tt>test</tt> and <tt>[</tt> builtins are:  these commands are not handled
 syntactically, so for example an empty variable expansion may cause an
@@ -1630,19 +1647,19 @@ the syntax; in particular there is no distinction between test operators
 and strings that resemble them.  The standard attempts to resolve these
 for small numbers of arguments (up to four); for five or more arguments
 compatibility cannot be relied on.  Users are urged wherever possible to
-use the `<tt>[[</tt>' test syntax which does not have these ambiguities.
+use the &lsquo;<tt>[[</tt>&rsquo; test syntax which does not have these ambiguities.
 </p>
-<a name="IDX1262"></a>
-<a name="IDX1263"></a>
-<a name="IDX1264"></a>
+<a name="index-times"></a>
+<a name="index-shell_002c-timing"></a>
+<a name="index-timing-the-shell"></a>
 </dd>
 <dt> <tt>times</tt></dt>
 <dd><p>Print the accumulated user and system times for the shell
 and for processes run from the shell.
 </p>
-<a name="IDX1265"></a>
-<a name="IDX1266"></a>
-<a name="IDX1267"></a>
+<a name="index-trap"></a>
+<a name="index-signals_002c-trapping-1"></a>
+<a name="index-trapping-signals-1"></a>
 </dd>
 <dt> <tt>trap</tt> [ <var>arg</var> ] [ <var>sig</var> ... ]</dt>
 <dd><p><var>arg</var> is a series of commands (usually quoted to protect it from
@@ -1652,7 +1669,7 @@ Each <var>sig</var> can be given as a number,
 or as the name of a signal either with or without the string <tt>SIG</tt>
 in front (e.g. 1, HUP, and SIGHUP are all the same signal).
 </p>
-<p>If <var>arg</var> is `<tt>-</tt>', then the specified signals are reset to their
+<p>If <var>arg</var> is &lsquo;<tt>-</tt>&rsquo;, then the specified signals are reset to their
 defaults, or, if no <var>sig</var> args are present, all traps are reset.
 </p>
 <p>If <var>arg</var> is an empty string, then the specified signals
@@ -1660,7 +1677,7 @@ are ignored by the shell (and by the commands it invokes).
 </p>
 <p>If <var>arg</var> is omitted but one or more <var>sig</var> args are provided (i.e.
 the first argument is a valid signal number or name), the effect is the
-same as if <var>arg</var> had been specified as `<tt>-</tt>'.
+same as if <var>arg</var> had been specified as &lsquo;<tt>-</tt>&rsquo;.
 </p>
 <p>The <tt>trap</tt> command with no arguments prints a list of commands
 associated with each signal.
@@ -1672,13 +1689,13 @@ usual case).
 </p>
 <p>If <var>sig</var> is <tt>DEBUG</tt> then <var>arg</var> will be executed
 before each command if the option <tt>DEBUG_BEFORE_CMD</tt> is set
-(as it is by default), else after each command.  Here, a `command' is
-what is described as a `sublist' in the shell grammar, see
-<a href="Shell-Grammar.html#SEC29">Simple Commands &amp; Pipelines</a>.
+(as it is by default), else after each command.  Here, a &lsquo;command&rsquo; is
+what is described as a &lsquo;sublist&rsquo; in the shell grammar, see
+<a href="Shell-Grammar.html#Simple-Commands-_0026-Pipelines">Simple Commands &amp; Pipelines</a>.
 If <tt>DEBUG_BEFORE_CMD</tt> is set various additional features are available.
 First, it is possible to skip the next command by setting the option
 <tt>ERR_EXIT</tt>; see the description of the <tt>ERR_EXIT</tt> option in
-<a href="Options.html#SEC101">Description of Options</a>.  Also, the shell parameter
+<a href="Options.html#Description-of-Options">Description of Options</a>.  Also, the shell parameter
 <tt>ZSH_DEBUG_CMD</tt> is set to the string corresponding to the command
 to be executed following the trap.  Note that this string is reconstructed
 from the internal format and may not be formatted the same way as the
@@ -1691,14 +1708,15 @@ The value of <tt>$?</tt> at the start of execution is the exit status of the
 shell or the return status of the function exiting.
 If <var>sig</var> is <tt>0</tt> or <tt>EXIT</tt>
 and the <tt>trap</tt> statement is not executed inside the body of a function,
-then the command <var>arg</var> is executed when the shell terminates.
+then the command <var>arg</var> is executed when the shell terminates; the
+trap runs before any <tt>zshexit</tt> hook functions.
 </p>
 <p><tt>ZERR</tt>, <tt>DEBUG</tt>, and <tt>EXIT</tt> traps are not executed inside other
 traps.  <tt>ZERR</tt> and <tt>DEBUG</tt> traps are kept within subshells, while
 other traps are reset.
 </p>
 <p>Note that traps defined with the <tt>trap</tt> builtin are slightly different
-from those defined as `<tt>TRAP</tt><var>NAL</var> () { ... }', as the latter have
+from those defined as &lsquo;<tt>TRAP</tt><var>NAL</var> () { ... }&rsquo;, as the latter have
 their own function environment (line numbers, local variables, etc.) while
 the former use the environment of the command in which they were called.
 For example,
@@ -1718,14 +1736,14 @@ Defining a trap under either name causes any trap under an alternative
 name to be removed.  However, it is recommended that for consistency
 users stick exclusively to one name or another.
 </p>
-<a name="IDX1268"></a>
-<a name="IDX1269"></a>
+<a name="index-true"></a>
+<a name="index-doing-nothing_002c-successfully"></a>
 </dd>
 <dt> <tt>true</tt> [ <var>arg</var> ... ]</dt>
 <dd><p>Do nothing and return an exit status of 0.
 </p>
-<a name="IDX1270"></a>
-<a name="IDX1271"></a>
+<a name="index-ttyctl"></a>
+<a name="index-tty_002c-freezing"></a>
 </dd>
 <dt> <tt>ttyctl</tt> <tt>-fu</tt></dt>
 <dd><p>The <tt>-f</tt> option freezes the tty, and <tt>-u</tt> unfreezes it.
@@ -1737,14 +1755,14 @@ command exits or is suspended.  Thus, <tt>stty</tt> and similar programs have
 no effect when the tty is frozen.  Without options it reports whether the
 terminal is frozen or not.
 </p>
-<a name="IDX1272"></a>
+<a name="index-type"></a>
 </dd>
 <dt> <tt>type</tt> [ <tt>-wfpams</tt> ] <var>name</var> ...</dt>
 <dd><p>Equivalent to <tt>whence -v</tt>.
 </p>
-<a name="IDX1273"></a>
-<a name="IDX1274"></a>
-<a name="IDX1275"></a>
+<a name="index-typeset"></a>
+<a name="index-parameters_002c-setting"></a>
+<a name="index-parameters_002c-declaring"></a>
 </dd>
 <dt> <tt>typeset</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>AEFHUafghklprtuxmz</tt> ] [ <tt>-LRZi</tt> [ <var>n</var> ]] [ <var>name</var>[<tt>=</tt><var>value</var>] ... ]</dt>
 <dt> <tt>typeset</tt> -T [ {<tt>+|<tt>-</tt></tt>}<tt>Urux</tt> ] [ <tt>-LRZ</tt> [ <var>n</var> ]] <var>SCALAR</var>[<tt>=</tt><var>value</var>] <var>array</var> <tt>[</tt> <var>sep</var> <tt>]</tt></dt>
@@ -1754,7 +1772,7 @@ terminal is frozen or not.
 to one.  When inside a function, a new parameter is created for every
 <var>name</var> (even those that already exist), and is unset again when the
 function completes.  See
-<a href="Parameters.html#SEC96">Local Parameters</a>.  The same rules apply to special shell parameters, which
+<a href="Parameters.html#Local-Parameters">Local Parameters</a>.  The same rules apply to special shell parameters, which
 retain their special attributes when made local.
 </p>
 <p>For each <var>name</var><tt>=</tt><var>value</var> assignment, the parameter
@@ -1772,7 +1790,7 @@ performed are treated as single words.  For example the command
 <var>name</var> that refers to a parameter that is set, the name and value of the
 parameter are printed in the form of an assignment.  Nothing is printed for
 newly-created parameters, or when any attribute flags listed below are
-given along with the <var>name</var>.  Using `<tt>+</tt>' instead of minus to
+given along with the <var>name</var>.  Using &lsquo;<tt>+</tt>&rsquo; instead of minus to
 introduce an attribute turns it off.
 </p>
 <p>If the <tt>-p</tt> option is given, parameters and values are printed in the
@@ -1795,8 +1813,8 @@ unset, the other will automatically be unset too.  There is no way of
 untying the variables without unsetting them, or converting the type of one
 of them with another <tt>typeset</tt> command; <tt>+T</tt> does not work, assigning
 an array to <var>SCALAR</var> is an error, and assigning a scalar to <var>array</var>
-sets it to be a single-element array.  Note that both `<tt>typeset -xT ...</tt>'
-and `<tt>export -T ...</tt>' work, but only the scalar will be marked for
+sets it to be a single-element array.  Note that both &lsquo;<tt>typeset -xT ...</tt>&rsquo;
+and &lsquo;<tt>export -T ...</tt>&rsquo; work, but only the scalar will be marked for
 export.  Setting the value using the scalar version causes a split on all
 separators (which cannot be quoted).
 </p>
@@ -1810,10 +1828,10 @@ have any effect except in combination with <tt>-m</tt> (see below).
 </p>
 <p>If no <var>name</var> is present, the names and values of all parameters are
 printed.  In this case the attribute flags restrict the display to only
-those parameters that have the specified attributes, and using `<tt>+</tt>'
-rather than `<tt>-</tt>' to introduce the flag suppresses printing of the values
+those parameters that have the specified attributes, and using &lsquo;<tt>+</tt>&rsquo;
+rather than &lsquo;<tt>-</tt>&rsquo; to introduce the flag suppresses printing of the values
 of parameters when there is no parameter name.  Also, if the last option
-is the word `<tt>+</tt>', then names are printed but values are not.
+is the word &lsquo;<tt>+</tt>&rsquo;, then names are printed but values are not.
 </p>
 <p>If the <tt>-m</tt> flag is given the <var>name</var> arguments are taken as patterns
 (which should be quoted).  With no attribute flags, all parameters (or
@@ -1835,7 +1853,7 @@ parameter names are printed but their values are not.
 </p>
 <p>Attribute flags that transform the final value (<tt>-L</tt>, <tt>-R</tt>, <tt>-Z</tt>,
 <tt>-l</tt>, <tt>u</tt>) are only applied to the expanded value at the point
-of a parameter expansion expression using `<tt>$</tt>'.  They are not applied
+of a parameter expansion expression using &lsquo;<tt>$</tt>&rsquo;.  They are not applied
 when a parameter is retrieved internally by the shell for any purpose. 
 </p>
 <p>The following attribute flags may be specified:
@@ -1843,7 +1861,7 @@ when a parameter is retrieved internally by the shell for any purpose.
 <dl compact="compact">
 <dt> <tt>-A</tt></dt>
 <dd><p>The names refer to associative array parameters; see
-<a href="Parameters.html#SEC90">Array Parameters</a>.
+<a href="Parameters.html#Array-Parameters">Array Parameters</a>.
 </p>
 </dd>
 <dt> <tt>-L</tt></dt>
@@ -1859,8 +1877,8 @@ if the <tt>MULTIBYTE</tt> option is in effect.  Note that the screen
 width of the character is not taken into account; if this is required,
 use padding with parameter expansion flags
 <tt>${(ml</tt><var>...</var><tt>)</tt><var>...</var><tt>}</tt> as described in
-`Parameter Expansion Flags' in
-<a href="Expansion.html#SEC68">Parameter Expansion</a>.
+&lsquo;Parameter Expansion Flags&rsquo; in
+<a href="Expansion.html#Parameter-Expansion">Parameter Expansion</a>.
 </p>
 <p>When the parameter is expanded, it is filled on the right with
 blanks or truncated if necessary to fit the field.
@@ -1906,23 +1924,23 @@ function.  The <tt>-u</tt> and <tt>-U</tt> flags cause the function to be
 marked for autoloading; <tt>-U</tt> also causes alias expansion to be
 suppressed when the function is loaded.  The <tt>fpath</tt> parameter
 will be searched to find the function definition when the function
-is first referenced; see <a href="Functions.html#SEC41">Functions</a>. The <tt>-k</tt> and <tt>-z</tt> flags
+is first referenced; see <a href="Functions.html#Functions">Functions</a>. The <tt>-k</tt> and <tt>-z</tt> flags
 make the function be loaded using ksh-style or zsh-style autoloading
 respectively. If neither is given, the setting of the KSH_AUTOLOAD option
 determines how the function is loaded.
 </p>
 </dd>
 <dt> <tt>-h</tt></dt>
-<dd><p>Hide: only useful for special parameters (those marked `&lt;S&gt;' in the table in
-<a href="Parameters.html#SEC97">Parameters Set By The Shell</a>), and for local parameters with the same name as a special parameter,
+<dd><p>Hide: only useful for special parameters (those marked &lsquo;&lt;S&gt;&rsquo; in the table in
+<a href="Parameters.html#Parameters-Set-By-The-Shell">Parameters Set By The Shell</a>), and for local parameters with the same name as a special parameter,
 though harmless for others.  A special parameter with this attribute will
-not retain its special effect when made local.  Thus after `<tt>typeset -h
-PATH</tt>', a function containing `<tt>typeset PATH</tt>' will create an ordinary
+not retain its special effect when made local.  Thus after &lsquo;<tt>typeset -h
+PATH</tt>&rsquo;, a function containing &lsquo;<tt>typeset PATH</tt>&rsquo; will create an ordinary
 local parameter without the usual behaviour of <tt>PATH</tt>.  Alternatively,
 the local parameter may itself be given this attribute; hence inside a
-function `<tt>typeset -h PATH</tt>' creates an ordinary local parameter and the
+function &lsquo;<tt>typeset -h PATH</tt>&rsquo; creates an ordinary local parameter and the
 special <tt>PATH</tt> parameter is not altered in any way.  It is also possible
-to create a local parameter using `<tt>typeset +h </tt><var>special</var>', where the
+to create a local parameter using &lsquo;<tt>typeset +h </tt><var>special</var>&rsquo;, where the
 local copy of <var>special</var> will retain its special properties regardless of
 having the <tt>-h</tt> attribute.  Global special parameters loaded from shell
 modules (currently those in <tt>zsh/mapfile</tt> and <tt>zsh/parameter</tt>) are
@@ -1932,7 +1950,7 @@ automatically given the <tt>-h</tt> attribute to avoid name clashes.
 <dt> <tt>-H</tt></dt>
 <dd><p>Hide value: specifies that <tt>typeset</tt> will not display the value of the
 parameter when listing parameters; the display for such parameters is
-always as if the `<tt>+</tt>' flag had been given.  Use of the parameter is
+always as if the &lsquo;<tt>+</tt>&rsquo; flag had been given.  Use of the parameter is
 in other respects normal, and the option does not apply if the parameter is
 specified by name, or by pattern with the <tt>-m</tt> option.  This is on by
 default for the parameters in the <tt>zsh/parameter</tt> and <tt>zsh/mapfile</tt>
@@ -1992,20 +2010,25 @@ compatibility with previous versions of zsh.
 </dd>
 </dl>
 
-<a name="IDX1276"></a>
-<a name="IDX1277"></a>
-<a name="IDX1278"></a>
+<a name="index-ulimit"></a>
+<a name="index-resource-limits-1"></a>
+<a name="index-limits_002c-resource-1"></a>
 </dd>
 <dt> <tt>ulimit</tt> [ [ <tt>-SHacdfilmnpqstvx</tt> | <tt>-N</tt> <var>resource</var> [ <var>limit</var> ] ... ]</dt>
 <dd><p>Set or display resource limits of the shell and the processes started by
 the shell.  The value of <var>limit</var> can be a number in the unit specified
-below or the value `<tt>unlimited</tt>'.  By default, only soft limits are
-manipulated. If the <tt>-H</tt> flag is given use
-hard limits instead of soft limits.  If the <tt>-S</tt> flag is given
-together with the <tt>-H</tt> flag set both hard and soft limits.  If no
-options are used, the file size limit (<tt>-f</tt>) is assumed.  If
-<var>limit</var> is omitted the current value of the specified resources are
-printed.  When more than one resource values are printed the limit name and
+below or one of the values &lsquo;<tt>unlimited</tt>&rsquo;, which removes the limit on the
+resource, or &lsquo;<tt>hard</tt>&rsquo;, which uses the current value of the hard limit on
+the resource.
+</p>
+<p>By default, only soft limits are manipulated. If the <tt>-H</tt> flag
+is given use hard limits instead of soft limits.  If the <tt>-S</tt> flag is given
+together with the <tt>-H</tt> flag set both hard and soft limits.
+</p>
+<p>If no options are used, the file size limit (<tt>-f</tt>) is assumed.
+</p>
+<p>If <var>limit</var> is omitted the current value of the specified resources are
+printed.  When more than one resource value is printed, the limit name and
 unit is printed before each value.
 </p>
 <p>When looping over multiple resources, the shell will abort immediately if
@@ -2051,25 +2074,25 @@ for some other reason it will continue trying to set the remaining limits.
 </p></dd>
 <dt> <tt>-v</tt></dt>
 <dd><p>K-bytes on the size of virtual memory.  On some systems this
-refers to the limit called `address space'.
+refers to the limit called &lsquo;address space&rsquo;.
 </p></dd>
 <dt> <tt>-x</tt></dt>
 <dd><p>The number of locks on files.
 </p></dd>
 </dl>
 
-<p>A resource may also be specified by integer in the form `<tt>-N</tt>
-<var>resource</var>', where <var>resource</var> corresponds to the integer defined for
+<p>A resource may also be specified by integer in the form &lsquo;<tt>-N</tt>
+<var>resource</var>&rsquo;, where <var>resource</var> corresponds to the integer defined for
 the resource by the operating system.  This may be used to set the limits
 for resources known to the shell which do not correspond to option letters.
-Such limits will be shown by number in the output of `<tt>ulimit -a</tt>'.
+Such limits will be shown by number in the output of &lsquo;<tt>ulimit -a</tt>&rsquo;.
 </p>
 <p>The number may alternatively be out of the range of limits compiled into
 the shell.  The shell will try to read or write the limit anyway, and
 will report an error if this fails.
 </p>
-<a name="IDX1279"></a>
-<a name="IDX1280"></a>
+<a name="index-umask"></a>
+<a name="index-umask-1"></a>
 </dd>
 <dt> <tt>umask</tt> [ <tt>-S</tt> ] [ <var>mask</var> ]</dt>
 <dd><p>The umask is set to <var>mask</var>.  <var>mask</var> can be either
@@ -2080,19 +2103,19 @@ the mask is printed as an octal number.  Note that in
 the symbolic form the permissions you specify are those which are to be
 allowed (not denied) to the users specified.
 </p>
-<a name="IDX1281"></a>
-<a name="IDX1282"></a>
+<a name="index-aliases_002c-removing"></a>
+<a name="index-unalias"></a>
 </dd>
 <dt> <tt>unalias</tt></dt>
 <dd><p>Same as <tt>unhash -a</tt>.
 </p>
-<a name="IDX1283"></a>
-<a name="IDX1284"></a>
+<a name="index-functions_002c-removing"></a>
+<a name="index-unfunction"></a>
 </dd>
 <dt> <tt>unfunction</tt></dt>
 <dd><p>Same as <tt>unhash -f</tt>.
 </p>
-<a name="IDX1285"></a>
+<a name="index-unhash"></a>
 </dd>
 <dt> <tt>unhash</tt> [ <tt>-adfms</tt> ] <var>name</var> ...</dt>
 <dd><p>Remove the element named <var>name</var> from an internal hash table.  The
@@ -2107,9 +2130,9 @@ The <tt>-f</tt> option causes
 the arguments are taken as patterns (should be quoted) and all elements
 of the corresponding hash table with matching names will be removed.
 </p>
-<a name="IDX1286"></a>
-<a name="IDX1287"></a>
-<a name="IDX1288"></a>
+<a name="index-unlimit"></a>
+<a name="index-resource-limits-2"></a>
+<a name="index-limits_002c-resource-2"></a>
 </dd>
 <dt> <tt>unlimit</tt> [ <tt>-hs</tt> ] <var>resource</var> ...</dt>
 <dd><p>The resource limit for each <var>resource</var> is set to the hard limit.
@@ -2118,8 +2141,12 @@ the hard resource limit for each <var>resource</var> is removed.
 The resources of the shell process are only changed if the <tt>-s</tt>
 flag is given.
 </p>
-<a name="IDX1289"></a>
-<a name="IDX1290"></a>
+<p>The <tt>unlimit</tt> command is not made available by default when the
+shell starts in a mode emulating another shell.  It can be made available
+with the command &lsquo;<tt>zmodload -F zsh/rlimits b:unlimit</tt>&rsquo;.
+</p>
+<a name="index-unset"></a>
+<a name="index-parameters_002c-unsetting"></a>
 </dd>
 <dt> <tt>unset</tt> [ <tt>-fmv</tt> ] <var>name</var> ...</dt>
 <dd><p>Each named parameter is unset.
@@ -2140,8 +2167,8 @@ default behaviour.
 </p>
 <p><tt>unset -f</tt> is equivalent to <tt>unfunction</tt>.
 </p>
-<a name="IDX1291"></a>
-<a name="IDX1292"></a>
+<a name="index-unsetopt"></a>
+<a name="index-options_002c-unsetting"></a>
 </dd>
 <dt> <tt>unsetopt</tt> [ {<tt>+</tt>|<tt>-</tt>}<var>options</var> | {<tt>+</tt>|<tt>-</tt>}<tt>o</tt> <var>option_name</var> ] [ <var>name</var> ... ]</dt>
 <dd><p>Unset the options for the shell.  All options specified either
@@ -2153,11 +2180,11 @@ patterns), and all options with names matching these patterns are unset.
 </p>
 </dd>
 <dt> <tt>vared</tt></dt>
-<dd><p>See <a href="Zsh-Line-Editor.html#SEC124">Zle Builtins</a>.
+<dd><p>See <a href="Zsh-Line-Editor.html#Zle-Builtins">Zle Builtins</a>.
 </p>
-<a name="IDX1293"></a>
-<a name="IDX1294"></a>
-<a name="IDX1295"></a>
+<a name="index-wait"></a>
+<a name="index-waiting-for-jobs"></a>
+<a name="index-jobs_002c-waiting-for"></a>
 </dd>
 <dt> <tt>wait</tt> [ <var>job</var> ... ]</dt>
 <dd><p>Wait for the specified jobs or processes.  If <var>job</var> is not given
@@ -2166,7 +2193,7 @@ Each <var>job</var> can be either a job specification or the process ID
 of a job in the job table.
 The exit status from this command is that of the job waited for.
 </p>
-<a name="IDX1296"></a>
+<a name="index-whence"></a>
 </dd>
 <dt> <tt>whence</tt> [ <tt>-vcwfpams</tt> ] <var>name</var> ...</dt>
 <dd><p>For each name, indicate how it would be interpreted if used as a
@@ -2183,7 +2210,7 @@ This takes precedence over <tt>-v</tt>.
 </p>
 </dd>
 <dt> <tt>-w</tt></dt>
-<dd><p>For each <var>name</var>, print `<var>name</var><tt>:</tt> <var>word</var>' where <var>word</var>
+<dd><p>For each <var>name</var>, print &lsquo;<var>name</var><tt>:</tt> <var>word</var>&rsquo; where <var>word</var>
 is one of <tt>alias</tt>, <tt>builtin</tt>, <tt>command</tt>, <tt>function</tt>,
 <tt>hashed</tt>, <tt>reserved</tt> or <tt>none</tt>, according as <var>name</var>
 corresponds to an alias, a built-in command, an external command, a
@@ -2221,19 +2248,19 @@ of these patterns.
 </dd>
 </dl>
 
-<a name="IDX1297"></a>
+<a name="index-where"></a>
 </dd>
 <dt> <tt>where</tt> [ <tt>-wpms</tt> ] <var>name</var> ...</dt>
 <dd><p>Equivalent to <tt>whence -ca</tt>.
 </p>
-<a name="IDX1298"></a>
+<a name="index-which"></a>
 </dd>
 <dt> <tt>which</tt> [ <tt>-wpams</tt> ] <var>name</var> ...</dt>
 <dd><p>Equivalent to <tt>whence -c</tt>.
 </p>
-<a name="IDX1299"></a>
-<a name="IDX1300"></a>
-<a name="IDX1301"></a>
+<a name="index-zcompile"></a>
+<a name="index-_002ezwc-files_002c-creation"></a>
+<a name="index-compilation"></a>
 </dd>
 <dt> <tt>zcompile</tt> [ <tt>-U</tt> ] [ <tt>-z</tt> | <tt>-k</tt> ] [ <tt>-R</tt> | <tt>-M</tt> ] <var>file</var> [ <var>name</var> ... ]</dt>
 <dt> <tt>zcompile</tt> <tt>-ca</tt> [ <tt>-m</tt> ] [ <tt>-R</tt> | <tt>-M</tt> ] <var>file</var> [ <var>name</var> ... ]</dt>
@@ -2246,18 +2273,18 @@ are read.
 </p>
 <p>The first form (without the <tt>-c</tt>, <tt>-a</tt> or <tt>-t</tt> options) creates a
 compiled file.  If only the <var>file</var> argument is given, the
-output file has the name `<var>file</var><tt>.zwc</tt>' and will be placed in
+output file has the name &lsquo;<var>file</var><tt>.zwc</tt>&rsquo; and will be placed in
 the same directory as the <var>file</var>.  The shell will load the compiled
 file instead of the normal function file when the function
 is autoloaded; see
-<a href="Functions.html#SEC41">Functions</a>
+<a href="Functions.html#Functions">Functions</a>
 for a description of how autoloaded functions are searched.  The
-extension <tt>.zwc</tt> stands for `zsh word code'.
+extension <tt>.zwc</tt> stands for &lsquo;zsh word code&rsquo;.
 </p>
 <p>If there is at least one <var>name</var> argument, all the named files
 are compiled into the output <var>file</var> given as the first argument.  If
 <var>file</var> does not end in <tt>.zwc</tt>, this extension is automatically
-appended.  Files containing multiple compiled functions are called `digest'
+appended.  Files containing multiple compiled functions are called &lsquo;digest&rsquo;
 files, and are intended to be used as elements of the <tt>FPATH</tt>/<tt>fpath</tt>
 special array.
 </p>
@@ -2277,9 +2304,9 @@ written with the <tt>-c</tt> or <tt>-a</tt> option will be autoloaded as if the
 different options is that some definition files for autoloading define
 multiple functions, including the function with the same name as the
 file, and, at the end, call that function.  In such cases the output of
-`<tt>zcompile -c</tt>' does not include the additional functions defined in
+&lsquo;<tt>zcompile -c</tt>&rsquo; does not include the additional functions defined in
 the file, and any other initialization code in the file is lost.  Using
-`<tt>zcompile -a</tt>' captures all this extra information.
+&lsquo;<tt>zcompile -a</tt>&rsquo; captures all this extra information.
 </p>
 <p>If the <tt>-m</tt> option is combined with <tt>-c</tt> or <tt>-a</tt>,
 the <var>name</var>s are used as patterns and all functions whose names
@@ -2306,7 +2333,7 @@ found.
 </dd>
 <dt> <tt>-R</tt></dt>
 <dd><p>When the compiled file is read, its contents are copied into the
-shell's memory, rather than memory-mapped (see <tt>-M</tt>).  This
+shell&rsquo;s memory, rather than memory-mapped (see <tt>-M</tt>).  This
 happens automatically on systems that do not support memory mapping.
 </p>
 <p>When compiling scripts instead of autoloadable functions, it is
@@ -2316,7 +2343,7 @@ remain mapped, consequently wasting memory.
 </p>
 </dd>
 <dt> <tt>-M</tt></dt>
-<dd><p>The compiled file is mapped into the shell's memory when read. This
+<dd><p>The compiled file is mapped into the shell&rsquo;s memory when read. This
 is done in such a way that multiple instances of the shell running
 on the same host will share this mapped file.  If neither <tt>-R</tt> nor
 <tt>-M</tt> is given, the <tt>zcompile</tt> builtin decides what to do based
@@ -2352,19 +2379,19 @@ is actually used (and mapped).
 
 </dd>
 <dt> <tt>zformat</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC219">The zsh/zutil Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fzutil-Module">The zsh/zutil Module</a>.
 </p>
 </dd>
 <dt> <tt>zftp</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC209">The zsh/zftp Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fzftp-Module">The zsh/zftp Module</a>.
 </p>
 </dd>
 <dt> <tt>zle</tt></dt>
-<dd><p>See <a href="Zsh-Line-Editor.html#SEC124">Zle Builtins</a>.
+<dd><p>See <a href="Zsh-Line-Editor.html#Zle-Builtins">Zle Builtins</a>.
 </p>
-<a name="IDX1302"></a>
-<a name="IDX1303"></a>
-<a name="IDX1304"></a>
+<a name="index-zmodload"></a>
+<a name="index-modules_002c-loading"></a>
+<a name="index-loading-modules"></a>
 </dd>
 <dt> <tt>zmodload</tt> [ <tt>-dL</tt> ] [ ... ]</dt>
 <dt> <tt>zmodload -F</tt> [ <tt>-lLme</tt> <tt>-P</tt> <tt>param</tt> ] <var>module</var> [<tt>+-</tt>]<var>feature...</var></dt>
@@ -2373,8 +2400,8 @@ is actually used (and mapped).
 <dt> <tt>zmodload</tt> <tt>-u</tt> [ <tt>-abcdpf</tt> [ <tt>-I</tt> ] ] [ <tt>-iL</tt> ] ...</dt>
 <dt> <tt>zmodload</tt> <tt>-A</tt> [ <tt>-L</tt> ] [ <var>modalias</var>[<tt>=</tt><var>module</var>] ... ]</dt>
 <dt> <tt>zmodload</tt> <tt>-R</tt> <var>modalias</var> ... </dt>
-<dd><p>Performs operations relating to zsh's loadable modules.
-Loading of modules while the shell is running (`dynamical loading') is not
+<dd><p>Performs operations relating to zsh&rsquo;s loadable modules.
+Loading of modules while the shell is running (&lsquo;dynamical loading&rsquo;) is not
 available on all operating systems, or on all installations on a particular
 operating system, although the <tt>zmodload</tt> command itself is always
 available and can be used to manipulate modules built into versions of the
@@ -2389,11 +2416,11 @@ series of <tt>zmodload</tt> commands.  Forms with arguments are:
 <dt> <tt>zmodload</tt> <tt>-u</tt> [ <tt>-i</tt> ] <var>name</var> ...</dt>
 <dd><p>In the simplest case, <tt>zmodload</tt> loads a binary module.  The module must
 be in a file with a name consisting of the specified <var>name</var> followed by
-a standard suffix, usually `<tt>.so</tt>' (`<tt>.sl</tt>' on HPUX).
+a standard suffix, usually &lsquo;<tt>.so</tt>&rsquo; (&lsquo;<tt>.sl</tt>&rsquo; on HPUX).
 If the module to be loaded is already loaded the duplicate module is
 ignored.  If <tt>zmodload</tt> detects an inconsistency, such as an
 invalid module name or circular dependency list, the current code block is 
-aborted.   Hence `<tt>zmodload</tt> <var>module</var> <tt>2&gt;/dev/null</tt>' is sufficient
+aborted.   Hence &lsquo;<tt>zmodload</tt> <var>module</var> <tt>2&gt;/dev/null</tt>&rsquo; is sufficient
 to test whether a module is available.
 If it is available, the module is loaded if necessary, while if it
 is not available, non-zero status is silently returned.  The option
@@ -2401,7 +2428,7 @@ is not available, non-zero status is silently returned.  The option
 </p>
 <p>The <var>name</var>d module is searched for in the same way a command is, using
 <tt>$module_path</tt> instead of <tt>$path</tt>.  However, the path search is
-performed even when the module name contains a `<tt>/</tt>', which it usually does.
+performed even when the module name contains a &lsquo;<tt>/</tt>&rsquo;, which it usually does.
 There is no way to prevent the path search.
 </p>
 <p>If the module supports features (see below), <tt>zmodload</tt> tries to
@@ -2410,7 +2437,7 @@ loaded but not all features could be enabled, <tt>zmodload</tt> returns status 2
 </p>
 <p>With <tt>-u</tt>, <tt>zmodload</tt> unloads modules.  The same <var>name</var>
 must be given that was given when the module was loaded, but it is not
-necessary for the module to exist in the filesystem.
+necessary for the module to exist in the file system.
 The <tt>-i</tt> option suppresses the error if the module is already
 unloaded (or was never loaded).
 </p>
@@ -2432,16 +2459,16 @@ Any feature not explicitly mentioned is left in its current state;
 if the module was not previously loaded this means any such features will
 remain disabled.  The return status is zero if all features were
 set, 1 if the module failed to load, and 2 if some features could
-not be set (for example, a parameter couldn't be added because there
+not be set (for example, a parameter couldn&rsquo;t be added because there
 was a different parameter of the same name) but the module was loaded.
 </p>
 <p>The standard features are builtins, conditions, parameters and math
-functions; these are indicated by the prefix `<tt>b:</tt>', `<tt>c:</tt>'
-(`<tt>C:</tt>' for an infix condition), `<tt>p:</tt>' and `<tt>f:</tt>', respectively,
+functions; these are indicated by the prefix &lsquo;<tt>b:</tt>&rsquo;, &lsquo;<tt>c:</tt>&rsquo;
+(&lsquo;<tt>C:</tt>&rsquo; for an infix condition), &lsquo;<tt>p:</tt>&rsquo; and &lsquo;<tt>f:</tt>&rsquo;, respectively,
 followed by the name that the corresponding feature would have in the
-shell.  For example, `<tt>b:strftime</tt>' indicates a builtin named
+shell.  For example, &lsquo;<tt>b:strftime</tt>&rsquo; indicates a builtin named
 <tt>strftime</tt> and <tt>p:EPOCHSECONDS</tt> indicates a parameter named
-<tt>EPOCHSECONDS</tt>.  The module may provide other (`abstract') features of
+<tt>EPOCHSECONDS</tt>.  The module may provide other (&lsquo;abstract&rsquo;) features of
 its own as indicated by its documentation; these have no prefix.
 </p>
 <p>With <tt>-l</tt> or <tt>-L</tt>, features provided by the module are listed.  With
@@ -2486,8 +2513,8 @@ may appear before the feature name.  If the feature is prefixed with
 may be used to list autoloads.  Autoloading is specific to individual
 features; when the module is loaded only the requested feature is
 enabled.  Autoload requests are preserved if the module is
-subsequently unloaded until an explicit `<tt>zmodload -Fa</tt> <var>module</var>
-<tt>-</tt><var>feature</var>' is issued.  It is not an error to request an autoload
+subsequently unloaded until an explicit &lsquo;<tt>zmodload -Fa</tt> <var>module</var>
+<tt>-</tt><var>feature</var>&rsquo; is issued.  It is not an error to request an autoload
 for a feature of a module that is already loaded.
 </p>
 <p>When the module is loaded each autoload is checked against the features
@@ -2529,7 +2556,7 @@ argument is given, all dependencies for that module are removed.
 <dd><p>The <tt>-ab</tt> option defines autoloaded builtins.  It defines the specified
 <var>builtin</var>s.  When any of those builtins is called, the module specified
 in the first argument is loaded and all its features are enabled (for
-selective control of features use `<tt>zmodload -F -a</tt>' as described
+selective control of features use &lsquo;<tt>zmodload -F -a</tt>&rsquo; as described
 above).  If only the <var>name</var> is given, one builtin is defined, with
 the same name as the module.  <tt>-i</tt> suppresses the error if the builtin
 is already defined or autoloaded, but not if another builtin of the
@@ -2546,7 +2573,7 @@ not yet loaded.  <tt>-i</tt> suppresses the error if the builtin is already
 removed (or never existed).
 </p>
 <p>Autoload requests are retained if the module is subsequently unloaded
-until an explicit `<tt>zmodload -ub</tt> <var>builtin</var>' is issued.
+until an explicit &lsquo;<tt>zmodload -ub</tt> <var>builtin</var>&rsquo; is issued.
 </p>
 </dd>
 <dt> <tt>zmodload</tt> <tt>-ac</tt> [ <tt>-IL</tt> ]</dt>
@@ -2614,7 +2641,7 @@ the first resolved name is itself an alias) are valid so long as these are
 not circular.  As the aliases take the same format as module names, they
 may include path separators:  in this case, there is no requirement for any
 part of the path named to exist as the alias will be resolved first.  For
-example, `<tt>any/old/alias</tt>' is always a valid alias.
+example, &lsquo;<tt>any/old/alias</tt>&rsquo; is always a valid alias.
 </p>
 <p>Dependencies added to aliased modules are actually added to the resolved
 module; these remain if the alias is removed.  It is valid to create an
@@ -2625,7 +2652,7 @@ already be marked as a loadable module in its own right.
 </p>
 <p>Apart from the above, aliases can be used in the <tt>zmodload</tt> command
 anywhere module names are required.  However, aliases will not be
-shown in lists of loaded modules with a bare `<tt>zmodload</tt>'.
+shown in lists of loaded modules with a bare &lsquo;<tt>zmodload</tt>&rsquo;.
 </p>
 </dd>
 <dt> <tt>zmodload</tt> <tt>-R</tt> <var>modalias</var> ... </dt>
@@ -2640,56 +2667,56 @@ error is caused and the remainder of the line is ignored.
 into the shell and modules that are loaded dynamically. In both cases
 this builtin command has to be used to make available the builtins and
 other things defined by modules (unless the module is autoloaded on
-these definitions). This is true even for systems that don't support
+these definitions). This is true even for systems that don&rsquo;t support
 dynamic loading of modules.
 </p>
 </dd>
 <dt> <tt>zparseopts</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC219">The zsh/zutil Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fzutil-Module">The zsh/zutil Module</a>.
 </p>
 </dd>
 <dt> <tt>zprof</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC216">The zsh/zprof Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fzprof-Module">The zsh/zprof Module</a>.
 </p>
 </dd>
 <dt> <tt>zpty</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC217">The zsh/zpty Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fzpty-Module">The zsh/zpty Module</a>.
 </p>
 </dd>
 <dt> <tt>zregexparse</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC219">The zsh/zutil Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fzutil-Module">The zsh/zutil Module</a>.
 </p>
 </dd>
 <dt> <tt>zsocket</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC195">The zsh/net/socket Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fnet_002fsocket-Module">The zsh/net/socket Module</a>.
 </p>
 </dd>
 <dt> <tt>zstyle</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC219">The zsh/zutil Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fzutil-Module">The zsh/zutil Module</a>.
 </p>
 </dd>
 <dt> <tt>ztcp</tt></dt>
-<dd><p>See <a href="Zsh-Modules.html#SEC202">The zsh/net/tcp Module</a>.
+<dd><p>See <a href="Zsh-Modules.html#The-zsh_002fnet_002ftcp-Module">The zsh/net/tcp Module</a>.
 </p>
 </dd>
 </dl>
 <hr size="6">
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="Options.html#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Zsh-Line-Editor.html#SEC120" title="Next chapter"> &gt;&gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="Options.html#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Zsh-Line-Editor.html#Zsh-Line-Editor" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Oliver Kiddle</em> on <em>May, 28 2009</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>April 20, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

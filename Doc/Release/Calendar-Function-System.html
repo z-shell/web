@@ -1,14 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on May, 28 2009 by texi2html 1.78 -->
-<!--
-Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+<!-- Created on April 20, 2011 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
             Olaf Bachmann <obachman@mathematik.uni-kl.de>
             and many others.
 Maintained by: Many creative people.
 Send bugs and suggestions to <texi2html-bug@nongnu.org>
-
 -->
 <head>
 <title>zsh: 23. Calendar Function System</title>
@@ -17,11 +16,12 @@ Send bugs and suggestions to <texi2html-bug@nongnu.org>
 <meta name="keywords" content="zsh: 23. Calendar Function System">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 1.78">
+<meta name="Generator" content="texi2html 1.82">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
 pre.display {font-family: serif}
 pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
@@ -43,49 +43,51 @@ ul.toc {list-style: none}
 
 <a name="Calendar-Function-System"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="Zsh-Modules.html#SEC219" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC221" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="Zsh-Modules.html#The-zsh_002fzutil-Module" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-4" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="Zsh-Modules.html#SEC168" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="TCP-Function-System.html#SEC233" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Zsh-Modules.html#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC220"></a>
-<h1 class="chapter"> 23. Calendar Function System </h1>
+<a name="Calendar-Function-System-1"></a>
+<h1 class="chapter">23. Calendar Function System</h1>
+<a name="index-calendar-function-system"></a>
+<a name="index-zsh_002fdatetime_002c-function-system-based-on"></a>
 
 <hr size="6">
-<a name="SEC221"></a>
+<a name="Description-4"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC220" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC222" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-File-and-Date-Formats" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="TCP-Function-System.html#SEC233" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h2 class="section"> 23.1 Description </h2>
+<h2 class="section">23.1 Description</h2>
 
 <p>The shell is supplied with a series of functions to replace and enhance the
 traditional Unix <tt>calendar</tt> programme, which warns the user of imminent
 or future events, details of which are stored in a text file (typically
-<tt>calendar</tt> in the user's home directory).  The version provided here
+<tt>calendar</tt> in the user&rsquo;s home directory).  The version provided here
 includes a mechanism for alerting the user when an event is due.
 </p>
 <p>In addition a function <tt>age</tt> is provided that can be used in a glob
@@ -102,64 +104,64 @@ module which is usually installed with the shell.  The library function
 operating systems.
 </p>
 <table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="#SEC222">23.2 File and Date Formats</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Calendar-File-and-Date-Formats">23.2 File and Date Formats</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#SEC227">23.3 User Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Calendar-System-User-Functions">23.3 User Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#SEC230">23.4 Styles</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Calendar-Styles">23.4 Styles</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#SEC231">23.5 Utility functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Calendar-Utility-Functions">23.5 Utility functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#SEC232">23.6 Bugs</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Calendar-Bugs">23.6 Bugs</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
 <hr size="6">
 <a name="Calendar-File-and-Date-Formats"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC221" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC223" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Description-4" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-File-Format" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="TCP-Function-System.html#SEC233" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC222"></a>
-<h2 class="section"> 23.2 File and Date Formats </h2>
+<a name="File-and-Date-Formats"></a>
+<h2 class="section">23.2 File and Date Formats</h2>
 
 
 <hr size="6">
-<a name="SEC223"></a>
+<a name="Calendar-File-Format"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC222" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC224" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Calendar-File-and-Date-Formats" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Date-Format" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC222" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="TCP-Function-System.html#SEC233" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-File-and-Date-Formats" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 23.2.1 Calendar File Format </h3>
+<h3 class="subsection">23.2.1 Calendar File Format</h3>
 
 <p>The calendar file is by default <tt>~/calendar</tt>.  This can be configured
 by the <tt>calendar-file</tt> style, see
-<a href="#SEC230">Styles</a>.  The basic format consists
+<a href="#Calendar-Styles">Styles</a>.  The basic format consists
 of a series of separate lines, with no indentation, each including
 a date and time specification followed by a description of the event.
 </p>
@@ -187,27 +189,27 @@ default.
 </p>
 
 <hr size="6">
-<a name="SEC224"></a>
+<a name="Date-Format"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC223" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC225" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Calendar-File-Format" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Relative-Time-Format" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC222" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="TCP-Function-System.html#SEC233" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-File-and-Date-Formats" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 23.2.2 Date Format </h3>
+<h3 class="subsection">23.2.2 Date Format</h3>
 
 <p>The format of the date and time is designed to allow flexibility without
-admitting ambiguity.  (The words `date' and `time' are both used in the
+admitting ambiguity.  (The words &lsquo;date&rsquo; and &lsquo;time&rsquo; are both used in the
 documentation below; except where specifically noted this implies a string
 that may include both a date and a time specification.)  Note that there is
 no localization support; month and day names must be in English and
@@ -324,7 +326,7 @@ maybe, junta, etc. are happily handled.
 <p>Where the year is shown as optional, the current year is assumed.  There
 are only two such cases, the form <tt>Jun 20</tt> or <tt>14 September</tt> (the only
 two commonly occurring forms, apart from a &quot;the&quot; in some forms of English,
-which isn't currently supported).  Such dates will of course become
+which isn&rsquo;t currently supported).  Such dates will of course become
 ambiguous in the future, so should ideally be avoided.
 </p>
 <p>Times may follow dates with a colon, e.g. <tt>1965/07/12:09:45</tt>; this is in
@@ -363,24 +365,24 @@ together with the matched (but unused) time zone.  This leaves the following:
 </p>
 
 <hr size="6">
-<a name="SEC225"></a>
+<a name="Relative-Time-Format"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC224" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC226" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Date-Format" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Example-2" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC222" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="TCP-Function-System.html#SEC233" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-File-and-Date-Formats" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 23.2.3 Relative Time Format </h3>
+<h3 class="subsection">23.2.3 Relative Time Format</h3>
 
 <p>In certain places relative times are handled.  Here, a date is not allowed;
 instead a combination of various supported periods are allowed, together
@@ -390,7 +392,7 @@ least significant.
 <p>In some cases, a more accurate calculation is possible when there is an
 anchor date:  offsets of months or years pick the correct day, rather than
 being rounded, and it is possible to pick a particular day in a month as
-`(1st Friday)', etc., as described in more detail below.
+&lsquo;(1st Friday)&rsquo;, etc., as described in more detail below.
 </p>
 <p>Anchors are available in the following cases.  If one or two times are
 passed to the function <tt>calendar</tt>, the start time acts an anchor for the
@@ -457,7 +459,7 @@ specification, but before any time of day, and must be in the form
 <var>n</var><tt>(th|st|rd)</tt> <var>day</var>, for example <tt>1st Tuesday</tt> or
 <tt>3rd Monday</tt>.  As in other places, days are matched case insensitively,
 must be in English, and only the first three letters are significant except
-that a form beginning `month' does not match `Monday'.  No attempt is made
+that a form beginning &lsquo;month&rsquo; does not match &lsquo;Monday&rsquo;.  No attempt is made
 to sanitize the resulting date; attempts to squeeze too many occurrences
 into a month will push the day into the next month (but in the obvious
 fashion, retaining the correct day of the week).
@@ -472,24 +474,24 @@ Monthly, 3rd Thursday
 
 
 <hr size="6">
-<a name="SEC226"></a>
+<a name="Example-2"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC225" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC227" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Relative-Time-Format" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-System-User-Functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC222" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="TCP-Function-System.html#SEC233" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-File-and-Date-Formats" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 23.2.4 Example </h3>
+<h3 class="subsection">23.2.4 Example</h3>
 
 <p>Here is an example calendar file.  It uses a consistent date format,
 as recommended above.
@@ -514,53 +516,53 @@ same time.
 <hr size="6">
 <a name="Calendar-System-User-Functions"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC226" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC228" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Example-2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-system-functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="TCP-Function-System.html#SEC233" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC227"></a>
-<h2 class="section"> 23.3 User Functions </h2>
+<a name="User-Functions"></a>
+<h2 class="section">23.3 User Functions</h2>
 
 <p>This section describes functions that are designed to be called
 directly by the user.  The first part describes those functions
-associated with the user's calendar; the second part describes
+associated with the user&rsquo;s calendar; the second part describes
 the use in glob qualifiers.
 </p>
 
 <hr size="6">
-<a name="SEC228"></a>
+<a name="Calendar-system-functions"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC227" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC229" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Calendar-System-User-Functions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Glob-qualifiers" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC227" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="TCP-Function-System.html#SEC233" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-System-User-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 23.3.1 Calendar system functions </h3>
+<h3 class="subsection">23.3.1 Calendar system functions</h3>
 
 <dl compact="compact">
-<dd><a name="IDX2014"></a>
+<dd><a name="index-calendar"></a>
 </dd>
 <dt> <tt>calendar</tt> [ <tt>-abdDsv</tt> ] [ <tt>-C</tt> <var>calfile</var> ] [ -n <var>num</var> ] [ <tt>-S</tt> <var>showprog</var> ] [ [ <var>start</var> ] <var>end</var> ](</dt>
 <dt> <tt>calendar -r</tt> [ <tt>-abdDrsv</tt> ] [ <tt>-C</tt> <var>calfile</var> ] [ -n <var>num</var> ] [ <tt>-S</tt> <var>showprog</var> ] [ <var>start</var> ]</dt>
@@ -597,13 +599,13 @@ The word <tt>now</tt> can be used to indicate the current time.
 </p>
 </dd>
 <dt> <tt>-b</tt></dt>
-<dd><p>Brief:  don't display continuation lines (i.e. indented lines following
+<dd><p>Brief:  don&rsquo;t display continuation lines (i.e. indented lines following
 the line with the date/time), just the first line.
 </p>
 </dd>
 <dt> <tt>-B</tt> <var>lines</var></dt>
 <dd><p>Brief: display at most the first <var>lines</var> lines of the calendar
-entry.  `<tt>-B 1</tt>' is equivalent to `<tt>-b</tt>'.
+entry.  &lsquo;<tt>-B 1</tt>&rsquo; is equivalent to &lsquo;<tt>-b</tt>&rsquo;.
 </p>
 </dd>
 <dt> <tt>-C</tt> <var>calfile</var></dt>
@@ -634,14 +636,14 @@ as a <tt>start</tt> time.
 </p>
 </dd>
 <dt> <tt>-s</tt></dt>
-<dd><p>Use the shell's <tt>sched</tt> command to schedule a timed event that
+<dd><p>Use the shell&rsquo;s <tt>sched</tt> command to schedule a timed event that
 will warn the user when an event is due.  Note that the <tt>sched</tt> command
 only runs if the shell is at an interactive prompt; a foreground task
 blocks the scheduled task from running until it is finished.
 </p>
 <p>The timed event usually runs the programme <tt>calendar_show</tt> to show
 the event, as described in
-<a href="#SEC231">Utility functions</a>.
+<a href="#Calendar-Utility-Functions">Utility functions</a>.
 </p>
 <p>By default, a warning of the event is shown five minutes before it is due.
 The warning period can be configured by the style <tt>warn-time</tt> or
@@ -656,6 +658,50 @@ after the existing event.  Note that this is currently the only use
 made of the repeat count, so that it is not possible to query the schedule
 for a recurrence of an event in the calendar until the previous event
 has passed.
+</p>
+<p>If <tt>RPT</tt> is used, it is also possible to specify that certain
+recurrences of an event are rescheduled or cancelled.  This is
+done with the <tt>OCCURRENCE</tt> keyword, followed by whitespace and the
+date and time of the occurrence in the regular sequence, followed by
+whitespace and either the date and time of the rescheduled event or
+the exact string <tt>CANCELLED</tt>.  In this case the date and time must
+be in exactly the &quot;date with local time&quot; format used by the
+<tt>text/calendar</tt> MIME type (RFC 2445),
+<var>&lt;YYYY&gt;&lt;MM&gt;&lt;DD&gt;</var><tt>T</tt><var>&lt;hh&gt;&lt;mm&gt;&lt;ss&gt;</var> (note the presence of the literal
+character <tt>T</tt>).  The first word (the regular recurrence) may be
+something other than a proper date/time to indicate that the event
+is additional to the normal sequence; a convention that retains
+the formatting appearance is <tt>XXXXXXXXTXXXXXX</tt>.
+</p>
+<p>Furthermore, it is useful to record the next regular recurrence
+(as then the displayed date may be for a rescheduled event so cannot
+be used for calculating the regular sequence).  This is specified by
+<tt>RECURRENCE</tt> and a time or date in the same format.  <tt>calendar_add</tt>
+adds such an indication when it encounters a recurring event that does not
+include one, based on the headline date/time.
+</p>
+<p>If <tt>calendar_add</tt> is used to update occurrences the <tt>UID</tt> keyword
+described there should be present in both the existing entry and the added
+occurrence in order to identify recurring event sequences.
+</p>
+<p>For example,
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">Thu May 6, 2010 11:00 Informal chat RPT 1 week
+  # RECURRENCE 20100506T110000
+  # OCCURRENCE 20100513T110000 20100513T120000
+  # OCCURRENCE 20100520T110000 CANCELLED
+</pre></td></tr></table>
+
+<p>The event that occurs at 11:00 on 13th May 2010 is rescheduled an hour
+later.  The event that occurs a week later is cancelled.  The occurrences
+are given on a continuation line starting with a <tt>#</tt> character so will
+not usually be displayed as part of the event.  As elsewhere, no account of
+time zones is taken with the times. After the next event occurs the headline
+date/time will be &lsquo;<tt>Thu May 13, 2010 12:00</tt>&rsquo; while the <tt>RECURRENCE</tt>
+date/time will be &lsquo;<tt>20100513T110000</tt>&rsquo; (note that cancelled and
+moved events are not taken account of in the <tt>RECURRENCE</tt>, which
+records what the next regular recurrence is, but they are accounted for in
+the headline date/time).
 </p>
 <p>It is safe to run <tt>calendar -s</tt> to reschedule an existing event
 (if the calendar file has changed, for example), and also to have it
@@ -679,12 +725,12 @@ the dates in the calendar file.
 </dd>
 </dl>
 
-<a name="IDX2015"></a>
+<a name="index-calendar_005fadd"></a>
 </dd>
 <dt> <tt>calendar_add</tt> [ <tt>-BL</tt> ] <var>event ...</var></dt>
 <dd><p>Adds a single event to the calendar in the appropriate location.
 The event can contain multiple lines, as described in
-<a href="#SEC222">File and Date Formats</a>.
+<a href="#Calendar-File-and-Date-Formats">File and Date Formats</a>.
 Using this function ensures that the calendar file is sorted in date
 and time order.  It also makes special arrangements for locking
 the file while it is altered.  The old calendar is left in a file
@@ -714,19 +760,42 @@ an indented continuation line starting with a <tt>#</tt>, for example:
 
 <p>The second line will not be shown by the <tt>calendar</tt> function.
 </p>
-<a name="IDX2016"></a>
+<p>It is possible to specify the <tt>RPT</tt> keyword followed by <tt>CANCELLED</tt>
+instead of a relative time.  This causes any matched event or series
+of events to be cancelled (the original event does not have to be marked
+as recurring in order to be cancelled by this method).  A <tt>UID</tt> is
+required in order to match an existing event in the calendar.
+</p>
+<p><tt>calendar_add</tt> will attempt to manage recurrences and occurrences of
+repeating events as described for event scheduling by <tt>calendar -s</tt>
+above.  To reschedule or cancel a single event <tt>calendar_add</tt> should be
+called with an entry that includes the correct <tt>UID</tt> but does <em>not</em>
+include the <tt>RPT</tt> keyword as this is taken to mean the entry applies to a
+series of repeating events and hence replaces all existing information.
+Each rescheduled or cancelled occurrence must have an <tt>OCCURRENCE</tt>
+keyword in the entry passed to <tt>calendar_add</tt> which will be merged into
+the calendar file.  Any existing reference to the occurrence is replaced.
+An occurrence that does not refer to a valid existing event is added as a
+one-off occurrence to the same calendar entry.
+</p>
+<a name="index-calendar_005fedit"></a>
 </dd>
 <dt> <tt>calendar_edit</tt></dt>
-<dd><p>This calls the user's editor to edit the calendar file.  The editor
-is given by the variable <tt>VISUAL</tt>, if set, else the variable <tt>EDITOR</tt>.
-If the calendar scheduler was running, then after editing the file
+<dd><p>This calls the user&rsquo;s editor to edit the calendar file.  If
+there are arguments, they are taken as the editor to use (the file name
+is appended to the commands); otherwise, the editor is given by the
+variable <tt>VISUAL</tt>, if set, else the variable <tt>EDITOR</tt>.
+</p>
+<p>If the calendar scheduler was running, then after editing the file
 <tt>calendar -s</tt> is called to update it.
 </p>
 <p>This function locks out the calendar system during the edit.
 Hence it should be used to edit the calendar file if there is any
-possibility of a calendar event occurring meanwhile.
+possibility of a calendar event occurring meanwhile.  Note this
+can lead to another shell with calendar functions enabled hanging waiting
+for a lock, so it is necessary to quit the editor as soon as possible.
 </p>
-<a name="IDX2017"></a>
+<a name="index-calendar_005fparse"></a>
 </dd>
 <dt> <tt>calendar_parse</tt> <var>calendar-entry</var></dt>
 <dd><p>This is the internal function that analyses the parts of a calendar
@@ -740,6 +809,12 @@ array <tt>reply</tt> as follows:
 <dt> time</dt>
 <dd><p>The time as a string of digits in the same units as
 <tt>$EPOCHSECONDS</tt>
+</p></dd>
+<dt> schedtime</dt>
+<dd><p>The regularly scheduled time.  This may differ from
+the actual event time <tt>time</tt> if this is a recurring event and the next
+occurrence has been rescheduled.  Then <tt>time</tt> gives the actual time
+and <tt>schedtime</tt> the time of the regular recurrence before modification.
 </p></dd>
 <dt> text1</dt>
 <dd><p>The text from the line not including the date and time of the
@@ -761,6 +836,12 @@ of digits containing the time of the recurrence in the same units
 as <tt>$EPOCHSECONDS</tt>.  (Note this is an absolute time.)  Not set if
 no <tt>RPT</tt> keyword and value were matched.
 </p></dd>
+<dt> schedrpttime</dt>
+<dd><p>The next regularly scheduled occurrence of a recurring
+event before modification.  This may differ from <tt>rpttime</tt>, which is the
+actual time of the event that may have been rescheduled from the regular
+time.
+</p></dd>
 <dt> rptstr</dt>
 <dd><p>The raw string matched after the <tt>RPT</tt> keyword, else unset.
 </p></dd>
@@ -771,7 +852,7 @@ keywords and values.
 </dd>
 </dl>
 <p>)
-<a name="IDX2018"></a>
+<a name="index-calendar_005fshowdate"></a>
 </p></dd>
 <dt> <tt>calendar_showdate</tt> [ <tt>-r</tt> ] [ <tt>-f</tt> <var>fmt</var> ] <var>date-spec ...</var></dt>
 <dd><p>The given <var>date-spec</var> is interpreted and the corresponding date and
@@ -779,8 +860,8 @@ time printed.  If the initial <var>date-spec</var> begins with a <tt>+</tt> or
 <tt>-</tt> it is treated as relative to the current time; <var>date-spec</var>s after
 the first are treated as relative to the date calculated so far and
 a leading <tt>+</tt> is optional in that case.  This allows one to
-use the system as a date calculator.  For example, <tt>calendar_showdate '+1
-month, 1st Friday'</tt> shows the date of the first Friday of next month.
+use the system as a date calculator.  For example, <tt>calendar_showdate &rsquo;+1
+month, 1st Friday&rsquo;</tt> shows the date of the first Friday of next month.
 </p>
 <p>With the option <tt>-r</tt> nothing is printed but the value of the date and
 time in seconds since the epoch is stored in the parameter <tt>REPLY</tt>.
@@ -792,7 +873,7 @@ is passed to <tt>strftime</tt>; see notes on the <tt>date-format</tt> style belo
 options must occur in separate words; in other words, <tt>-r</tt> and <tt>-f</tt>
 should not be combined in the same word.
 </p>
-<a name="IDX2019"></a>
+<a name="index-calendar_005fsort"></a>
 </dd>
 <dt> <tt>calendar_sort</tt></dt>
 <dd><p>Sorts the calendar file into date and time order.    The old calendar is
@@ -803,41 +884,35 @@ left in a file with the suffix <tt>.old</tt>.
 
 
 <hr size="6">
-<a name="SEC229"></a>
+<a name="Glob-qualifiers"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC228" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC230" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Calendar-system-functions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-Styles" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC227" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="TCP-Function-System.html#SEC233" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-System-User-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 23.3.2 Glob qualifiers </h3>
+<h3 class="subsection">23.3.2 Glob qualifiers</h3>
+<a name="index-age"></a>
 
 <p>The function <tt>age</tt> can be autoloaded and use separately from
 the calendar system, although it uses the function <tt>calendar_scandate</tt>
-for date formatting.  It requires the <tt>zsh/stat</tt> builtin, which
-makes available the builtin <tt>stat</tt>.  This may conflict with an
-external programme of the same name; if it does, the builtin may be
-disabled for normal operation by including the following code in
-an initialization file:
+for date formatting.  It requires the <tt>zsh/stat</tt> builtin, but uses
+only the builtin <tt>zstat</tt>.
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">zmodload -i zsh/stat
-disable stat
-</pre></td></tr></table>
-
 <p><tt>age</tt> selects files having a given modification time for use
 as a glob qualifier.  The format of the date is the same as that
 understood by the calendar system, described in
-<a href="#SEC222">File and Date Formats</a>.
+<a href="#Calendar-File-and-Date-Formats">File and Date Formats</a>.
 </p>
 <p>The function can take one or two arguments, which can be supplied either
 directly as command or arguments, or separately as shell parameters.
@@ -892,56 +967,56 @@ causes both parameters to be ignored.
 <hr size="6">
 <a name="Calendar-Styles"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC229" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC231" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Glob-qualifiers" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-Utility-Functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="TCP-Function-System.html#SEC233" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC230"></a>
-<h2 class="section"> 23.4 Styles </h2>
+<a name="Styles"></a>
+<h2 class="section">23.4 Styles</h2>
 
 <p>The zsh style mechanism using the <tt>zstyle</tt> command is describe in
-<a href="Zsh-Modules.html#SEC219">The zsh/zutil Module</a>.  This is the same mechanism
+<a href="Zsh-Modules.html#The-zsh_002fzutil-Module">The zsh/zutil Module</a>.  This is the same mechanism
 used in the completion system.
 </p>
 <p>The styles below are all examined in the context
 <tt>:datetime:</tt><var>function</var><tt>:</tt>, for example <tt>:datetime:calendar:</tt>.
 </p>
 <dl compact="compact">
-<dd><a name="IDX2020"></a>
+<dd><a name="index-calendar_002dfile"></a>
 </dd>
 <dt> <tt>calendar-file</tt></dt>
 <dd><p>The location of the main calendar.  The default is <tt>~/calendar</tt>.
 </p>
-<a name="IDX2021"></a>
+<a name="index-date_002dformat"></a>
 </dd>
 <dt> <tt>date-format</tt></dt>
 <dd><p>A <tt>strftime</tt> format string (see man page strftime(3)) with the zsh
 extensions providing various numbers with no leading zero or space
 if the number is a single digit as described for the
 <tt>%D{</tt><var>string</var><tt>}</tt> prompt format in
-<a href="Prompt-Expansion.html#SEC52">Prompt Expansion</a>.
+<a href="Prompt-Expansion.html#Prompt-Expansion">Prompt Expansion</a>.
 </p>
 <p>This is used for outputting dates in <tt>calendar</tt>, both to support
 the <tt>-v</tt> option and when adding recurring events back to the calendar
 file, and in <tt>calendar_showdate</tt> as the final output format.
 </p>
 <p>If the style is not set, the default used is similar the standard system
-format as output by the <tt>date</tt> command (also known as `ctime format'):
-`<tt>%a %b %d %H:%M:%S %Z %Y</tt>'.
+format as output by the <tt>date</tt> command (also known as &lsquo;ctime format&rsquo;):
+&lsquo;<tt>%a %b %d %H:%M:%S %Z %Y</tt>&rsquo;.
 </p>
-<a name="IDX2022"></a>
+<a name="index-done_002dfile"></a>
 </dd>
 <dt> <tt>done-file</tt></dt>
 <dd><p>The location of the file to which events which have passed are appended.
@@ -949,7 +1024,7 @@ The default is the calendar file location with the suffix <tt>.done</tt>.
 The style may be set to an empty string in which case a &quot;done&quot; file
 will not be maintained.
 </p>
-<a name="IDX2023"></a>
+<a name="index-reformat_002ddate"></a>
 </dd>
 <dt> <tt>reformat-date</tt></dt>
 <dd><p>Boolean, used by <tt>calendar_add</tt>.  If it is true, the date and time
@@ -958,7 +1033,7 @@ given by the style <tt>date-format</tt> or its default.  Only the date and
 time of the event itself is reformatted; any subsidiary dates and times
 such as those associated with repeat and warning times are left alone.
 </p>
-<a name="IDX2024"></a>
+<a name="index-show_002dprog"></a>
 </dd>
 <dt> <tt>show-prog</tt></dt>
 <dd><p>The programme run by <tt>calendar</tt> for showing events.  It will
@@ -969,7 +1044,7 @@ for specific events.
 </p>
 <p>The default is the function <tt>calendar_show</tt>.
 </p>
-<a name="IDX2025"></a>
+<a name="index-warn_002dtime"></a>
 </dd>
 <dt> <tt>warn-time</tt></dt>
 <dd><p>The time before an event at which a warning will be displayed, if the
@@ -982,27 +1057,27 @@ The default is 5 minutes.
 <hr size="6">
 <a name="Calendar-Utility-Functions"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC230" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC232" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Calendar-Styles" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-Bugs" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="TCP-Function-System.html#SEC233" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC231"></a>
-<h2 class="section"> 23.5 Utility functions </h2>
+<a name="Utility-functions"></a>
+<h2 class="section">23.5 Utility functions</h2>
 
 <dl compact="compact">
-<dd><a name="IDX2026"></a>
+<dd><a name="index-calendar_005flockfiles"></a>
 </dd>
 <dt> <tt>calendar_lockfiles</tt></dt>
 <dd><p>Attempt to lock the files given in the argument.  To prevent
@@ -1027,7 +1102,7 @@ be local to the caller.
 <p>This function may be used as a general file locking function, although
 this will only work if only this mechanism is used to lock files.
 </p>
-<a name="IDX2027"></a>
+<a name="index-calendar_005fread"></a>
 </dd>
 <dt> <tt>calendar_read</tt></dt>
 <dd><p>This is a backend used by various other functions to parse the
@@ -1036,13 +1111,13 @@ calendar file, which is passed as the only argument.  The array
 pruning is done except that ampersands are removed from the start of
 the line.  Each entry may contain multiple lines.
 </p>
-<a name="IDX2028"></a>
+<a name="index-calendar_005fscandate"></a>
 </dd>
 <dt> <tt>calendar_scandate</tt></dt>
 <dd><p>This is a generic function to parse dates and times that may be
 used separately from the calendar system.  The argument is a date
 or time specification as described in
-<a href="#SEC222">File and Date Formats</a>.  The parameter <tt>REPLY</tt>
+<a href="#Calendar-File-and-Date-Formats">File and Date Formats</a>.  The parameter <tt>REPLY</tt>
 is set to the number of seconds since the epoch corresponding to that date
 or time.  By default, the date and time may occur anywhere within the given
 argument.
@@ -1101,7 +1176,7 @@ is tolling twelve.
 </dd>
 </dl>
 
-<a name="IDX2029"></a>
+<a name="index-calendar_005fshow"></a>
 </dd>
 <dt> <tt>calendar_show</tt></dt>
 <dd><p>The function used by default to display events.  It accepts a start time
@@ -1121,24 +1196,24 @@ command <tt>xmessage</tt> to display a window with the event details.
 <hr size="6">
 <a name="Calendar-Bugs"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC231" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="TCP-Function-System.html#SEC233" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Calendar-Utility-Functions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC220" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="TCP-Function-System.html#SEC233" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC232"></a>
-<h2 class="section"> 23.6 Bugs </h2>
+<a name="Bugs"></a>
+<h2 class="section">23.6 Bugs</h2>
 
 <p>As the system is based entirely on shell functions (with a little support
 from the <tt>zsh/datetime</tt> module) the mechanisms used are not as robust as
@@ -1162,21 +1237,21 @@ If called from a scheduled task, it should instead reschedule the event
 that caused it.
 </p><hr size="6">
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC220" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="TCP-Function-System.html#SEC233" title="Next chapter"> &gt;&gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Oliver Kiddle</em> on <em>May, 28 2009</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>April 20, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

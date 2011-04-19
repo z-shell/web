@@ -1,14 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on May, 28 2009 by texi2html 1.78 -->
-<!--
-Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+<!-- Created on April 20, 2011 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
             Olaf Bachmann <obachman@mathematik.uni-kl.de>
             and many others.
 Maintained by: Many creative people.
 Send bugs and suggestions to <texi2html-bug@nongnu.org>
-
 -->
 <head>
 <title>zsh: 7. Redirection</title>
@@ -17,11 +16,12 @@ Send bugs and suggestions to <texi2html-bug@nongnu.org>
 <meta name="keywords" content="zsh: 7. Redirection">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 1.78">
+<meta name="Generator" content="texi2html 1.82">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
 pre.display {font-family: serif}
 pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
@@ -43,24 +43,27 @@ ul.toc {list-style: none}
 
 <a name="Redirection"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="Shell-Grammar.html#SEC36" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC38" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="Shell-Grammar.html#Quoting" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Multios" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="Shell-Grammar.html#SEC28" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Command-Execution.html#SEC40" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Shell-Grammar.html#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Command-Execution.html#Command-Execution" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC37"></a>
-<h1 class="chapter"> 7. Redirection </h1>
+<a name="Redirection-1"></a>
+<h1 class="chapter">7. Redirection</h1>
+<a name="index-redirection"></a>
+<a name="index-file-descriptors"></a>
+<a name="index-descriptors_002c-file"></a>
 <p>If a command is followed by <tt>&amp;</tt>
 and job control is not active,
 then the default standard input
@@ -124,19 +127,19 @@ The resulting document, called a
 <em>here-document</em>, becomes the standard input.
 </p>
 <p>If any character of <var>word</var> is quoted with
-single or double quotes or a `<tt>\</tt>',
+single or double quotes or a &lsquo;<tt>\</tt>&rsquo;,
 no interpretation is placed upon the characters of the document.
 Otherwise, parameter and command substitution
-occurs, `<tt>\</tt>' followed by a newline is removed,
-and `<tt>\</tt>' must be used to quote the characters
-`<tt>\</tt>', `<tt>$</tt>', `<tt>`</tt>' and the first character of <var>word</var>.
+occurs, &lsquo;<tt>\</tt>&rsquo; followed by a newline is removed,
+and &lsquo;<tt>\</tt>&rsquo; must be used to quote the characters
+&lsquo;<tt>\</tt>&rsquo;, &lsquo;<tt>$</tt>&rsquo;, &lsquo;<tt>&lsquo;</tt>&rsquo; and the first character of <var>word</var>.
 </p>
 <p>Note that <var>word</var> itself does not undergo shell expansion.  Backquotes
 in <var>word</var> do not have their usual effect; instead they behave
 similarly to double quotes, except that the backquotes themselves are
 passed through unchanged.  (This information is given for completeness
 and it is not recommended that backquotes be used.)  Quotes in the form
-<tt>$'</tt><var>...</var><tt>'</tt> have their standard effect of expanding backslashed
+<tt>$&rsquo;</tt><var>...</var><tt>&rsquo;</tt> have their standard effect of expanding backslashed
 references to special characters.
 </p>
 <p>If <tt>&lt;&lt;-</tt> is used, then all leading
@@ -168,11 +171,11 @@ does not undergo shell expansion.
 </dd>
 <dt> <tt>&gt;&amp;</tt> <var>word</var></dt>
 <dt> <tt>&amp;&gt;</tt> <var>word</var></dt>
-<dd><p>(Except where `<tt>&gt;&amp;</tt> <var>word</var>' matches one of the above syntaxes;
-`<tt>&amp;&gt;</tt>' can always be used to avoid this ambiguity.)
+<dd><p>(Except where &lsquo;<tt>&gt;&amp;</tt> <var>word</var>&rsquo; matches one of the above syntaxes;
+&lsquo;<tt>&amp;&gt;</tt>&rsquo; can always be used to avoid this ambiguity.)
 Redirects both standard output and standard error (file descriptor 2)
-in the manner of `<tt>&gt;</tt> <var>word</var>'.
-Note that this does <em>not</em> have the same effect as `<tt>&gt;</tt> <var>word</var> <tt>2&gt;&amp;1</tt>'
+in the manner of &lsquo;<tt>&gt;</tt> <var>word</var>&rsquo;.
+Note that this does <em>not</em> have the same effect as &lsquo;<tt>&gt;</tt> <var>word</var> <tt>2&gt;&amp;1</tt>&rsquo;
 in the presence of multios (see the section below).
 </p>
 </dd>
@@ -181,13 +184,13 @@ in the presence of multios (see the section below).
 <dt> <tt>&amp;&gt;|</tt> <var>word</var></dt>
 <dt> <tt>&amp;&gt;!</tt> <var>word</var></dt>
 <dd><p>Redirects both standard output and standard error (file descriptor 2)
-in the manner of `<tt>&gt;|</tt> <var>word</var>'.
+in the manner of &lsquo;<tt>&gt;|</tt> <var>word</var>&rsquo;.
 </p>
 </dd>
 <dt> <tt>&gt;&gt;&amp;</tt> <var>word</var></dt>
 <dt> <tt>&amp;&gt;&gt;</tt> <var>word</var></dt>
 <dd><p>Redirects both standard output and standard error (file descriptor 2)
-in the manner of `<tt>&gt;&gt;</tt> <var>word</var>'.
+in the manner of &lsquo;<tt>&gt;&gt;</tt> <var>word</var>&rsquo;.
 </p>
 </dd>
 <dt> <tt>&gt;&gt;&amp;|</tt> <var>word</var></dt>
@@ -195,7 +198,7 @@ in the manner of `<tt>&gt;&gt;</tt> <var>word</var>'.
 <dt> <tt>&amp;&gt;&gt;|</tt> <var>word</var></dt>
 <dt> <tt>&amp;&gt;&gt;!</tt> <var>word</var></dt>
 <dd><p>Redirects both standard output and standard error (file descriptor 2)
-in the manner of `<tt>&gt;&gt;|</tt> <var>word</var>'.
+in the manner of &lsquo;<tt>&gt;&gt;|</tt> <var>word</var>&rsquo;.
 </p>
 </dd>
 </dl>
@@ -268,37 +271,39 @@ occurs at the point the redirection is opened.  This is after the expansion
 of command arguments and after any redirections to the left on the command
 line have been processed.
 </p>
-<p>The `<tt>|&amp;</tt>' command separator described in
-<a href="Shell-Grammar.html#SEC29">Simple Commands &amp; Pipelines</a>
-is a shorthand for `<tt>2&gt;&amp;1 |</tt>'.
+<p>The &lsquo;<tt>|&amp;</tt>&rsquo; command separator described in
+<a href="Shell-Grammar.html#Simple-Commands-_0026-Pipelines">Simple Commands &amp; Pipelines</a>
+is a shorthand for &lsquo;<tt>2&gt;&amp;1 |</tt>&rsquo;.
 </p>
-<p>The various forms of process substitution, `<tt>&lt;(</tt><var>list</var><tt>)</tt>',
-and `<tt>=(</tt><var>list</var>())' for input and
-`<tt>&gt;(</tt><var>list</var><tt>)</tt>' for output, are often used together with
+<p>The various forms of process substitution, &lsquo;<tt>&lt;(</tt><var>list</var><tt>)</tt>&rsquo;,
+and &lsquo;<tt>=(</tt><var>list</var>())&rsquo; for input and
+&lsquo;<tt>&gt;(</tt><var>list</var><tt>)</tt>&rsquo; for output, are often used together with
 redirection.  For example, if <var>word</var> in an output redirection is of the
-form `<tt>&gt;(</tt><var>list</var><tt>)</tt>' then the output is piped to the
+form &lsquo;<tt>&gt;(</tt><var>list</var><tt>)</tt>&rsquo; then the output is piped to the
 command represented by <var>list</var>.  See
-<a href="Expansion.html#SEC67">Process Substitution</a>.
+<a href="Expansion.html#Process-Substitution">Process Substitution</a>.
 </p>
 <hr size="6">
-<a name="SEC38"></a>
+<a name="Multios"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC37" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC39" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Redirection" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Redirections-with-no-command" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC37" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC37" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Command-Execution.html#SEC40" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Redirection" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Redirection" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Command-Execution.html#Command-Execution" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h2 class="section"> 7.1 Multios </h2>
+<h2 class="section">7.1 Multios</h2>
+<a name="index-multios"></a>
+<a name="index-MULTIOS_002c-use-of"></a>
 <p>If the user tries to open a file descriptor for writing more than once,
 the shell opens the file descriptor as a pipe to a process that copies
 its input to all the specified outputs, similar to <cite>tee</cite>,
@@ -307,13 +312,13 @@ provided the <tt>MULTIOS</tt> option is set, as it is by default.  Thus:
 <table><tr><td>&nbsp;</td><td><pre class="example">date &gt;foo &gt;bar
 </pre></td></tr></table>
 
-<p>writes the date to two files, named `<tt>foo</tt>' and `<tt>bar</tt>'.
+<p>writes the date to two files, named &lsquo;<tt>foo</tt>&rsquo; and &lsquo;<tt>bar</tt>&rsquo;.
 Note that a pipe is an implicit redirection; thus
 </p>
 <table><tr><td>&nbsp;</td><td><pre class="example">date &gt;foo | cat
 </pre></td></tr></table>
 
-<p>writes the date to the file `<tt>foo</tt>', and also pipes it to cat.
+<p>writes the date to the file &lsquo;<tt>foo</tt>&rsquo;, and also pipes it to cat.
 </p>
 <p>If the <tt>MULTIOS</tt>
 option is set, the word after a redirection operator is also subjected
@@ -323,8 +328,8 @@ to filename generation (globbing).  Thus
 </pre></td></tr></table>
 
 <p>will truncate all files in the current directory,
-assuming there's at least one.  (Without the <tt>MULTIOS</tt>
-option, it would create an empty file called `<tt>*</tt>'.)
+assuming there&rsquo;s at least one.  (Without the <tt>MULTIOS</tt>
+option, it would create an empty file called &lsquo;<tt>*</tt>&rsquo;.)
 Similarly, you can do
 </p>
 <table><tr><td>&nbsp;</td><td><pre class="example">echo exit 0 &gt;&gt; *.sh
@@ -344,7 +349,7 @@ provided the <tt>MULTIOS</tt> option is set.  Thus
 <table><tr><td>&nbsp;</td><td><pre class="example">sort &lt;f{oo,ubar}
 </pre></td></tr></table>
 
-<p>is equivalent to `<tt>cat foo fubar | sort</tt>'.
+<p>is equivalent to &lsquo;<tt>cat foo fubar | sort</tt>&rsquo;.
 </p>
 <p>Expansion of the redirection argument occurs at the point the redirection
 is opened, at the point described above for the expansion of the variable
@@ -355,7 +360,7 @@ in <tt>&gt;&amp;$myfd</tt>.
 <table><tr><td>&nbsp;</td><td><pre class="example">cat bar | sort &lt;foo
 </pre></td></tr></table>
 
-<p>is equivalent to `<tt>cat bar foo | sort</tt>' (note the order of the inputs).
+<p>is equivalent to &lsquo;<tt>cat bar foo | sort</tt>&rsquo; (note the order of the inputs).
 </p>
 <p>If the <tt>MULTIOS</tt> option is <em>un</em>set,
 each redirection replaces the previous redirection for that file descriptor.
@@ -364,7 +369,7 @@ However, all files redirected to are actually opened, so
 <table><tr><td>&nbsp;</td><td><pre class="example">echo foo &gt; bar &gt; baz
 </pre></td></tr></table>
 
-<p>when <tt>MULTIOS</tt> is unset will truncate bar, and write `<tt>foo</tt>' into baz.
+<p>when <tt>MULTIOS</tt> is unset will truncate bar, and write &lsquo;<tt>foo</tt>&rsquo; into baz.
 </p>
 <p>There is a problem when an output multio is attached to an external
 program.  A simple example shows this:
@@ -373,7 +378,7 @@ program.  A simple example shows this:
 cat file1 file2
 </pre></td></tr></table>
 
-<p>Here, it is possible that the second `<tt>cat</tt>' will not display the full
+<p>Here, it is possible that the second &lsquo;<tt>cat</tt>&rsquo; will not display the full
 contents of <tt>file1</tt> and <tt>file2</tt> (i.e. the original contents of
 <tt>file</tt> repeated twice).
 </p>
@@ -392,45 +397,45 @@ written.
 </p>
 
 <hr size="6">
-<a name="SEC39"></a>
+<a name="Redirections-with-no-command"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC38" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Command-Execution.html#SEC40" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Multios" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Command-Execution.html#Command-Execution" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC37" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC37" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Command-Execution.html#SEC40" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Redirection" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Redirection" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Command-Execution.html#Command-Execution" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h2 class="section"> 7.2 Redirections with no command </h2>
+<h2 class="section">7.2 Redirections with no command</h2>
 <p>When a simple command consists of one or more redirection operators
 and zero or more parameter assignments, but no command name, zsh can
 behave in several ways.
 </p>
-<a name="IDX60"></a>
-<a name="IDX61"></a>
+<a name="index-NULLCMD_002c-use-of"></a>
+<a name="index-CSH_005fNULLCMD_002c-use-of"></a>
 <p>If the parameter <tt>NULLCMD</tt> is not set or the option <tt>CSH_NULLCMD</tt> is
 set, an error is caused.  This is the <cite>csh</cite> behavior and <tt>CSH_NULLCMD</tt>
 is set by default when emulating <cite>csh</cite>.
 </p>
-<a name="IDX62"></a>
-<p>If the option <tt>SH_NULLCMD</tt> is set, the builtin `<tt>:</tt>' is inserted as a
+<a name="index-SH_005fNULLCMD_002c-use-of"></a>
+<p>If the option <tt>SH_NULLCMD</tt> is set, the builtin &lsquo;<tt>:</tt>&rsquo; is inserted as a
 command with the given redirections.  This is the default when emulating
 <cite>sh</cite> or <cite>ksh</cite>.
 </p>
-<a name="IDX63"></a>
+<a name="index-READNULLCMD_002c-use-of"></a>
 <p>Otherwise, if the parameter <tt>NULLCMD</tt> is set, its value will be used as a
 command with the given redirections.  If both <tt>NULLCMD</tt> and
 <tt>READNULLCMD</tt> are set, then the value of the latter will be used instead
 of that of the former when the redirection is an input.  The default for
-<tt>NULLCMD</tt> is `<tt>cat</tt>' and for <tt>READNULLCMD</tt> is `<tt>more</tt>'. Thus
+<tt>NULLCMD</tt> is &lsquo;<tt>cat</tt>&rsquo; and for <tt>READNULLCMD</tt> is &lsquo;<tt>more</tt>&rsquo;. Thus
 </p>
 <table><tr><td>&nbsp;</td><td><pre class="example">&lt; file
 </pre></td></tr></table>
@@ -440,21 +445,21 @@ terminal.  <tt>NULLCMD</tt> and <tt>READNULLCMD</tt> may refer to shell function
 </p>
 <hr size="6">
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC37" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Command-Execution.html#SEC40" title="Next chapter"> &gt;&gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Redirection" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Command-Execution.html#Command-Execution" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Oliver Kiddle</em> on <em>May, 28 2009</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>April 20, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

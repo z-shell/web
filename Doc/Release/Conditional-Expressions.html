@@ -1,14 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on May, 28 2009 by texi2html 1.78 -->
-<!--
-Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+<!-- Created on April 20, 2011 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
             Olaf Bachmann <obachman@mathematik.uni-kl.de>
             and many others.
 Maintained by: Many creative people.
 Send bugs and suggestions to <texi2html-bug@nongnu.org>
-
 -->
 <head>
 <title>zsh: 12. Conditional Expressions</title>
@@ -17,11 +16,12 @@ Send bugs and suggestions to <texi2html-bug@nongnu.org>
 <meta name="keywords" content="zsh: 12. Conditional Expressions">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 1.78">
+<meta name="Generator" content="texi2html 1.82">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
 pre.display {font-family: serif}
 pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
@@ -43,24 +43,26 @@ ul.toc {list-style: none}
 
 <a name="Conditional-Expressions"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="Arithmetic-Evaluation.html#SEC50" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Prompt-Expansion.html#SEC52" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="Arithmetic-Evaluation.html#Arithmetic-Evaluation" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Prompt-Expansion.html#Prompt-Expansion" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="Arithmetic-Evaluation.html#SEC50" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Prompt-Expansion.html#SEC52" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Arithmetic-Evaluation.html#Arithmetic-Evaluation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Prompt-Expansion.html#Prompt-Expansion" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC51"></a>
-<h1 class="chapter"> 12. Conditional Expressions </h1>
+<a name="Conditional-Expressions-1"></a>
+<h1 class="chapter">12. Conditional Expressions</h1>
+<a name="index-conditional-expressions"></a>
+<a name="index-expressions_002c-conditional"></a>
 <p>A <em>conditional expression</em> is used with the <tt>[[</tt>
 compound command to test attributes of files and to compare strings.
 Each expression can be constructed from one or more
@@ -110,7 +112,7 @@ of the following unary or binary expressions:
 <dt> <tt>-o</tt> <var>option</var></dt>
 <dd><p>true if option named <var>option</var> is on.  <var>option</var>
 may be a single character, in which case it is a single letter option name.
-(See <a href="Options.html#SEC100">Specifying Options</a>.)
+(See <a href="Options.html#Specifying-Options">Specifying Options</a>.)
 </p>
 </dd>
 <dt> <tt>-p</tt> <var>file</var></dt>
@@ -186,7 +188,7 @@ not newer than its modification time.
 <dt> <var>string</var> <tt>=</tt> <var>pattern</var></dt>
 <dt> <var>string</var> <tt>==</tt> <var>pattern</var></dt>
 <dd><p>true if <var>string</var> matches <var>pattern</var>.
-The `<tt>==</tt>' form is the preferred one.  The `<tt>=</tt>' form is for
+The &lsquo;<tt>==</tt>&rsquo; form is the preferred one.  The &lsquo;<tt>=</tt>&rsquo; form is for
 backward compatibility and should be considered obsolete.
 </p>
 </dd>
@@ -202,13 +204,29 @@ the <tt>zsh/pcre</tt> module, else it is tested as a POSIX
 extended regular expression using the <tt>zsh/regex</tt> module.
 Upon successful match, some variables will be updated; no variables
 are changed if the matching fails.
-If the option <tt>BASH_REMATCH</tt> is set the array
+</p>
+<p>If the option <tt>BASH_REMATCH</tt> is not set the scalar parameter
+<tt>MATCH</tt> is set to the substring that matched the pattern and
+the integer parameters <tt>MBEGIN</tt> and <tt>MEND</tt> to the index of the start
+and end, respectively, of the match in <var>string</var>, such that if
+<var>string</var> is contained in variable <tt>var</tt> the expression
+&lsquo;${var[$MBEGIN,$MEND]}&rsquo; is identical to &lsquo;$MATCH&rsquo;.  The setting
+of the option <tt>KSH_ARRAYS</tt> is respected.  Likewise, the array
+<tt>match</tt> is set to the substrings that matched parenthesised
+subexpressions and the arrays <tt>mbegin</tt> and <tt>mend</tt> to the indices of
+the start and end positions, respectively, of the substrings within
+<var>string</var>.  The arrays are not set if there were no parenthesised
+subexpresssions.  For example, if the string &lsquo;<tt>a short string</tt>&rsquo; is matched
+against the regular expression &lsquo;<tt>s(...)t</tt>&rsquo;, then (assuming the
+option <tt>KSH_ARRAYS</tt> is not set) <tt>MATCH</tt>, <tt>MBEGIN</tt>
+and <tt>MEND</tt> are &lsquo;<tt>short</tt>&rsquo;, 3 and 7, respectively, while <tt>match</tt>,
+<tt>mbegin</tt> and <tt>mend</tt> are single entry arrays containing
+the strings &lsquo;<tt>hor</tt>&rsquo;, &lsquo;<tt>4</tt>&rsquo; and &lsquo;<tt>6</tt>, respectively.
+</p>
+<p>If the option <tt>BASH_REMATCH</tt> is set the array
 <tt>BASH_REMATCH</tt> is set to the substring that matched the pattern
 followed by the substrings that matched parenthesised
-subexpressions within the pattern; otherwise, the scalar parameter
-<tt>MATCH</tt> is set to the substring that matched the pattern and
-and the array <tt>match</tt> to the substrings that matched parenthesised
-subexpressions.
+subexpressions within the pattern.
 </p>
 </dd>
 <dt> <var>string1</var> <tt>&lt;</tt> <var>string2</var></dt>
@@ -265,14 +283,15 @@ based on ASCII value of their characters.
 
 <p>Normal shell expansion is performed on the <var>file</var>, <var>string</var> and
 <var>pattern</var> arguments, but the result of each expansion is constrained to
-be a single word, similar to the effect of double quotes.  However, pattern
-metacharacters are active for the <var>pattern</var> arguments; the patterns
-are the same as those used for filename generation, see
-<a href="Expansion.html#SEC80">Filename Generation</a>, but there is no special behaviour
-of `<tt>/</tt>' nor initial dots, and no glob qualifiers are allowed.
+be a single word, similar to the effect of double quotes.
+File generation is not performed on any form of argument to conditions.
+However, pattern metacharacters are active for the <var>pattern</var> arguments;
+the patterns are the same as those used for filename generation, see
+<a href="Expansion.html#Filename-Generation">Filename Generation</a>, but there is no special behaviour
+of &lsquo;<tt>/</tt>&rsquo; nor initial dots, and no glob qualifiers are allowed.
 </p>
 <p>In each of the above expressions, if
-<var>file</var> is of the form `<tt>/dev/fd/</tt><var>n</var>',
+<var>file</var> is of the form &lsquo;<tt>/dev/fd/</tt><var>n</var>&rsquo;,
 where <var>n</var> is an integer,
 then the test applied to the open file whose
 descriptor number is <var>n</var>,
@@ -288,25 +307,25 @@ undergo arithmetic expansion as if they were enclosed in <tt>$((...))</tt>.
 </pre></td></tr></table>
 
 <p>tests if either file <tt>foo</tt> or file <tt>bar</tt> exists, and if so, if the
-value of the parameter <tt>report</tt> begins with `<tt>y</tt>'; if the complete
-condition is true, the message `<tt>File exists.</tt>' is printed.
+value of the parameter <tt>report</tt> begins with &lsquo;<tt>y</tt>&rsquo;; if the complete
+condition is true, the message &lsquo;<tt>File exists.</tt>&rsquo; is printed.
 </p><hr size="6">
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="Arithmetic-Evaluation.html#SEC50" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Prompt-Expansion.html#SEC52" title="Next chapter"> &gt;&gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="Arithmetic-Evaluation.html#Arithmetic-Evaluation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Prompt-Expansion.html#Prompt-Expansion" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Oliver Kiddle</em> on <em>May, 28 2009</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>April 20, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

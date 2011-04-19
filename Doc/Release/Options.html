@@ -1,14 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on May, 28 2009 by texi2html 1.78 -->
-<!--
-Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+<!-- Created on April 20, 2011 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
             Olaf Bachmann <obachman@mathematik.uni-kl.de>
             and many others.
 Maintained by: Many creative people.
 Send bugs and suggestions to <texi2html-bug@nongnu.org>
-
 -->
 <head>
 <title>zsh: 16. Options</title>
@@ -17,11 +16,12 @@ Send bugs and suggestions to <texi2html-bug@nongnu.org>
 <meta name="keywords" content="zsh: 16. Options">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 1.78">
+<meta name="Generator" content="texi2html 1.82">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
 pre.display {font-family: serif}
 pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
@@ -43,64 +43,66 @@ ul.toc {list-style: none}
 
 <a name="Options"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="Parameters.html#SEC98" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC100" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="Parameters.html#Parameters-Used-By-The-Shell" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Specifying-Options" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="Parameters.html#SEC88" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC99"></a>
-<h1 class="chapter"> 16. Options </h1>
+<a name="Options-3"></a>
+<h1 class="chapter">16. Options</h1>
+<a name="index-options"></a>
 <table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="#SEC100">16.1 Specifying Options</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Specifying-Options">16.1 Specifying Options</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#SEC101">16.2 Description of Options</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Description-of-Options">16.2 Description of Options</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#SEC114">16.3 Option Aliases</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Option-Aliases">16.3 Option Aliases</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#SEC115">16.4 Single Letter Options</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Single-Letter-Options">16.4 Single Letter Options</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 <hr size="6">
 <a name="Specifying-Options"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC99" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC101" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Options" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-of-Options" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC100"></a>
-<h2 class="section"> 16.1 Specifying Options </h2>
+<a name="Specifying-Options-1"></a>
+<h2 class="section">16.1 Specifying Options</h2>
+<a name="index-options_002c-specifying"></a>
 <p>Options are primarily referred to by name.
 These names are case insensitive and underscores are ignored.
-For example, `<tt>allexport</tt>' is equivalent to `<tt>A__lleXP_ort</tt>'.
+For example, &lsquo;<tt>allexport</tt>&rsquo; is equivalent to &lsquo;<tt>A__lleXP_ort</tt>&rsquo;.
 </p>
 <p>The sense of an option name may be inverted by preceding it with
-`<tt>no</tt>', so `<tt>setopt No_Beep</tt>' is equivalent to `<tt>unsetopt beep</tt>'.
-This inversion can only be done once, so `<tt>nonobeep</tt>' is <em>not</em>
-a synonym for `<tt>beep</tt>'.  Similarly, `<tt>tify</tt>' is not a synonym for
-`<tt>nonotify</tt>' (the inversion of `<tt>notify</tt>').
+&lsquo;<tt>no</tt>&rsquo;, so &lsquo;<tt>setopt No_Beep</tt>&rsquo; is equivalent to &lsquo;<tt>unsetopt beep</tt>&rsquo;.
+This inversion can only be done once, so &lsquo;<tt>nonobeep</tt>&rsquo; is <em>not</em>
+a synonym for &lsquo;<tt>beep</tt>&rsquo;.  Similarly, &lsquo;<tt>tify</tt>&rsquo; is not a synonym for
+&lsquo;<tt>nonotify</tt>&rsquo; (the inversion of &lsquo;<tt>notify</tt>&rsquo;).
 </p>
 <p>Some options also have one or more single letter names.
 There are two sets of single letter options: one used by default,
@@ -108,212 +110,237 @@ and another used to emulate <cite>sh</cite>/<cite>ksh</cite> (used when the
 <tt>SH_OPTION_LETTERS</tt> option is set).
 The single letter options can be used on the shell command line,
 or with the <tt>set</tt>, <tt>setopt</tt> and <tt>unsetopt</tt>
-builtins, as normal Unix options preceded by `<tt>-</tt>'.
+builtins, as normal Unix options preceded by &lsquo;<tt>-</tt>&rsquo;.
 </p>
 <p>The sense of the single letter options may be inverted by using
-`<tt>+</tt>' instead of `<tt>-</tt>'.
+&lsquo;<tt>+</tt>&rsquo; instead of &lsquo;<tt>-</tt>&rsquo;.
 Some of the single letter option names refer to an option being off,
 in which case the inversion of that name refers to the option being on.
-For example, `<tt>+n</tt>' is the short name of `<tt>exec</tt>', and
-`<tt>-n</tt>' is the short name of its inversion, `<tt>noexec</tt>'.
+For example, &lsquo;<tt>+n</tt>&rsquo; is the short name of &lsquo;<tt>exec</tt>&rsquo;, and
+&lsquo;<tt>-n</tt>&rsquo; is the short name of its inversion, &lsquo;<tt>noexec</tt>&rsquo;.
 </p>
 <p>In strings of single letter options supplied to the shell at startup,
-trailing whitespace will be ignored; for example the string `<tt>-f    </tt>'
-will be treated just as `<tt>-f</tt>', but the string `<tt>-f i</tt>' is an error.
-This is because many systems which implement the `<tt>#!</tt>' mechanism for
+trailing whitespace will be ignored; for example the string &lsquo;<tt>-f    </tt>&rsquo;
+will be treated just as &lsquo;<tt>-f</tt>&rsquo;, but the string &lsquo;<tt>-f i</tt>&rsquo; is an error.
+This is because many systems which implement the &lsquo;<tt>#!</tt>&rsquo; mechanism for
 calling scripts do not strip trailing whitespace.
 </p>
 <hr size="6">
 <a name="Description-of-Options"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC100" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC102" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Specifying-Options" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Changing-Directories" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC101"></a>
-<h2 class="section"> 16.2 Description of Options </h2>
+<a name="Description-of-Options-1"></a>
+<h2 class="section">16.2 Description of Options</h2>
+<a name="index-options_002c-description"></a>
 <p>In the following list, options set by default in all emulations are marked
 &lt;D&gt;; those set by default only in csh, ksh, sh, or zsh emulations are marked
-&lt;C&gt;, &lt;K&gt;, &lt;S&gt;, &lt;Z&gt; as appropriate.  When listing options (by `<tt>setopt</tt>',
-`<tt>unsetopt</tt>', `<tt>set -o</tt>' or `<tt>set +o</tt>'), those turned on by default
-appear in the list prefixed with `<tt>no</tt>'.  Hence (unless
-<tt>KSH_OPTION_PRINT</tt> is set), `<tt>setopt</tt>' shows all options whose settings
+&lt;C&gt;, &lt;K&gt;, &lt;S&gt;, &lt;Z&gt; as appropriate.  When listing options (by &lsquo;<tt>setopt</tt>&rsquo;,
+&lsquo;<tt>unsetopt</tt>&rsquo;, &lsquo;<tt>set -o</tt>&rsquo; or &lsquo;<tt>set +o</tt>&rsquo;), those turned on by default
+appear in the list prefixed with &lsquo;<tt>no</tt>&rsquo;.  Hence (unless
+<tt>KSH_OPTION_PRINT</tt> is set), &lsquo;<tt>setopt</tt>&rsquo; shows all options whose settings
 are changed from the default.
 </p>
 
 <hr size="6">
-<a name="SEC102"></a>
+<a name="Changing-Directories"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC101" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC103" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Description-of-Options" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-2" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC101" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-of-Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 16.2.1 Changing Directories </h3>
+<h3 class="subsection">16.2.1 Changing Directories</h3>
 <dl compact="compact">
-<dd><a name="IDX283"></a>
-<a name="IDX284"></a>
-<a name="IDX285"></a>
-<a name="IDX286"></a>
-<a name="IDX287"></a>
+<dd><a name="index-AUTO_005fCD"></a>
+<a name="index-NO_005fAUTO_005fCD"></a>
+<a name="index-AUTOCD"></a>
+<a name="index-NOAUTOCD"></a>
+<a name="index-cd_002c-automatic"></a>
 </dd>
 <dt> <tt>AUTO_CD</tt> (<tt>-J</tt>)</dt>
-<dd><p>If a command is issued that can't be executed as a normal command,
+<dd><p>If a command is issued that can&rsquo;t be executed as a normal command,
 and the command is the name of a directory, perform the <tt>cd</tt>
 command to that directory.
 </p>
-<a name="IDX288"></a>
-<a name="IDX289"></a>
-<a name="IDX290"></a>
-<a name="IDX291"></a>
-<a name="IDX292"></a>
-<a name="IDX293"></a>
+<a name="index-AUTO_005fPUSHD"></a>
+<a name="index-NO_005fAUTO_005fPUSHD"></a>
+<a name="index-AUTOPUSHD"></a>
+<a name="index-NOAUTOPUSHD"></a>
+<a name="index-cd_002c-behaving-like-pushd"></a>
+<a name="index-pushd_002c-making-cd-behave-like"></a>
 </dd>
 <dt> <tt>AUTO_PUSHD</tt> (<tt>-N</tt>)</dt>
 <dd><p>Make <tt>cd</tt> push the old directory onto the directory stack.
 </p>
-<a name="IDX294"></a>
-<a name="IDX295"></a>
-<a name="IDX296"></a>
-<a name="IDX297"></a>
-<a name="IDX298"></a>
+<a name="index-CDABLE_005fVARS"></a>
+<a name="index-NO_005fCDABLE_005fVARS"></a>
+<a name="index-CDABLEVARS"></a>
+<a name="index-NOCDABLEVARS"></a>
+<a name="index-cd_002c-to-parameter"></a>
 </dd>
 <dt> <tt>CDABLE_VARS</tt> (<tt>-T</tt>)</dt>
 <dd><p>If the argument to a <tt>cd</tt> command (or an implied <tt>cd</tt> with the
 <tt>AUTO_CD</tt> option set) is not a directory, and does not begin with a
-slash, try to expand the expression as if it were preceded by a `<tt>~</tt>' (see
-<a href="Expansion.html#SEC75">Filename Expansion</a>).
+slash, try to expand the expression as if it were preceded by a &lsquo;<tt>~</tt>&rsquo; (see
+<a href="Expansion.html#Filename-Expansion">Filename Expansion</a>).
 </p>
-<a name="IDX299"></a>
-<a name="IDX300"></a>
-<a name="IDX301"></a>
-<a name="IDX302"></a>
-<a name="IDX303"></a>
+<a name="index-CHASE_005fDOTS"></a>
+<a name="index-NO_005fCHASE_005fDOTS"></a>
+<a name="index-CHASEDOTS"></a>
+<a name="index-NOCHASEDOTS"></a>
+<a name="index-cd_002c-with-_002e_002e-in-argument"></a>
 </dd>
 <dt> <tt>CHASE_DOTS</tt></dt>
-<dd><p>When changing to a directory containing a path segment `<tt>..</tt>' which would
+<dd><p>When changing to a directory containing a path segment &lsquo;<tt>..</tt>&rsquo; which would
 otherwise be treated as canceling the previous segment in the path (in
-other words, `<tt>foo/..</tt>' would be removed from the path, or if `<tt>..</tt>' is
-the first part of the path, the last part of <tt>$PWD</tt> would be deleted),
-instead resolve the path to the physical directory.  This option is
-overridden by <tt>CHASE_LINKS</tt>.
+other words, &lsquo;<tt>foo/..</tt>&rsquo; would be removed from the path, or if &lsquo;<tt>..</tt>&rsquo; is
+the first part of the path, the last part of the current working directory
+would be removed), instead resolve the path to the physical directory.
+This option is overridden by <tt>CHASE_LINKS</tt>.
 </p>
 <p>For example, suppose <tt>/foo/bar</tt> is a link to the directory <tt>/alt/rod</tt>.
-Without this option set, `<tt>cd /foo/bar/..</tt>' changes to <tt>/foo</tt>; with it
+Without this option set, &lsquo;<tt>cd /foo/bar/..</tt>&rsquo; changes to <tt>/foo</tt>; with it
 set, it changes to <tt>/alt</tt>.  The same applies if the current directory
-is <tt>/foo/bar</tt> and `<tt>cd ..</tt>' is used.  Note that all other symbolic
+is <tt>/foo/bar</tt> and &lsquo;<tt>cd ..</tt>&rsquo; is used.  Note that all other symbolic
 links in the path will also be resolved.
 </p>
-<a name="IDX304"></a>
-<a name="IDX305"></a>
-<a name="IDX306"></a>
-<a name="IDX307"></a>
-<a name="IDX308"></a>
-<a name="IDX309"></a>
+<a name="index-CHASE_005fLINKS"></a>
+<a name="index-NO_005fCHASE_005fLINKS"></a>
+<a name="index-CHASELINKS"></a>
+<a name="index-NOCHASELINKS"></a>
+<a name="index-links_002c-symbolic"></a>
+<a name="index-symbolic-links"></a>
 </dd>
 <dt> <tt>CHASE_LINKS</tt> (<tt>-w</tt>)</dt>
 <dd><p>Resolve symbolic links to their true values when changing directory.
-This also has the effect of <tt>CHASE_DOTS</tt>, i.e. a `<tt>..</tt>' path segment
+This also has the effect of <tt>CHASE_DOTS</tt>, i.e. a &lsquo;<tt>..</tt>&rsquo; path segment
 will be treated as referring to the physical parent, even if the preceding
 path segment is a symbolic link.
 </p>
-<a name="IDX310"></a>
-<a name="IDX311"></a>
-<a name="IDX312"></a>
-<a name="IDX313"></a>
-<a name="IDX314"></a>
+<a name="index-POSIX_005fCD"></a>
+<a name="index-POSIXCD"></a>
+<a name="index-NO_005fPOSIX_005fCD"></a>
+<a name="index-NOPOSIXCD"></a>
+<a name="index-CDPATH_002c-order-of-checking"></a>
+</dd>
+<dt> <tt>POSIX_CD</tt></dt>
+<dd><p>Modifies the behaviour of <tt>cd</tt>, <tt>chdir</tt> and <tt>pushd</tt> commands
+to make them more compatible with the POSIX standard. The behaviour with
+the option unset is described in the documentation for the <tt>cd</tt>
+builtin in
+<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands">Shell Builtin Commands</a>.
+If the option is set, the shell does not test for directories beneath
+the local directory (&lsquo;<tt>.</tt>&rsquo;) until after all directories in <tt>cdpath</tt>
+have been tested.
+</p>
+<p>Also, if the option is set, the conditions under which the shell
+prints the new directory after changing to it are modified.  It is
+no longer restricted to interactive shells (although printing of
+the directory stack with <tt>pushd</tt> is still limited to interactive
+shells); and any use of a component of <tt>CDPATH</tt>, including a &lsquo;<tt>.</tt>&rsquo; but
+excluding an empty component that is otherwise treated as &lsquo;<tt>.</tt>&rsquo;, causes
+the directory to be printed.
+</p>
+<a name="index-PUSHD_005fIGNORE_005fDUPS"></a>
+<a name="index-NO_005fPUSHD_005fIGNORE_005fDUPS"></a>
+<a name="index-PUSHDIGNOREDUPS"></a>
+<a name="index-NOPUSHDIGNOREDUPS"></a>
+<a name="index-directory-stack_002c-ignoring-duplicates"></a>
 </dd>
 <dt> <tt>PUSHD_IGNORE_DUPS</tt></dt>
-<dd><p>Don't push multiple copies of the same directory onto the directory stack.
+<dd><p>Don&rsquo;t push multiple copies of the same directory onto the directory stack.
 </p>
-<a name="IDX315"></a>
-<a name="IDX316"></a>
-<a name="IDX317"></a>
-<a name="IDX318"></a>
-<a name="IDX319"></a>
+<a name="index-PUSHD_005fMINUS"></a>
+<a name="index-NO_005fPUSHD_005fMINUS"></a>
+<a name="index-PUSHDMINUS"></a>
+<a name="index-NOPUSHDMINUS"></a>
+<a name="index-directory-stack_002c-controlling-syntax"></a>
 </dd>
 <dt> <tt>PUSHD_MINUS</tt></dt>
-<dd><p>Exchanges the meanings of `<tt>+</tt>' and `<tt>-</tt>'
+<dd><p>Exchanges the meanings of &lsquo;<tt>+</tt>&rsquo; and &lsquo;<tt>-</tt>&rsquo;
 when used with a number to specify a directory in the stack.
 </p>
-<a name="IDX320"></a>
-<a name="IDX321"></a>
-<a name="IDX322"></a>
-<a name="IDX323"></a>
-<a name="IDX324"></a>
+<a name="index-PUSHD_005fSILENT"></a>
+<a name="index-NO_005fPUSHD_005fSILENT"></a>
+<a name="index-PUSHDSILENT"></a>
+<a name="index-NOPUSHDSILENT"></a>
+<a name="index-directory-stack_002c-silencing"></a>
 </dd>
 <dt> <tt>PUSHD_SILENT</tt> (<tt>-E</tt>)</dt>
 <dd><p>Do not print the directory stack after <tt>pushd</tt> or <tt>popd</tt>.
 </p>
-<a name="IDX325"></a>
-<a name="IDX326"></a>
-<a name="IDX327"></a>
-<a name="IDX328"></a>
-<a name="IDX329"></a>
+<a name="index-PUSHD_005fTO_005fHOME"></a>
+<a name="index-NO_005fPUSHD_005fTO_005fHOME"></a>
+<a name="index-PUSHDTOHOME"></a>
+<a name="index-NOPUSHDTOHOME"></a>
+<a name="index-pushd_002c-to-home"></a>
 </dd>
 <dt> <tt>PUSHD_TO_HOME</tt> (<tt>-D</tt>)</dt>
-<dd><p>Have <tt>pushd</tt> with no arguments act like `<tt>pushd $HOME</tt>'.
+<dd><p>Have <tt>pushd</tt> with no arguments act like &lsquo;<tt>pushd $HOME</tt>&rsquo;.
 </p>
 </dd>
 </dl>
 
 
 <hr size="6">
-<a name="SEC103"></a>
+<a name="Completion-2"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC102" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC104" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Changing-Directories" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Expansion-and-Globbing" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC101" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-of-Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 16.2.2 Completion </h3>
+<h3 class="subsection">16.2.2 Completion</h3>
 <dl compact="compact">
-<dd><a name="IDX330"></a>
-<a name="IDX331"></a>
-<a name="IDX332"></a>
-<a name="IDX333"></a>
+<dd><a name="index-ALWAYS_005fLAST_005fPROMPT"></a>
+<a name="index-NO_005fALWAYS_005fLAST_005fPROMPT"></a>
+<a name="index-ALWAYSLASTPROMPT"></a>
+<a name="index-NOALWAYSLASTPROMPT"></a>
 </dd>
 <dt> <tt>ALWAYS_LAST_PROMPT</tt> &lt;D&gt;</dt>
 <dd><p>If unset, key functions that list completions try to return to the last
 prompt if given a numeric argument. If set these functions try to
 return to the last prompt if given <em>no</em> numeric argument.
 </p>
-<a name="IDX334"></a>
-<a name="IDX335"></a>
-<a name="IDX336"></a>
-<a name="IDX337"></a>
+<a name="index-ALWAYS_005fTO_005fEND"></a>
+<a name="index-NO_005fALWAYS_005fTO_005fEND"></a>
+<a name="index-ALWAYSTOEND"></a>
+<a name="index-NOALWAYSTOEND"></a>
 </dd>
 <dt> <tt>ALWAYS_TO_END</tt></dt>
 <dd><p>If a completion is performed with the cursor within a word, and a
@@ -321,80 +348,80 @@ full completion is inserted, the cursor is moved to the end of the
 word.  That is, the cursor is moved to the end of the word if either
 a single match is inserted or menu completion is performed.
 </p>
-<a name="IDX338"></a>
-<a name="IDX339"></a>
-<a name="IDX340"></a>
-<a name="IDX341"></a>
-<a name="IDX342"></a>
+<a name="index-AUTO_005fLIST"></a>
+<a name="index-NO_005fAUTO_005fLIST"></a>
+<a name="index-AUTOLIST"></a>
+<a name="index-NOAUTOLIST"></a>
+<a name="index-completion_002c-listing-choices"></a>
 </dd>
 <dt> <tt>AUTO_LIST</tt> (<tt>-9</tt>) &lt;D&gt;</dt>
 <dd><p>Automatically list choices on an ambiguous completion.
 </p>
-<a name="IDX343"></a>
-<a name="IDX344"></a>
-<a name="IDX345"></a>
-<a name="IDX346"></a>
-<a name="IDX347"></a>
+<a name="index-AUTO_005fMENU"></a>
+<a name="index-NO_005fAUTO_005fMENU"></a>
+<a name="index-AUTOMENU"></a>
+<a name="index-NOAUTOMENU"></a>
+<a name="index-completion_002c-menu"></a>
 </dd>
 <dt> <tt>AUTO_MENU</tt> &lt;D&gt;</dt>
 <dd><p>Automatically use menu completion after the second consecutive request for
 completion, for example by pressing the tab key repeatedly. This option
 is overridden by <tt>MENU_COMPLETE</tt>.
 </p>
-<a name="IDX348"></a>
-<a name="IDX349"></a>
-<a name="IDX350"></a>
-<a name="IDX351"></a>
-<a name="IDX352"></a>
+<a name="index-AUTO_005fNAME_005fDIRS"></a>
+<a name="index-NO_005fAUTO_005fNAME_005fDIRS"></a>
+<a name="index-AUTONAMEDIRS"></a>
+<a name="index-NOAUTONAMEDIRS"></a>
+<a name="index-directories_002c-named"></a>
 </dd>
 <dt> <tt>AUTO_NAME_DIRS</tt></dt>
 <dd><p>Any parameter that is set to the absolute name of a directory
 immediately becomes a name for that directory, that will be used
-by the `<tt>%~</tt>'
+by the &lsquo;<tt>%~</tt>&rsquo;
 and related prompt sequences, and will be available when completion
-is performed on a word starting with `<tt>~</tt>'.
-(Otherwise, the parameter must be used in the form `<tt>~</tt><var>param</var>' first.)
+is performed on a word starting with &lsquo;<tt>~</tt>&rsquo;.
+(Otherwise, the parameter must be used in the form &lsquo;<tt>~</tt><var>param</var>&rsquo; first.)
 </p>
-<a name="IDX353"></a>
-<a name="IDX354"></a>
-<a name="IDX355"></a>
-<a name="IDX356"></a>
+<a name="index-AUTO_005fPARAM_005fKEYS"></a>
+<a name="index-NO_005fAUTO_005fPARAM_005fKEYS"></a>
+<a name="index-AUTOPARAMKEYS"></a>
+<a name="index-NOAUTOPARAMKEYS"></a>
 </dd>
 <dt> <tt>AUTO_PARAM_KEYS</tt> &lt;D&gt;</dt>
 <dd><p>If a parameter name was completed and a following character
 (normally a space) automatically
 inserted, and the next character typed is one
-of those that have to come directly after the name (like `<tt>}</tt>', `<tt>:</tt>',
+of those that have to come directly after the name (like &lsquo;<tt>}</tt>&rsquo;, &lsquo;<tt>:</tt>&rsquo;,
 etc.), the automatically added character is deleted, so that the character
 typed comes immediately after the parameter name.
 Completion in a brace expansion is affected similarly: the added character
-is a `<tt>,</tt>', which will be removed if `<tt>}</tt>' is typed next.
+is a &lsquo;<tt>,</tt>&rsquo;, which will be removed if &lsquo;<tt>}</tt>&rsquo; is typed next.
 </p>
-<a name="IDX357"></a>
-<a name="IDX358"></a>
-<a name="IDX359"></a>
-<a name="IDX360"></a>
+<a name="index-AUTO_005fPARAM_005fSLASH"></a>
+<a name="index-NO_005fAUTO_005fPARAM_005fSLASH"></a>
+<a name="index-AUTOPARAMSLASH"></a>
+<a name="index-NOAUTOPARAMSLASH"></a>
 </dd>
 <dt> <tt>AUTO_PARAM_SLASH</tt> &lt;D&gt;</dt>
 <dd><p>If a parameter is completed whose content is the name of a directory,
 then add a trailing slash instead of a space.
 </p>
-<a name="IDX361"></a>
-<a name="IDX362"></a>
-<a name="IDX363"></a>
-<a name="IDX364"></a>
-<a name="IDX365"></a>
+<a name="index-AUTO_005fREMOVE_005fSLASH"></a>
+<a name="index-NO_005fAUTO_005fREMOVE_005fSLASH"></a>
+<a name="index-AUTOREMOVESLASH"></a>
+<a name="index-NOAUTOREMOVESLASH"></a>
+<a name="index-slash_002c-removing-trailing"></a>
 </dd>
 <dt> <tt>AUTO_REMOVE_SLASH</tt> &lt;D&gt;</dt>
 <dd><p>When the last character resulting from a completion is a slash and the next
 character typed is a word delimiter, a slash, or a character that ends 
 a command (such as a semicolon or an ampersand), remove the slash.
 </p>
-<a name="IDX366"></a>
-<a name="IDX367"></a>
-<a name="IDX368"></a>
-<a name="IDX369"></a>
-<a name="IDX370"></a>
+<a name="index-BASH_005fAUTO_005fLIST"></a>
+<a name="index-NO_005fBASH_005fAUTO_005fLIST"></a>
+<a name="index-BASHAUTOLIST"></a>
+<a name="index-NOBASHAUTOLIST"></a>
+<a name="index-completion_002c-listing-choices_002c-bash-style"></a>
 </dd>
 <dt> <tt>BASH_AUTO_LIST</tt></dt>
 <dd><p>On an ambiguous completion, automatically list choices when the
@@ -405,36 +432,36 @@ with the third press.  Note that this will not work with
 <tt>MENU_COMPLETE</tt>, since repeated completion calls immediately cycle
 through the list in that case.
 </p>
-<a name="IDX371"></a>
-<a name="IDX372"></a>
-<a name="IDX373"></a>
-<a name="IDX374"></a>
-<a name="IDX375"></a>
+<a name="index-COMPLETE_005fALIASES"></a>
+<a name="index-NO_005fCOMPLETE_005fALIASES"></a>
+<a name="index-COMPLETEALIASES"></a>
+<a name="index-NOCOMPLETEALIASES"></a>
+<a name="index-aliases_002c-completion-of"></a>
 </dd>
 <dt> <tt>COMPLETE_ALIASES</tt></dt>
 <dd><p>Prevents aliases on the command line from being internally substituted
 before completion is attempted.  The effect is to make the alias a
 distinct command for completion purposes.
 </p>
-<a name="IDX376"></a>
-<a name="IDX377"></a>
-<a name="IDX378"></a>
-<a name="IDX379"></a>
+<a name="index-COMPLETE_005fIN_005fWORD"></a>
+<a name="index-NO_005fCOMPLETE_005fIN_005fWORD"></a>
+<a name="index-COMPLETEINWORD"></a>
+<a name="index-NOCOMPLETEINWORD"></a>
 </dd>
 <dt> <tt>COMPLETE_IN_WORD</tt></dt>
 <dd><p>If unset, the cursor is set to the end of the word if completion is
 started. Otherwise it stays there and completion is done from both ends.
 </p>
-<a name="IDX380"></a>
-<a name="IDX381"></a>
-<a name="IDX382"></a>
-<a name="IDX383"></a>
+<a name="index-GLOB_005fCOMPLETE"></a>
+<a name="index-NO_005fGLOB_005fCOMPLETE"></a>
+<a name="index-GLOBCOMPLETE"></a>
+<a name="index-NOGLOBCOMPLETE"></a>
 </dd>
 <dt> <tt>GLOB_COMPLETE</tt></dt>
 <dd><p>When the current word has a glob pattern, do not insert all the words
 resulting from the expansion but generate matches as for completion and
 cycle through them like <tt>MENU_COMPLETE</tt>. The matches are generated as if
-a `<tt>*</tt>' was added to the end of the word, or inserted at the cursor when
+a &lsquo;<tt>*</tt>&rsquo; was added to the end of the word, or inserted at the cursor when
 <tt>COMPLETE_IN_WORD</tt> is set.  This actually uses pattern matching, not
 globbing, so it works not only for files but for any completion, such as
 options, user names, etc.
@@ -444,21 +471,21 @@ case-insensitive or anchored matching) cannot be used.  This limitation
 only applies when the current word contains a pattern; simply turning
 on the <tt>GLOB_COMPLETE</tt> option does not have this effect.
 </p>
-<a name="IDX384"></a>
-<a name="IDX385"></a>
-<a name="IDX386"></a>
-<a name="IDX387"></a>
+<a name="index-HASH_005fLIST_005fALL"></a>
+<a name="index-NO_005fHASH_005fLIST_005fALL"></a>
+<a name="index-HASHLISTALL"></a>
+<a name="index-NOHASHLISTALL"></a>
 </dd>
 <dt> <tt>HASH_LIST_ALL</tt> &lt;D&gt;</dt>
 <dd><p>Whenever a command completion is attempted, make sure the entire
 command path is hashed first.  This makes the first completion slower.
 </p>
-<a name="IDX388"></a>
-<a name="IDX389"></a>
-<a name="IDX390"></a>
-<a name="IDX391"></a>
-<a name="IDX392"></a>
-<a name="IDX393"></a>
+<a name="index-LIST_005fAMBIGUOUS"></a>
+<a name="index-NO_005fLIST_005fAMBIGUOUS"></a>
+<a name="index-LISTAMBIGUOUS"></a>
+<a name="index-NOLISTAMBIGUOUS"></a>
+<a name="index-ambiguous-completion"></a>
+<a name="index-completion_002c-ambiguous"></a>
 </dd>
 <dt> <tt>LIST_AMBIGUOUS</tt> &lt;D&gt;</dt>
 <dd><p>This option works when <tt>AUTO_LIST</tt> or <tt>BASH_AUTO_LIST</tt> is also
@@ -468,12 +495,12 @@ words, auto-listing behaviour only takes place when nothing would be
 inserted.  In the case of <tt>BASH_AUTO_LIST</tt>, this means that the list
 will be delayed to the third call of the function.
 </p>
-<a name="IDX394"></a>
-<a name="IDX395"></a>
-<a name="IDX396"></a>
-<a name="IDX397"></a>
-<a name="IDX398"></a>
-<a name="IDX399"></a>
+<a name="index-LIST_005fBEEP"></a>
+<a name="index-NO_005fLIST_005fBEEP"></a>
+<a name="index-LISTBEEP"></a>
+<a name="index-NOLISTBEEP"></a>
+<a name="index-beep_002c-ambiguous-completion"></a>
+<a name="index-completion_002c-beep-on-ambiguous"></a>
 </dd>
 <dt> <tt>LIST_BEEP</tt> &lt;D&gt;</dt>
 <dd><p>Beep on an ambiguous completion.  More accurately, this forces the
@@ -481,43 +508,43 @@ completion widgets to return status 1 on an ambiguous completion, which
 causes the shell to beep if the option <tt>BEEP</tt> is also set; this may
 be modified if completion is called from a user-defined widget.
 </p>
-<a name="IDX400"></a>
-<a name="IDX401"></a>
-<a name="IDX402"></a>
-<a name="IDX403"></a>
-<a name="IDX404"></a>
+<a name="index-LIST_005fPACKED"></a>
+<a name="index-NO_005fLIST_005fPACKED"></a>
+<a name="index-LISTPACKED"></a>
+<a name="index-NOLISTPACKED"></a>
+<a name="index-completion_002c-listing"></a>
 </dd>
 <dt> <tt>LIST_PACKED</tt></dt>
 <dd><p>Try to make the completion list smaller (occupying less lines) by
 printing the matches in columns with different widths.
 </p>
-<a name="IDX405"></a>
-<a name="IDX406"></a>
-<a name="IDX407"></a>
-<a name="IDX408"></a>
-<a name="IDX409"></a>
+<a name="index-LIST_005fROWS_005fFIRST"></a>
+<a name="index-NO_005fLIST_005fROWS_005fFIRST"></a>
+<a name="index-LISTROWSFIRST"></a>
+<a name="index-NOLISTROWSFIRST"></a>
+<a name="index-completion_002c-listing-order"></a>
 </dd>
 <dt> <tt>LIST_ROWS_FIRST</tt></dt>
 <dd><p>Lay out the matches in completion lists sorted horizontally, that is,
 the second match is to the right of the first one, not under it as
 usual.
 </p>
-<a name="IDX410"></a>
-<a name="IDX411"></a>
-<a name="IDX412"></a>
-<a name="IDX413"></a>
-<a name="IDX414"></a>
-<a name="IDX415"></a>
+<a name="index-LIST_005fTYPES"></a>
+<a name="index-NO_005fLIST_005fTYPES"></a>
+<a name="index-LISTTYPES"></a>
+<a name="index-NOLISTTYPES"></a>
+<a name="index-marking-file-types"></a>
+<a name="index-files_002c-marking-type-of"></a>
 </dd>
 <dt> <tt>LIST_TYPES</tt> (<tt>-X</tt>) &lt;D&gt;</dt>
 <dd><p>When listing files that are possible completions, show the
 type of each file with a trailing identifying mark.
 </p>
-<a name="IDX416"></a>
-<a name="IDX417"></a>
-<a name="IDX418"></a>
-<a name="IDX419"></a>
-<a name="IDX420"></a>
+<a name="index-MENU_005fCOMPLETE"></a>
+<a name="index-NO_005fMENU_005fCOMPLETE"></a>
+<a name="index-MENUCOMPLETE"></a>
+<a name="index-NOMENUCOMPLETE"></a>
+<a name="index-completion_002c-menu-1"></a>
 </dd>
 <dt> <tt>MENU_COMPLETE</tt> (<tt>-Y</tt>)</dt>
 <dd><p>On an ambiguous completion, instead of listing possibilities or beeping,
@@ -527,11 +554,11 @@ When there are no more matches, go back to the first one again.
 <tt>reverse-menu-complete</tt> may be used to loop through the list
 in the other direction. This option overrides <tt>AUTO_MENU</tt>.
 </p>
-<a name="IDX421"></a>
-<a name="IDX422"></a>
-<a name="IDX423"></a>
-<a name="IDX424"></a>
-<a name="IDX425"></a>
+<a name="index-REC_005fEXACT"></a>
+<a name="index-NO_005fREC_005fEXACT"></a>
+<a name="index-RECEXACT"></a>
+<a name="index-NORECEXACT"></a>
+<a name="index-completion_002c-exact-matches"></a>
 </dd>
 <dt> <tt>REC_EXACT</tt> (<tt>-S</tt>)</dt>
 <dd><p>In completion, recognize exact matches even
@@ -542,65 +569,65 @@ if they are ambiguous.
 
 
 <hr size="6">
-<a name="SEC104"></a>
+<a name="Expansion-and-Globbing"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC103" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC105" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Completion-2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#History" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC101" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-of-Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 16.2.3 Expansion and Globbing </h3>
+<h3 class="subsection">16.2.3 Expansion and Globbing</h3>
 <dl compact="compact">
-<dd><a name="IDX426"></a>
-<a name="IDX427"></a>
-<a name="IDX428"></a>
-<a name="IDX429"></a>
-<a name="IDX430"></a>
-<a name="IDX431"></a>
+<dd><a name="index-BAD_005fPATTERN"></a>
+<a name="index-NO_005fBAD_005fPATTERN"></a>
+<a name="index-BADPATTERN"></a>
+<a name="index-NOBADPATTERN"></a>
+<a name="index-globbing_002c-bad-pattern"></a>
+<a name="index-filename-generation_002c-bad-pattern"></a>
 </dd>
 <dt> <tt>BAD_PATTERN</tt> (<tt>+2</tt>) &lt;C&gt; &lt;Z&gt;</dt>
 <dd><p>If a pattern for filename generation is badly formed, print an error message.
 (If this option is unset, the pattern will be left unchanged.)
 </p>
-<a name="IDX432"></a>
-<a name="IDX433"></a>
-<a name="IDX434"></a>
-<a name="IDX435"></a>
-<a name="IDX436"></a>
-<a name="IDX437"></a>
+<a name="index-BARE_005fGLOB_005fQUAL"></a>
+<a name="index-NO_005fBARE_005fGLOB_005fQUAL"></a>
+<a name="index-BAREGLOBQUAL"></a>
+<a name="index-NOBAREGLOBQUAL"></a>
+<a name="index-globbing-qualifiers_002c-enable"></a>
+<a name="index-enable-globbing-qualifiers"></a>
 </dd>
 <dt> <tt>BARE_GLOB_QUAL</tt> &lt;Z&gt;</dt>
 <dd><p>In a glob pattern, treat a trailing set of parentheses as a qualifier
-list, if it contains no `<tt>|</tt>', `<tt>(</tt>' or (if special) `<tt>~</tt>'
-characters.  See <a href="Expansion.html#SEC80">Filename Generation</a>.
+list, if it contains no &lsquo;<tt>|</tt>&rsquo;, &lsquo;<tt>(</tt>&rsquo; or (if special) &lsquo;<tt>~</tt>&rsquo;
+characters.  See <a href="Expansion.html#Filename-Generation">Filename Generation</a>.
 </p>
-<a name="IDX438"></a>
-<a name="IDX439"></a>
-<a name="IDX440"></a>
-<a name="IDX441"></a>
-<a name="IDX442"></a>
-<a name="IDX443"></a>
+<a name="index-BRACE_005fCCL"></a>
+<a name="index-NO_005fBRACE_005fCCL"></a>
+<a name="index-BRACECCL"></a>
+<a name="index-NOBRACECCL"></a>
+<a name="index-brace-expansion_002c-extending"></a>
+<a name="index-expansion_002c-brace_002c-extending"></a>
 </dd>
 <dt> <tt>BRACE_CCL</tt></dt>
 <dd><p>Expand expressions in braces which would not otherwise undergo brace
 expansion to a lexically ordered list of all the characters.  See
-<a href="Expansion.html#SEC74">Brace Expansion</a>.
+<a href="Expansion.html#Brace-Expansion">Brace Expansion</a>.
 </p>
-<a name="IDX444"></a>
-<a name="IDX445"></a>
-<a name="IDX446"></a>
-<a name="IDX447"></a>
-<a name="IDX448"></a>
+<a name="index-CASE_005fGLOB"></a>
+<a name="index-NO_005fCASE_005fGLOB"></a>
+<a name="index-CASEGLOB"></a>
+<a name="index-NOCASEGLOB"></a>
+<a name="index-case_002dinsensitive-globbing_002c-option"></a>
 </dd>
 <dt> <tt>CASE_GLOB</tt> &lt;D&gt;</dt>
 <dd><p>Make globbing (filename generation) sensitive to case.  Note that other
@@ -610,24 +637,24 @@ will cause case-insensitive matching.  For example, <tt>cvs(/)</tt>
 can match the directory <tt>CVS</tt> owing to the presence of the globbing flag
 (unless the option <tt>BARE_GLOB_QUAL</tt> is unset).
 </p>
-<a name="IDX449"></a>
-<a name="IDX450"></a>
-<a name="IDX451"></a>
-<a name="IDX452"></a>
-<a name="IDX453"></a>
-<a name="IDX454"></a>
+<a name="index-CASE_005fMATCH"></a>
+<a name="index-NO_005fCASE_005fMATCH"></a>
+<a name="index-CASEMATCH"></a>
+<a name="index-NOCASEMATCH"></a>
+<a name="index-case_002dinsensitive-regular-expression-matches_002c-option"></a>
+<a name="index-regular-expressions_002c-case_002dinsensitive-matching_002c-option"></a>
 </dd>
 <dt> <tt>CASE_MATCH</tt> &lt;D&gt;</dt>
 <dd><p>Make regular expressions using the <tt>zsh/regex</tt> module (including
 matches with <tt>=~</tt>) sensitive to case.
 </p>
-<a name="IDX455"></a>
-<a name="IDX456"></a>
-<a name="IDX457"></a>
-<a name="IDX458"></a>
-<a name="IDX459"></a>
-<a name="IDX460"></a>
-<a name="IDX461"></a>
+<a name="index-CSH_005fNULL_005fGLOB"></a>
+<a name="index-NO_005fCSH_005fNULL_005fGLOB"></a>
+<a name="index-CSHNULLGLOB"></a>
+<a name="index-NOCSHNULLGLOB"></a>
+<a name="index-csh_002c-null-globbing-style"></a>
+<a name="index-null-globbing-style_002c-csh"></a>
+<a name="index-globbing_002c-null_002c-style_002c-csh"></a>
 </dd>
 <dt> <tt>CSH_NULL_GLOB</tt> &lt;C&gt;</dt>
 <dd><p>If a pattern for filename generation has no matches,
@@ -636,66 +663,66 @@ do not report an error unless all the patterns
 in a command have no matches.
 Overrides <tt>NOMATCH</tt>.
 </p>
-<a name="IDX462"></a>
-<a name="IDX463"></a>
-<a name="IDX464"></a>
-<a name="IDX465"></a>
+<a name="index-EQUALS"></a>
+<a name="index-NO_005fEQUALS"></a>
+<a name="index-NOEQUALS"></a>
+<a name="index-filename-expansion_002c-_003d"></a>
 </dd>
 <dt> <tt>EQUALS</tt> &lt;Z&gt;</dt>
 <dd><p>Perform <tt>=</tt> filename expansion.
-(See <a href="Expansion.html#SEC75">Filename Expansion</a>.)
+(See <a href="Expansion.html#Filename-Expansion">Filename Expansion</a>.)
 </p>
-<a name="IDX466"></a>
-<a name="IDX467"></a>
-<a name="IDX468"></a>
-<a name="IDX469"></a>
-<a name="IDX470"></a>
+<a name="index-EXTENDED_005fGLOB"></a>
+<a name="index-NO_005fEXTENDED_005fGLOB"></a>
+<a name="index-EXTENDEDGLOB"></a>
+<a name="index-NOEXTENDEDGLOB"></a>
+<a name="index-globbing_002c-extended"></a>
 </dd>
 <dt> <tt>EXTENDED_GLOB</tt></dt>
-<dd><p>Treat the `<tt>#</tt>', `<tt>~</tt>' and `<tt>^</tt>' characters as part of patterns
-for filename generation, etc.  (An initial unquoted `<tt>~</tt>'
+<dd><p>Treat the &lsquo;<tt>#</tt>&rsquo;, &lsquo;<tt>~</tt>&rsquo; and &lsquo;<tt>^</tt>&rsquo; characters as part of patterns
+for filename generation, etc.  (An initial unquoted &lsquo;<tt>~</tt>&rsquo;
 always produces named directory expansion.)
 </p>
-<a name="IDX471"></a>
-<a name="IDX472"></a>
-<a name="IDX473"></a>
-<a name="IDX474"></a>
-<a name="IDX475"></a>
+<a name="index-GLOB"></a>
+<a name="index-NO_005fGLOB"></a>
+<a name="index-NOGLOB"></a>
+<a name="index-globbing_002c-enabling"></a>
+<a name="index-enabling-globbing"></a>
 </dd>
 <dt> <tt>GLOB</tt> (<tt>+F</tt>, ksh: <tt>+f</tt>) &lt;D&gt;</dt>
 <dd><p>Perform filename generation (globbing).
-(See <a href="Expansion.html#SEC80">Filename Generation</a>.)
+(See <a href="Expansion.html#Filename-Generation">Filename Generation</a>.)
 </p>
-<a name="IDX476"></a>
-<a name="IDX477"></a>
-<a name="IDX478"></a>
-<a name="IDX479"></a>
+<a name="index-GLOB_005fASSIGN"></a>
+<a name="index-NO_005fGLOB_005fASSIGN"></a>
+<a name="index-GLOBASSIGN"></a>
+<a name="index-NOGLOBASSIGN"></a>
 </dd>
 <dt> <tt>GLOB_ASSIGN</tt> &lt;C&gt;</dt>
 <dd><p>If this option is set, filename generation (globbing) is
 performed on the right hand side of scalar parameter assignments of
-the form `<var>name</var><tt>=</tt><var>pattern</var> (e.g. `<tt>foo=*</tt>').
+the form &lsquo;<var>name</var><tt>=</tt><var>pattern</var> (e.g. &lsquo;<tt>foo=*</tt>&rsquo;).
 If the result has more than one word the parameter will become an array
 with those words as arguments. This option is provided for backwards
 compatibility only: globbing is always performed on the right hand side
-of array assignments of the form `<var>name</var><tt>=(</tt><var>value</var><tt>)</tt>'
-(e.g. `<tt>foo=(*)</tt>') and this form is recommended for clarity;
+of array assignments of the form &lsquo;<var>name</var><tt>=(</tt><var>value</var><tt>)</tt>&rsquo;
+(e.g. &lsquo;<tt>foo=(*)</tt>&rsquo;) and this form is recommended for clarity;
 with this option set, it is not possible to predict whether the result
 will be an array or a scalar.
 </p>
-<a name="IDX480"></a>
-<a name="IDX481"></a>
-<a name="IDX482"></a>
-<a name="IDX483"></a>
-<a name="IDX484"></a>
+<a name="index-GLOB_005fDOTS"></a>
+<a name="index-NO_005fGLOB_005fDOTS"></a>
+<a name="index-GLOBDOTS"></a>
+<a name="index-NOGLOBDOTS"></a>
+<a name="index-globbing_002c-of-_002e-files"></a>
 </dd>
 <dt> <tt>GLOB_DOTS</tt> (<tt>-4</tt>)</dt>
-<dd><p>Do not require a leading `<tt>.</tt>' in a filename to be matched explicitly.
+<dd><p>Do not require a leading &lsquo;<tt>.</tt>&rsquo; in a filename to be matched explicitly.
 </p>
-<a name="IDX485"></a>
-<a name="IDX486"></a>
-<a name="IDX487"></a>
-<a name="IDX488"></a>
+<a name="index-GLOB_005fSUBST"></a>
+<a name="index-NO_005fGLOB_005fSUBST"></a>
+<a name="index-GLOBSUBST"></a>
+<a name="index-NOGLOBSUBST"></a>
 </dd>
 <dt> <tt>GLOB_SUBST</tt> &lt;C&gt; &lt;K&gt; &lt;S&gt;</dt>
 <dd><p>Treat any characters resulting from parameter expansion as being
@@ -704,48 +731,48 @@ characters resulting from command substitution as being eligible for
 filename generation.  Braces (and commas in between) do not become eligible
 for expansion.
 </p>
-<a name="IDX489"></a>
-<a name="IDX490"></a>
-<a name="IDX491"></a>
-<a name="IDX492"></a>
+<a name="index-HIST_005fSUBST_005fPATTERN"></a>
+<a name="index-NO_005fHIST_005fSUBST_005fPATTERN"></a>
+<a name="index-HISTSUBSTPATTERN"></a>
+<a name="index-NOHISTSUBSTPATTERN"></a>
 </dd>
 <dt> <tt>HIST_SUBST_PATTERN</tt></dt>
 <dd><p>Substitutions using the <tt>:s</tt> and <tt>:&amp;</tt> history modifiers are performed
 with pattern matching instead of string matching.  This occurs wherever
 history modifiers are valid, including glob qualifiers and parameters.
 See
-<a href="Expansion.html#SEC66">Modifiers</a>.
+<a href="Expansion.html#Modifiers">Modifiers</a>.
 </p>
-<a name="IDX493"></a>
-<a name="IDX494"></a>
-<a name="IDX495"></a>
-<a name="IDX496"></a>
-<a name="IDX497"></a>
-<a name="IDX498"></a>
-<a name="IDX499"></a>
+<a name="index-IGNORE_005fBRACES"></a>
+<a name="index-NO_005fIGNORE_005fBRACES"></a>
+<a name="index-IGNOREBRACES"></a>
+<a name="index-NOIGNOREBRACES"></a>
+<a name="index-disabling-brace-expansion"></a>
+<a name="index-brace-expansion_002c-disabling"></a>
+<a name="index-expansion_002c-brace_002c-disabling"></a>
 </dd>
 <dt> <tt>IGNORE_BRACES</tt> (<tt>-I</tt>) &lt;S&gt;</dt>
 <dd><p>Do not perform brace expansion.
 </p>
-<a name="IDX500"></a>
-<a name="IDX501"></a>
-<a name="IDX502"></a>
-<a name="IDX503"></a>
+<a name="index-KSH_005fGLOB"></a>
+<a name="index-NO_005fKSH_005fGLOB"></a>
+<a name="index-KSHGLOB"></a>
+<a name="index-NOKSHGLOB"></a>
 </dd>
 <dt> <tt>KSH_GLOB</tt> &lt;K&gt;</dt>
 <dd><p>In pattern matching, the interpretation of parentheses is affected by
-a preceding `<tt>@</tt>', `<tt>*</tt>', `<tt>+</tt>', `<tt>?</tt>' or `<tt>!</tt>'.
-See <a href="Expansion.html#SEC80">Filename Generation</a>.
+a preceding &lsquo;<tt>@</tt>&rsquo;, &lsquo;<tt>*</tt>&rsquo;, &lsquo;<tt>+</tt>&rsquo;, &lsquo;<tt>?</tt>&rsquo; or &lsquo;<tt>!</tt>&rsquo;.
+See <a href="Expansion.html#Filename-Generation">Filename Generation</a>.
 </p>
-<a name="IDX504"></a>
-<a name="IDX505"></a>
-<a name="IDX506"></a>
-<a name="IDX507"></a>
+<a name="index-MAGIC_005fEQUAL_005fSUBST"></a>
+<a name="index-NO_005fMAGIC_005fEQUAL_005fSUBST"></a>
+<a name="index-MAGICEQUALSUBST"></a>
+<a name="index-NOMAGICEQUALSUBST"></a>
 </dd>
 <dt> <tt>MAGIC_EQUAL_SUBST</tt></dt>
-<dd><p>All unquoted arguments of the form `<var>anything</var><tt>=</tt><var>expression</var>'
+<dd><p>All unquoted arguments of the form &lsquo;<var>anything</var><tt>=</tt><var>expression</var>&rsquo;
 appearing after the command name have filename expansion (that is,
-where <var>expression</var> has a leading `<tt>~</tt>' or `<tt>=</tt>') performed on
+where <var>expression</var> has a leading &lsquo;<tt>~</tt>&rsquo; or &lsquo;<tt>=</tt>&rsquo;) performed on
 <var>expression</var> as if it were a parameter assignment.  The argument is
 not otherwise treated specially; it is passed to the command as a single
 argument, and not used as an actual parameter assignment.  For example, in
@@ -756,22 +783,22 @@ Note that this happens anyway with <tt>typeset</tt> and similar statements.
 words, if both options are in effect, arguments looking like
 assignments will not undergo word splitting.
 </p>
-<a name="IDX508"></a>
-<a name="IDX509"></a>
-<a name="IDX510"></a>
-<a name="IDX511"></a>
-<a name="IDX512"></a>
-<a name="IDX513"></a>
+<a name="index-MARK_005fDIRS"></a>
+<a name="index-NO_005fMARK_005fDIRS"></a>
+<a name="index-MARKDIRS"></a>
+<a name="index-NOMARKDIRS"></a>
+<a name="index-directories_002c-marking"></a>
+<a name="index-marking-directories"></a>
 </dd>
 <dt> <tt>MARK_DIRS</tt> (<tt>-8</tt>, ksh: <tt>-X</tt>)</dt>
-<dd><p>Append a trailing `<tt>/</tt>' to all directory
+<dd><p>Append a trailing &lsquo;<tt>/</tt>&rsquo; to all directory
 names resulting from filename generation (globbing).
 </p>
-<a name="IDX514"></a>
-<a name="IDX515"></a>
-<a name="IDX516"></a>
-<a name="IDX517"></a>
-<a name="IDX518"></a>
+<a name="index-MULTIBYTE"></a>
+<a name="index-NO_005fMULTIBYTE"></a>
+<a name="index-NOMULTIBYTE"></a>
+<a name="index-characters_002c-multibyte_002c-in-expansion-and-globbing"></a>
+<a name="index-multibyte-characters_002c-in-expansion-and-globbing"></a>
 </dd>
 <dt> <tt>MULTIBYTE</tt> &lt;C&gt; &lt;K&gt; &lt;Z&gt;</dt>
 <dd><p>Respect multibyte characters when found in strings.
@@ -793,65 +820,65 @@ in the current locale.  It is not necessary to unset the option merely
 because the character set for the current locale does not contain multibyte
 characters.
 </p>
-<p>The option does not affect the shell's editor,  which always uses the
+<p>The option does not affect the shell&rsquo;s editor,  which always uses the
 locale to determine multibyte characters.  This is because
 the character set displayed by the terminal emulator is independent of
 shell settings.
 </p>
-<a name="IDX519"></a>
-<a name="IDX520"></a>
-<a name="IDX521"></a>
-<a name="IDX522"></a>
+<a name="index-NOMATCH"></a>
+<a name="index-NO_005fNOMATCH"></a>
+<a name="index-NONOMATCH"></a>
+<a name="index-globbing_002c-no-matches"></a>
 </dd>
 <dt> <tt>NOMATCH</tt> (<tt>+3</tt>) &lt;C&gt; &lt;Z&gt;</dt>
 <dd><p>If a pattern for filename generation has no matches,
 print an error, instead of
 leaving it unchanged in the argument list.
 This also applies to file expansion
-of an initial `<tt>~</tt>' or `<tt>=</tt>'.
+of an initial &lsquo;<tt>~</tt>&rsquo; or &lsquo;<tt>=</tt>&rsquo;.
 </p>
-<a name="IDX523"></a>
-<a name="IDX524"></a>
-<a name="IDX525"></a>
-<a name="IDX526"></a>
-<a name="IDX527"></a>
+<a name="index-NULL_005fGLOB"></a>
+<a name="index-NO_005fNULL_005fGLOB"></a>
+<a name="index-NULLGLOB"></a>
+<a name="index-NONULLGLOB"></a>
+<a name="index-globbing_002c-no-matches-1"></a>
 </dd>
 <dt> <tt>NULL_GLOB</tt> (<tt>-G</tt>)</dt>
 <dd><p>If a pattern for filename generation has no matches,
 delete the pattern from the argument list instead
 of reporting an error.  Overrides <tt>NOMATCH</tt>.
 </p>
-<a name="IDX528"></a>
-<a name="IDX529"></a>
-<a name="IDX530"></a>
-<a name="IDX531"></a>
-<a name="IDX532"></a>
+<a name="index-NUMERIC_005fGLOB_005fSORT"></a>
+<a name="index-NO_005fNUMERIC_005fGLOB_005fSORT"></a>
+<a name="index-NUMERICGLOBSORT"></a>
+<a name="index-NONUMERICGLOBSORT"></a>
+<a name="index-globbing_002c-sorting-numerically"></a>
 </dd>
 <dt> <tt>NUMERIC_GLOB_SORT</tt></dt>
 <dd><p>If numeric filenames are matched by a filename generation pattern,
 sort the filenames numerically rather than lexicographically.
 </p>
-<a name="IDX533"></a>
-<a name="IDX534"></a>
-<a name="IDX535"></a>
-<a name="IDX536"></a>
-<a name="IDX537"></a>
-<a name="IDX538"></a>
+<a name="index-RC_005fEXPAND_005fPARAM"></a>
+<a name="index-NO_005fRC_005fEXPAND_005fPARAM"></a>
+<a name="index-RCEXPANDPARAM"></a>
+<a name="index-NORCEXPANDPARAM"></a>
+<a name="index-rc_002c-parameter-expansion-style"></a>
+<a name="index-parameter-expansion-style_002c-rc"></a>
 </dd>
 <dt> <tt>RC_EXPAND_PARAM</tt> (<tt>-P</tt>)</dt>
 <dd><p>Array expansions of the form
-`<var>foo</var><tt>${</tt><var>xx</var><tt>}</tt><var>bar</var>', where the parameter
+&lsquo;<var>foo</var><tt>${</tt><var>xx</var><tt>}</tt><var>bar</var>&rsquo;, where the parameter
 <var>xx</var> is set to <tt>(</tt><var>a b c</var><tt>)</tt>, are substituted with
-`<var>fooabar foobbar foocbar</var>' instead of the default
-`<var>fooa b cbar</var>'.  Note that an empty array will therefore cause
+&lsquo;<var>fooabar foobbar foocbar</var>&rsquo; instead of the default
+&lsquo;<var>fooa b cbar</var>&rsquo;.  Note that an empty array will therefore cause
 all arguments to be removed.
 </p>
-<a name="IDX539"></a>
-<a name="IDX540"></a>
-<a name="IDX541"></a>
-<a name="IDX542"></a>
-<a name="IDX543"></a>
-<a name="IDX544"></a>
+<a name="index-REMATCH_005fPCRE"></a>
+<a name="index-NO_005fREMATCH_005fPCRE"></a>
+<a name="index-REMATCHPCRE"></a>
+<a name="index-NOREMATCHPCRE"></a>
+<a name="index-regexp_002c-PCRE"></a>
+<a name="index-PCRE_002c-regexp"></a>
 </dd>
 <dt> <tt>REMATCH_PCRE</tt> &lt;Z&gt;</dt>
 <dd><p>If set, regular expression matching with the <tt>=~</tt> operator will use
@@ -859,35 +886,35 @@ Perl-Compatible Regular Expressions from the PCRE library, if available.
 If not set, regular expressions will use the extended regexp syntax
 provided by the system libraries.
 </p>
-<a name="IDX545"></a>
-<a name="IDX546"></a>
-<a name="IDX547"></a>
-<a name="IDX548"></a>
-<a name="IDX549"></a>
-<a name="IDX550"></a>
+<a name="index-SH_005fGLOB"></a>
+<a name="index-NO_005fSH_005fGLOB"></a>
+<a name="index-SHGLOB"></a>
+<a name="index-NOSHGLOB"></a>
+<a name="index-sh_002c-globbing-style"></a>
+<a name="index-globbing-style_002c-sh"></a>
 </dd>
 <dt> <tt>SH_GLOB</tt> &lt;K&gt; &lt;S&gt;</dt>
-<dd><p>Disables the special meaning of `<tt>(</tt>', `<tt>|</tt>', `<tt>)</tt>'
-and '<tt>&lt;</tt>' for globbing the result of parameter and command substitutions,
+<dd><p>Disables the special meaning of &lsquo;<tt>(</tt>&rsquo;, &lsquo;<tt>|</tt>&rsquo;, &lsquo;<tt>)</tt>&rsquo;
+and &rsquo;<tt>&lt;</tt>&rsquo; for globbing the result of parameter and command substitutions,
 and in some other places where
 the shell accepts patterns.  This option is set by default if zsh is
 invoked as <tt>sh</tt> or <tt>ksh</tt>.
 </p>
-<a name="IDX551"></a>
-<a name="IDX552"></a>
-<a name="IDX553"></a>
-<a name="IDX554"></a>
-<a name="IDX555"></a>
+<a name="index-UNSET"></a>
+<a name="index-NO_005fUNSET"></a>
+<a name="index-NOUNSET"></a>
+<a name="index-parameters_002c-substituting-unset"></a>
+<a name="index-unset-parameters_002c-substituting"></a>
 </dd>
 <dt> <tt>UNSET</tt> (<tt>+u</tt>, ksh: <tt>+u</tt>) &lt;K&gt; &lt;S&gt; &lt;Z&gt;</dt>
 <dd><p>Treat unset parameters as if they were empty when substituting.
 Otherwise they are treated as an error.
 </p>
-<a name="IDX556"></a>
-<a name="IDX557"></a>
-<a name="IDX558"></a>
-<a name="IDX559"></a>
-<a name="IDX560"></a>
+<a name="index-WARN_005fCREATE_005fGLOBAL"></a>
+<a name="index-NO_005fWARN_005fCREATE_005fGLOBAL"></a>
+<a name="index-WARNCREATEGLOBAL"></a>
+<a name="index-NOWARNCREATEGLOBAL"></a>
+<a name="index-parameters_002c-warning-when-created-globally"></a>
 </dd>
 <dt> <tt>WARN_CREATE_GLOBAL</tt></dt>
 <dd><p>Print a warning message when a global parameter is created in a function
@@ -902,30 +929,30 @@ a nested function, which may also indicate an error.
 
 
 <hr size="6">
-<a name="SEC105"></a>
+<a name="History"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC104" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC106" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Expansion-and-Globbing" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Initialisation" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC101" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-of-Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 16.2.4 History </h3>
+<h3 class="subsection">16.2.4 History</h3>
 <dl compact="compact">
-<dd><a name="IDX561"></a>
-<a name="IDX562"></a>
-<a name="IDX563"></a>
-<a name="IDX564"></a>
-<a name="IDX565"></a>
+<dd><a name="index-APPEND_005fHISTORY"></a>
+<a name="index-NO_005fAPPEND_005fHISTORY"></a>
+<a name="index-APPENDHISTORY"></a>
+<a name="index-NOAPPENDHISTORY"></a>
+<a name="index-history_002c-appending-to-a-file"></a>
 </dd>
 <dt> <tt>APPEND_HISTORY</tt> &lt;D&gt;</dt>
 <dd><p>If this is set, zsh sessions will append their history list to
@@ -936,55 +963,55 @@ The file will still be periodically re-written to trim it when the
 number of lines grows 20% beyond the value specified by
 <tt>$SAVEHIST</tt> (see also the HIST_SAVE_BY_COPY option).
 </p>
-<a name="IDX566"></a>
-<a name="IDX567"></a>
-<a name="IDX568"></a>
-<a name="IDX569"></a>
-<a name="IDX570"></a>
-<a name="IDX571"></a>
+<a name="index-BANG_005fHIST"></a>
+<a name="index-NO_005fBANG_005fHIST"></a>
+<a name="index-BANGHIST"></a>
+<a name="index-NOBANGHIST"></a>
+<a name="index-history_002c-enable-substitution"></a>
+<a name="index-enable-history-substitution"></a>
 </dd>
 <dt> <tt>BANG_HIST</tt> (<tt>+K</tt>) &lt;C&gt; &lt;Z&gt;</dt>
 <dd><p>Perform textual history expansion, <cite>csh</cite>-style,
-treating the character `<tt>!</tt>' specially.
+treating the character &lsquo;<tt>!</tt>&rsquo; specially.
 </p>
-<a name="IDX572"></a>
-<a name="IDX573"></a>
-<a name="IDX574"></a>
-<a name="IDX575"></a>
-<a name="IDX576"></a>
+<a name="index-EXTENDED_005fHISTORY"></a>
+<a name="index-NO_005fEXTENDED_005fHISTORY"></a>
+<a name="index-EXTENDEDHISTORY"></a>
+<a name="index-NOEXTENDEDHISTORY"></a>
+<a name="index-history_002c-timestamping"></a>
 </dd>
 <dt> <tt>EXTENDED_HISTORY</tt> &lt;C&gt;</dt>
-<dd><p>Save each command's beginning timestamp (in seconds since the epoch)
+<dd><p>Save each command&rsquo;s beginning timestamp (in seconds since the epoch)
 and the duration (in seconds) to the history file.  The format of
 this prefixed data is:
 </p>
-<p>`<tt>:</tt><var>&lt;beginning time&gt;</var><tt>:</tt><var>&lt;elapsed seconds&gt;</var><tt>:</tt><var>&lt;command&gt;</var>'.
+<p>&lsquo;<tt>:</tt> <var>&lt;beginning time&gt;</var><tt>:</tt><var>&lt;elapsed seconds&gt;</var><tt>;</tt><var>&lt;command&gt;</var>&rsquo;.
 </p>
-<a name="IDX577"></a>
-<a name="IDX578"></a>
-<a name="IDX579"></a>
-<a name="IDX580"></a>
+<a name="index-HIST_005fALLOW_005fCLOBBER"></a>
+<a name="index-NO_005fHIST_005fALLOW_005fCLOBBER"></a>
+<a name="index-HISTALLOWCLOBBER"></a>
+<a name="index-NOHISTALLOWCLOBBER"></a>
 </dd>
 <dt> <tt>HIST_ALLOW_CLOBBER</tt></dt>
-<dd><p>Add `<tt>|</tt>' to output redirections in the history.  This allows history
+<dd><p>Add &lsquo;<tt>|</tt>&rsquo; to output redirections in the history.  This allows history
 references to clobber files even when <tt>CLOBBER</tt> is unset.
 </p>
-<a name="IDX581"></a>
-<a name="IDX582"></a>
-<a name="IDX583"></a>
-<a name="IDX584"></a>
-<a name="IDX585"></a>
-<a name="IDX586"></a>
+<a name="index-HIST_005fBEEP"></a>
+<a name="index-NO_005fHIST_005fBEEP"></a>
+<a name="index-HISTBEEP"></a>
+<a name="index-NOHISTBEEP"></a>
+<a name="index-history-beeping"></a>
+<a name="index-beep_002c-history"></a>
 </dd>
 <dt> <tt>HIST_BEEP</tt> &lt;D&gt;</dt>
 <dd><p>Beep when an attempt is made to access a history entry which
-isn't there.
+isn&rsquo;t there.
 </p>
-<a name="IDX587"></a>
-<a name="IDX588"></a>
-<a name="IDX589"></a>
-<a name="IDX590"></a>
-<a name="IDX591"></a>
+<a name="index-HIST_005fEXPIRE_005fDUPS_005fFIRST"></a>
+<a name="index-NO_005fHIST_005fEXPIRE_005fDUPS_005fFIRST"></a>
+<a name="index-HISTEXPIREDUPSFIRST"></a>
+<a name="index-NOHISTEXPIREDUPSFIRST"></a>
+<a name="index-history_002c-expiring-duplicates"></a>
 </dd>
 <dt> <tt>HIST_EXPIRE_DUPS_FIRST</tt></dt>
 <dd><p>If the internal history needs to be trimmed to add the current command line,
@@ -995,70 +1022,87 @@ than <tt>SAVEHIST</tt> in order to give you some room for the duplicated
 events, otherwise this option will behave just like
 <tt>HIST_IGNORE_ALL_DUPS</tt> once the history fills up with unique events.
 </p>
-<a name="IDX592"></a>
-<a name="IDX593"></a>
-<a name="IDX594"></a>
-<a name="IDX595"></a>
+<a name="index-HIST_005fFCNTL_005fLOCK"></a>
+<a name="index-NO_005fHIST_005fFCNTL_005fLOCK"></a>
+<a name="index-HISTFCNTLLOCK"></a>
+<a name="index-NOHISTFCNTLLOCK"></a>
 </dd>
 <dt> <tt>HIST_FCNTL_LOCK</tt></dt>
 <dd><p>When writing out the history file, by default zsh uses ad-hoc file locking
 to avoid known problems with locking on some operating systems.  With this
-option locking is done by means of the system's <tt>fcntl</tt> call, where
+option locking is done by means of the system&rsquo;s <tt>fcntl</tt> call, where
 this method is available.  On recent operating systems this may
 provide better performance, in particular avoiding history corruption when
 files are stored on NFS.
 </p>
-<a name="IDX596"></a>
-<a name="IDX597"></a>
-<a name="IDX598"></a>
-<a name="IDX599"></a>
-<a name="IDX600"></a>
+<a name="index-HIST_005fFIND_005fNO_005fDUPS"></a>
+<a name="index-NO_005fHIST_005fFIND_005fNO_005fDUPS"></a>
+<a name="index-HISTFINDNODUPS"></a>
+<a name="index-NOHISTFINDNODUPS"></a>
+<a name="index-history_002c-ignoring-duplicates-in-search"></a>
 </dd>
 <dt> <tt>HIST_FIND_NO_DUPS</tt></dt>
 <dd><p>When searching for history entries in the line editor, do not display
 duplicates of a line previously found, even if the duplicates are not
 contiguous.
 </p>
-<a name="IDX601"></a>
-<a name="IDX602"></a>
-<a name="IDX603"></a>
-<a name="IDX604"></a>
-<a name="IDX605"></a>
+<a name="index-HIST_005fIGNORE_005fALL_005fDUPS"></a>
+<a name="index-NO_005fHIST_005fIGNORE_005fALL_005fDUPS"></a>
+<a name="index-HISTIGNOREALLDUPS"></a>
+<a name="index-NOHISTIGNOREALLDUPS"></a>
+<a name="index-history_002c-ignoring-all-duplicates"></a>
 </dd>
 <dt> <tt>HIST_IGNORE_ALL_DUPS</tt></dt>
 <dd><p>If a new command line being added to the history list duplicates an
 older one, the older command is removed from the list (even if it is
 not the previous event).
 </p>
-<a name="IDX606"></a>
-<a name="IDX607"></a>
-<a name="IDX608"></a>
-<a name="IDX609"></a>
-<a name="IDX610"></a>
+<a name="index-HIST_005fIGNORE_005fDUPS"></a>
+<a name="index-NO_005fHIST_005fIGNORE_005fDUPS"></a>
+<a name="index-HISTIGNOREDUPS"></a>
+<a name="index-NOHISTIGNOREDUPS"></a>
+<a name="index-history_002c-ignoring-duplicates"></a>
 </dd>
 <dt> <tt>HIST_IGNORE_DUPS</tt> (<tt>-h</tt>)</dt>
 <dd><p>Do not enter command lines into the history list
 if they are duplicates of the previous event.
 </p>
-<a name="IDX611"></a>
-<a name="IDX612"></a>
-<a name="IDX613"></a>
-<a name="IDX614"></a>
-<a name="IDX615"></a>
+<a name="index-HIST_005fIGNORE_005fSPACE"></a>
+<a name="index-NO_005fHIST_005fIGNORE_005fSPACE"></a>
+<a name="index-HISTIGNORESPACE"></a>
+<a name="index-NOHISTIGNORESPACE"></a>
+<a name="index-history_002c-ignoring-spaces"></a>
 </dd>
 <dt> <tt>HIST_IGNORE_SPACE</tt> (<tt>-g</tt>)</dt>
 <dd><p>Remove command lines from the history list when the first character on
 the line is a space, or when one of the expanded aliases contains a
-leading space.
+leading space.  Only normal aliases (not global or suffix aliases)
+have this behaviour.
 Note that the command lingers in the internal history until the next
 command is entered before it vanishes, allowing you to briefly reuse
 or edit the line.  If you want to make it vanish right away without
 entering another command, type a space and press return.
 </p>
-<a name="IDX616"></a>
-<a name="IDX617"></a>
-<a name="IDX618"></a>
-<a name="IDX619"></a>
+<a name="index-HIST_005fLEX_005fWORDS"></a>
+<a name="index-NO_005fHIST_005fLEX_005fWORDS"></a>
+<a name="index-HISTLEXWORDS"></a>
+<a name="index-NOHISTLEXWORDS"></a>
+</dd>
+<dt> <tt>HIST_LEX_WORDS</tt></dt>
+<dd><p>By default, shell history that is read in from files is split into
+words on all white space.  This means that arguments with quoted
+whitespace are not correctly handled, with the consequence that
+references to words in history lines that have been read from a file
+may be inaccurate.  When this option is set, words read in from a
+history file are divided up in a similar fashion to normal shell
+command line handling.  Although this produces more accurately delimited
+words, if the size of the history file is large this can be slow.  Trial
+and error is necessary to decide.
+</p>
+<a name="index-HIST_005fNO_005fFUNCTIONS"></a>
+<a name="index-NO_005fHIST_005fNO_005fFUNCTIONS"></a>
+<a name="index-HISTNOFUNCTIONS"></a>
+<a name="index-NOHISTNOFUNCTIONS"></a>
 </dd>
 <dt> <tt>HIST_NO_FUNCTIONS</tt></dt>
 <dd><p>Remove function definitions from the history list.
@@ -1066,10 +1110,10 @@ Note that the function lingers in the internal history until the next
 command is entered before it vanishes, allowing you to briefly reuse
 or edit the definition.
 </p>
-<a name="IDX620"></a>
-<a name="IDX621"></a>
-<a name="IDX622"></a>
-<a name="IDX623"></a>
+<a name="index-HIST_005fNO_005fSTORE"></a>
+<a name="index-NO_005fHIST_005fNO_005fSTORE"></a>
+<a name="index-HISTNOSTORE"></a>
+<a name="index-NOHISTNOSTORE"></a>
 </dd>
 <dt> <tt>HIST_NO_STORE</tt></dt>
 <dd><p>Remove the <tt>history</tt> (<tt>fc -l</tt>) command from the history list
@@ -1078,19 +1122,19 @@ Note that the command lingers in the internal history until the next
 command is entered before it vanishes, allowing you to briefly reuse
 or edit the line.
 </p>
-<a name="IDX624"></a>
-<a name="IDX625"></a>
-<a name="IDX626"></a>
-<a name="IDX627"></a>
+<a name="index-HIST_005fREDUCE_005fBLANKS"></a>
+<a name="index-NO_005fHIST_005fREDUCE_005fBLANKS"></a>
+<a name="index-HISTREDUCEBLANKS"></a>
+<a name="index-NOHISTREDUCEBLANKS"></a>
 </dd>
 <dt> <tt>HIST_REDUCE_BLANKS</tt></dt>
 <dd><p>Remove superfluous blanks from each command line
 being added to the history list.
 </p>
-<a name="IDX628"></a>
-<a name="IDX629"></a>
-<a name="IDX630"></a>
-<a name="IDX631"></a>
+<a name="index-HIST_005fSAVE_005fBY_005fCOPY"></a>
+<a name="index-NO_005fHIST_005fSAVE_005fBY_005fCOPY"></a>
+<a name="index-HISTSAVEBYCOPY"></a>
+<a name="index-NOHISTSAVEBYCOPY"></a>
 </dd>
 <dt> <tt>HIST_SAVE_BY_COPY</tt> &lt;D&gt;</dt>
 <dd><p>When the history file is re-written, we normally write out a copy of
@@ -1104,34 +1148,34 @@ so makes it possible to lose history entries if zsh gets interrupted
 during the save.
 </p>
 <p>When writing out a copy of the history file, zsh preserves the old
-file's permissions and group information, but will refuse to write
-out a new file if it would change the history file's owner.
+file&rsquo;s permissions and group information, but will refuse to write
+out a new file if it would change the history file&rsquo;s owner.
 </p>
-<a name="IDX632"></a>
-<a name="IDX633"></a>
-<a name="IDX634"></a>
-<a name="IDX635"></a>
+<a name="index-HIST_005fSAVE_005fNO_005fDUPS"></a>
+<a name="index-NO_005fHIST_005fSAVE_005fNO_005fDUPS"></a>
+<a name="index-HISTSAVENODUPS"></a>
+<a name="index-NOHISTSAVENODUPS"></a>
 </dd>
 <dt> <tt>HIST_SAVE_NO_DUPS</tt></dt>
 <dd><p>When writing out the history file, older commands that duplicate
 newer ones are omitted.
 </p>
-<a name="IDX636"></a>
-<a name="IDX637"></a>
-<a name="IDX638"></a>
-<a name="IDX639"></a>
-<a name="IDX640"></a>
+<a name="index-HIST_005fVERIFY"></a>
+<a name="index-NO_005fHIST_005fVERIFY"></a>
+<a name="index-HISTVERIFY"></a>
+<a name="index-NOHISTVERIFY"></a>
+<a name="index-history_002c-verifying-substitution"></a>
 </dd>
 <dt> <tt>HIST_VERIFY</tt></dt>
 <dd><p>Whenever the user enters a line with history expansion,
-don't execute the line directly; instead, perform
+don&rsquo;t execute the line directly; instead, perform
 history expansion and reload the line into the editing buffer.
 </p>
-<a name="IDX641"></a>
-<a name="IDX642"></a>
-<a name="IDX643"></a>
-<a name="IDX644"></a>
-<a name="IDX645"></a>
+<a name="index-INC_005fAPPEND_005fHISTORY"></a>
+<a name="index-NO_005fINC_005fAPPEND_005fHISTORY"></a>
+<a name="index-INCAPPENDHISTORY"></a>
+<a name="index-NOINCAPPENDHISTORY"></a>
+<a name="index-history_002c-incremental-appending-to-a-file"></a>
 </dd>
 <dt> <tt>INC_APPEND_HISTORY</tt></dt>
 <dd><p>This options works like <tt>APPEND_HISTORY</tt> except that new history lines
@@ -1141,12 +1185,12 @@ The file will still be periodically re-written to trim it when the
 number of lines grows 20% beyond the value specified by
 <tt>$SAVEHIST</tt> (see also the HIST_SAVE_BY_COPY option).
 </p>
-<a name="IDX646"></a>
-<a name="IDX647"></a>
-<a name="IDX648"></a>
-<a name="IDX649"></a>
-<a name="IDX650"></a>
-<a name="IDX651"></a>
+<a name="index-SHARE_005fHISTORY"></a>
+<a name="index-NO_005fSHARE_005fHISTORY"></a>
+<a name="index-SHAREHISTORY"></a>
+<a name="index-NOSHAREHISTORY"></a>
+<a name="index-share-history"></a>
+<a name="index-history_002c-sharing"></a>
 </dd>
 <dt> <tt>SHARE_HISTORY</tt> &lt;K&gt;</dt>
 <dd>
@@ -1166,46 +1210,46 @@ some include them.
 <p>If you find that you want more control over when commands
 get imported, you may wish to turn <tt>SHARE_HISTORY</tt> off,
 <tt>INC_APPEND_HISTORY</tt> on, and then manually import
-commands whenever you need them using `<tt>fc -RI</tt>'.
+commands whenever you need them using &lsquo;<tt>fc -RI</tt>&rsquo;.
 </p>
 </dd>
 </dl>
 
 
 <hr size="6">
-<a name="SEC106"></a>
+<a name="Initialisation"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC105" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC107" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#History" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Input_002fOutput" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC101" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-of-Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 16.2.5 Initialisation </h3>
+<h3 class="subsection">16.2.5 Initialisation</h3>
 <dl compact="compact">
-<dd><a name="IDX652"></a>
-<a name="IDX653"></a>
-<a name="IDX654"></a>
-<a name="IDX655"></a>
-<a name="IDX656"></a>
+<dd><a name="index-ALL_005fEXPORT"></a>
+<a name="index-NO_005fALL_005fEXPORT"></a>
+<a name="index-ALLEXPORT"></a>
+<a name="index-NOALLEXPORT"></a>
+<a name="index-export_002c-automatic"></a>
 </dd>
 <dt> <tt>ALL_EXPORT</tt> (<tt>-a</tt>, ksh: <tt>-a</tt>)</dt>
 <dd><p>All parameters subsequently defined are automatically exported.
 </p>
-<a name="IDX657"></a>
-<a name="IDX658"></a>
-<a name="IDX659"></a>
-<a name="IDX660"></a>
-<a name="IDX661"></a>
+<a name="index-GLOBAL_005fEXPORT"></a>
+<a name="index-NO_005fGLOBAL_005fEXPORT"></a>
+<a name="index-GLOBALEXPORT"></a>
+<a name="index-NOGLOBALEXPORT"></a>
+<a name="index-environment_002c-and-local-parameters"></a>
 </dd>
 <dt> <tt>GLOBAL_EXPORT</tt> (<tt>&lt;Z&gt;</tt>)</dt>
 <dd><p>If this option is set, passing the <tt>-x</tt> flag to the builtins <tt>declare</tt>,
@@ -1222,13 +1266,13 @@ recommended that its behaviour be relied upon.  Note that the builtin
 effect extends beyond the scope of the enclosing function; this is the
 most portable way to achieve this behaviour.
 </p>
-<a name="IDX662"></a>
-<a name="IDX663"></a>
-<a name="IDX664"></a>
-<a name="IDX665"></a>
-<a name="IDX666"></a>
-<a name="IDX667"></a>
-<a name="IDX668"></a>
+<a name="index-exporting_002c-and-local-parameters"></a>
+<a name="index-GLOBAL_005fRCS"></a>
+<a name="index-NO_005fGLOBAL_005fRCS"></a>
+<a name="index-GLOBALRCS"></a>
+<a name="index-NOGLOBALRCS"></a>
+<a name="index-startup-files_002c-global_002c-inhibiting"></a>
+<a name="index-files_002c-global-startup_002c-inhibiting"></a>
 </dd>
 <dt> <tt>GLOBAL_RCS</tt> (<tt>-d</tt>) &lt;D&gt;</dt>
 <dd><p>If this option is unset, the startup files <tt>/etc/zprofile</tt>,
@@ -1236,16 +1280,16 @@ most portable way to achieve this behaviour.
 can be disabled and re-enabled at any time, including inside local startup
 files (<tt>.zshrc</tt>, etc.).
 </p>
-<a name="IDX669"></a>
-<a name="IDX670"></a>
-<a name="IDX671"></a>
-<a name="IDX672"></a>
+<a name="index-RCS"></a>
+<a name="index-NO_005fRCS"></a>
+<a name="index-NORCS"></a>
+<a name="index-startup-files_002c-sourcing"></a>
 </dd>
 <dt> <tt>RCS</tt> (<tt>+f</tt>) &lt;D&gt;</dt>
 <dd><p>After <tt>/etc/zshenv</tt> is sourced on startup, source the
 <tt>.zshenv</tt>, <tt>/etc/zprofile</tt>, <tt>.zprofile</tt>,
 <tt>/etc/zshrc</tt>, <tt>.zshrc</tt>, <tt>/etc/zlogin</tt>, <tt>.zlogin</tt>, and <tt>.zlogout</tt>
-files, as described in <a href="Files.html#SEC25">Files</a>.
+files, as described in <a href="Files.html#Files">Files</a>.
 If this option is unset, the <tt>/etc/zshenv</tt> file is still sourced, but any
 of the others will not be; it can be set at any time to prevent the
 remaining startup files after the currently executing one from
@@ -1256,50 +1300,50 @@ being sourced.
 
 
 <hr size="6">
-<a name="SEC107"></a>
+<a name="Input_002fOutput"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC106" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC108" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Initialisation" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Job-Control" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC101" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-of-Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 16.2.6 Input/Output </h3>
+<h3 class="subsection">16.2.6 Input/Output</h3>
 <dl compact="compact">
-<dd><a name="IDX673"></a>
-<a name="IDX674"></a>
-<a name="IDX675"></a>
-<a name="IDX676"></a>
+<dd><a name="index-ALIASES"></a>
+<a name="index-NO_005fALIASES"></a>
+<a name="index-NOALIASES"></a>
+<a name="index-aliases_002c-expansion"></a>
 </dd>
 <dt> <tt>ALIASES</tt> &lt;D&gt;</dt>
 <dd><p>Expand aliases.
 </p>
-<a name="IDX677"></a>
-<a name="IDX678"></a>
-<a name="IDX679"></a>
-<a name="IDX680"></a>
-<a name="IDX681"></a>
+<a name="index-CLOBBER"></a>
+<a name="index-NO_005fCLOBBER"></a>
+<a name="index-NOCLOBBER"></a>
+<a name="index-clobbering_002c-of-files"></a>
+<a name="index-file-clobbering_002c-allowing"></a>
 </dd>
 <dt> <tt>CLOBBER</tt> (<tt>+C</tt>, ksh: <tt>+C</tt>) &lt;D&gt;</dt>
-<dd><p>Allows `<tt>&gt;</tt>' redirection to truncate existing files,
-and `<tt>&gt;&gt;</tt>' to create files.
-Otherwise `<tt>&gt;!</tt>' or `<tt>&gt;|</tt>' must be used to truncate a file,
-and `<tt>&gt;&gt;!</tt>' or `<tt>&gt;&gt;|</tt>' to create a file.
+<dd><p>Allows &lsquo;<tt>&gt;</tt>&rsquo; redirection to truncate existing files,
+and &lsquo;<tt>&gt;&gt;</tt>&rsquo; to create files.
+Otherwise &lsquo;<tt>&gt;!</tt>&rsquo; or &lsquo;<tt>&gt;|</tt>&rsquo; must be used to truncate a file,
+and &lsquo;<tt>&gt;&gt;!</tt>&rsquo; or &lsquo;<tt>&gt;&gt;|</tt>&rsquo; to create a file.
 </p>
-<a name="IDX682"></a>
-<a name="IDX683"></a>
-<a name="IDX684"></a>
-<a name="IDX685"></a>
-<a name="IDX686"></a>
+<a name="index-CORRECT"></a>
+<a name="index-NO_005fCORRECT"></a>
+<a name="index-NOCORRECT"></a>
+<a name="index-correction_002c-spelling"></a>
+<a name="index-spelling-correction"></a>
 </dd>
 <dt> <tt>CORRECT</tt> (<tt>-0</tt>)</dt>
 <dd><p>Try to correct the spelling of commands.
@@ -1310,39 +1354,39 @@ errors the first time some commands are used.
 <p>The shell variable <tt>CORRECT_IGNORE</tt> may be set to a pattern to
 match words that will never be offered as corrections.
 </p>
-<a name="IDX687"></a>
-<a name="IDX688"></a>
-<a name="IDX689"></a>
-<a name="IDX690"></a>
+<a name="index-CORRECT_005fALL"></a>
+<a name="index-NO_005fCORRECT_005fALL"></a>
+<a name="index-CORRECTALL"></a>
+<a name="index-NOCORRECTALL"></a>
 </dd>
 <dt> <tt>CORRECT_ALL</tt> (<tt>-O</tt>)</dt>
 <dd><p>Try to correct the spelling of all arguments in a line.
 </p>
-<a name="IDX691"></a>
-<a name="IDX692"></a>
-<a name="IDX693"></a>
+<a name="index-DVORAK"></a>
+<a name="index-NO_005fDVORAK"></a>
+<a name="index-NODVORAK"></a>
 </dd>
 <dt> <tt>DVORAK</tt></dt>
 <dd><p>Use the Dvorak keyboard instead of the standard qwerty keyboard as a basis
 for examining spelling mistakes for the <tt>CORRECT</tt> and <tt>CORRECT_ALL</tt>
 options and the <tt>spell-word</tt> editor command.
 </p>
-<a name="IDX694"></a>
-<a name="IDX695"></a>
-<a name="IDX696"></a>
-<a name="IDX697"></a>
-<a name="IDX698"></a>
+<a name="index-FLOW_005fCONTROL"></a>
+<a name="index-NO_005fFLOW_005fCONTROL"></a>
+<a name="index-FLOWCONTROL"></a>
+<a name="index-NOFLOWCONTROL"></a>
+<a name="index-flow-control"></a>
 </dd>
 <dt> <tt>FLOW_CONTROL</tt> &lt;D&gt;</dt>
 <dd><p>If this option is unset,
 output flow control via start/stop characters (usually assigned to
-^S/^Q) is disabled in the shell's editor.
+^S/^Q) is disabled in the shell&rsquo;s editor.
 </p>
-<a name="IDX699"></a>
-<a name="IDX700"></a>
-<a name="IDX701"></a>
-<a name="IDX702"></a>
-<a name="IDX703"></a>
+<a name="index-IGNORE_005fEOF"></a>
+<a name="index-NO_005fIGNORE_005fEOF"></a>
+<a name="index-IGNOREEOF"></a>
+<a name="index-NOIGNOREEOF"></a>
+<a name="index-EOF_002c-ignoring"></a>
 </dd>
 <dt> <tt>IGNORE_EOF</tt> (<tt>-7</tt>)</dt>
 <dd><p>Do not exit on end-of-file.  Require the use
@@ -1355,21 +1399,21 @@ implemented by shell functions can be bound to EOF (normally
 Control-D) without printing the normal warning message.  This works
 only for normal widgets, not for completion widgets.
 </p>
-<a name="IDX704"></a>
-<a name="IDX705"></a>
-<a name="IDX706"></a>
-<a name="IDX707"></a>
-<a name="IDX708"></a>
+<a name="index-INTERACTIVE_005fCOMMENTS"></a>
+<a name="index-NO_005fINTERACTIVE_005fCOMMENTS"></a>
+<a name="index-INTERACTIVECOMMENTS"></a>
+<a name="index-NOINTERACTIVECOMMENTS"></a>
+<a name="index-comments_002c-in-interactive-shells"></a>
 </dd>
 <dt> <tt>INTERACTIVE_COMMENTS</tt> (<tt>-k</tt>) &lt;K&gt; &lt;S&gt;</dt>
 <dd><p>Allow comments even in interactive shells.
 </p>
-<a name="IDX709"></a>
-<a name="IDX710"></a>
-<a name="IDX711"></a>
-<a name="IDX712"></a>
-<a name="IDX713"></a>
-<a name="IDX714"></a>
+<a name="index-HASH_005fCMDS"></a>
+<a name="index-NO_005fHASH_005fCMDS"></a>
+<a name="index-HASHCMDS"></a>
+<a name="index-NOHASHCMDS"></a>
+<a name="index-hashing_002c-of-commands"></a>
+<a name="index-command-hashing"></a>
 </dd>
 <dt> <tt>HASH_CMDS</tt> &lt;D&gt;</dt>
 <dd><p>Note the location of each command the first time it is executed.
@@ -1380,192 +1424,208 @@ However, when <tt>CORRECT</tt> is set, commands whose names do not appear in
 the functions or aliases hash tables are hashed in order to avoid
 reporting them as spelling errors.
 </p>
-<a name="IDX715"></a>
-<a name="IDX716"></a>
-<a name="IDX717"></a>
-<a name="IDX718"></a>
-<a name="IDX719"></a>
-<a name="IDX720"></a>
+<a name="index-HASH_005fDIRS"></a>
+<a name="index-NO_005fHASH_005fDIRS"></a>
+<a name="index-HASHDIRS"></a>
+<a name="index-NOHASHDIRS"></a>
+<a name="index-hashing_002c-of-directories"></a>
+<a name="index-directories_002c-hashing"></a>
 </dd>
 <dt> <tt>HASH_DIRS</tt> &lt;D&gt;</dt>
 <dd><p>Whenever a command name is hashed, hash the directory containing it,
 as well as all directories that occur earlier in the path.
 Has no effect if neither <tt>HASH_CMDS</tt> nor <tt>CORRECT</tt> is set.
 </p>
-<a name="IDX721"></a>
-<a name="IDX722"></a>
-<a name="IDX723"></a>
-<a name="IDX724"></a>
-<a name="IDX725"></a>
+<a name="index-MAIL_005fWARNING"></a>
+<a name="index-NO_005fMAIL_005fWARNING"></a>
+<a name="index-MAILWARNING"></a>
+<a name="index-NOMAILWARNING"></a>
+<a name="index-mail_002c-warning-of-reading"></a>
 </dd>
 <dt> <tt>MAIL_WARNING</tt> (<tt>-U</tt>)</dt>
 <dd><p>Print a warning message if a mail file has been
 accessed since the shell last checked.
 </p>
-<a name="IDX726"></a>
-<a name="IDX727"></a>
-<a name="IDX728"></a>
-<a name="IDX729"></a>
-<a name="IDX730"></a>
+<a name="index-PATH_005fDIRS"></a>
+<a name="index-NO_005fPATH_005fDIRS"></a>
+<a name="index-PATHDIRS"></a>
+<a name="index-NOPATHDIRS"></a>
+<a name="index-path-search_002c-extended"></a>
 </dd>
 <dt> <tt>PATH_DIRS</tt> (<tt>-Q</tt>)</dt>
 <dd><p>Perform a path search even on command names with slashes in them.
-Thus if `<tt>/usr/local/bin</tt>' is in the user's path, and he or she types
-`<tt>X11/xinit</tt>', the command `<tt>/usr/local/bin/X11/xinit</tt>' will be executed
+Thus if &lsquo;<tt>/usr/local/bin</tt>&rsquo; is in the user&rsquo;s path, and he or she types
+&lsquo;<tt>X11/xinit</tt>&rsquo;, the command &lsquo;<tt>/usr/local/bin/X11/xinit</tt>&rsquo; will be executed
 (assuming it exists).
-Commands explicitly beginning with `<tt>/</tt>', `<tt>./</tt>' or `<tt>../</tt>'
+Commands explicitly beginning with &lsquo;<tt>/</tt>&rsquo;, &lsquo;<tt>./</tt>&rsquo; or &lsquo;<tt>../</tt>&rsquo;
 are not subject to the path search.
-This also applies to the `<tt>.</tt>' builtin.
+This also applies to the &lsquo;<tt>.</tt>&rsquo; builtin.
 </p>
 <p>Note that subdirectories of the current directory are always searched for
 executables specified in this form.  This takes place before any search
-indicated by this option, and regardless of whether `<tt>.</tt>' or the current
+indicated by this option, and regardless of whether &lsquo;<tt>.</tt>&rsquo; or the current
 directory appear in the command search path.
 </p>
-<a name="IDX731"></a>
-<a name="IDX732"></a>
-<a name="IDX733"></a>
-<a name="IDX734"></a>
-<a name="IDX735"></a>
+<a name="index-PATH_005fSCRIPT"></a>
+<a name="index-NO_005fPATH_005fSCRIPT"></a>
+<a name="index-PATHSCRIPT"></a>
+<a name="index-NOPATHSCRIPT"></a>
+<a name="index-path-search_002c-for-script-argument-to-shell"></a>
+</dd>
+<dt> <tt>PATH_SCRIPT</tt> &lt;K&gt; &lt;S&gt;</dt>
+<dd><p>If this option is not set, a script passed as the first non-option argument
+to the shell must contain the name of the file to open.  If this
+option is set, and the script does not specify a directory path,
+the script is looked for first in the current directory, then in the
+command path.  See
+<a href="Invocation.html#Invocation">Invocation</a>.
+</p>
+<a name="index-PRINT_005fEIGHT_005fBIT"></a>
+<a name="index-NO_005fPRINT_005fEIGHT_005fBIT"></a>
+<a name="index-PRINTEIGHTBIT"></a>
+<a name="index-NOPRINTEIGHTBIT"></a>
+<a name="index-eight-bit-characters_002c-printing"></a>
 </dd>
 <dt> <tt>PRINT_EIGHT_BIT</tt></dt>
 <dd><p>Print eight bit characters literally in completion lists, etc.
 This option is not necessary if your system correctly returns the
 printability of eight bit characters (see man page ctype(3)).
 </p>
-<a name="IDX736"></a>
-<a name="IDX737"></a>
-<a name="IDX738"></a>
-<a name="IDX739"></a>
-<a name="IDX740"></a>
+<a name="index-PRINT_005fEXIT_005fVALUE"></a>
+<a name="index-NO_005fPRINT_005fEXIT_005fVALUE"></a>
+<a name="index-PRINTEXITVALUE"></a>
+<a name="index-NOPRINTEXITVALUE"></a>
+<a name="index-exit-status_002c-printing"></a>
 </dd>
 <dt> <tt>PRINT_EXIT_VALUE</tt> (<tt>-1</tt>)</dt>
 <dd><p>Print the exit value of programs with non-zero exit status.
 </p>
-<a name="IDX741"></a>
-<a name="IDX742"></a>
-<a name="IDX743"></a>
-<a name="IDX744"></a>
-<a name="IDX745"></a>
-<a name="IDX746"></a>
+<a name="index-RC_005fQUOTES"></a>
+<a name="index-NO_005fRC_005fQUOTES"></a>
+<a name="index-RCQUOTES"></a>
+<a name="index-NORCQUOTES"></a>
+<a name="index-rc_002c-quoting-style"></a>
+<a name="index-quoting-style_002c-rc"></a>
 </dd>
 <dt> <tt>RC_QUOTES</tt></dt>
-<dd><p>Allow the character sequence `<tt>''</tt>' to signify a single quote
+<dd><p>Allow the character sequence &lsquo;<tt>&rsquo;&rsquo;</tt>&rsquo; to signify a single quote
 within singly quoted strings.  Note this does not apply in quoted strings
-using the format <tt>$'</tt><var>...</var><tt>'</tt>, where a backslashed single quote can
+using the format <tt>$&rsquo;</tt><var>...</var><tt>&rsquo;</tt>, where a backslashed single quote can
 be used.
 </p>
-<a name="IDX747"></a>
-<a name="IDX748"></a>
-<a name="IDX749"></a>
-<a name="IDX750"></a>
-<a name="IDX751"></a>
-<a name="IDX752"></a>
+<a name="index-RM_005fSTAR_005fSILENT"></a>
+<a name="index-NO_005fRM_005fSTAR_005fSILENT"></a>
+<a name="index-RMSTARSILENT"></a>
+<a name="index-NORMSTARSILENT"></a>
+<a name="index-rm-_002a_002c-querying-before"></a>
+<a name="index-querying-before-rm-_002a"></a>
 </dd>
 <dt> <tt>RM_STAR_SILENT</tt> (<tt>-H</tt>) &lt;K&gt; &lt;S&gt;</dt>
-<dd><p>Do not query the user before executing `<tt>rm *</tt>' or `<tt>rm path/*</tt>'.
+<dd><p>Do not query the user before executing &lsquo;<tt>rm *</tt>&rsquo; or &lsquo;<tt>rm path/*</tt>&rsquo;.
 </p>
-<a name="IDX753"></a>
-<a name="IDX754"></a>
-<a name="IDX755"></a>
-<a name="IDX756"></a>
-<a name="IDX757"></a>
-<a name="IDX758"></a>
+<a name="index-RM_005fSTAR_005fWAIT"></a>
+<a name="index-NO_005fRM_005fSTAR_005fWAIT"></a>
+<a name="index-RMSTARWAIT"></a>
+<a name="index-NORMSTARWAIT"></a>
+<a name="index-rm-_002a_002c-waiting-before"></a>
+<a name="index-waiting-before-rm-_002a"></a>
 </dd>
 <dt> <tt>RM_STAR_WAIT</tt></dt>
-<dd><p>If querying the user before executing `<tt>rm *</tt>' or `<tt>rm path/*</tt>',
+<dd><p>If querying the user before executing &lsquo;<tt>rm *</tt>&rsquo; or &lsquo;<tt>rm path/*</tt>&rsquo;,
 first wait ten seconds and ignore anything typed in that time.
-This avoids the problem of reflexively answering `yes' to the query
-when one didn't really mean it.  The wait and query can always be
-avoided by expanding the `<tt>*</tt>' in ZLE (with tab).
+This avoids the problem of reflexively answering &lsquo;yes&rsquo; to the query
+when one didn&rsquo;t really mean it.  The wait and query can always be
+avoided by expanding the &lsquo;<tt>*</tt>&rsquo; in ZLE (with tab).
 </p>
-<a name="IDX759"></a>
-<a name="IDX760"></a>
-<a name="IDX761"></a>
-<a name="IDX762"></a>
+<a name="index-SHORT_005fLOOPS"></a>
+<a name="index-NO_005fSHORT_005fLOOPS"></a>
+<a name="index-SHORTLOOPS"></a>
+<a name="index-NOSHORTLOOPS"></a>
 </dd>
 <dt> <tt>SHORT_LOOPS</tt> &lt;C&gt; &lt;Z&gt;</dt>
 <dd><p>Allow the short forms of <tt>for</tt>, <tt>repeat</tt>, <tt>select</tt>,
 <tt>if</tt>, and <tt>function</tt> constructs.
 </p>
-<a name="IDX763"></a>
-<a name="IDX764"></a>
-<a name="IDX765"></a>
-<a name="IDX766"></a>
-<a name="IDX767"></a>
-<a name="IDX768"></a>
+<a name="index-SUN_005fKEYBOARD_005fHACK"></a>
+<a name="index-NO_005fSUN_005fKEYBOARD_005fHACK"></a>
+<a name="index-SUNKEYBOARDHACK"></a>
+<a name="index-NOSUNKEYBOARDHACK"></a>
+<a name="index-sun-keyboard_002c-annoying"></a>
+<a name="index-annoying-keyboard_002c-sun"></a>
 </dd>
 <dt> <tt>SUN_KEYBOARD_HACK</tt> (<tt>-L</tt>)</dt>
 <dd><p>If a line ends with a backquote, and there are an odd number
 of backquotes on the line, ignore the trailing backquote.
 This is useful on some keyboards where the return key is
 too small, and the backquote key lies annoyingly close to it.
+As an alternative the variable <tt>KEYBOARD_HACK</tt> lets you choose the
+character to be removed.
 </p>
 </dd>
 </dl>
 
 
 <hr size="6">
-<a name="SEC108"></a>
+<a name="Job-Control"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC107" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC109" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Input_002fOutput" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Prompting" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC101" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-of-Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 16.2.7 Job Control </h3>
+<h3 class="subsection">16.2.7 Job Control</h3>
 <dl compact="compact">
-<dd><a name="IDX769"></a>
-<a name="IDX770"></a>
-<a name="IDX771"></a>
-<a name="IDX772"></a>
-<a name="IDX773"></a>
-<a name="IDX774"></a>
+<dd><a name="index-AUTO_005fCONTINUE"></a>
+<a name="index-NO_005fAUTO_005fCONTINUE"></a>
+<a name="index-AUTOCONTINUE"></a>
+<a name="index-NOAUTOCONTINUE"></a>
+<a name="index-jobs_002c-continuing-automatically"></a>
+<a name="index-continuing-jobs-automatically"></a>
 </dd>
 <dt> <tt>AUTO_CONTINUE</tt></dt>
 <dd><p>With this option set, stopped jobs that are removed from the job table
 with the <tt>disown</tt> builtin command are automatically sent a <tt>CONT</tt>
 signal to make them running.
 </p>
-<a name="IDX775"></a>
-<a name="IDX776"></a>
-<a name="IDX777"></a>
-<a name="IDX778"></a>
-<a name="IDX779"></a>
-<a name="IDX780"></a>
+<a name="index-AUTO_005fRESUME"></a>
+<a name="index-NO_005fAUTO_005fRESUME"></a>
+<a name="index-AUTORESUME"></a>
+<a name="index-NOAUTORESUME"></a>
+<a name="index-jobs_002c-resuming-automatically"></a>
+<a name="index-resuming-jobs-automatically"></a>
 </dd>
 <dt> <tt>AUTO_RESUME</tt> (<tt>-W</tt>)</dt>
 <dd><p>Treat single word simple commands without redirection
 as candidates for resumption of an existing job.
 </p>
-<a name="IDX781"></a>
-<a name="IDX782"></a>
-<a name="IDX783"></a>
-<a name="IDX784"></a>
-<a name="IDX785"></a>
-<a name="IDX786"></a>
-<a name="IDX787"></a>
+<a name="index-BG_005fNICE"></a>
+<a name="index-NO_005fBG_005fNICE"></a>
+<a name="index-BGNICE"></a>
+<a name="index-NOBGNICE"></a>
+<a name="index-jobs_002c-background-priority"></a>
+<a name="index-background-jobs_002c-priority-of"></a>
+<a name="index-priority-of-background-jobs"></a>
 </dd>
 <dt> <tt>BG_NICE</tt> (<tt>-6</tt>) &lt;C&gt; &lt;Z&gt;</dt>
 <dd><p>Run all background jobs at a lower priority.  This option
 is set by default.
 </p>
-<a name="IDX788"></a>
-<a name="IDX789"></a>
-<a name="IDX790"></a>
-<a name="IDX791"></a>
-<a name="IDX792"></a>
-<a name="IDX793"></a>
+<a name="index-CHECK_005fJOBS"></a>
+<a name="index-NO_005fCHECK_005fJOBS"></a>
+<a name="index-CHECKJOBS"></a>
+<a name="index-NOCHECKJOBS"></a>
+<a name="index-exiting_002c-checking-jobs-when"></a>
+<a name="index-logging-out_002c-checking-jobs-when"></a>
 </dd>
 <dt> <tt>CHECK_JOBS</tt> &lt;Z&gt;</dt>
 <dd><p>Report the status of background and suspended jobs before exiting a shell
@@ -1574,99 +1634,132 @@ with job control; a second attempt to exit the shell will succeed.
 such jobs will be killed automatically.
 </p>
 <p>The check is omitted if the commands run from the previous command line
-included a `<tt>jobs</tt>' command, since it is assumed the user is aware that
-there are background or suspended jobs.  A `<tt>jobs</tt>' command run from one
+included a &lsquo;<tt>jobs</tt>&rsquo; command, since it is assumed the user is aware that
+there are background or suspended jobs.  A &lsquo;<tt>jobs</tt>&rsquo; command run from one
 of the hook functions defined in
-the section Special Functions in <a href="Functions.html#SEC41">Functions</a>
+the section Special Functions in <a href="Functions.html#Functions">Functions</a>
 is not counted for this purpose.
 </p>
-<a name="IDX794"></a>
-<a name="IDX795"></a>
-<a name="IDX796"></a>
-<a name="IDX797"></a>
+<a name="index-HUP"></a>
+<a name="index-NO_005fHUP"></a>
+<a name="index-NOHUP"></a>
+<a name="index-jobs_002c-HUP"></a>
 </dd>
 <dt> <tt>HUP</tt> &lt;Z&gt;</dt>
 <dd><p>Send the <tt>HUP</tt> signal to running jobs when the
 shell exits.
 </p>
-<a name="IDX798"></a>
-<a name="IDX799"></a>
-<a name="IDX800"></a>
-<a name="IDX801"></a>
-<a name="IDX802"></a>
+<a name="index-LONG_005fLIST_005fJOBS"></a>
+<a name="index-NO_005fLONG_005fLIST_005fJOBS"></a>
+<a name="index-LONGLISTJOBS"></a>
+<a name="index-NOLONGLISTJOBS"></a>
+<a name="index-jobs_002c-list-format"></a>
 </dd>
 <dt> <tt>LONG_LIST_JOBS</tt> (<tt>-R</tt>)</dt>
 <dd><p>List jobs in the long format by default.
 </p>
-<a name="IDX803"></a>
-<a name="IDX804"></a>
-<a name="IDX805"></a>
-<a name="IDX806"></a>
+<a name="index-MONITOR"></a>
+<a name="index-NO_005fMONITOR"></a>
+<a name="index-NOMONITOR"></a>
+<a name="index-job-control_002c-allowing"></a>
 </dd>
 <dt> <tt>MONITOR</tt> (<tt>-m</tt>, ksh: <tt>-m</tt>)</dt>
 <dd><p>Allow job control.  Set by default in interactive shells.
 </p>
-<a name="IDX807"></a>
-<a name="IDX808"></a>
-<a name="IDX809"></a>
-<a name="IDX810"></a>
-<a name="IDX811"></a>
+<a name="index-NOTIFY"></a>
+<a name="index-NO_005fNOTIFY"></a>
+<a name="index-NONOTIFY"></a>
+<a name="index-background-jobs_002c-notification"></a>
+<a name="index-notification-of-background-jobs"></a>
 </dd>
 <dt> <tt>NOTIFY</tt> (<tt>-5</tt>, ksh: <tt>-b</tt>) &lt;Z&gt;</dt>
 <dd><p>Report the status of background jobs immediately, rather than
 waiting until just before printing a prompt.
+</p>
+<a name="index-POSIX_005fJOBS"></a>
+<a name="index-POSIXJOBS"></a>
+<a name="index-NO_005fPOSIX_005fJOBS"></a>
+<a name="index-NOPOSIXJOBS"></a>
+<a name="index-bg_002c-output-in-POSIX-format"></a>
+<a name="index-fg_002c-output-in-POSIX-format"></a>
+<a name="index-job-control_002c-in-subshell"></a>
+<a name="index-jobs_002c-output-in-subshell"></a>
+</dd>
+<dt> <tt>POSIX_JOBS</tt> &lt;K&gt; &lt;S&gt;</dt>
+<dd><p>This option makes job control more compliant with the POSIX standard.
+</p>
+<p>When the option is not set, the <tt>MONITOR</tt> option is unset on entry to
+subshells, so that job control is no longer active.  When the option is
+set, the <tt>MONITOR</tt> option and job control remain active in the
+subshell, but note that the subshell has no access to jobs in the parent
+shell.
+</p>
+<p>When the option is not set, jobs put in the background or foreground
+with <tt>bg</tt> or <tt>fg</tt> are displayed with the same information that would
+be reported by <tt>jobs</tt>.  When the option is set, only the text is
+printed.  The output from <tt>jobs</tt> itself is not affected by the option.
+</p>
+<p>When the option is not set, job information from the parent
+shell is saved for output within a subshell (for example, within a
+pipeline).  When the option is set, the output of <tt>jobs</tt> is empty
+until a job is started within the subshell.
+</p>
+<p>When the option is set, it becomes possible to use the <tt>wait</tt> builtin to
+wait for the last job started in the background (as given by <tt>$!</tt>) even
+if that job has already exited.  This works even if the option is turned
+on temporarily around the use of the <tt>wait</tt> builtin.
 </p>
 </dd>
 </dl>
 
 
 <hr size="6">
-<a name="SEC109"></a>
+<a name="Prompting"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC108" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC110" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Job-Control" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Scripts-and-Functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC101" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-of-Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 16.2.8 Prompting </h3>
+<h3 class="subsection">16.2.8 Prompting</h3>
 <dl compact="compact">
-<dd><a name="IDX812"></a>
-<a name="IDX813"></a>
-<a name="IDX814"></a>
-<a name="IDX815"></a>
-<a name="IDX816"></a>
+<dd><a name="index-PROMPT_005fBANG"></a>
+<a name="index-NO_005fPROMPT_005fBANG"></a>
+<a name="index-PROMPTBANG"></a>
+<a name="index-NOPROMPTBANG"></a>
+<a name="index-prompt_002c-_0021-expansion"></a>
 </dd>
 <dt> <tt>PROMPT_BANG</tt> &lt;K&gt;</dt>
-<dd><p>If set, `<tt>!</tt>' is treated specially in prompt expansion.
+<dd><p>If set, &lsquo;<tt>!</tt>&rsquo; is treated specially in prompt expansion.
 See
-<a href="Prompt-Expansion.html#SEC52">Prompt Expansion</a>.
+<a href="Prompt-Expansion.html#Prompt-Expansion">Prompt Expansion</a>.
 </p>
-<a name="IDX817"></a>
-<a name="IDX818"></a>
-<a name="IDX819"></a>
-<a name="IDX820"></a>
-<a name="IDX821"></a>
+<a name="index-PROMPT_005fCR"></a>
+<a name="index-NO_005fPROMPT_005fCR"></a>
+<a name="index-PROMPTCR"></a>
+<a name="index-NOPROMPTCR"></a>
+<a name="index-prompt_002c-with-CR"></a>
 </dd>
 <dt> <tt>PROMPT_CR</tt> (<tt>+V</tt>) &lt;D&gt;</dt>
 <dd><p>Print a carriage return just before printing
 a prompt in the line editor.  This is on by default as multi-line editing
 is only possible if the editor knows where the start of the line appears.
 </p>
-<a name="IDX822"></a>
-<a name="IDX823"></a>
-<a name="IDX824"></a>
-<a name="IDX825"></a>
-<a name="IDX826"></a>
+<a name="index-PROMPT_005fSP"></a>
+<a name="index-NO_005fPROMPT_005fSP"></a>
+<a name="index-PROMPTSP"></a>
+<a name="index-NOPROMPTSP"></a>
+<a name="index-prompt_002c-save-partial-lines"></a>
 </dd>
 <dt> <tt>PROMPT_SP</tt> &lt;D&gt;</dt>
 <dd><p>Attempt to preserve a partial line (i.e. a line that did not end with a
@@ -1684,32 +1777,32 @@ used to customize how the end of partial lines are shown.
 <p>NOTE: if the <tt>PROMPT_CR</tt> option is not set, enabling this option will
 have no effect.  This option is on by default.
 </p>
-<a name="IDX827"></a>
-<a name="IDX828"></a>
-<a name="IDX829"></a>
-<a name="IDX830"></a>
-<a name="IDX831"></a>
+<a name="index-PROMPT_005fPERCENT"></a>
+<a name="index-NO_005fPROMPT_005fPERCENT"></a>
+<a name="index-PROMPTPERCENT"></a>
+<a name="index-NOPROMPTPERCENT"></a>
+<a name="index-prompt_002c-_0025-expansion"></a>
 </dd>
 <dt> <tt>PROMPT_PERCENT</tt> &lt;C&gt; &lt;Z&gt;</dt>
-<dd><p>If set, `<tt>%</tt>' is treated specially in prompt expansion.
+<dd><p>If set, &lsquo;<tt>%</tt>&rsquo; is treated specially in prompt expansion.
 See
-<a href="Prompt-Expansion.html#SEC52">Prompt Expansion</a>.
+<a href="Prompt-Expansion.html#Prompt-Expansion">Prompt Expansion</a>.
 </p>
-<a name="IDX832"></a>
-<a name="IDX833"></a>
-<a name="IDX834"></a>
-<a name="IDX835"></a>
-<a name="IDX836"></a>
+<a name="index-PROMPT_005fSUBST"></a>
+<a name="index-NO_005fPROMPT_005fSUBST"></a>
+<a name="index-PROMPTSUBST"></a>
+<a name="index-NOPROMPTSUBST"></a>
+<a name="index-prompt_002c-parameter-expansion"></a>
 </dd>
 <dt> <tt>PROMPT_SUBST</tt> &lt;K&gt; &lt;S&gt;</dt>
 <dd><p>If set, <em>parameter expansion</em>, <em>command substitution</em> and
 <em>arithmetic expansion</em> are performed in prompts.  Substitutions
 within prompts do not affect the command status.
 </p>
-<a name="IDX837"></a>
-<a name="IDX838"></a>
-<a name="IDX839"></a>
-<a name="IDX840"></a>
+<a name="index-TRANSIENT_005fRPROMPT"></a>
+<a name="index-NO_005fTRANSIENT_005fRPROMPT"></a>
+<a name="index-TRANSIENTRPROMPT"></a>
+<a name="index-NOTRANSIENTRPROMPT"></a>
 </dd>
 <dt> <tt>TRANSIENT_RPROMPT</tt></dt>
 <dd><p>Remove any right prompt from display when accepting a command
@@ -1720,48 +1813,48 @@ line.  This may be useful with terminals with other cut/paste methods.
 
 
 <hr size="6">
-<a name="SEC110"></a>
+<a name="Scripts-and-Functions"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC109" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC111" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Prompting" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Shell-Emulation" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC101" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-of-Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 16.2.9 Scripts and Functions </h3>
+<h3 class="subsection">16.2.9 Scripts and Functions</h3>
 <dl compact="compact">
-<dd><a name="IDX841"></a>
-<a name="IDX842"></a>
-<a name="IDX843"></a>
-<a name="IDX844"></a>
-<a name="IDX845"></a>
-<a name="IDX846"></a>
-<a name="IDX847"></a>
+<dd><a name="index-C_005fBASES"></a>
+<a name="index-NO_005fC_005fBASES"></a>
+<a name="index-CBASES"></a>
+<a name="index-NOCBASES"></a>
+<a name="index-bases_002c-output-in-C-format"></a>
+<a name="index-hexadecimal_002c-output-in-C-format"></a>
+<a name="index-octal_002c-output-in-C-format"></a>
 </dd>
 <dt> <tt>C_BASES</tt></dt>
-<dd><p>Output hexadecimal numbers in the standard C format, for example `<tt>0xFF</tt>'
-instead of the usual `<tt>16#FF</tt>'.  If the option <tt>OCTAL_ZEROES</tt> is also
+<dd><p>Output hexadecimal numbers in the standard C format, for example &lsquo;<tt>0xFF</tt>&rsquo;
+instead of the usual &lsquo;<tt>16#FF</tt>&rsquo;.  If the option <tt>OCTAL_ZEROES</tt> is also
 set (it is not by default), octal numbers will be treated similarly and
-hence appear as `<tt>077</tt>' instead of `<tt>8#77</tt>'.  This option has no effect
+hence appear as &lsquo;<tt>077</tt>&rsquo; instead of &lsquo;<tt>8#77</tt>&rsquo;.  This option has no effect
 on the choice of the output base, nor on the output of bases other than
 hexadecimal and octal.  Note that these formats will be understood on input
 irrespective of the setting of <tt>C_BASES</tt>.
 </p>
-<a name="IDX848"></a>
-<a name="IDX849"></a>
-<a name="IDX850"></a>
-<a name="IDX851"></a>
-<a name="IDX852"></a>
-<a name="IDX853"></a>
+<a name="index-C_005fPRECEDENCES"></a>
+<a name="index-NO_005fC_005fPRECEDENCES"></a>
+<a name="index-CPRECEDENCES"></a>
+<a name="index-NOCPRECEDENCES"></a>
+<a name="index-precedence_002c-operator"></a>
+<a name="index-operator-precedence"></a>
 </dd>
 <dt> <tt>C_PRECEDENCES</tt></dt>
 <dd><p>This alters the precedence of arithmetic operators to be more
@@ -1769,23 +1862,23 @@ like C and other programming languages;
 Arithmetic Evaluation
 has an explicit list.
 </p>
-<a name="IDX854"></a>
-<a name="IDX855"></a>
-<a name="IDX856"></a>
-<a name="IDX857"></a>
-<a name="IDX858"></a>
-<a name="IDX859"></a>
+<a name="index-DEBUG_005fBEFORE_005fCMD-_003cD_003e"></a>
+<a name="index-NO_005fDEBUG_005fBEFORE_005fCMD-_003cD_003e"></a>
+<a name="index-DEBUGBEFORECMD-_003cD_003e"></a>
+<a name="index-NODEBUGBEFORECMD-_003cD_003e"></a>
+<a name="index-traps_002c-DEBUG_002c-before-or-after-command"></a>
+<a name="index-DEBUG-trap_002c-before-or-after-command"></a>
 </dd>
 <dt> <tt>DEBUG_BEFORE_CMD</tt></dt>
 <dd><p>Run the <tt>DEBUG</tt> trap before each command; otherwise it is run after
 each command.  Setting this option mimics the behaviour of ksh 93; with
 the option unset the behaviour is that of ksh 88.
 </p>
-<a name="IDX860"></a>
-<a name="IDX861"></a>
-<a name="IDX862"></a>
-<a name="IDX863"></a>
-<a name="IDX864"></a>
+<a name="index-ERR_005fEXIT"></a>
+<a name="index-NO_005fERR_005fEXIT"></a>
+<a name="index-ERREXIT"></a>
+<a name="index-NOERREXIT"></a>
+<a name="index-exit-status_002c-trapping"></a>
 </dd>
 <dt> <tt>ERR_EXIT</tt> (<tt>-e</tt>, ksh: <tt>-e</tt>)</dt>
 <dd><p>If a command has a non-zero exit status, execute the <tt>ZERR</tt>
@@ -1799,12 +1892,12 @@ as it is by default, and the option <tt>ERR_EXIT</tt> is found to have been set
 on exit, then the command for which the <tt>DEBUG</tt> trap is being executed is
 skipped.  The option is restored after the trap exits.
 </p>
-<a name="IDX865"></a>
-<a name="IDX866"></a>
-<a name="IDX867"></a>
-<a name="IDX868"></a>
-<a name="IDX869"></a>
-<a name="IDX870"></a>
+<a name="index-ERR_005fRETURN"></a>
+<a name="index-NO_005fERR_005fRETURN"></a>
+<a name="index-ERRRETURN"></a>
+<a name="index-NOERRRETURN"></a>
+<a name="index-function-return_002c-on-error"></a>
+<a name="index-return-from-function_002c-on-error"></a>
 </dd>
 <dt> <tt>ERR_RETURN</tt></dt>
 <dd><p>If a command has a non-zero exit status, return immediately from the
@@ -1813,48 +1906,48 @@ except that an implicit <tt>return</tt> statement is executed instead of an
 <tt>exit</tt>.  This will trigger an exit at the outermost level of a
 non-interactive script.
 </p>
-<a name="IDX871"></a>
-<a name="IDX872"></a>
-<a name="IDX873"></a>
-<a name="IDX874"></a>
-<a name="IDX875"></a>
+<a name="index-EVAL_005fLINENO"></a>
+<a name="index-NO_005fEVAL_005fLINENO"></a>
+<a name="index-EVALLINENO"></a>
+<a name="index-NOEVALLINENO"></a>
+<a name="index-line-number_002c-in-evaluated-expression"></a>
 </dd>
 <dt> <tt>EVAL_LINENO</tt> &lt;Z&gt;</dt>
 <dd><p>If set, line numbers of expressions evaluated using the builtin <tt>eval</tt>
 are tracked separately of the enclosing environment.  This applies both
 to the parameter <tt>LINENO</tt> and the line number output by the prompt
 escape <tt>%i</tt>.  If the option is set, the prompt escape <tt>%N</tt> will output
-the string `<tt>(eval)</tt>' instead of the script or function name as an
+the string &lsquo;<tt>(eval)</tt>&rsquo; instead of the script or function name as an
 indication.   (The two prompt escapes are typically used in the parameter
 <tt>PS4</tt> to be output when the option <tt>XTRACE</tt> is set.)  If
 <tt>EVAL_LINENO</tt> is unset, the line number of the surrounding script or
 function is retained during the evaluation.
 </p>
-<a name="IDX876"></a>
-<a name="IDX877"></a>
-<a name="IDX878"></a>
-<a name="IDX879"></a>
+<a name="index-EXEC"></a>
+<a name="index-NO_005fEXEC"></a>
+<a name="index-NOEXEC"></a>
+<a name="index-command-execution_002c-enabling"></a>
 </dd>
 <dt> <tt>EXEC</tt> (<tt>+n</tt>, ksh: <tt>+n</tt>) &lt;D&gt;</dt>
 <dd><p>Do execute commands.  Without this option, commands are
 read and checked for syntax errors, but not executed.
 This option cannot be turned off in an interactive shell,
-except when `<tt>-n</tt>' is supplied to the shell at startup.
+except when &lsquo;<tt>-n</tt>&rsquo; is supplied to the shell at startup.
 </p>
-<a name="IDX880"></a>
-<a name="IDX881"></a>
-<a name="IDX882"></a>
-<a name="IDX883"></a>
-<a name="IDX884"></a>
+<a name="index-FUNCTION_005fARGZERO"></a>
+<a name="index-NO_005fFUNCTION_005fARGZERO"></a>
+<a name="index-FUNCTIONARGZERO"></a>
+<a name="index-NOFUNCTIONARGZERO"></a>
+<a name="index-_00240_002c-setting"></a>
 </dd>
 <dt> <tt>FUNCTION_ARGZERO</tt> &lt;C&gt; &lt;Z&gt;</dt>
 <dd><p>When executing a shell function or sourcing a script, set <tt>$0</tt>
 temporarily to the name of the function/script.
 </p>
-<a name="IDX885"></a>
-<a name="IDX886"></a>
-<a name="IDX887"></a>
-<a name="IDX888"></a>
+<a name="index-LOCAL_005fOPTIONS"></a>
+<a name="index-NO_005fLOCAL_005fOPTIONS"></a>
+<a name="index-LOCALOPTIONS"></a>
+<a name="index-NOLOCALOPTIONS"></a>
 </dd>
 <dt> <tt>LOCAL_OPTIONS</tt> &lt;K&gt;</dt>
 <dd><p>If this option is set at the point of return from a shell function,
@@ -1865,13 +1958,13 @@ the function are restored; options that are not restored are
 if this is explicitly unset by a shell function the other options in
 force at the point of return will remain so.
 A shell function can also guarantee itself a known shell configuration
-with a formulation like `<tt>emulate -L zsh</tt>'; the <tt>-L</tt> activates
+with a formulation like &lsquo;<tt>emulate -L zsh</tt>&rsquo;; the <tt>-L</tt> activates
 <tt>LOCAL_OPTIONS</tt>.
 </p>
-<a name="IDX889"></a>
-<a name="IDX890"></a>
-<a name="IDX891"></a>
-<a name="IDX892"></a>
+<a name="index-LOCAL_005fTRAPS"></a>
+<a name="index-NO_005fLOCAL_005fTRAPS"></a>
+<a name="index-LOCALTRAPS"></a>
+<a name="index-NOLOCALTRAPS"></a>
 </dd>
 <dt> <tt>LOCAL_TRAPS</tt> &lt;K&gt;</dt>
 <dd><p>If this option is set when a signal trap is set inside a function, then the
@@ -1887,33 +1980,33 @@ trap - INT
 fn() { setopt localtraps; trap '' INT; sleep 3; }
 </pre></td></tr></table>
 
-<p>will restore normally handling of <tt>SIGINT</tt> after the function exits.
+<p>will restore normal handling of <tt>SIGINT</tt> after the function exits.
 </p>
-<a name="IDX893"></a>
-<a name="IDX894"></a>
-<a name="IDX895"></a>
-<a name="IDX896"></a>
+<a name="index-MULTI_005fFUNC_005fDEF"></a>
+<a name="index-NO_005fMULTI_005fFUNC_005fDEF"></a>
+<a name="index-MULTIFUNCDEF"></a>
+<a name="index-NOMULTIFUNCDEF"></a>
 </dd>
 <dt> <tt>MULTI_FUNC_DEF</tt> &lt;Z&gt;</dt>
-<dd><p>Allow definitions of multiple functions at once in the form `<tt>fn1
-fn2</tt><var>...</var><tt>()</tt>'; if the option is not set, this causes
+<dd><p>Allow definitions of multiple functions at once in the form &lsquo;<tt>fn1
+fn2</tt><var>...</var><tt>()</tt>&rsquo;; if the option is not set, this causes
 a parse error.  Definition of multiple functions with the <tt>function</tt>
 keyword is always allowed.  Multiple function definitions are not often
 used and can cause obscure errors.
 </p>
-<a name="IDX897"></a>
-<a name="IDX898"></a>
-<a name="IDX899"></a>
+<a name="index-MULTIOS"></a>
+<a name="index-NO_005fMULTIOS"></a>
+<a name="index-NOMULTIOS"></a>
 </dd>
 <dt> <tt>MULTIOS</tt> &lt;Z&gt;</dt>
 <dd><p>Perform implicit <cite>tee</cite>s or <cite>cat</cite>s when multiple
-redirections are attempted (see <a href="Redirection.html#SEC37">Redirection</a>).
+redirections are attempted (see <a href="Redirection.html#Redirection">Redirection</a>).
 </p>
-<a name="IDX900"></a>
-<a name="IDX901"></a>
-<a name="IDX902"></a>
-<a name="IDX903"></a>
-<a name="IDX904"></a>
+<a name="index-OCTAL_005fZEROES"></a>
+<a name="index-NO_005fOCTAL_005fZEROES"></a>
+<a name="index-OCTALZEROES"></a>
+<a name="index-NOOCTALZEROES"></a>
+<a name="index-octal_002c-arithmetic-expressions"></a>
 </dd>
 <dt> <tt>OCTAL_ZEROES</tt> &lt;S&gt;</dt>
 <dd><p>Interpret any integer constant beginning with a 0 as octal, per IEEE Std
@@ -1921,71 +2014,87 @@ redirections are attempted (see <a href="Redirection.html#SEC37">Redirection</a>
 causes problems with parsing of, for example, date and time strings with
 leading zeroes.
 </p>
-<p>Sequences of digits indicating a numeric base such as the `<tt>08</tt>'
-component in `<tt>08#77</tt>' are always interpreted as decimal, regardless
+<p>Sequences of digits indicating a numeric base such as the &lsquo;<tt>08</tt>&rsquo;
+component in &lsquo;<tt>08#77</tt>&rsquo; are always interpreted as decimal, regardless
 of leading zeroes.
 </p>
-<a name="IDX905"></a>
-<a name="IDX906"></a>
-<a name="IDX907"></a>
-<a name="IDX908"></a>
+<a name="index-SOURCE_005fTRACE"></a>
+<a name="index-NO_005fSOURCE_005fTRACE"></a>
+<a name="index-SOURCETRACE"></a>
+<a name="index-NOSOURCETRACE"></a>
+</dd>
+<dt> <tt>SOURCE_TRACE</tt></dt>
+<dd><p>If set, zsh will print an informational message announcing the name of
+each file it loads.  The format of the output is similar to that
+for the <tt>XTRACE</tt> option, with the message <tt>&lt;sourcetrace&gt;</tt>.
+A file may be loaded by the shell itself when it
+starts up and shuts down (<tt>Startup/Shutdown Files</tt>) or by the use of
+the &lsquo;<tt>source</tt>&rsquo; and &lsquo;<tt>dot</tt>&rsquo; builtin commands.
+</p>
+<a name="index-TYPESET_005fSILENT"></a>
+<a name="index-NO_005fTYPESET_005fSILENT"></a>
+<a name="index-TYPESETSILENT"></a>
+<a name="index-NOTYPESETSILENT"></a>
 </dd>
 <dt> <tt>TYPESET_SILENT</tt></dt>
-<dd><p>If this is unset, executing any of the `<tt>typeset</tt>' family of
+<dd><p>If this is unset, executing any of the &lsquo;<tt>typeset</tt>&rsquo; family of
 commands with no options and a list of parameters that have no values
 to be assigned but already exist will display the value of the parameter.
 If the option is set, they will only be shown when parameters are selected
-with the `<tt>-m</tt>' option.  The option `<tt>-p</tt>' is available whether or not
+with the &lsquo;<tt>-m</tt>&rsquo; option.  The option &lsquo;<tt>-p</tt>&rsquo; is available whether or not
 the option is set.
 </p>
-<a name="IDX909"></a>
-<a name="IDX910"></a>
-<a name="IDX911"></a>
-<a name="IDX912"></a>
-<a name="IDX913"></a>
+<a name="index-VERBOSE"></a>
+<a name="index-NO_005fVERBOSE"></a>
+<a name="index-NOVERBOSE"></a>
+<a name="index-tracing_002c-of-input-lines"></a>
+<a name="index-input_002c-tracing"></a>
 </dd>
 <dt> <tt>VERBOSE</tt> (<tt>-v</tt>, ksh: <tt>-v</tt>)</dt>
 <dd><p>Print shell input lines as they are read.
 </p>
-<a name="IDX914"></a>
-<a name="IDX915"></a>
-<a name="IDX916"></a>
-<a name="IDX917"></a>
-<a name="IDX918"></a>
+<a name="index-XTRACE"></a>
+<a name="index-NO_005fXTRACE"></a>
+<a name="index-NOXTRACE"></a>
+<a name="index-tracing_002c-of-commands"></a>
+<a name="index-commands_002c-tracing"></a>
 </dd>
 <dt> <tt>XTRACE</tt> (<tt>-x</tt>, ksh: <tt>-x</tt>)</dt>
-<dd><p>Print commands and their arguments as they are executed.
+<dd><p>Print commands and their arguments as they are executed.  The
+output is proceded by the value of <tt>$PS4</tt>, formatted as described
+in
+<a href="Prompt-Expansion.html#Prompt-Expansion">Prompt Expansion</a>.
 </p>
 </dd>
 </dl>
 
 
 <hr size="6">
-<a name="SEC111"></a>
+<a name="Shell-Emulation"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC110" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC112" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Scripts-and-Functions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Shell-State" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC101" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-of-Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 16.2.10 Shell Emulation </h3>
+<h3 class="subsection">16.2.10 Shell Emulation</h3>
 <dl compact="compact">
-<dd><a name="IDX919"></a>
-<a name="IDX920"></a>
-<a name="IDX921"></a>
-<a name="IDX922"></a>
-<a name="IDX923"></a>
-<a name="IDX924"></a>
+<dd><a name="index-BASH_005fREMATCH"></a>
+<a name="index-NO_005fBASH_005fREMATCH"></a>
+<a name="index-BASHREMATCH"></a>
+<a name="index-NOBASHREMATCH"></a>
+<a name="index-bash_002c-BASH_005fREMATCH-variable"></a>
+<a name="index-regexp_002c-bash-BASH_005fREMATCH-variable"></a>
 </dd>
 <dt> <tt>BASH_REMATCH</tt></dt>
 <dd><p>When set, matches performed with the <tt>=~</tt> operator will set the
@@ -1998,23 +2107,23 @@ first substring is at index 1.  Without this option, the <tt>MATCH</tt> variable
 contains the entire matched text and the <tt>match</tt> array variable contains
 substrings.
 </p>
-<a name="IDX925"></a>
-<a name="IDX926"></a>
-<a name="IDX927"></a>
-<a name="IDX928"></a>
-<a name="IDX929"></a>
+<a name="index-BSD_005fECHO"></a>
+<a name="index-NO_005fBSD_005fECHO"></a>
+<a name="index-BSDECHO"></a>
+<a name="index-NOBSDECHO"></a>
+<a name="index-echo_002c-BSD-compatible"></a>
 </dd>
 <dt> <tt>BSD_ECHO</tt> &lt;S&gt;</dt>
 <dd><p>Make the <tt>echo</tt> builtin compatible with the BSD man page echo(1) command.
 This disables backslashed escape sequences in echo strings unless the
 <tt>-e</tt> option is specified.
 </p>
-<a name="IDX930"></a>
-<a name="IDX931"></a>
-<a name="IDX932"></a>
-<a name="IDX933"></a>
-<a name="IDX934"></a>
-<a name="IDX935"></a>
+<a name="index-CSH_005fJUNKIE_005fHISTORY"></a>
+<a name="index-NO_005fCSH_005fJUNKIE_005fHISTORY"></a>
+<a name="index-CSHJUNKIEHISTORY"></a>
+<a name="index-NOCSHJUNKIEHISTORY"></a>
+<a name="index-csh_002c-history-style"></a>
+<a name="index-history-style_002c-csh"></a>
 </dd>
 <dt> <tt>CSH_JUNKIE_HISTORY</tt> &lt;C&gt;</dt>
 <dd><p>A history reference without an event specifier will always refer to the
@@ -2022,65 +2131,65 @@ previous command.  Without this option, such a history reference refers
 to the same event as the previous history reference, defaulting to the
 previous command.
 </p>
-<a name="IDX936"></a>
-<a name="IDX937"></a>
-<a name="IDX938"></a>
-<a name="IDX939"></a>
-<a name="IDX940"></a>
-<a name="IDX941"></a>
+<a name="index-CSH_005fJUNKIE_005fLOOPS"></a>
+<a name="index-NO_005fCSH_005fJUNKIE_005fLOOPS"></a>
+<a name="index-CSHJUNKIELOOPS"></a>
+<a name="index-NOCSHJUNKIELOOPS"></a>
+<a name="index-csh_002c-loop-style"></a>
+<a name="index-loop-style_002c-csh"></a>
 </dd>
 <dt> <tt>CSH_JUNKIE_LOOPS</tt> &lt;C&gt;</dt>
-<dd><p>Allow loop bodies to take the form `<var>list</var>; <tt>end</tt>' instead of
-`<tt>do</tt> <var>list</var>; <tt>done</tt>'.
+<dd><p>Allow loop bodies to take the form &lsquo;<var>list</var>; <tt>end</tt>&rsquo; instead of
+&lsquo;<tt>do</tt> <var>list</var>; <tt>done</tt>&rsquo;.
 </p>
-<a name="IDX942"></a>
-<a name="IDX943"></a>
-<a name="IDX944"></a>
-<a name="IDX945"></a>
-<a name="IDX946"></a>
-<a name="IDX947"></a>
+<a name="index-CSH_005fJUNKIE_005fQUOTES"></a>
+<a name="index-NO_005fCSH_005fJUNKIE_005fQUOTES"></a>
+<a name="index-CSHJUNKIEQUOTES"></a>
+<a name="index-NOCSHJUNKIEQUOTES"></a>
+<a name="index-csh_002c-quoting-style"></a>
+<a name="index-quoting-style_002c-csh"></a>
 </dd>
 <dt> <tt>CSH_JUNKIE_QUOTES</tt> &lt;C&gt;</dt>
 <dd><p>Changes the rules for single- and double-quoted text to match that of
 <cite>csh</cite>.  These require that embedded newlines be preceded by a backslash;
 unescaped newlines will cause an error message.
-In double-quoted strings, it is made impossible to escape `<tt>$</tt>', `<tt>`</tt>'
-or `<tt>&quot;</tt>' (and `<tt>\</tt>' itself no longer needs escaping).
+In double-quoted strings, it is made impossible to escape &lsquo;<tt>$</tt>&rsquo;, &lsquo;<tt>&lsquo;</tt>&rsquo;
+or &lsquo;<tt>&quot;</tt>&rsquo; (and &lsquo;<tt>\</tt>&rsquo; itself no longer needs escaping).
 Command substitutions are only expanded once, and cannot be nested.
 </p>
-<a name="IDX948"></a>
-<a name="IDX949"></a>
-<a name="IDX950"></a>
-<a name="IDX951"></a>
-<a name="IDX952"></a>
-<a name="IDX953"></a>
-<a name="IDX954"></a>
-<a name="IDX955"></a>
+<a name="index-CSH_005fNULLCMD"></a>
+<a name="index-NO_005fCSH_005fNULLCMD"></a>
+<a name="index-CSHNULLCMD"></a>
+<a name="index-NOCSHNULLCMD"></a>
+<a name="index-NULLCMD_002c-ignoring"></a>
+<a name="index-READNULLCMD_002c-ignoring"></a>
+<a name="index-redirections-with-no-command_002c-csh"></a>
+<a name="index-csh_002c-redirections-with-no-command"></a>
 </dd>
 <dt> <tt>CSH_NULLCMD</tt> &lt;C&gt;</dt>
 <dd><p>Do not use the values of <tt>NULLCMD</tt> and <tt>READNULLCMD</tt> 
 when running redirections with no command.  This make 
-such redirections fail (see <a href="Redirection.html#SEC37">Redirection</a>).
+such redirections fail (see <a href="Redirection.html#Redirection">Redirection</a>).
 </p>
-<a name="IDX956"></a>
-<a name="IDX957"></a>
-<a name="IDX958"></a>
-<a name="IDX959"></a>
-<a name="IDX960"></a>
-<a name="IDX961"></a>
-<a name="IDX962"></a>
+<a name="index-KSH_005fARRAYS"></a>
+<a name="index-NO_005fKSH_005fARRAYS"></a>
+<a name="index-KSHARRAYS"></a>
+<a name="index-NOKSHARRAYS"></a>
+<a name="index-arrays_002c-ksh-style"></a>
+<a name="index-array-style_002c-ksh"></a>
+<a name="index-ksh_002c-array-style"></a>
 </dd>
 <dt> <tt>KSH_ARRAYS</tt> &lt;K&gt; &lt;S&gt;</dt>
 <dd><p>Emulate <cite>ksh</cite> array handling as closely as possible.  If this option
 is set, array elements are numbered from zero, an array parameter
 without subscript refers to the first element instead of the whole array,
-and braces are required to delimit a subscript (`<tt>${path[2]}</tt>' rather
-than just `<tt>$path[2]</tt>').
+and braces are required to delimit a subscript (&lsquo;<tt>${path[2]}</tt>&rsquo; rather
+than just &lsquo;<tt>$path[2]</tt>&rsquo;).
 </p>
-<a name="IDX963"></a>
-<a name="IDX964"></a>
-<a name="IDX965"></a>
-<a name="IDX966"></a>
+<a name="index-KSH_005fAUTOLOAD"></a>
+<a name="index-NO_005fKSH_005fAUTOLOAD"></a>
+<a name="index-KSHAUTOLOAD"></a>
+<a name="index-NOKSHAUTOLOAD"></a>
 </dd>
 <dt> <tt>KSH_AUTOLOAD</tt> &lt;K&gt; &lt;S&gt;</dt>
 <dd><p>Emulate <cite>ksh</cite> function autoloading.  This means that when a function is
@@ -2090,25 +2199,25 @@ of the file.  However, the most common <cite>ksh</cite>-style case - of the file
 containing only a simple definition of the function - is always handled
 in the <cite>ksh</cite>-compatible manner.)
 </p>
-<a name="IDX967"></a>
-<a name="IDX968"></a>
-<a name="IDX969"></a>
-<a name="IDX970"></a>
-<a name="IDX971"></a>
-<a name="IDX972"></a>
-<a name="IDX973"></a>
+<a name="index-KSH_005fOPTION_005fPRINT"></a>
+<a name="index-NO_005fKSH_005fOPTION_005fPRINT"></a>
+<a name="index-KSHOPTIONPRINT"></a>
+<a name="index-NOKSHOPTIONPRINT"></a>
+<a name="index-option-printing_002c-ksh-style"></a>
+<a name="index-option-printing-style_002c-ksh"></a>
+<a name="index-ksh_002c-option-printing-style"></a>
 </dd>
 <dt> <tt>KSH_OPTION_PRINT</tt> &lt;K&gt;</dt>
 <dd><p>Alters the way options settings are printed: instead of separate lists of
-set and unset options, all options are shown, marked `on' if
-they are in the non-default state, `off' otherwise.
+set and unset options, all options are shown, marked &lsquo;on&rsquo; if
+they are in the non-default state, &lsquo;off&rsquo; otherwise.
 </p>
-<a name="IDX974"></a>
-<a name="IDX975"></a>
-<a name="IDX976"></a>
-<a name="IDX977"></a>
-<a name="IDX978"></a>
-<a name="IDX979"></a>
+<a name="index-KSH_005fTYPESET"></a>
+<a name="index-NO_005fKSH_005fTYPESET"></a>
+<a name="index-KSHTYPESET"></a>
+<a name="index-NOKSHTYPESET"></a>
+<a name="index-argument-splitting_002c-in-typeset-etc_002e"></a>
+<a name="index-ksh_002c-argument-splitting-in-typeset"></a>
 </dd>
 <dt> <tt>KSH_TYPESET</tt> &lt;K&gt;</dt>
 <dd><p>Alters the way arguments to the <tt>typeset</tt> family of commands, including
@@ -2117,11 +2226,11 @@ they are in the non-default state, `off' otherwise.
 word splitting after command and parameter expansion in arguments of an
 assignment; with it, word splitting does not take place in those cases.
 </p>
-<a name="IDX980"></a>
-<a name="IDX981"></a>
-<a name="IDX982"></a>
-<a name="IDX983"></a>
-<a name="IDX984"></a>
+<a name="index-KSH_005fZERO_005fSUBSCRIPT"></a>
+<a name="index-NO_005fKSH_005fZERO_005fSUBSCRIPT"></a>
+<a name="index-KSHZEROSUBSCRIPT"></a>
+<a name="index-NOKSHZEROSUBSCRIPT"></a>
+<a name="index-arrays_002c-behaviour-of-index-zero"></a>
 </dd>
 <dt> <tt>KSH_ZERO_SUBSCRIPT</tt></dt>
 <dd><p>Treat use of a subscript of value zero in array or string expressions as a
@@ -2148,31 +2257,31 @@ set,
 <p>This option is for compatibility with older versions of the shell and
 is not recommended in new code.
 </p>
-<a name="IDX985"></a>
-<a name="IDX986"></a>
-<a name="IDX987"></a>
-<a name="IDX988"></a>
+<a name="index-POSIX_005fALIASES"></a>
+<a name="index-NO_005fPOSIX_005fALIASES"></a>
+<a name="index-POSIXALIASES"></a>
+<a name="index-NOPOSIXALIASES"></a>
 </dd>
 <dt> <tt>POSIX_ALIASES</tt> &lt;K&gt; &lt;S&gt;</dt>
 <dd><p>When this option is set, reserved words are not candidates for
 alias expansion:  it is still possible to declare any of them as an alias,
 but the alias will never be expanded.  Reserved words are described in
-<a href="Shell-Grammar.html#SEC33">Reserved Words</a>.
+<a href="Shell-Grammar.html#Reserved-Words">Reserved Words</a>.
 </p>
 <p>Alias expansion takes place while text is being read; hence when this
 option is set it does not take effect until the end of any function or
 other piece of shell code parsed as one unit.  Note this may
 cause differences from other shells even when the option is in
-effect.  For example, when running a command with `<tt>zsh -c</tt>',
-or even `<tt>zsh -o posixaliases -c</tt>', the entire command argument is parsed
+effect.  For example, when running a command with &lsquo;<tt>zsh -c</tt>&rsquo;,
+or even &lsquo;<tt>zsh -o posixaliases -c</tt>&rsquo;, the entire command argument is parsed
 as one unit, so aliases defined within the argument are not available even
 in later lines.  If in doubt, avoid use of aliases in non-interactive
 code.
 </p>
-<a name="IDX989"></a>
-<a name="IDX990"></a>
-<a name="IDX991"></a>
-<a name="IDX992"></a>
+<a name="index-POSIX_005fBUILTINS"></a>
+<a name="index-NO_005fPOSIX_005fBUILTINS"></a>
+<a name="index-POSIXBUILTINS"></a>
+<a name="index-NOPOSIXBUILTINS"></a>
 </dd>
 <dt> <tt>POSIX_BUILTINS</tt> &lt;K&gt; &lt;S&gt;</dt>
 <dd><p>When this option is set the <tt>command</tt> builtin can be used to execute
@@ -2199,12 +2308,12 @@ builtins are
 <tt>trap</tt> and
 <tt>unset</tt>.
 </p>
-<a name="IDX993"></a>
-<a name="IDX994"></a>
-<a name="IDX995"></a>
-<a name="IDX996"></a>
-<a name="IDX997"></a>
-<a name="IDX998"></a>
+<a name="index-POSIX_005fIDENTIFIERS"></a>
+<a name="index-NO_005fPOSIX_005fIDENTIFIERS"></a>
+<a name="index-POSIXIDENTIFIERS"></a>
+<a name="index-NOPOSIXIDENTIFIERS"></a>
+<a name="index-identifiers_002c-non_002dportable-characters-in"></a>
+<a name="index-parameter-names_002c-non_002dportable-characters-in"></a>
 </dd>
 <dt> <tt>POSIX_IDENTIFIERS</tt> &lt;K&gt; &lt;S&gt;</dt>
 <dd><p>When this option is set, only the ASCII characters <tt>a</tt> to <tt>z</tt>, <tt>A</tt> to
@@ -2224,67 +2333,109 @@ a command rather than an assignment.
 ignored; all octets with the top bit set may be used in identifiers.
 This is non-standard but is the traditional zsh behaviour.
 </p>
-<a name="IDX999"></a>
-<a name="IDX1000"></a>
-<a name="IDX1001"></a>
-<a name="IDX1002"></a>
-<a name="IDX1003"></a>
-<a name="IDX1004"></a>
+<a name="index-POSIX_005fSTRINGS"></a>
+<a name="index-NO_005fPOSIX_005fSTRINGS"></a>
+<a name="index-POSIXSTRINGS"></a>
+<a name="index-NOPOSIXSTRINGS"></a>
+<a name="index-discarding-embedded-nulls-in-_0024_0027_002e_002e_002e_0027"></a>
+<a name="index-embedded-nulls_002c-in-_0024_0027_002e_002e_002e_0027"></a>
+<a name="index-nulls_002c-embedded-in-_0024_0027_002e_002e_002e_0027"></a>
+</dd>
+<dt> <tt>POSIX_STRINGS</tt> &lt;K&gt; &lt;S&gt;</dt>
+<dd><p>This option affects processing of quoted strings.  Currently it only
+affects the behaviour of null characters, i.e. character 0 in the
+portable character set corresponding to US ASCII.
+</p>
+<p>When this option is not set, null characters embedded within strings
+of the form <tt>$&rsquo;</tt><var>...</var><tt>&rsquo;</tt> are treated as ordinary characters. The
+entire string is maintained within the shell and output to files where
+necessary, although owing to restrictions of the library interface
+the string is truncated at the null character in file names, environment
+variables, or in arguments to external programs.
+</p>
+<p>When this option is set, the <tt>$&rsquo;</tt><var>...</var><tt>&rsquo;</tt> expression is truncated at
+the null character.  Note that remaining parts of the same string
+beyond the termination of the quotes are not trunctated.
+</p>
+<p>For example, the command line argument <tt>a$&rsquo;b\0c&rsquo;d</tt> is treated with
+the option off as the characters <tt>a</tt>, <tt>b</tt>, null, <tt>c</tt>, <tt>d</tt>,
+and with the option on as the characters <tt>a</tt>, <tt>b</tt>, <tt>d</tt>.
+</p>
+<a name="index-POSIX_005fTRAPS"></a>
+<a name="index-NO_005fPOSIX_005fTRAPS"></a>
+<a name="index-POSIXTRAPS"></a>
+<a name="index-NOPOSIXTRAPS"></a>
+<a name="index-traps_002c-on-function-exit"></a>
+<a name="index-traps_002c-POSIX-compatibility"></a>
+</dd>
+<dt> <tt>POSIX_TRAPS</tt> &lt;K&gt; &lt;S&gt;</dt>
+<dd><p>When the is option is set, the usual zsh behaviour of executing
+traps for <tt>EXIT</tt> on exit from shell functions is suppressed.
+In that case, manipulating <tt>EXIT</tt> traps always alters the global
+trap for exiting the shell; the <tt>LOCAL_TRAPS</tt> option is
+ignored for the <tt>EXIT</tt> trap.
+</p>
+<a name="index-SH_005fFILE_005fEXPANSION"></a>
+<a name="index-NO_005fSH_005fFILE_005fEXPANSION"></a>
+<a name="index-SHFILEEXPANSION"></a>
+<a name="index-NOSHFILEEXPANSION"></a>
+<a name="index-sh_002c-expansion-style"></a>
+<a name="index-expansion-style_002c-sh"></a>
 </dd>
 <dt> <tt>SH_FILE_EXPANSION</tt> &lt;K&gt; &lt;S&gt;</dt>
 <dd><p>Perform filename expansion (e.g., ~ expansion) <em>before</em>
 parameter expansion, command substitution, arithmetic expansion
 and brace expansion.
 If this option is unset, it is performed <em>after</em>
-brace expansion, so things like `<tt>~$USERNAME</tt>' and
-`<tt>~{pfalstad,rc}</tt>' will work.
+brace expansion, so things like &lsquo;<tt>~$USERNAME</tt>&rsquo; and
+&lsquo;<tt>~{pfalstad,rc}</tt>&rsquo; will work.
 </p>
-<a name="IDX1005"></a>
-<a name="IDX1006"></a>
-<a name="IDX1007"></a>
-<a name="IDX1008"></a>
-<a name="IDX1009"></a>
-<a name="IDX1010"></a>
-<a name="IDX1011"></a>
-<a name="IDX1012"></a>
-<a name="IDX1013"></a>
-<a name="IDX1014"></a>
+<a name="index-SH_005fNULLCMD"></a>
+<a name="index-NO_005fSH_005fNULLCMD"></a>
+<a name="index-SHNULLCMD"></a>
+<a name="index-NOSHNULLCMD"></a>
+<a name="index-NULLCMD_002c-ignoring-1"></a>
+<a name="index-READNULLCMD_002c-ignoring-1"></a>
+<a name="index-sh_002c-redirections-with-no-command"></a>
+<a name="index-ksh_002c-redirections-with-no-command"></a>
+<a name="index-redirections-with-no-command_002c-sh"></a>
+<a name="index-redirections-with-no-command_002c-ksh"></a>
 </dd>
 <dt> <tt>SH_NULLCMD</tt> &lt;K&gt; &lt;S&gt;</dt>
 <dd><p>Do not use the values of <tt>NULLCMD</tt> and <tt>READNULLCMD</tt> 
-when doing redirections, use `<tt>:</tt>' instead (see <a href="Redirection.html#SEC37">Redirection</a>).
+when doing redirections, use &lsquo;<tt>:</tt>&rsquo; instead (see <a href="Redirection.html#Redirection">Redirection</a>).
 </p>
-<a name="IDX1015"></a>
-<a name="IDX1016"></a>
-<a name="IDX1017"></a>
-<a name="IDX1018"></a>
-<a name="IDX1019"></a>
-<a name="IDX1020"></a>
-<a name="IDX1021"></a>
-<a name="IDX1022"></a>
+<a name="index-SH_005fOPTION_005fLETTERS"></a>
+<a name="index-NO_005fSH_005fOPTION_005fLETTERS"></a>
+<a name="index-SHOPTIONLETTERS"></a>
+<a name="index-NOSHOPTIONLETTERS"></a>
+<a name="index-sh_002c-single-letter-options-style"></a>
+<a name="index-ksh_002c-single-letter-options-style"></a>
+<a name="index-single-letter-options_002c-ksh-style"></a>
+<a name="index-options_002c-single-letter_002c-ksh-style"></a>
 </dd>
 <dt> <tt>SH_OPTION_LETTERS</tt> &lt;K&gt; &lt;S&gt;</dt>
 <dd><p>If this option is set the shell tries to interpret single letter options
 (which are used with <tt>set</tt> and <tt>setopt</tt>) like <cite>ksh</cite> does.
 This also affects the value of the <tt>-</tt> special parameter.
 </p>
-<a name="IDX1023"></a>
-<a name="IDX1024"></a>
-<a name="IDX1025"></a>
-<a name="IDX1026"></a>
-<a name="IDX1027"></a>
-<a name="IDX1028"></a>
+<a name="index-SH_005fWORD_005fSPLIT"></a>
+<a name="index-NO_005fSH_005fWORD_005fSPLIT"></a>
+<a name="index-SHWORDSPLIT"></a>
+<a name="index-NOSHWORDSPLIT"></a>
+<a name="index-field-splitting_002c-sh-style"></a>
+<a name="index-sh_002c-field-splitting-style"></a>
 </dd>
 <dt> <tt>SH_WORD_SPLIT</tt> (<tt>-y</tt>) &lt;K&gt; &lt;S&gt;</dt>
 <dd><p>Causes field splitting to be performed on unquoted parameter expansions.
 Note that this option has nothing to do with word splitting.
-(See <a href="Expansion.html#SEC68">Parameter Expansion</a>.)
+(See <a href="Expansion.html#Parameter-Expansion">Parameter Expansion</a>.)
 </p>
-<a name="IDX1029"></a>
-<a name="IDX1030"></a>
-<a name="IDX1031"></a>
-<a name="IDX1032"></a>
-<a name="IDX1033"></a>
+<a name="index-TRAPS_005fASYNC"></a>
+<a name="index-NO_005fTRAPS_005fASYNC"></a>
+<a name="index-TRAPSASYNC"></a>
+<a name="index-NOTRAPSASYNC"></a>
+<a name="index-traps_002c-asynchronous"></a>
 </dd>
 <dt> <tt>TRAPS_ASYNC</tt></dt>
 <dd><p>While waiting for a program to exit, handle signals and run traps
@@ -2297,28 +2448,28 @@ other than when the shell is waiting for a child process.
 
 
 <hr size="6">
-<a name="SEC112"></a>
+<a name="Shell-State"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC111" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC113" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Shell-Emulation" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Zle" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC101" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-of-Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 16.2.11 Shell State </h3>
+<h3 class="subsection">16.2.11 Shell State</h3>
 <dl compact="compact">
-<dd><a name="IDX1034"></a>
-<a name="IDX1035"></a>
-<a name="IDX1036"></a>
+<dd><a name="index-INTERACTIVE"></a>
+<a name="index-NO_005fINTERACTIVE"></a>
+<a name="index-NOINTERACTIVE"></a>
 </dd>
 <dt> <tt>INTERACTIVE</tt> (<tt>-i</tt>, ksh: <tt>-i</tt>)</dt>
 <dd><p>This is an interactive shell.  This option is set upon initialisation if
@@ -2330,27 +2481,27 @@ The value of this option can only be changed via flags supplied at
 invocation of the shell.
 It cannot be changed once zsh is running.
 </p>
-<a name="IDX1037"></a>
-<a name="IDX1038"></a>
-<a name="IDX1039"></a>
+<a name="index-LOGIN"></a>
+<a name="index-NO_005fLOGIN"></a>
+<a name="index-NOLOGIN"></a>
 </dd>
 <dt> <tt>LOGIN</tt> (<tt>-l</tt>, ksh: <tt>-l</tt>)</dt>
 <dd><p>This is a login shell.
 If this option is not explicitly set, the shell is a login shell if
-the first character of the <tt>argv[0]</tt> passed to the shell is a `<tt>-</tt>'.
+the first character of the <tt>argv[0]</tt> passed to the shell is a &lsquo;<tt>-</tt>&rsquo;.
 </p>
-<a name="IDX1040"></a>
-<a name="IDX1041"></a>
-<a name="IDX1042"></a>
-<a name="IDX1043"></a>
-<a name="IDX1044"></a>
+<a name="index-PRIVILEGED"></a>
+<a name="index-NO_005fPRIVILEGED"></a>
+<a name="index-NOPRIVILEGED"></a>
+<a name="index-privileged-mode"></a>
+<a name="index-mode_002c-privileged"></a>
 </dd>
 <dt> <tt>PRIVILEGED</tt> (<tt>-p</tt>, ksh: <tt>-p</tt>)</dt>
 <dd><p>Turn on privileged mode. This is enabled automatically on startup if the
 effective user (group) ID is not equal to the real user (group) ID.  Turning
 this option off causes the effective user and group IDs to be set to the
 real user and group IDs. This option disables sourcing user startup files.
-If zsh is invoked as `<tt>sh</tt>' or `<tt>ksh</tt>' with this option set,
+If zsh is invoked as &lsquo;<tt>sh</tt>&rsquo; or &lsquo;<tt>ksh</tt>&rsquo; with this option set,
 <tt>/etc/suid_profile</tt> is sourced (after <tt>/etc/profile</tt> on interactive
 shells). Sourcing <tt>~/.profile</tt> is disabled and the contents of the
 <tt>ENV</tt> variable is ignored. This option cannot be changed using the
@@ -2358,21 +2509,21 @@ shells). Sourcing <tt>~/.profile</tt> is disabled and the contents of the
 function always changes it globally regardless of the <tt>LOCAL_OPTIONS</tt>
 option.
 </p>
-<a name="IDX1045"></a>
-<a name="IDX1046"></a>
-<a name="IDX1047"></a>
-<a name="IDX1048"></a>
+<a name="index-RESTRICTED-1"></a>
+<a name="index-NO_005fRESTRICTED"></a>
+<a name="index-NORESTRICTED"></a>
+<a name="index-restricted-shell-1"></a>
 </dd>
 <dt> <tt>RESTRICTED</tt> (<tt>-r</tt>)</dt>
 <dd><p>Enables restricted mode.  This option cannot be changed using
 <tt>unsetopt</tt>, and setting it inside a function always changes it
 globally regardless of the <tt>LOCAL_OPTIONS</tt> option.  See
-<a href="Invocation.html#SEC24">Restricted Shell</a>.
+<a href="Invocation.html#Restricted-Shell">Restricted Shell</a>.
 </p>
-<a name="IDX1049"></a>
-<a name="IDX1050"></a>
-<a name="IDX1051"></a>
-<a name="IDX1052"></a>
+<a name="index-SHIN_005fSTDIN"></a>
+<a name="index-NO_005fSHIN_005fSTDIN"></a>
+<a name="index-SHINSTDIN"></a>
+<a name="index-NOSHINSTDIN"></a>
 </dd>
 <dt> <tt>SHIN_STDIN</tt> (<tt>-s</tt>, ksh: <tt>-s</tt>)</dt>
 <dd><p>Commands are being read from the standard input.
@@ -2390,12 +2541,12 @@ The value of this option can only be changed via flags supplied at
 invocation of the shell.
 It cannot be changed once zsh is running.
 </p>
-<a name="IDX1053"></a>
-<a name="IDX1054"></a>
-<a name="IDX1055"></a>
-<a name="IDX1056"></a>
-<a name="IDX1057"></a>
-<a name="IDX1058"></a>
+<a name="index-SINGLE_005fCOMMAND"></a>
+<a name="index-NO_005fSINGLE_005fCOMMAND"></a>
+<a name="index-SINGLECOMMAND"></a>
+<a name="index-NOSINGLECOMMAND"></a>
+<a name="index-single-command"></a>
+<a name="index-INTERACTIVE_002c-use-of"></a>
 </dd>
 <dt> <tt>SINGLE_COMMAND</tt> (<tt>-t</tt>, ksh: <tt>-t</tt>)</dt>
 <dd><p>If the shell is reading from standard input, it exits after a single command
@@ -2410,41 +2561,41 @@ It cannot be changed once zsh is running.
 
 
 <hr size="6">
-<a name="SEC113"></a>
+<a name="Zle"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC112" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC114" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Shell-State" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Option-Aliases" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC101" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-of-Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 16.2.12 Zle </h3>
+<h3 class="subsection">16.2.12 Zle</h3>
 <dl compact="compact">
-<dd><a name="IDX1059"></a>
-<a name="IDX1060"></a>
-<a name="IDX1061"></a>
-<a name="IDX1062"></a>
-<a name="IDX1063"></a>
+<dd><a name="index-BEEP"></a>
+<a name="index-NO_005fBEEP"></a>
+<a name="index-NOBEEP"></a>
+<a name="index-beep_002c-enabling"></a>
+<a name="index-enabling-the-beep"></a>
 </dd>
 <dt> <tt>BEEP</tt> (<tt>+B</tt>) &lt;D&gt;</dt>
 <dd><p>Beep on error in ZLE.
 </p>
-<a name="IDX1064"></a>
-<a name="IDX1065"></a>
-<a name="IDX1066"></a>
-<a name="IDX1067"></a>
-<a name="IDX1068"></a>
-<a name="IDX1069"></a>
-<a name="IDX1070"></a>
+<a name="index-COMBINING_005fCHARS"></a>
+<a name="index-NO_005fCOMBINING_005fCHARS"></a>
+<a name="index-COMBININGCHARS"></a>
+<a name="index-NOCOMBININGCHARS"></a>
+<a name="index-characters_002c-_0028Unicode_0029-combining"></a>
+<a name="index-combining-characters-_0028Unicode_0029"></a>
+<a name="index-Unicode-combining-characters"></a>
 </dd>
 <dt> <tt>COMBINING_CHARS</tt></dt>
 <dd><p>Assume that the terminal displays combining characters correctly.
@@ -2460,31 +2611,31 @@ zero-width punctuation character on the assumption that it will be
 used as part of a word in combination with a word character.
 Otherwise the base shell does not handle combining characters specially.
 </p>
-<a name="IDX1071"></a>
-<a name="IDX1072"></a>
-<a name="IDX1073"></a>
+<a name="index-EMACS"></a>
+<a name="index-NO_005fEMACS"></a>
+<a name="index-NOEMACS"></a>
 </dd>
 <dt> <tt>EMACS</tt></dt>
 <dd><p>If ZLE is loaded, turning on this option has the equivalent effect
-of `<tt>bindkey -e</tt>'.  In addition, the VI option is unset.
+of &lsquo;<tt>bindkey -e</tt>&rsquo;.  In addition, the VI option is unset.
 Turning it off has no effect.  The option setting is
 not guaranteed to reflect the current keymap.  This option is
 provided for compatibility; <tt>bindkey</tt> is the recommended interface.
 </p>
-<a name="IDX1074"></a>
-<a name="IDX1075"></a>
-<a name="IDX1076"></a>
-<a name="IDX1077"></a>
-<a name="IDX1078"></a>
+<a name="index-OVERSTRIKE"></a>
+<a name="index-NO_005fOVERSTRIKE"></a>
+<a name="index-NOOVERSTRIKE"></a>
+<a name="index-editor_002c-overstrike-mode"></a>
+<a name="index-overstrike-mode_002c-of-editor"></a>
 </dd>
 <dt> <tt>OVERSTRIKE</tt></dt>
 <dd><p>Start up the line editor in overstrike mode.
 </p>
-<a name="IDX1079"></a>
-<a name="IDX1080"></a>
-<a name="IDX1081"></a>
-<a name="IDX1082"></a>
-<a name="IDX1083"></a>
+<a name="index-SINGLE_005fLINE_005fZLE"></a>
+<a name="index-NO_005fSINGLE_005fLINE_005fZLE"></a>
+<a name="index-SINGLELINEZLE"></a>
+<a name="index-NOSINGLELINEZLE"></a>
+<a name="index-editor_002c-single-line-mode"></a>
 </dd>
 <dt> <tt>SINGLE_LINE_ZLE</tt> (<tt>-M</tt>) &lt;K&gt;</dt>
 <dd><p>Use single-line command line editing instead of multi-line.
@@ -2495,22 +2646,22 @@ reduces the effectiveness of the zsh line editor.  As it has no
 effect on shell syntax, many users may wish to disable this option
 when using ksh emulation interactively.
 </p>
-<a name="IDX1084"></a>
-<a name="IDX1085"></a>
-<a name="IDX1086"></a>
+<a name="index-VI"></a>
+<a name="index-NO_005fVI"></a>
+<a name="index-NOVI"></a>
 </dd>
 <dt> <tt>VI</tt></dt>
 <dd><p>If ZLE is loaded, turning on this option has the equivalent effect
-of `<tt>bindkey -v</tt>'.  In addition, the EMACS option is unset.
+of &lsquo;<tt>bindkey -v</tt>&rsquo;.  In addition, the EMACS option is unset.
 Turning it off has no effect.  The option setting is
 not guaranteed to reflect the current keymap.  This option is
 provided for compatibility; <tt>bindkey</tt> is the recommended interface.
 </p>
-<a name="IDX1087"></a>
-<a name="IDX1088"></a>
-<a name="IDX1089"></a>
-<a name="IDX1090"></a>
-<a name="IDX1091"></a>
+<a name="index-ZLE"></a>
+<a name="index-NO_005fZLE"></a>
+<a name="index-NOZLE"></a>
+<a name="index-editor_002c-enabling"></a>
+<a name="index-enabling-the-editor"></a>
 </dd>
 <dt> <tt>ZLE</tt> (<tt>-Z</tt>)</dt>
 <dd><p>Use the zsh line editor.  Set by default in interactive shells connected to
@@ -2522,129 +2673,130 @@ a terminal.
 <hr size="6">
 <a name="Option-Aliases"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC113" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC115" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Zle" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Single-Letter-Options" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC114"></a>
-<h2 class="section"> 16.3 Option Aliases </h2>
+<a name="Option-Aliases-1"></a>
+<h2 class="section">16.3 Option Aliases</h2>
+<a name="index-options_002c-aliases"></a>
 <p>Some options have alternative names.  These aliases are never used for
 output, but can be used just like normal option names when specifying
 options to the shell.
 </p>
 <dl compact="compact">
-<dd><a name="IDX1092"></a>
-<a name="IDX1093"></a>
-<a name="IDX1094"></a>
-<a name="IDX1095"></a>
+<dd><a name="index-BRACE_005fEXPAND"></a>
+<a name="index-NO_005fBRACE_005fEXPAND"></a>
+<a name="index-BRACEEXPAND"></a>
+<a name="index-NOBRACEEXPAND"></a>
 </dd>
 <dt> <tt>BRACE_EXPAND</tt></dt>
 <dd><p><em>NO_</em><tt>IGNORE_BRACES</tt>
 (ksh and bash compatibility)
 </p>
-<a name="IDX1096"></a>
-<a name="IDX1097"></a>
-<a name="IDX1098"></a>
-<a name="IDX1099"></a>
+<a name="index-DOT_005fGLOB"></a>
+<a name="index-NO_005fDOT_005fGLOB"></a>
+<a name="index-DOTGLOB"></a>
+<a name="index-NODOTGLOB"></a>
 </dd>
 <dt> <tt>DOT_GLOB</tt></dt>
 <dd><p><tt>GLOB_DOTS</tt>
 (bash compatibility)
 </p>
-<a name="IDX1100"></a>
-<a name="IDX1101"></a>
-<a name="IDX1102"></a>
-<a name="IDX1103"></a>
+<a name="index-HASH_005fALL"></a>
+<a name="index-NO_005fHASH_005fALL"></a>
+<a name="index-HASHALL"></a>
+<a name="index-NOHASHALL"></a>
 </dd>
 <dt> <tt>HASH_ALL</tt></dt>
 <dd><p><tt>HASH_CMDS</tt>
 (bash compatibility)
 </p>
-<a name="IDX1104"></a>
-<a name="IDX1105"></a>
-<a name="IDX1106"></a>
-<a name="IDX1107"></a>
+<a name="index-HIST_005fAPPEND"></a>
+<a name="index-NO_005fHIST_005fAPPEND"></a>
+<a name="index-HISTAPPEND"></a>
+<a name="index-NOHISTAPPEND"></a>
 </dd>
 <dt> <tt>HIST_APPEND</tt></dt>
 <dd><p><tt>APPEND_HISTORY</tt>
 (bash compatibility)
 </p>
-<a name="IDX1108"></a>
-<a name="IDX1109"></a>
-<a name="IDX1110"></a>
-<a name="IDX1111"></a>
+<a name="index-HIST_005fEXPAND"></a>
+<a name="index-NO_005fHIST_005fEXPAND"></a>
+<a name="index-HISTEXPAND"></a>
+<a name="index-NOHISTEXPAND"></a>
 </dd>
 <dt> <tt>HIST_EXPAND</tt></dt>
 <dd><p><tt>BANG_HIST</tt>
 (bash compatibility)
 </p>
-<a name="IDX1112"></a>
-<a name="IDX1113"></a>
-<a name="IDX1114"></a>
+<a name="index-LOG"></a>
+<a name="index-NO_005fLOG"></a>
+<a name="index-NOLOG"></a>
 </dd>
 <dt> <tt>LOG</tt></dt>
 <dd><p><em>NO_</em><tt>HIST_NO_FUNCTIONS</tt>
 (ksh compatibility)
 </p>
-<a name="IDX1115"></a>
-<a name="IDX1116"></a>
-<a name="IDX1117"></a>
-<a name="IDX1118"></a>
+<a name="index-MAIL_005fWARN"></a>
+<a name="index-NO_005fMAIL_005fWARN"></a>
+<a name="index-MAILWARN"></a>
+<a name="index-NOMAILWARN"></a>
 </dd>
 <dt> <tt>MAIL_WARN</tt></dt>
 <dd><p><tt>MAIL_WARNING</tt>
 (bash compatibility)
 </p>
-<a name="IDX1119"></a>
-<a name="IDX1120"></a>
-<a name="IDX1121"></a>
-<a name="IDX1122"></a>
+<a name="index-ONE_005fCMD"></a>
+<a name="index-NO_005fONE_005fCMD"></a>
+<a name="index-ONECMD"></a>
+<a name="index-NOONECMD"></a>
 </dd>
 <dt> <tt>ONE_CMD</tt></dt>
 <dd><p><tt>SINGLE_COMMAND</tt>
 (bash compatibility)
 </p>
-<a name="IDX1123"></a>
-<a name="IDX1124"></a>
-<a name="IDX1125"></a>
+<a name="index-PHYSICAL"></a>
+<a name="index-NO_005fPHYSICAL"></a>
+<a name="index-NOPHYSICAL"></a>
 </dd>
 <dt> <tt>PHYSICAL</tt></dt>
 <dd><p><tt>CHASE_LINKS</tt>
 (ksh and bash compatibility)
 </p>
-<a name="IDX1126"></a>
-<a name="IDX1127"></a>
-<a name="IDX1128"></a>
-<a name="IDX1129"></a>
+<a name="index-PROMPT_005fVARS"></a>
+<a name="index-NO_005fPROMPT_005fVARS"></a>
+<a name="index-PROMPTVARS"></a>
+<a name="index-NOPROMPTVARS"></a>
 </dd>
 <dt> <tt>PROMPT_VARS</tt></dt>
 <dd><p><tt>PROMPT_SUBST</tt>
 (bash compatibility)
 </p>
-<a name="IDX1130"></a>
-<a name="IDX1131"></a>
-<a name="IDX1132"></a>
+<a name="index-STDIN"></a>
+<a name="index-NO_005fSTDIN"></a>
+<a name="index-NOSTDIN"></a>
 </dd>
 <dt> <tt>STDIN</tt></dt>
 <dd><p><tt>SHIN_STDIN</tt>
 (ksh compatibility)
 </p>
-<a name="IDX1133"></a>
-<a name="IDX1134"></a>
-<a name="IDX1135"></a>
-<a name="IDX1136"></a>
+<a name="index-TRACK_005fALL"></a>
+<a name="index-NO_005fTRACK_005fALL"></a>
+<a name="index-TRACKALL"></a>
+<a name="index-NOTRACKALL"></a>
 </dd>
 <dt> <tt>TRACK_ALL</tt></dt>
 <dd><p><tt>HASH_CMDS</tt>
@@ -2655,44 +2807,46 @@ options to the shell.
 <hr size="6">
 <a name="Single-Letter-Options"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC114" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC116" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Option-Aliases" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Default-set" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="SEC115"></a>
-<h2 class="section"> 16.4 Single Letter Options </h2>
+<a name="Single-Letter-Options-1"></a>
+<h2 class="section">16.4 Single Letter Options</h2>
+<a name="index-options_002c-single-letter"></a>
+<a name="index-single-letter-options"></a>
 
 <hr size="6">
-<a name="SEC116"></a>
+<a name="Default-set"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC115" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC117" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Single-Letter-Options" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#sh_002fksh-emulation-set" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC115" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Single-Letter-Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 16.4.1 Default set </h3>
+<h3 class="subsection">16.4.1 Default set</h3>
 <dl compact="compact">
 <dt> <tt>-0</tt></dt>
 <dd><p>CORRECT
@@ -2859,24 +3013,24 @@ options to the shell.
 </dl>
 
 <hr size="6">
-<a name="SEC117"></a>
+<a name="sh_002fksh-emulation-set"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC116" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC118" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Default-set" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Also-note" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC115" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Single-Letter-Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 16.4.2 sh/ksh emulation set </h3>
+<h3 class="subsection">16.4.2 sh/ksh emulation set</h3>
 <dl compact="compact">
 <dt> <tt>-C</tt></dt>
 <dd><p><em>NO_</em>CLOBBER
@@ -2935,24 +3089,24 @@ options to the shell.
 </dl>
 
 <hr size="6">
-<a name="SEC118"></a>
+<a name="Also-note"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC117" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#sh_002fksh-emulation-set" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SEC115" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Single-Letter-Options" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection"> 16.4.3 Also note </h3>
+<h3 class="subsection">16.4.3 Also note</h3>
 <dl compact="compact">
 <dt> <tt>-A</tt></dt>
 <dd><p>Used by <tt>set</tt> for setting arrays
@@ -2975,21 +3129,21 @@ options to the shell.
 </dl>
 <hr size="6">
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#SEC99" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#SEC119" title="Next chapter"> &gt;&gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#SEC_Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#SEC294" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Oliver Kiddle</em> on <em>May, 28 2009</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>April 20, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 
