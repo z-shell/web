@@ -1,22 +1,23 @@
 <html>
 <head>
-<title>Z-Shell Frequently-Asked Questions </title>
+<title> Z-Shell Frequently-Asked Questions </title>
 </head>
-<body  >
+<body >
 <hr>
 <ul>
-    <li> <a href="zshfaq04.html">Next chapter</a>
-    <li> <a href="zshfaq02.html">Previous chapter</a>
-    <li> <a href="zshfaq.html">Table of contents</a>
+    <li> <a href="zshfaq.html">Table of Contents</a>
+    <li> <a href="zshfaq02.html">Previous Chapter</a>
+    <li> <a href="zshfaq04.html">Next Chapter</a>
 </ul>
 <hr>
-
 <a name="l17"></a>
 <h1>Chapter 3: How to get various things to work</h1>
-<p><a name="l18"></a>
+<p>
+<a name="l18"></a>
 <h2>3.1: Why does <code>$var</code> where <code>var="foo bar"</code> not do what I expect?</h2>
 <a name="31"></a>
-<p>In most Bourne-shell derivatives, multiple-word variables such as
+<p>
+In most Bourne-shell derivatives, multiple-word variables such as
   <pre>
 
     var="foo bar"
@@ -27,7 +28,8 @@
   $var</code> loop.  By default, zsh does not have that behaviour: the
   variable remains intact.  (This is not a bug!  See below.)  The option
   <code>SH_WORD_SPLIT</code> exists to provide compatibility.
-<p>For example, defining the function args to show the number of its
+<p>
+For example, defining the function args to show the number of its
   arguments:
   <pre>
 
@@ -50,7 +52,8 @@
 </pre>
 
   the same function produces the output `2', as with sh and ksh.
-<p>Unless you need strict sh/ksh compatibility, you should ask yourself
+<p>
+Unless you need strict sh/ksh compatibility, you should ask yourself
   whether you really want this behaviour, as it can produce unexpected
   effects for variables with entirely innocuous embedded spaces.  This
   can cause horrendous quoting problems when invoking scripts from
@@ -81,14 +84,16 @@
   if this mechanism had always been available there would never have
   been automatic word splitting in scalars, which is a sort of
   uncontrollable poor man's array.
-<p>Note that this happens regardless of the value of the internal field
+<p>
+Note that this happens regardless of the value of the internal field
   separator, <code>$IFS</code>; in other words, with <code>IFS=:; foo=a:b; args $foo</code>
   you get the answer 1.
-<p>Other ways of causing word splitting include a judicious use of
+<p>
+Other ways of causing word splitting include a judicious use of
   `eval':
   <pre>
 
-    sentence="Longtemps, je me suis couch\\'e de bonne heure."
+    sentence="Longtemps, je me suis couch\+NOTRANS(&amp;eacute;) de bonne heure."
     eval "words=($sentence)"
   
 </pre>
@@ -105,17 +110,20 @@
 
   always returns 8 with the above definition of <code>args</code>.  (In older
   versions of zsh, <code>${=foo}</code> toggled <code>SH_WORD_SPLIT</code>; now it forces it on.)
-<p>Note also the <code>"$@"</code> method of word splitting is always available in zsh
+<p>
+Note also the <code>"$@"</code> method of word splitting is always available in zsh
   functions and scripts (though strictly this does array splitting, not
   word splitting).  This is more portable than the <code>$*</code>, since it
   will work regardless of the <code>SH_WORD_SPLIT</code> setting; the other
   difference is that <code>$*</code> removes empty arguments from the array.
   You can fix the first half of that objection by using <code>${==*}</code>,
   which turns off <code>SH_WORD_SPLIT</code> for the duration of the expansion.
-<p><code>SH_WORD_SPLIT</code> is set when zsh is invoked with the names `ksh' or `sh',
+<p>
+<code>SH_WORD_SPLIT</code> is set when zsh is invoked with the names `ksh' or `sh',
   or (entirely equivalent) when <code>emulate ksh</code> or <code>emulate sh</code> is in
   effect.
-<p>There is one other effect of word splitting which differs between ksh
+<p>
+There is one other effect of word splitting which differs between ksh
   and zsh.  In ksh, the builtin commands that declare parameters such
   as <code>typeset</code> and <code>export</code> force word-splitting not to take place
   after on an assignment argument:
@@ -134,9 +142,11 @@
   problem.  Note that in bash this behaviour occurs with all arguments that
   look like assignments, whatever the command name; to get this behaviour
   in zsh you have to set the option <code>MAGIC_EQUAL_SUBST</code>.
-<p><a name="l19"></a>
+<p>
+<a name="l19"></a>
 <h2>3.2: In which startup file do I put...?</h2>
-<p>When zsh starts up, there are four files you can change which it will
+<p>
+When zsh starts up, there are four files you can change which it will
   run under various circumstances: <code>.zshenv</code>, <code>.zprofile</code>, <code>.zshrc</code>
   and <code>.zlogin</code>.  They are usually in your home directory, but the
   variable <code>$ZDOTDIR</code> may be set to alter that.  Here are a few simple
@@ -145,7 +155,8 @@
   <code>/etc/zshenv</code> by starting zsh with the <code>-f</code> option --- for this
   reason it is important for administrators to make sure <code>/etc/zshenv</code>
   is as brief as possible.
-<p>The order in which the four files are searched (none of them <em>need</em>
+<p>
+The order in which the four files are searched (none of them <em>need</em>
   to exist) is the one just given.  However, <code>.zprofile</code> and <code>.zlogin</code>
   are only run when the shell is a login shell --- when you first login,
   of course, and whenever you start zsh with the <code>-l</code> option.  All
@@ -158,7 +169,8 @@
   change settings for terminal emulator windows like <code>xterm</code> you will
   need to put those in <code>.zshrc</code>, since usually you do not get a login
   shell here).  
-<p>The only file you can alter which is started with every zsh (unless
+<p>
+The only file you can alter which is started with every zsh (unless
   you use the <code>-f</code> option) is <code>.zshenv</code>, so this is a good place to put
   things you want even if the shell is non-interactive: options for
   changing the syntax, like <code>EXTENDED_GLOB</code>, any changes to set with
@@ -167,7 +179,8 @@
   want <code>.zshenv</code> to produce any output.  Some people prefer not to
   use <code>.zshenv</code> for setting options, as this affects scripts; but
   making zsh scripts portable usually requires special handling anyway.
-<p>Finally, <code>.zshrc</code> is run for every interactive shell; that includes
+<p>
+Finally, <code>.zshrc</code> is run for every interactive shell; that includes
   login shells, but also any other time you start up a shell, such as
   simply by typing <code>zsh</code> or opening a new terminal emulator window.
   This file is the place to change the editing behaviour via options or
@@ -178,13 +191,16 @@
   since there are occasions when this can be a problem, such as when
   using <code>rsh</code> from another host.  See <a href="zshfaq03.html#321">3.21</a> for what to put in <code>.zshrc</code>
   to save your history.
-<p><a name="l20"></a>
+<p>
+<a name="l20"></a>
 <h2>3.3: What is the difference between `export' and the <code>ALL_EXPORT</code> option?</h2>
-<p>Normally, you would put a variable into the environment by using
+<p>
+Normally, you would put a variable into the environment by using
   <code>export var</code>.  The command <code>setopt allexport</code> causes all
   variables which are subsequently set (N.B. not all the ones which
   already exist) to be put into the environment.
-<p>This may seem a useful shorthand, but in practice it can have
+<p>
+This may seem a useful shorthand, but in practice it can have
   unhelpful side effects:
   <ol>
   <li> Since every variable is in the environment as well as remembered
@@ -201,13 +217,16 @@
   creating a list of variables in an initialisation file, then unset
   it immediately afterwards.  Only those variables will be automatically
   exported.
-<p><a name="l21"></a>
+<p>
+<a name="l21"></a>
 <h2>3.4: How do I turn off spelling correction/globbing for a single command?</h2>
-<p>In the first case, you presumably have <code>setopt correctall</code> in an
+<p>
+In the first case, you presumably have <code>setopt correctall</code> in an
   initialisation file, so that zsh checks the spelling of each word in
   the command line.  You probably do not want this behaviour for
   commands which do not operate on existing files.
-<p>The answer is to alias the offending command to itself with
+<p>
+The answer is to alias the offending command to itself with
   <code>nocorrect</code> stuck on the front, e.g.
   <pre>
 
@@ -215,7 +234,8 @@
   
 </pre>
 
-<p>To turn off globbing, the rationale is identical:
+<p>
+To turn off globbing, the rationale is identical:
   <pre>
 
     alias mkdir='noglob mkdir'
@@ -225,18 +245,22 @@
   You can have both <code>nocorrect</code> and <code>noglob</code>, if you like, but the
   <code>nocorrect</code> must come first, since it is needed by the line editor,
   while <code>noglob</code> is only handled when the command is examined.
-<p>Note also that a shell function won't work: the no... directives must
+<p>
+Note also that a shell function won't work: the no... directives must
   be expanded before the rest of the command line is parsed.
-<p><a name="l22"></a>
+<p>
+<a name="l22"></a>
 <h2>3.5: How do I get the Meta key to work on my xterm?</h2>
 <a name="35"></a>
-<p>The Meta key isn't present on a lot of keyboards, but on some
+<p>
+The Meta key isn't present on a lot of keyboards, but on some
   the Alt key has the same effect.  If a character is typed on the
   keyboard while the Meta key is held down, the characters is sent
   as terminal input with its eighth bit set.  For example, ASCII
   <code>A</code>, hex 65, becomes hex E5.  This is sometimes used to provide
   extra editing commands.
-<p>As stated in the manual, zsh needs to be told about the Meta key by
+<p>
+As stated in the manual, zsh needs to be told about the Meta key by
   using <code>bindkey -me</code> or <code>bindkey -mv</code> in your .zshrc or on the
   command line.  You probably also need to tell the terminal driver to
   allow the `Meta' bit of the character through; <code>stty pass8</code> is the
@@ -260,19 +284,24 @@
   need to set the <code>eightBitOutput</code> resource in your <code>~/.Xdefaults</code>
   file, although this is on by default and it's unlikely anybody will
   have tinkered with it.
-<p>You don't need the <code>bindkey</code> to be able to define your own sequences
+<p>
+You don't need the <code>bindkey</code> to be able to define your own sequences
   with the Meta key, though you still need the <code>stty</code>.
-<p>If you are using multibyte input directly from the keyboard you
+<p>
+If you are using multibyte input directly from the keyboard you
   probably don't want to use this feature since the eighth bit in
   each byte is used to indicate a part of a multibyte character.  See
   <a href="zshfaq05.html#c5">chapter 5</a>.
-<p><a name="l23"></a>
+<p>
+<a name="l23"></a>
 <h2>3.6: How do I automatically display the directory in my xterm title bar?</h2>
-<p>You should use the special function <code>chpwd</code>, which is called when
+<p>
+You should use the special function <code>chpwd</code>, which is called when
   the directory changes.  The following checks that standard output is
   a terminal, then puts the directory in the title bar if the terminal
   is an <code>xterm</code> or some close relative, or a <code>sun-cmd</code>.
-<p><pre>
+<p>
+<pre>
 
   chpwd() {
     [[ -t 1 ]] || return
@@ -286,15 +315,18 @@
   
 </pre>
 
-<p>Change <code>%~</code> if you want the message to be different.  (The <code>-P</code>
+<p>
+Change <code>%~</code> if you want the message to be different.  (The <code>-P</code>
   option interprets such sequences just like in prompts, in this case
   producing the current directory; you can of course use <code>$PWD</code> here,
   but that won't use the <code>~</code> notation which I find clearer.)  Note that
   when the <code>xterm</code> starts up you will probably want to call <code>chpwd</code>
   directly: just put <code>chpwd</code> in <code>.zshrc</code> after it is defined or autoloaded.
-<p><a name="l24"></a>
+<p>
+<a name="l24"></a>
 <h2>3.7: How do I make the completion list use eight bit characters?</h2>
-<p>If you are sure your terminal handles this, the easiest way from versions
+<p>
+If you are sure your terminal handles this, the easiest way from versions
   3.0.6 and 3.1 of the shell is to set the option <code>PRINT_EIGHT_BIT</code>.  In
   principle, this will work automatically if your computer uses the
   `locale' system and your locale variables are set properly, as zsh
@@ -304,12 +336,15 @@
   <code>setlocale(3)</code> and <code>zshparam(1)</code> manual pages: the simplest
   possibility may be to set <code>LC_ALL=en_US</code>.  For older versions of the
   shell, there is no easy way out.
-<p><a name="l25"></a>
+<p>
+<a name="l25"></a>
 <h2>3.8: Why do the cursor (arrow) keys not work?  (And other terminal oddities.)</h2>
-<p>The cursor keys send different codes depending on the terminal; zsh
+<p>
+The cursor keys send different codes depending on the terminal; zsh
   only binds the most well known versions.  If you see these problems,
   try putting the following in your <code>.zshrc</code>:
-<p><pre>
+<p>
+<pre>
 
     bindkey "$(echotc kl)" backward-char
     bindkey "$(echotc kr)" forward-char
@@ -318,17 +353,20 @@
   
 </pre>
 
-<p>If you use vi mode, use <code>vi-backward-char</code> and <code>vi-forward-char</code>
+<p>
+If you use vi mode, use <code>vi-backward-char</code> and <code>vi-forward-char</code>
   where appropriate.  As of version 4.0.1, zsh attempts to look up these
   codes and to set the key bindings for you (both emacs and vi), but in
   some circumstances this may not work.
-<p>Note, however, that up to version 3.0 binding arbitrary multiple key
+<p>
+Note, however, that up to version 3.0 binding arbitrary multiple key
   sequences can cause problems, so check that this works with your set
   up first.  Also, from version 3.1.3, more sequences are supported by
   default, namely those in the form <code>&lt;ESC&gt;O</code> followed by <code>A</code>,
   <code>B</code>, <code>C</code> or <code>D</code>, as well as the corresponding set beginning
   <code>&lt;ESC&gt;[</code>, so this may be redundant.
-<p>A particular problem which sometimes occurs is that there are two
+<p>
+A particular problem which sometimes occurs is that there are two
   different modes for arrow keys, normal mode and keypad mode, which
   send different sequences.  Although this is largely a historical
   artifact, it sometimes happens that your terminal can be switched from
@@ -353,7 +391,8 @@
   For most even vaguely VT100-compatible terminals, the above eight
   instructions are a fairly safe bet for your <code>.zshrc</code>.  Of course
   you can substitute variant functions for the second argument here too.
-<p>It should be noted that the <code>O</code> / <code>[</code> confusion can occur
+<p>
+It should be noted that the <code>O</code> / <code>[</code> confusion can occur
   with other keys such as Home and End.  Some systems let you query
   the key sequences sent by these keys from the system's terminal
   database, terminfo.  Unfortunately, the key sequences given there
@@ -374,16 +413,19 @@
   If you only have the predecessor to terminfo, called termcap (which is
   what we used to get the cursor keys above), replace <code>echoti smkx</code>
   with <code>echotc ks</code> and replace <code>echoti rmkx</code> with <code>echotc ke</code>.
-<p><a name="l26"></a>
+<p>
+<a name="l26"></a>
 <h2>3.9: Why does my terminal act funny in some way?</h2>
-<p>If you are using an OpenWindows cmdtool as your terminal, any
+<p>
+If you are using an OpenWindows cmdtool as your terminal, any
   escape sequences (such as those produced by cursor keys) will be
   swallowed up and never reach zsh.  Either use shelltool or avoid
   commands with escape sequences.  You can also disable scrolling from
   the cmdtool pane menu (which effectively turns it into a shelltool).
   If you still want scrolling, try using an xterm with the scrollbar
   activated.
-<p>If that's not the problem, and you are using stty to change some tty
+<p>
+If that's not the problem, and you are using stty to change some tty
   settings, make sure you haven't asked zsh to freeze the tty settings:
   type
   <pre>
@@ -393,17 +435,20 @@
 </pre>
 
   before any stty commands you use.
-<p>On the other hand, if you aren't using stty and have problems you may
+<p>
+On the other hand, if you aren't using stty and have problems you may
   need the opposite:  <code>ttyctl -f</code> freezes the terminal to protect it
   from hiccups introduced by other programmes (kermit has been known to
   do this).
-<p>A problem I have experienced myself (on an AIX 3.2 workstation with
+<p>
+A problem I have experienced myself (on an AIX 3.2 workstation with
   xterm) is that termcap deinitialization sequences sent by `less'
   were causing automargins to be turned off --- not actually a shell
   problem, but you might have thought it was.  The fix is to put `<code>X</code>'
   into the environment variable <code>LESS</code> to stop the sequences being sent.
   Other programs (though not zsh) may also send that sequence.
-<p>If <em>that</em>'s not the problem, and you are having difficulties with
+<p>
+If <em>that</em>'s not the problem, and you are having difficulties with
   external commands (not part of zsh), and you think some terminal
   setting is wrong (e.g. <code>^V</code> is getting interpreted as `literal next
   character' when you don't want it to be), try
@@ -417,14 +462,18 @@
   (in this example).  Note that zsh doesn't reset the terminal completely
   afterwards: just the modes it uses itself and a number of special
   processing characters (see the <code>stty(1)</code> manual page).
-<p><a name="l27"></a>
+<p>
+<a name="l27"></a>
 <h2>3.10: Why does zsh not work in an Emacs shell mode any more?</h2>
-<p>(This information comes from Bart Schaefer and other zsh-workers.)
-<p>Emacs 19.29 or thereabouts stopped using a terminal type of "emacs"
+<p>
+(This information comes from Bart Schaefer and other zsh-workers.)
+<p>
+Emacs 19.29 or thereabouts stopped using a terminal type of "emacs"
   in shell buffers, and instead sets it to "dumb".  Zsh only kicks in
   its special I'm-inside-emacs initialization when the terminal type
   is "emacs".
-<p>Probably the most reliable way of dealing with this is to look for
+<p>
+Probably the most reliable way of dealing with this is to look for
   the environment variable <code>$EMACS</code>, which is set to <code>t</code> in
   Emacs' shell mode.  Putting
   <pre>
@@ -434,7 +483,8 @@
 </pre>
 
   in your .zshrc should be sufficient.
-<p>Another method is to put
+<p>
+Another method is to put
   <pre>
 
     #!/bin/sh
@@ -451,9 +501,11 @@
 </pre>
 
   to ~/.emacs.
-<p><a name="l28"></a>
+<p>
+<a name="l28"></a>
 <h2>3.11: Why do my autoloaded functions not autoload [the first time]?</h2>
-<p>The problem is that there are two possible ways of autoloading a
+<p>
+The problem is that there are two possible ways of autoloading a
   function (see the AUTOLOADING FUNCTIONS section of the zsh manual
   page zshmisc for more detailed information):
   <ol>
@@ -470,16 +522,19 @@
      To define the same function <code>xhead</code>, the whole of the
      usual definition should be in the file.
   </ol>
-<p>In old versions of zsh, before 3.0, only the first behaviour was
+<p>
+In old versions of zsh, before 3.0, only the first behaviour was
   allowed, so you had to make sure the file found for autoload just
   contained the function body.  You could still define other functions
   in the file with the standard form for definitions, though they
   would be redefined each time you called the main function.
-<p>In version 3.0.x, the second behaviour is activated if the file
+<p>
+In version 3.0.x, the second behaviour is activated if the file
   defines the autoloaded function.  Unfortunately, this is
   incompatible with the old zsh behaviour which allowed you to
   redefine the function when you called it.
-<p>From version 3.1, there is an option <code>KSH_AUTOLOAD</code> to allow full ksh
+<p>
+From version 3.1, there is an option <code>KSH_AUTOLOAD</code> to allow full ksh
   compatiblity, i.e. the function <em>must</em> be in the second form
   above.  If that is not set, zsh tries to guess which form you are
   using:  if the file contains only a complete definition of the
@@ -487,13 +542,16 @@
   and whitespace, it will use the function defined in the file;
   otherwise, it will assume the old behaviour.  The option is set
   if <code>emulate ksh</code> is in effect, of course.
-<p>(A neat trick to autoload all functions in a given directory is to
+<p>
+(A neat trick to autoload all functions in a given directory is to
   include a line like <code>autoload ~/fns/*(:t)</code> in .zshrc; the bit in
   parentheses removes the directory part of the filenames, leaving
   just the function names.)
-<p><a name="l29"></a>
+<p>
+<a name="l29"></a>
 <h2>3.12: How does base arithmetic work?</h2>
-<p>The ksh syntax is now understood, i.e.
+<p>
+The ksh syntax is now understood, i.e.
   <pre>
 
     let 'foo = 16#ff'
@@ -557,10 +615,12 @@
   
 </pre>
 
-<p><a name="l30"></a>
+<p>
+<a name="l30"></a>
 <h2>3.13: How do I get a newline in my prompt?</h2>
 <a name="313"></a>
-<p>You can place a literal newline in quotes, i.e.
+<p>
+You can place a literal newline in quotes, i.e.
   <pre>
 
     PROMPT="Hi Joe,
@@ -572,7 +632,8 @@
   inhibits such behaviour, you will have to bracket this with
   <code>unsetopt cshjunkiequotes</code> and <code>setopt cshjunkiequotes</code>, or put it
   in your <code>.zshrc</code> before the option is set.
-<p>In recent versions of zsh (not 3.0), there is a form of quoting which
+<p>
+In recent versions of zsh (not 3.0), there is a form of quoting which
   interprets print sequences like `<code>\n</code>' but otherwise acts like single
   quotes: surround the string with <code>$'...'</code>.  Hence:
   <pre>
@@ -583,26 +644,33 @@
 
   is a neat way of doing what you want.  Note that it is the quotes, not
   the prompt expansion, which turns the `<code>\n</code>' into a newline.
-<p><a name="l31"></a>
+<p>
+<a name="l31"></a>
 <h2>3.14: Why does <code>bindkey ^a command-name</code> or <code>stty intr ^-</code> do something funny?</h2>
-<p>You probably have the extendedglob option set in which case <code>^</code> and <code>#</code>
+<p>
+You probably have the extendedglob option set in which case <code>^</code> and <code>#</code>
   are metacharacters.  <code>^a</code> matches any file except one called <code>a</code>, so the
   line is interpreted as bindkey followed by a list of files.  Quote the
   <code>^</code> with a backslash or put quotation marks around <code>^a</code>.
-<p><a name="l32"></a>
+<p>
+<a name="l32"></a>
 <h2>3.15: Why can't I bind <code>\C-s</code> and <code>\C-q</code> any more?</h2>
-<p>The control-s and control-q keys now do flow control by default,
+<p>
+The control-s and control-q keys now do flow control by default,
   unless you have turned this off with <code>stty -ixon</code> or redefined the
   keys which control it with <code>stty start</code> or <code>stty stop</code>.  (This is
   done by the system, not zsh; the shell simply respects these
   settings.)  In other words, <code>\C-s</code> stops all output to the terminal,
   while <code>\C-q</code> resumes it.
-<p>There is an option <code>NO_FLOW_CONTROL</code> to stop zsh from allowing flow
+<p>
+There is an option <code>NO_FLOW_CONTROL</code> to stop zsh from allowing flow
   control and hence restoring the use of the keys: put <code>setopt
   noflowcontrol</code> in your <code>.zshrc</code> file.
-<p><a name="l33"></a>
+<p>
+<a name="l33"></a>
 <h2>3.16: How do I execute command <code>foo</code> within function <code>foo</code>?</h2>
-<p>The command <code>command foo</code> does just that.  You don't need this with
+<p>
+The command <code>command foo</code> does just that.  You don't need this with
   aliases, but you do with functions.  Note that error messages like
   <pre>
 
@@ -613,35 +681,44 @@
   are a good sign that you tried calling `foo' in function `foo' without
   using `command'.  If <code>foo</code> is a builtin rather than an external
   command, use <code>builtin foo</code> instead.
-<p><a name="l34"></a>
+<p>
+<a name="l34"></a>
 <h2>3.17: Why do history substitutions with single bangs do something funny?</h2>
-<p>If you have a command like "<code>echo !-2:$ !$</code>", the first history
+<p>
+If you have a command like "<code>echo !-2:$ !$</code>", the first history
   substitution then sets a default to which later history substitutions
   with single unqualified bangs refer, so that !$ becomes equivalent to
   <code>!-2:$</code>.  The option <code>CSH_JUNKIE_HISTORY</code> makes all single bangs refer
   to the last command.
-<p><a name="l35"></a>
+<p>
+<a name="l35"></a>
 <h2>3.18: Why does zsh kill off all my background jobs when I logout?</h2>
-<p>Simple answer: you haven't asked it not to.  Zsh (unlike [t]csh) gives
+<p>
+Simple answer: you haven't asked it not to.  Zsh (unlike [t]csh) gives
   you the option of having background jobs killed or not: the <code>nohup</code>
   option exists if you don't want them killed.  Note that you can always
   run programs with <code>nohup</code> in front of the pipeline whether or not the
   option is set, which will prevent that job from being killed on
   logout.  (<code>nohup</code> is actually an external command.)
-<p>The <code>disown</code> builtin is very useful in this respect: if zsh informs
+<p>
+The <code>disown</code> builtin is very useful in this respect: if zsh informs
   you that you have background jobs when you try to logout, you can
   <code>disown</code> all the ones you don't want killed when you exit.  This is
   also a good way of making jobs you don't need the shell to know about
   (such as commands which create new windows) invisible to the shell.
   Likewise, you can start a background job with <code>&amp;!</code> instead of just
   <code>&amp;</code> at the end, which will automatically disown the job.
-<p><a name="l36"></a>
+<p>
+<a name="l36"></a>
 <h2>3.19: How do I list all my history entries?</h2>
-<p>Tell zsh to start from entry 1: <code>history 1</code>.  Those entries at the
+<p>
+Tell zsh to start from entry 1: <code>history 1</code>.  Those entries at the
   start which are no longer in memory will be silently omitted.
-<p><a name="l37"></a>
+<p>
+<a name="l37"></a>
 <h2>3.20: How does the alternative loop syntax, e.g. <code>while {...} {...}</code> work?</h2>
-<p>Zsh provides an alternative to the traditional sh-like forms with <code>do</code>,
+<p>
+Zsh provides an alternative to the traditional sh-like forms with <code>do</code>,
   <pre>
 
     while TEST; do COMMANDS; done
@@ -653,7 +730,8 @@
   in most scripts it is probably safer --- and certainly more
   compatible --- to stick with the sh-like rules.  If you are
   wondering, the following is a rough guide.
-<p>To make it work you must make sure the TEST itself is clearly
+<p>
+To make it work you must make sure the TEST itself is clearly
   delimited.  For example, this works:
   <pre>
 
@@ -674,7 +752,8 @@
   wrong to miss out the semicolon, as this makes the <code>{...}</code> part
   of the argument to <code>let</code>.  A newline behaves the same as a
   semicolon, so you can't put the brace on the next line as in C.
-<p>So when using this syntax, the test following the <code>while</code> must
+<p>
+So when using this syntax, the test following the <code>while</code> must
   be wrapped up:  any of <code>((...))</code>, <code>[[...]]</code>, <code>{...}</code> or
   <code>(...)</code> will have this effect.  (They have their usual syntactic
   meanings too, of course; they are not interchangeable.)  Note that
@@ -686,7 +765,8 @@
   
 </pre>
 
-<p>The same is true of the <code>if</code> and <code>until</code> constructs:
+<p>
+The same is true of the <code>if</code> and <code>until</code> constructs:
   <pre>
 
     if { true } { echo yes } else { echo no }
@@ -705,13 +785,16 @@
   semicolon. For the same reason, there is no problem with the <code>repeat</code>,
   <code>case</code> or <code>select</code> constructs; in fact, <code>repeat</code> doesn't even
   need the semicolon since it knows the repeat count is just one word.
-<p>This is independent of the behaviour of the SHORTLOOPS option (see
+<p>
+This is independent of the behaviour of the SHORTLOOPS option (see
   manual), which you are in any case encouraged even more strongly not
   to use in programs as it can be very confusing.
-<p><a name="l38"></a>
+<p>
+<a name="l38"></a>
 <h2>3.21: Why is my history not being saved?</h2>
 <a name="321"></a>
-<p>In zsh, you need to set three variables to make sure your history is
+<p>
+In zsh, you need to set three variables to make sure your history is
   written out when the shell exits.  For example,
   <pre>
 
@@ -727,13 +810,16 @@
   simplest possibility is to set it to the same as <code>$HISTSIZE</code> as
   above.  There are also various options affecting history; see the
   manual.
-<p><a name="l39"></a>
+<p>
+<a name="l39"></a>
 <h2>3.22: How do I get a variable's value to be evaluated as another variable?</h2>
-<p>The problem is that you have a variable <code>$E</code> containing the string
+<p>
+The problem is that you have a variable <code>$E</code> containing the string
   <code>EDITOR</code>, and a variable <code>$EDITOR</code> containing the string <code>emacs</code>,
   or something such.  How do you get from <code>$E</code> to emacs in one easy
   stage?
-<p>There is no standard single-stage way of doing this.  However, there
+<p>
+There is no standard single-stage way of doing this.  However, there
   is a zsh idiom (available in all versions of zsh since 3.0) for this:
   <pre>
 
@@ -745,7 +831,8 @@
   <code>$E</code> is set, substitute the following, i.e. <code>\$$E</code>.  This is
   expanded to <code>$EDITOR</code> by the normal rules.  Finally, the <code>(e)</code> means
   `evaluate the expression you just made'.  This gives <code>emacs</code>.
-<p>For a standard shell way of doing this, you are stuck with <code>eval</code>:
+<p>
+For a standard shell way of doing this, you are stuck with <code>eval</code>:
   <pre>
 
     eval echo \$$E
@@ -753,9 +840,11 @@
 </pre>
 
   produces the same result.
-<p>Versions since 3.1.6 allow you to do this directly with a new flag;
+<p>
+Versions since 3.1.6 allow you to do this directly with a new flag;
   <code>${(P)E}</code>.
-<p>As a slight aside, sometimes people note that the syntax <code>${${E}}</code>
+<p>
+As a slight aside, sometimes people note that the syntax <code>${${E}}</code>
   is valid and expect it to have this effect.  It probably ought to, but
   in the early days of zsh it was found convenient to have this way of
   producing different substitutions on the same parameter; for example,
@@ -763,9 +852,11 @@
   <code>$file</code>, then everything from the last dot on, inclusive (try
   it, this works).  So in <code>${${E}}</code>, the internal <code>${...}</code>
   actually does nothing.
-<p><a name="l40"></a>
+<p>
+<a name="l40"></a>
 <h2>3.23: How do I prevent the prompt overwriting output when there is no newline?</h2>
-<p>The problem is normally limited to zsh versions prior to 4.3.0 due to the
+<p>
+The problem is normally limited to zsh versions prior to 4.3.0 due to the
   advent of the PROMPT_SP option (which is enabled by default, and eliminates
   this problem for most terminals).  An example of the overwriting is:
   <pre>
@@ -784,7 +875,8 @@
   line editing).  If you add <code>unsetopt promptcr</code> to your <code>.zshrc</code>, you
   will see any partial output, but your screen may look weird until you press
   return or refresh the screen.
-<p>A better solution than disabling PROMPT_CR (for most terminals) is adding
+<p>
+A better solution than disabling PROMPT_CR (for most terminals) is adding
   a simpler version of the PROMPT_SP functionality to an older zsh using a
   custom precmd function, like this one:
   <pre>
@@ -806,11 +898,14 @@
   the PROMPT_CR action.  Although this typically looks fine, it may result
   in the spaces preceding the prompt being included when you select a line
   of preserved text with the mouse.
-<p>One final alternative is to put a newline in your prompt -- see question
+<p>
+One final alternative is to put a newline in your prompt -- see question
   <a href="zshfaq03.html#313">3.13</a> for that.
-<p><a name="l41"></a>
+<p>
+<a name="l41"></a>
 <h2>3.24: What's wrong with cut and paste on my xterm?</h2>
-<p>On the majority of modern UNIX systems, cutting text from one window and
+<p>
+On the majority of modern UNIX systems, cutting text from one window and
   pasting it into another should work fine.  On a few, however, there are
   problems due to issues about how the terminal is handled:  most programs
   expect the terminal to be in `canonical input mode', which means that the
@@ -839,16 +934,38 @@
      read; all input is read as continuation lines (this may require the
      fixes referred to above in order to be reliable).
   </ol>
-<p><a name="l42"></a>
+<p>
+<a name="l42"></a>
 <h2>3.25: How do I get coloured prompts on my colour xterm?</h2>
-<p>(Or `color xterm', if you're reading this in black and white.)  You need
-  to find the sequences which generate the various colours from the manual
-  for your terminal emulator; these are ANSI standard on those I know about
-  which support colour.  With a recent (post 3.1.6) distribution of zsh,
-  there is a theme system to handle this for you; even if you don't see that,
-  the installed function `<code>colors</code>' (meaning `colours', if you're not
-  reading this in black and white) gives the escape sequences.  You will end
-  up with code looking like this (borrowed from Oliver Kiddle):
+<p>
+(Or `color xterm', if you're reading this in black and white.)
+<p>
+Versions of the shell starting with the 4.3 series have this
+  built in.  Use
+  <pre>
+
+    PS1='%K{white}%F{red}&lt;red on white&gt;%f%k&lt;default colours&gt;'
+  
+</pre>
+
+  to change the prompt.  Names are only usable for the colours
+  black, red, green, yellow, blue, magenta, cyan and white, understood
+  by most terminals, but if you happen to know the details of how
+  your terminal implements colours you can specify a number, e.g.
+  <code>%20F</code> to turn the foreground into colour number 20. <code>echotc
+  Co</code> will often output the number of colours the terminal supports.
+  (Careful: <code>echotc co</code> is different; it also outputs a number
+  but it's the number of columns in the terminal.)  If this is 8
+  then probably you have the named colours and nothing more.
+<p>
+In older versions of the shell you need to find the sequences which
+  generate the various colours from the manual for your terminal
+  emulator; these are ANSI standard on those I know about which support
+  colour.  With a recent (post 3.1.6) distribution of zsh, there is a
+  theme system to handle this for you; even if you don't see that, the
+  installed function `<code>colors</code>' (meaning `colours', if you're not
+  reading this in black and white) gives the escape sequences.  You will
+  end up with code looking like this (borrowed from Oliver Kiddle):
   <pre>
 
     PS1=$'%{\e[1;31m%}&lt;the rest of your prompt here&gt;%{\e[0m%}'
@@ -870,9 +987,11 @@
   resulting `<code>&lt;ESC&gt;[1;31m</code>' makes the prompt red, and the
   `<code>&lt;ESC&gt;[0m</code>' puts printing back to normal so that the rest of the line
   is unchanged.
-<p><a name="l43"></a>
+<p>
+<a name="l43"></a>
 <h2>3.26: Why is my output duplicated with `<code>foo 2&gt;&amp;1 &gt;foo.out | bar</code>'?</h2>
-<p>This is a slightly unexpected effect of the option <code>MULTIOS</code>, which is
+<p>
+This is a slightly unexpected effect of the option <code>MULTIOS</code>, which is
   set by default.  Let's look more closely:
   <pre>
 
@@ -896,7 +1015,8 @@
 </pre>
 
   and you can see `<code>output</code>' appears twice.
-<p>It becomes clearer what's going on if we write:
+<p>
+It becomes clearer what's going on if we write:
   <pre>
 
     % print output &gt;foo1.out &gt;foo2.out
@@ -914,12 +1034,11 @@
   disguised as a pipe.  So if you want to turn this effect off, you need
   to unset the option <code>MULTIOS</code>.
 <p>
-
 <hr>
 <ul>
-    <li> <a href="zshfaq04.html">Next chapter</a>
-    <li> <a href="zshfaq02.html">Previous chapter</a>
-    <li> <a href="zshfaq.html">Table of contents</a>
+    <li> <a href="zshfaq.html">Table of Contents</a>
+    <li> <a href="zshfaq02.html">Previous Chapter</a>
+    <li> <a href="zshfaq04.html">Next Chapter</a>
 </ul>
 <hr>
 </body>
