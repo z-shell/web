@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on April 20, 2011 by texi2html 1.82
+<!-- Created on June 14, 2011 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -612,7 +612,7 @@ the &lsquo;<tt>:</tt>&rsquo;; opening parentheses are handled specially, see abo
 &lsquo;<tt>&lt;(</tt><var>list</var><tt>)</tt>&rsquo;,
 &lsquo;<tt>&gt;(</tt><var>list</var><tt>)</tt>&rsquo; or
 &lsquo;<tt>=(</tt><var>list</var><tt>)</tt>&rsquo;
-is subject to process substitution.  The expression may be preceeded
+is subject to process substitution.  The expression may be preceded
 or followed by other strings except that, to prevent clashes with
 commonly occurring strings and patterns, the last
 form must occur at the start of a command argument, and the forms
@@ -844,7 +844,7 @@ remove the non-matched elements).
 <dt> <tt>${</tt><var>name</var><tt>:</tt><var>offset</var><tt>}</tt></dt>
 <dt> <tt>${</tt><var>name</var><tt>:</tt><var>offset</var><tt>:</tt><var>length</var><tt>}</tt></dt>
 <dd><p>This syntax gives effects similar to parameter subscripting
-in the form <tt>$</tt><var>name</var><tt>{</tt><var>start</var><tt>,</tt><var>end</var><tt>}</tt>, but is
+in the form <tt>$</tt><var>name</var><tt>[</tt><var>start</var><tt>,</tt><var>end</var><tt>]</tt>, but is
 compatible with other shells; note that both <var>offset</var> and <var>length</var>
 are interpreted differently from the components of a subscript.
 </p>
@@ -864,8 +864,12 @@ the option <tt>KSH_ARRAYS</tt>.
 <p>A negative offset counts backwards from the end of the scalar or array,
 so that -1 corresponds to the last character or element, and so on.
 </p>
-<p><var>length</var> is always treated directly as a length and hence may not be
-negative.  The option <tt>MULTIBYTE</tt> is obeyed, i.e. the offset and length
+<p>When positive, <var>length</var> counts from the <var>offset</var> position
+toward the end of the scalar or array.  When negative, <var>length</var>
+counts back from the end.  If this results in a position smaller
+than <var>offset</var>, a diagnostic is printed and nothing is substituted.
+</p>
+<p>The option <tt>MULTIBYTE</tt> is obeyed, i.e. the offset and length
 count multibyte characters where appropriate.
 </p>
 <p><var>offset</var> and <var>length</var> undergo the same set of shell substitutions
@@ -892,7 +896,7 @@ after the <tt>:</tt> as this indicates the
 may be inserted before the <tt>-</tt>.  Furthermore, neither <var>offset</var> nor
 <var>length</var> may begin with an alphabetic character or <tt>&amp;</tt> as these are
 used to indicate history-style modifiers.  To substitute a value from a
-variable, the recommended approach is to proceed it with a <tt>$</tt> as this
+variable, the recommended approach is to precede it with a <tt>$</tt> as this
 signifies the intention (parameter substitution can easily be rendered
 unreadable); however, as arithmetic substitution is performed, the
 expression <tt>${var: offs}</tt> does work, retrieving the offset from
@@ -1092,7 +1096,7 @@ options.
 <dd><p>In double quotes, array elements are put into separate words.
 E.g., &lsquo;<tt>&quot;${(@)foo}&quot;</tt>&rsquo; is equivalent to &lsquo;<tt>&quot;${foo[@]}&quot;</tt>&rsquo; and
 &lsquo;<tt>&quot;${(@)foo[1,2]}&quot;</tt>&rsquo; is the same as &lsquo;<tt>&quot;$foo[1]&quot; &quot;$foo[2]&quot;</tt>&rsquo;.
-This is distinct from <em>field splitting</em> by the the <tt>f</tt>, <tt>s</tt>
+This is distinct from <em>field splitting</em> by the <tt>f</tt>, <tt>s</tt>
 or <tt>z</tt> flags, which still applies within each array element.
 </p>
 </dd>
@@ -1148,6 +1152,15 @@ for &lsquo;<tt>ps:\n:</tt>&rsquo;.
 <dt> <tt>F</tt></dt>
 <dd><p>Join the words of arrays together using newline as a separator.
 This is a shorthand for &lsquo;<tt>pj:\n:</tt>&rsquo;.
+</p>
+</dd>
+<dt> <tt>g:opts:</tt></dt>
+<dd><p>Process escape sequences like the echo builtin when no options are given
+(<tt>g::</tt>).  With the <tt>o</tt> option, octal escapes don&rsquo;t take a leading
+zero.  With the <tt>c</tt> option, sequences like &lsquo;<tt>^X</tt>&rsquo; are also processed.
+With the <tt>e</tt> option, processes &lsquo;<tt>\M-t</tt>&rsquo; and similar sequences like the
+print builtin.  With both of the <tt>o</tt> and <tt>e</tt> options, behaves like the
+print builtin except that in none of these modes is &lsquo;<tt>\c</tt>&rsquo; interpreted.
 </p>
 </dd>
 <dt> <tt>i</tt></dt>
@@ -1433,7 +1446,9 @@ padded has odd width the extra padding is applied on the left.
 separator <var>string</var>.  Note that a <var>string</var> of two or more
 characters means that all of them must match in sequence; this differs from
 the treatment of two or more characters in the <tt>IFS</tt> parameter.
-See also the <tt>=</tt> flag and the <tt>SH_WORD_SPLIT</tt> option.
+See also the <tt>=</tt> flag and the <tt>SH_WORD_SPLIT</tt> option.  An empty
+string may also be given in which case every character will be a separate
+element.
 </p>
 <p>For historical reasons, the usual behaviour that empty array elements
 are retained inside double quotes is disabled for arrays generated
@@ -1659,8 +1674,9 @@ manner.
 is applied.
 </p>
 </dd>
-<dt> <tt>12.</tt> <em>Prompt evaluation</em></dt>
-<dd><p>Any prompt-style formatting from the <tt>(%)</tt> family of flags is applied.
+<dt> <tt>12.</tt> <em>Escape sequence replacement</em></dt>
+<dd><p>First any replacements from the <tt>(g)</tt> flag are performed, then any
+prompt-style formatting from the <tt>(%)</tt> family of flags is applied.
 </p>
 </dd>
 <dt> <tt>13.</tt> <em>Quote application</em></dt>
@@ -2018,8 +2034,12 @@ followed by a number.
 <a name="index-named-directories_002c-dynamic"></a>
 <a name="index-dynamic-named-directories"></a>
 
-<p>The feature described here is only available if the shell function
-<tt>zsh_directory_name</tt> exists.
+<p>If the function <tt>zsh_directory_name</tt> exists, or the shell variable
+<tt>zsh_directory_name_functions</tt> exists and contains an array of
+function names, then the functions are used to implement dynamic
+directory naming.  The functions are tried in order until one returns
+status zero, so it is important that functions test whether they can
+handle the case in question and return an appropriate status.
 </p>
 <p>A &lsquo;<tt>~</tt>&rsquo; followed by a string <var>namstr</var> in unquoted square brackets is
 treated specially as a dynamic directory name.  Note that the first
@@ -2030,11 +2050,12 @@ which is the directory corresponding to the name and return status zero
 (executing an assignment as the last statement is usually sufficient), or
 it should return status non-zero.  In the former case the element of reply
 is used as the directory; in the latter case the substitution is deemed to
-have failed and <tt>NOMATCH</tt> handling is applied if the option is set.
+have failed.  If all functions fail and the option <tt>NOMATCH</tt> is set,
+an error results.
 </p>
-<p>The function <tt>zsh_directory_name</tt> is also used to see if a directory can
+<p>The functions defined as above are also used to see if a directory can
 be turned into a name, for example when printing the directory stack or
-when expanding <tt>%~</tt> in prompts.  In this case the function is passed two
+when expanding <tt>%~</tt> in prompts.  In this case each function is passed two
 arguments: the string <tt>d</tt> (for directory) and the candidate for dynamic
 naming.  The function should either return non-zero status, if the
 directory cannot be named by the function, or it should set the array reply
@@ -2053,7 +2074,15 @@ parts of the directory path, as described below; it is used if the prefix
 length matched (16 in the example) is longer than that matched by any
 static name.
 </p>
-<p>The completion system calls &lsquo;<tt>zsh_directory_name c</tt>&rsquo; in order to
+<p>It is not a requirement that a function implements both
+<tt>n</tt> and <tt>d</tt> calls; for example, it might be appropriate for certain
+dynamic forms of expansion not to be contracted to names.  In that case
+any call with the first argument <tt>d</tt> should cause a non-zero status to
+be returned.
+</p>
+<p>The completion system calls &lsquo;<tt>zsh_directory_name c</tt>&rsquo; followed by
+equivalent calls to elements of the array
+<tt>zsh_directory_name_functions</tt>, if it exists, in order to
 complete dynamic names for directories.  The code for this should be
 as for any other completion function as described in
 <a href="Completion-System.html#Completion-System">Completion System</a>.
@@ -3376,7 +3405,7 @@ print &lsquo;<tt>shmiltin.shmo</tt>&rsquo;.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>April 20, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>June 14, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on April 20, 2011 by texi2html 1.82
+<!-- Created on June 14, 2011 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -183,7 +183,7 @@ distribution in your home directory, you would use the commands:
 <table><tr><td>&nbsp;</td><td><pre class="example">mkdir ~/zsh_help
 cd ~/zsh_help
 man zshall | colcrt - | \ 
-perl ~/zsh-4.3.11/Util/helpfiles
+perl ~/zsh-4.3.12/Util/helpfiles
 </pre></td></tr></table>
 
 <a name="index-run_002dhelp_002c-use-of"></a>
@@ -348,7 +348,7 @@ configuration.
 </p>
 <p>Run <tt>zkbd</tt> either as an autoloaded function, or as a shell script:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">zsh -f ~/zsh-4.3.11/Functions/Misc/zkbd
+<table><tr><td>&nbsp;</td><td><pre class="example">zsh -f ~/zsh-4.3.12/Functions/Misc/zkbd
 </pre></td></tr></table>
 
 <p>When you run <tt>zkbd</tt>, it first asks you to enter your terminal type; if
@@ -418,7 +418,7 @@ recreate that state.
 <p>To use <tt>reporter</tt>, read the script into your shell with the &lsquo;<tt>.</tt>&rsquo;
 command and redirect the output into a file:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">. ~/zsh-4.3.11/Util/reporter &gt; zsh.report
+<table><tr><td>&nbsp;</td><td><pre class="example">. ~/zsh-4.3.12/Util/reporter &gt; zsh.report
 </pre></td></tr></table>
 
 <p>You should check the <tt>zsh.report</tt> file for any sensitive information
@@ -526,10 +526,13 @@ called at the same point; these are so-called &lsquo;hook functions&rsquo;.
 The shell function <tt>add-zsh-hook</tt> provides a simple way of adding or
 removing functions from the array.
 </p>
-<p><var>hook</var> is one of <tt>chpwd</tt>, <tt>periodic</tt>, <tt>precmd</tt> or <tt>preexec</tt>,
-the special functions in question.
+<p><var>hook</var> is one of <tt>chpwd</tt>, <tt>periodic</tt>, <tt>precmd</tt>, <tt>preexec</tt>,
+<tt>zshaddhistory</tt>, <tt>zshexit</tt>, or <tt>zsh_directory_name</tt>,
+the special functions in question.  Note that <tt>zsh_directory_name</tt>
+is called in a different way from the other functions, but may
+still be manipulated as a hook.
 </p>
-<p><var>functions</var> is name of an ordinary shell function.  If no options
+<p><var>function</var> is name of an ordinary shell function.  If no options
 are given this will be added to the array of functions to be executed
 in the given context.
 </p>
@@ -539,6 +542,10 @@ the array of functions to be executed.
 <p>If the option <tt>-D</tt> is given, the <var>function</var> is treated as a pattern
 and any matching names of functions are removed from the array of
 functions to be executed.
+</p>
+<p>The options <tt>-U</tt>, <tt>-z</tt> and <tt>-k</tt> are passed as arguments to
+<tt>autoload</tt> for <var>function</var>.  For functions contributed with zsh, the
+options <tt>-Uz</tt> are appropriate.
 </p>
 </dd>
 </dl>
@@ -638,7 +645,7 @@ in most-recent-first order.
 <p>All direct user interaction is via the <tt>cdr</tt> function.
 </p>
 <p>The argument to cdr is a number <var>N</var> corresponding to the <var>N</var>th most
-recently changed-to directory.  1 is the immediately preceeding directory;
+recently changed-to directory.  1 is the immediately preceding directory;
 the current directory is remembered but is not offered as a destination.
 Note that if you have multiple windows open 1 may refer to a directory
 changed to in another window; you can avoid this by having per-terminal
@@ -898,37 +905,17 @@ this.
 <h3 class="subsection">26.3.5 Use with dynamic directory naming</h3>
 
 <p>It is possible to refer to recent directories using the dynamic directory
-name syntax that appeared in zsh version 4.3.7.  If you create and
-autoload a function <tt>zsh_directory_name</tt> containing the following code,
-<tt>~[1]</tt> will refer to the most recent directory other than $PWD, and so on.
-This also includes completion.
+name syntax by using the supplied function <tt>zsh_directory_name_cdr</tt>
+a hook:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">if [[ $1 = n ]]; then
-  if [[ $2 = &lt;-&gt; ]]; then
-    # Recent directory
-    typeset -ga reply
-    autoload -Uz cdr
-    cdr -r
-    if [[ -n ${reply[$2]} ]]; then
-      reply=(${reply[$2]})
-      return 0
-    else
-      reply=()
-      return 1
-    fi
-  fi
-elif [[ $1 = c ]]; then
-  if [[ $PREFIX = &lt;-&gt; || -z $PREFIX ]]; then
-    typeset -a keys values
-    values=(${${(f)&quot;$(cdr -l)&quot;}/ ##/:})
-    keys=(${values%%:*})
-    _describe -t dir-index 'recent directory index' values keys -V unsorted -S']'
-    return
-  fi
-fi
-return 1
+<table><tr><td>&nbsp;</td><td><pre class="example">autoload -Uz add-zsh-hook
+add-zsh-hook -Uz zsh_directory_name zsh_directory_name_cdr
 </pre></td></tr></table>
 
+<p>When this is done, <tt>~[1]</tt> will refer to the most recent
+directory other than $PWD, and so on.  Completion after <tt>~[</tt><var>...</var>
+also works.
+</p>
 
 <hr size="6">
 <a name="Details-of-directory-handling"></a>
@@ -1014,6 +1001,9 @@ they are referred to within the system:
 <dt> Darcs (<tt>darcs</tt>)</dt>
 <dd><p>http://darcs.net/
 </p></dd>
+<dt> Fossil (<tt>fossil</tt>)</dt>
+<dd><p>http://fossil-scm.org/
+</p></dd>
 <dt> Git (<tt>git</tt>)</dt>
 <dd><p>http://git-scm.com/
 </p></dd>
@@ -1096,6 +1086,7 @@ bzr
 cdv
 cvs
 darcs
+fossil
 git
 hg
 mtn
@@ -1161,8 +1152,9 @@ wasted time there.
 <dl compact="compact">
 <dt> <tt>&lt;vcs-string&gt;</tt></dt>
 <dd><p>is one of: git, git-svn, git-p4, hg, hg-git, hg-hgsubversion, hg-hgsvn,
-darcs, bzr, cdv, mtn, svn, cvs, svk, tla or p4. When hooks are active the
-hooks name is added after a &lsquo;+&rsquo;. (See <tt>Hooks in vcs_info</tt> below.)
+darcs, bzr, cdv, mtn, svn, cvs, svk, tla, p4 or fossil. When hooks are
+active the hooks name is added after a &lsquo;+&rsquo;. (See <tt>Hooks in vcs_info</tt>
+below.)
 </p>
 </dd>
 <dt> <tt>&lt;user-context&gt;</tt></dt>
@@ -1233,11 +1225,11 @@ revision number. This style lets you modify how that string should look.
 <a name="index-nvcsformats"></a>
 </dd>
 <dt> <tt>nvcsformats</tt></dt>
-<dd><p>These &quot;formats&quot; are exported when we didn&rsquo;t detect
-a version control system for the current directory. This is useful if you
-want <var>vcs_info</var> to completely take over the generation of your prompt.
-You would do something like <tt>PS1=&rsquo;${vcs_info_msg_0_}&rsquo;</tt> to accomplish
-that.
+<dd><p>These &quot;formats&quot; are exported when we didn&rsquo;t detect a version control system
+for the current directory or <var>vcs_info</var> was disabled. This is useful if
+you want <var>vcs_info</var> to completely take over the generation of your
+prompt. You would do something like <tt>PS1=&rsquo;${vcs_info_msg_0_}&rsquo;</tt> to
+accomplish that.
 </p>
 <a name="index-hgrevformat"></a>
 </dd>
@@ -1313,6 +1305,10 @@ when the working directory has uncommitted changes. The strings displayed by
 these escapes can be controlled via the <var>stagedstr</var> and <var>unstagedstr</var>
 styles. The only backends that currently support this option are <tt>git</tt> and
 <tt>hg</tt> (<tt>hg</tt> only supports unstaged).
+</p>
+<p>For this style to be evaluated with the <tt>hg</tt> backend, the <var>get-revision</var>
+style needs to be set and the <var>use-simple</var> style needs to be unset. The
+latter is the default; the former is not.
 </p>
 <p>Note, the actions taken if this style is enabled are potentially expensive
 (read: they may be slow, depending on how big the current repository is).
@@ -1764,6 +1760,26 @@ non-zero return value is interpreted as false.
 used instead of <tt>default</tt> in the <tt>user-context</tt> field of the style
 context.
 </p>
+<a name="index-vcs_005finfo_005fhookadd"></a>
+</dd>
+<dt> <tt>vcs_info_hookadd</tt></dt>
+<dd><p>Statically registers a number of functions to a given hook. The hook needs
+to be given as the first argument; what follows is a list of hook-function
+names to register to the hook. The &lsquo;<tt>+vi-</tt>&rsquo; prefix needs to be left out
+here. See <tt>Hooks in vcs_info</tt> below for details.
+</p>
+<a name="index-vcs_005finfo_005fhookdel"></a>
+</dd>
+<dt> <tt>vcs_info_hookdel</tt></dt>
+<dd><p>Remove hook-functions from a given hook. The hook needs to be given as the
+first non-option argument; what follows is a list of hook-function
+names to un-register from the hook. If &lsquo;<tt>-a</tt>&rsquo; is used as the first
+argument, <tt>all</tt> occurances of the functions are unregistered. Otherwise
+only the last occurance is removed (if a function was registered to a hook
+more than once) . The &lsquo;<tt>+vi-</tt>&rsquo; prefix needs to be left out here. See
+<tt>Hooks in vcs_info</tt> below for details.
+</p>
+<a name="index-vcs_005finfo_005flastmsg"></a>
 </dd>
 <dt> <tt>vcs_info_lastmsg</tt></dt>
 <dd><p>Outputs the last <var>${vcs_info_msg_*_}</var> value.
@@ -1778,6 +1794,7 @@ values.
 supported version control systems. Useful to find out possible contexts
 (and which of them are enabled) or values for the <var>disable</var> style.
 </p>
+<a name="index-vcs_005finfo_005fsetsys"></a>
 </dd>
 <dt> <tt>vcs_info_setsys</tt></dt>
 <dd><p>Initializes <var>vcs_info</var>&rsquo;s internal list of
@@ -1867,13 +1884,20 @@ avoid namespace problems, all registered function names are prepended by
 a &lsquo;+vi-&rsquo;, so the actual functions called for the &lsquo;foo&rsquo; hook are
 &lsquo;<tt>+vi-bar</tt>&rsquo; and &lsquo;<tt>+vi-baz</tt>&rsquo;.
 </p>
+<p>If you would like to register a function to a hook regardless of the
+current context, you may use the <var>vcs_info_hookadd</var> function. To remove
+a function that was added like that, the <var>vcs_info_hookdel</var> function
+can be used.
+</p>
 <p>If something seems weird, you can enable the &lsquo;debug&rsquo; boolean style in
 the proper context and the hook-calling code will print what it tried
 to execute and whether the function in question existed.
 </p>
 <p>When you register more than one function to a hook, all functions are
 executed one after another until one function returns non-zero or until
-all functions have been called.
+all functions have been called. Context-sensitive hook functions are
+executed <tt>before</tt> statically registered ones (the ones added by
+<var>vcs_info_hookadd</var>).
 </p>
 <p>You may pass data between functions via an associative array, <tt>user_data</tt>.
 For example:
@@ -1983,6 +2007,12 @@ the patch next-in-line to be applied and so forth.
 <tt>patch-format</tt> and <tt>nopatch-format</tt> styles.
 </p>
 </dd>
+<dt> <tt>no-vcs</tt></dt>
+<dd><p>This hooks is called when no version control system was detected.
+</p>
+<p>The &lsquo;hook_com&rsquo; parameter is not used.
+</p>
+</dd>
 <dt> <tt>post-quilt</tt></dt>
 <dd><p>Called after the <tt>quilt</tt> support is done. The following information
 is passed as arguments to the hook: 1. the quilt-support mode (&lsquo;addon&rsquo; or
@@ -2001,7 +2031,7 @@ hook is the format that is configured at this point.
 They are set to the values figured out so far by <var>vcs_info</var> and any
 change will be used directly when the actual replacement is done.
 </p>
-<p>If <tt>ret</tt> is set to to non-zero, the string in
+<p>If <tt>ret</tt> is set to non-zero, the string in
 <tt>${hook_com[branch-replace]}</tt> will be used unchanged as the
 &lsquo;<tt>%b</tt>&rsquo; replacement in the variables set by <var>vcs_info</var>.
 </p>
@@ -2014,7 +2044,7 @@ hook is the format that is configured at this point.
 They are set to the values figured out so far by <var>vcs_info</var> and any
 change will be used directly when the actual replacement is done.
 </p>
-<p>If <tt>ret</tt> is set to to non-zero, the string in
+<p>If <tt>ret</tt> is set to non-zero, the string in
 <tt>${hook_com[rev-replace]}</tt> will be used unchanged as the
 &lsquo;<tt>%i</tt>&rsquo; replacement in the variables set by <var>vcs_info</var>.
 </p>
@@ -2040,7 +2070,7 @@ so even if you changed a value to your liking you can still get the
 original value in the next run. Changing the &lsquo;<tt>_orig</tt>&rsquo; values is
 probably not a good idea.
 </p>
-<p>If <tt>ret</tt> is set to to non-zero, the string in
+<p>If <tt>ret</tt> is set to non-zero, the string in
 <tt>${hook_com[message]}</tt> will be used unchanged as the message by
 <var>vcs_info</var>.
 </p>
@@ -2630,24 +2660,6 @@ extract the command argument around the cursor.
 <tt>match-word-context</tt>.  This should not usually need to be called
 directly.
 </p>
-<a name="index-delete_002dwhole_002dword_002dmatch"></a>
-</dd>
-<dt> <tt>delete-whole-word-match</tt></dt>
-<dd><p>This is another function which works like the <tt>-match</tt> functions
-described immediately above, i.e. using styles to decide the word
-boundaries.  However, it is not a replacement for any existing function.
-</p>
-<p>The basic behaviour is to delete the word around the cursor.  There is no
-numeric prefix handling; only the single word around the cursor is
-considered.  If the widget contains the string <tt>kill</tt>, the removed text
-will be placed in the cutbuffer for future yanking.  This can be obtained
-by defining <tt>kill-whole-word-match</tt> as follows:
-</p>
-<table><tr><td>&nbsp;</td><td><pre class="example">zle -N kill-whole-word-match delete-whole-word-match
-</pre></td></tr></table>
-
-<p>and then binding the widget <tt>kill-whole-word-match</tt>.
-</p>
 <a name="index-copy_002dearlier_002dword"></a>
 </dd>
 <dt> <tt>copy-earlier-word</tt></dt>
@@ -2680,6 +2692,36 @@ little typing as possible.
 <p>This widget allows the cursor to be easily moved to the other interesting
 spots.  It can be invoked repeatedly to cycle between all positions
 reported by the completion system.
+</p>
+<a name="index-delete_002dwhole_002dword_002dmatch"></a>
+</dd>
+<dt> <tt>delete-whole-word-match</tt></dt>
+<dd><p>This is another function which works like the <tt>-match</tt> functions
+described immediately above, i.e. using styles to decide the word
+boundaries.  However, it is not a replacement for any existing function.
+</p>
+<p>The basic behaviour is to delete the word around the cursor.  There is no
+numeric prefix handling; only the single word around the cursor is
+considered.  If the widget contains the string <tt>kill</tt>, the removed text
+will be placed in the cutbuffer for future yanking.  This can be obtained
+by defining <tt>kill-whole-word-match</tt> as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">zle -N kill-whole-word-match delete-whole-word-match
+</pre></td></tr></table>
+
+<p>and then binding the widget <tt>kill-whole-word-match</tt>.
+</p>
+<a name="index-down_002dline_002dor_002dbeginning_002dsearch"></a>
+<a name="index-up_002dline_002dor_002dbeginning_002dsearch"></a>
+</dd>
+<dt> <tt>up-line-or-beginning-search</tt>, <tt>down-line-or-beginning-search</tt></dt>
+<dd><p>These widgets are similar to the builtin functions <tt>up-line-or-search</tt>
+and <tt>down-line-or-search</tt>:  if in a multiline buffer they move up or
+down within the buffer, otherwise they search for a history line matching
+the start of the current line.  In this case, however, they search for
+a line which matches the current line up to the current cursor position, in
+the manner of <tt>history-beginning-search-backward</tt> and <tt>-forward</tt>, rather
+than the first word on the line.
 </p>
 <a name="index-edit_002dcommand_002dline"></a>
 </dd>
@@ -2759,18 +2801,6 @@ zle -N history-pattern-search-backward history-pattern-search
 zle -N history-pattern-search-forward history-pattern-search
 </pre></td></tr></table>
 
-<a name="index-up_002dline_002dor_002dbeginning_002dsearch"></a>
-<a name="index-down_002dline_002dor_002dbeginning_002dsearch"></a>
-</dd>
-<dt> <tt>up-line-or-beginning-search</tt>, <tt>down-line-or-beginning-search</tt></dt>
-<dd><p>These widgets are similar to the builtin functions <tt>up-line-or-search</tt>
-and <tt>down-line-or-search</tt>:  if in a multiline buffer they move up or
-down within the buffer, otherwise they search for a history line matching
-the start of the current line.  In this case, however, they search for
-a line which matches the current line up to the current cursor position, in
-the manner of <tt>history-beginning-search-backward</tt> and <tt>-forward</tt>, rather
-than the first word on the line.
-</p>
 <a name="index-incarg"></a>
 <a name="index-incarg_002c-use-of"></a>
 </dd>
@@ -2839,7 +2869,7 @@ keystrokes.
 characters using their hexadecimal character number.
 </p>
 <p>The set of accented characters is reasonably complete up to Unicode
-character U+0180, the set of special characters less so.  However, it it
+character U+0180, the set of special characters less so.  However, it
 is very sporadic from that point.  Adding new characters is easy,
 however; see the function <tt>define-composed-chars</tt>.  Please send any
 additions to <tt>zsh-workers@zsh.org</tt>.
@@ -3206,6 +3236,18 @@ into the command line.
 <table><tr><td>&nbsp;</td><td><pre class="example">bindkey '^Xf' insert-files
 </pre></td></tr></table>
 
+<a name="index-insert_002dunicode_002dchar"></a>
+</dd>
+<dt> <tt>insert-unicode-char</tt></dt>
+<dd><p>When first executed, the user inputs a set of hexadecimal digits.
+This is terminated with another call to <tt>insert-unicode-char</tt>.
+The digits are then turned into the corresponding Unicode character.
+For example, if the widget is bound to <tt>^XU</tt>, the character sequence
+&lsquo;<tt>^XU 4 c ^XU</tt>&rsquo; inserts <tt>L</tt> (Unicode U+004c).
+</p>
+<p>See <tt>insert-composed-char</tt> for a way of inserting characters
+using a two-character mnemonic.
+</p>
 <a name="index-narrow_002dto_002dregion"></a>
 <a name="index-narrow_002dto_002dregion_002dinvisible"></a>
 </dd>
@@ -3265,18 +3307,6 @@ zle recursive-edit
 narrow-to-region -R state
 </pre></td></tr></table>
 
-<a name="index-insert_002dunicode_002dchar"></a>
-</dd>
-<dt> <tt>insert-unicode-char</tt></dt>
-<dd><p>When first executed, the user inputs a set of hexadecimal digits.
-This is terminated with another call to <tt>insert-unicode-char</tt>.
-The digits are then turned into the corresponding Unicode character.
-For example, if the widget is bound to <tt>^XU</tt>, the character sequence
-&lsquo;<tt>^XU 4 c ^XU</tt>&rsquo; inserts <tt>L</tt> (Unicode U+004c).
-</p>
-<p>See <tt>insert-composed-char</tt> for a way of inserting characters
-using a two-character mnemonic.
-</p>
 <a name="index-predict_002don"></a>
 <a name="index-predict_002doff"></a>
 </dd>
@@ -3415,6 +3445,26 @@ the replacement string &lsquo;<tt>c\1r</tt>&rsquo; produces the not very useful 
 <tt>narrow-to-region-invisible</tt> widget.  One limitation of the current
 version is that <tt>undo</tt> will cycle through changes to the replacement
 and source strings before undoing the replacement itself.
+</p>
+<a name="index-send_002dinvisible"></a>
+</dd>
+<dt> <tt>send-invisible</tt></dt>
+<dd><p>This is similar to read-from-minibuffer in that it may be called as a
+function from a widget or as a widget of its own, and interactively reads
+input from the keyboard.  However, the input being typed is concealed and
+a string of asterisks (&lsquo;<tt>*</tt>&rsquo;) is shown instead.  The value is saved in
+the paramter <tt>$INVISIBLE</tt> to which a reference is inserted into the
+editing buffer at the restored cursor position.  If the read was aborted
+by a keyboard break (typically <tt>^G</tt>) or another escape from editing such
+as <tt>push-line</tt>, <tt>$INVISIBLE</tt> is set to empty and the original buffer
+is restored unchanged.
+</p>
+<p>If one argument is supplied to the function it is taken as a prompt,
+otherwise &lsquo;<tt>Non-echoed text: </tt>&rsquo; is used (as in emacs).  If a second and
+third argument are supplied they are used to begin and end the reference
+to <tt>$INVISIBLE</tt> that is inserted into the buffer.  The default is to
+open with <tt>${</tt>, then <tt>INVISIBLE</tt>, and close with <tt>}</tt>, but many
+other effects are possible.
 </p>
 <a name="index-smart_002dinsert_002dlast_002dword"></a>
 </dd>
@@ -4232,7 +4282,7 @@ fails to find any should attempt to start Opera.  The default is
 </dd>
 <dt> <tt>tty-browsers</tt></dt>
 <dd><p>An array similar to <tt>x-browsers</tt>, except that it gives browsers to
-use use when no X Window display is available.  The default is
+use when no X Window display is available.  The default is
 <tt>elinks links lynx</tt>.
 </p>
 </dd>
@@ -5017,7 +5067,7 @@ The usual expansions for the <tt>PS1</tt> and <tt>RPS1</tt> parameters may be us
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>April 20, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>June 14, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

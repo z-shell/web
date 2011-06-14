@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on April 20, 2011 by texi2html 1.82
+<!-- Created on June 14, 2011 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -626,7 +626,7 @@ directly.
 <a name="index-compdef"></a>
 <a name="index-completion-system_002c-adding-definitions"></a>
 <dl compact="compact">
-<dt> <tt>compdef</tt> [ <tt>-an</tt> ] <var>function names...</var> [ <tt>-[pP]</tt> <var>patterns...</var> [ <tt>-N</tt> <var>names...</var> ] ]</dt>
+<dt> <tt>compdef</tt> [ <tt>-ane</tt> ] <var>function names...</var> [ <tt>-[pP]</tt> <var>patterns...</var> [ <tt>-N</tt> <var>names...</var> ] ]</dt>
 <dt> <tt>compdef -d</tt> <var>names...</var></dt>
 <dt> <tt>compdef -k</tt> [ <tt>-an</tt> ] <var>function style key-sequences...</var></dt>
 <dt> <tt>compdef -K</tt> [ <tt>-an</tt> ] <var>function name style key-sequences ...</var></dt>
@@ -639,11 +639,14 @@ defined by &lsquo;<var>cmd1</var><tt>=</tt><var>service</var>&rsquo; lines in <t
 described above.  The argument for <var>cmd</var> will be completed in the
 same way as <var>service</var>.
 </p>
-<p>The <var>function</var> argument may alternatively be a string containing any
-shell code.  The string will be executed using the <tt>eval</tt> builtin
-command to generate completions.  This provides a way of avoiding having
-to define a new completion function.  For example, to complete
-files ending in &lsquo;<tt>.h</tt>&rsquo; as arguments to the command <tt>foo</tt>:
+<p>The <var>function</var> argument may alternatively be a string containing
+almost any shell code.  If the string contains an equal sign, the above
+will take precedence.  The option <tt>-e</tt> may be used to specify the first
+argument is to be evaluated as shell code even if it contains an equal
+sign.  The string will be executed using the <tt>eval</tt> builtin command to
+generate completions.  This provides a way of avoiding having to define
+a new completion function.  For example, to complete files ending in
+&lsquo;<tt>.h</tt>&rsquo; as arguments to the command <tt>foo</tt>:
 </p>
 <table><tr><td>&nbsp;</td><td><pre class="example">compdef '_files -g &quot;*.h&quot;' foo
 </pre></td></tr></table>
@@ -1041,7 +1044,9 @@ descriptions for types of matches
 <a name="index-directories_002c-completion-tag"></a>
 </dd>
 <dt> <tt>directories</tt></dt>
-<dd><p>for names of directories
+<dd><p>for names of directories &mdash; <tt>local-directories</tt> is used instead
+when completing arguments of <tt>cd</tt> and related builtin commands when
+the <tt>cdpath</tt> array is set
 </p>
 <a name="index-directory_002dstack_002c-completion-tag"></a>
 </dd>
@@ -1156,7 +1161,8 @@ commands may understand other kinds of function
 <dt> <tt>local-directories</tt></dt>
 <dd><p>for names of directories that are subdirectories of the current working
 directory when completing arguments of <tt>cd</tt> and related builtin
-commands (compare <tt>path-directories</tt>)
+commands (compare <tt>path-directories</tt>) &mdash; when the <tt>cdpath</tt>
+array is unset, <tt>directories</tt> is used instead
 </p>
 <a name="index-manuals_002c-completion-tag"></a>
 </dd>
@@ -2339,7 +2345,7 @@ changing the foreground background colour, are also available, as is the form
 (or, with a numeric argument, some other) width.
 </p>
 <p>After deleting this prompt the variable <tt>LISTPROMPT</tt> should be unset for
-the the removal to take effect.
+the removal to take effect.
 </p>
 <a name="index-list_002drows_002dfirst_002c-completion-style"></a>
 </dd>
@@ -2732,13 +2738,29 @@ prefix will not be shown in the list of matches.
 <a name="index-prefix_002dneeded_002c-completion-style"></a>
 </dd>
 <dt> <tt>prefix-needed</tt></dt>
-<dd><p>This, too, is used for matches with a common prefix.  If it is set to
-&lsquo;true&rsquo; this common prefix must be typed by the user to generate the
-matches.  In the case of command options, this means that the initial
-&lsquo;<tt>-</tt>&rsquo;, &lsquo;<tt>+</tt>&rsquo;, or &lsquo;<tt>-</tt><tt>-</tt>&rsquo; must be typed explicitly before option
-names will be completed.
+<dd><p>This style is also relevant for matches with a common prefix.  If it is
+set to &lsquo;true&rsquo; this common prefix must be typed by the user to generate
+the matches.
 </p>
-<p>The default value for this style is &lsquo;true&rsquo;.
+<p>The style is applicable to the <tt>options</tt>, <tt>signals</tt>, <tt>jobs</tt>,
+<tt>functions</tt>, and <tt>parameters</tt> completion tags.
+</p>
+<p>For command options, this means that the initial &lsquo;<tt>-</tt>&rsquo;, &lsquo;<tt>+</tt>&rsquo;, or
+&lsquo;<tt>-</tt><tt>-</tt>&rsquo; must be typed explicitly before option names will be
+completed.
+</p>
+<p>For signals, an initial &lsquo;<tt>-</tt>&rsquo; is required before signal names will
+be completed.
+</p>
+<p>For jobs, an initial &lsquo;<tt>%</tt>&rsquo; is required before job names will be
+completed.
+</p>
+<p>For function and parameter names, an initial &lsquo;<tt>_</tt>&rsquo; or &lsquo;<tt>.</tt>&rsquo; is
+required before function or parameter names starting with those
+characters will be completed.
+</p>
+<p>The default value for this style is &lsquo;false&rsquo; for <tt>function</tt> and
+<tt>parameter</tt> completions, and  &lsquo;true&rsquo; otherwise.
 </p>
 <a name="index-preserve_002dprefix_002c-completion-style"></a>
 </dd>
@@ -3110,7 +3132,7 @@ most commands.
 <a name="index-urls_002c-completion-style"></a>
 </dd>
 <dt> <tt>urls</tt></dt>
-<dd><p>This is used together with the the <tt>urls</tt> tag by
+<dd><p>This is used together with the <tt>urls</tt> tag by
 functions completing URLs.
 </p>
 <p>If the value consists of more than one string, or if the only string
@@ -3184,18 +3206,6 @@ can be completed as well.  This style is not use in any context
 where the <tt>hosts</tt> style is set; note also it must be set before
 the cache of host names is generated (typically the first completion
 attempt).
-</p>
-<a name="index-use_002dperl_002c-completion-style"></a>
-</dd>
-<dt> <tt>use-perl</tt></dt>
-<dd><p>Various parts of the function system use awk to extract words from
-files or command output as it is universally available.  However, many
-versions of awk have arbitrary limits on the size of input.  If this
-style is set, perl will be used instead.  This is almost always
-preferable if perl is available on your system.
-</p>
-<p>Currently this is only used in completions for &lsquo;make&rsquo;, but it may be
-extended depending on authorial frustration.
 </p>
 <a name="index-users_002c-completion-style"></a>
 </dd>
@@ -3970,7 +3980,7 @@ those generated by <tt>_all_labels</tt>.
 </p>
 <a name="index-_005falternative"></a>
 </dd>
-<dt> <tt>_alternative</tt> [ <tt>-C</tt> <var>name</var> ] <var>spec</var> ...</dt>
+<dt> <tt>_alternative</tt> [ <tt>-O</tt> <var>name</var> ] [ <tt>-C</tt> <var>name</var> ] <var>spec</var> ...</dt>
 <dd><p>This function is useful in simple cases where multiple tags are available.
 Essentially it implements a loop like the one described for the <tt>_tags</tt>
 function below.
@@ -3997,6 +4007,10 @@ generated by the <tt>_users</tt> and <tt>_hosts</tt> functions respectively.
 the actions, which will loop over all sets of tags.  Special handling is
 only required if there is an additional valid tag, for example inside a
 function called from <tt>_alternative</tt>.
+</p>
+<p>The option &lsquo;<tt>-O</tt> <var>name</var>&rsquo; is used in the same way as by the
+<tt>_arguments</tt> function.  In other words, the elements of the <var>name</var>
+array will be passed to <tt>compadd</tt> when executing an action.
 </p>
 <p>Like <tt>_tags</tt> this function supports the <tt>-C</tt> option to give a
 different name for the argument context field.
@@ -5562,7 +5576,7 @@ may be useful on your system.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>April 20, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>June 14, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 
