@@ -24,7 +24,7 @@ rm -f FAQ/zshfaq.txt FAQ/zshfaq.yo FAQ/zshfaq*.html FAQ/zshfaq.html.tar.gz
     chmod 0755 zshfaq; chmod 0644 zshfaq/*
     tar cfz zshfaq.html.tar.gz zshfaq
     rm -r zshfaq
-)
+) || exit 1
 mv $ZSHPATH/Etc/zshfaq*.html $ZSHPATH/Etc/zshfaq.html.tar.gz FAQ/
 cp $ZSHPATH/Etc/FAQ FAQ/zshfaq.txt
 cp $ZSHPATH/Etc/FAQ.yo FAQ/zshfaq.yo
@@ -50,7 +50,7 @@ mv {front.html,index-frame.html,indices.html,toc-chapters.html} Doc/Release
     chmod 0755 zsh_info; chmod 0644 zsh_info/*
     tar cfz zsh_info.tar.gz zsh_info
     rm -r zsh_info
-)
+) || exit 1
 cp $ZSHPATH/Doc/*.html Doc/Release/
 mv $ZSHPATH/Doc/zsh_html.tar.gz $ZSHPATH/Doc/zsh_info.tar.gz Doc/
 cp $ZSHPATH/Doc/zsh_*.ps $ZSHPATH/Doc/zsh.dvi $ZSHPATH/Doc/zsh.texi Doc/
