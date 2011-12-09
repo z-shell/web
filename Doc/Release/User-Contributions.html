@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on June 14, 2011 by texi2html 1.82
+<!-- Created on December 9, 2011 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -44,7 +44,7 @@ ul.toc {list-style: none}
 <a name="User-Contributions"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Zftp-Function-System.html#Completion-3" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-3" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-6" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
@@ -64,7 +64,7 @@ ul.toc {list-style: none}
 <a name="index-user-contributions"></a>
 
 <hr size="6">
-<a name="Description-3"></a>
+<a name="Description-6"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Utilities" title="Next section in reading order"> &gt; </a>]</td>
@@ -115,7 +115,7 @@ such as shell functions, look for comments in the function source files.
 <hr size="6">
 <a name="Utilities"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Description-3" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Description-6" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Accessing-On_002dLine-Help" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -183,7 +183,7 @@ distribution in your home directory, you would use the commands:
 <table><tr><td>&nbsp;</td><td><pre class="example">mkdir ~/zsh_help
 cd ~/zsh_help
 man zshall | colcrt - | \ 
-perl ~/zsh-4.3.12/Util/helpfiles
+perl ~/zsh-4.3.14/Util/helpfiles
 </pre></td></tr></table>
 
 <a name="index-run_002dhelp_002c-use-of"></a>
@@ -348,7 +348,7 @@ configuration.
 </p>
 <p>Run <tt>zkbd</tt> either as an autoloaded function, or as a shell script:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">zsh -f ~/zsh-4.3.12/Functions/Misc/zkbd
+<table><tr><td>&nbsp;</td><td><pre class="example">zsh -f ~/zsh-4.3.14/Functions/Misc/zkbd
 </pre></td></tr></table>
 
 <p>When you run <tt>zkbd</tt>, it first asks you to enter your terminal type; if
@@ -418,7 +418,7 @@ recreate that state.
 <p>To use <tt>reporter</tt>, read the script into your shell with the &lsquo;<tt>.</tt>&rsquo;
 command and redirect the output into a file:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">. ~/zsh-4.3.12/Util/reporter &gt; zsh.report
+<table><tr><td>&nbsp;</td><td><pre class="example">. ~/zsh-4.3.14/Util/reporter &gt; zsh.report
 </pre></td></tr></table>
 
 <p>You should check the <tt>zsh.report</tt> file for any sensitive information
@@ -554,7 +554,7 @@ options <tt>-Uz</tt> are appropriate.
 <a name="Recent-Directories"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Manipulating-Hook-Functions" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Installation-3" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Installation-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Up section"> Up </a>]</td>
@@ -590,7 +590,7 @@ configure it to do so as described in the configuration section below.)
 </p>
 
 <hr size="6">
-<a name="Installation-3"></a>
+<a name="Installation-1"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Recent-Directories" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Use" title="Next section in reading order"> &gt; </a>]</td>
@@ -625,8 +625,8 @@ in most-recent-first order.
 <hr size="6">
 <a name="Use"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Installation-3" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Options-1" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Installation-1" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Options-3" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Recent-Directories" title="Up section"> Up </a>]</td>
@@ -673,10 +673,10 @@ style is on by default so no action is required unless you have changed it.
 </p>
 
 <hr size="6">
-<a name="Options-1"></a>
+<a name="Options-3"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Use" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Configuration-2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Recent-Directories" title="Up section"> Up </a>]</td>
@@ -721,9 +721,9 @@ Usually the first entry should be left as the current directory.
 
 
 <hr size="6">
-<a name="Configuration-2"></a>
+<a name="Configuration-1"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Options-1" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Options-3" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Use-with-dynamic-directory-naming" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -887,7 +887,7 @@ this.
 <hr size="6">
 <a name="Use-with-dynamic-directory-naming"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Configuration-2" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Configuration-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Details-of-directory-handling" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -1031,7 +1031,7 @@ they are referred to within the system:
 (http://savannah.nongnu.org/projects/quilt). See <tt>Quilt Support</tt>
 below for details.
 </p>
-<p>To load <var>vcs_info</var>:
+<p>To load <tt>vcs_info</tt>:
 </p>
 <table><tr><td>&nbsp;</td><td><pre class="example">autoload -Uz vcs_info
 </pre></td></tr></table>
@@ -1044,7 +1044,7 @@ below for details.
 <a name="Quickstart"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Version-Control-Information" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Configuration-1" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Version-Control-Information" title="Up section"> Up </a>]</td>
@@ -1061,20 +1061,22 @@ below for details.
 <h3 class="subsection">26.4.1 Quickstart</h3>
 
 <p>To get this feature working quickly (including colors), you can do the
-following (assuming, you loaded <var>vcs_info</var> properly - see above):
+following (assuming, you loaded <tt>vcs_info</tt> properly - see above):
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
-zstyle ':vcs_info:*' formats       '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
+<table><tr><td>&nbsp;</td><td><pre class="example">zstyle ':vcs_info:*' actionformats \ 
+    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+zstyle ':vcs_info:*' formats       \ 
+    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 precmd () { vcs_info }
 PS1='%F{5}[%F{2}%n%F{5}] %F{3}%3~ ${vcs_info_msg_0_}%f%# '
 </pre></td></tr></table>
 
 <p>Obviously, the last two lines are there for demonstration. You need to
-call <var>vcs_info</var> from your <var>precmd</var> function. Once that is done you need
-a <tt>single quoted</tt> <var>&rsquo;${vcs_info_msg_0_}&rsquo;</var> in your prompt.
+call <tt>vcs_info</tt> from your <tt>precmd</tt> function. Once that is done you need
+a <tt>single quoted</tt> <tt>&rsquo;${vcs_info_msg_0_}&rsquo;</tt> in your prompt.
 </p>
-<p>To be able to use <var>&rsquo;${vcs_info_msg_0_}&rsquo;</var> directly in your prompt like
+<p>To be able to use <tt>&rsquo;${vcs_info_msg_0_}&rsquo;</tt> directly in your prompt like
 this, you will need to have the <tt>PROMPT_SUBST</tt> option enabled.
 </p>
 <p>Now call the <tt>vcs_info_printsys</tt> utility from the command line:
@@ -1117,14 +1119,14 @@ some backends altogether:
 </pre></td></tr></table>
 
 <p>If you rerun <tt>vcs_info_printsys</tt> after one of these commands, you will
-see the backends listed in the <var>disable</var> style (or backends not in the
-<var>enable</var> style - if you used that) marked as disabled by a hash sign.
-That means the detection of these systems is skipped <tt>completely</tt>. No
+see the backends listed in the <tt>disable</tt> style (or backends not in the
+<tt>enable</tt> style - if you used that) marked as disabled by a hash sign.
+That means the detection of these systems is skipped <em>completely</em>. No
 wasted time there.
 </p>
 
 <hr size="6">
-<a name="Configuration-1"></a>
+<a name="Configuration"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Quickstart" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Oddities" title="Next section in reading order"> &gt; </a>]</td>
@@ -1143,50 +1145,51 @@ wasted time there.
 </tr></table>
 <h3 class="subsection">26.4.2 Configuration</h3>
 
-<p>The <var>vcs_info</var> feature can be configured via <var>zstyle</var>.
+<p>The <tt>vcs_info</tt> feature can be configured via <tt>zstyle</tt>.
 </p>
 <p>First, the context in which we are working:
-</p><table><tr><td>&nbsp;</td><td><pre class="example">:vcs_info:&lt;vcs-string&gt;:&lt;user-context&gt;:&lt;repo-root-name&gt;
+</p><table><tr><td>&nbsp;</td><td><pre class="example">:vcs_info:<var>vcs-string</var>:<var>user-context</var>:<var>repo-root-name</var>
 </pre></td></tr></table>
 
 <dl compact="compact">
-<dt> <tt>&lt;vcs-string&gt;</tt></dt>
-<dd><p>is one of: git, git-svn, git-p4, hg, hg-git, hg-hgsubversion, hg-hgsvn,
-darcs, bzr, cdv, mtn, svn, cvs, svk, tla, p4 or fossil. When hooks are
-active the hooks name is added after a &lsquo;+&rsquo;. (See <tt>Hooks in vcs_info</tt>
+<dt> <var>vcs-string</var></dt>
+<dd><p>is one of: <cite>git</cite>, <cite>git-svn</cite>, <cite>git-p4</cite>, <cite>hg</cite>, <cite>hg-git</cite>,
+<cite>hg-hgsubversion</cite>, <cite>hg-hgsvn</cite>, <cite>darcs</cite>, <cite>bzr</cite>, <cite>cdv</cite>, <cite>mtn</cite>,
+<cite>svn</cite>, <cite>cvs</cite>, <cite>svk</cite>, <cite>tla</cite>, <cite>p4</cite> or <cite>fossil</cite>. When hooks are
+active the hooks name is added after a &lsquo;+&rsquo;. (See <cite>Hooks in vcs_info</cite>
 below.)
 </p>
 </dd>
-<dt> <tt>&lt;user-context&gt;</tt></dt>
+<dt> <var>user-context</var></dt>
 <dd><p>is a freely configurable string, assignable by
-the user as the first argument to <var>vcs_info</var> (see its description
+the user as the first argument to <tt>vcs_info</tt> (see its description
 below).
 </p>
 </dd>
-<dt> <tt>&lt;repo-root-name&gt;</tt></dt>
+<dt> <var>repo-root-name</var></dt>
 <dd><p>is the name of a repository in which you want a
-style to match. So, if you want a setting specific to <var>/usr/src/zsh</var>,
-with that being a CVS checkout, you can set <tt>&lt;repo-root-name&gt;</tt> to
-<var>zsh</var> to make it so.
+style to match. So, if you want a setting specific to <tt>/usr/src/zsh</tt>,
+with that being a CVS checkout, you can set <var>repo-root-name</var> to
+<tt>zsh</tt> to make it so.
 </p>
 </dd>
 </dl>
 
-<p>There are three special values for <tt>&lt;vcs-string&gt;</tt>: The first is named
-<var>-init-</var>, that is in effect as long as there was no decision what VCS
-backend to use. The second is <var>-preinit-</var>; it is used <tt>before</tt>
-<var>vcs_info</var> is run, when initializing the data exporting variables. The
-third special value is <var>formats</var> and is used by the <tt>vcs_info_lastmsg</tt>
+<p>There are three special values for <var>vcs-string</var>: The first is named
+<tt>-init-</tt>, that is in effect as long as there was no decision what VCS
+backend to use. The second is <tt>-preinit-</tt>; it is used <em>before</em>
+<tt>vcs_info</tt> is run, when initializing the data exporting variables. The
+third special value is <tt>formats</tt> and is used by the <tt>vcs_info_lastmsg</tt>
 for looking up its styles.
 </p>
-<p>The initial value of <tt>&lt;repo-root-name&gt;</tt> is <var>-all-</var> and it is replaced
+<p>The initial value of <var>repo-root-name</var> is <tt>-all-</tt> and it is replaced
 with the actual name, as soon as it is known. Only use this part of the
-context for defining the <var>formats</var>, <var>actionformats</var> or
-<var>branchformat</var> styles, as it is guaranteed that <tt>&lt;repo-root-name&gt;</tt> is
+context for defining the <tt>formats</tt>, <tt>actionformats</tt> or
+<tt>branchformat</tt> styles, as it is guaranteed that <var>repo-root-name</var> is
 set up correctly for these only. For all other styles, just use <tt>&rsquo;*&rsquo;</tt>
 instead.
 </p>
-<p>There are two pre-defined values for <tt>&lt;user-context&gt;</tt>:
+<p>There are two pre-defined values for <var>user-context</var>:
 </p><dl compact="compact">
 <dt> <tt>default</tt></dt>
 <dd><p>the one used if none is specified
@@ -1218,7 +1221,7 @@ a merge conflict.
 <a name="index-branchformat"></a>
 </dd>
 <dt> <tt>branchformat</tt></dt>
-<dd><p>Some backends replace <var>%b</var> in the formats and
+<dd><p>Some backends replace <tt>%b</tt> in the formats and
 actionformats styles above, not only by a branch name but also by a
 revision number. This style lets you modify how that string should look.
 </p>
@@ -1226,8 +1229,8 @@ revision number. This style lets you modify how that string should look.
 </dd>
 <dt> <tt>nvcsformats</tt></dt>
 <dd><p>These &quot;formats&quot; are exported when we didn&rsquo;t detect a version control system
-for the current directory or <var>vcs_info</var> was disabled. This is useful if
-you want <var>vcs_info</var> to completely take over the generation of your
+for the current directory or <tt>vcs_info</tt> was disabled. This is useful if
+you want <tt>vcs_info</tt> to completely take over the generation of your
 prompt. You would do something like <tt>PS1=&rsquo;${vcs_info_msg_0_}&rsquo;</tt> to
 accomplish that.
 </p>
@@ -1236,40 +1239,40 @@ accomplish that.
 <dt> <tt>hgrevformat</tt></dt>
 <dd><p><tt>hg</tt> uses both a hash and a revision number to reference a specific
 changeset in a repository. With this style you can format the revision
-string (see <var>branchformat</var>) to include either or both. It&rsquo;s only
-useful when <var>get-revision</var> is true.
+string (see <tt>branchformat</tt>) to include either or both. It&rsquo;s only
+useful when <tt>get-revision</tt> is true.
 </p>
 <a name="index-max_002dexports"></a>
 </dd>
 <dt> <tt>max-exports</tt></dt>
 <dd><p>Defines the maximum number of
-<var>vcs_info_msg_*_</var> variables <var>vcs_info</var> will export.
+<tt>vcs_info_msg_*_</tt> variables <tt>vcs_info</tt> will export.
 </p>
 <a name="index-enable-1"></a>
 </dd>
 <dt> <tt>enable</tt></dt>
-<dd><p>A list of backends you want to use. Checked in the <var>-init-</var> context. If
+<dd><p>A list of backends you want to use. Checked in the <tt>-init-</tt> context. If
 this list contains an item called <tt>NONE</tt> no backend is used at all and
-<var>vcs_info</var> will do nothing. If this list contains <tt>ALL</tt> <var>vcs_info</var>
+<tt>vcs_info</tt> will do nothing. If this list contains <tt>ALL</tt>, <tt>vcs_info</tt>
 will use all known backends. Only with <tt>ALL</tt> in <tt>enable</tt> will the
 <tt>disable</tt> style have any effect. <tt>ALL</tt> and <tt>NONE</tt> are case insensitive.
 </p>
 <a name="index-disable-1"></a>
 </dd>
 <dt> <tt>disable</tt></dt>
-<dd><p>A list of VCSs you don&rsquo;t want <var>vcs_info</var> to test for
-repositories (checked in the <var>-init-</var> context, too). Only used if
+<dd><p>A list of VCSs you don&rsquo;t want <tt>vcs_info</tt> to test for
+repositories (checked in the <tt>-init-</tt> context, too). Only used if
 <tt>enable</tt> contains <tt>ALL</tt>.
 </p>
 <a name="index-disable_002dpatterns"></a>
 </dd>
 <dt> <tt>disable-patterns</tt></dt>
 <dd><p>A list of patterns that are checked against <tt>$PWD</tt>. If a pattern
-matches, <var>vcs_info</var> will be disabled. This style is checked in the
-<var>:vcs_info:-init-:*:-all-</var> context.
+matches, <tt>vcs_info</tt> will be disabled. This style is checked in the
+<tt>:vcs_info:-init-:*:-all-</tt> context.
 </p>
 <p>Say, <tt>~/.zsh</tt> is a directory under version control, in which you do
-not want <var>vcs_info</var> to be active, do:
+not want <tt>vcs_info</tt> to be active, do:
 </p><table><tr><td>&nbsp;</td><td><pre class="example">zstyle ':vcs_info:*' disable-patterns &quot;$HOME/.zsh(|/*)&quot;
 </pre></td></tr></table>
 
@@ -1288,7 +1291,7 @@ in a given directory. See <tt>Quilt Support</tt> for details.
 <a name="index-quilt_002dpatch_002ddir"></a>
 </dd>
 <dt> <tt>quilt-patch-dir</tt></dt>
-<dd><p>Overwrite the value of the <var>$QUILT_PATCHES</var> environment variable. See
+<dd><p>Overwrite the value of the <tt>$QUILT_PATCHES</tt> environment variable. See
 <tt>Quilt Support</tt> for details.
 </p>
 <a name="index-quiltcommand"></a>
@@ -1302,12 +1305,12 @@ is used as the command name.
 <dt> <tt>check-for-changes</tt></dt>
 <dd><p>If enabled, this style causes the <tt>%c</tt> and <tt>%u</tt> format escapes to show
 when the working directory has uncommitted changes. The strings displayed by
-these escapes can be controlled via the <var>stagedstr</var> and <var>unstagedstr</var>
+these escapes can be controlled via the <tt>stagedstr</tt> and <tt>unstagedstr</tt>
 styles. The only backends that currently support this option are <tt>git</tt> and
 <tt>hg</tt> (<tt>hg</tt> only supports unstaged).
 </p>
-<p>For this style to be evaluated with the <tt>hg</tt> backend, the <var>get-revision</var>
-style needs to be set and the <var>use-simple</var> style needs to be unset. The
+<p>For this style to be evaluated with the <tt>hg</tt> backend, the <tt>get-revision</tt>
+style needs to be set and the <tt>use-simple</tt> style needs to be unset. The
 latter is the default; the former is not.
 </p>
 <p>Note, the actions taken if this style is enabled are potentially expensive
@@ -1329,19 +1332,19 @@ in the repository.
 <a name="index-command-2"></a>
 </dd>
 <dt> <tt>command</tt></dt>
-<dd><p>This style causes <var>vcs_info</var> to use the supplied string as the command
+<dd><p>This style causes <tt>vcs_info</tt> to use the supplied string as the command
 to use as the VCS&rsquo;s binary. Note, that setting this in &rsquo;:vcs_info:*&rsquo; is
 not a good idea.
 </p>
 <p>If the value of this style is empty (which is the default), the used binary
-name is the name of the backend in use (e.g. <var>svn</var> is used in an <var>svn</var>
+name is the name of the backend in use (e.g. <tt>svn</tt> is used in an <tt>svn</tt>
 repository).
 </p>
-<p>The <var>repo-root-name</var> part in the context is always the default <tt>-all-</tt>
+<p>The <tt>repo-root-name</tt> part in the context is always the default <tt>-all-</tt>
 when this style is looked up.
 </p>
 <p>For example, this style can be used to use binaries from non-default
-installation directories. Assume, <var>git</var> is installed in /usr/bin but
+installation directories. Assume, <tt>git</tt> is installed in /usr/bin but
 your sysadmin installed a newer version in /usr/bin/local. Instead of
 changing the order of your <tt>$PATH</tt> parameter, you can do this:
 </p><table><tr><td>&nbsp;</td><td><pre class="example">zstyle ':vcs_info:git:*:-all-' command /usr/local/bin/git
@@ -1354,7 +1357,7 @@ changing the order of your <tt>$PATH</tt> parameter, you can do this:
 contact the Perforce server to find out if a directory is managed
 by Perforce.  This is the only reliable way of doing this, but runs
 the risk of a delay if the server name cannot be found.  If the
-server (more specifically, the <var>host</var><tt>:</tt><var>port</var> pair describing the
+server (more specifically, the <tt>host</tt><tt>:</tt><tt>port</tt> pair describing the
 server) cannot be contacted, its name is put into the associative array
 <tt>vcs_info_p4_dead_servers</tt> and is not contacted again during the session
 until it is removed by hand.  If you do not set this style, the <tt>p4</tt>
@@ -1400,19 +1403,19 @@ bookmarks. They will be available via the &lsquo;<tt>%m</tt>&rsquo; replacement.
 </dd>
 <dt> <tt>use-prompt-escapes</tt></dt>
 <dd><p>Determines if we assume that the assembled
-string from <var>vcs_info</var> includes prompt escapes. (Used by
+string from <tt>vcs_info</tt> includes prompt escapes. (Used by
 <tt>vcs_info_lastmsg</tt>.)
 </p>
 <a name="index-debug"></a>
 </dd>
 <dt> <tt>debug</tt></dt>
 <dd><p>Enable debugging output to track possible problems. Currently this style
-is only used by <var>vcs_info</var>&rsquo;s hooks system.
+is only used by <tt>vcs_info</tt>&rsquo;s hooks system.
 </p>
 <a name="index-hooks"></a>
 </dd>
 <dt> <tt>hooks</tt></dt>
-<dd><p>A list style that defines hook-function names. See <tt>Hooks in vcs_info</tt>
+<dd><p>A list style that defines hook-function names. See <cite>Hooks in vcs_info</cite>
 below for details.
 </p>
 </dd>
@@ -1491,7 +1494,7 @@ below for details.
 <dd><p>false
 </p></dd>
 <dt> <tt>quilt-patch-dir</tt></dt>
-<dd><p>empty - use <var>$QUILT_PATCHES</var>
+<dd><p>empty - use <tt>$QUILT_PATCHES</tt>
 </p></dd>
 <dt> <tt>quiltcommand</tt></dt>
 <dd><p>quilt
@@ -1510,30 +1513,30 @@ done:
 </p></dd>
 <dt> <tt>%a</tt></dt>
 <dd><p>An identifier that describes the action. Only makes sense in
-<var>actionformats</var>.
+<tt>actionformats</tt>.
 </p></dd>
 <dt> <tt>%i</tt></dt>
 <dd><p>The current revision number or identifier. For <tt>hg</tt>
-the <var>hgrevformat</var> style may be used to customize the output.
+the <tt>hgrevformat</tt> style may be used to customize the output.
 </p></dd>
 <dt> <tt>%c</tt></dt>
-<dd><p>The string from the <var>stagedstr</var> style if there are staged
+<dd><p>The string from the <tt>stagedstr</tt> style if there are staged
 changes in the repository.
 </p></dd>
 <dt> <tt>%u</tt></dt>
-<dd><p>The string from the <var>unstagedstr</var> style if there are
+<dd><p>The string from the <tt>unstagedstr</tt> style if there are
 unstaged changes in the repository.
 </p></dd>
 <dt> <tt>%R</tt></dt>
 <dd><p>The base directory of the repository.
 </p></dd>
 <dt> <tt>%r</tt></dt>
-<dd><p>The repository name. If <tt>%R</tt> is <var>/foo/bar/repoXY</var>, <tt>%r</tt>
-is <var>repoXY</var>.
+<dd><p>The repository name. If <tt>%R</tt> is <tt>/foo/bar/repoXY</tt>, <tt>%r</tt>
+is <tt>repoXY</tt>.
 </p></dd>
 <dt> <tt>%S</tt></dt>
 <dd><p>A subdirectory within a repository. If <tt>$PWD</tt> is
-<var>/foo/bar/repoXY/beer/tasty</var>, <tt>%S</tt> is <var>beer/tasty</var>.
+<tt>/foo/bar/repoXY/beer/tasty</tt>, <tt>%S</tt> is <tt>beer/tasty</tt>.
 </p></dd>
 <dt> <tt>%m</tt></dt>
 <dd><p>A &quot;misc&quot; replacement. It is at the discretion of the backend to
@@ -1550,7 +1553,7 @@ and <tt>git</tt> backends to display patch information from the <tt>mq</tt> and
 <dd><p>The branch name.
 </p></dd>
 <dt> <tt>%r</tt></dt>
-<dd><p>The current revision number or the <var>hgrevformat</var> style for
+<dd><p>The current revision number or the <tt>hgrevformat</tt> style for
 <tt>hg</tt>.
 </p></dd>
 </dl>
@@ -1596,7 +1599,7 @@ no replacements are performed at all, it is just a string.
 <hr size="6">
 <a name="Oddities"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Configuration-1" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Configuration" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Quilt-Support" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -1613,11 +1616,11 @@ no replacements are performed at all, it is just a string.
 </tr></table>
 <h3 class="subsection">26.4.3 Oddities</h3>
 
-<p>If you want to use the <tt>%b</tt> (bold off) prompt expansion in <var>formats</var>,
-which expands <tt>%b</tt> itself, use <tt>%%b</tt>. That will cause the <var>vcs_info</var>
+<p>If you want to use the <tt>%b</tt> (bold off) prompt expansion in <tt>formats</tt>,
+which expands <tt>%b</tt> itself, use <tt>%%b</tt>. That will cause the <tt>vcs_info</tt>
 expansion to replace <tt>%%b</tt> with <tt>%b</tt>, so that zsh&rsquo;s prompt expansion
 mechanism can handle it. Similarly, to hand down <tt>%b</tt> from
-<var>branchformat</var>, use <tt>%%%%b</tt>. Sorry for this inconvenience, but it
+<tt>branchformat</tt>, use <tt>%%%%b</tt>. Sorry for this inconvenience, but it
 cannot be easily avoided. Luckily we do not clash with a lot of prompt
 expansions and this only needs to be done for those.
 </p>
@@ -1642,7 +1645,7 @@ expansions and this only needs to be done for those.
 </tr></table>
 <h3 class="subsection">26.4.4 Quilt Support</h3>
 
-<p><tt>Quilt</tt> is not a version control system, therefore this is not implemented
+<p><cite>Quilt</cite> is not a version control system, therefore this is not implemented
 as a backend. It can help keeping track of a series of patches. People use it
 to keep a set of changes they want to use on top of software packages (which
 is tightly integrated into the package build process - the Debian project
@@ -1650,63 +1653,63 @@ does this for a large number of packages). Quilt can also help individual
 developers keep track of their own patches on top of real version control
 systems.
 </p>
-<p>The <var>vcs_info</var> integration tries to support both ways of using quilt by
+<p>The <tt>vcs_info</tt> integration tries to support both ways of using quilt by
 having two slightly different modes of operation: &lsquo;addon&rsquo; mode and
 &lsquo;standalone&rsquo; mode).
 </p>
-<p>For &lsquo;addon&rsquo; mode to become active <var>vcs_info</var> must have already detected a
+<p>For &lsquo;addon&rsquo; mode to become active <tt>vcs_info</tt> must have already detected a
 real version control system controlling the directory. If that is the case,
 a directory that holds quilt&rsquo;s patches needs to be found. That directory is
-configurable via the <var>&lsquo;QUILT_PATCHES&rsquo;</var> environment variable. If that
-variable exists its value is used, otherwise the value <tt>&lsquo;patches&rsquo;</tt> is
-assumed. The value from <var>$QUILT_PATCHES</var> can be overwritten using the
-<tt>&lsquo;quilt-patches&rsquo;</tt> style. (Note: you can use <var>vcs_info</var> to keep the value
-of <var>$QUILT_PATCHES</var> correct all the time via the <tt>post-quilt</tt> hook).
+configurable via the &lsquo;<tt>QUILT_PATCHES</tt>&rsquo; environment variable. If that
+variable exists its value is used, otherwise the value &lsquo;<tt>patches</tt>&rsquo; is
+assumed. The value from <tt>$QUILT_PATCHES</tt> can be overwritten using the
+<tt>&lsquo;quilt-patches&rsquo;</tt> style. (Note: you can use <tt>vcs_info</tt> to keep the value
+of <tt>$QUILT_PATCHES</tt> correct all the time via the <tt>post-quilt</tt> hook).
 </p>
 <p>When the directory in question is found, quilt is assumed to be active. To
-gather more information, <var>vcs_info</var> looks for a directory called &lsquo;.pc&rsquo;;
+gather more information, <tt>vcs_info</tt> looks for a directory called &lsquo;.pc&rsquo;;
 Quilt uses that directory to track its current state. If this directory does
 not exist we know that quilt has not done anything to the working directory
 (read: no patches have been applied yet).
 </p>
-<p>If patches are applied, <var>vcs_info</var> will try to find out which. If you want
+<p>If patches are applied, <tt>vcs_info</tt> will try to find out which. If you want
 to know which patches of a series are not yet applied, you need to activate
 the <tt>get-unapplied</tt> style in the appropriate context.
 </p>
-<p><var>vcs_info</var> allows for very detailed control over how the gathered
-information is presented (see the below sections, <tt>Styles</tt> and <tt>Hooks in
-vcs_info</tt>), all of which are documented below. Note there are a number of
+<p><tt>vcs_info</tt> allows for very detailed control over how the gathered
+information is presented (see the below sections, <cite>Styles</cite> and <cite>Hooks in
+vcs_info</cite>), all of which are documented below. Note there are a number of
 other patch tracking systems that work on top of a certain version control
-system (like <tt>stgit</tt> for <tt>git</tt>, or <tt>mq</tt> for <tt>hg</tt>); the configuration
-for systems like that are generally configured the same way as the <tt>quilt</tt>
+system (like <tt>stgit</tt> for <cite>git</cite>, or <tt>mq</tt> for <cite>hg</cite>); the configuration
+for systems like that are generally configured the same way as the <cite>quilt</cite>
 support.
 </p>
-<p>If the <tt>quilt</tt> support is working in &lsquo;addon&rsquo; mode, the produced string is
-available as a simple format replacement (<var>%Q</var> to be precise), which can
+<p>If the <cite>quilt</cite> support is working in &lsquo;addon&rsquo; mode, the produced string is
+available as a simple format replacement (<tt>%Q</tt> to be precise), which can
 be used in <tt>formats</tt> and <tt>actionformats</tt>; see below for details).
 </p>
 <p>If, on the other hand, the support code is working in &lsquo;standalone&rsquo; mode,
-<var>vcs_info</var> will pretend as if <tt>quilt</tt> were an actual version control
+<tt>vcs_info</tt> will pretend as if <tt>quilt</tt> were an actual version control
 system. That means that the version control system identifier (which
 otherwise would be something like &lsquo;svn&rsquo; or &lsquo;cvs&rsquo;) will be set to
 &lsquo;<tt>-quilt-</tt>&rsquo;. This has implications on the used style context where this
-identifier is the second element. <var>vcs_info</var> will have filled in a proper
+identifier is the second element. <tt>vcs_info</tt> will have filled in a proper
 value for the &quot;repository&rsquo;s&quot; root directory and the string containing the
 information about quilt&rsquo;s state will be available as the &lsquo;misc&rsquo; replacement
-(and <var>%Q</var> for compatibility with &lsquo;addon&rsquo; mode.
+(and <tt>%Q</tt> for compatibility with &lsquo;addon&rsquo; mode.
 </p>
 <p>What is left to discuss is how &lsquo;standalone&rsquo; mode is detected. The detection
 itself is a series of searches for directories. You can have this detection
 enabled all the time in every directory that is not otherwise under version
 control. If you know there is only a limited set of trees where you would
-like <var>vcs_info</var> to try and look for Quilt in &lsquo;standalone&rsquo; mode to minimise
-the amount of searching on every call to <var>vcs_info</var>, there are a number of
+like <tt>vcs_info</tt> to try and look for Quilt in &lsquo;standalone&rsquo; mode to minimise
+the amount of searching on every call to <tt>vcs_info</tt>, there are a number of
 ways to do that:
 </p>
 <p>Essentially, &lsquo;standalone&rsquo; mode detection is controlled by a style called
 &lsquo;<tt>quilt-standalone</tt>&rsquo;. It is a string style and its value can have different
 effects. The simplest values are: &lsquo;<tt>always</tt>&rsquo; to run detection every time
-<var>vcs_info</var> is run, and &lsquo;<tt>never</tt>&rsquo; to turn the detection off entirely.
+<tt>vcs_info</tt> is run, and &lsquo;<tt>never</tt>&rsquo; to turn the detection off entirely.
 </p>
 <p>If the value of <tt>quilt-standalone</tt> is something else, it is interpreted
 differently. If the value is the name of a scalar variable the value of that
@@ -1754,10 +1757,10 @@ non-zero return value is interpreted as false.
 </dd>
 <dt> <tt>vcs_info</tt> [<var>user-context</var>]</dt>
 <dd><p>The main function, that runs all backends and assembles all data into
-<var>${vcs_info_msg_*_}</var>. This is the function you want to call from
+<tt>${vcs_info_msg_*_}</tt>. This is the function you want to call from
 <tt>precmd</tt> if you want to include up-to-date information in your prompt (see
 <tt>Variable description</tt> below). If an argument is given, that string will be
-used instead of <tt>default</tt> in the <tt>user-context</tt> field of the style
+used instead of <tt>default</tt> in the <var>user-context</var> field of the style
 context.
 </p>
 <a name="index-vcs_005finfo_005fhookadd"></a>
@@ -1766,7 +1769,7 @@ context.
 <dd><p>Statically registers a number of functions to a given hook. The hook needs
 to be given as the first argument; what follows is a list of hook-function
 names to register to the hook. The &lsquo;<tt>+vi-</tt>&rsquo; prefix needs to be left out
-here. See <tt>Hooks in vcs_info</tt> below for details.
+here. See <cite>Hooks in vcs_info</cite> below for details.
 </p>
 <a name="index-vcs_005finfo_005fhookdel"></a>
 </dd>
@@ -1777,14 +1780,14 @@ names to un-register from the hook. If &lsquo;<tt>-a</tt>&rsquo; is used as the 
 argument, <tt>all</tt> occurances of the functions are unregistered. Otherwise
 only the last occurance is removed (if a function was registered to a hook
 more than once) . The &lsquo;<tt>+vi-</tt>&rsquo; prefix needs to be left out here. See
-<tt>Hooks in vcs_info</tt> below for details.
+<cite>Hooks in vcs_info</cite> below for details.
 </p>
 <a name="index-vcs_005finfo_005flastmsg"></a>
 </dd>
 <dt> <tt>vcs_info_lastmsg</tt></dt>
-<dd><p>Outputs the last <var>${vcs_info_msg_*_}</var> value.
+<dd><p>Outputs the last <tt>${vcs_info_msg_*_}</tt> value.
 Takes into account the value of the <tt>use-prompt-escapes</tt> style in
-<var>&rsquo;:vcs_info:formats:command:-all-&rsquo;</var>. It also only prints <tt>max-exports</tt>
+<tt>&rsquo;:vcs_info:formats:command:-all-&rsquo;</tt>. It also only prints <tt>max-exports</tt>
 values.
 </p>
 <a name="index-vcs_005finfo_005fprintsys"></a>
@@ -1792,12 +1795,12 @@ values.
 <dt> <tt>vcs_info_printsys</tt> [<var>user-context</var>]</dt>
 <dd><p>Prints a list of all
 supported version control systems. Useful to find out possible contexts
-(and which of them are enabled) or values for the <var>disable</var> style.
+(and which of them are enabled) or values for the <tt>disable</tt> style.
 </p>
 <a name="index-vcs_005finfo_005fsetsys"></a>
 </dd>
 <dt> <tt>vcs_info_setsys</tt></dt>
-<dd><p>Initializes <var>vcs_info</var>&rsquo;s internal list of
+<dd><p>Initializes <tt>vcs_info</tt>&rsquo;s internal list of
 available backends. With this function, you can add support for new VCSs
 without restarting the shell.
 </p>
@@ -1828,14 +1831,14 @@ without restarting the shell.
 <h3 class="subsection">26.4.6 Variable Description</h3>
 
 <dl compact="compact">
-<dt> <tt>${vcs_info_msg_N_}</tt> (Note the trailing underscore)</dt>
-<dd><p>Where <var>N</var> is an integer, e.g., <var>vcs_info_msg_0_</var>. These variables
-are the storage for the informational message the last <var>vcs_info</var> call
+<dt> <tt>${vcs_info_msg_</tt><var>N</var><tt>_}</tt> (Note the trailing underscore)</dt>
+<dd><p>Where <var>N</var> is an integer, e.g., <tt>vcs_info_msg_0_</tt>. These variables
+are the storage for the informational message the last <tt>vcs_info</tt> call
 has assembled. These are strongly connected to the <tt>formats</tt>,
 <tt>actionformats</tt> and <tt>nvcsformats</tt> styles described above. Those styles
 are lists. The first member of that list gets expanded into
-<var>${vcs_info_msg_0_}</var>, the second into <var>${vcs_info_msg_1_}</var>
-and the Nth into <var>${vcs_info_msg_N-1_}</var>. These parameters are
+<tt>${vcs_info_msg_0_}</tt>, the second into <tt>${vcs_info_msg_1_}</tt>
+and the Nth into <tt>${vcs_info_msg_N-1_}</tt>. These parameters are
 exported into the environment. (See the <tt>max-exports</tt> style above.)
 </p>
 </dd>
@@ -1864,12 +1867,12 @@ exported into the environment. (See the <tt>max-exports</tt> style above.)
 </tr></table>
 <h3 class="subsection">26.4.7 Hooks in vcs_info</h3>
 
-<p>Hooks are places in <var>vcs_info</var> where you can run your own code. That
+<p>Hooks are places in <tt>vcs_info</tt> where you can run your own code. That
 code can communicate with the code that called it and through that,
 change the system&rsquo;s behaviour.
 </p>
 <p>For configuration, hooks change the style context:
-</p><table><tr><td>&nbsp;</td><td><pre class="example">:vcs_info:&lt;vcs-string&gt;+&lt;hook-name&gt;:&lt;user-context&gt;:&lt;repo-root-name&gt;
+</p><table><tr><td>&nbsp;</td><td><pre class="example">:vcs_info:<var>vcs-string</var>+<var>hook-name</var>:<var>user-context</var>:<var>repo-root-name</var>
 </pre></td></tr></table>
 
 <p>To register functions to a hook, you need to list them in the <tt>hooks</tt>
@@ -1885,8 +1888,8 @@ a &lsquo;+vi-&rsquo;, so the actual functions called for the &lsquo;foo&rsquo; h
 &lsquo;<tt>+vi-bar</tt>&rsquo; and &lsquo;<tt>+vi-baz</tt>&rsquo;.
 </p>
 <p>If you would like to register a function to a hook regardless of the
-current context, you may use the <var>vcs_info_hookadd</var> function. To remove
-a function that was added like that, the <var>vcs_info_hookdel</var> function
+current context, you may use the <tt>vcs_info_hookadd</tt> function. To remove
+a function that was added like that, the <tt>vcs_info_hookdel</tt> function
 can be used.
 </p>
 <p>If something seems weird, you can enable the &lsquo;debug&rsquo; boolean style in
@@ -1897,7 +1900,7 @@ to execute and whether the function in question existed.
 executed one after another until one function returns non-zero or until
 all functions have been called. Context-sensitive hook functions are
 executed <tt>before</tt> statically registered ones (the ones added by
-<var>vcs_info_hookadd</var>).
+<tt>vcs_info_hookadd</tt>).
 </p>
 <p>You may pass data between functions via an associative array, <tt>user_data</tt>.
 For example:
@@ -1941,10 +1944,10 @@ enable/disable style are used. Available in all hooks except <tt>start-up</tt>.
 </p>
 <dl compact="compact">
 <dt> <tt>start-up</tt></dt>
-<dd><p>Called after starting <var>vcs_info</var> but before the VCS in this directory is
-determined. It can be used to deactivate <var>vcs_info</var> temporarily if
-necessary. When <tt>ret</tt> is set to <var>1</var>, <var>vcs_info</var> aborts and does
-nothing; when set to <var>2</var>, <var>vcs_info</var> sets up everything as if no
+<dd><p>Called after starting <tt>vcs_info</tt> but before the VCS in this directory is
+determined. It can be used to deactivate <tt>vcs_info</tt> temporarily if
+necessary. When <tt>ret</tt> is set to <tt>1</tt>, <tt>vcs_info</tt> aborts and does
+nothing; when set to <tt>2</tt>, <tt>vcs_info</tt> sets up everything as if no
 version control were active and exits.
 </p>
 </dd>
@@ -1957,42 +1960,42 @@ version control were active and exits.
 <tt>get-revision</tt> and <tt>get-bookmarks</tt> styles must be true.
 </p>
 <p>This hook gets the names of the Mercurial bookmarks that
-<var>vcs_info</var> collected from &lsquo;hg&rsquo;.
+<tt>vcs_info</tt> collected from &lsquo;hg&rsquo;.
 </p>
 <p>When setting <tt>ret</tt> to non-zero, the string in
-<tt>${hook_com[hg-bookmark-string]}</tt> will be used in the <var>%m</var> escape in
+<tt>${hook_com[hg-bookmark-string]}</tt> will be used in the <tt>%m</tt> escape in
 <tt>formats</tt> and <tt>actionformats</tt> and will be availabe in the global
-<var>backend_misc</var> array as <tt>${backend_misc[bookmarks]}</tt>.
+<tt>backend_misc</tt> array as <tt>${backend_misc[bookmarks]}</tt>.
 </p>
 </dd>
 <dt> <tt>gen-applied-string</tt></dt>
 <dd><p>Called in the <tt>git</tt> (with <tt>stgit</tt>), and <tt>hg</tt> (with <tt>mq</tt>) backends
-and in <tt>quilt</tt> support when the <var>applied-string</var> is generated; the
+and in <tt>quilt</tt> support when the <tt>applied-string</tt> is generated; the
 <tt>use-quilt</tt> zstyle must be true for <tt>quilt</tt> (the <tt>mq</tt> and <tt>stgit</tt>
 backends are active by default).
 </p>
-<p>This hook gets the names of all applied patches which <var>vcs_info</var> collected
+<p>This hook gets the names of all applied patches which <tt>vcs_info</tt> collected
 so far in the opposite order, which means that the first argument is the
 top-most patch and so forth.
 </p>
 <p>When setting <tt>ret</tt> to non-zero, the string in
-<tt>${hook_com[applied-string]}</tt> will be used in the <var>%m</var> escape in
+<tt>${hook_com[applied-string]}</tt> will be used in the <tt>%m</tt> escape in
 <tt>formats</tt> and <tt>actionformats</tt>; it will be available in the global
-<var>backend_misc</var> array as <tt>$backend_misc[patches]}</tt>; and it will be
-available as <var>%p</var> in the <tt>patch-format</tt> and <tt>nopatch-format</tt> styles.
+<tt>backend_misc</tt> array as <tt>$backend_misc[patches]}</tt>; and it will be
+available as <tt>%p</tt> in the <tt>patch-format</tt> and <tt>nopatch-format</tt> styles.
 </p>
 </dd>
 <dt> <tt>gen-unapplied-string</tt></dt>
 <dd><p>Called in the <tt>git</tt> (with <tt>stgit</tt>), and <tt>hg</tt> (with <tt>mq</tt>) backend
-and in <tt>quilt</tt> support when the <var>unapplied-string</var> is generated; the
+and in <tt>quilt</tt> support when the <tt>unapplied-string</tt> is generated; the
 <tt>get-unapplied</tt> style must be true.
 </p>
-<p>This hook gets the names of all unapplied patches which <var>vcs_info</var>
+<p>This hook gets the names of all unapplied patches which <tt>vcs_info</tt>
 collected so far in the opposite order, which mean that the first argument is
 the patch next-in-line to be applied and so forth.
 </p>
 <p>When setting <tt>ret</tt> to non-zero, the string in
-<tt>${hook_com[unapplied-string]}</tt> will be available as <var>%u</var> in the
+<tt>${hook_com[unapplied-string]}</tt> will be available as <tt>%u</tt> in the
 <tt>patch-format</tt> and <tt>nopatch-format</tt> styles.
 </p>
 </dd>
@@ -2003,7 +2006,7 @@ the patch next-in-line to be applied and so forth.
 <p>This hook gets the names of any active <tt>mq</tt> guards.
 </p>
 <p>When setting <tt>ret</tt> to non-zero, the string in
-<tt>${hook_com[guards-string]}</tt> will be used in the <var>%g</var> escape in the
+<tt>${hook_com[guards-string]}</tt> will be used in the <tt>%g</tt> escape in the
 <tt>patch-format</tt> and <tt>nopatch-format</tt> styles.
 </p>
 </dd>
@@ -2028,12 +2031,12 @@ the string <tt>&quot;-nopc-&quot;</tt> if that directory wasn&rsquo;t found.
 hook is the format that is configured at this point.
 </p>
 <p>The &lsquo;<tt>hook_com</tt>&rsquo; keys considered are &lsquo;<tt>branch</tt>&rsquo; and &lsquo;<tt>revision</tt>&rsquo;.
-They are set to the values figured out so far by <var>vcs_info</var> and any
+They are set to the values figured out so far by <tt>vcs_info</tt> and any
 change will be used directly when the actual replacement is done.
 </p>
 <p>If <tt>ret</tt> is set to non-zero, the string in
 <tt>${hook_com[branch-replace]}</tt> will be used unchanged as the
-&lsquo;<tt>%b</tt>&rsquo; replacement in the variables set by <var>vcs_info</var>.
+&lsquo;<tt>%b</tt>&rsquo; replacement in the variables set by <tt>vcs_info</tt>.
 </p>
 </dd>
 <dt> <tt>set-hgrev-format</tt></dt>
@@ -2041,12 +2044,12 @@ change will be used directly when the actual replacement is done.
 hook is the format that is configured at this point.
 </p>
 <p>The &lsquo;<tt>hook_com</tt>&rsquo; keys considered are &lsquo;<tt>hash</tt>&rsquo; and &lsquo;<tt>localrev</tt>&rsquo;.
-They are set to the values figured out so far by <var>vcs_info</var> and any
+They are set to the values figured out so far by <tt>vcs_info</tt> and any
 change will be used directly when the actual replacement is done.
 </p>
 <p>If <tt>ret</tt> is set to non-zero, the string in
 <tt>${hook_com[rev-replace]}</tt> will be used unchanged as the
-&lsquo;<tt>%i</tt>&rsquo; replacement in the variables set by <var>vcs_info</var>.
+&lsquo;<tt>%i</tt>&rsquo; replacement in the variables set by <tt>vcs_info</tt>.
 </p>
 </dd>
 <dt> <tt>set-message</tt></dt>
@@ -2060,7 +2063,7 @@ variable name, the second is the currently configured <tt>formats</tt> or
 &lsquo;<tt>staged</tt>&rsquo;, &lsquo;<tt>unstaged</tt>&rsquo;, &lsquo;<tt>revision</tt>&rsquo;, &lsquo;<tt>misc</tt>&rsquo;, &lsquo;<tt>vcs</tt>&rsquo;
 and one &lsquo;<tt>miscN</tt>&rsquo; entry for each backend-specific data field (<tt>N</tt>
 starting at zero). They are set to the values figured out so far by
-<var>vcs_info</var> and any change will be used directly when the actual
+<tt>vcs_info</tt> and any change will be used directly when the actual
 replacement is done.
 </p>
 <p>Since this hook is triggered multiple times (once for each configured
@@ -2072,7 +2075,7 @@ probably not a good idea.
 </p>
 <p>If <tt>ret</tt> is set to non-zero, the string in
 <tt>${hook_com[message]}</tt> will be used unchanged as the message by
-<var>vcs_info</var>.
+<tt>vcs_info</tt>.
 </p>
 </dd>
 </dl>
@@ -2102,7 +2105,7 @@ They contain some explanatory code.
 </tr></table>
 <h3 class="subsection">26.4.8 Examples</h3>
 
-<p>Don&rsquo;t use <var>vcs_info</var> at all (even though it&rsquo;s in your prompt):
+<p>Don&rsquo;t use <tt>vcs_info</tt> at all (even though it&rsquo;s in your prompt):
 </p><table><tr><td>&nbsp;</td><td><pre class="example">zstyle ':vcs_info:*' enable NONE
 </pre></td></tr></table>
 
@@ -2140,7 +2143,7 @@ See <a href="Zsh-Modules.html#The-zsh_002fzutil-Module">The zsh/zutil Module</a>
 </pre></td></tr></table>
 
 <p>If you want colors, make sure you enclose the color codes in <tt>%{...%}</tt>
-if you want to use the string provided by <var>vcs_info</var> in prompts.
+if you want to use the string provided by <tt>vcs_info</tt> in prompts.
 </p>
 <p>Here is how to print the VCS information as a command (not in a prompt):
 </p><table><tr><td>&nbsp;</td><td><pre class="example">alias vcsi='vcs_info command; vcs_info_lastmsg'
@@ -2151,9 +2154,9 @@ if you want to use the string provided by <var>vcs_info</var> in prompts.
 </p>
 <p>Now as promised, some code that uses hooks:
 say, you&rsquo;d like to replace the string &lsquo;svn&rsquo; by &lsquo;subversion&rsquo; in
-<var>vcs_info</var>&rsquo;s <tt>%s</tt> <tt>formats</tt> replacement.
+<tt>vcs_info</tt>&rsquo;s <tt>%s</tt> <tt>formats</tt> replacement.
 </p>
-<p>First, we will tell <var>vcs_info</var> to call a function when populating
+<p>First, we will tell <tt>vcs_info</tt> to call a function when populating
 the message variables with the gathered information:
 </p><table><tr><td>&nbsp;</td><td><pre class="example">zstyle ':vcs_info:*+set-message:*' hooks svn2subversion
 </pre></td></tr></table>
@@ -2237,7 +2240,7 @@ function +vi-hgbookmarks() {
 the examples file located at Misc/vcs_info-examples in the Zsh source
 directory.
 </p>
-<p>This concludes our guided tour through zsh&rsquo;s <var>vcs_info</var>.
+<p>This concludes our guided tour through zsh&rsquo;s <tt>vcs_info</tt>.
 </p>
 <hr size="6">
 <a name="Prompt-Themes"></a>
@@ -2376,7 +2379,7 @@ normally call a theme&rsquo;s setup function directly.
 <a name="ZLE-Functions"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Theme-Selection" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Widgets-1" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Widgets" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Up section"> Up </a>]</td>
@@ -2396,7 +2399,7 @@ normally call a theme&rsquo;s setup function directly.
 
 
 <hr size="6">
-<a name="Widgets-1"></a>
+<a name="Widgets"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#ZLE-Functions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Utility-Functions" title="Next section in reading order"> &gt; </a>]</td>
@@ -3429,6 +3432,11 @@ regular expression matching is performed, else a literal string
 replacement.  Note that the previous source and replacement text are the
 same whether pattern, regular expression or string matching is used.
 </p>
+<p>In addition, <tt>replace-string</tt> shows the previous replacement above
+the prompt, so long as there was one during the current session; if the
+source string is empty, that replacement will be repeated without
+the widget prompting for a replacement string.
+</p>
 <p>For example, starting from the line:
 </p>
 <table><tr><td>&nbsp;</td><td><pre class="example">print This line contains fan and fond
@@ -3453,7 +3461,7 @@ and source strings before undoing the replacement itself.
 function from a widget or as a widget of its own, and interactively reads
 input from the keyboard.  However, the input being typed is concealed and
 a string of asterisks (&lsquo;<tt>*</tt>&rsquo;) is shown instead.  The value is saved in
-the paramter <tt>$INVISIBLE</tt> to which a reference is inserted into the
+the parameter <tt>$INVISIBLE</tt> to which a reference is inserted into the
 editing buffer at the restored cursor position.  If the read was aborted
 by a keyboard break (typically <tt>^G</tt>) or another escape from editing such
 as <tt>push-line</tt>, <tt>$INVISIBLE</tt> is set to empty and the original buffer
@@ -3534,8 +3542,8 @@ investigate the command word found.  The default is <tt>whence -c</tt>.
 <hr size="6">
 <a name="Utility-Functions"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Widgets-1" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Styles-1" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Widgets" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Styles" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#ZLE-Functions" title="Up section"> Up </a>]</td>
@@ -3610,7 +3618,7 @@ throughout:
 
 
 <hr size="6">
-<a name="Styles-1"></a>
+<a name="Styles"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Utility-Functions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Exception-Handling" title="Next section in reading order"> &gt; </a>]</td>
@@ -3827,7 +3835,7 @@ whether the <tt>widget</tt> style is used.
 <hr size="6">
 <a name="Exception-Handling"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Styles-1" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Styles" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#MIME-Functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -4008,7 +4016,25 @@ start with <tt>:mime:</tt>, with additional components in some cases.
 It is recommended that a trailing <tt>*</tt> (suitably quoted) be appended
 to style patterns in case the system is extended in future.  Some
 examples are given below.
-</p><dl compact="compact">
+</p>
+<p>For files that have multiple suffixes, e.g. <tt>.pdf.gz</tt>, where the
+context includes the suffix it will be looked up starting with the
+longest possible suffix until a match for the style is found.
+For example, if <tt>.pdf.gz</tt> produces a match for the handler, that
+will be used; otherwise the handler for <tt>.gz</tt> will be used.  Note
+that, owing to the way suffix aliases work, it is always required that
+there be a handler for the shortest possible suffix, so in this example
+<tt>.pdf.gz</tt> can only be handled if <tt>.gz</tt> is also handled (though
+not necessarily in the same way).  Alternatively, if no handling
+for <tt>.gz</tt> on its own is needed, simply adding the command
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">alias -s gz=zsh-mime-handler
+</pre></td></tr></table>
+
+<p>to the initialisation code is sufficient; <tt>.gz</tt> will not be handled
+on its own, but may be in combination with other suffixes.
+</p>
+<dl compact="compact">
 <dd><a name="index-current_002dshell_002c-MIME-style"></a>
 </dd>
 <dt> <tt>current-shell</tt></dt>
@@ -5067,7 +5093,7 @@ The usual expansions for the <tt>PS1</tt> and <tt>RPS1</tt> parameters may be us
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>June 14, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>December 9, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

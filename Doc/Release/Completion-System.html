@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on June 14, 2011 by texi2html 1.82
+<!-- Created on December 9, 2011 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -44,7 +44,7 @@ ul.toc {list-style: none}
 <a name="Completion-System"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Completion-Widgets.html#Completion-Widget-Example" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-5" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-2" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="Completion-Widgets.html#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
@@ -66,7 +66,7 @@ ul.toc {list-style: none}
 <a name="index-completion_002c-controlling-1"></a>
 
 <hr size="6">
-<a name="Description-5"></a>
+<a name="Description-2"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Completion-System" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Initialization" title="Next section in reading order"> &gt; </a>]</td>
@@ -178,7 +178,7 @@ as &lsquo;widgets&rsquo;.  These proliferate as new completions are required.
 <hr size="6">
 <a name="Initialization"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Description-5" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Description-2" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Use-of-compinit" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Completion-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -334,7 +334,7 @@ written for bash.
 <a name="Autoloaded-files"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Use-of-compinit" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Functions-2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functions-3" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Completion-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Initialization" title="Up section"> Up </a>]</td>
@@ -601,7 +601,7 @@ matching &lsquo;<tt>*.log</tt>&rsquo;.
 </p>
 
 <hr size="6">
-<a name="Functions-2"></a>
+<a name="Functions-3"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Autoloaded-files" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-System-Configuration" title="Next section in reading order"> &gt; </a>]</td>
@@ -707,7 +707,7 @@ used to complete options for commands that understand the
 <hr size="6">
 <a name="Completion-System-Configuration"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Functions-2" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Functions-3" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Overview-2" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Completion-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -1429,7 +1429,7 @@ be either true or false if the style is not set.
 corresponding to a type of match, and if no style was found, for the
 <tt>default</tt> tag.  The most notable styles of this type are <tt>menu</tt>, 
 <tt>list-colors</tt> and styles controlling completion listing such as 
-<tt>list-packed</tt> and <tt>last-prompt</tt>).  When tested for the <tt>default</tt>
+<tt>list-packed</tt> and <tt>last-prompt</tt>.  When tested for the <tt>default</tt>
 tag, only the <var>function</var> field of the context will be set so that
 a style using the default tag will normally be defined along the lines of:
 </p>
@@ -2075,8 +2075,8 @@ will be considered as possible completions.  If it is set to
 &lsquo;<tt>current</tt>&rsquo;, the word the cursor is on will not be considered as a
 possible completion.  The value &lsquo;<tt>current-shown</tt>&rsquo; is similar but only
 applies if the list of completions is currently shown on the screen.
-Finally, if the style is set to &lsquo;<tt>other</tt>&rsquo;, no word apart from the
-current one will be considered as a possible completion.
+Finally, if the style is set to &lsquo;<tt>other</tt>&rsquo;, all words on the line except
+for the current one will be excluded from the possible completions.
 </p>
 <p>The values &lsquo;<tt>current</tt>&rsquo; and &lsquo;<tt>current-shown</tt>&rsquo; are a bit like the
 opposite of the <tt>accept-exact</tt> style:  only strings with
@@ -5019,7 +5019,10 @@ described above.
 </p>
 <a name="index-_005fpick_005fvariant"></a>
 </dd>
-<dt> <tt>_pick_variant [ <tt>-c</tt> <var>command</var> ] [ <tt>-r</tt> <var>name</var> ] <var>label</var><tt>=</tt><var>pattern</var> ... <var>label</var> [ <var>args</var> ... ]</tt></dt>
+<dt> <tt>_pick_variant</tt> [ <tt>-b</tt> <var>builtin-label</var> ] [ <tt>-c</tt></dt>
+<dd><p><var>command</var> ] [ <tt>-r</tt> <var>name</var> ]
+</p></dd>
+<dt>    <var>label</var><tt>=</tt><var>pattern</var> ... <var>label</var> [ <var>args</var> ... ]</dt>
 <dd><p>This function is used to resolve situations where a single command name
 requires more than one type of handling, either because it
 has more than one variant or because there is a name clash between two
@@ -5034,6 +5037,10 @@ other arguments.  The patterns to try in order are given by the arguments
 <tt>...</tt>&rsquo; contains <var>pattern</var>, then <tt>label</tt> is selected as the label
 for the command variant.  If none of the patterns match, the final
 command label is selected and status 1 is returned.
+</p>
+<p>If the &lsquo;<tt>-b</tt> <var>builtin-label</var>&rsquo; is given, the command is tested to
+see if it is provided as a shell builtin, possibly autoloaded; if so,
+the label <var>builtin-label</var> is selected as the label for the variant.
 </p>
 <p>If the &lsquo;<tt>-r</tt> <var>name</var>&rsquo; is given, the <var>label</var> picked is stored in
 the parameter named <var>name</var>.
@@ -5576,7 +5583,7 @@ may be useful on your system.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>June 14, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>December 9, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

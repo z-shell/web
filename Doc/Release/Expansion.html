@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on June 14, 2011 by texi2html 1.82
+<!-- Created on December 9, 2011 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -432,7 +432,10 @@ current directory.
 </p>
 </dd>
 <dt> <tt>e</tt></dt>
-<dd><p>Remove all but the extension.
+<dd><p>Remove all but the part of the filename extension following the &lsquo;<tt>.</tt>&rsquo;;
+see the definition of the filename extension in the description of the
+<tt>r</tt> modifier below.  Note that according to that definition the result
+will be empty if the string ends with a &lsquo;<tt>.</tt>&rsquo;.
 </p>
 </dd>
 <dt> <tt>h</tt></dt>
@@ -461,8 +464,12 @@ by <tt>eval</tt>.
 </p>
 </dd>
 <dt> <tt>r</tt></dt>
-<dd><p>Remove a filename extension of the form &lsquo;<tt>.</tt><var>xxx</var>&rsquo;, leaving
-the root name.
+<dd><p>Remove a filename extension leaving the root name.  Strings with no
+filename extension are not altered.  A filename
+extension is a &lsquo;<tt>.</tt>&rsquo; followed by any number of characters (including
+zero) that are neither &lsquo;<tt>.</tt>&rsquo; nor &lsquo;<tt>/</tt>&rsquo; and that continue to the end
+of the string.  For example, the extension of
+&lsquo;<tt>foo.orig.c</tt>&rsquo; is &lsquo;<tt>.c</tt>&rsquo;, and &lsquo;<tt>dir.c/foo</tt>&rsquo; has no extension.
 </p>
 </dd>
 <dt> <tt>s/</tt><var>l</var><tt>/</tt><var>r</var>[<tt>/</tt>]</dt>
@@ -696,6 +703,19 @@ asynchronously as far as the parent shell is concerned.  The workaround is:
 
 <p>The extra processes here are
 spawned from the parent shell which will wait for their completion.
+</p>
+<p>Another problem arises any time a job with a substitution that requires
+a temporary file is disowned by the shell, including the case where
+&lsquo;<tt>&amp;!</tt>&rsquo; or &lsquo;<tt>&amp;|</tt>&rsquo; appears at the end of a command containing a
+subsitution.  In that case the temporary file will not be cleaned up as
+the shell no longer has any memory of the job.  A workaround is to use
+a subshell, for example,
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(mycmd =(myoutput)) &amp;!
+</pre></td></tr></table>
+
+<p>as the forked subshell will wait for the command to finish then remove
+the temporary file.
 </p>
 <hr size="6">
 <a name="Parameter-Expansion"></a>
@@ -2683,15 +2703,16 @@ point on.
 </dd>
 <dt> <tt>c</tt><var>N</var><tt>,</tt><var>M</var></dt>
 <dd><p>The flag <tt>(#c</tt><var>N</var><tt>,</tt><var>M</var><tt>)</tt> can be used anywhere
-that the <tt>#</tt> or <tt>##</tt> operators can be used; it cannot be combined
-with other globbing flags and a bad pattern error occurs if it is
-misplaced.  It is equivalent to the form <tt>{</tt><var>N</var><tt>,</tt><var>M</var><tt>}</tt> in
-regular expressions.  The previous character or group is required to
-match between <var>N</var> and <var>M</var> times, inclusive.  The form
-<tt>(#c</tt><var>N</var><tt>)</tt> requires exactly <tt>N</tt> matches;
-<tt>(#c,</tt><var>M</var><tt>)</tt> is equivalent to specifying <var>N</var> as 0;
-<tt>(#c</tt><var>N</var><tt>,)</tt> specifies that there is no maximum limit
-on the number of matches.
+that the <tt>#</tt> or <tt>##</tt> operators can be used except in the expressions
+&lsquo;<tt>(*/)#</tt>&rsquo; and &lsquo;<tt>(*/)##</tt>&rsquo; in filename generation, where &lsquo;<tt>/</tt>&rsquo;
+has special meaning; it cannot be combined with other globbing flags and
+a bad pattern error occurs if it is misplaced.  It is equivalent to the
+form <tt>{</tt><var>N</var><tt>,</tt><var>M</var><tt>}</tt> in regular expressions.  The previous
+character or group is required to match between <var>N</var> and <var>M</var> times,
+inclusive.  The form <tt>(#c</tt><var>N</var><tt>)</tt> requires exactly <tt>N</tt>
+matches; <tt>(#c,</tt><var>M</var><tt>)</tt> is equivalent to specifying <var>N</var>
+as 0; <tt>(#c</tt><var>N</var><tt>,)</tt> specifies that there is no maximum
+limit on the number of matches.
 </p>
 </dd>
 <dt> <tt>m</tt></dt>
@@ -3146,8 +3167,8 @@ latter is inserted into the command line word by word.
 </p>
 <p>For example, suppose a directory contains a single file &lsquo;<tt>lonely</tt>&rsquo;.  Then
 the expression &lsquo;<tt>*(e:&rsquo;reply=(${REPLY}{1,2})&rsquo;:)</tt>&rsquo; will cause the words
-&lsquo;<tt>lonely1 lonely2</tt>&rsquo; to be inserted into the command line.  Note the
-quotation marks.
+&lsquo;<tt>lonely1</tt>&rsquo; and &lsquo;<tt>lonely2</tt>&rsquo; to be inserted into the command line.  Note
+the quoting of <var>string</var>.
 </p>
 <p>The form <tt>+</tt><var>cmd</var> has the same effect, but no delimiters appear
 around <var>cmd</var>.  Instead, <var>cmd</var> is taken as the longest sequence of
@@ -3405,7 +3426,7 @@ print &lsquo;<tt>shmiltin.shmo</tt>&rsquo;.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>June 14, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>December 9, 2011</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 
