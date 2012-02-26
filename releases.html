@@ -27,6 +27,32 @@
 </table>
 <hr size=1 noshade>
 
+<h2>Changes between versions 4.3.16 and 4.3.17</h2>
+
+<p>
+Complete fixes from last release.
+</p>
+
+<h2>Changes between versions 4.3.15 and 4.3.16</h2>
+
+<p>
+The option HASH_EXECUTABLES_ONLY has been added.  When this is set,
+directories in the command path will be checked for executables before they
+are added to the command table (hash); otherwise, all files in the directory
+are added.  The effect of this option was present in 4.3.15, which could cause
+significant delays when hashing on systems with network directories in the
+path.
+</p>
+
+<p>
+The shell emulation mode was improved for more bash-like behavior. The bash
+completion support was also improved.
+</p>
+
+<p>
+New completions for sqlite, vcsh and xclip.
+<p>
+
 <h2>Changes between versions 4.3.14 and 4.3.15</h2>
 
 <p>
@@ -1155,7 +1181,7 @@ completion.
 <div align=right>
 <address>
 <a name=Signature href="disclaimer.html">Disclaimer</A>
-Last modified: $Date: 2011/12/18 20:34:09 $
+Last modified: $Date: 2012/02/26 02:43:09 $
 </address>
 </div>
 
