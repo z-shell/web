@@ -79,4 +79,6 @@ roff2ps -ms -P-pletter < $ZSHPATH/Doc/intro.ms > Intro/intro.us.ps
 gzip --best Intro/intro.*.ps
 
 echo "Done."
-echo "Don't forget to update the file sizes in Doc/index.html."
+echo "Don't forget to update the file sizes in:"
+echo "- Doc/index.html"
+echo "- Arc/source.html"
