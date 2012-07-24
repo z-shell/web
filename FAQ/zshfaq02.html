@@ -322,7 +322,7 @@ Here is Bart Schaefer's guide to converting csh aliases for zsh.
      appear inside the <code>{ }</code> the way they get appended to an alias.
 <p>
 <li> If the csh alias references its own name (<code>alias rm "rm -i"</code>),
-     then in a zsh function you need the "command" keyword
+     then in a zsh function you need the "command" or "builtin" keyword
      (function <code>rm() { command rm -i "$@" }</code>), but in a zsh alias
      you don't (<code>alias rm="rm -i"</code>).
 <p>

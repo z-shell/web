@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on February 26, 2012 by texi2html 1.82
+<!-- Created on July 24, 2012 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -183,7 +183,7 @@ distribution in your home directory, you would use the commands:
 <table><tr><td>&nbsp;</td><td><pre class="example">mkdir ~/zsh_help
 cd ~/zsh_help
 man zshall | colcrt - | \ 
-perl ~/zsh-4.3.17/Util/helpfiles
+perl ~/zsh-5.0.0/Util/helpfiles
 </pre></td></tr></table>
 
 <a name="index-run_002dhelp_002c-use-of"></a>
@@ -348,7 +348,7 @@ configuration.
 </p>
 <p>Run <tt>zkbd</tt> either as an autoloaded function, or as a shell script:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">zsh -f ~/zsh-4.3.17/Functions/Misc/zkbd
+<table><tr><td>&nbsp;</td><td><pre class="example">zsh -f ~/zsh-5.0.0/Functions/Misc/zkbd
 </pre></td></tr></table>
 
 <p>When you run <tt>zkbd</tt>, it first asks you to enter your terminal type; if
@@ -418,7 +418,7 @@ recreate that state.
 <p>To use <tt>reporter</tt>, read the script into your shell with the &lsquo;<tt>.</tt>&rsquo;
 command and redirect the output into a file:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">. ~/zsh-4.3.17/Util/reporter &gt; zsh.report
+<table><tr><td>&nbsp;</td><td><pre class="example">. ~/zsh-5.0.0/Util/reporter &gt; zsh.report
 </pre></td></tr></table>
 
 <p>You should check the <tt>zsh.report</tt> file for any sensitive information
@@ -1573,10 +1573,10 @@ and <tt>git</tt> backends to display patch information from the <tt>mq</tt> and
 </p>
 <dl compact="compact">
 <dt> <tt>%p</tt></dt>
-<dd><p>The name of the top-most applied patch.
+<dd><p>The name of the top-most applied patch (<tt>applied-string</tt>).
 </p></dd>
 <dt> <tt>%u</tt></dt>
-<dd><p>The number of unapplied patches.
+<dd><p>The number of unapplied patches (<tt>unapplied-string</tt>).
 </p></dd>
 <dt> <tt>%n</tt></dt>
 <dd><p>The number of applied patches.
@@ -2587,6 +2587,16 @@ stripping of quotes.  Special handling is done between words: the current
 context is examined and if it contains the string <tt>back</tt>, the word before
 the cursor is considered, else the word after cursor is considered. Some
 examples are given below.
+</p>
+<p>The style <tt>skip-whitespace-first</tt> is only used with the
+<tt>forward-word</tt> widget.  If it is set to true, then <tt>forward-word</tt>
+skips any non-word-characters, followed by any non-word-characters:
+this is similar to the behaviour of other word-orientated widgets,
+and also that used by other editors, however it differs from the
+standard zsh behaviour.  When using <tt>select-word-style</tt> the widget
+is set in the context <tt>:zle:*</tt> to <tt>true</tt> if the word style is
+<tt>bash</tt> and <tt>false</tt> otherwise.  It may be overridden by setting it in
+the more specific context <tt>:zle:forward-word*</tt>.
 </p>
 <p>Here are some examples of use of the styles, actually taken from the
 simplified interface in <tt>select-word-style</tt>:
@@ -4808,11 +4818,11 @@ game.
 <a name="index-zargs"></a>
 </dd>
 <dt> <tt>zargs</tt> [ <var>option</var> ... <tt>-</tt><tt>-</tt> ] [ <var>input</var> ... ] [ <tt>-</tt><tt>-</tt> <var>command</var> [ <var>arg</var> ... ] ]</dt>
-<dd><p>This function works like GNU xargs, except that instead of reading lines
-of arguments from the standard input, it takes them from the command line.
-This is useful because zsh, especially with recursive glob operators,
-often can construct a command line for a shell function that is longer
-than can be accepted by an external command.
+<dd><p>This function has a similar purpose to GNU xargs.  Instead of
+reading lines of arguments from the standard input, it takes them from
+the command line.  This is useful because zsh, especially with recursive
+glob operators, often can construct a command line for a shell function
+that is longer than can be accepted by an external command.
 </p>
 <p>The <var>option</var> list represents options of the <tt>zargs</tt> command itself,
 which are the same as those of <tt>xargs</tt>.  The <var>input</var> list is the
@@ -4848,7 +4858,15 @@ this does <em>not</em> change the end-of-options marker.  For example, to use
 <p>This is a good choice in that example because no plain file can be named
 &lsquo;<tt>..</tt>&rsquo;, but the best end-marker depends on the circumstances.
 </p>
-<p>For details of the other <tt>zargs</tt> options, see man page xargs(1) or run
+<p>The options <tt>-i</tt>, <tt>-I</tt>, <tt>-l</tt>, <tt>-L</tt>, and <tt>-n</tt> differ slightly
+from their usage in <tt>xargs</tt>.  There are no input lines for <tt>zargs</tt> to
+count, so <tt>-l</tt> and <tt>-L</tt> count through the <var>input</var> list, and <tt>-n</tt>
+counts the number of arguments passed to each execution of <var>command</var>,
+<em>including</em> any <var>arg</var> list.  Also, any time <tt>-i</tt> or <tt>-I</tt> is used,
+each <var>input</var> is processed separately as if by &lsquo;<tt>-L</tt> <tt>1</tt>&rsquo;.
+</p>
+<p>For details of the other <tt>zargs</tt> options, see man page xargs(1) (but note
+the difference in function between <tt>zargs</tt> and <tt>xargs</tt>) or run
 <tt>zargs</tt> with the <tt>-</tt><tt>-help</tt> option.
 </p>
 <a name="index-zed"></a>
@@ -5093,7 +5111,7 @@ The usual expansions for the <tt>PS1</tt> and <tt>RPS1</tt> parameters may be us
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>February 26, 2012</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>July 24, 2012</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 
