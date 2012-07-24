@@ -61,5 +61,22 @@ cp $ZSHPATH/Doc/zsh.pdf Doc/zsh_a4.pdf
 cd Doc && ps2pdf zsh_us.ps && cd ..
 gzip --best Doc/zsh_*.ps Doc/zsh.dvi Doc/zsh.texi
 
+# Cleanup old Intro/ files.
+rm -f Intro/{intro.text,intro.*.ps.gz,intro*.pdf}
+# Create Intro/ files. Only the PDF and PS versions are created from
+# Doc/intro.ms - the texinfo version is no longer available, thus the HTML is
+# also not up to date.
+roff2text -ms < $ZSHPATH/Doc/intro.ms > Intro/intro.text
+# Using pdfroff creates a PDF which contains the document twice, roff2pdf
+# creates an empty PDF - thus use roff2ps (and we need the PS anyway).
+roff2ps -ms -P-pa4     < $ZSHPATH/Doc/intro.ms > Intro/intro.a4.ps
+roff2ps -ms -P-pletter < $ZSHPATH/Doc/intro.ms > Intro/intro.us.ps
+(
+    cd Intro || exit 1
+    ps2pdf intro.a4.ps
+    ps2pdf intro.us.ps
+)
+gzip --best Intro/intro.*.ps
+
 echo "Done."
 echo "Don't forget to update the file sizes in Doc/index.html."
