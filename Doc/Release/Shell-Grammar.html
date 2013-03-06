@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on July 24, 2012 by texi2html 1.82
+<!-- Created on March 6, 2013 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -74,11 +74,13 @@ ul.toc {list-style: none}
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Reserved-Words">6.5 Reserved Words</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Comments">6.6 Comments</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Errors">6.6 Errors</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Aliasing">6.7 Aliasing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Comments">6.7 Comments</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Quoting">6.8 Quoting</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Aliasing">6.8 Aliasing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Quoting">6.9 Quoting</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 <hr size="6">
@@ -626,7 +628,7 @@ A short form of <tt>select</tt>.
 <a name="Reserved-Words"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Alternate-Forms-For-Complex-Commands" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Comments" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Errors" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Shell-Grammar" title="Up section"> Up </a>]</td>
@@ -655,9 +657,84 @@ select coproc nocorrect foreach end ! [[ { }</tt>
 <p>Additionally, &lsquo;<tt>}</tt>&rsquo; is recognized in any position if neither the
 <tt>IGNORE_BRACES</tt> option nor the <tt>IGNORE_CLOSE_BRACES</tt> option is set.
 </p><hr size="6">
-<a name="Comments"></a>
+<a name="Errors"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Reserved-Words" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Comments" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Shell-Grammar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+
+<a name="Errors-1"></a>
+<h2 class="section">6.6 Errors</h2>
+<a name="index-errors_002c-handling-of"></a>
+<p>Certain errors are treated as fatal by the shell: in an interactive
+shell, they cause control to return to the command line, and in a
+non-interactive shell they cause the shell to be aborted.  In older
+versions of zsh, a non-interactive shell running a script would not
+abort completely, but would resume execution at the next command to be
+read from the script, skipping the remainder of any functions or
+shell constructs such as loops or conditions; this somewhat illogical
+behaviour can be recovered by setting the option <tt>CONTINUE_ON_ERROR</tt>.
+</p>
+<p>Fatal errors found in non-interactive shells include:
+</p><dl compact="compact">
+<dt> Failure to parse shell options passed when invoking the shell</dt>
+<dt> Failure to change options with the <tt>set</tt> builtin</dt>
+<dt> Parse errors of all sorts, including failures to parse</dt>
+<dd><p>mathematical expressions
+</p></dd>
+<dt> Failures to set or modify variable behaviour with <tt>typeset</tt>,</dt>
+<dd><p><tt>local</tt>, <tt>declare</tt>, <tt>export</tt>, <tt>integer</tt>, <tt>float</tt>
+</p></dd>
+<dt> Execution of incorrectly positioned loop control structures</dt>
+<dd><p>(<tt>continue</tt>, <tt>break</tt>)
+</p></dd>
+<dt> Attempts to use regular expression with no regular expression</dt>
+<dd><p>module available
+</p></dd>
+<dt> Disallowed operations when the <tt>RESTRICTED</tt> options is set</dt>
+<dt> Failure to create a pipe needed for a pipeline</dt>
+<dt> Failure to create a multio</dt>
+<dt> Failure to autoload a module needed for a declared shell feature</dt>
+<dt> Errors creating command or process substitutions</dt>
+<dt> Syntax errors in glob qualifiers</dt>
+<dt> File generation errors where not caught by the option <tt>BAD_PATTERN</tt></dt>
+<dt> All bad patterns used for matching within case statements</dt>
+<dt> File generation failures where not caused by <tt>NO_MATCH</tt> or</dt>
+<dt> All file generation errors where the pattern was used to create a</dt>
+<dd><p>multio
+</p></dd>
+<dt> Memory errors where detected by the shell</dt>
+<dt> Invalid subscripts to shell variables</dt>
+<dt> Attempts to assign read-only variables</dt>
+<dt> Logical errors with variables such as assignment to the wrong type</dt>
+<dt> Use of invalid variable names</dt>
+<dt> Errors in variable substitution syntax</dt>
+<dt> Failure to convert characters in <tt>$&rsquo;</tt>...<tt>&rsquo;</tt> expressions</dt>
+<dd><p>similar options
+</p></dd>
+<dt></dt>
+</dl>
+
+<p>If the <tt>POSIX_BUILTINS</tt> option is set, more errors associated with
+shell builtin commands are treated as fatal, as specified by the POSIX
+standard.
+</p>
+<hr size="6">
+<a name="Comments"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Errors" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Aliasing" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -674,7 +751,7 @@ select coproc nocorrect foreach end ! [[ { }</tt>
 </tr></table>
 
 <a name="Comments-1"></a>
-<h2 class="section">6.6 Comments</h2>
+<h2 class="section">6.7 Comments</h2>
 <a name="index-comments"></a>
 <a name="index-INTERACTIVE_005fCOMMENTS_002c-use-of"></a>
 <a name="index-histchars_002c-use-of"></a>
@@ -703,7 +780,7 @@ characters up to a newline to be ignored.
 </tr></table>
 
 <a name="Aliasing-1"></a>
-<h2 class="section">6.7 Aliasing</h2>
+<h2 class="section">6.8 Aliasing</h2>
 <a name="index-aliasing"></a>
 <p>Every token in the shell input is checked to see if there
 is an alias defined for it.
@@ -785,7 +862,7 @@ code fragment might be re-executed.
 </tr></table>
 
 <a name="Quoting-1"></a>
-<h2 class="section">6.8 Quoting</h2>
+<h2 class="section">6.9 Quoting</h2>
 <a name="index-quoting"></a>
 <p>A character may be <var>quoted</var> (that is, made
 to stand for itself) by preceding it with a &lsquo;<tt>\</tt>&rsquo;.
@@ -828,7 +905,7 @@ command substitution occur, and &lsquo;<tt>\</tt>&rsquo; quotes the characters
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>July 24, 2012</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>March 6, 2013</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

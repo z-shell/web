@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on July 24, 2012 by texi2html 1.82
+<!-- Created on March 6, 2013 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -148,8 +148,9 @@ preceding the set of five expansions mentioned above.
 <p>History expansion allows you to use words from previous command
 lines in the command line you are typing.  This simplifies spelling
 corrections and the repetition of complicated commands or arguments.
+</p>
 <a name="index-HISTSIZE_002c-use-of"></a>
-Immediately before execution, each command is saved in the history list,
+<p>Immediately before execution, each command is saved in the history list,
 the size of which is controlled by the <tt>HISTSIZE</tt> parameter.  The one
 most recent command is always retained in any case.  Each saved command in
 the history list is called a history <em>event</em> and is assigned a number,
@@ -186,7 +187,7 @@ you may see in your prompt (see
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="Overview-1"></a>
+<a name="Overview-2"></a>
 <h3 class="subsection">14.1.1 Overview</h3>
 <a name="index-histchars_002c-use-of-1"></a>
 <p>A history expansion begins with the first character of the <tt>histchars</tt>
@@ -717,6 +718,26 @@ a subshell, for example,
 <p>as the forked subshell will wait for the command to finish then remove
 the temporary file.
 </p>
+<p>A general workaround to ensure a process substitution endures for
+an appropriate length of time is to pass it as a parameter to
+an anonymous shell function (a piece of shell code that is run
+immediately with function scope).  For example, this code:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">() {
+   print File $1:
+   cat $1
+} =(print This be the verse)
+</pre></td></tr></table>
+
+<p>outputs something resembling the following
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">File /tmp/zsh6nU0kS:
+This be the verse
+</pre></td></tr></table>
+
+<p>The temporary file created by the process substitution will be deleted
+when the function exits.
+</p>
 <hr size="6">
 <a name="Parameter-Expansion"></a>
 <table cellpadding="1" cellspacing="1" border="0">
@@ -993,6 +1014,8 @@ result is &lsquo;<tt>spy spy lispy star</tt>&rsquo;.
 the length in characters of the result instead of
 the result itself.  If <var>spec</var> is an array expression,
 substitute the number of elements of the result.
+This has the side-effect that joining is skipped even in quoted
+forms, which may affect other sub-expressions in <var>spec</var>.
 Note that &lsquo;<tt>^</tt>&rsquo;, &lsquo;<tt>=</tt>&rsquo;, and &lsquo;<tt>~</tt>&rsquo;, below, must appear
 to the left of &lsquo;<tt>#</tt>&rsquo; when these forms are combined.
 </p>
@@ -1139,11 +1162,12 @@ or <tt>z</tt> flags, which still applies within each array element.
 <dd><p>Create an array parameter with &lsquo;<tt>${</tt>...<tt>=</tt>...<tt>}</tt>&rsquo;,
 &lsquo;<tt>${</tt>...<tt>:=</tt>...<tt>}</tt>&rsquo; or &lsquo;<tt>${</tt>...<tt>::=</tt>...<tt>}</tt>&rsquo;.
 If this flag is repeated (as in &lsquo;<tt>AA</tt>&rsquo;), create an associative
-array parameter.  Assignment is made before sorting or padding.
-The <var>name</var> part may be a subscripted range for ordinary
-arrays; the <var>word</var> part <em>must</em> be converted to an array, for
-example by using &lsquo;<tt>${(AA)=</tt><var>name</var><tt>=</tt>...<tt>}</tt>&rsquo; to activate
-field splitting, when creating an associative array.
+array parameter.  Assignment is made before sorting or padding;
+if field splitting is active, the <var>word</var> part is split before
+assignment.  The <var>name</var> part may be a subscripted range for
+ordinary arrays; the <var>word</var> part <em>must</em> be converted to
+an array, for example by using &lsquo;<tt>${(AA)=</tt><var>name</var><tt>=</tt>...<tt>}</tt>&rsquo;
+to activate field splitting, when creating an associative array.
 </p>
 </dd>
 <dt> <tt>a</tt></dt>
@@ -1155,7 +1179,9 @@ order.
 </dd>
 <dt> <tt>c</tt></dt>
 <dd><p>With <tt>${#</tt><var>name</var><tt>}</tt>, count the total number of characters in an array,
-as if the elements were concatenated with spaces between them.
+as if the elements were concatenated with spaces between them.  This is not
+a true join of the array, so other expressions used with this flag may have
+an effect on the elements of the array before it is counted.
 </p>
 </dd>
 <dt> <tt>C</tt></dt>
@@ -1375,12 +1401,13 @@ errors are silently ignored.
 <dd><p>Split the result of the expansion into words using shell parsing to
 find the words, i.e. taking into account any quoting in the value.
 Comments are not treated specially but as ordinary strings, similar
-to interactive shells with the <tt>INTERACTIVE_COMMENTS</tt> option unset.
+to interactive shells with the <tt>INTERACTIVE_COMMENTS</tt> option unset
+(however, see the <tt>Z</tt> flag below for related options)
 </p>
-<p>Note that this is done very late, as for the &lsquo;<tt>(s)</tt>&rsquo; flag. So to
-access single words in the result, one has to use nested expansions as 
+<p>Note that this is done very late, even later than the &lsquo;<tt>(s)</tt>&rsquo; flag. So to
+access single words in the result use nested expansions as
 in &lsquo;<tt>${${(z)foo}[2]}</tt>&rsquo;. Likewise, to remove the quotes in the
-resulting words one would do: &lsquo;<tt>${(Q)${(z)foo}}</tt>&rsquo;.
+resulting words use &lsquo;<tt>${(Q)${(z)foo}}</tt>&rsquo;.
 </p>
 </dd>
 <dt> <tt>0</tt></dt>
@@ -1500,7 +1527,8 @@ i.e.  <tt>&quot;${(@s.:.)line}&quot;</tt>.
 </dd>
 <dt> <tt>Z:</tt><var>opts</var><tt>:</tt></dt>
 <dd><p>As <tt>z</tt> but takes a combination of option letters between a following
-pair of delimiter characters.  <tt>(Z+c+)</tt>
+pair of delimiter characters.  With no options the effect is identical
+to <tt>z</tt>.  <tt>(Z+c+)</tt>
 causes comments to be parsed as a string and retained; any field in the
 resulting array beginning with an unquoted comment character is a
 comment.  <tt>(Z+C+)</tt> causes comments to be parsed
@@ -1509,7 +1537,8 @@ starting with the third character of <tt>$HISTCHARS</tt>, default <tt>#</tt>, up
 the next newline is a comment.  <tt>(Z+n+)</tt> causes
 unquoted newlines to be treated as ordinary whitespace, else they are
 treated as if they are shell code delimiters and converted to
-semicolons.
+semicolons.  Options are combined within the same set of delimiters,
+e.g. <tt>(Z+Cn+)</tt>.
 </p>
 </dd>
 <dt> <tt>_:</tt><var>flags</var><tt>:</tt></dt>
@@ -1589,7 +1618,7 @@ order.
 <a name="Rules"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Parameter-Expansion-Flags" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Examples" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Examples-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Parameter-Expansion" title="Up section"> Up </a>]</td>
@@ -1612,7 +1641,7 @@ examples are given below.  Note that the Zsh Development Group accepts
 reading of the following rules.
 </p>
 <dl compact="compact">
-<dt> <tt>1.</tt> <em>Nested Substitution</em></dt>
+<dt> <tt>1.</tt> <em>Nested substitution</em></dt>
 <dd><p>If multiple nested <tt>${...}</tt> forms are present, substitution is
 performed from the inside outwards.  At each level, the substitution takes
 account of whether the current value is a scalar or an array, whether the
@@ -1637,13 +1666,15 @@ substitution then applies the modifier <tt>:h</tt> and takes the directory part
 of the path.)
 </p>
 </dd>
-<dt> <tt>2.</tt> <em>Internal Parameter Flags</em></dt>
+<dt> <tt>2.</tt> <em>Internal parameter flags</em></dt>
 <dd><p>Any parameter flags set by one of the <tt>typeset</tt> family of commands,
 in particular the <tt>L</tt>, <tt>R</tt>, <tt>Z</tt>, <tt>u</tt> and <tt>l</tt> flags for padding
 and capitalization, are applied directly to the parameter value.
+Note these flags are options to the command, e.g. &lsquo;<tt>typeset -Z</tt>&rsquo;;
+they are not the same as the flags used within parameter substitutions.
 </p>
 </dd>
-<dt> <tt>3.</tt> <em>Parameter Subscripting</em></dt>
+<dt> <tt>3.</tt> <em>Parameter subscripting</em></dt>
 <dd><p>If the value is a raw parameter reference with a subscript, such as
 <tt>${</tt><var>var</var><tt>[3]}</tt>, the effect of subscripting is applied directly to
 the parameter.  Subscripts are evaluated left to right; subsequent
@@ -1651,24 +1682,26 @@ subscripts apply to the scalar or array value yielded by the previous
 subscript.  Thus if <tt>var</tt> is an array, <tt>${var[1][2]}</tt> is the second
 character of the first word, but <tt>${var[2,4][2]}</tt> is the entire third
 word (the second word of the range of words two through four of the
-original array).  Any number of subscripts may appear.
+original array).  Any number of subscripts may appear.  Flags such as
+<tt>(k)</tt> and <tt>(v)</tt> which alter the result of subscripting are applied.
 </p>
 </dd>
-<dt> <tt>4.</tt> <em>Parameter Name Replacement</em></dt>
+<dt> <tt>4.</tt> <em>Parameter name replacement</em></dt>
 <dd><p>The effect of any <tt>(P)</tt> flag, which treats the value so far as a
 parameter name and replaces it with the corresponding value, is applied.
 </p>
 </dd>
-<dt> <tt>5.</tt> <em>Double-Quoted Joining</em></dt>
+<dt> <tt>5.</tt> <em>Double-quoted joining</em></dt>
 <dd><p>If the value after this process is an array, and the substitution
-appears in double quotes, and no <tt>(@)</tt> flag is present at the current
-level, the words of the value are joined with the first character of the
-parameter <tt>$IFS</tt>, by default a space, between each word (single word
-arrays are not modified).  If the <tt>(j)</tt> flag is present, that is used for
-joining instead of <tt>$IFS</tt>.
+appears in double quotes, and neither an <tt>(@)</tt> flag nor a <tt>#</tt>
+length operator is present at the current level, then words of the
+value are joined with the first character of the parameter <tt>$IFS</tt>,
+by default a space, between each word (single word arrays are not
+modified).  If the <tt>(j)</tt> flag is present, that is used for joining
+instead of <tt>$IFS</tt>.
 </p>
 </dd>
-<dt> <tt>6.</tt> <em>Nested Subscripting</em></dt>
+<dt> <tt>6.</tt> <em>Nested subscripting</em></dt>
 <dd><p>Any remaining subscripts (i.e. of a nested substitution) are evaluated at
 this point, based on whether the value is an array or a scalar.  As with
 <tt>3.</tt>, multiple subscripts can appear.  Note that <tt>${foo[2,4][2]}</tt> is
@@ -1695,51 +1728,58 @@ as a character.
 used to evaluate the length of the expression so far.
 </p>
 </dd>
-<dt> <tt>10.</tt> <em>Forced Joining</em></dt>
+<dt> <tt>10.</tt> <em>Forced joining</em></dt>
 <dd><p>If the &lsquo;<tt>(j)</tt>&rsquo; flag is present, or no &lsquo;<tt>(j)</tt>&rsquo; flag is present but
-the string is to be split as given by rules <tt>16.</tt> or <tt>17.</tt>, and joining
+the string is to be split as given by rule <tt>11.</tt>, and joining
 did not take place at step <tt>5.</tt>, any words in the value are joined
 together using the given string or the first character of <tt>$IFS</tt> if none.
 Note that the &lsquo;<tt>(F)</tt>&rsquo; flag implicitly supplies a string for joining in this
 manner.
 </p>
 </dd>
-<dt> <tt>11.</tt> <em>Case modification</em></dt>
-<dd><p>Any case modification from one of the flags <tt>(L)</tt>, <tt>(U)</tt> or <tt>(C)</tt>
-is applied.
-</p>
-</dd>
-<dt> <tt>12.</tt> <em>Escape sequence replacement</em></dt>
-<dd><p>First any replacements from the <tt>(g)</tt> flag are performed, then any
-prompt-style formatting from the <tt>(%)</tt> family of flags is applied.
-</p>
-</dd>
-<dt> <tt>13.</tt> <em>Quote application</em></dt>
-<dd><p>Any quoting or unquoting using <tt>(q)</tt> and <tt>(Q)</tt> and related flags
-is applied.
-</p>
-</dd>
-<dt> <tt>14.</tt> <em>Directory naming</em></dt>
-<dd><p>Any directory name substitution using <tt>(D)</tt> flag is applied.
-</p>
-</dd>
-<dt> <tt>15.</tt> <em>Visibility enhancment</em></dt>
-<dd><p>Any modifications to make characters visible using the <tt>(V)</tt> flag
-are applied.
-</p>
-</dd>
-<dt> <tt>16.</tt> <em>Forced Splitting</em></dt>
-<dd><p>If one of the &lsquo;<tt>(s)</tt>&rsquo;, &lsquo;<tt>(f)</tt>&rsquo; or &lsquo;<tt>(z)</tt>&rsquo; flags are present, or the &lsquo;<tt>=</tt>&rsquo;
+<dt> <tt>11.</tt> <em>Simple word splitting</em></dt>
+<dd><p>If one of the &lsquo;<tt>(s)</tt>&rsquo; or &lsquo;<tt>(f)</tt>&rsquo; flags are present, or the &lsquo;<tt>=</tt>&rsquo;
 specifier was present (e.g. <tt>${=</tt><var>var</var><tt>}</tt>), the word is split on
 occurrences of the specified string, or (for <tt>=</tt> with neither of the two
 flags present) any of the characters in <tt>$IFS</tt>.
 </p>
-</dd>
-<dt> <tt>17.</tt> <em>Shell Word Splitting</em></dt>
-<dd><p>If no &lsquo;<tt>(s)</tt>&rsquo;, &lsquo;<tt>(f)</tt>&rsquo; or &lsquo;<tt>=</tt>&rsquo; was given, but the word is not
+<p>If no &lsquo;<tt>(s)</tt>&rsquo;, &lsquo;<tt>(f)</tt>&rsquo; or &lsquo;<tt>=</tt>&rsquo; was given, but the word is not
 quoted and the option <tt>SH_WORD_SPLIT</tt> is set, the word is split on
 occurrences of any of the characters in <tt>$IFS</tt>.  Note this step, too,
 takes place at all levels of a nested substitution.
+</p>
+</dd>
+<dt> <tt>12.</tt> <em>Case modification</em></dt>
+<dd><p>Any case modification from one of the flags <tt>(L)</tt>, <tt>(U)</tt> or <tt>(C)</tt>
+is applied.
+</p>
+</dd>
+<dt> <tt>13.</tt> <em>Escape sequence replacement</em></dt>
+<dd><p>First any replacements from the <tt>(g)</tt> flag are performed, then any
+prompt-style formatting from the <tt>(%)</tt> family of flags is applied.
+</p>
+</dd>
+<dt> <tt>14.</tt> <em>Quote application</em></dt>
+<dd><p>Any quoting or unquoting using <tt>(q)</tt> and <tt>(Q)</tt> and related flags
+is applied.
+</p>
+</dd>
+<dt> <tt>15.</tt> <em>Directory naming</em></dt>
+<dd><p>Any directory name substitution using <tt>(D)</tt> flag is applied.
+</p>
+</dd>
+<dt> <tt>16.</tt> <em>Visibility enhancement</em></dt>
+<dd><p>Any modifications to make characters visible using the <tt>(V)</tt> flag
+are applied.
+</p>
+</dd>
+<dt> <tt>17.</tt> <em>Lexical word splitting</em></dt>
+<dd><p>If the &rsquo;<tt>(z)</tt>&rsquo; flag or one of the forms of the &rsquo;<tt>(Z)</tt>&rsquo; flag is
+present, the word is split as if it were a shell command line, so that
+quotation marks and other metacharacters are used to decide what
+constitutes a word.  Note this form of splitting is entirely distinct
+from that described by rule <tt>11.</tt>: it does not use <tt>$IFS</tt>, and
+does not cause forced joining.
 </p>
 </dd>
 <dt> <tt>18.</tt> <em>Uniqueness</em></dt>
@@ -1752,7 +1792,7 @@ elements are removed from the array.
 was present, the array is reordered.
 </p>
 </dd>
-<dt> <tt>20.</tt> <em>Re-Evaluation</em></dt>
+<dt> <tt>20.</tt> <em>Re-evaluation</em></dt>
 <dd><p>Any &lsquo;<tt>(e)</tt>&rsquo; flag is applied to the value, forcing it to be re-examined
 for new parameter substitutions, but also for command and arithmetic
 substitutions.
@@ -1763,7 +1803,7 @@ substitutions.
 &lsquo;<tt>(r.</tt><var>fill</var><tt>.)</tt>&rsquo; flags is applied.
 </p>
 </dd>
-<dt> <tt>22.</tt> <em>Semantic Joining</em></dt>
+<dt> <tt>22.</tt> <em>Semantic joining</em></dt>
 <dd><p>In contexts where expansion semantics requires a single word to
 result, all words are rejoined with the first character of <tt>IFS</tt>
 between.  So in &lsquo;<tt>${(P</tt><tt>)${(f</tt><tt>)lines}}</tt>&rsquo;
@@ -1787,7 +1827,7 @@ it occurs after any of the above parameter operations.
 
 
 <hr size="6">
-<a name="Examples"></a>
+<a name="Examples-1"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Rules" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Command-Substitution" title="Next section in reading order"> &gt; </a>]</td>
@@ -1859,7 +1899,7 @@ empty string will then be elided, as it is not in double quotes.
 <hr size="6">
 <a name="Command-Substitution"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Examples" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Examples-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Arithmetic-Expansion" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -3448,7 +3488,7 @@ print &lsquo;<tt>shmiltin.shmo</tt>&rsquo;.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>July 24, 2012</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>March 6, 2013</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

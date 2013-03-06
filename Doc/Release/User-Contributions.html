@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on July 24, 2012 by texi2html 1.82
+<!-- Created on March 6, 2013 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -44,7 +44,7 @@ ul.toc {list-style: none}
 <a name="User-Contributions"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Zftp-Function-System.html#Completion-3" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-6" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-3" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
@@ -64,7 +64,7 @@ ul.toc {list-style: none}
 <a name="index-user-contributions"></a>
 
 <hr size="6">
-<a name="Description-6"></a>
+<a name="Description-3"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Utilities" title="Next section in reading order"> &gt; </a>]</td>
@@ -115,7 +115,7 @@ such as shell functions, look for comments in the function source files.
 <hr size="6">
 <a name="Utilities"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Description-6" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Description-3" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Accessing-On_002dLine-Help" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -183,7 +183,7 @@ distribution in your home directory, you would use the commands:
 <table><tr><td>&nbsp;</td><td><pre class="example">mkdir ~/zsh_help
 cd ~/zsh_help
 man zshall | colcrt - | \ 
-perl ~/zsh-5.0.0/Util/helpfiles
+perl ~/zsh-5.0.2-dev-0/Util/helpfiles
 </pre></td></tr></table>
 
 <a name="index-run_002dhelp_002c-use-of"></a>
@@ -348,7 +348,7 @@ configuration.
 </p>
 <p>Run <tt>zkbd</tt> either as an autoloaded function, or as a shell script:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">zsh -f ~/zsh-5.0.0/Functions/Misc/zkbd
+<table><tr><td>&nbsp;</td><td><pre class="example">zsh -f ~/zsh-5.0.2-dev-0/Functions/Misc/zkbd
 </pre></td></tr></table>
 
 <p>When you run <tt>zkbd</tt>, it first asks you to enter your terminal type; if
@@ -418,7 +418,7 @@ recreate that state.
 <p>To use <tt>reporter</tt>, read the script into your shell with the &lsquo;<tt>.</tt>&rsquo;
 command and redirect the output into a file:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">. ~/zsh-5.0.0/Util/reporter &gt; zsh.report
+<table><tr><td>&nbsp;</td><td><pre class="example">. ~/zsh-5.0.2-dev-0/Util/reporter &gt; zsh.report
 </pre></td></tr></table>
 
 <p>You should check the <tt>zsh.report</tt> file for any sensitive information
@@ -676,7 +676,7 @@ style is on by default so no action is required unless you have changed it.
 <a name="Options-3"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Use" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Configuration-1" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Recent-Directories" title="Up section"> Up </a>]</td>
@@ -721,7 +721,7 @@ Usually the first entry should be left as the current directory.
 
 
 <hr size="6">
-<a name="Configuration-1"></a>
+<a name="Configuration"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Options-3" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Use-with-dynamic-directory-naming" title="Next section in reading order"> &gt; </a>]</td>
@@ -887,7 +887,7 @@ this.
 <hr size="6">
 <a name="Use-with-dynamic-directory-naming"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Configuration-1" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Configuration" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Details-of-directory-handling" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -1044,7 +1044,7 @@ below for details.
 <a name="Quickstart"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Version-Control-Information" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Configuration" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Version-Control-Information" title="Up section"> Up </a>]</td>
@@ -1126,7 +1126,7 @@ wasted time there.
 </p>
 
 <hr size="6">
-<a name="Configuration"></a>
+<a name="Configuration-1"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Quickstart" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Oddities" title="Next section in reading order"> &gt; </a>]</td>
@@ -1240,7 +1240,10 @@ accomplish that.
 <dd><p><tt>hg</tt> uses both a hash and a revision number to reference a specific
 changeset in a repository. With this style you can format the revision
 string (see <tt>branchformat</tt>) to include either or both. It&rsquo;s only
-useful when <tt>get-revision</tt> is true.
+useful when <tt>get-revision</tt> is true. Note, the full 40-character revision id
+is not available (except when using the <tt>use-simple</tt> option) because
+executing hg more than once per prompt is too slow; you may customize this
+behavior using hooks.
 </p>
 <a name="index-max_002dexports"></a>
 </dd>
@@ -1565,7 +1568,7 @@ and <tt>git</tt> backends to display patch information from the <tt>mq</tt> and
 <dd><p>The current local revision number.
 </p></dd>
 <dt> <tt>%h</tt></dt>
-<dd><p>The current 40-character changeset ID hash identifier.
+<dd><p>The current global revision identifier.
 </p></dd>
 </dl>
 
@@ -1584,6 +1587,9 @@ and <tt>git</tt> backends to display patch information from the <tt>mq</tt> and
 <dt> <tt>%c</tt></dt>
 <dd><p>The number of unapplied patches.
 </p></dd>
+<dt> <tt>%a</tt></dt>
+<dd><p>The number of all patches.
+</p></dd>
 <dt> <tt>%g</tt></dt>
 <dd><p>The names of active <tt>mq</tt> guards (<tt>hg</tt> backend).
 </p></dd>
@@ -1599,7 +1605,7 @@ no replacements are performed at all, it is just a string.
 <hr size="6">
 <a name="Oddities"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Configuration" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Configuration-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Quilt-Support" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -1851,7 +1857,7 @@ exported into the environment. (See the <tt>max-exports</tt> style above.)
 <a name="Hooks-in-vcs_005finfo"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Variable-Description" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Examples-1" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Examples" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Version-Control-Information" title="Up section"> Up </a>]</td>
@@ -2086,7 +2092,7 @@ They contain some explanatory code.
 </p>
 
 <hr size="6">
-<a name="Examples-1"></a>
+<a name="Examples"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Hooks-in-vcs_005finfo" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Prompt-Themes" title="Next section in reading order"> &gt; </a>]</td>
@@ -2245,7 +2251,7 @@ directory.
 <hr size="6">
 <a name="Prompt-Themes"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Examples-1" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Examples" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Installation-2" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -2379,7 +2385,7 @@ normally call a theme&rsquo;s setup function directly.
 <a name="ZLE-Functions"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Theme-Selection" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Widgets" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Widgets-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Up section"> Up </a>]</td>
@@ -2399,10 +2405,10 @@ normally call a theme&rsquo;s setup function directly.
 
 
 <hr size="6">
-<a name="Widgets"></a>
+<a name="Widgets-1"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#ZLE-Functions" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Utility-Functions" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Utility-Functions-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#ZLE-Functions" title="Up section"> Up </a>]</td>
@@ -3550,10 +3556,10 @@ investigate the command word found.  The default is <tt>whence -c</tt>.
 
 
 <hr size="6">
-<a name="Utility-Functions"></a>
+<a name="Utility-Functions-1"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Widgets" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Styles" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Widgets-1" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Styles-2" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#ZLE-Functions" title="Up section"> Up </a>]</td>
@@ -3600,14 +3606,21 @@ an example of how to call this function.
 </p>
 <a name="index-modify_002dcurrent_002dargument"></a>
 </dd>
-<dt> <tt>modify-current-argument</tt> <var>expr-using-</var><tt>$ARG</tt></dt>
+<dt> <tt>modify-current-argument</tt> [ <var>expr-using-</var><tt>$ARG</tt> | <var>func</var> ]</dt>
 <dd><p>This function provides a simple method of allowing user-defined widgets
 to modify the command line argument under the cursor (or immediately to the
-left of the cursor if the cursor is between arguments).  The argument
-should be an expression which when evaluated operates on the shell
+left of the cursor if the cursor is between arguments).
+</p>
+<p>The argument can be an expression which when evaluated operates on the shell
 parameter <tt>ARG</tt>, which will have been set to the command line argument
 under the cursor.  The expression should be suitably quoted to prevent
 it being evaluated too early.
+</p>
+<p>Alternatively, if the argument does not contain the string <tt>ARG</tt>, it
+is assumed to be a shell function, to which the current command line
+argument is passed as the only argument.  The function should set the
+variable <tt>REPLY</tt> to the new value for the command line argument.
+If the function returns non-zero status, so does the calling function.
 </p>
 <p>For example, a user-defined widget containing the following code
 converts the characters in the argument under the cursor into all upper
@@ -3623,14 +3636,27 @@ throughout:
 <table><tr><td>&nbsp;</td><td><pre class="example">modify-current-argument '${(qq)${(Q)ARG}}'
 </pre></td></tr></table>
 
+<p>The following performs directory expansion on the command line
+argument and replaces it by the absolute path:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">expand-dir() {
+  REPLY=${~1}
+  REPLY=${REPLY:a}
+}
+modify-current-argument expand-dir
+</pre></td></tr></table>
+
+<p>In practice the function <tt>expand-dir</tt> would probably not be defined
+within the widget where <tt>modify-current-argument</tt> is called.
+</p>
 </dd>
 </dl>
 
 
 <hr size="6">
-<a name="Styles"></a>
+<a name="Styles-2"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Utility-Functions" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Utility-Functions-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Exception-Handling" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -3845,7 +3871,7 @@ whether the <tt>widget</tt> style is used.
 <hr size="6">
 <a name="Exception-Handling"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Styles" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Styles-2" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#MIME-Functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -4398,6 +4424,10 @@ into the global namespace.
 for example &lsquo;<tt>zcalc -#16</tt>&rsquo; (the &lsquo;<tt>#</tt>&rsquo; may have to be quoted, depending
 on the globbing options set).
 </p>
+<p>If the option &lsquo;<tt>-f</tt>&rsquo; is set, all numbers are treated as floating
+point, hence for example the expression &lsquo;<tt>3/4</tt>&rsquo; evaluates to 0.75
+rather than 0.  Options must appear in separate words.
+</p>
 <p>The prompt is configurable via the parameter <tt>ZCALCPROMPT</tt>, which
 undergoes standard prompt expansion.  The index of the current entry is
 stored locally in the first element of the array <tt>psvar</tt>, which can be
@@ -4608,7 +4638,7 @@ require documentation here, but a few are worthy of special mention.
 <a name="Descriptions"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Other-Functions" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Styles-2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Styles-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Other-Functions" title="Up section"> Up </a>]</td>
@@ -5048,7 +5078,7 @@ unchanged.
 
 
 <hr size="6">
-<a name="Styles-2"></a>
+<a name="Styles-1"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Descriptions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next section in reading order"> &gt; </a>]</td>
@@ -5111,7 +5141,7 @@ The usual expansions for the <tt>PS1</tt> and <tt>RPS1</tt> parameters may be us
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>July 24, 2012</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>March 6, 2013</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

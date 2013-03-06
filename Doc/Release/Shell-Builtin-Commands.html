@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on July 24, 2012 by texi2html 1.82
+<!-- Created on March 6, 2013 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -149,7 +149,7 @@ which no alias has been defined.
 <a name="index-functions_002c-autoloading-1"></a>
 <a name="index-autoloading-functions-1"></a>
 </dd>
-<dt> <tt>autoload</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>UXktz</tt> ] [ <tt>-w</tt> ] [ <var>name</var> ... ]</dt>
+<dt> <tt>autoload</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>UXkmtz</tt> ] [ <tt>-w</tt> ] [ <var>name</var> ... ]</dt>
 <dd><p>Equivalent to <tt>functions -u</tt>, with the exception of <tt>-X</tt>/<tt>+X</tt> and
 <tt>-w</tt>.
 </p>
@@ -170,15 +170,28 @@ undefined and marked for autoloading.  If ksh-style autoloading is
 enabled, the function created will contain the contents of the file
 plus a call to the function itself appended to it, thus giving normal
 ksh autoloading behaviour on the first call to the function.
+If the <tt>-m</tt> flag is also given each <var>name</var> is treated as a
+pattern and all functions already marked for autoload that match the
+pattern are loaded.
 </p>
 <p>With the <tt>-w</tt> flag, the <var>name</var>s are taken as names of files compiled
 with the <tt>zcompile</tt> builtin, and all functions defined in them are
 marked for autoloading.
 </p>
-<p>The flags <tt>-z</tt> and <tt>-k</tt> mark the function to be autoloaded in
-native or ksh emulation, as if the option <tt>KSH_AUTOLOAD</tt> were
-unset or were set, respectively.  The flags override the setting of
-the option at the time the function is loaded.
+<p>The flags <tt>-z</tt> and <tt>-k</tt> mark the function to be autoloaded using the
+zsh or ksh style, as if the option <tt>KSH_AUTOLOAD</tt> were unset or were
+set, respectively.  The flags override the setting of the option at the
+time the function is loaded.
+</p>
+<p>Note that the <tt>autoload</tt> command makes no attempt to ensure the
+shell options set during the loading or execution of the file have
+any particular value.  For this, the <tt>emulate</tt> command can be used:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">emulate zsh -c 'autoload -Uz <var>func</var>'
+</pre></td></tr></table>
+
+<p>arranges that when <var>func</var> is loaded the shell is in native <tt>zsh</tt>
+emulation, and this emulation is also applied when <var>func</var> is run.
 </p>
 <a name="index-bg"></a>
 <a name="index-jobs_002c-backgrounding"></a>
@@ -525,7 +538,8 @@ use of <tt>-c</tt> in <var>flags</var>.
 <a href="Invocation.html#Invocation">Invocation</a>,
 except that &lsquo;<tt>-o EMACS</tt>&rsquo; and &lsquo;<tt>-o VI</tt>&rsquo; may not be used.  Flags such
 as &lsquo;<tt>+r</tt>&rsquo;/&lsquo;<tt>+o RESTRICTED</tt>&rsquo; may be prohibited in some circumstances.
-If <tt>-c</tt> <var>arg</var> appears in <var>flags</var>, <var>arg</var> is evaluated while the
+</p>
+<p>If <tt>-c</tt> <var>arg</var> appears in <var>flags</var>, <var>arg</var> is evaluated while the
 requested emulation is temporarily in effect.  In this case the emulation
 mode and all options are restored to their previous values before
 <tt>emulate</tt> returns.  The <tt>-R</tt> switch may precede the name of the shell
@@ -541,7 +555,10 @@ If the function is called when the sticky emulation is already in
 effect, either within an &lsquo;<tt>emulate</tt> <var>shell</var> <tt>-c</tt>&rsquo; expression or
 within another function with the same sticky emulation, entry and exit
 from the function do not cause options to be altered (except due to
-standard processing such as the <tt>LOCAL_OPTIONS</tt> option).
+standard processing such as the <tt>LOCAL_OPTIONS</tt> option).  This also
+applies to functions marked for autoload within the sticky emulation;
+the appropriate set of options will be applied at the point the
+function is loaded as well as when it is run.
 </p>
 <p>For example:
 </p>
@@ -589,6 +606,12 @@ the <tt>zcompile</tt> command.
 corresponds to different sticky emulation modes, so for example
 &lsquo;<tt>emulate sh -c</tt>&rsquo;, &lsquo;<tt>emulate -R sh -c</tt>&rsquo; and &lsquo;<tt>emulate csh -c</tt>&rsquo;
 are treated as three distinct sticky emulations.
+</p></dd>
+<dt> 5.</dt>
+<dd><p>Difference in shell options supplied in addition to the
+basic emulation also mean the sticky emulations are different, so for
+example &lsquo;<tt>emulate zsh -c</tt>&rsquo; and &lsquo;<tt>emulate zsh -o cbases -c</tt>&rsquo; are
+treated as distinct sticky emulations.
 </p></dd>
 </dl>
 
@@ -784,7 +807,7 @@ point numbers are not permitted.
 </p>
 <a name="index-functions-1"></a>
 </dd>
-<dt> <tt>functions</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>UXkmtuz</tt> ] [ <var>name</var> ... ]</dt>
+<dt> <tt>functions</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>UXkmtTuz</tt> ] [ <var>name</var> ... ]</dt>
 <dt> <tt>functions -M</tt> <var>mathfn</var> [ <var>min</var> [ <var>max</var> [ <var>shellfn</var> ] ] ]</dt>
 <dt> <tt>functions -M</tt> [ <tt>-m</tt> <var>pattern</var> ... ]</dt>
 <dt> <tt>functions +M</tt> [ <tt>-m</tt> ] <var>mathfn</var></dt>
@@ -1619,6 +1642,11 @@ or without the <tt>no</tt> prefix remains the same in this case.
 (which should be quoted to protect them from filename expansion), and all
 options with names matching these patterns are set.
 </p>
+<p>Note that a bad option name does not cause execution of subsequent shell
+code to be aborted; this is behaviour is different from that of &lsquo;<tt>set
+-o</tt>&rsquo;.  This is because <tt>set</tt> is regarded as a special builtin by the
+POSIX standard, but <tt>setopt</tt> is not.
+</p>
 <a name="index-shift"></a>
 <a name="index-parameters_002c-positional-1"></a>
 </dd>
@@ -1836,7 +1864,10 @@ an array to <var>SCALAR</var> is an error, and assigning a scalar to <var>array<
 sets it to be a single-element array.  Note that both &lsquo;<tt>typeset -xT ...</tt>&rsquo;
 and &lsquo;<tt>export -T ...</tt>&rsquo; work, but only the scalar will be marked for
 export.  Setting the value using the scalar version causes a split on all
-separators (which cannot be quoted).
+separators (which cannot be quoted).  It is possible to use the
+same two tied variables with a different separator character in which
+case the variables remain joined as before but the separator is changed.
+This flag has a different meaning when used with <tt>-f</tt>; see below.
 </p>
 <p>The <tt>-g</tt> (global) flag is treated specially: it means that any
 resulting parameter will not be restricted to local scope.  Note that this
@@ -1938,16 +1969,18 @@ shown.
 </dd>
 <dt> <tt>-f</tt></dt>
 <dd><p>The names refer to functions rather than parameters.  No assignments
-can be made, and the only other valid flags are <tt>-t</tt>, <tt>-k</tt>, <tt>-u</tt>,
-<tt>-U</tt> and <tt>-z</tt>.  The flag <tt>-t</tt> turns on execution tracing for this
-function.  The <tt>-u</tt> and <tt>-U</tt> flags cause the function to be
-marked for autoloading; <tt>-U</tt> also causes alias expansion to be
-suppressed when the function is loaded.  The <tt>fpath</tt> parameter
-will be searched to find the function definition when the function
-is first referenced; see <a href="Functions.html#Functions">Functions</a>. The <tt>-k</tt> and <tt>-z</tt> flags
-make the function be loaded using ksh-style or zsh-style autoloading
-respectively. If neither is given, the setting of the KSH_AUTOLOAD option
-determines how the function is loaded.
+can be made, and the only other valid flags are <tt>-t</tt>, <tt>-T</tt>, <tt>-k</tt>,
+<tt>-u</tt>, <tt>-U</tt> and <tt>-z</tt>.  The flag <tt>-t</tt> turns on execution tracing
+for this function; the flag <tt>-T</tt> does the same, but turns off tracing
+on any function called from the present one, unless that function also
+has the <tt>-t</tt> or <tt>-T</tt> flag.  The <tt>-u</tt> and <tt>-U</tt> flags cause the
+function to be marked for autoloading; <tt>-U</tt> also causes alias
+expansion to be suppressed when the function is loaded.  The <tt>fpath</tt>
+parameter will be searched to find the function definition when the
+function is first referenced; see <a href="Functions.html#Functions">Functions</a>. The <tt>-k</tt> and
+<tt>-z</tt> flags make the function be loaded using ksh-style or zsh-style
+autoloading respectively. If neither is given, the setting of the
+KSH_AUTOLOAD option determines how the function is loaded.
 </p>
 </dd>
 <dt> <tt>-h</tt></dt>
@@ -2034,7 +2067,7 @@ compatibility with previous versions of zsh.
 <a name="index-resource-limits-1"></a>
 <a name="index-limits_002c-resource-1"></a>
 </dd>
-<dt> <tt>ulimit</tt> [ [ <tt>-SHacdfilmnpqstvx</tt> | <tt>-N</tt> <var>resource</var> [ <var>limit</var> ] ... ]</dt>
+<dt> <tt>ulimit</tt> [ [ <tt>-SHacdfilmnpqrstvx</tt> | <tt>-N</tt> <var>resource</var> [ <var>limit</var> ] ... ]</dt>
 <dd><p>Set or display resource limits of the shell and the processes started by
 the shell.  The value of <var>limit</var> can be a number in the unit specified
 below or one of the values &lsquo;<tt>unlimited</tt>&rsquo;, which removes the limit on the
@@ -2055,15 +2088,21 @@ unit is printed before each value.
 it detects a badly formed argument.  However, if it fails to set a limit
 for some other reason it will continue trying to set the remaining limits.
 </p>
+<p>Not all the following resources are supported on all systems.  Running
+<tt>ulimit -a</tt> will show which are supported.
+</p>
 <dl compact="compact">
 <dt> <tt>-a</tt></dt>
 <dd><p>Lists all of the current resource limits.
+</p></dd>
+<dt> <tt>-b</tt></dt>
+<dd><p>Socket buffer size in bytes (N.B. not kilobytes)
 </p></dd>
 <dt> <tt>-c</tt></dt>
 <dd><p>512-byte blocks on the size of core dumps.
 </p></dd>
 <dt> <tt>-d</tt></dt>
-<dd><p>K-bytes on the size of the data segment.
+<dd><p>Kilobytes on the size of the data segment.
 </p></dd>
 <dt> <tt>-f</tt></dt>
 <dd><p>512-byte blocks on the size of files written.
@@ -2072,10 +2111,10 @@ for some other reason it will continue trying to set the remaining limits.
 <dd><p>The number of pending signals.
 </p></dd>
 <dt> <tt>-l</tt></dt>
-<dd><p>K-bytes on the size of locked-in memory.
+<dd><p>Kilobytes on the size of locked-in memory.
 </p></dd>
 <dt> <tt>-m</tt></dt>
-<dd><p>K-bytes on the size of physical memory.
+<dd><p>Kilobytes on the size of physical memory.
 </p></dd>
 <dt> <tt>-n</tt></dt>
 <dd><p>open file descriptors.
@@ -2084,16 +2123,19 @@ for some other reason it will continue trying to set the remaining limits.
 <dd><p>Bytes in POSIX message queues.
 </p></dd>
 <dt> <tt>-s</tt></dt>
-<dd><p>K-bytes on the size of the stack.
+<dd><p>Kilobytes on the size of the stack.
 </p></dd>
 <dt> <tt>-t</tt></dt>
 <dd><p>CPU seconds to be used.
 </p></dd>
+<dt> <tt>-r</tt></dt>
+<dd><p>The number of simultaneous threads available to the user.
+</p></dd>
 <dt> <tt>-u</tt></dt>
-<dd><p>processes available to the user.
+<dd><p>The number of processes available to the user.
 </p></dd>
 <dt> <tt>-v</tt></dt>
-<dd><p>K-bytes on the size of virtual memory.  On some systems this
+<dd><p>Kilobytes on the size of virtual memory.  On some systems this
 refers to the limit called &lsquo;address space&rsquo;.
 </p></dd>
 <dt> <tt>-x</tt></dt>
@@ -2736,7 +2778,7 @@ dynamic loading of modules.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>July 24, 2012</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>March 6, 2013</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 
