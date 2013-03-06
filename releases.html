@@ -27,6 +27,92 @@
 </table>
 <hr size=1 noshade>
 
+<h2>Changes between versions 5.0.1 and 5.0.2</h2>
+
+<ul>
+<li>
+Bug fix for anonymous functions.
+</li>
+</ul>
+
+
+<h2>Changes between versions 5.0.0 and 5.0.1</h2>
+
+<h3>Incompatibilities</h3>
+
+<p>
+In 5.0.0, the new "sticky" emulation feature was applied to functions
+explicitly declared within an expression following `emulate ... -c', but
+did not apply to functions marked for autoload in that expression.  This
+was not documented and experience suggests it was inconvenient, so in
+5.0.2 autoloads also have the sticky property.
+</p>
+
+<p>
+In other words,
+</p>
+
+<pre>
+  emulate zsh -c 'func() { ... }'
+</pre>
+
+<p>
+behaves the same way in 5.0.0 and 5.0.2, with the function func always being
+run in native zsh emulation regardless of the current option settings.
+However,
+</p>
+
+<pre>
+  emulate zsh -c 'autoload -Uz func'
+</pre>
+
+<p>
+behaves differently: in 5.0.0, func was loaded with the options in
+effect at the point where it was first run, and subsequently run with
+whatever options were in effect at that point; in 5.0.2, func is loaded
+with native zsh emulation options and run with those same options.  This
+is now the recommended way of ensuring a function is loaded and run with
+a consistent set of options.
+</p>
+
+<p>
+Note that the command `autoload -z' has never affected the options
+applied when the function is loaded or run, only the effect of the
+KSH_AUTOLOAD option at the point the function is loaded.
+</p>
+
+<h3>Changes</h3>
+
+<ul>
+<li>
+Numeric constants encountered in mathematical expressions (but not other
+contexts) can contain underscores as separators that will be ignored on
+evaluation, as allowed in other scripting languages.  For example,
+0xFFFF_FFFF, or 3.141_592_654.
+</li>
+
+<li>
+"functions -T" turns on tracing for the specified function(s) only,
+similar to "functions -t" except that tracing is turned off for any
+functions called from the specified one(s) that don't also have the -t
+or -T flag.
+</li>
+
+<li>
+In file completion, the recursive-files style can be set to an array of
+patterns to match against "$PWD/".  In any matched location, it is
+possibly to complete files in arbitrarily deep subdirectories without
+needing to type the directory prefix.  See example in the zshcompsys
+manual.
+</li>
+
+<li>
+The _user_expand completer now allows expansion functions in the
+user-expand files to return a string in REPLY that will be used to name
+the set of expansions returned.
+</li>
+</ul>
+
 
 <h2>New features between zsh versions 4.2 and 5.0</h2>
 
@@ -1613,7 +1699,7 @@ completion.
 <div align=right>
 <address>
 <a name=Signature href="disclaimer.html">Disclaimer</A>
-Last modified: $Date: 2012/02/26 02:43:09 $
+Last modified: 2013-03-06
 </address>
 </div>
 
