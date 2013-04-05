@@ -1,0 +1,37 @@
+README
+======
+
+Website
+-------
+
+The website is _not_ automatically synchronized with the Git repository.
+
+
+You can fetch the current version of the published website with:
+
+    rsync -avi $SF_USER,zsh@web.sourceforge.net:htdocs/ .
+
+$SF_USER is your Sourceforge user name, you need SSH access for this to work.
+
+To upload the committed changes use:
+
+    rsync -avi --no-perms --exclude .git . $SF_USER,zsh@web.sourceforge.net:htdocs/
+
+`--no-perms` is important if you have a strict umask or the pages are not
+accessible.
+
+*Don't upload any uncommitted changes!*
+
+
+Release
+-------
+
+To prepare a new release use the `release.zsh` script. $ZSHPATH must point to
+a current checkout of the Zsh source repository.
+
+    ZSHPATH=/path/to/zsh/ ./release.zsh
+
+Follow the instructions and check the results. Then commit the changes and tag
+the commit with:
+
+    git tag -s -m "Release of zsh $ZSH_VERSION" zsh-$ZSH_VERSION
