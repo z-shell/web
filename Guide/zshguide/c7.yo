@@ -1,0 +1,39 @@
+COMMENT(-- $Id$ --)\
+lchapter(ragbag)(Modules and other bits and pieces em(Not written))
+
+sect(Control over modules: tt(zmodload))
+
+subsect(Modules defining parameters)
+
+subsect(Low-level system interaction)
+
+COMMENT(-- files, stat, --)
+
+subsect(ZFTP)
+
+COMMENT(-- zftp, zf commands -- )
+
+sect(Contributed bits)
+
+subsect(Prompt themes)
+
+sect(What's new in 4.1)
+
+COMMENT(-- tcp + funcs, zselect, zle -F,
+
+redirection- and parameter-specific completions; optional incremental
+listing of completion
+
+extra zle parameters, recursive editing
+
+for key val ... in ...; var+=..; 
+
+(#g...)
+
+printf
+
+termcap, terminfo
+
+zcalc
+
+tetris  --)

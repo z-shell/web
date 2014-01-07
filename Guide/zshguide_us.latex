@@ -634,7 +634,7 @@ shell.  Script writers who want to get round problems with options being
 changed in \texttt{/etc/zshenv} should put `\texttt{emulate zsh}' at the top of the
 script.
 
-There are two files run at the end: \texttt{/etc/zlogout} and \texttt{\textasciitilde /.zlogout}, in
+There are two files run at the end: \texttt{\textasciitilde /.zlogout} and \texttt{/etc/zlogout}, in
 that order.  As their names suggest, they are counterparts of the
 \texttt{zlogin} files, and therefore are only run for login shells --- though
 you can trick the shell by setting the \texttt{login} option.  Note that whether
@@ -2624,7 +2624,7 @@ by `curses', a more advanced system for manipulating objects on a
 character terminal.  This means that the arguments you need to give to
 \texttt{echotc} can be rather hard to come by; try the \texttt{termcap} manual
 page; if there are two, it's probably the one in section five which
-gives the codes, i.e. `\texttt{man 5 termcap}' or `\texttt{man -s 5 termcap}' on Solaris.
+gives the codes, i.e. `\texttt{man 5 zsh}' or `\texttt{man -s 5 zsh}' on Solaris.
 Otherwise you'll have to search the web.  The reason the \texttt{zsh} manual
 doesn't give a list is that the shell only uses a few well-known
 sequences, and there are very many others which will work with

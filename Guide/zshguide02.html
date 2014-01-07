@@ -220,7 +220,7 @@ shells, such as prompts, have no business in <code>/etc/zshenv</code> unless you
 shell.  Script writers who want to get round problems with options being
 changed in <code>/etc/zshenv</code> should put `<code>emulate zsh</code>' at the top of the
 script.
-<p>There are two files run at the end: <code>/etc/zlogout</code> and <code>~/.zlogout</code>, in
+<p>There are two files run at the end: <code>~/.zlogout</code> and <code>/etc/zlogout</code>, in
 that order.  As their names suggest, they are counterparts of the
 <code>zlogin</code> files, and therefore are only run for login shells --- though
 you can trick the shell by setting the <code>login</code> option.  Note that whether

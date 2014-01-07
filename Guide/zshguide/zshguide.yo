@@ -1,0 +1,120 @@
+COMMENT(-- $Id$ --)\
+mailto(p.w.stephenson@ntlworld.com)\
+DEFINEMACRO(LPAR)(0)(CHAR(40))\
+DEFINEMACRO(RPAR)(0)(CHAR(41))\
+DEFINEMACRO(PLUS)(0)(CHAR(43))\
+DEFINEMACRO(POUND)(0)(\
+  whentxt(CHAR(243))\
+  htmlcommand(&pound;)\
+  latexcommand(\pounds)\
+  whenms(CHAR(243))\
+  sgmlcommand(&pound;))\
+COMMENT(-- mytt is like tt but adds quotes `like this' for plain text --)\
+def(mytt)(1)(\
+  whentxt(`ARG1')\
+  whenhtml(tt(ARG1))\
+  whenlatex(tt(ARG1))\
+  whenms(tt(ARG1))\
+  whensgml(tt(ARG1)))\
+COMMENT(-- mybf/em are like bf/em but add *emphasis* for text too --)\
+def(mybf)(1)(\
+  whentxt(*ARG1*)\
+  whenhtml(bf(ARG1))\
+  whenlatex(bf(ARG1))\
+  whenms(bf(ARG1))\
+  whensgml(bf(ARG1)))
+def(myem)(1)(\
+  whentxt(_ARG1_)\
+  whenhtml(em(ARG1))\
+  whenlatex(em(ARG1))\
+  whenms(em(ARG1))\
+  whensgml(em(ARG1)))\
+COMMENT(-- mydit is like dit but no `o' for text mode --)\
+def(mydit)(1)(\
+    whenlatex(dit(ARG1))\
+    whenhtml(dit(ARG1))\
+    whentxt(ARG1)\
+    whenman(dit(ARG1))\
+    whenms(dit(ARG1))\
+    whensgml(dit(ARG1)))\
+COMMENT(-- myeit is like eit but fancier text formatting --)\
+def(myeit)(0)(\
+    whenlatex(eit())whenhtml(eit())whenman(eit())whenms(eit())whensgml(eit())\
+    whentxt(eit()CHAR(41)))\
+def(myeitd)(0)(\
+    whenlatex(eit())whenhtml(eit())whenman(eit())whenms(eit())whensgml(eit())\
+    whentxt(.))\
+def(var)(1)(em(ARG1))\
+COMMENT(-- XXparcounter is not defined in yodl 2.x --)\
+IFDEF(XXparcounter)(\
+)(\
+    NEWCOUNTER(XXparcounter)\
+)\
+COMMENT(-- without excess newlines in latex style --)\
+UNDEFINEMACRO(verb)\
+DEFINEMACRO(verb)(1)(\
+    whenlatex(PUSHCHARTABLE()\
+              latexcommand(\begin{verbatim}) \
+              NOEXPAND(ARG1)\
+              latexcommand(\end{verbatim})\
+              POPCHARTABLE())\
+    whentexinfo(texinfocommand(@example)\
+              NOEXPAND(ARG1)\
+              texinfocommand(@end example))\
+    whenhtml(SETCOUNTER(XXparcounter)(0)\
+             htmlcommand(<pre>)\
+             XXnl()\
+             NOEXPAND(ARG1)\
+             XXnl()\
+             htmlcommand(</pre>)\
+             XXnl()\
+             SETCOUNTER(XXparcounter)(1))\
+    whenman(SETCOUNTER(XXparcounter)(0)\
+            XXinternallabel(endremoveblank)\
+            XXroffcmd(.DS)()()()\
+            NOEXPAND(ARG1)\
+            XXroffcmd(.DE)()()()\
+            XXinternallabel(startremoveblank)\
+            SETCOUNTER(XXparcounter)(1))\
+    whenms(SETCOUNTER(XXparcounter)(0)\
+           XXinternallabel(endremoveblank)\
+           mscommand(\f)+CHAR(40)CW
+           XXroffcmd(.DS)()()()\
+           NOEXPAND(ARG1)\
+           XXroffcmd(.DE)()()()\
+           mscommand(\fP)\
+           XXinternallabel(startremoveblank)\
+           SETCOUNTER(XXparcounter)(1))\
+    whentxt(NOEXPAND(ARG1))\
+    whensgml(PUSHCHARTABLE(list)\
+             sgmlcommand(<tscreen><verb>) XXnl()\
+             NOEXPAND(ARG1)\
+             XXnl()\
+             sgmlcommand(</verb></tscreen>)\
+             POPCHARTABLE()))
+book(A User's Guide to the Z-Shell)(Peter Stephenson)(2003/03/23)
+
+includefile(c1)
+
+includefile(c2)
+
+includefile(c3)
+
+includefile(c4)
+
+includefile(c5)
+
+includefile(c6)
+
+includefile(c7)
+
+appendix()
+
+chapter(Obtaining zsh and getting more information em(Not written))
+label(appa)
+
+This appendix gives some useful pointers for finding zsh, more information
+about zsh, and people who know how to fix the problems (yours or its).
+It is mostly a set of URLs and email addresses.  If you just want to surf
+your way round, start from the main zsh site at url(http://www.zsh.org/)\
+(http://www.zsh.org/).
