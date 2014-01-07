@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on March 6, 2013 by texi2html 1.82
+<!-- Created on January 7, 2014 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -183,7 +183,7 @@ distribution in your home directory, you would use the commands:
 <table><tr><td>&nbsp;</td><td><pre class="example">mkdir ~/zsh_help
 cd ~/zsh_help
 man zshall | colcrt - | \ 
-perl ~/zsh-5.0.2-dev-0/Util/helpfiles
+perl ~/zsh-5.0.5/Util/helpfiles
 </pre></td></tr></table>
 
 <a name="index-run_002dhelp_002c-use-of"></a>
@@ -348,7 +348,7 @@ configuration.
 </p>
 <p>Run <tt>zkbd</tt> either as an autoloaded function, or as a shell script:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">zsh -f ~/zsh-5.0.2-dev-0/Functions/Misc/zkbd
+<table><tr><td>&nbsp;</td><td><pre class="example">zsh -f ~/zsh-5.0.5/Functions/Misc/zkbd
 </pre></td></tr></table>
 
 <p>When you run <tt>zkbd</tt>, it first asks you to enter your terminal type; if
@@ -418,7 +418,7 @@ recreate that state.
 <p>To use <tt>reporter</tt>, read the script into your shell with the &lsquo;<tt>.</tt>&rsquo;
 command and redirect the output into a file:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">. ~/zsh-5.0.2-dev-0/Util/reporter &gt; zsh.report
+<table><tr><td>&nbsp;</td><td><pre class="example">. ~/zsh-5.0.5/Util/reporter &gt; zsh.report
 </pre></td></tr></table>
 
 <p>You should check the <tt>zsh.report</tt> file for any sensitive information
@@ -1037,7 +1037,7 @@ below for details.
 </pre></td></tr></table>
 
 <p>It can be used in any existing prompt, because it does not require any
-<tt>$psvar</tt> entries to be left available.
+specific <tt>$psvar</tt> entries to be available.
 </p>
 
 <hr size="6">
@@ -4079,6 +4079,15 @@ question is run using the <tt>eval</tt> builtin instead of by starting a new
 <tt>sh</tt> process.  This is more efficient, but may not work in the occasional
 cases where the mailcap handler uses strict POSIX syntax.
 </p>
+<a name="index-disown_002c-MIME-style"></a>
+</dd>
+<dt> <tt>disown</tt></dt>
+<dd><p>If this boolean style is true, mailcap handlers started in the
+background will be disowned, i.e. not subject to job control within
+the parent shell.  Such handlers nearly always produce their own
+windows, so the only likely harmful side effect of setting the style is
+that it becomes harder to kill jobs from within the shell.
+</p>
 <a name="index-execute_002das_002dis_002c-MIME-style"></a>
 </dd>
 <dt> <tt>execute-as-is</tt></dt>
@@ -4091,6 +4100,29 @@ is not set, the pattern <tt>*(*) *(/)</tt> is used;
 hence executable files are executed directly and not passed to a
 handler, and the option <tt>AUTO_CD</tt> may be used to change to directories
 that happen to have MIME suffixes.
+</p>
+<a name="index-execute_002dnever_002c-MIME-style"></a>
+</dd>
+<dt> <tt>execute-never</tt></dt>
+<dd><p>This style is useful in combination with <tt>execute-as-is</tt>.  It is
+set to an array of patterns corresponding to full paths to files that
+should never be treated as executable, even if the file passed to
+the MIME handler matches <tt>execute-as-is</tt>.  This is useful for file
+systems that don&rsquo;t handle execute permission or that contain executables
+from another operating system.  For example, if <tt>/mnt/windows</tt> is a
+Windows mount, then
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">zstyle ':mime:*' execute-never '/mnt/windows/*'
+</pre></td></tr></table>
+
+<p>will ensure that any files found in that area will be executed as MIME
+types even if they are executable.  As this example shows, the complete
+file name is matched against the pattern, regardless of how the file
+was passed to the handler.  The file is resolved to a full path using
+the <tt>:A</tt> modifier described in
+<a href="Expansion.html#Modifiers">Modifiers</a>;
+this means that symbolic links are resolved where possible, so that
+links into other file systems behave in the correct fashion.
 </p>
 <a name="index-file_002dpath_002c-MIME-style"></a>
 </dd>
@@ -4274,9 +4306,9 @@ line that would be executed, simplified to remove the effect of any
 flags, and quoted so that the output can be run as a complete zsh
 command line.  This is used by the completion system to decide how to
 complete after a file handled by <tt>zsh-mime-setup</tt>.
-</p>
+)
 <a name="index-pick_002dweb_002dbrowser"></a>
-</dd>
+</p></dd>
 <dt> <tt>pick-web-browser</tt></dt>
 <dd><p>This function is separate from the two MIME functions described above
 and can be assigned directly to a suffix:
@@ -4393,7 +4425,7 @@ for Opera, and <tt>%b -remote &quot;openUrl(%u)&quot;</tt> for all others.
 <dl compact="compact">
 <dd><a name="index-zcalc"></a>
 </dd>
-<dt> <tt>zcalc</tt> [ <var>expression</var> ... ]</dt>
+<dt> <tt>zcalc</tt> [ <tt>-ef</tt> ] [ <var>expression</var> ... ]</dt>
 <dd><p>A reasonably powerful calculator based on zsh&rsquo;s arithmetic evaluation
 facility.  The syntax is similar to that of formulae in most programming
 languages; see
@@ -4412,6 +4444,13 @@ the history of previous calculations, is available; the history is saved in
 the file <tt>~/.zcalc_history</tt>.  To exit, enter a blank line or type &lsquo;<tt>:q</tt>&rsquo;
 on its own (&lsquo;<tt>q</tt>&rsquo; is allowed for historical compatibility).
 </p>
+<p>A line ending with a single backslash is treated in the same fashion
+as it is in command line editing:  the backslash is removed, the
+function prompts for more input (the prompt is preceded by &lsquo;<tt>...</tt>&rsquo;
+to indicate this), and the lines are combined into one to get the final
+result.  In addition, if the input so far contains more open than
+close parentheses <tt>zcalc</tt> will prompt for more input.
+</p>
 <p>If arguments are given to <tt>zcalc</tt> on start up, they are used to prime the
 first few positional parameters.  A visual indication of this is given when
 the calculator starts.
@@ -4423,6 +4462,10 @@ into the global namespace.
 <p>The output base can be initialised by passing the option &lsquo;<tt>-#</tt><var>base</var>&rsquo;,
 for example &lsquo;<tt>zcalc -#16</tt>&rsquo; (the &lsquo;<tt>#</tt>&rsquo; may have to be quoted, depending
 on the globbing options set).
+</p>
+<p>If the option &lsquo;<tt>-e</tt>&rsquo; is set, the function runs non-interactively:
+the arguments are treated as expressions to be evaluated as if entered
+interactively line by line.
 </p>
 <p>If the option &lsquo;<tt>-f</tt>&rsquo; is set, all numbers are treated as floating
 point, hence for example the expression &lsquo;<tt>3/4</tt>&rsquo; evaluates to 0.75
@@ -4487,11 +4530,13 @@ scope.
 </dd>
 <dt> <tt>:function</tt> <var>name</var> [ <var>body</var> ]</dt>
 <dd><p>Define a mathematical function or (with no <var>body</var>) delete it.
+<tt>:function</tt> may be abbreviated to <tt>:func</tt> or simply <tt>:f</tt>.
+The <var>name</var> may contain the same characters as a shell function name.
 The function is defined using <tt>zmathfuncdef</tt>, see below.
 </p>
 <p>Note that <tt>zcalc</tt> takes care of all quoting.  Hence for example:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">function cube $1 * $1 * $1
+<table><tr><td>&nbsp;</td><td><pre class="example">:f cube $1 * $1 * $1
 </pre></td></tr></table>
 
 <p>defines a function to cube the sole argument.
@@ -4962,7 +5007,7 @@ the names <tt>zcp</tt> and <tt>zln</tt> in some directory in your <tt>fpath</tt>
 </p>
 <a name="index-zmv"></a>
 </dd>
-<dt> <tt>zmv</tt> [ <tt>-finqQsvwW</tt> ] [ -C | -L | -M | -p <var>program</var> ] [ -o <var>optstring</var> ] <var>srcpat</var> <var>dest</var> </dt>
+<dt> <tt>zmv</tt> [ <tt>-finqQsvwW</tt> ] [ -C | -L | -M | -[pP] <var>program</var> ] [ -o <var>optstring</var> ] <var>srcpat</var> <var>dest</var> </dt>
 <dd><p>Move (usually, rename) files matching the pattern <var>srcpat</var> to
 corresponding files having names of the form given by <var>dest</var>, where
 <var>srcpat</var> contains parentheses surrounding patterns which will be
@@ -5030,6 +5075,14 @@ the name of the function.
 </p><table><tr><td>&nbsp;</td><td><pre class="example"><var>program</var> <tt>-</tt><tt>-</tt> <var>oldname</var> <var>newname</var>
 </pre></td></tr></table>
 <p>where <var>oldname</var> and <var>newname</var> are filenames generated by <tt>zmv</tt>.
+<var>program</var> will be split into words, so might be e.g. the name
+of an archive tool plus a copy or rename subcommand.
+</p></dd>
+<dt> <tt>-P</tt> <var>program</var></dt>
+<dd><p>As <tt>-p</tt> <var>program</var>, except that
+<var>program</var> does not accept a following <tt>-</tt><tt>-</tt> to indicate the
+end of options.  In this case filenames must already be in a sane
+form for the program in question.
 </p></dd>
 <dt> <tt>-o</tt> <var>optstring</var></dt>
 <dd><p>The <var>optstring</var> is split into words and
@@ -5141,7 +5194,7 @@ The usual expansions for the <tt>PS1</tt> and <tt>RPS1</tt> parameters may be us
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>March 6, 2013</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>January 7, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on March 6, 2013 by texi2html 1.82
+<!-- Created on January 7, 2014 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -63,6 +63,40 @@ ul.toc {list-style: none}
 <h1 class="chapter">17. Shell Builtin Commands</h1>
 <a name="index-builtin-commands"></a>
 <a name="index-commands_002c-builtin"></a>
+
+<p>Some shell builtin commands take options as described in individual
+entries; these are often referred to in the list below as &lsquo;<tt>flags</tt>&rsquo; to
+avoid confusion with shell options, which may also have an effect on the
+behaviour of builtin commands.  In this introductory section,
+&lsquo;<tt>option</tt>&rsquo; always has the meaning of an option to a command that should
+be familiar to most command line users.
+</p>
+<p>Typically, options are single letters preceded by a hyphen (<tt>-</tt>).
+Options that take an argument accept it either immediately following the
+option letter or after white space, for example &lsquo;<tt>print -C3 *</tt>&rsquo; or
+&lsquo;<tt>print -C 3 *</tt>&rsquo; are equivalent.  Arguments to options are not the
+same as arguments to the command; the documentation indicates which is
+which.  Options that do not take an argument may be combined in a single
+word, for example &lsquo;<tt>print -ca *</tt>&rsquo; and &lsquo;<tt>print -c -a *</tt>&rsquo; are
+equivalent.
+</p>
+<p>Some shell builtin commands also take options that begin with &lsquo;<tt>+</tt>&rsquo;
+instead of &lsquo;<tt>-</tt>&rsquo;.  The list below makes clear which commands these
+are.
+</p>
+<p>Options (together with their individual arguments, if any) must appear
+in a group before any non-option arguments; once the first non-option
+argument has been found, option processing is terminated.
+</p>
+<p>All builtin commands other than precommand modifiers, even those that
+have no options, can be given the argument &lsquo;<tt>&ndash;</tt>&rsquo; to terminate option
+processing.  This indicates that the following words are non-option
+arguments, but is otherwise ignored.  This is useful in cases where
+arguments to the command may begin with &lsquo;<tt>-</tt>&rsquo;.  For historical
+reasons, most builtin commands also recognize a single &lsquo;<tt>-</tt>&rsquo; in a
+separate word for this purpose; note that this is less standard and
+use of &lsquo;<tt>&ndash;</tt> is recommended.
+</p>
 <dl compact="compact">
 <dt> <tt>-</tt> <var>simple command</var></dt>
 <dd><p>See <a href="Shell-Grammar.html#Precommand-Modifiers">Precommand Modifiers</a>.
@@ -108,7 +142,7 @@ to be checked for alias expansion.  If the <tt>-g</tt> flag is present,
 define a global alias; global aliases are expanded even if they do not
 occur in command position.
 </p>
-<p>If the <tt>-s</tt> flags is present, define a suffix alias: if the command
+<p>If the <tt>-s</tt> flag is present, define a suffix alias: if the command
 word on a command line is in the form &lsquo;<var>text</var><tt>.</tt><var>name</var>&rsquo;, where
 <var>text</var> is any non-empty string, it is replaced by the text
 &lsquo;<var>value</var> <var>text</var><tt>.</tt><var>name</var>&rsquo;.  Note that <var>name</var> is treated as
@@ -378,7 +412,7 @@ onto the stack.
 </p>
 </dd>
 <dt> <tt>-l</tt></dt>
-<dd><p>print directory names in full instead of using of using <tt>~</tt> expressions.
+<dd><p>print directory names in full instead of using of using <tt>~</tt> expressions (<a href="Expansion.html#Filename-Expansion">Filename Expansion</a>).
 </p>
 </dd>
 <dt> <tt>-p</tt></dt>
@@ -396,8 +430,8 @@ onto the stack.
 <a name="index-disabling-commands"></a>
 <a name="index-commands_002c-disabling"></a>
 </dd>
-<dt> <tt>disable</tt> [ <tt>-afmrs</tt> ] <var>name</var> ...</dt>
-<dd><p>Temporarily disable the <var>name</var>d hash table elements.  The default
+<dt> <tt>disable</tt> [ <tt>-afmprs</tt> ] <var>name</var> ...</dt>
+<dd><p>Temporarily disable the <var>name</var>d hash table elements or patterns.  The default
 is to disable builtin commands.  This allows you to use an external
 command with the same name as a builtin command.  The <tt>-a</tt> option
 causes <tt>disable</tt> to act on regular or global aliases.  The <tt>-s</tt>
@@ -411,6 +445,94 @@ table elements from the corresponding hash table matching these patterns
 are disabled.  Disabled objects can be enabled with the <tt>enable</tt>
 command.
 </p>
+<p>With the option <tt>-p</tt>, <var>name</var> ... refer to elements of the
+shell&rsquo;s pattern syntax as described in <a href="Expansion.html#Filename-Generation">Filename Generation</a>.
+Certain elements can be disabled separately, as given below.
+</p>
+<p>Note that patterns
+not allowed by the current settings for the options <tt>EXTENDED_GLOB</tt>,
+<tt>KSH_GLOB</tt> and <tt>SH_GLOB</tt> are never enabled, regardless of the
+setting here.  For example, if <tt>EXTENDED_GLOB</tt> is not active,
+the pattern <tt>^</tt> is ineffective even if &lsquo;<tt>disable -p &quot;^&quot;</tt>&rsquo; has
+not been issued.  The list below indicates any option settings
+that restrict the use of the pattern.  It should be noted that
+setting <tt>SH_GLOB</tt> has a wider effect then merely disabling patterns
+as certain expressions, in particular those involving parentheses,
+are parsed differently.
+</p>
+<p>The following patterns may be disabled; all
+the strings need quoting on the command line to prevent them from
+being interpreted immediately as patterns and the patterns are
+shown below in single quotes as a reminder.
+</p><dl compact="compact">
+<dt> <tt>&rsquo;?&rsquo;</tt></dt>
+<dd><p>The pattern character <tt>?</tt> wherever it occurs, including when preceding
+a parenthesis with <tt>KSH_GLOB</tt>.
+</p>
+</dd>
+<dt> <tt>&rsquo;*&rsquo;</tt></dt>
+<dd><p>The pattern character <tt>*</tt> wherever it occurs, including recursive
+globbing and when preceding a parenthesis with <tt>KSH_GLOB</tt>.
+</p>
+</dd>
+<dt> &rsquo;[&rsquo;</dt>
+<dd><p>Character classes.
+</p>
+</dd>
+<dt> <tt>&rsquo;&lt;&rsquo;</tt> (<tt>NO_SH_GLOB</tt>)</dt>
+<dd><p>Numeric ranges.
+</p>
+</dd>
+<dt> <tt>&rsquo;|&rsquo;</tt> (<tt>NO_SH_GLOB</tt>)</dt>
+<dd><p>Alternation in grouped patterns, case statements, or KSH_GLOB
+parenthesised expressions.
+</p>
+</dd>
+<dt> <tt>&rsquo;(&rsquo;</tt> (<tt>NO_SH_GLOB</tt>)</dt>
+<dd><p>Grouping using single parentheses.  Disabling this does not disable the
+use of parentheses for <tt>KSH_GLOB</tt> where they are introduced by a
+special character, nor for glob qualifiers (use &lsquo;<tt>setopt
+NO_BARE_GLOB_QUAL</tt>&rsquo; to disable glob qualifiers that use parentheses
+only).
+</p>
+</dd>
+<dt> <tt>&rsquo;~&rsquo;</tt> (<tt>EXTENDED_GLOB</tt>)</dt>
+<dd><p>Exclusion in the form <var>A</var><tt>~</tt><var>B</var>.
+</p>
+</dd>
+<dt> <tt>&rsquo;^&rsquo;</tt> (<tt>EXTENDED_GLOB</tt>)</dt>
+<dd><p>Exclusion in the form <var>A</var><tt>^</tt><var>B</var>.
+</p>
+</dd>
+<dt> <tt>&rsquo;#&rsquo;</tt> (<tt>EXTENDED_GLOB</tt>)</dt>
+<dd><p>The pattern character <tt>#</tt> wherever it occurs, both for
+repetition of a previous pattern and for indicating globbing flags.
+</p>
+</dd>
+<dt> <tt>&rsquo;?(&rsquo;</tt> (<tt>KSH_GLOB</tt>)</dt>
+<dd><p>The grouping form <tt>?(</tt><var>...</var><tt>)</tt>.  Note this is also
+disabled if <tt>&rsquo;?&rsquo;</tt> is disabled.
+</p>
+</dd>
+<dt> <tt>&rsquo;*(&rsquo;</tt> (<tt>KSH_GLOB</tt>)</dt>
+<dd><p>The grouping form <tt>*(</tt><var>...</var><tt>)</tt>.  Note this is also
+disabled if <tt>&rsquo;*&rsquo;</tt> is disabled.
+</p>
+</dd>
+<dt> <tt>&rsquo;+(&rsquo;</tt> (<tt>KSH_GLOB</tt>)</dt>
+<dd><p>The grouping form <tt>+(</tt><var>...</var><tt>)</tt>.
+</p>
+</dd>
+<dt> <tt>&rsquo;!(&rsquo;</tt> (<tt>KSH_GLOB</tt>)</dt>
+<dd><p>The grouping form <tt>!(</tt><var>...</var><tt>)</tt>.
+</p>
+</dd>
+<dt> <tt>&rsquo;@(&rsquo;</tt> (<tt>KSH_GLOB</tt>)</dt>
+<dd><p>The grouping form <tt>@(</tt><var>...</var><tt>)</tt>.
+</p>
+</dd>
+</dl>
+
 <a name="index-disown"></a>
 <a name="index-jobs_002c-disowning-1"></a>
 </dd>
@@ -513,7 +635,9 @@ will be used as a default; more precisely, the tests performed on the
 argument are the same as those used to determine the emulation at startup
 based on the shell name, see
 <a href="Invocation.html#Compatibility">Compatibility</a>
-.
+.  In addition to setting shell options, the command also restores
+the pristine state of pattern enables, as if all patterns had been
+enabled using <tt>enable -p</tt>.
 </p>
 <p>If the <tt>emulate</tt> command occurs inside a function that has been
 marked for execution tracing with <tt>functions -t</tt> then the <tt>xtrace</tt>
@@ -527,9 +651,11 @@ are reset to their default value corresponding to the specified emulation
 mode, except for certain options describing the interactive
 environment; otherwise, only those options likely to cause portability
 problems in scripts and functions are altered.  If the <tt>-L</tt> switch is given,
-the options <tt>LOCAL_OPTIONS</tt> and <tt>LOCAL_TRAPS</tt> will be set as
-well, causing the effects of the <tt>emulate</tt> command and any <tt>setopt</tt> and
-<tt>trap</tt> commands to be local to the immediately surrounding shell
+the options <tt>LOCAL_OPTIONS</tt>, <tt>LOCAL_PATTERNS</tt> and <tt>LOCAL_TRAPS</tt>
+will be set as
+well, causing the effects of the <tt>emulate</tt> command and any <tt>setopt</tt>,
+<tt>disable -p</tt> or <tt>enable -p</tt>, and <tt>trap</tt> commands to be local to
+the immediately surrounding shell
 function, if any; normally these options are turned off in all emulation
 modes except <tt>ksh</tt>. The <tt>-L</tt> switch is mutually exclusive with the
 use of <tt>-c</tt> in <var>flags</var>.
@@ -550,7 +676,8 @@ to emulate; note this has a meaning distinct from including <tt>-R</tt> in
 within the evaluated expression:  the emulation mode is associated
 thereafter with the function so that whenever the function is executed
 the emulation (respecting the <tt>-R</tt> switch, if present) and all
-options are set before entry to the function, and restored after exit.
+options are set (and pattern disables cleared)
+before entry to the function, and the state is restored after exit.
 If the function is called when the sticky emulation is already in
 effect, either within an &lsquo;<tt>emulate</tt> <var>shell</var> <tt>-c</tt>&rsquo; expression or
 within another function with the same sticky emulation, entry and exit
@@ -619,7 +746,7 @@ treated as distinct sticky emulations.
 <a name="index-enabling-commands"></a>
 <a name="index-commands_002c-enabling"></a>
 </dd>
-<dt> <tt>enable</tt> [ <tt>-afmrs</tt> ] <var>name</var> ...</dt>
+<dt> <tt>enable</tt> [ <tt>-afmprs</tt> ] <var>name</var> ...</dt>
 <dd><p>Enable the <var>name</var>d hash table elements, presumably disabled
 earlier with <tt>disable</tt>.  The default is to enable builtin commands.
 The <tt>-a</tt> option causes <tt>enable</tt> to act on regular or global aliases.
@@ -631,6 +758,13 @@ printed.  With the <tt>-m</tt> flag the arguments are taken as patterns
 (should be quoted) and all hash table elements from the corresponding
 hash table matching these patterns are enabled.  Enabled objects can be
 disabled with the <tt>disable</tt> builtin command.
+</p>
+<p><tt>enable -p</tt> reenables patterns disabled with <tt>disable -p</tt>.  Note
+that it does not override globbing options; for example, &lsquo;<tt>enable -p
+&quot;~&quot;</tt>&rsquo; does not cause the pattern character <tt>~</tt> to be active unless
+the <tt>EXTENDED_GLOB</tt> option is also set.  To enable all possible
+patterns (so that they may be invidually disabled with <tt>disable -p</tt>),
+use &lsquo;<tt>setopt EXTENDED_GLOB KSH_GLOB NO_SH_GLOB</tt>&rsquo;.
 </p>
 <a name="index-eval"></a>
 <a name="index-evaluating-arguments-as-commands"></a>
@@ -658,6 +792,10 @@ is specified, use the exit status from the last command executed.
 <a name="index-IGNORE_005fEOF_002c-use-of"></a>
 An EOF condition will also cause the shell to exit, unless
 the <tt>IGNORE_EOF</tt> option is set.
+</p>
+<p>See notes at the end of
+<a href="Jobs-_0026-Signals.html#Jobs-_0026-Signals">Jobs &amp; Signals</a> for some possibly unexpected interactions
+of the <tt>exit</tt> command with jobs.
 </p>
 <a name="index-export"></a>
 </dd>
@@ -1072,6 +1210,9 @@ for some other reason it will continue trying to set the remaining limits.
 <dt> <tt>filesize</tt></dt>
 <dd><p>Largest single file allowed.
 </p></dd>
+<dt> <tt>kqueues</tt></dt>
+<dd><p>Maximum number of kqueues allocated.
+</p></dd>
 <dt> <tt>maxproc</tt></dt>
 <dd><p>Maximum number of processes.
 </p></dd>
@@ -1087,6 +1228,12 @@ for some other reason it will continue trying to set the remaining limits.
 <dt> <tt>msgqueue</tt></dt>
 <dd><p>Maximum number of bytes in POSIX message queues.
 </p></dd>
+<dt> <tt>posixlocks</tt></dt>
+<dd><p>Maximum number of POSIX locks per user.
+</p></dd>
+<dt> <tt>pseudoterminals</tt></dt>
+<dd><p>Maximum number of pseudo-terminals.
+</p></dd>
 <dt> <tt>resident</tt></dt>
 <dd><p>Maximum resident set size.
 </p></dd>
@@ -1098,6 +1245,9 @@ for some other reason it will continue trying to set the remaining limits.
 </p></dd>
 <dt> <tt>stacksize</tt></dt>
 <dd><p>Maximum stack size for each process.
+</p></dd>
+<dt> <tt>swapsize</tt></dt>
+<dd><p>Maximum amount of swap used.
 </p></dd>
 <dt> <tt>vmemorysize</tt></dt>
 <dd><p>Maximum amount of virtual memory.
@@ -1215,8 +1365,8 @@ arguments are printed with the row incrementing first.
 </p>
 </dd>
 <dt> <tt>-D</tt></dt>
-<dd><p>Treat the arguments as directory names, replacing prefixes with <tt>~</tt>
-expressions, as appropriate.
+<dd><p>Treat the arguments as paths, replacing directory prefixes with <tt>~</tt>
+expressions corresponding to directory names, as appropriate.
 </p>
 </dd>
 <dt> <tt>-i</tt></dt>
@@ -2067,7 +2217,7 @@ compatibility with previous versions of zsh.
 <a name="index-resource-limits-1"></a>
 <a name="index-limits_002c-resource-1"></a>
 </dd>
-<dt> <tt>ulimit</tt> [ [ <tt>-SHacdfilmnpqrstvx</tt> | <tt>-N</tt> <var>resource</var> [ <var>limit</var> ] ... ]</dt>
+<dt> <tt>ulimit</tt> [ [ <tt>-SHacdfiklmnpqsTtvwx</tt> | <tt>-N</tt> <var>resource</var> [ <var>limit</var> ] ... ]</dt>
 <dd><p>Set or display resource limits of the shell and the processes started by
 the shell.  The value of <var>limit</var> can be a number in the unit specified
 below or one of the values &lsquo;<tt>unlimited</tt>&rsquo;, which removes the limit on the
@@ -2110,6 +2260,9 @@ for some other reason it will continue trying to set the remaining limits.
 <dt> <tt>-i</tt></dt>
 <dd><p>The number of pending signals.
 </p></dd>
+<dt> <tt>-k</tt></dt>
+<dd><p>The number of kqueues allocated.
+</p></dd>
 <dt> <tt>-l</tt></dt>
 <dd><p>Kilobytes on the size of locked-in memory.
 </p></dd>
@@ -2119,17 +2272,20 @@ for some other reason it will continue trying to set the remaining limits.
 <dt> <tt>-n</tt></dt>
 <dd><p>open file descriptors.
 </p></dd>
+<dt> <tt>-p</tt></dt>
+<dd><p>The number of pseudo-terminals.
+</p></dd>
 <dt> <tt>-q</tt></dt>
 <dd><p>Bytes in POSIX message queues.
 </p></dd>
 <dt> <tt>-s</tt></dt>
 <dd><p>Kilobytes on the size of the stack.
 </p></dd>
+<dt> <tt>-T</tt></dt>
+<dd><p>The number of simultaneous threads available to the user.
+</p></dd>
 <dt> <tt>-t</tt></dt>
 <dd><p>CPU seconds to be used.
-</p></dd>
-<dt> <tt>-r</tt></dt>
-<dd><p>The number of simultaneous threads available to the user.
 </p></dd>
 <dt> <tt>-u</tt></dt>
 <dd><p>The number of processes available to the user.
@@ -2137,6 +2293,9 @@ for some other reason it will continue trying to set the remaining limits.
 <dt> <tt>-v</tt></dt>
 <dd><p>Kilobytes on the size of virtual memory.  On some systems this
 refers to the limit called &lsquo;address space&rsquo;.
+</p></dd>
+<dt> <tt>-w</tt></dt>
+<dd><p>Kilobytes on the size of swapped out memory.
 </p></dd>
 <dt> <tt>-x</tt></dt>
 <dd><p>The number of locks on files.
@@ -2778,7 +2937,7 @@ dynamic loading of modules.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>March 6, 2013</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>January 7, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

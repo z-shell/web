@@ -130,14 +130,8 @@ Here are some differences from ksh which might prove significant for
       option <code>KSH_GLOB</code> is in effect; for previous versions you
       must use the table above.
 <p>
-[1] Note that <code>~</code> is the only globbing operator to have a lower
-        precedence than <code>/</code>.  For example, <code>**/foo~*bar*</code> matches any
-        file in a subdirectory called <code>foo</code>, except where <code>bar</code>
-        occurred somewhere in the path (e.g. <code>users/barstaff/foo</code> will
-        be excluded by the <code>~</code> operator).  As the <code>**</code> operator cannot
-        be grouped (inside parentheses it is treated as <code>*</code>), this is
-        one way to exclude some subdirectories from matching a <code>**</code>.
-	The form (^foo/)# also works.
+[1] See question <a href="zshfaq03.html#327">3.27</a> for more on the mysteries of
+        <code>~</code> and <code>^</code>.
     <li>  Unquoted assignments do file expansion after <code>:</code>s (intended for
         PATHs). 
     <li>* <code>typeset</code> and <code>integer</code> have special behaviour for

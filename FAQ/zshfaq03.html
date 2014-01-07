@@ -652,6 +652,8 @@ You probably have the extendedglob option set in which case <code>^</code> and <
   are metacharacters.  <code>^a</code> matches any file except one called <code>a</code>, so the
   line is interpreted as bindkey followed by a list of files.  Quote the
   <code>^</code> with a backslash or put quotation marks around <code>^a</code>.
+  See <a href="zshfaq03.html#327">3.27</a> if you want to know more about the pattern
+  character <code>^</code>.
 <p>
 <a name="l32"></a>
 <h2>3.15: Why can't I bind <code>\C-s</code> and <code>\C-q</code> any more?</h2>
@@ -1033,6 +1035,133 @@ It becomes clearer what's going on if we write:
   first example is exactly the same, however the second redirector is
   disguised as a pipe.  So if you want to turn this effect off, you need
   to unset the option <code>MULTIOS</code>.
+<p>
+<a name="l44"></a>
+<h2>3.27: What are these `^' and `~' pattern characters, anyway?</h2>
+<a name="327"></a>
+<p>
+The characters <code>^</code> and <code>~</code> are active when the option
+  <code>EXTENDED_GLOB</code> is set.  Both are used to exclude patterns, i.e.  to
+  say `match something other than ...'.  There are some confusing
+  differences, however.  Here are the descriptions for <code>^</code> and <code>~</code>.
+<p>
+<code>^</code> means `anything except the pattern that follows'.  You can
+  think of the combination <code>^</code><em>pat</em> as being like a <code>*</code> except
+  that it doesn't match <em>pat</em>.  So, for example, <code>myfile^.txt</code>
+  matches anything that begins with <code>myfile</code> except <code>myfile.txt</code>.
+  Because it works with patterns, not just strings, <code>myfile^*.c</code>
+  matches anything that begins with <code>myfile</code> unless it ends with
+  <code>.c</code>, whatever comes in the middle --- so it matches <code>myfile1.h</code>
+  but not <code>myfile1.c</code>.
+<p>
+Also like <code>*</code>, <code>^</code> doesn't match across directories if you're
+  matching files when `globbing', i.e. when you use an unquoted pattern
+  in an ordinary command line to generate file names.  So
+  <code>^dir1/^file1</code> matches any subdirectory of the current directory
+  except one called <code>dir1</code>, and within any directory it matches it
+  picks any file except one called <code>file1</code>.  So the overall pattern
+  matches <code>dir2/file2</code> but not <code>dir1/file1</code> nor <code>dir1/file2</code> nor
+  <code>dir2/file1</code>.  (The rule that all the different bits of the pattern
+  must match is exactly the same as for any other pattern character,
+  it's just a little confusing that what <em>does</em> match in each bit is
+  found by telling the shell <em>not</em> to match something or other.)
+<p>
+As with any other pattern, a <code>^</code> expression doesn't treat the
+  character `<code>/</code>' specially if it's not matching files, for example
+  when pattern matching in a command like <code>[[ $string = ^pat1/pat2 ]]</code>.
+  Here the whole string <code>pat1/pat2</code> is treated as the argument that
+  follows the <code>^</code>.  So anything matches but that one string
+  <code>pat1/pat1</code>.
+<p>
+It's not obvious what something like <code>[[ $string = ^pat1^pat2 ]]</code>
+  means.  You won't often have cause to use it, but the rule is that
+  each <code>^</code> takes <em>everything</em> that follows as an argument (unless
+  it's already inside parentheses --- I'll explain this below).  To see
+  this more clearly, put those arguments in parentheses: the pattern is
+  equivalent to <code>^(pat1^(pat2))</code>. where now you can see exactly what
+  each <code>^</code> takes as its argument.  I'll leave it as an exercise for
+  you to work out what this does and doesn't match.
+<p>
+<code>~</code> is always used between two patterns --- never right at the
+  beginning or right at the end.  Note that the other special meaning of
+  <code>~</code>, at the start of a filename to refer to your home directory or
+  to another named directory, doesn't require the option
+  <code>EXTENDED_GLOB</code> to be set.  (At the end of an argument <code>~</code> is
+  never special at all.  This is useful if you have Emacs backup files.)
+  It means `match what's in front of the tilde, but only if it doesn't
+  match what's after the tilde'.  So <code>*.c~f*</code> matches any file
+  ending in <code>.c</code> except one that begins with <code>f</code>.  You'll see that,
+  unlike <code>^</code>, the parts before and after the <code>~</code> both refer
+  separately to the entire test string.
+<p>
+For matching files by globbing, <code>~</code> is the only globbing operator
+  to have a lower precedence than <code>/</code>.  In other words, when you
+  have <code>/a/path/to/match~/a/path/not/to/match</code> the <code>~</code> considers
+  what's before as a complete path to a file name, and what's after as a
+  pattern to match against that file.  You can put any other pattern
+  characters in the expressions before and after the <code>~</code>, but as I
+  said the pattern after the <code>~</code> is really just a single pattern to
+  match against the name of every file found rather than a pattern to
+  generate a file.  That means, for example, that a <code>*</code> after the
+  <code>~</code> <em>will</em> match a <code>/</code>.  If that's confusing, you can think of
+  how <code>~</code> works like this: take the pattern on the left, use it as
+  normal to make a list of files, then for each file found see if it
+  matches the pattern on the right and if it does take that file out of
+  the list.  Note, however, that this removal of files happens
+  immediately, before anything else happens to the file list --- before
+  any glob qualifiers are applied, for example.
+<p>
+One rule that is common to both <code>^</code> and <code>~</code> is that they can
+  be put inside parentheses and the arguments to them don't extend past
+  the parentheses.  So <code>(^README).txt</code> matches any file ending in
+  <code>.txt</code> unless the string before that was <code>README</code>, the same as
+  <code>*.txt~README.txt</code> or <code>(*~README).txt</code>.  In fact, you can
+  always turn <code>^something</code> into <code>(*~something)</code>, where
+  <code>something</code> mustn't contain <code>/</code> if the pattern is being used for
+  globbing.
+<p>
+Likewise, <code>abc(&lt;-&gt;~&lt;10-100&gt;).txt</code> matches a file consisting of
+  <code>abc</code>, then some digits, then <code>.txt</code>, unless the digits happen to
+  match a number from 10 to 100 inclusive (remember the handy <code>&lt;-&gt;</code>
+  pattern for matching integers with optional limits to the range).  So
+  this pattern matches <code>abc1.txt</code> or <code>abc200.txt</code> but not
+  <code>abc20.txt</code> nor <code>abc100.txt</code> nor even <code>abc0030.txt</code>.  However,
+  if you're matching files by globbing note you can't put <code>/</code>s
+  inside the parentheses since the groups can't stretch across multiple
+  directories.  (You can do that, of course, whenever the character
+  <code>/</code> isn't special.)  This means that you need to take care when
+  using exclusions across multiple directories; see some examples below.
+<p>
+You may like to know that from zsh 5.0.3 you can disable any pattern
+  character separately.  So if you find <code>^</code> gets in your way and
+  you're happy using <code>~</code>, put <code>disable -p "^"</code> in <code>~/.zshrc</code>.
+  You still need to turn on <code>EXTENDED_GLOB</code>; the <code>disable</code> command
+  only deactivates things that would otherwise be active, you can't
+  specially enable something not allowed by the syntax options in effect.
+<p>
+Here are some examples with files to illustrate the points.  We'll
+  assume the option <code>EXTENDED_GLOB</code> is set and none of the pattern
+  characters is disabled.
+<p>
+<ol>
+  <li> <code>**/foo~*bar*</code> matches any file called <code>foo</code> in any
+     subdirectory, except where <code>bar</code> occurred somewhere in the path.
+     For example, <code>users/barstaff/foo</code> will be excluded by the <code>~</code>
+     operator.  As the <code>**</code> operator cannot be grouped (inside
+     parentheses it is treated as <code>*</code>), this is one way to exclude some
+     subdirectories from matching a <code>**</code>.  Note that this can be quite
+     inefficent because the shell performs a complete search for
+     <code>**/foo</code> before it uses the pattern after the <code>~</code> to exclude
+     files from the match.  The file is excluded if <code>bar</code> occurs
+     <em>anywhere</em>, in any directory segment or the final file name.
+  <li> The form <code>(^foo/)#</code> can be used to match any hierarchy of
+     directories where none of the path components is <code>foo</code>.  For
+     example, <code>(^CVS/)#</code> selects all subdirectories to any depth
+     except where one component is named <code>CVS</code>.  (The form
+     <code>(pat/)#</code> is very useful in other cases; for example,
+     <code>(../)#.cvsignore</code> finds the file <code>.cvsignore</code> if it exists
+     in the current directory or any parent.)
+  </ol>
 <p>
 <hr>
 <ul>

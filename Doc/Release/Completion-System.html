@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on March 6, 2013 by texi2html 1.82
+<!-- Created on January 7, 2014 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -4043,14 +4043,26 @@ different name for the argument context field.
 </p>
 <a name="index-_005farguments"></a>
 </dd>
-<dt> <tt>_arguments</tt> [ <tt>-nswWACRS</tt> ] [ <tt>-O</tt> <var>name</var> ] [ <tt>-M</tt> <var>matchspec</var> ] [ <tt>:</tt> ] <var>spec</var> ...</dt>
-<dd><p>This function can be used to give a complete specification for
-completion for a command whose arguments follow standard UNIX option and
-argument conventions.  The following forms specify individual sets of
-options and arguments; to avoid ambiguity, these may be separated from the
-options to <tt>_arguments</tt> itself by a single colon.  Options to
-<tt>_arguments</tt> itself must be in separate words, i.e. <tt>-s -w</tt>, not
-<tt>-sw</tt>.
+<dt> <tt>_arguments</tt> [ <tt>-nswWCRS</tt> ] [ <tt>-A</tt> <var>pat</var> ] [ <tt>-O</tt> <var>name</var> ] [ <tt>-M</tt> <var>matchspec</var> ] [ <tt>:</tt> ] <var>spec</var>...</dt>
+<dt> <tt>_arguments</tt> [ <var>opts</var>... ] <tt>-</tt><tt>-</tt> [ -i <var>pats</var> ] [ <tt>-s</tt> <var>pair</var> ] [ <var>helpspec</var>... ]</dt>
+<dd><p>This function can be used to give a complete specification for completion
+for a command whose arguments follow standard UNIX option and argument
+conventions.  Options to <tt>_arguments</tt> itself must be in separate words,
+i.e. <tt>-s -w</tt>, not <tt>-sw</tt>.
+</p>
+<p>When calling <tt>_arguments</tt>, all <var>spec</var>s that describe options of the
+analyzed command line must precede all <var>spec</var>s that describe non-option
+(aka &quot;normal&quot;) arguments of the analyzed line.  To avoid ambiguity, all
+options to <tt>_arguments</tt> itself may be separated from the <var>spec</var> forms
+by a single colon.
+</p>
+<p>The <tt>-s -w -W -A</tt> and <tt>-S</tt> options describe how parsing of the command
+line should proceed, and are discussed in context below.  The &lsquo;<tt>-</tt><tt>-</tt>&rsquo;
+form is used to intuit <var>spec</var> forms from the help output of the command
+being analyzed, and is described in detail below.  The <var>opts</var> for the
+&lsquo;<tt>-</tt><tt>-</tt>&rsquo; form are otherwise the same options as the first form.  Note
+that &lsquo;<tt>-s</tt>&rsquo; following &lsquo;<tt>-</tt><tt>-</tt>&rsquo; has a distinct meaning from &lsquo;<tt>-s</tt>&rsquo;
+preceding &lsquo;<tt>-</tt><tt>-</tt>&rsquo;, and both may appear.
 </p>
 <p>With the option <tt>-n</tt>, <tt>_arguments</tt> sets the parameter <tt>NORMARG</tt>
 to the position of the first normal argument in the <tt>$words</tt> array,
@@ -4058,6 +4070,18 @@ i.e. the position after the end of the options.  If that argument
 has not been reached, <tt>NORMARG</tt> is set to <tt>-1</tt>.  The caller
 should declare &lsquo;<tt>integer NORMARG</tt>&rsquo; if the <tt>-n</tt> option is passed;
 otherwise the parameter is not used.
+</p>
+<p>The option &lsquo;<tt>-M</tt> <var>matchspec</var>&rsquo; sets a match specification to use to
+completion option names and values.  The default <var>matchspec</var> is:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example"><tt>r:|[_-]=* r:|=*</tt>
+</pre></td></tr></table>
+
+<p>This allows partial word completion after &lsquo;<tt>_</tt>&rsquo; and &lsquo;<tt>-</tt>&rsquo;, for example
+&lsquo;-f-b&rsquo; can be completed to &lsquo;<tt>-foo-bar</tt>&rsquo;.
+</p>
+<p>Each of the following forms is a <var>spec</var> describing individual sets of
+options or arguments on the command line being analyzed.
 </p>
 <dl compact="compact">
 <dt> <var>n</var><tt>:</tt><var>message</var><tt>:</tt><var>action</var></dt>
@@ -4106,10 +4130,10 @@ suitable for standard GNU options.
 </p>
 <p>The combination of <tt>-s</tt> with <tt>-w</tt> allows single-letter options to be
 combined in a single word even if one or more of the options take
-arguments.  For example, if <tt>-a</tt> takes an argument, with no
-<tt>-s</tt> &lsquo;<tt>-ab</tt>&rsquo; is considered as a single (unhandled) option; with
-<tt>-s</tt> <tt>-ab</tt> is an option with the argument &lsquo;<tt>b</tt>&rsquo;; with both <tt>-s</tt>
-and <tt>-w</tt>, <tt>-ab</tt> may be the option <tt>-a</tt> and the option <tt>-b</tt> with
+arguments.  For example, if <tt>-x</tt> takes an argument, with no
+<tt>-s</tt> &lsquo;<tt>-xy</tt>&rsquo; is considered as a single (unhandled) option; with
+<tt>-s</tt> <tt>-xy</tt> is an option with the argument &lsquo;<tt>y</tt>&rsquo;; with both <tt>-s</tt>
+and <tt>-w</tt>, <tt>-xy</tt> may be the option <tt>-x</tt> and the option <tt>-y</tt> with
 arguments still to come.
 </p>
 <p>The option <tt>-W</tt> takes this a stage further:  it is possible to
@@ -4186,6 +4210,24 @@ that follows the <var>optspec</var>; see below.
 <p>It is possible for options with a literal &lsquo;+&rsquo; or &lsquo;<tt>=</tt>&rsquo; to
 appear, but that character must be quoted, for example &lsquo;<tt>-\+</tt>&rsquo;.
 </p>
+<p>The options <tt>-S</tt> and <tt>-A</tt> are available to simplify the specifications
+for commands with standard option parsing.  With <tt>-S</tt>, no option will be
+completed after a &lsquo;<tt>-</tt><tt>-</tt>&rsquo; appearing on its own on the line; this
+argument will otherwise be ignored; hence in the line
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">foobar -x -- -y
+</pre></td></tr></table>
+
+<p>the &lsquo;<tt>-x</tt>&rsquo; is considered an option but the &lsquo;<tt>-y</tt>&rsquo; is considered an
+argument, while the &lsquo;<tt>-</tt><tt>-</tt>&rsquo; is considered to be neither.
+</p>
+<p>With <tt>-A</tt>, no options will be completed after the first non-option
+argument on the line.  The <tt>-A</tt> must be followed by a pattern matching
+all strings which are not to be taken as arguments.  For example, to make
+<tt>_arguments</tt> stop completing options after the first normal argument, but
+ignoring all strings starting with a hyphen even if they are not described
+by one of the <var>optspec</var>s, the form is &lsquo;<tt>-A &quot;-*&quot;</tt>&rsquo;.
+</p>
 <p>Each <var>optarg</var> following an <var>optspec</var> must take one of the
 following forms:
 </p>
@@ -4261,6 +4303,11 @@ completions should be generated.  Except for the &lsquo;<tt>-&gt;</tt><var>strin
 form below, the <var>action</var> will be executed by calling the
 <tt>_all_labels</tt> function to process all tag labels.  No special handling
 of tags is needed unless a function call introduces a new one.
+</p>
+<p>The option &lsquo;<tt>-O</tt> <var>name</var>&rsquo; specifies the name of an array whose elements
+will be passed as arguments to functions called to execute <var>action</var>s.
+For example, this can be used to pass the same set of options for the
+<tt>compadd</tt> builtin to all <var>action</var>s.
 </p>
 <p>The forms for <var>action</var> are as follows.
 </p>
@@ -4375,10 +4422,10 @@ elements of the array.
 </dd>
 </dl>
 
-<p>During the performance of the action the array &lsquo;<tt>line</tt>&rsquo;
-will be set to the command name and normal arguments from the command
-line, i.e. the words from the command line excluding all options
-and their arguments.  Options are stored in the associative array
+<p>During the performance of the action the array &lsquo;<tt>line</tt>&rsquo; will be set to
+the normal arguments from the command line, i.e. the words from the
+command line after the command name excluding all options and their
+arguments.  Options are stored in the associative array
 &lsquo;<tt>opt_args</tt>&rsquo; with option names as keys and their arguments as
 the values.  For options that have more than one argument these are
 given as one string, separated by colons.  All colons in the original
@@ -4399,6 +4446,19 @@ option, the name is &lsquo;<tt>option-o-1</tt>&rsquo;, while for the second norm
 <p>Furthermore, during the evaluation of the <var>action</var> the context name in
 the <tt>curcontext</tt> parameter is altered to append the same string that is
 stored in the <tt>context</tt> parameter.
+</p>
+<p>The option <tt>-C</tt> tells <tt>_arguments</tt> to modify the <tt>curcontext</tt>
+parameter for an action of the form &lsquo;<tt>-&gt;</tt><var>state</var>&rsquo;.  This is the
+standard parameter used to keep track of the current context.  Here it
+(and not the <tt>context</tt> array) should be made local to the calling
+function to avoid passing back the modified value and should be
+initialised to the current value at the start of the function:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">local curcontext=&quot;$curcontext&quot;
+</pre></td></tr></table>
+
+<p>This is useful where it is not possible for multiple states to be valid
+together.
 </p>
 <p>It is possible to specify multiple sets of options and
 arguments with the sets separated by single hyphens.  The specifications
@@ -4448,49 +4508,6 @@ A useful alternative is often an option specification with rest-arguments
 (as in &lsquo;<tt>-foo:*:...</tt>&rsquo;); here the option <tt>-foo</tt> swallows up all
 remaining arguments as described by the <var>optarg</var> definitions.
 </p>
-<p>The options <tt>-S</tt> and <tt>-A</tt> are available to simplify the specifications
-for commands with standard option parsing.  With <tt>-S</tt>, no option will be
-completed after a &lsquo;<tt>-</tt><tt>-</tt>&rsquo; appearing on its own on the line; this
-argument will otherwise be ignored; hence in the line
-</p>
-<table><tr><td>&nbsp;</td><td><pre class="example">foobar -a -- -b
-</pre></td></tr></table>
-
-<p>the &lsquo;<tt>-a</tt>&rsquo; is considered an option but the &lsquo;<tt>-b</tt>&rsquo; is considered an
-argument, while the &lsquo;<tt>-</tt><tt>-</tt>&rsquo; is considered to be neither.
-</p>
-<p>With <tt>-A</tt>, no options will be completed after the first non-option
-argument on the line.  The <tt>-A</tt> must be followed by a pattern matching
-all strings which are not to be taken as arguments.  For example, to make
-<tt>_arguments</tt> stop completing options after the first normal argument, but
-ignoring all strings starting with a hyphen even if they are not described
-by one of the <var>optspec</var>s, the form is &lsquo;<tt>-A &quot;-*&quot;</tt>&rsquo;.
-</p>
-<p>The option &lsquo;<tt>-O</tt> <var>name</var>&rsquo; specifies the name of an array whose elements
-will be passed as arguments to functions called to execute <var>actions</var>.
-For example, this can be used to pass the same set of options for the
-<tt>compadd</tt> builtin to all <var>action</var>s.
-</p>
-<p>The option &lsquo;<tt>-M</tt> <var>spec</var>&rsquo; sets a match specification to use to
-completion option names and values.  It must appear before the first
-argument specification.  The default is &lsquo;<tt>r:|[_-]=* r:|=*</tt>&rsquo;: this allows
-partial word completion after &lsquo;<tt>_</tt>&rsquo; and &lsquo;<tt>-</tt>&rsquo;, for example &lsquo;-f-b&rsquo;
-can be completed to &lsquo;<tt>-foo-bar</tt>&rsquo;.
-</p>
-<p>The option <tt>-C</tt> tells <tt>_arguments</tt> to modify
-the <tt>curcontext</tt> parameter for an action of the form
-&lsquo;<tt>-&gt;</tt><var>state</var>&rsquo;.  This is the standard parameter used to keep track of
-the current context.  Here it (and not the <tt>context</tt> array) should be
-made local to the calling function
-to avoid passing back the modified value and should be initialised to the
-current value at the start of the function:
-</p>
-<table><tr><td>&nbsp;</td><td><pre class="example">local curcontext=&quot;$curcontext&quot;
-</pre></td></tr></table>
-
-<p>This is useful where it is not possible for multiple states to be valid
-together.
-</p>
 <p>The option &lsquo;<tt>-</tt><tt>-</tt>&rsquo; allows <tt>_arguments</tt> to work out the names of long
 options that support the &lsquo;<tt>-</tt><tt>-help</tt>&rsquo; option which is standard in many
 GNU commands.  The command word is called with the argument
@@ -4501,11 +4518,16 @@ the behaviour of the command is unspecified.
 <p>In addition to options, &lsquo;<tt>_arguments -</tt><tt>-</tt>&rsquo; will try to deduce the
 types of arguments available for options when the form
 &lsquo;<tt>-</tt><tt>-</tt><var>opt</var>=<var>val</var>&rsquo; is valid.  It is also possible to provide
-hints by examining the help text of the command and adding specifiers of
-the form &lsquo;<var>pattern</var><tt>:</tt><var>message</var><tt>:</tt><var>action</var>&rsquo;; note that normal
-<tt>_arguments</tt> specifiers are not used.  The <var>pattern</var> is matched
+hints by examining the help text of the command and adding <var>helpspec</var> of
+the form &lsquo;<var>pattern</var><tt>:</tt><var>message</var><tt>:</tt><var>action</var>&rsquo;; note that other
+<tt>_arguments</tt> <var>spec</var> forms are not used.  The <var>pattern</var> is matched
 against the help text for an option, and if it matches the <var>message</var> and
-<var>action</var> are used as for other argument specifiers.  For example:
+<var>action</var> are used as for other argument specifiers.  The special case
+of &lsquo;<tt>*:</tt>&rsquo; means both <var>message</var> and <var>action</var> are empty, which has
+the effect of causing options having no description in the help output to
+be ordered in listings ahead of options that have a description.
+</p>
+<p>For example:
 </p>
 <table><tr><td>&nbsp;</td><td><pre class="example">_arguments -- '*\*:toggle:(yes no)' \ 
               '*=FILE*:file:_files' \ 
@@ -4550,14 +4572,25 @@ or as a literal list in parentheses.  For example,
 useful with GNU <tt>configure</tt>).
 </p>
 <p>The &lsquo;<tt>_arguments -</tt><tt>-</tt>&rsquo; form can also be followed by the option &lsquo;<tt>-s</tt>
-<var>pair</var>&rsquo; to describe option aliases.  Each <var>pair</var> consists of a
-pattern and a replacement.  For example, some <tt>configure</tt>-scripts
-describe options only as &lsquo;<tt>-</tt><tt>-enable-foo</tt>&rsquo;, but also accept
+<var>pair</var>&rsquo; to describe option aliases.  The <var>pair</var> consists of a list
+of alternating patterns and corresponding replacements, enclosed in parens
+and quoted so that it forms a single argument word in the <tt>_arguments</tt>
+call.
+</p>
+<p>For example, some <tt>configure</tt>-script help output describes options only
+as &lsquo;<tt>-</tt><tt>-enable-foo</tt>&rsquo;, but the script also accepts the negated form
 &lsquo;<tt>-</tt><tt>-disable-foo</tt>&rsquo;.  To allow completion of the second form:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">_arguments -- -s &quot;(#-<tt>-enable- -</tt><tt>-disable-)&quot;</tt>
+<table><tr><td>&nbsp;</td><td><pre class="example"><tt>_arguments -- -s &quot;(#-</tt><tt>-enable- -</tt><tt>-disable-)&quot;</tt>
 </pre></td></tr></table>
 
+<p>Finally, note that <tt>_arguments</tt> generally expects to be the primary
+function handling any completion for which it is used.  It may have side
+effects which change the treatment of any matches added by other functions
+called after it.  To combine <tt>_arguments</tt> with other functions, those
+functions should be called either before <tt>_arguments</tt>, as an <var>action</var>
+within a <var>spec</var>, or in handlers for &lsquo;<tt>-&gt;</tt><var>state</var>&rsquo; actions.
+</p>
 <p>Here is a more general example of the use of <tt>_arguments</tt>:
 </p>
 <table><tr><td>&nbsp;</td><td><pre class="example">_arguments '-l+:left border:' \ 
@@ -4871,11 +4904,14 @@ which already contains an expanded description.
 <p>The <tt>-12VJ</tt> options and the <var>group</var> are passed to <tt>compadd</tt> and
 hence determine the group the message string is added to.
 </p>
-<p>The second form gives a description for completions with the tag
-<var>tag</var> to be shown even if there are no matches for that tag.  The tag
-can be omitted and if so the tag is taken from the parameter
-<tt>$curtag</tt>; this is maintained by the completion system and so is
-usually correct.
+<p>The second <tt>-e</tt> form gives a description for completions with the tag
+<var>tag</var> to be shown even if there are no matches for that tag.  This form
+is called by <tt>_arguments</tt> in the event that there is no action for an
+option specification.  The tag can be omitted and if so the tag is taken
+from the parameter <tt>$curtag</tt>; this is maintained by the completion
+system and so is usually correct.  Note that if there are no matches at
+the time this function is called, <tt>compstate[insert]</tt> is cleared, so
+additional matches generated later are not inserted on the command line.
 </p>
 <a name="index-_005fmulti_005fparts"></a>
 </dd>
@@ -5048,9 +5084,7 @@ described above.
 </p>
 <a name="index-_005fpick_005fvariant"></a>
 </dd>
-<dt> <tt>_pick_variant</tt> [ <tt>-b</tt> <var>builtin-label</var> ] [ <tt>-c</tt></dt>
-<dd><p><var>command</var> ] [ <tt>-r</tt> <var>name</var> ]
-</p></dd>
+<dt> <tt>_pick_variant</tt> [ <tt>-b</tt> <var>builtin-label</var> ] [ <tt>-c</tt> <var>command</var> ] [ <tt>-r</tt> <var>name</var> ]</dt>
 <dt>    <var>label</var><tt>=</tt><var>pattern</var> ... <var>label</var> [ <var>args</var> ... ]</dt>
 <dd><p>This function is used to resolve situations where a single command name
 requires more than one type of handling, either because it
@@ -5614,7 +5648,7 @@ may be useful on your system.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>March 6, 2013</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>January 7, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 
