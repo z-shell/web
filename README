@@ -20,6 +20,10 @@ To upload the committed changes use:
 `--no-perms` is important if you have a strict umask or the pages are not
 accessible.
 
+The Git repository for the website can be cloned with
+
+    git clone git://git.code.sf.net/p/zsh/web zsh
+
 *Don't upload any uncommitted changes!*
 
 
