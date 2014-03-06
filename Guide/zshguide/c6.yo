@@ -2358,7 +2358,7 @@ pattern characters in the existing string are active, so this is a cross
 between expansion and completion.  You can also give it a numeric prefix to
 show the tt(N)th most recently modified file that matches the pattern.
 
-By the way, you can actually do the same by setting appropiate styles,
+By the way, you can actually do the same by setting appropriate styles,
 without any new functions.  The trick is to persuade the system to use
 the normal tt(_files) completer with the tt(file-sort) style.  By
 restricting the use of the styles to the context of the widget --- which
@@ -2386,7 +2386,7 @@ itemize(
      completion so far didn't work.
   it() First, tt(_menu) comes along; it actually does nothing more
      than tell the system to use menu completion.
-  it() Then tt(_files) generats a list of files.  This uses
+  it() Then tt(_files) generates a list of files.  This uses
      the tt(file-sort) and tt(file-patterns) styles defined for the
      tt(most-recent-file) context.  They produce a set of files in
      modification time order, and include only regular files (so not
@@ -2415,7 +2415,7 @@ Omit the tt(file-patterns) line if you don't want the match restricted
 to regular files (I sometimes need the most recently modified directory,
 but often it's irrelevant).  The whole version using styles comes from
 Oliver Kiddle, who recommends using tt(_generic) in this way any time
-you want to generate a widge from a specific completion such as
+you want to generate a widget from a specific completion such as
 tt(_files).  There is a brief section on tt(_generic) below.
 
 subsect(tt(_next_tags))
@@ -2987,7 +2987,7 @@ subsect(The dispatcher)
 This top level is only necessary for complex commands with multiple
 subcommands.  There are interesting titbits here, but if you just want
 to know how to complete a command with ordinary UNIX-style argument
-parsiing, skip to the next section.
+parsing, skip to the next section.
 
 The main tt(_perforce) function has the two purposes described at the top of
 the previous subsection.  We need to decide whether we are in the first
@@ -3195,7 +3195,7 @@ syntax, but in your case you may get `tt(-)tt(-)' as the separator.
 seemed you'd already got to the last argument:  it's possible for
 options to have multiple arguments, and you can continue having
 sets of tt(:)var(description)tt(:)var(action) pairs.  This means the
-system needs some way of distinguishing these colons from ones indside
+system needs some way of distinguishing these colons from ones inside
 arguments.  While I'm digressing, you may also have noticed that I could
 have written the tt(-s)var(X) as an option with arguments, in which case
 you can have a bonus point.)
@@ -3271,7 +3271,7 @@ tt(^xh) to tell you about valid tags, you'll see tt(_arguments) has its
 own generic tag, tt(argument-rest); this isn't usually all that useful,
 so we are going to supply more specific ones.
 
-In the first possiblity, it's the standard one for files, `tt(files).
+In the first possibility, it's the standard one for files, `tt(files).
 The function is the basic low-level one for completing files, too; it's
 described below, but you already know a lot about the effect since it's
 the completion system's workhorse which you use it all the time without
@@ -3413,7 +3413,7 @@ tt("$(cmd)") syntax; if the output is empty, because its quoted you
 still get one zero-length string output, which we don't want.
 
 Finally, we pass the result to tt(compadd) as before.  Again, tags and
-the description havealready been handled and we just need to make sure
+the description have already been handled and we just need to make sure
 the appropriate options get passed in with tt("$@").  This time we use
 the `tt(-a)' option which tells tt(compadd) that any arguments are array
 name, not a list of completions.  This is more efficient; compadd only
@@ -3484,7 +3484,7 @@ we only need to look at what is at the left of the cursor, stored in
 tt($LBUFFER).
 
 The function is called with the length of the suffix added to the
-function.  In this case, it's just a space --- we've finshed a normal
+function.  In this case, it's just a space --- we've finished a normal
 completion, so the system has automatically added a space to what's on
 the command line.  We therefore check we've just got one single
 character in the suffix, to avoid getting confused.
@@ -4215,7 +4215,7 @@ The tt(_description) function calls another function tt(_setup) to do much
 of the setting up of styles for the particular tag.  Mostly, tt(_setup) is
 buried deeply enough that you don't need to worry about it yourself.
 Sometimes you can't do completion, and just want to print a message
-unconditionaly to say so, irrespective of tags etc.; the function
+unconditionally to say so, irrespective of tags etc.; the function
 tt(_message) does this, taking the message as its sole argument.
 
 There are two levels above that; these implement the tags mechanism in
