@@ -66,28 +66,27 @@ PERLCOMMON = "\\usepackage[T1]{fontenc}\n", \
 .dvi.ps:
 	dvips $<
 
-most: zshguide.html zshguide.latex zshguide.txt
+all: zshguide.html zshguide.txt zshguide.pdf zshguide_us.pdf
 
-all: zshguide.html zshguide.latex zshguide.txt zshguide.pdf \
-	zshguide_us.pdf
-
-zshguide.txt zshguide.html zshguide.latex: zshguide.yo $(CHAPTERS)
-
-zshguide.pdf zshguide_us.pdf zshguide.dvi: zshguide.latex
-
-# zshguide.ps: zshguide.dvi
+zshguide.txt zshguide.html zshguide.latex zshguide_us.latex: zshguide.yo $(CHAPTERS)
 
 .PHONY: web clean
 
 GUIDE_WEB = ..
 
-web:    zshguide.html zshguide.latex zshguide.pdf zshguide_us.pdf
+web: all
 	rm -rf zshguide
 	mkdir zshguide
+	# zshguide.tar.gz
 	cp $(SRC_DIST) zshguide
 	tar cvzf zshguide.tar.gz zshguide
 	mv zshguide.tar.gz $(GUIDE_WEB)
-	cp zshguide*.html zshguide.latex zshguide.pdf zshguide_us.pdf \
+	# zshguide_html.tar.gz
+	rm zshguide/*
+	cp zshguide*.html zshguide
+	tar cvzf zshguide_html.tar.gz zshguide
+	mv zshguide_html.tar.gz $(GUIDE_WEB)
+	cp zshguide*.html zshguide.latex zshguide_us.latex zshguide.pdf zshguide_us.pdf \
 	  $(GUIDE_WEB)
 
 clean:
