@@ -1,20 +1,20 @@
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html>
 <head>
-<title>A User's Guide to the Z-Shell </title>
+<title> A User's Guide to the Z-Shell </title>
 </head>
-<body  >
+<body >
 <hr>
 <ul>
-    <li> <a href="zshguide03.html">Next chapter</a>
-    <li> <a href="zshguide01.html">Previous chapter</a>
-    <li> <a href="zshguide.html">Table of contents</a>
+    <li> <a href="zshguide.html">Table of Contents</a>
+    <li> <a href="zshguide01.html">Previous Chapter</a>
+    <li> <a href="zshguide03.html">Next Chapter</a>
 </ul>
 <hr>
-
 <a name="init"></a><a name="l6"></a>
 <h1>Chapter 2: What to put in your startup files</h1>
-<p>There are probably various changes you want to make to the shell's
+<p>
+There are probably various changes you want to make to the shell's
 behaviour.  All shells have `startup' files, containing commands which are
 executed as soon as the shell starts.  Like many others, zsh allows each
 user to have their own startup files.  In this chapter, I discuss the
@@ -26,9 +26,11 @@ to know, such as how zsh differs from other shells you're not going to use.
 Explaining the differences here saves me having to lie about how the shell
 works and correcting it later on:  most people will simply want to know how
 the shell normally works, and note that there are other ways of doing it.
-<p><a name="l7"></a>
+<p>
+<a name="l7"></a>
 <h2>2.1: Types of shell: interactive and login shells</h2>
-<p>First, you need to know what is meant by an <strong>interactive</strong> and a <strong>login</strong>
+<p>
+First, you need to know what is meant by an <strong>interactive</strong> and a <strong>login</strong>
 shell.  Basically, the shell is just there to take a list of commands and
 run them; it doesn't really care whether the commands are in a file, or
 typed in at the terminal.  In the second case, when you are typing at a
@@ -43,10 +45,12 @@ actually two zsh's around: the interactive one you're typing at, which is
 waiting for another, non-interactive one to finish running the script.
 Almost nothing that happens in the second one affects the first; they are
 different copies of zsh.
-<p>Remember that when I give examples for you to type, I often show them as
+<p>
+Remember that when I give examples for you to type, I often show them as
 they would appear in a script, without prompts in front.  What you actually
 see on the screen if you type them in will have a lot more in front.
-<p>When you first log into the computer, the shell you are presented with
+<p>
+When you first log into the computer, the shell you are presented with
 is interactive, but it is also a login shell.  If you type `<code>zsh</code>', it
 starts up a new interactive shell: because you didn't give it the name
 of a file with commands in, it assumes you are going to type them
@@ -56,7 +60,8 @@ times when you are going to make some radical changes to the shell's
 settings temporarily, and the easiest thing to do is to start another
 shell, do what you want to do, and exit back to the original, unaltered,
 shell --- so it's not as stupid as it sounds.
-<p>However, that second shell will not be a login shell.  How does zsh know
+<p>
+However, that second shell will not be a login shell.  How does zsh know
 the difference?  Well, the programme that logs you in after you type your
 password (called, predictably, <strong>login</strong>), actually sticks a `<code>-</code>' in
 front of the name of the shell, which zsh recognises.  The other way of
@@ -70,7 +75,8 @@ However, it's actually possible to get xterm to start a login shell by
 giving it the option <code>-ls</code>, so if you type `<code>xterm -ls &amp;</code>', you will
 get a window running a login shell (the <code>&amp;</code> means the shell in the first
 window doesn't wait for it to finish).
-<p>The first main difference between a login shell and any other interactive
+<p>
+The first main difference between a login shell and any other interactive
 shell is the one to do with startup files, described below.  The other one
 is what you do when you're finished.  With a login shell you can type
 `<code>logout</code>' to exit the shell; with another you type `<code>exit</code>'.  However,
@@ -80,16 +86,19 @@ is that `<code>logout</code>' will tell you `<code>not login shell</code>' if yo
 anywhere else and fail to exit.  The command `<code>bye</code>' is identical to
 `<code>exit</code>', only shorter and less standard.  So my advice is just to use
 `<code>exit</code>'.
-<p>As somebody pointed out to me recently, login shells don't have to be
+<p>
+As somebody pointed out to me recently, login shells don't have to be
 interactive.  You can always start a shell in the two ways that make it
 a login shell; the ways that make it an interactive shell or not are
 independent.  In fact, some start-up scripts for windowing systems run a
 non-interactive login shell to incorporate definitions from the
 appropriate login scripts before executing the commands to start the
 windowing session.
-<p><a name="l8"></a>
+<p>
+<a name="l8"></a>
 <h3>2.1.1: What is a login shell? Simple tests</h3>
-<p>Telling if the shell you are looking at is interactive is usually easy: if
+<p>
+Telling if the shell you are looking at is interactive is usually easy: if
 there's a prompt, it's interactive.  As you may have gathered, telling if
 it's a login shell is more involved because you don't always know how the
 shell was started or if the option got changed.  If you want to know, you
@@ -114,12 +123,14 @@ this guide, I will not give exhaustive details on the tests you can
 perform, since there are many of them, but just show some of the most
 useful.  As always, see the manual --- in this case, `Conditional
 Expressions' in the <code>zshmisc</code> manual pages.
-<p>Although you usually know when a shell is interactive, in fact you can test
+<p>
+Although you usually know when a shell is interactive, in fact you can test
 that in exactly the same way, too:  just use `<code>[[ -o interactive ]]</code>'.
 This is one option you can't change within the shell; if you turn off
 reading from the keyboard, where is the shell supposed to read from?  But
 you can at least test it.
-<p>Aside for beginners in shell programming: maybe the semicolon looks a bit
+<p>
+Aside for beginners in shell programming: maybe the semicolon looks a bit
 funny; that's because the `<code>then</code>' is really a separate command.  The
 semicolon is just instead of putting it on a new line; the two are
 interchangeable.  In fact, I could have written,
@@ -145,7 +156,8 @@ simply to make it look prettier; any number of spaces can appear before,
 after, or between commands and arguments, as long as there's at least one
 between ordinary words (the semicolon is recognised as special, so you
 don't need one before that, though it's harmless if you do put one in).
-<p>Second aside for users of sh: you may remember that tests in sh used a
+<p>
+Second aside for users of sh: you may remember that tests in sh used a
 single pair of brackets, `<code>if [ ... ]; then ...</code>', or equivalently as a
 command called <strong>test</strong>, `<code>if test ...; then ...</code>'.  The Korn shell was
 deliberately made to be different, and zsh follows that.  The reason is
@@ -162,9 +174,11 @@ command, not as part of the test, and you have to use the less clear
 `<code>-a</code>' and `<code>-o</code>'.  Actually, zsh provides the old form of test for
 backward compatibility, but things will work a lot more smoothly if you
 don't use it.
-<p><a name="l9"></a>
+<p>
+<a name="l9"></a>
 <h2>2.2: All the startup files</h2>
-<p>Now here's a list of the startup files and when they're run.  You'll see
+<p>
+Now here's a list of the startup files and when they're run.  You'll see
 they fall into two classes: those in the <code>/etc</code> directory, which are put
 there by the system administrator and are run for all users, and those in
 your home directory, which zsh, like many shells, allows you to abbreviate
@@ -174,24 +188,27 @@ an error message telling you the parameter isn't set, it's telling you a
 directory other than `<code>~</code>' where your startup files live. If <code>$ZDOTDIR</code>
 (another parameter) is not already set, you won't want to set it without a
 good reason.
-<p><dl>
-  <p></p><dt><strong><code>/etc/zshenv</code></strong><dd>    Always run for every zsh.
-  <p></p><dt><strong><code>~/.zshenv</code></strong><dd>      Usually run for every zsh (see below).
-  <p></p><dt><strong><code>/etc/zprofile</code></strong><dd>  Run for login shells.
-  <p></p><dt><strong><code>~/.zprofile</code></strong><dd>    Run for login shells.
-  <p></p><dt><strong><code>/etc/zshrc</code></strong><dd>     Run for interactive shells.
-  <p></p><dt><strong><code>~/.zshrc</code></strong><dd>       Run for interactive shells.
-  <p></p><dt><strong><code>/etc/zlogin</code></strong><dd>    Run for login shells.
-  <p></p><dt><strong><code>~/.zlogin</code></strong><dd>      Run for login shells.
+<p>
+<dl>
+  <p><dt><strong><code>/etc/zshenv</code></strong><dd>    Always run for every zsh.
+  <p><dt><strong><code>~/.zshenv</code></strong><dd>      Usually run for every zsh (see below).
+  <p><dt><strong><code>/etc/zprofile</code></strong><dd>  Run for login shells.
+  <p><dt><strong><code>~/.zprofile</code></strong><dd>    Run for login shells.
+  <p><dt><strong><code>/etc/zshrc</code></strong><dd>     Run for interactive shells.
+  <p><dt><strong><code>~/.zshrc</code></strong><dd>       Run for interactive shells.
+  <p><dt><strong><code>/etc/zlogin</code></strong><dd>    Run for login shells.
+  <p><dt><strong><code>~/.zlogin</code></strong><dd>      Run for login shells.
 </dl>
-<p>Now you know what login and interactive shells are, this should be
+<p>
+Now you know what login and interactive shells are, this should be
 straightforward.  You may wonder why there are both <code>~/.zprofile</code> and
 <code>~/.zlogin</code>, when they are both for login shells:  the answer is the
 obvious one, that one is run before, one after <code>~/.zshrc</code>.  This is
 historical; Bourne-type shells run <code>/etc/profile</code>, and csh-type shells
 run <code>~/.login</code>, and zsh tries to cover the bases with its own startup
 files.
-<p>The complication is hinted at by the `see below'.  The file
+<p>
+The complication is hinted at by the `see below'.  The file
 <code>/etc/zshenv</code>, as it says, is always run at the start of any zsh.
 However, if the option <code>NO_RCS</code> is set (or, equivalently, the <code>RCS</code>
 option is unset: I'll talk about options shortly, since they are important
@@ -220,7 +237,8 @@ shells, such as prompts, have no business in <code>/etc/zshenv</code> unless you
 shell.  Script writers who want to get round problems with options being
 changed in <code>/etc/zshenv</code> should put `<code>emulate zsh</code>' at the top of the
 script.
-<p>There are two files run at the end: <code>~/.zlogout</code> and <code>/etc/zlogout</code>, in
+<p>
+There are two files run at the end: <code>~/.zlogout</code> and <code>/etc/zlogout</code>, in
 that order.  As their names suggest, they are counterparts of the
 <code>zlogin</code> files, and therefore are only run for login shells --- though
 you can trick the shell by setting the <code>login</code> option.  Note that whether
@@ -248,9 +266,11 @@ end of the shell.  I won't talk about logout files, however, since there's
 little that's standard to put in them; some people make them clear the
 screen to remove sensitive information with the `<code>clear</code>' command.  Other
 than that, you might need to tidy a few files up when you exit.
-<p><a name="l10"></a>
+<p>
+<a name="l10"></a>
 <h2>2.3: Options</h2>
-<p>It's time to talk about options, since I've mentioned them several times.
+<p>
+It's time to talk about options, since I've mentioned them several times.
 Each option describes one particular shell behaviour; they are all Boolean,
 i.e. can either be on or off, with no other state.  They have short names
 and in the documentation and this guide they are written in uppercase with
@@ -258,14 +278,16 @@ underscores separating the bits (except in actual code, where I'll write
 them in the short form).  However, neither of those is necessary.  In fact,
 <code>NO_RCS</code> and <code>norcs</code> and <code>__N_o_R_c_S__</code> mean the same thing and are
 all accepted by the shell.
-<p>The second thing is that an option with `<code>no</code>' in front just means the
+<p>
+The second thing is that an option with `<code>no</code>' in front just means the
 opposite of the option without.  I could also have written the test `<code>[[
 ! -o norcs ]]</code>' as `<code>[[ -o rcs ]]</code>'; the `<code>!</code>' means `not', as in C.
 You can only have one `<code>no</code>'; `<code>nonorcs</code>' is meaningless.
 Unfortunately, there is an option `<code>NOMATCH</code>' which has `<code>no</code>' as part
 of its basic name, so in this case the opposite really is `<code>NO_NOMATCH</code>';
 <code>NOTIFY</code>, of course, is also a full name in its own right.
-<p>The usual way to set and unset options is with the commands <strong>setopt</strong>
+<p>
+The usual way to set and unset options is with the commands <strong>setopt</strong>
 and <strong>unsetopt</strong> which take a string of option names.  Some options also
 have flags, like the `<code>-f</code>' for <code>NO_RCS</code>, which these commands also
 accept, but it's much clearer to use the full name and the extra time and
@@ -273,7 +295,8 @@ space is negligible.  The command `<code>set -o</code>' is equivalent to <code>s
 this comes from ksh.  Note that <code>set</code> with no `<code>-o</code>' does something
 else --- that sets the positional parameters, which is zsh's way of passing
 arguments to scripts and functions.
-<p>Almost everybody sets some options in their startup files.  Since you want
+<p>
+Almost everybody sets some options in their startup files.  Since you want
 them in every interactive shell, at the least, the choice is between
 putting them in <code>~/.zshrc</code> or <code>~/.zshenv</code>.  The choice really depends
 on how you use non-interactive shells.  They can be started up in unexpected
@@ -286,9 +309,11 @@ since it affects scripts; but, as I've already hinted, you have to work a
 bit harder to make sure scripts are unaffected by that sort of thing
 anyway.  In the following, I just assume they are going to be in
 <code>~/.zshrc</code>.
-<p><a name="l11"></a>
+<p>
+<a name="l11"></a>
 <h2>2.4: Parameters</h2>
-<p>One more thing you'll need to know about in order to write startup files is
+<p>
+One more thing you'll need to know about in order to write startup files is
 parameters, also known as variables.  These are mostly like variables in
 other programming languages.  Simple parameters can be stored like this (an
 <strong>assignment</strong>):
@@ -318,12 +343,14 @@ for example,
 
 because there's nothing in `<code>oneword</code>' to confuse the shell; but you
 could still put quotes there anyway.
-<p>Users of csh should note that you don't use `<code>set</code>' to set parameters.
+<p>
+Users of csh should note that you don't use `<code>set</code>' to set parameters.
 This is important because there is a <code>set</code> command, but it works
 differently --- if you try `<code>set var="this wont't work"</code>', you won't
 get an error but you won't set the parameter, either.  Type `<code>print
 $1</code>' to see what you did set instead.
-<p>To get back what was stored in a parameter, you use the name somewhere on
+<p>
+To get back what was stored in a parameter, you use the name somewhere on
 the command line with a `<code>$</code>' tacked on the front --- this is called an
 <strong>expansion</strong>, or to be more precise, since there are other types of
 expansion, a <strong>parameter expansion</strong>.  For example, after
@@ -342,7 +369,8 @@ asymmetry --- there is no `<code>$</code>' when assigning the parameter, but the
 is a `<code>$</code>' in front to have it expanded it into the command line.  You
 may find the word `substitution' used instead of `expansion' sometimes;
 I'll try and stick with the terminology in the manual.
-<p>Two more things while we're at it.  First, why did I put `<code>-</code><code>-</code>' after
+<p>
+Two more things while we're at it.  First, why did I put `<code>-</code><code>-</code>' after
 the <code>print</code>?  That's because <strong>print</strong>, like many UNIX commands, can take
 options after it which begin with a `<code>-</code>'.  `<code>-</code><code>-</code>' says that there
 are no more options; so if what you're trying to print begins with a
@@ -354,28 +382,33 @@ BSD-style options, which means it doesn't understand `<code>-</code><code>-</cod
 zsh programmers can be quite lax about standards and often use the old,
 but now non-standard, single `<code>-</code>' to show there are no more options.
 Currently, this works even after <code>-R</code>.
-<p>The next point is that I didn't put spaces between the single quotes and
+<p>
+The next point is that I didn't put spaces between the single quotes and
 the <code>$foo</code> and it was still expanded --- expansion happens anywhere the
 parameter is not quoted; it doesn't have to be on its own, just separated
 from anything which might make it look like a different parameter.  This is
 one of those things that can help make shell scripts look so barbaric.
-<p>As well as defining your own parameters, there are also a number which the
+<p>
+As well as defining your own parameters, there are also a number which the
 shell sets itself, and some others which have a special effect when you set
 them.  All the above still applies, though.  For the rest of this guide,
 I will indicate parameters with the `<code>$</code>' stuck in front, to remind you
 what they are, but you should remember that the `<code>$</code>' is missing when you
 set them, or, indeed, any time when you're referring to the name of the
 parameter instead of its value.
-<p><a name="l12"></a>
+<p>
+<a name="l12"></a>
 <h3>2.4.1: Arrays</h3>
-<p>There is a special type of parameter called an <strong>array</strong> which zsh
+<p>
+There is a special type of parameter called an <strong>array</strong> which zsh
 inherited from both ksh and csh.  This is a slightly shaky marriage, since
 some of the things those two shells do with them are not compatible, and
 zsh has elements of both, so you need to be careful if you've used arrays
 in either.  The option <code>KSH_ARRAYS</code> is something you can set to make them
 behave more like they do in ksh, but a lot of zsh users write functions and
 scripts assuming it isn't set, so it can be dangerous.
-<p>Unlike normal parameters (known as <strong>scalars</strong>), arrays have more than one
+<p>
+Unlike normal parameters (known as <strong>scalars</strong>), arrays have more than one
 word in them.  In the examples above, we made the parameter <code>$foo</code> get a
 string with spaces in, but the spaces weren't significant.  If we'd done
 <pre>
@@ -403,7 +436,8 @@ shell.  It's useful too in expressions like `<code>${foo}s</code>' to keep the
 `<code>s</code>' from being part of the parameter name; and, finally, with
 <code>KSH_ARRAYS</code> set, the braces are compulsory, though unfortunately arrays
 are indexed from 0 in that case.
-<p>You can use quotes when defining arrays; as before, this protects against
+<p>
+You can use quotes when defining arrays; as before, this protects against
 the shell thinking the spaces are between different elements of the array.
 Try:
 <pre>
@@ -411,20 +445,25 @@ Try:
   print -- ${foo[2]}
 </pre>
 
-<p>Arrays are useful when the shell needs to keep a whole series of different
+<p>
+Arrays are useful when the shell needs to keep a whole series of different
 things together, so we'll meet some you may want to put in a startup file.
 Users of ksh will have noticed that things are a bit different in zsh, but
 for now I'll just assume you're using the normal zsh way of doing things.
-<p><a name="l13"></a>
+<p>
+<a name="l13"></a>
 <h2>2.5: What to put in your startup files</h2>
-<p>At the last count there were over 130 options and several dozen parameters
+<p>
+At the last count there were over 130 options and several dozen parameters
 which are special to the shell, and many of them deal with things I won't
 talk about till much later.  But as a guide to get you started, and an
 indication of what's to come, here are some options and parameters you
 might want to think about setting in <code>~/.zshrc</code>.
-<p><a name="l14"></a>
+<p>
+<a name="l14"></a>
 <h3>2.5.1: Compatibility options: <code>SH_WORD_SPLIT</code> and others</h3>
-<p>I've already mentioned that zsh works differently from ksh, its nearest
+<p>
+I've already mentioned that zsh works differently from ksh, its nearest
 standard relative, and that some of these differences can be confusing to
 new users, for example the use of arrays.  Some options like <code>KSH_ARRAYS</code>
 exist to allow you to have things work the ksh way.  Most of these are
@@ -456,7 +495,8 @@ Users of other shells just get used to putting things in double quotes,
 which, unlike single quotes, allow the `<code>$</code>' to remain special, and have
 the side effect that whatever is in quotes will remain a single word
 (though there's an exception to that, too: the parameter <code>$@</code>).
-<p>There are a lot of other options doing similar things to keep users of
+<p>
+There are a lot of other options doing similar things to keep users of
 standard shells happy.  Many of them simply turn features off, because the
 other shell doesn't have them and hence unexpected things might happen, or
 simply tweak a feature which is a little different or doesn't usually
@@ -467,19 +507,22 @@ only), <code>IGNORE_BRACES</code>, <code>INTERACTIVE_COMMENTS</code>, <code>KSH_
 to <code>setopt</code> to put the option the way the other shell expects, so some
 have `<code>NO_</code>' in front).  Most people probably won't change those unless
 they notice something isn't working how they expect.
-<p>Some others have more noticeable effects. Here are a few of the ones most
+<p>
+Some others have more noticeable effects. Here are a few of the ones most
 likely to make you scratch your head if you're changing from another
 Bourne-like shell.
-<p><p><strong><code>BARE_GLOB_QUAL</code>, <code>GLOB_SUBST</code>, <code>SH_FILE_EXPANSION</code>,
-<code>SH_GLOB</code>, <code>KSH_GLOB</code></strong><br><br>
-    
-<p>These are all to do with how pattern matching works.  You probably already
+<p>
+<p><strong><code>BARE_GLOB_QUAL</code>, <code>GLOB_SUBST</code>, <code>SH_FILE_EXPANSION</code>,
+<code>SH_GLOB</code>, <code>KSH_GLOB</code></strong><br>
+<p>
+These are all to do with how pattern matching works.  You probably already
 know that the pattern `<code>*.c</code>' will be expanded into all the files in the
 current directory ending in `<code>.c</code>'. Simple uses like this are the same in
 all shells, and the way filenames are expanded is often referred to as
 `globbing' for historical reasons (apparently it stood for `global
 replacement'), hence the name of some of these options.
-<p>However, zsh and ksh differ over more complicated patterns.  For example,
+<p>
+However, zsh and ksh differ over more complicated patterns.  For example,
 to match either file <code>foo.c</code> or file <code>bar.c</code>, in ksh you would say
 <code>@(foo|bar).c</code>.  The usual zsh way of doing things is <code>(foo|bar).c</code>.
 To turn on the ksh way of doing things, set the option <code>KSH_GLOB</code>; to
@@ -488,7 +531,8 @@ turn off the zsh way, set the options <code>SH_GLOB</code> and
 powerful way of selecting files by type (for example, directories or
 executable files) instead of by name which I'll talk about in 
 <a href="zshguide05.html#subst">chapter 5</a>.
-<p>The other two need a bit more explanation.  Try this:
+<p>
+The other two need a bit more explanation.  Try this:
 <pre>
   foo='*'
   print $foo
@@ -503,7 +547,8 @@ just as if you typed it, while zsh is using what you assigned to
 word to be expanded in zsh, too, you can set the option <code>GLOB_SUBST</code>.
 As with <code>SH_WORD_SPLIT</code>, the way around the ksh behaviour if you don't
 want the value changed is to use double quotes: <code>"$foo"</code>.
-<p>You are less likely to have to worry about <code>SH_FILE_EXPANSION</code>.  It
+<p>
+You are less likely to have to worry about <code>SH_FILE_EXPANSION</code>.  It
 determines when the shell expands things like <code>~/.zshrc</code> to the
 full path, e.g. <code>/home/user2/pws/.zshrc</code>.  In the case of zsh, this
 is usually done quite late, after most other forms of expansion such as
@@ -521,9 +566,10 @@ way ksh works.  It also means I lied when I said ksh treats <code>$foo</code>
 exactly as if its value had been typed, because if you type <code>print
 ~/.zshrc</code> the `<code>~</code>' does get expanded.  So you see how convenient lying
 is.
-<p><p><strong><code>NOMATCH</code>, <code>BAD_PATTERN</code></strong><br><br>
-    
-<p>These also relate to patterns which produce file names, but in this case
+<p>
+<p><strong><code>NOMATCH</code>, <code>BAD_PATTERN</code></strong><br>
+<p>
+These also relate to patterns which produce file names, but in this case
 they determine what happens when the pattern doesn't match a file for some
 reason.  There are two possible reasons: either no file happened to match,
 or you didn't use a proper pattern. In both cases, zsh, unlike ksh, prints
@@ -541,9 +587,10 @@ messages:  you can stop the first by setting <code>NO_NOMATCH</code>, and the se
 by setting <code>NO_BAD_PATTERN</code>.  In both cases, that makes the shell print
 out what you originally type without any expansion when there are no
 matching files.
-<p><p><strong><code>BG_NICE</code>, <code>NOTIFY</code></strong><br><br>
-    
-<p>All UNIX shells allow you to start a <em>background</em> job by putting `<code>&amp;</code>'
+<p>
+<p><strong><code>BG_NICE</code>, <code>NOTIFY</code></strong><br>
+<p>
+All UNIX shells allow you to start a <em>background</em> job by putting `<code>&amp;</code>'
 at the end of the line; then the shell doesn't wait for the job to finish,
 so you can type something else.  In zsh, such jobs are usually run at a
 lower priority (a `higher nice value' in UNIX-speak), so that they don't
@@ -551,7 +598,8 @@ use so much of the processor's time as foreground jobs (all the others,
 without the `<code>&amp;</code>') do.  This is so that jobs like editing or using the
 shell don't get slowed down, which can be highly annoying.  You can turn
 this feature off by setting <code>NO_BG_NICE</code>.
-<p>When a background job finishes, zsh usually tells you immediately by
+<p>
+When a background job finishes, zsh usually tells you immediately by
 printing a message, which interrupts whatever you're doing.  You can
 stop this by setting <code>NO_NOTIFY</code>.  Actually, this is an option in
 most versions of ksh, too, but it's a little less annoying in zsh
@@ -575,9 +623,10 @@ enough to know the display was messed up, so it reprinted the line you
 were editing, and you can continue.  If you were already running another
 programme in the foreground, however, that wouldn't know that zsh had
 printed the message, so the display would still be messed up.
-<p><p><strong><code>HUP</code></strong><br><br>
-    
-<p>Signals are the way of persuading a job to do something it doesn't want to,
+<p>
+<p><strong><code>HUP</code></strong><br>
+<p>
+Signals are the way of persuading a job to do something it doesn't want to,
 such as die; when you type <code>^C</code>, it sends a signal (called <code>SIGINT</code> in
 this case) to the job.  In zsh, if you have a background job running when
 the shell exits, the shell will assume you want that to be killed; in this
@@ -586,9 +635,10 @@ case it is sent a particular signal called `<code>SIGHUP</code>' which stands fo
 equivalent of `time to go home'.  If you often start jobs that should go on
 even when the shell has exited, then you can set the option <code>NO_HUP</code>, and
 background jobs will be left alone.
-<p><p><strong><code>KSH_ARRAYS</code></strong><br><br>
-    
-<p>I've already mentioned this, but here are the details.
+<p>
+<p><strong><code>KSH_ARRAYS</code></strong><br>
+<p>
+I've already mentioned this, but here are the details.
 Suppose you have defined an array <code>arr</code>, for example with
 <pre>
   arr=(foo bar)
@@ -607,9 +657,10 @@ in zsh you can get away with <code>$arr[1]</code> to refer to an element, while
 ksh insists on the braces.  By setting <code>KSH_ARRAYS</code>, zsh will switch
 to the ksh way of doing things.  This is one option you need to be
 particularly careful about when writing functions and scripts.
-<p><p><strong><code>FUNCTION_ARG_ZERO</code></strong><br><br>
-    
-<p>Shell functions are a useful way of specifying a set of commands to be run
+<p>
+<p><strong><code>FUNCTION_ARG_ZERO</code></strong><br>
+<p>
+Shell functions are a useful way of specifying a set of commands to be run
 by the shell.  Here's a simple example:
 <pre>
   % fn() { print My name is $0; }
@@ -626,7 +677,8 @@ you might think you would put arguments to the function in there, but you
 can't, it must always appear simply as `<code>()</code>'.  If you don't know C, it
 doesn't matter; nothing from C really applies in detail, it's just a
 superficial resemblance.
-<p>In this case, zsh printed the special parameter `<code>$0</code>' (`argument
+<p>
+In this case, zsh printed the special parameter `<code>$0</code>' (`argument
 zero') and, as you see, that turned into the name of the function.  Now
 <code>$0</code> outside a function means the name of the shell, or the name of
 the script for a non-interactive shell, so if you type `<code>print $0</code>'
@@ -636,15 +688,17 @@ it will probably say `<code>zsh</code>'.  In most versions of ksh, this is
 There's probably no reason why you would want to, but zsh functions quite
 often test their own name, so this is one reason why they might not
 work.
-<p>There's another difference when defining functions, irrespective of
+<p>
+There's another difference when defining functions, irrespective of
 <code>FUNCTION_ARG_ZERO</code>: in zsh, you can get away without the final `<code>;</code>'
 before the end of the definition of <code>fn</code>, because it knows the `<code>}</code>'
 must finish the last command as well as the function; but ksh is not so
 forgiving here.  Lots of syntactic know-alls will probably be able to tell
 you why that's a good thing, but fortunately I can't.
-<p><p><strong><code>KSH_AUTOLOAD</code></strong><br><br>
-    
-<p>There's an easy way of loading functions built into both ksh and zsh.
+<p>
+<p><strong><code>KSH_AUTOLOAD</code></strong><br>
+<p>
+There's an easy way of loading functions built into both ksh and zsh.
 Instead of putting them all together in a big startup file, you can
 put a single line in that,
 <pre>
@@ -658,7 +712,8 @@ list of directories; it will search all the directories for a file called
 <code>fn</code>, and use that as the function definition.  If you want to try this
 you can type `<code>autoload fn; fpath=(. $fpath)</code>' and write a file called
 <code>fn</code> in the current directory.
-<p>Unfortunately ksh and zsh disagree a bit about what should be in that
+<p>
+Unfortunately ksh and zsh disagree a bit about what should be in that
 file.  The normal zsh way of doing things is just putting the body of the
 function there.  So if the file <code>fn</code> is autoloadable and contains,
 <pre>
@@ -676,7 +731,8 @@ run, so it's not only much clearer to add explanatory contents, it also
 doesn't use any more memory either.  It uses more disk space, of course,
 but nowadays even home PCs come with the sort of disk size which allows you
 a little indulgence with legibility.
-<p>However, ksh does things differently, and here the file <code>fn</code> needs to
+<p>
+However, ksh does things differently, and here the file <code>fn</code> needs to
 contain
 <pre>
   fn() {
@@ -693,7 +749,8 @@ single time you run <code>fn</code>.  The option to force zsh to work the ksh wa
 here is called <code>KSH_AUTOLOAD</code>.  (If you wanted to try the second example,
 you would need to type `<code>unfunction fn; autoload fn</code>' to remove the
 function from memory and mark it for autoloading again.)
-<p>Actually, zsh is a little bit cleverer.  If the option <code>KSH_AUTOLOAD</code> is
+<p>
+Actually, zsh is a little bit cleverer.  If the option <code>KSH_AUTOLOAD</code> is
 not set, but the file contains just a function definition in the ksh form
 and nothing else (like the last one above, in fact), then zsh assumes that
 it needs to run the function just loaded straight away.  The other
@@ -702,7 +759,8 @@ other than define a function of the same name, which is assumed to be
 unlikely --- and if you really want to do that, you will need to trick zsh
 by putting a do-nothing command in the same file, such as a `<code>:</code>' on the
 last line.
-<p>A final complication --- sorry, but this one actually happens --- is that
+<p>
+A final complication --- sorry, but this one actually happens --- is that
 sometimes in zsh you want to define not just the function to be called, but
 some others to help it along.  Then you need to do this:
 <pre>
@@ -729,13 +787,15 @@ problem would be to define helper as a completely separate function, itself
 autoloaded:  in both zsh and ksh, it makes no difference whether a function
 is defined inside another function or outside it, unlike (say) Pascal or
 Scheme.
-<p><p><strong><code>LOCAL_OPTIONS</code>, <code>LOCAL_TRAPS</code></strong><br><br>
-    
-<p>These two options also refer to functions, and here the ksh way of doing
+<p>
+<p><strong><code>LOCAL_OPTIONS</code>, <code>LOCAL_TRAPS</code></strong><br>
+<p>
+These two options also refer to functions, and here the ksh way of doing
 things is usually preferable, so many people set at least <code>LOCAL_OPTIONS</code>
 in a lot of their functions.  The first versions of zsh didn't have these,
 which is why you need to turn them on by hand.
-<p>If <code>LOCAL_OPTIONS</code> is set in a function (or was already set before the
+<p>
+If <code>LOCAL_OPTIONS</code> is set in a function (or was already set before the
 function, and not unset inside it), then any options which are
 changed inside the function will be put back the way they were when the
 function finishes.  So
@@ -751,7 +811,8 @@ sure that the option <code>KSH_GLOB</code> is restored to whatever it was before
 when the function exits.  This works even if the function was interrupted
 by typing <code>^C</code>.  Note that <code>LOCAL_OPTIONS</code> will itself be restored
 to the way it was.
-<p>The option <code>LOCAL_TRAPS</code>, which first appeared in version 3.1.6, is for a
+<p>
+The option <code>LOCAL_TRAPS</code>, which first appeared in version 3.1.6, is for a
 similar reason but refers to (guess what) <strong>traps</strong>, which are a way of
 stopping signals sent to the shell, for example by typing <code>^C</code> to cancel
 something (<code>SIGINT</code>, short for `signal interrupt'), or <code>^Z</code> to suspend it
@@ -766,7 +827,8 @@ and the set of commands in quotes will be run when the <code>^C</code> arrives (
 can even try it without running anything).  If the string is empty (just
 <code>'</code><code>'</code> with nothing inside), the signal will be ignored; typing <code>^C</code>
 has no effect.  To put it back to normal, the command is `<code>trap - INT</code>'.
-<p>Traps are most useful in functions, where you may temporarily (say) not
+<p>
+Traps are most useful in functions, where you may temporarily (say) not
 want things to stop when you hit <code>^C</code>, or you may want to clear up
 something before returning from the function.  So now you can guess what
 <code>LOCAL_TRAPS</code> does; with
@@ -781,7 +843,8 @@ something before returning from the function.  So now you can guess what
 the shell will ignore <code>^C</code>'s to the end of the function, but then put
 back the trap that was there before, or remove it completely if there was
 none.  Traps are described in more detail in <a href="zshguide03.html#syntax">chapter 3</a>.
-<p>There is a very convenient shorthand for making options and traps local, as
+<p>
+There is a very convenient shorthand for making options and traps local, as
 well as for setting the others to their standard values: put `<code>emulate -L
 zsh</code>' at the start of a function.  This sets the option values back to the
 ones set when zsh starts, but with <code>LOCAL_OPTIONS</code> and <code>LOCAL_TRAPS</code>
@@ -793,7 +856,8 @@ every option which it makes sense to set to its standard value with
 options like <code>login</code> at this point).  Furthermore, you can make the shell
 behave as much like ksh as it knows how to by doing `<code>emulate -L ksh</code>',
 with or without the <code>-R</code>.
-<p>The <code>-L</code> option to <code>emulate</code> actually only appears in versions from
+<p>
+The <code>-L</code> option to <code>emulate</code> actually only appears in versions from
 3.0.6 and 3.1.6.  Before that you needed
 <pre>
   emulate zsh
@@ -801,9 +865,10 @@ with or without the <code>-R</code>.
 </pre>
 
 since <code>localtraps</code> didn't exist, and indeed doesn't exist in 3.0.6 either.
-<p><p><strong><code>PROMPT_PERCENT</code>, <code>PROMPT_SUBST</code></strong><br><br>
-    
-<p>As promised, setting prompts will be discussed later, but for now there are
+<p>
+<p><strong><code>PROMPT_PERCENT</code>, <code>PROMPT_SUBST</code></strong><br>
+<p>
+As promised, setting prompts will be discussed later, but for now there are
 two ways of getting information into prompts, such as the parameter <code>$PS1</code>
 which determines the usual prompt at the start of a new command line.  One
 is by using <em>percent escapes</em>, which means a `<code>%</code>' followed by another
@@ -812,7 +877,8 @@ zsh prompt is `<code>%m%# </code>'.  The first percent escape turns into the nam
 the host computer, the second usually turns into a `<code>%</code>', but a `<code>#</code>'
 for the superuser.  However, ksh doesn't have these, so you can turn them
 off by setting <code>NO_PROMPT_PERCENT</code>.
-<p>The usual ksh way of doing things, on the other hand, is by putting
+<p>
+The usual ksh way of doing things, on the other hand, is by putting
 parameters in the prompt to be substituted.  To get zsh to do this, you
 have to set <code>PROMPT_SUBST</code>.  Then assigning
 <pre>
@@ -828,16 +894,18 @@ assignment took place, probably your home directory, and wouldn't change to
 reflect the directory you were actually in.  Of course, you need the quotes
 for the space, too, else it just gets swallowed up when the assignment is
 executed.
-<p>As there is potentially much more information available in parameters than
+<p>
+As there is potentially much more information available in parameters than
 the fixed number of predefined percent escapes, you may wish to set
 <code>PROMPT_SUBST</code> anyway.  Furthermore, you can get the output of commands
 into prompts since other forms of expansion are done on them, not just that
 of parameters; in fact, prompts with <code>PROMPT_SUBST</code> are expanded pretty
 much the same as a string inside double quotes every time the prompt is
 displayed.
-<p><p><strong><code>RM_STAR_SILENT</code></strong><br><br>
-    
-<p>Everybody at some time or another deletes more files than they mean to (and
+<p>
+<p><strong><code>RM_STAR_SILENT</code></strong><br>
+<p>
+Everybody at some time or another deletes more files than they mean to (and
 <em>that's</em> a gross understatement); my favourite is:
 <pre>
   rm *&gt;o
@@ -846,33 +914,38 @@ displayed.
 That `<code>&gt;</code>' should be a `.', but I still had the shift key pressed.  This
 removes all files, echoing the output (there isn't any) into a file `o'.
 Delightfully, the empty file `o' is not removed. (Don't try this at home.)
-<p>There is a protection mechanism built into zsh to stop you deleting all the
+<p>
+There is a protection mechanism built into zsh to stop you deleting all the
 files in a directory by accident.  If zsh finds that the command is
 `<code>rm</code>', and there is a `<code>*</code>' on the command line (there may be other
 stuff as well), then it will ask you if you really want to delete all those
 files.  You can turn this off by setting <code>RM_STAR_SILENT</code>.
 Overreliance on this option is a bad idea; it's only a last line of
 defence.
-<p><p><strong><code>SH_OPTION_LETTERS</code></strong><br><br>
-    
-<p>Many options also have single letters to stand for them; you can set an
+<p>
+<p><strong><code>SH_OPTION_LETTERS</code></strong><br>
+<p>
+Many options also have single letters to stand for them; you can set an
 option in this way by, for example, `<code>set -f</code>', which sets <code>NO_RCS</code>.
 However, even where sh, ksh and zsh share options, not all have the same
 letters.  This option allows the single letter options to be more like
 those in sh and ksh.  Look them up in the manual if you want to know, but I
 already recommended that you use the full names for options anyway.
-<p><p><strong><code>SH_WORD_SPLIT</code></strong><br><br>
-    
-<p>I've already talked about this, see above, but it's mentioned here so you
+<p>
+<p><strong><code>SH_WORD_SPLIT</code></strong><br>
+<p>
+I've already talked about this, see above, but it's mentioned here so you
 don't forget it, since it's an important difference.
-<p><p><strong>Starting zsh as ksh</strong><br><br>
-    
-<p>Finally on the subject of compatibility, you might like to know that as
+<p>
+<p><strong>Starting zsh as ksh</strong><br>
+<p>
+Finally on the subject of compatibility, you might like to know that as
 well as `<code>emulate</code>' there is another way of forcing zsh to behave as much
 like sh or ksh as possible.  This is by actually calling zsh under the name
 ksh.  You don't need to rename zsh, you can make a link from the name zsh
 to the name ksh, which will be enough to convince it.
-<p>There is an easier way when you are doing this from within zsh itself.
+<p>
+There is an easier way when you are doing this from within zsh itself.
 The parameter <code>$ARGV0</code> is special; it is the value which will be passed as
 the first argument of a command which is run by the shell.  Normally this
 is the name of the command, but it doesn't have to be since the command
@@ -885,7 +958,8 @@ trick a programme into thinking its name is different.  So
 will start a copy of zsh that tries to make itself like ksh.  Note this
 doesn't work unless you're already in zsh, as the <code>$ARGV0</code> won't be
 special.
-<p>I haven't mentioned putting a parameter assignment before a command name,
+<p>
+I haven't mentioned putting a parameter assignment before a command name,
 but that simply assigns the parameter (strictly an environment variable in
 this case) for the duration of the command; the value <code>$ARGV0</code> won't be
 set after that command (the ksh-like zsh) finishes, as you can easily test
@@ -902,16 +976,19 @@ because of the order of expansion:  the command line and its parameters are
 expanded before execution, giving whatever value <code>$FOO</code> had before,
 probably none, then FOO=bar is put into the environment, and then the
 command is executed but doesn't use the new value of <code>$FOO</code>.
-<p><a name="l15"></a>
+<p>
+<a name="l15"></a>
 <h3>2.5.2: Options for csh junkies</h3>
-<p>As well as old ksh users, there are some options available to make old csh
+<p>
+As well as old ksh users, there are some options available to make old csh
 and tcsh users feel more at home.  As you will already have noticed, the
 syntax is very different, so you are never going to feel completely at home
 and it might be best just to remember the fact.  But here is a brief list.
 The last, <code>CSH_NULL_GLOB</code>, is actually quite useful.
-<p><p><strong><code>CSH_JUNKIE_HISTORY</code></strong><br><br>
-    
-<p>Zsh has the old csh mechanism for referring to words on a previous
+<p>
+<p><strong><code>CSH_JUNKIE_HISTORY</code></strong><br>
+<p>
+Zsh has the old csh mechanism for referring to words on a previous
 command line using a `<code>!</code>'; it's less used, now the editor is more
 powerful, but is still a convenient shorthand for extracting short
 bits from the previous line.  This mechanism is sometimes called
@@ -934,16 +1011,18 @@ command in any case, although the explicit way of referring to the
 last command is `<code>!!</code>' --- you have to use that if there are no
 `<code>:</code>' bits following.  In summary, zsh usually gives you `<code>print
 foo bar</code>'; with <code>CSH_JUNKIE_HISTORY</code> you get `<code>print foo closed</code>'.
-<p>There's another option controlling this, <code>BANG_HIST</code>.  If you unset that,
+<p>
+There's another option controlling this, <code>BANG_HIST</code>.  If you unset that,
 the mechanism won't work at all.  There's also a parameter, <code>$histchars</code>.
 The first character is the main history expansion character, normally
 `<code>!</code>' of course; the second is for rapid substitutions (normally `<code>^</code>'
 --- use of this is described below); the third is the character introducing
 comments, normally `<code>#</code>'.  Changing the third character is definitely not
 recommended.  There's little real reason to change any.
-<p><p><strong><code>CSH_JUNKIE_LOOPS</code></strong><br><br>
-    
-<p>Normal zsh loops look something like this,
+<p>
+<p><strong><code>CSH_JUNKIE_LOOPS</code></strong><br>
+<p>
+Normal zsh loops look something like this,
 <pre>
   while true; do
     print Never-ending story
@@ -961,9 +1040,10 @@ the prompt, if you like, then <code>^C</code> to stop it).  With
 
 which will, of course, make your zsh code unlike most other people's,
 so for most users it's best to learn the proper syntax.
-<p><p><strong><code>CSH_NULL_GLOB</code></strong><br><br>
-    
-<p>This is another of the family of options like <code>NO_NOMATCH</code>, already
+<p>
+<p><strong><code>CSH_NULL_GLOB</code></strong><br>
+<p>
+This is another of the family of options like <code>NO_NOMATCH</code>, already
 mentioned.  In this case, if you have a command line consisting of
 a set of patterns, at least one of them must match at least one
 file, or an error is caused; any that don't match are removed from the
@@ -985,27 +1065,32 @@ file2*</code>' and the directory contains just the file <code>file1.c</code>.
     case if that had not been there a blank line would have been
     printed, with no error.
 </ol>
-<p><code>CSH_NULL_GLOB</code> is good thing to have set since it can keep you on the
+<p>
+<code>CSH_NULL_GLOB</code> is good thing to have set since it can keep you on the
 straight and narrow without too many unwanted error messages, so this time
 it's not just for csh junkies.
-<p><p><strong><code>CSH_JUNKIE_QUOTES</code></strong><br><br>
-    
-<p>Here just for completeness.  Csh and friends don't allow multiline quotes,
+<p>
+<p><strong><code>CSH_JUNKIE_QUOTES</code></strong><br>
+<p>
+Here just for completeness.  Csh and friends don't allow multiline quotes,
 as zsh does; if you don't finish a pair of quotes before a new line, csh
 will complain.  This option makes zsh do the same.  But multi-line quotes
 are very useful and very common in zsh scripts and functions; this is only
 for people whose minds have been really screwed up by using csh.
-<p><a name="l16"></a>
+<p>
+<a name="l16"></a>
 <h3>2.5.3: The history mechanism: types of history</h3>
-<p>The name `history mechanism' refers to the fact that zsh keeps a `history'
+<p>
+The name `history mechanism' refers to the fact that zsh keeps a `history'
 of the commands you have typed.  There are three ways of getting these
 back; all these use the same set of command lines, but the mechanisms for
 getting at them are rather different.  For some reason, items in the
 history list (a complete line of input typed and executed at once) have
 become known as `events'.
-<p><p><strong>Editing the history directly</strong><br><br>
-    
-<p>First, you can use the editor; usually hitting up-arrow will take you to
+<p>
+<p><strong>Editing the history directly</strong><br>
+<p>
+First, you can use the editor; usually hitting up-arrow will take you to
 the previous line, and down-arrow takes you back.  This is usually the
 easiest way, since you can see exactly what you're doing.  I will say a
 great deal more about the editor in <a href="zshguide04.html#zle">chapter 4</a>; the first thing
@@ -1022,9 +1107,10 @@ If you're in the wrong mode, `<code>bindkey -e</code>' in <code>~/.zshrc</code> 
 to emacs mode and `<code>bindkey -v</code>' to vi mode.  For vi users, the thing
 to remember is that you start in insert mode, so type `<code>ESC</code>' to be
 able to enter vi commands. 
-<p><p><strong>`Bang'-history</strong><br><br>
-    
-<p>Second, you can use the csh-style `bang-history' mechanism (unless you have
+<p>
+<p><strong>`Bang'-history</strong><br>
+<p>
+Second, you can use the csh-style `bang-history' mechanism (unless you have
 set the option <code>NO_BANG_HIST</code>); the `bang' is the exclamation mark, `!',
 also known as `pling' or `shriek' (or factorial, but that's another story).
 Thus `<code>!!</code>' retrieves the last command line and executes it; `<code>!-2</code>'
@@ -1035,7 +1121,8 @@ attention above, you will note you just need one `<code>!</code>' in that case);
 arguments after the command; `<code>$</code>' picks the last word.  You can even
 have ranges: `<code>!!:1-3</code>' picks those three words, and things like
 `<code>!!:3-$</code>' work too.
-<p>After the word selector, you can have a second set of colons and then some
+<p>
+After the word selector, you can have a second set of colons and then some
 special commands called <strong>modifiers</strong> --- these can be very useful to
 remember, since they can be applied to parameters and file patterns to, so
 here's some more details.  The `<code>:t</code>' (tail) modifier picks the last part
@@ -1055,7 +1142,8 @@ can tell that the `<code>:t</code>' is a modifier, and assumes you want it appli
 to the entire previous command.  (Be careful here, since actually the
 <code>:t</code> will reduce the expression to everything after the last slash in
 <em>any</em> word, which is a little unexpected.)
-<p>With parameters:
+<p>
+With parameters:
 <pre>
   % foo=/usr/bin/cat
   % print ${foo:h}
@@ -1072,7 +1160,8 @@ with them).  And finally with files --- this won't work if you set
 
 where you need the parentheses to tell the shell the `<code>:t</code>' isn't just
 part of the file name.
-<p>For a complete list, see the <code>zshexpn</code> manual, or the section
+<p>
+For a complete list, see the <code>zshexpn</code> manual, or the section
 <code>Modifiers</code> in the printed or Info versions of the manual, but here are a
 few more of the most useful.  `<code>:r</code>' removes the suffix of a file, turning
 <code>file.c</code> into <code>file</code>; `<code>:l</code>' and `<code>:u</code>' make the word(s) all
@@ -1101,22 +1190,25 @@ above. You can miss out the last `<code>^</code>' if there's nothing else to fol
 it.  By the way, you can put modifiers together, but each one needs the
 colon with it: <code>:t:r</code> applied to `<code>dir/file.c</code>' produces `<code>file</code>',
 and repeated applications of <code>:h</code> get you shorter and shorter paths.
-<p>Before we leave bang-history, note the option <code>HIST_VERIFY</code>.  If that's
+<p>
+Before we leave bang-history, note the option <code>HIST_VERIFY</code>.  If that's
 set, then after a substitution the line appears again with the changes,
 instead of being immediately printed and executed.  As you just have to
 type <code>&lt;RET&gt;</code> to execute it, this is a useful trick to save you executing
 the wrong thing, which can easily happen with complicated bang-history
 lines; I have this set myself.
-<p>And one last tip: the shell's expansion and completion, which I will
+<p>
+And one last tip: the shell's expansion and completion, which I will
 enthuse about at length later on, allows you to expand bang-history
 references straight away by hitting <code>TAB</code> immediately after you've typed
 the complete reference, and you can usually type control together with
 slash (on some keyboards, you are restricted to <code>^Xu</code>) to put it back the
 way it was if you don't like the result --- this is part of the editor's
 `undo' feature.
-<p><p><strong>Ksh-style history commands</strong><br><br>
-    
-<p>The third form of history uses the <code>fc</code> builtin.  It's the most
+<p>
+<p><strong>Ksh-style history commands</strong><br>
+<p>
+The third form of history uses the <code>fc</code> builtin.  It's the most
 cumbersome: you have to tell the command which complete lines to
 execute, and may be given a chance to edit them first (but using an
 external editor, not in the shell).  You probably won't use it that way,
@@ -1133,9 +1225,11 @@ particular example is `<code>history 1</code>', which lists all commands (even i
 the first command it still remembers is higher than 1; it just silently
 omits all those).  The third use of <code>fc</code> is for reading and writing your
 history so you can keep it between sessions.
-<p><a name="l17"></a>
+<p>
+<a name="l17"></a>
 <h3>2.5.4: Setting up history</h3>
-<p>In fact, the shell is able to read and write history without being told.
+<p>
+In fact, the shell is able to read and write history without being told.
 You need to tell it where to save the history, however, and for that you
 have to set the parameter <code>$HISTFILE</code> to the name of the file you want to
 use (a common choice is `<code>~/.history</code>').  Next, you need to set the
@@ -1150,7 +1244,8 @@ respectively, while <code>fc -A</code> appends it to the the file (although prun
 it if it's longer than <code>$SAVEHIST</code>); <code>fc -WI</code> and <code>fc -AI</code> are
 similar, but the <code>I</code> means only write out events since the last time
 history was written.
-<p>There is a third parameter <code>$HISTSIZE</code>, which determines the number
+<p>
+There is a third parameter <code>$HISTSIZE</code>, which determines the number
 of lines the shell will keep within one session; except for special
 reasons which I won't talk about, you should set <code>$SAVEHIST</code> to be no more
 than <code>$HISTSIZE</code>, though it can be less. The default value for
@@ -1166,17 +1261,20 @@ set of parameters to set in <code>.zshrc</code> is
 and that is enough to get things working.  Note that you <em>must</em> set
 <code>$SAVEHIST</code> and <code>$HISTFILE</code> for automatic reading and writing of history
 lines to work.
-<p><a name="l18"></a>
+<p>
+<a name="l18"></a>
 <h3>2.5.5: History options</h3>
-<p>There are also many options affecting history; these increased
+<p>
+There are also many options affecting history; these increased
 substantially with version 3.1.6, which provided for the first time
 <code>INC_APPEND_HISTORY</code>, <code>SHARE_HISTORY</code>, <code>HIST_EXPIRE_DUPS_FIRST</code>,
 <code>HIST_IGNORE_ALL_DUPS</code>, <code>HIST_SAVE_NO_DUPS</code> and <code>HIST_NO_FUNCTIONS</code>.
 I have already described <code>BANG_HIST</code>, <code>CSH_JUNKIE_HISTORY</code> and
 <code>HIST_VERIFY</code> and I won't talk about them again.
-<p><p><strong><code>APPEND_HISTORY</code>, <code>INC_APPEND_HISTORY</code>, <code>SHARE_HISTORY</code></strong><br><br>
-    
-<p>Normally, when it writes a history file, zsh just overwrites everything
+<p>
+<p><strong><code>APPEND_HISTORY</code>, <code>INC_APPEND_HISTORY</code>, <code>SHARE_HISTORY</code></strong><br>
+<p>
+Normally, when it writes a history file, zsh just overwrites everything
 that's there.  <code>APPEND_HISTORY</code> allows it to append the new history to
 the old. The shell will make an effort not to write out lines which should
 be there already; this can get complicated if you have lots of zshs running
@@ -1188,7 +1286,8 @@ main shell its history will look like that of the main shell, which is
 quite useful.  It also means the ordering of commands from different shells
 running at the same time is much more logical --- basically just the order
 they were executed --- so for 3.1.6 and higher this option is recommended.
-<p><code>SHARE_HISTORY</code> takes this one stage further: as each line is added,
+<p>
+<code>SHARE_HISTORY</code> takes this one stage further: as each line is added,
 the history file is checked to see if anything was written out by another
 shell, and if so it is included in the history of the current shell too.
 This means that zsh's running in different windows but on the same host (or
@@ -1200,9 +1299,10 @@ command to display them, so that you can be sure what command you are
 actually reexecuting.  The Korn shell always behaves as if
 <code>SHARE_HISTORY</code> is set, presumably because it doesn't store history
 internally.
-<p><p><strong><code>EXTENDED_HISTORY</code></strong><br><br>
-    
-<p>This makes the format of the history entry more complicated: in addition to
+<p>
+<p><strong><code>EXTENDED_HISTORY</code></strong><br>
+<p>
+This makes the format of the history entry more complicated: in addition to
 just the command, it saves the time when the command was started and how
 long it ran for.  The <code>history</code> command takes three options which use
 this: <code>history -d</code> prints the start time of the command; <code>history -f</code>
@@ -1212,10 +1312,11 @@ be changed with <code>-E</code> for European (<em>day</em>.<em>month</em>.<em>ye
 <code>-i</code> for international (<em>year</em>-<em>month</em>-<em>day</em>) formats.  The main
 reasons why you <em>wouldn't</em> want to set this would be shortage of disk
 space, or because you wanted your history file to be read by another shell.
-<p><p><strong><code>HIST_IGNORE_DUPS</code>, <code>HIST_IGNORE_ALL_DUPS</code>,
-<code>HIST_EXPIRE_DUPS_FIRST</code>, <code>HIST_SAVE_NO_DUPS</code>, <code>HIST_FIND_NO_DUPS</code></strong><br><br>
-    
-<p>These options give ways of dealing with the duplicate lines that often
+<p>
+<p><strong><code>HIST_IGNORE_DUPS</code>, <code>HIST_IGNORE_ALL_DUPS</code>,
+<code>HIST_EXPIRE_DUPS_FIRST</code>, <code>HIST_SAVE_NO_DUPS</code>, <code>HIST_FIND_NO_DUPS</code></strong><br>
+<p>
+These options give ways of dealing with the duplicate lines that often
 appear in the history.  The simplest is <code>HIST_IGNORE_DUPS</code>, which tells
 the shell not to store a history line if it's the same as the previous one,
 thus collapsing a lot of repeated commands down to one; this is a very good
@@ -1229,9 +1330,10 @@ duplicates when the history fills up, but does nothing until then.
 session, the shell is not to save duplicated lines more than once; and
 <code>HIST_FIND_NO_DUPS</code> means that even if duplicate lines have been saved,
 searches backwards with editor commands don't show them more than once.
-<p><p><strong><code>HIST_ALLOW_CLOBBER</code>, <code>HIST_REDUCE_BLANKS</code></strong><br><br>
-    
-<p>These allow the history mechanism to make changes to lines as
+<p>
+<p><strong><code>HIST_ALLOW_CLOBBER</code>, <code>HIST_REDUCE_BLANKS</code></strong><br>
+<p>
+These allow the history mechanism to make changes to lines as
 they are entered.  The first affects output redirections,
 where you use the symbol <code>&gt;</code> to redirect the output of a command
 or set of commands to a named file, or use <code>&gt;</code><code>&gt;</code> to append the output
@@ -1251,14 +1353,16 @@ With <code>HIST_ALLOW_CLOBBER</code>, the second line appears in the history as
 where the <code>&gt;|</code> overrides <code>NO_CLOBBER</code>.  So to get round the
 <code>NO_CLOBBER</code> you can just go back to the previous line and
 execute it without editing it.
-<p>The second option, <code>HIST_REDUCE_BLANKS</code>, will tidy up the line when it is
+<p>
+The second option, <code>HIST_REDUCE_BLANKS</code>, will tidy up the line when it is
 entered into the history by removing any excess blanks that mean nothing to
 the shell.  This can also mean that the line becomes a duplicate of a
 previous one even if it would not have been in its untidied form.  It is
 smart enough not to remove blanks which are important, i.e. are quoted.
-<p><p><strong><code>HIST_IGNORE_SPACE</code>, <code>HIST_NO_STORE</code>, <code>HIST_NO_FUNCTIONS</code></strong><br><br>
-    
-<p>These three options allow you to say that certain lines shouldn't go into
+<p>
+<p><strong><code>HIST_IGNORE_SPACE</code>, <code>HIST_NO_STORE</code>, <code>HIST_NO_FUNCTIONS</code></strong><br>
+<p>
+These three options allow you to say that certain lines shouldn't go into
 the history at all.  <code>HIST_IGNORE_SPACE</code> means that lines which begin
 with a space don't go into the history; the idea is that you deliberately
 type a space, which is not otherwise significant to the shell, before
@@ -1267,53 +1371,63 @@ In zsh 4.0.1 this is implemented so that you can always recall the
 immediately preceding line for editing, even if it had a space; but when
 the next line is executed and entered into the history, the line beginning
 with the space is forgotten.
-<p><code>HIST_NO_STORE</code> tells the shell not to store <code>history</code> or <code>fc</code>
+<p>
+<code>HIST_NO_STORE</code> tells the shell not to store <code>history</code> or <code>fc</code>
 commands. while <code>HIST_NO_FUNCTIONS</code> tells it not to store function
 definitions as these, though usually infrequent, can be tiresomely long.  A
 function definition is anything beginning `<code>function funcname {...</code>' or
 `<code>funcname () { ...</code>'.
-<p><p><strong><code>NO_HIST_BEEP</code></strong><br><br>
-    
-<p>Finally, <code>HIST_BEEP</code> is used in the editor:  if you try to scroll
+<p>
+<p><strong><code>NO_HIST_BEEP</code></strong><br>
+<p>
+Finally, <code>HIST_BEEP</code> is used in the editor:  if you try to scroll
 up or down beyond the end of the history list, the shell will beep.
 It is on by default, so use <code>NO_HIST_BEEP</code> to turn it off.
-<p><a name="l19"></a>
+<p>
+<a name="l19"></a>
 <h3>2.5.6: Prompts</h3>
-<p>Most people have some definitions in <code>.zshrc</code> for altering the prompt
+<p>
+Most people have some definitions in <code>.zshrc</code> for altering the prompt
 you see at the start of each line.  I've already mentioned
 <code>PROMPT_PERCENT</code> (set by default) and <code>PROMPT_SUBST</code> (unset by
 default); I'll assume here you haven't changed these settings, and point
 out some of the possibilities with <strong>prompt escapes</strong>, sequences that
 start with a `<code>%</code>'.  If you get really sophisticated, you might
 need to turn on <code>PROMPT_SUBST</code>.
-<p>The main prompt is in a parameter called either <code>$PS1</code> or <code>$PROMPT</code> or
+<p>
+The main prompt is in a parameter called either <code>$PS1</code> or <code>$PROMPT</code> or
 <code>$prompt</code>; the reason for having all these names is historical --- they
 come from different shells --- so I'll just stick with the shortest.  There
 is also <code>$RPS1</code>, which prints a prompt at the right of the screen.  The
 point of this is that it automatically disappears if you type so far along
 the line that you run into it, so it can help make the best use of space
 for showing long things like directories.
-<p><code>$PS2</code> is shown when the shell is waiting for some more input, i.e. it
+<p>
+<code>$PS2</code> is shown when the shell is waiting for some more input, i.e. it
 knows that what you have typed so far isn't a complete line: it may contain
 the start of a quoted expression, but not the end, or the start of some
 syntactic structure which is not yet finished.  Usually you will keep it
 different from <code>$PS1</code>, but all the same escapes are understood in all
 five prompts.
-<p><code>$PS3</code> is shown within a loop started by the shell's <code>select</code>
+<p>
+<code>$PS3</code> is shown within a loop started by the shell's <code>select</code>
 mechanism, when the shell wants you to input a choice: see the <code>zshmisc</code>
 manual page as I won't say much about that.
-<p><code>$PS4</code> is useful in debugging: there is an option <code>XTRACE</code> which causes
+<p>
+<code>$PS4</code> is useful in debugging: there is an option <code>XTRACE</code> which causes
 the shell to print out lines about to be executed, preceded by <code>$PS4</code>.
 Only from version 3.1.6 has it started to be substituted in the same way as
 the other prompts, though this turns out to be very useful --- see
 `Location in script or function' in the following list.
-<p>Here are some of the things you might want to include in your prompts.
+<p>
+Here are some of the things you might want to include in your prompts.
 Note that you can try this out before you alter the prompt by using
 `<code>print -P</code>': this expands strings just are as they are in prompts.
 You will probably need to put the string in single quotes.
-<p><p><strong>The time</strong><br><br>
-    
-<p>Zsh allows you lots of different ways of putting the time into
+<p>
+<p><strong>The time</strong><br>
+<p>
+Zsh allows you lots of different ways of putting the time into
 your prompt with percent escapes. The simplest are <code>%t</code> and <code>%T</code>,
 the time in 12 and 24 hour formats, and <code>%*</code>, the same as <code>%T</code>
 but with seconds; you can also have the date as (e.g.) `<code>Wed 22</code>'
@@ -1328,7 +1442,8 @@ given in the <code>zshmisc</code> manual page in the <code>PROMPT EXPANSION</cod
 section.  For example, I use <code>%D{%L:%M}</code> which gives the time in hours
 and minutes, with the hours as a single digit for 1 to 9; it looks more
 homely to my unsophisticated eyes.
-<p>You can have more fun by using the
+<p>
+You can have more fun by using the
 `<code>%</code>(<em>num</em><em>X</em>.<em>true</em>.<em>false</em>)' syntax,
 where <em>X</em> is one of <code>t</code> or <code>T</code>.  For <code>t</code>, if the
 time in minutes is the same as <em>num</em> (default zero), then <em>true</em>
@@ -1344,9 +1459,10 @@ sequence which prints a `<code>#</code>' if you are the superuser (root),
 or a `<code>%</code>' for everyone else, which occurs in a lot of people's
 prompts.  Likewise, you could use `<code>%</code>(<code>30t.Dong!.</code>...' for
 a message at half past the hour.
-<p><p><strong>The current directory</strong><br><br>
-    
-<p>The sequence `<code>%~</code>' prints out the directory, with any
+<p>
+<p><strong>The current directory</strong><br>
+<p>
+The sequence `<code>%~</code>' prints out the directory, with any
 home or named directories (see below) shortened to the form
 starting with <code>~</code>; the sequence `<code>%/</code>' doesn't do that shortening,
 so usually `<code>%~</code>' is better.  Directories can be long, and there are
@@ -1357,7 +1473,8 @@ you type near it.  Third, you can pick segments out of `<code>%~</code>' or
 `<code>%/</code>' by giving them a number after the `<code>%</code>':  for example,
 `<code>%1~</code>' just picks out the last segment of the path to the current
 directory.
-<p>The fourth way gives you the most control.  Prompts or parts of
+<p>
+The fourth way gives you the most control.  Prompts or parts of
 prompts, not just bits showing the directory, can be truncated to any
 length you choose.  To truncate a path on the left, use something like
 `<code>%10&lt;</code><em>...</em><code>&lt;%~</code>'.  That works like this: the `<code>%&lt;</code><code>&lt;</code>' is the
@@ -1371,9 +1488,10 @@ off truncation with `<code>%&lt;</code><code>&lt;</code>', i.e. no number after 
 truncation then applies to the entire region between where it was
 turned on and where it was turned off (this has changed from older versions
 of zsh, where it just applied to individual `<code>%</code>' constructs).
-<p><p><strong>What are you waiting for?</strong><br><br>
-    
-<p>The prompt <code>$PS2</code> appears when the shell is waiting for you to finish
+<p>
+<p><strong>What are you waiting for?</strong><br>
+<p>
+The prompt <code>$PS2</code> appears when the shell is waiting for you to finish
 entering something, and it's useful to know what the shell is waiting for.
 The sequence `<code>%_</code>' shows this.  It's part of the default <code>$PS2</code>, which
 is `<code>%_&gt; </code>'.  Hence, if you type `<code>if true; then</code>' and <code>&lt;RET&gt;</code>, the
@@ -1383,36 +1501,41 @@ script or function, though as there is usually enough information there (as
 described next) it's not part of the default.  In this case, a number after
 the `<code>%</code>' will limit the depth shown, so with `<code>%1_</code>' only the most
 recent thing will be mentioned.
-<p><p><strong>Location in script or function</strong><br><br>
-    
-<p>The default <code>$PS4</code> contains `<code>%N</code>' and `<code>%i</code>', which tell you the
+<p>
+<p><strong>Location in script or function</strong><br>
+<p>
+The default <code>$PS4</code> contains `<code>%N</code>' and `<code>%i</code>', which tell you the
 name of the most recently started function, script, or sourced file,
 and the line number being executed inside it; they are not very useful
 in other prompts.  However, `<code>%i</code>' in <code>$PS1</code> will tell you the
 current interactive line number, which zsh keeps track of, though
 doesn't usually show you; the parameter <code>$LINENO</code> contains the same
 information.
-<p>Another point to bear about `<code>%i</code>' in mind is that the line number
+<p>
+Another point to bear about `<code>%i</code>' in mind is that the line number
 shown applies to the version of a function first read in, not how it
 appears with the `<code>functions</code>' command, which is tidied up.  If you
 use autoloaded functions, however, the file containing the function will
 usually be what you want to alter, so this shouldn't be a problem when
 debugging.
-<p>Remember, the <code>$PS4</code> display only happens when the
+<p>
+Remember, the <code>$PS4</code> display only happens when the
 <code>XTRACE</code> option is set; as options may be local to functions, and
 always are to scripts, you will often need to put an explicit
 `<code>setopt xtrace</code>' at the top of whatever you are debugging.
 Alternatively, you can use `<code>typeset -ft</code> <em>funcname</em>' to turn on
 tracing for that function (something I only just discovered); use
 `<code>typeset +ft</code> <em>funcname</em>' to turn it off again.
-<p><p><strong>Other bits and pieces</strong><br><br>
-    
-<p>There are many other percent escapes described in the <code>zshmisc</code>
+<p>
+<p><strong>Other bits and pieces</strong><br>
+<p>
+There are many other percent escapes described in the <code>zshmisc</code>
 manual page, mostly straightforward.  For example, `<code>%h</code>' shows
 you the history entry number, useful if you are using bang-history;
 `<code>%m</code>' shows you the current host name up to any dot; `<code>%n</code>' shows
 the username.
-<p>There are two other features I happen to use myself.  First, it's
+<p>
+There are two other features I happen to use myself.  First, it's
 sometimes convenient to know when the last command failed.  Every
 command returns a status, which is a number: zero for success, some
 other number for some type of failure.  You can get this from the
@@ -1430,7 +1553,8 @@ of the group:
   PS1='%(?..(%?%))%# '
 </pre>
 
-<p>It's also sometimes convenient to know if you're in a subshell, that is
+<p>
+It's also sometimes convenient to know if you're in a subshell, that is
 if you've started another shell within the main one by typing
 `<code>zsh</code>'.  You can do this by using another ternary expression:
 <pre>
@@ -1446,14 +1570,16 @@ the 2 into 3 as there may be a zsh already running when you first log
 in, so that the shells in the windows have <code>SHLVL</code> set to 2 already.
 This depends a good deal on how your windowing system is set up; finding
 out more is left as an exercise for the reader.
-<p><p><strong>Colours</strong><br><br>
-    
-<p>Many terminals can now display colours, and it is quite useful to be able
+<p>
+<p><strong>Colours</strong><br>
+<p>
+Many terminals can now display colours, and it is quite useful to be able
 to put these into prompts to distinguish those from the surrounding text.
 I often find a programme has just dumped a whole load of output on my
 terminal and it's not obvious where it starts.  Being able to find the
 prompt just before helps a lot.
-<p>Colors, like bold or underlined text, use escape sequences which don't move
+<p>
+Colors, like bold or underlined text, use escape sequences which don't move
 the cursor.  The golden rule for inserting any such escape sequences into
 prompts is to surround them with `<code>%{</code>' at the start and `<code>%}</code>' at the
 end.  Otherwise, the shell will be confused about the length of the line.
@@ -1463,7 +1589,8 @@ that.  You don't need that with the special sequences <code>%B</code> and <code>
 which start and stop bold text, because the shell already knows what to do
 with those; it's only random characters which you happen to know don't move
 the cursor, though the shell doesn't, that cause the problem.
-<p>In the case of colours, there is a shell function <code>colors</code> supplied with
+<p>
+In the case of colours, there is a shell function <code>colors</code> supplied with
 the standard distribution to help you.  When loaded and run, it defines
 associative array parameters <code>$fg</code> and <code>$bg</code> which you use to extract
 the escape sequences for given colours, for example
@@ -1480,7 +1607,8 @@ yellow-on-black `<code>%</code>' or `<code>#</code>' if you are the superuser.  
 use of the double quotes here to force the parameters to be expanded
 straight away --- the escape sequences are fixed, so they don't need to
 be re-extracted from the parameters every time the prompt is shown.
-<p>Even if your terminal does support colour, there's no guarantee all the
+<p>
+Even if your terminal does support colour, there's no guarantee all the
 possibilities work, although the basic ANSI colour scheme is fairly
 standard.   The colours understood are: cyan, white, yellow, magenta,
 black, blue, red, grey, green.  You can also used `default', which puts the
@@ -1488,15 +1616,18 @@ terminal back how it was to begin with.  In addition, you can use the basic
 colours with the parameters <code>$bg_bold</code> and <code>$fg_bold</code> for bold
 varieties of the colours and <code>$bg_no_bold</code> and <code>$fg_no_bold</code> to switch
 explicitly back to non-bold.
-<p><p><strong>Themes</strong><br><br>
-    
-<p>There are also a set of themes provided as functions to set up your
+<p>
+<p><strong>Themes</strong><br>
+<p>
+There are also a set of themes provided as functions to set up your
 prompt to various predefined possibilities.  These make use of the colours
 set up as described above.  See the <code>zshcontrib</code> manual page for how
 to do this (search for `prompt themes').
-<p><a name="l20"></a>
+<p>
+<a name="l20"></a>
 <h3>2.5.7: Named directories</h3>
-<p>As already mentioned, `<code>~/</code>' at the start of a filename expands to your
+<p>
+As already mentioned, `<code>~/</code>' at the start of a filename expands to your
 home directory.  More generally, `<code>~</code><em>user</em><code>/</code>' allows you to refer
 to the home directory of any other user.  Furthermore, zsh lets you define
 your own named directories which use this syntax.  The basic idea is simple,
@@ -1511,7 +1642,8 @@ parameter as <code>$dir</code>.  The difference comes if you use the `<code>%~</
 construct, described above, in your prompt.  Then when you change into
 that directory, instead of seeing the message `<code>/tmp/mydir</code>', you will
 see the abbreviation `<code>~dir</code>'.
-<p>The shell will not register the name of the directory until you force it to
+<p>
+The shell will not register the name of the directory until you force it to
 by using `<code>~dir</code>' yourself at least once.  You can do the following in
 your <code>.zshrc</code>:
 <pre>
@@ -1530,34 +1662,40 @@ expanded value, after turning any `<code>~</code>'s at the start into full paths
 must begin with a `<code>/</code>'.  The parameter <code>$PWD</code>, which shows the
 current directory, is protected from being turned into <code>~PWD</code>, since that
 would tell you nothing.
-<p><a name="l21"></a>
+<p>
+<a name="l21"></a>
 <h3>2.5.8: `Go faster' options for power users</h3>
-<p>Here are a few more random options you might want to set in your
+<p>
+Here are a few more random options you might want to set in your
 <code>.zshrc</code>.
-<p><p><strong><code>NO_BEEP</code></strong><br><br>
-    
-<p>Normally zsh will beep if it doesn't like something.  This can get
+<p>
+<p><strong><code>NO_BEEP</code></strong><br>
+<p>
+Normally zsh will beep if it doesn't like something.  This can get
 extremely annoying; `<code>setopt nobeep</code>' will turn it off.  I refer to this
 informally as the <code>OPEN_PLAN_OFFICE_NO_VIGILANTE_ATTACKS</code> option.
-<p><p><strong><code>AUTO_CD</code></strong><br><br>
-    
-<p>If this option is set, and you type something with no arguments which isn't
+<p>
+<p><strong><code>AUTO_CD</code></strong><br>
+<p>
+If this option is set, and you type something with no arguments which isn't
 a command, zsh will check to see if it's actually a directory.  If it is,
 the shell will change to that directory.  So `<code>./bin</code>' on its own is
 equivalent to `<code>cd ./bin</code>', as long as the directory `<code>./bin</code>' really
 exists.  This is particularly useful in the form `<code>..</code>', which changes to
 the parent directory.
-<p><p><strong><code>CD_ABLE_VARS</code></strong><br><br>
-    
-<p>This is another way of saving typing when changing directory, though only
+<p>
+<p><strong><code>CD_ABLE_VARS</code></strong><br>
+<p>
+This is another way of saving typing when changing directory, though only
 one character.  If a directory doesn't exist when you try to change to it,
 zsh will try and find a parameter of that name and use that instead.  You
 can also have a `<code>/</code>' and other bits after the parameter.  So `cd
 <code>foo/dir</code>', if there is no directory `<code>foo</code>' but there is a parameter
 <code>$foo</code>, becomes equivalent to `cd <code>$foo/dir</code>'.
-<p><p><strong><code>EXTENDED_GLOB</code></strong><br><br>
-    
-<p>Patterns, to match the name of files and other things, can be very
+<p>
+<p><strong><code>EXTENDED_GLOB</code></strong><br>
+<p>
+Patterns, to match the name of files and other things, can be very
 sophisticated in zsh, but to get the most out of them you need to use this
 option, as otherwise certain features are not enabled, so that people used
 to simpler patterns (maybe just `<code>*</code>', `<code>?</code>' and `<code>[...]</code>')  are not
@@ -1566,12 +1704,14 @@ features, but this is to remind you that you need this option if you're
 doing anything clever with `<code>~</code>', `<code>#</code>', `<code>^</code>' or globbing flags ---
 and also to remind you that those characters can have strange effects if
 you have the option set.
-<p><p><strong><code>MULTIOS</code></strong><br><br>
-    
-<p>I mentioned above that to get zsh to behave like ksh you needed to set
+<p>
+<p><strong><code>MULTIOS</code></strong><br>
+<p>
+I mentioned above that to get zsh to behave like ksh you needed to set
 <code>NO_MULTIOS</code>, but I didn't say what the <code>MULTIOS</code> option did.  It has
 two different effects for output and input.
-<p>First, for output.  Here it's an alternative to the <code>tee</code> programme.
+<p>
+First, for output.  Here it's an alternative to the <code>tee</code> programme.
 I've mentioned once, but haven't described in detail, that you could use
 <code>&gt;filename</code> to tell the shell to send output into a file with a given
 name instead of to the terminal.  With <code>MULTIOS</code> set, you can have more
@@ -1592,7 +1732,8 @@ Here, `<code>foo</code>' is again written to <code>file1</code>, but is also sen
 pipe to the programme <code>sed</code> (`stream editor') which substitutes `<code>foo</code>'
 into `<code>bar</code>' and (since there is no output redirection in this part)
 prints it to the terminal.
-<p>Note that the second example above has several times been reported as a
+<p>
+Note that the second example above has several times been reported as a
 bug, often in a form like:
 <pre>
  some_command 2&gt;&amp;1 &gt;/dev/null | sed 's/foo/bar/'
@@ -1628,7 +1769,8 @@ the expected result,
 </pre>
 
 as any other Bourne-style shell would produce.  There 
-<p>On input, <code>MULTIOS</code> arranges for a series of files to be read in order.
+<p>
+On input, <code>MULTIOS</code> arranges for a series of files to be read in order.
 This time it's a bit like using the programme <code>cat</code>, which combines all
 the files listed after it.  In other words,
 <pre>
@@ -1648,9 +1790,10 @@ the pipe is read from first, before any files listed after a `<code>&lt;</code>'
   echo this first | cat &lt;testfile
 </pre>
 
-<p><p><strong><code>CORRECT</code>, <code>CORRECT_ALL</code></strong><br><br>
-    
-<p>If you have <code>CORRECT</code> set, the shell will check all the commands you type
+<p>
+<p><strong><code>CORRECT</code>, <code>CORRECT_ALL</code></strong><br>
+<p>
+If you have <code>CORRECT</code> set, the shell will check all the commands you type
 and if they don't exist, but there is one with a similar name, it will ask
 you if you meant that one instead.  You can type `<code>n</code>' for no, don't
 correct, just go ahead; `<code>y</code>' for yes, correct it then go ahead; `<code>a</code>'
@@ -1658,16 +1801,19 @@ for abort, don't do anything; `<code>e</code>' for edit, return to the editor to
 edit the same line again.  Users of the new completion system should note
 this is not the same correction you get there:  it's just simple correction
 of commands.
-<p><code>CORRECT_ALL</code> applies to all the words on the line.  It's a little less
+<p>
+<code>CORRECT_ALL</code> applies to all the words on the line.  It's a little less
 useful, because currently the shell has to assume that they are supposed to
 be filenames, and will try to correct them if they don't exist as such, but
 of course many of the arguments to a command are not filenames.  If
 particular commands generate too many attempts to correct their arguments,
 you can turn this off by putting `<code>nocorrect</code>' in front of the command
 name.  An alias is a very good way of doing this, as described next.
-<p><a name="l22"></a>
+<p>
+<a name="l22"></a>
 <h3>2.5.9: aliases</h3>
-<p>An alias is used like a command, but it expands into some other text which
+<p>
+An alias is used like a command, but it expands into some other text which
 is itself used as a command.  For example,
 <pre>
   alias foo='print I said foo'
@@ -1695,7 +1841,8 @@ aliases and in some cases it is useful for them to call themselves,  It's
 a common mistake to have functions call themselves over and over again
 until the shell complains.  I'll describe ways round this in
 <a href="zshguide03.html#syntax">chapter 3</a>.
-<p>One other way functions are more powerful than aliases is that functions
+<p>
+One other way functions are more powerful than aliases is that functions
 can take arguments while aliases can't --- in other words, there is no way
 of referring inside the alias to what follows it on the command line,
 unlike a function, and also unlike aliases in csh (because that has no
@@ -1706,14 +1853,16 @@ complicated.  You couldn't do that trick with `<code>nocorrect</code>' using a
 function, though, since the function is called too late: aliases are
 expanded straight away, so the <code>nocorrect</code> is found in time to be useful.
 You can almost think of them as just plain typing abbreviations.
-<p>Normal aliases only work when in command position, i.e. at the start of the
+<p>
+Normal aliases only work when in command position, i.e. at the start of the
 command line (more strictly, when zsh is expecting a command).  There are
 other things called `global aliases', which you define by the `<code>-g</code>'
 option to <code>alias</code>, which will be expanded at any position on the command
 line.  You should think seriously before defining these, as they can have a
 drastic effect.  Note, however, that quoting a word, or even a single
 character, will stop an alias being expanded for it.
-<p>I only tend to use aliases in interactive shells, so I define them from
+<p>
+I only tend to use aliases in interactive shells, so I define them from
 <code>.zshrc</code>, but you may want to use <code>.zshenv</code> if you use aliases more
 widely.  In fact, to keep my <code>.zshrc</code> neat I save all the aliases in a
 separate file called <code>.aliasrc</code> and in <code>.zshrc</code> I have:
@@ -1727,9 +1876,11 @@ which checks if there is a readable file <code>~/.aliasrc</code>, and if there i
 it runs it in exactly the same way the normal startup files are run.
 You can use `<code>source</code>' instead of `<code>.</code>' if it means more to you;
 `<code>.</code>' is the traditional Bourne and Korn shell name, however.
-<p><a name="l23"></a>
+<p>
+<a name="l23"></a>
 <h3>2.5.10: Environment variables</h3>
-<p>Often, the manual for a programme will tell you to define certain
+<p>
+Often, the manual for a programme will tell you to define certain
 environment variables, usually a collection of uppercase letters with maybe
 numbers and the odd underscore.  These can pass information to the programme
 without you needing to use extra arguments.  In zsh, environment variables
@@ -1753,7 +1904,8 @@ shell other than zsh or which doesn't run a shell start-up file at all ---
 I had to tweak mine to make it do so.  So <code>.zshenv</code> is the safest place;
 it doesn't take long to define environment variables.  Other people will no
 doubt give you completely contradictory views, but that's people for you.
-<p>Note that you can't export arrays.  If you export a parameter, then assign
+<p>
+Note that you can't export arrays.  If you export a parameter, then assign
 an array to it, nothing will appear in the environment; you can use the
 external command `<code>printenv VARNAME</code>' (again no `<code>$</code>' because the
 command needs to know the name, not the value) to check.  There's a more
@@ -1771,9 +1923,11 @@ very easy mistake to make.  More uses of <code>typeset</code> will be described
 in <a href="zshguide03.html#syntax">chapter 3</a>; they include creating local parameters in
 functions, and defining special attributes (of which the `export'
 attribute is just one) for parameters.
-<p><a name="l24"></a>
+<p>
+<a name="l24"></a>
 <h3>2.5.11: Path</h3>
-<p>It helps to be able to find external programmes, i.e. anything not part of
+<p>
+It helps to be able to find external programmes, i.e. anything not part of
 the shell, any command other than a builtin, function or alias.  The
 <code>$path</code> array is used for this.  Actually, what the system needs is the
 environment variable <code>$PATH</code>, which contains a list of directories in
@@ -1793,7 +1947,8 @@ without you having to set that.  The idea is simply that, while the system
 needs <code>$PATH</code> because it doesn't understand arrays, it's much more
 flexible to be able to use arrays within the shell and hence pretty much
 forget about the <code>$PATH</code> form.
-<p>Changes to the path are similar to changes to environment variables
+<p>
+Changes to the path are similar to changes to environment variables
 described above, so all that applies.  There's a slight difficulty in
 setting <code>$path</code> in <code>.zshenv</code> however, even though the reasons given
 above for doing so still apply.  Usually, the path will be set for you,
@@ -1808,7 +1963,8 @@ But if your <code>.zshenv</code> contains
 --- then every time <code>.zshenv</code> is called, <code>~/bin</code> and <code>~/progs/bin</code>
 are stuck in front, so if you start another zsh you will have two sets
 there.
-<p>You can add tests to see if something's already there, of course.  Zsh
+<p>
+You can add tests to see if something's already there, of course.  Zsh
 conveniently allows you to test for the existence of elements in an array.
 By preceding an array index by <code>(r)</code> (for reverse), it will try to find
 a matching element and return that, else an empty string.  Here's a
@@ -1831,7 +1987,8 @@ checks that what follows is empty:  in this case it will be if the
 directory <code>$dir</code> is not yet in <code>$path</code>, so it goes ahead and adds
 it in front.  Note that the directories get added in the reverse of
 the order they appear.
-<p>Actually, however, zsh takes all that trouble away from you.  The
+<p>
+Actually, however, zsh takes all that trouble away from you.  The
 incantation `<code>typeset -U path</code>', where the <code>-U</code> stands for unique,
 tells the shell that it should not add anything to <code>$path</code> if it's there
 already.  To be precise, it keeps only the left-most occurrence, so if
@@ -1849,13 +2006,16 @@ typing `<code>typeset +U</code>', with `<code>+</code>' instead of `<code>-</cod
 latter case the shell would show the values of the parameters as well,
 which isn't what you need here.  The <code>-U</code> flag will also work with
 colon-separated arrays, like <code>$PATH</code>.
-<p><a name="l25"></a>
+<p>
+<a name="l25"></a>
 <h3>2.5.12: Mail</h3>
-<p>Zsh will check for new mail for you.  If all you need is to be reminded of
+<p>
+Zsh will check for new mail for you.  If all you need is to be reminded of
 something arriving in your normal folder every now and then, you just need
 to set the parameter <code>$MAIL</code> to wherever that is: it's typically one of
 <code>/usr/spool/mail</code>, <code>/var/spool/mail</code>, or <code>/var/mail</code>.
-<p>The array <code>$mailpath</code> allows more possibilities.  Like <code>$path</code>, it has
+<p>
+The array <code>$mailpath</code> allows more possibilities.  Like <code>$path</code>, it has
 a colleague in uppercase, <code>$MAILPATH</code>, which is a colon-separated array.
 The system doesn't need that, this time, so it's mainly there so that you
 can export it to another version of zsh; exporting arrays won't work.  As
@@ -1879,7 +2039,8 @@ Note that zsh knows the array isn't finished until the `)', even
 though the elements are on different lines; this is one very good reason
 for setting <code>$mailpath</code> rather than <code>$MAILPATH</code>, which needs one long
 chunk.
-<p>The other parameter of interest is <code>$MAILCHECK</code>, which gives the
+<p>
+The other parameter of interest is <code>$MAILCHECK</code>, which gives the
 frequency in seconds when zsh should check for new mail.  The default is
 60.  Actually, zsh only checks just after a command has finished running
 and it is about to print a prompt.  Since checking files doesn't take long,
@@ -1888,7 +2049,8 @@ zero doesn't work because it switches off checking.  One reason why you
 wouldn't want to do that might be because <code>$MAIL</code> and <code>$mailpath</code> can
 contain directories instead of ordinary files; these will be checked
 recursively for any files with something new in them, so this can be slow.
-<p>Finally, there is one associated option, <code>MAIL_WARNING</code> (though
+<p>
+Finally, there is one associated option, <code>MAIL_WARNING</code> (though
 <code>MAIL_WARN</code> is also accepted for the same thing for reasons of
 compatibility with less grammatical shells).  The shell remembers when it
 found the mail file was checked; next time it checks, it compares the date.
@@ -1896,15 +2058,18 @@ If there is no new mail, but the date of the file changed anyway, it will
 print a warning message.  This will happen if you read the mail with your
 mail reader and put the messages somewhere else.  Presumably you <em>know</em>
 you did that, so the warning may not be all that useful.
-<p><a name="l26"></a>
+<p>
+<a name="l26"></a>
 <h3>2.5.13: Other path-like things</h3>
-<p>There are other pairs like <code>$path</code> and <code>$PATH</code>.  I will keep back talk
+<p>
+There are other pairs like <code>$path</code> and <code>$PATH</code>.  I will keep back talk
 of <code>$cdpath</code> until I say more about the way zsh handles directories.
 When I mentioned <code>$fpath</code>, I didn't say there was also <code>$FPATH</code>, but
 there is.  Then there is <code>$manpath</code> and <code>$MANPATH</code>; these aren't used
 by the shell at all, but <code>$MANPATH</code>, if exported, is used by the <strong>man</strong>
 external command, and <code>$manpath</code> gives an easier way to set it.
-<p>From 3.1.6 there is a mechanism to define your own such combinations; if
+<p>
+From 3.1.6 there is a mechanism to define your own such combinations; if
 this had been available before, there would have been no need to build in
 <code>$manpath</code> and <code>$MANPATH</code>.  In <code>.zshenv</code> you would put,
 <pre>
@@ -1921,9 +2086,11 @@ or its derivatives) see <code>$TEXINPUTS</code>.  Another useful variable to do 
 with is <code>$LD_LIBRARY_PATH</code>, which on most modern versions of UNIX (and
 Linux) tells the system where to find the libraries which provide extra
 functions when it runs a programme.
-<p><a name="l27"></a>
+<p>
+<a name="l27"></a>
 <h3>2.5.14: Version-specific things</h3>
-<p>Since zsh changes faster than almost any other command interpreter known to
+<p>
+Since zsh changes faster than almost any other command interpreter known to
 humankind, you will often find you need to find out what version you are
 using.  This can get a bit verbose; indeed, the parameter you need to
 check, which is now <code>$ZSH_VERSION</code>, used simply to be called <code>$VERSION</code>
@@ -1950,7 +2117,8 @@ development you won't need to look for those, since they aren't released
 officially. That `<code>==</code>' in the test could also be just `<code>=</code>', but the
 manual says the former is preferred, so I've used them here, even though
 people usually don't bother.
-<p>Version 4 of zsh provides a function <code>is-at-least</code> to do this for you: it
+<p>
+Version 4 of zsh provides a function <code>is-at-least</code> to do this for you: it
 looks only at the numbers <em>X</em>, <em>Y</em> and <em>Z</em> (and <em>N</em> if it
 exists), ignoring all letters and punctuation.  You give it the minimum
 version of the shell you need and it returns true if the current shell is
@@ -1959,23 +2127,22 @@ if the current version of zsh is 3.1.6-dev-20 (or 3.1.9, or 4.0.1, and so
 on), which is the correct behaviour.  As with any other shell function, you
 have to arrange for <code>is-at-least</code> to be <code>autoload</code>ed if you want to use
 it.
-<p><a name="l28"></a>
+<p>
+<a name="l28"></a>
 <h3>2.5.15: Everything else</h3>
-<p>There are many other possibilities for things to go in startup
+<p>
+There are many other possibilities for things to go in startup
 files; in particular, I haven't touched on defining things for the line
 editor and setting up completion.  There's quite a lot to explain for
 those, so I'll come back to those in the appropriate chapters.  You just
 need to remember that all that stuff should go in <code>.zshrc</code>, since you
 need it for all interactive shells, and for no others.
-
-<p><a name="c3"></a>
-    
-
+<p>
 <hr>
 <ul>
-    <li> <a href="zshguide03.html">Next chapter</a>
-    <li> <a href="zshguide01.html">Previous chapter</a>
-    <li> <a href="zshguide.html">Table of contents</a>
+    <li> <a href="zshguide.html">Table of Contents</a>
+    <li> <a href="zshguide01.html">Previous Chapter</a>
+    <li> <a href="zshguide03.html">Next Chapter</a>
 </ul>
 <hr>
 </body>

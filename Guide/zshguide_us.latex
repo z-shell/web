@@ -10,9 +10,9 @@
 %   part of Yodl. Yodl just uses it to map accent characters, such as é,
 %   to standard LaTeX \char stuff.
 %   See below on copyright stuff etc.
-%   Distributed with Yodl 1.31.18
+%   Distributed with Yodl 1.32.00
 % 
-%% xlatin1.tex derived from $Id: xlatin1.doc,v 1.25 1992/01/28 06:58:52 kris Exp kris $
+%% xlatin1.tex derived from $Id: xlatin1.tex 2 2004-09-11 19:41:10Z frank $
 %%
 %% Interpret the full ISO Latin1 (8859-1) input character set for TeX.
 %% Copyright (c) 1991  Kristoffer Høgsbro Rose <kris@diku.dk>
@@ -161,16 +161,13 @@
 \title{A User's Guide to the Z-Shell}
 \author{Peter Stephenson}
 \date{2003/03/23}
-\begin{document}
-\maketitle
+\begin{document}\maketitle
 
-\clearpage\tableofcontents 
-\clearpage
 
-\label{c1}
-\typeout{Original Yodl file: c1}
+\tableofcontents
 
-    \chapter{A short introduction}\label{intro}
+
+\typeout{Original Yodl file: c1}\cleardoublepage\chapter{A short introduction}\label{intro}
 
 The Z-Shell, `zsh' for short, is a command interpreter for UNIX systems,
 or in UNIX jargon, a `shell', because it wraps around the commands you use.
@@ -400,8 +397,6 @@ chunks I'll use the simplest form instead: `\texttt{shwordsplit}',
 expressing the category difference between talking about programming and
 actual programming, but really it's just me being inconsistent.
 
-
-
 \section{Acknowledgments}
 
 I am grateful for comments from various zsh users.  In particular, I have
@@ -416,11 +411,7 @@ this was free, it only seems fair to say `thank you' for the gift.
 It also works a lot better than the operating system that came with this
 particular PC.
 
-
-\label{c2}
-\typeout{Original Yodl file: c2}
-
-    \chapter{What to put in your startup files}\label{init}
+\typeout{Original Yodl file: c2}\cleardoublepage\chapter{What to put in your startup files}\label{init}
 
 There are probably various changes you want to make to the shell's
 behaviour.  All shells have `startup' files, containing commands which are
@@ -869,7 +860,6 @@ Bourne-like shell.
 
 \subsubsection*{\texttt{BARE\_GLOB\_QUAL}, \texttt{GLOB\_SUBST}, \texttt{SH\_FILE\_EXPANSION},
 \texttt{SH\_GLOB}, \texttt{KSH\_GLOB}}
-    
 
 These are all to do with how pattern matching works.  You probably already
 know that the pattern `\texttt{*.c}' will be expanded into all the files in the
@@ -918,7 +908,6 @@ exactly as if its value had been typed, because if you type \texttt{print
 is.
 
 \subsubsection*{\texttt{NOMATCH}, \texttt{BAD\_PATTERN}}
-    
 
 These also relate to patterns which produce file names, but in this case
 they determine what happens when the pattern doesn't match a file for some
@@ -937,7 +926,6 @@ out what you originally type without any expansion when there are no
 matching files.
 
 \subsubsection*{\texttt{BG\_NICE}, \texttt{NOTIFY}}
-    
 
 All UNIX shells allow you to start a \emph{background} job by putting `\texttt{\&}'
 at the end of the line; then the shell doesn't wait for the job to finish,
@@ -971,7 +959,6 @@ programme in the foreground, however, that wouldn't know that zsh had
 printed the message, so the display would still be messed up.
 
 \subsubsection*{\texttt{HUP}}
-    
 
 Signals are the way of persuading a job to do something it doesn't want to,
 such as die; when you type \texttt{\textasciicircum C}, it sends a signal (called \texttt{SIGINT} in
@@ -984,7 +971,6 @@ even when the shell has exited, then you can set the option \texttt{NO\_HUP}, an
 background jobs will be left alone.
 
 \subsubsection*{\texttt{KSH\_ARRAYS}}
-    
 
 I've already mentioned this, but here are the details.
 Suppose you have defined an array \texttt{arr}, for example with
@@ -1001,7 +987,6 @@ to the ksh way of doing things.  This is one option you need to be
 particularly careful about when writing functions and scripts.
 
 \subsubsection*{\texttt{FUNCTION\_ARG\_ZERO}}
-    
 
 Shell functions are a useful way of specifying a set of commands to be run
 by the shell.  Here's a simple example:
@@ -1037,7 +1022,6 @@ forgiving here.  Lots of syntactic know-alls will probably be able to tell
 you why that's a good thing, but fortunately I can't.
 
 \subsubsection*{\texttt{KSH\_AUTOLOAD}}
-    
 
 There's an easy way of loading functions built into both ksh and zsh.
 Instead of putting them all together in a big startup file, you can
@@ -1118,7 +1102,6 @@ is defined inside another function or outside it, unlike (say) Pascal or
 Scheme.
 
 \subsubsection*{\texttt{LOCAL\_OPTIONS}, \texttt{LOCAL\_TRAPS}}
-    
 
 These two options also refer to functions, and here the ksh way of doing
 things is usually preferable, so many people set at least \texttt{LOCAL\_OPTIONS}
@@ -1185,7 +1168,6 @@ The \texttt{-L} option to \texttt{emulate} actually only appears in versions fro
 since \texttt{localtraps} didn't exist, and indeed doesn't exist in 3.0.6 either.
 
 \subsubsection*{\texttt{PROMPT\_PERCENT}, \texttt{PROMPT\_SUBST}}
-    
 
 As promised, setting prompts will be discussed later, but for now there are
 two ways of getting information into prompts, such as the parameter \texttt{\$PS1}
@@ -1220,7 +1202,6 @@ much the same as a string inside double quotes every time the prompt is
 displayed.
 
 \subsubsection*{\texttt{RM\_STAR\_SILENT}}
-    
 
 Everybody at some time or another deletes more files than they mean to (and
 \emph{that's} a gross understatement); my favourite is:
@@ -1238,7 +1219,6 @@ Overreliance on this option is a bad idea; it's only a last line of
 defence.
 
 \subsubsection*{\texttt{SH\_OPTION\_LETTERS}}
-    
 
 Many options also have single letters to stand for them; you can set an
 option in this way by, for example, `\texttt{set -f}', which sets \texttt{NO\_RCS}.
@@ -1248,13 +1228,11 @@ those in sh and ksh.  Look them up in the manual if you want to know, but I
 already recommended that you use the full names for options anyway.
 
 \subsubsection*{\texttt{SH\_WORD\_SPLIT}}
-    
 
 I've already talked about this, see above, but it's mentioned here so you
 don't forget it, since it's an important difference.
 
 \subsubsection*{Starting zsh as ksh}
-    
 
 Finally on the subject of compatibility, you might like to know that as
 well as `\texttt{emulate}' there is another way of forcing zsh to behave as much
@@ -1297,7 +1275,6 @@ and it might be best just to remember the fact.  But here is a brief list.
 The last, \texttt{CSH\_NULL\_GLOB}, is actually quite useful.
 
 \subsubsection*{\texttt{CSH\_JUNKIE\_HISTORY}}
-    
 
 Zsh has the old csh mechanism for referring to words on a previous
 command line using a `\texttt{!}'; it's less used, now the editor is more
@@ -1329,7 +1306,6 @@ comments, normally `\texttt{\#}'.  Changing the third character is definitely no
 recommended.  There's little real reason to change any.
 
 \subsubsection*{\texttt{CSH\_JUNKIE\_LOOPS}}
-    
 
 Normal zsh loops look something like this,
 \begin{verbatim}  while true; do
@@ -1345,7 +1321,6 @@ which will, of course, make your zsh code unlike most other people's,
 so for most users it's best to learn the proper syntax.
 
 \subsubsection*{\texttt{CSH\_NULL\_GLOB}}
-    
 
 This is another of the family of options like \texttt{NO\_NOMATCH}, already
 mentioned.  In this case, if you have a command line consisting of
@@ -1375,7 +1350,6 @@ straight and narrow without too many unwanted error messages, so this time
 it's not just for csh junkies.
 
 \subsubsection*{\texttt{CSH\_JUNKIE\_QUOTES}}
-    
 
 Here just for completeness.  Csh and friends don't allow multiline quotes,
 as zsh does; if you don't finish a pair of quotes before a new line, csh
@@ -1393,7 +1367,6 @@ history list (a complete line of input typed and executed at once) have
 become known as `events'.
 
 \subsubsection*{Editing the history directly}
-    
 
 First, you can use the editor; usually hitting up-arrow will take you to
 the previous line, and down-arrow takes you back.  This is usually the
@@ -1414,7 +1387,6 @@ to remember is that you start in insert mode, so type `\texttt{ESC}' to be
 able to enter vi commands. 
 
 \subsubsection*{`Bang'-history}
-    
 
 Second, you can use the csh-style `bang-history' mechanism (unless you have
 set the option \texttt{NO\_BANG\_HIST}); the `bang' is the exclamation mark, `!',
@@ -1501,7 +1473,6 @@ way it was if you don't like the result --- this is part of the editor's
 `undo' feature.
 
 \subsubsection*{Ksh-style history commands}
-    
 
 The third form of history uses the \texttt{fc} builtin.  It's the most
 cumbersome: you have to tell the command which complete lines to
@@ -1563,7 +1534,6 @@ I have already described \texttt{BANG\_HIST}, \texttt{CSH\_JUNKIE\_HISTORY} and
 \texttt{HIST\_VERIFY} and I won't talk about them again.
 
 \subsubsection*{\texttt{APPEND\_HISTORY}, \texttt{INC\_APPEND\_HISTORY}, \texttt{SHARE\_HISTORY}}
-    
 
 Normally, when it writes a history file, zsh just overwrites everything
 that's there.  \texttt{APPEND\_HISTORY} allows it to append the new history to
@@ -1592,7 +1562,6 @@ actually reexecuting.  The Korn shell always behaves as if
 internally.
 
 \subsubsection*{\texttt{EXTENDED\_HISTORY}}
-    
 
 This makes the format of the history entry more complicated: in addition to
 just the command, it saves the time when the command was started and how
@@ -1607,7 +1576,6 @@ space, or because you wanted your history file to be read by another shell.
 
 \subsubsection*{\texttt{HIST\_IGNORE\_DUPS}, \texttt{HIST\_IGNORE\_ALL\_DUPS},
 \texttt{HIST\_EXPIRE\_DUPS\_FIRST}, \texttt{HIST\_SAVE\_NO\_DUPS}, \texttt{HIST\_FIND\_NO\_DUPS}}
-    
 
 These options give ways of dealing with the duplicate lines that often
 appear in the history.  The simplest is \texttt{HIST\_IGNORE\_DUPS}, which tells
@@ -1625,7 +1593,6 @@ session, the shell is not to save duplicated lines more than once; and
 searches backwards with editor commands don't show them more than once.
 
 \subsubsection*{\texttt{HIST\_ALLOW\_CLOBBER}, \texttt{HIST\_REDUCE\_BLANKS}}
-    
 
 These allow the history mechanism to make changes to lines as
 they are entered.  The first affects output redirections,
@@ -1649,7 +1616,6 @@ previous one even if it would not have been in its untidied form.  It is
 smart enough not to remove blanks which are important, i.e. are quoted.
 
 \subsubsection*{\texttt{HIST\_IGNORE\_SPACE}, \texttt{HIST\_NO\_STORE}, \texttt{HIST\_NO\_FUNCTIONS}}
-    
 
 These three options allow you to say that certain lines shouldn't go into
 the history at all.  \texttt{HIST\_IGNORE\_SPACE} means that lines which begin
@@ -1668,7 +1634,6 @@ function definition is anything beginning `\texttt{function funcname \{...}' or
 `\texttt{funcname () \{ ...}'.
 
 \subsubsection*{\texttt{NO\_HIST\_BEEP}}
-    
 
 Finally, \texttt{HIST\_BEEP} is used in the editor:  if you try to scroll
 up or down beyond the end of the history list, the shell will beep.
@@ -1715,7 +1680,6 @@ Note that you can try this out before you alter the prompt by using
 You will probably need to put the string in single quotes.
 
 \subsubsection*{The time}
-    
 
 Zsh allows you lots of different ways of putting the time into
 your prompt with percent escapes. The simplest are \texttt{\%t} and \texttt{\%T},
@@ -1748,7 +1712,6 @@ prompts.  Likewise, you could use `\texttt{\%}(\texttt{30t.Dong!.}...' for
 a message at half past the hour.
 
 \subsubsection*{The current directory}
-    
 
 The sequence `\texttt{\%\textasciitilde }' prints out the directory, with any
 home or named directories (see below) shortened to the form
@@ -1778,7 +1741,6 @@ turned on and where it was turned off (this has changed from older versions
 of zsh, where it just applied to individual `\texttt{\%}' constructs).
 
 \subsubsection*{What are you waiting for?}
-    
 
 The prompt \texttt{\$PS2} appears when the shell is waiting for you to finish
 entering something, and it's useful to know what the shell is waiting for.
@@ -1792,7 +1754,6 @@ the `\texttt{\%}' will limit the depth shown, so with `\texttt{\%1\_}' only the 
 recent thing will be mentioned.
 
 \subsubsection*{Location in script or function}
-    
 
 The default \texttt{\$PS4} contains `\texttt{\%N}' and `\texttt{\%i}', which tell you the
 name of the most recently started function, script, or sourced file,
@@ -1818,7 +1779,6 @@ tracing for that function (something I only just discovered); use
 `\texttt{typeset +ft} \emph{funcname}' to turn it off again.
 
 \subsubsection*{Other bits and pieces}
-    
 
 There are many other percent escapes described in the \texttt{zshmisc}
 manual page, mostly straightforward.  For example, `\texttt{\%h}' shows
@@ -1857,7 +1817,6 @@ This depends a good deal on how your windowing system is set up; finding
 out more is left as an exercise for the reader.
 
 \subsubsection*{Colours}
-    
 
 Many terminals can now display colours, and it is quite useful to be able
 to put these into prompts to distinguish those from the surrounding text.
@@ -1901,7 +1860,6 @@ varieties of the colours and \texttt{\$bg\_no\_bold} and \texttt{\$fg\_no\_bold}
 explicitly back to non-bold.
 
 \subsubsection*{Themes}
-    
 
 There are also a set of themes provided as functions to set up your
 prompt to various predefined possibilities.  These make use of the colours
@@ -1946,14 +1904,12 @@ Here are a few more random options you might want to set in your
 \texttt{.zshrc}.
 
 \subsubsection*{\texttt{NO\_BEEP}}
-    
 
 Normally zsh will beep if it doesn't like something.  This can get
 extremely annoying; `\texttt{setopt nobeep}' will turn it off.  I refer to this
 informally as the \texttt{OPEN\_PLAN\_OFFICE\_NO\_VIGILANTE\_ATTACKS} option.
 
 \subsubsection*{\texttt{AUTO\_CD}}
-    
 
 If this option is set, and you type something with no arguments which isn't
 a command, zsh will check to see if it's actually a directory.  If it is,
@@ -1963,7 +1919,6 @@ exists.  This is particularly useful in the form `\texttt{..}', which changes to
 the parent directory.
 
 \subsubsection*{\texttt{CD\_ABLE\_VARS}}
-    
 
 This is another way of saving typing when changing directory, though only
 one character.  If a directory doesn't exist when you try to change to it,
@@ -1973,7 +1928,6 @@ can also have a `\texttt{/}' and other bits after the parameter.  So `cd
 \texttt{\$foo}, becomes equivalent to `cd \texttt{\$foo/dir}'.
 
 \subsubsection*{\texttt{EXTENDED\_GLOB}}
-    
 
 Patterns, to match the name of files and other things, can be very
 sophisticated in zsh, but to get the most out of them you need to use this
@@ -1986,7 +1940,6 @@ and also to remind you that those characters can have strange effects if
 you have the option set.
 
 \subsubsection*{\texttt{MULTIOS}}
-    
 
 I mentioned above that to get zsh to behave like ksh you needed to set
 \texttt{NO\_MULTIOS}, but I didn't say what the \texttt{MULTIOS} option did.  It has
@@ -2046,7 +1999,6 @@ the pipe is read from first, before any files listed after a `\texttt{<}':
   echo this first | cat <testfile\end{verbatim}
 
 \subsubsection*{\texttt{CORRECT}, \texttt{CORRECT\_ALL}}
-    
 
 If you have \texttt{CORRECT} set, the shell will check all the commands you type
 and if they don't exist, but there is one with a similar name, it will ask
@@ -2347,11 +2299,7 @@ those, so I'll come back to those in the appropriate chapters.  You just
 need to remember that all that stuff should go in \texttt{.zshrc}, since you
 need it for all interactive shells, and for no others.
 
-
-\label{c3}
-\typeout{Original Yodl file: c3}
-
-    \chapter{Dealing with basic shell syntax}\label{syntax}
+\typeout{Original Yodl file: c3}\cleardoublepage\chapter{Dealing with basic shell syntax}\label{syntax}
 
 This chapter is a more thorough examination of much of what appeared in the
 chapter \ref{init}; to be more specific, I assume you're sitting in
@@ -2609,7 +2557,6 @@ for backslashes.  Quotes aren't special to \texttt{print}, so
 is good enough for printing a quote.
 
 \subsubsection*{\texttt{echotc}}
-    
 
 There's an oddity called `\texttt{echotc}', which takes as its argument
 `termcap' capabilities.  This now lives in its own module,
@@ -2821,7 +2768,6 @@ copy a file from the \texttt{zsh-3.1.9/Src} directory, you have a shorthand:
 \begin{verbatim}  cp ${PWD/0.8/1.9}/myfile.c .\end{verbatim}
 
 \subsubsection*{Symbolic links}
-    
 
 Zsh tries to track directories across symbolic links.  If you're not
 familiar with these, you can think of them as a filename which behaves like
@@ -2906,7 +2852,6 @@ that the second word, if is not an absolute path, \emph{is} interpreted
 relative to the directory where you ran the command.
 
 \subsubsection*{\$cdpath and AUTO\_CD}
-    
 
 We're nowhere near the end of the magic you can do with directories yet
 (and, in fact, I haven't even got to the zsh-specific parts).  The next
@@ -2962,7 +2907,6 @@ its own behaves as much like `\texttt{cd} \emph{dirname}' as is possible without
 tying the shell's insides into knots.
 
 \subsubsection*{The directory stack}
-    
 
 One very useful facility that zsh inherited from the C-shell family
 (traditional Korn shell doesn't have it) is the directory stack.  This is a
@@ -3072,7 +3016,6 @@ a special zsh pattern to match any number, an extension of forms like
 `\texttt{<1-100>}' which matches any number in the range 1 to 100 inclusive).
 
 \subsubsection*{Referring to other directories}
-    
 
 Zsh has two ways of allowing you to refer to particular directories.  They
 have in common that they begin with a \texttt{\textasciitilde } (in very old versions of zsh,
@@ -3291,7 +3234,6 @@ You already know how to set and use parameters, but it's a good deal more
 complicated than that when you look at the details.
 
 \subsubsection*{Local parameters}
-    
 
 The principal command for manipulating the behaviour of parameters is
 `\texttt{typeset}'.  Its easiest usage is to declare a parameter; you just give
@@ -3382,7 +3324,6 @@ in a moment.  They are integer types, floating point types, and associative
 array types.
 
 \subsubsection*{Numeric parameters}
-    
 
 Integers are created with `\texttt{typeset -i}', or `\texttt{integer}' which is
 another way of saying the same thing.  They are used for arithmetic, which
@@ -3523,7 +3464,6 @@ to use it.  If you do, remember that (unlike BASIC) each mathematical
 expression should appear as one argument in quotes.
 
 \subsubsection*{Associative arrays}
-    
 
 The one remaining major type of parameter is the associative array; if
 you use Perl, you may call it a `hash', but we tend not to since that's
@@ -3580,7 +3520,6 @@ There are lots of other tricks, but they are mostly associated with clever
 types of parameter expansion, to be described in chapter \ref{subst}.
 
 \subsubsection*{Other typeset and type tricks}
-    
 
 There are variants of \texttt{typeset}, some mentioned sporadically above.
 There is nothing you can do with any of them that you can't do with
@@ -3716,7 +3655,6 @@ paraphernalia to do with hashing commands to take care of when it's set,
 as I discussed above, and I hope you'll see the difference.
 
 \subsubsection*{Reading into parameters}
-    
 
 The `\texttt{read}' builtin, as its name suggests, is the opposite to
 `\texttt{print}' (there's no `\texttt{write}' command in the shell, though there is
@@ -3817,7 +3755,6 @@ however, although when reading an array (use the option \texttt{-a} with \texttt
 if creating a new array) it will perform splitting.
 
 \subsubsection*{Other builtins to control parameters}
-    
 
 The remaining builtins which handle parameters can be dealt with more
 swiftly.
@@ -4051,7 +3988,6 @@ the `\texttt{!}', but I don't know what it is.  This happens regardless of job
 control.
 
 \subsubsection*{Signals}
-    
 
 The \texttt{kill} command can do a good deal more than just kill a process.
 That is the default action, which is why the command has that name.  But
@@ -4120,7 +4056,6 @@ first if necessary.  This returns you to your local terminal; you can
 resume the remote login with `\texttt{fg}' just like any other programme.
 
 \subsubsection*{Traps}
-    
 
 The way of making the shell handle signals is called `traps'.  There are
 actually two mechanisms for this.  I'll present the more standard one and
@@ -4296,7 +4231,6 @@ that will correctly remove the trap as well as deleting the function.
 However, `\texttt{trap -}' works with both, so that's the recommended way.
 
 \subsubsection*{Limits on processes}
-    
 
 One other way that jobs started by the shell can be controlled is by using
 limits.  These are actually limits set by the operating system, but the
@@ -4378,7 +4312,6 @@ function and my version of zsh crashes due to exhaustion of that memory
 instead.  However, it depends on the system how this works out.
 
 \subsubsection*{Times}
-    
 
 One way of returning information on process resources is with the
 `\texttt{times}' command.  It simply shows the total CPU time used by the
@@ -4419,7 +4352,6 @@ seconds, the \texttt{\$TIMEFMT} output will be shown automatically.
 \subsection{Terminals, users, etc.}
 
 \subsubsection*{Watching for other users}
-    
 
 Although this is more associated with parameters than builtins, the
 `\texttt{log}' command will tell you whether any of a group of people you want
@@ -4431,7 +4363,6 @@ will be printed using the \texttt{\$WATCHFMT} parameter:  once again, this takes
 its own set of percent escapes, listed in the \texttt{zshparam} manual.
 
 \subsubsection*{\texttt{ttyctl}}
-    
 
 There is a command \texttt{ttyctl} which is designed to keep badly behaved
 external commands from messing up the terminal settings.  Most programmes
@@ -4448,7 +4379,6 @@ controlling the behaviour of some feature of the shell, have some other
 special effect.
 
 \subsubsection*{Controlling programme flow}
-    
 
 The four functions here are \texttt{exit}, \texttt{return}, \texttt{break}, \texttt{continue}
 and \texttt{source} or \texttt{.}: they determine what the shell does next.  You've met
@@ -4515,7 +4445,6 @@ that source always searches the current directory (and searches it first),
 is the only difference.
 
 \subsubsection*{Re-evaluating an expression}
-    
 
 Sometimes it's very useful to take a string and run it as if it were a set
 of shell commands.  This is what \texttt{eval} does.  More precisely, it sticks
@@ -5101,7 +5030,7 @@ various other classes of functions distributed with the shell:
   modules.  It's based around a single builtin, \texttt{zftp}, which is
   loaded from the module \texttt{zsh/zftp}.
 
-  \item  Functions beginning \texttt{prompt}, which may be in the \texttt{Prompts}
+\item  Functions beginning \texttt{prompt}, which may be in the \texttt{Prompts}
   subdirectory, are part of a `prompt themes' system which makes it
   easy for you to switch between preexisting prompts.  You load it
   with `\texttt{autoload -U promptinit; promptinit}'.   Then `\texttt{prompt -h}'
@@ -5110,7 +5039,7 @@ various other classes of functions distributed with the shell:
   to `\texttt{prompt}' can be listed with \texttt{\textasciicircum D} and completed with a TAB;
   they are various sorts of prompt which you may or may not like.
 
-  \item  Functions with long names and hyphens, like \texttt{predict-on} and
+\item  Functions with long names and hyphens, like \texttt{predict-on} and
   \texttt{incremental-complete-word}.  These are editor functions; you use them
   with
 \begin{verbatim}  zle -N predict-on
@@ -5122,7 +5051,7 @@ various other classes of functions distributed with the shell:
   possible completions for the current word as you type; it could do with
   improving.
 
-  \item  Everything else; these may be in the \texttt{Misc} subdirectory.  These
+\item  Everything else; these may be in the \texttt{Misc} subdirectory.  These
   are a very mixed bag which you should read to see if you like any.  One
   of the most useful is \texttt{zed}, which allows you to edit a small file
   (it's really just a simple front-end to \texttt{vared}).  The \texttt{run-help}
@@ -5348,7 +5277,6 @@ there's no counterpart to the quoted-array behaviour here).  Then keep
 behaviour, you're on your own.
 
 \subsubsection*{It's a bug}
-    
 
 There's a bug in handling of the the form \texttt{\$\{1+"\$@"\}}.  This looks
 rather an arcane and unlikely combination, but actually it is commonly
@@ -5382,7 +5310,6 @@ right).  Some day, we may fix the underlying bug, but it's not very easy
 with the way the parameter substitution code is written at the moment.
 
 \subsubsection*{Parameters inherited from csh}
-    
 
 The final matter is the C-shell syntax.  There are two extra variables
 but, luckily, there is not much extra in the way of complexity.
@@ -5428,7 +5355,6 @@ the `\texttt{cat}' command will see the differences in behaviour between the two
 calls just as \texttt{args} would.  That should be obvious.
 
 \subsubsection*{It's not a bug}
-    
 
 Let me finally mention again a feature I noted in passing:
 \begin{verbatim}  1='first argument'\end{verbatim}
@@ -5523,7 +5449,6 @@ was in the zsh autoload format, not the ksh one, in this case (but see
 below).
 
 \subsubsection*{And there's more}
-    
 
 Now some bells and whistles.  Remember the \texttt{KSH\_AUTOLOAD} thing?  When
 you compile a function, you can specify which format --- native zsh or
@@ -5630,7 +5555,6 @@ users would laugh.)  The shell never reads or maps in the version it
 doesn't use, however; only extra disk space is used.
 
 \subsubsection*{A little -Xtra help}
-    
 
 There are two final autoloading issues you might want to know about.  In
 versions of zsh since 3.1.7, you will see that when you run
@@ -5667,7 +5591,6 @@ of \texttt{autoload}.  It's useful if you want to be able to run the
 function itself.
 
 \subsubsection*{Special functions}
-    
 
 I'm in danger of simply quoting the manual, but there are various
 functions with a special meaning to the shell (apart from \texttt{TRAP...}
@@ -5906,17 +5829,17 @@ As a reminder, the shell looks up commands in this order:
   commands, possible even other aliases; they can be deleted with
   `\texttt{unalias}',
 
-  \item  reserved words, those special to the shell which often need to be
+\item  reserved words, those special to the shell which often need to be
   interpreted differently from ordinary commands due to the syntax, although
   they can be disabled if you really need to,
 
-  \item  functions; these can also be disabled, although it's usually easier
+\item  functions; these can also be disabled, although it's usually easier
   to `\texttt{unfunction}' them,
 
-  \item  builtin commands, which can be disabled, or called as a builtin by
+\item  builtin commands, which can be disabled, or called as a builtin by
   putting `\texttt{builtin}' in front,
 
-  \item  external commands, which can be called as such, even if the name
+\item  external commands, which can be called as such, even if the name
   clashes with one of the above types, by putting `\texttt{command}' in front.
 \end{itemize}
 
@@ -5995,7 +5918,6 @@ discussed in the previous chapter.  Here's a brief summary of the different
 types.
 
 \subsubsection*{Process substitution}
-    
 
 There are three forms that result in
 a command line argument which refers to a file from or to which
@@ -6108,7 +6030,6 @@ name.  So even if zsh does it this way, you still need the `\texttt{=}' form for
 programmes which need to go backwards in what they're reading.
 
 \subsubsection*{Parameter substitution}
-    
 
 You've seen enough of this already.  This comes from a `\texttt{\$}' followed
 either by something in braces, or by alphanumeric characters forming the
@@ -6119,7 +6040,6 @@ substitution.  More detail will be held over to till
 chapter \ref{subst}; there's a lot of it.
 
 \subsubsection*{Command substitution}
-    
 
 This has two forms, \texttt{\$}(\emph{process}) and
 \texttt{`}\emph{process}\texttt{`}.  They function identically; the first form has two
@@ -6232,7 +6152,6 @@ Obviously, an interactive shell is never replaced in this way, since
 clairvoyance is not yet a feature of the shell.
 
 \subsubsection*{Arithmetic substitution}
-    
 
 Arithmetic substitution is easy to explain:  everything I told you about
 the \texttt{(( ... ))} command under numerical parameters, above, applies to
@@ -6278,7 +6197,6 @@ parentheses; there is now no reason to use it, as it's non-standard, but
 you may sometimes still meet it.
 
 \subsubsection*{Brace expansion}
-    
 
 Brace expansion is a feature acquired from the C shell and it's relatives,
 although some versions of ksh have it, as it's a compile time option
@@ -7279,7 +7197,7 @@ things you can do.
      for user convenience and not relevant to basic syntax, but in some
      cases you may want the extra cover provided.
 
-     If it's possible the script may already be running under ksh, you
+If it's possible the script may already be running under ksh, you
      can instead use
 \begin{verbatim}  [[ -z $ZSH_VERSION ]] && emulate ksh\end{verbatim}
      or for sh, using the simpler test command there,
@@ -7332,7 +7250,7 @@ shell is invoked with the name `ksh', or if `emulate ksh' is in effect.
     From version 3.1.3, the ksh forms are fully supported when the
     option \texttt{KSH\_GLOB} is in effect.
 
-    {[}1{]} Note that \texttt{\textasciitilde } is the only globbing operator to have a lower
+{[}1{]} Note that \texttt{\textasciitilde } is the only globbing operator to have a lower
       precedence than \texttt{/}.  For example, \texttt{**/foo\textasciitilde *bar*} matches any
       file in a subdirectory called \texttt{foo}, except where \texttt{bar}
       occurred somewhere in the path (e.g. \texttt{users/barstaff/foo} will
@@ -7556,11 +7474,7 @@ more natural error, `\texttt{exec format error}', then the shell would know
 that there was something wrong with the file, and could investigate; but
 unfortunately life's not that simple.
 
-
-\label{c4}
-\typeout{Original Yodl file: c4}
-
-    \chapter{The Z-Shell Line Editor}\label{zle}
+\typeout{Original Yodl file: c4}\cleardoublepage\chapter{The Z-Shell Line Editor}\label{zle}
 
 The zsh line editor is probably the first part of the shell you ever
 used, when you started typing in commands.  Even the most basic shells,
@@ -8178,7 +8092,6 @@ position.  These typically enable you to search backwards more quickly,
 since you don't need to tell the shell what you are looking for.
 
 \subsubsection*{Ordinary searching}
-    
 
 The standard search commands, by which I mean the ones your are probably
 most familiar with from ordinary text editors (if either Emacs or vi can
@@ -8214,7 +8127,6 @@ searches for the next match of the current string, and `\texttt{N}' does the
 same but reverses the direction of the search.
 
 \subsubsection*{Search for the first word}
-    
 
 The next sort of search is probably the most commonly used, but is only
 bound in Emacs mode: \texttt{\textbackslash ep} and \texttt{\textbackslash en} search forward or backward for
@@ -8226,7 +8138,6 @@ called simply `\texttt{history-search-backward}' and
 function all that well.
 
 \subsubsection*{Prefix searching}
-    
 
 Finally, you can search backwards for a line which has the entire
 starting point up to the cursor position the same as the current line.
@@ -8240,7 +8151,6 @@ similar to the initial-word searches:
   bindkey '^xn' history-beginning-search-forward\end{verbatim}
 
 \subsubsection*{Other search commands based on functions}
-    
 
 Search commands are one of the types most often customised by writing
 shell functions.  Some are supplied with the latest versions of the
@@ -9227,7 +9137,6 @@ the other form was introduced.
 \subsection{Examples}
 
 \subsubsection*{transpose-words-about-point}
-    
 
 This function is a variant on \texttt{transpose-words}.  It has various
 twists.  First, the words in question are always space-delimited,
@@ -9381,7 +9290,6 @@ expressions which couldn't be split properly, because the quotes weren't
 complete, have an extra space character at the end.
 
 \subsubsection*{insert-numeric}
-    
 
 Here's a widget which allows you to insert an ASCII character which you
 know by number.  I can't for the life of me remember where it came from,
@@ -9495,11 +9403,7 @@ standard for multi-byte characters, Unicode) to appeal to the
 international market, I'm afraid zsh is stuck with ISO 8859 and similar
 character sets for now.
 
-
-\label{c5}
-\typeout{Original Yodl file: c5}
-
-    \chapter{Substitutions}\label{subst}
+\typeout{Original Yodl file: c5}\cleardoublepage\chapter{Substitutions}\label{subst}
 
 This chapter will appeal above all to people who are excited by the fact
 that
@@ -9733,7 +9637,6 @@ just which characters need quoting inside double quotes, and which
 don't.
 
 \subsubsection*{Word-splitting in double quotes}
-    
 
 Where the substitutions are allowed, the (almost) invariable side effect
 of double quotes is that word-splitting is suppressed.  You can see this
@@ -9768,7 +9671,6 @@ and more generally for all forms of substitution using another flag,
   three\end{verbatim}
 
 \subsubsection*{Digression on subscripts}
-    
 
 The version with flags is perhaps less clear than the other, but it can
 appear in lots of different places.  For example, here is how you pick
@@ -9809,7 +9711,6 @@ manual entry (look for the heading `Rules' there or in the `Parameter
 Expansion' node of the corresponding Info or HTML file).
 
 \subsubsection*{Word-splitting of quoted command substitutions}
-    
 
 Zsh has the useful feature that you can force the shell to apply the
 rules of parameter expansion to the result of a command substitution.
@@ -10410,7 +10311,6 @@ future extraction.  However, you can do some very useful things with
 just the basic patterns common to all shells.
 
 \subsubsection*{Standard forms: lengths}
-    
 
 I'll separate out zsh-specific forms, and start off with some
 which appear in all shells derived from the Bourne shell.  A more
@@ -10472,7 +10372,6 @@ ASCII character set (or whatever extension of it you are using if it is
 an extended character set) of the first character in \texttt{\$foo}.
 
 \subsubsection*{Standard forms: conditional substitutions}
-    
 
 The next group of substitutions is a whole series where the parameter is
 followed by an option colon and then `\texttt{-}', `\texttt{=}', `\texttt{+}' or
@@ -10542,9 +10441,7 @@ settings by more verbose tests.  It's quite neat in short shell
 functions for interactive use:
 \begin{verbatim}  mless() { mtype ${@:?missing filename} | $PAGER }\end{verbatim}
 
-
 \subsubsection*{Standard forms: pattern removal}
-    
 
 Most of the more sophisticated Bourne-like shells define two pairs of
 pattern operators, which I shall call `top and tail' operators.  One
@@ -10592,7 +10489,6 @@ in the case of the pattern operators.  (Well --- except for the zsh
 variant noted below.)
 
 \subsubsection*{Zsh-specific parameter substitutions}
-    
 
 Now for some enhancements that zsh has for using the forms of parameter
 substitution I've just given as well as some similar but different ones.
@@ -10644,7 +10540,6 @@ A more standard way of doing this (noted by David Korn) is
 `\texttt{0\$\{foo+1\}}', giving 0 if \texttt{\$foo} is not set and 01 if it is.
 
 \subsubsection*{Parameter flags and pattern substitutions}
-    
 
 Zsh increases the usefulness of the `top and tail' operators with some
 of its parameter flags.  Usually these show you what's left after the
@@ -10726,7 +10621,6 @@ The first one didn't match, because the `\texttt{g}' is not at the end; the
 second one did, because there is an `\texttt{e}' at the end.
 
 \subsubsection*{Pattern replacement}
-    
 
 The most powerful of the parameter pattern-matching forms has been
 borrowed from bash and ksh93; it doesn't occur in traditional Bourne
@@ -11759,7 +11653,6 @@ those which are most likely to clash with other uses of the characters
 in question.
 
 \subsubsection*{Numeric ranges}
-    
 
 One possibility that is always available is the syntax for numeric
 ranges in the form `\texttt{<}\emph{num1}\texttt{-}\emph{num2}\texttt{>}'.  You can omit 
@@ -11829,7 +11722,6 @@ for redirection if something else follows on the command line, and
 that's enough to differentiate it from a range operator.
 
 \subsubsection*{Parentheses}
-    
 
 Parentheses are quite natural in zsh if you've used extended regular
 expressions.  They are usually available, and only turned off if you set
@@ -11899,7 +11791,6 @@ describe in a later section since they are really the icing on the
 cake.
 
 \subsubsection*{Negative matches or exclusions}
-    
 
 The simpler of the two exclusions uses `\texttt{\textasciicircum }' to introduce a pattern
 which must \emph{not} be matched.  So a trivial example (I will assume for
@@ -12007,7 +11898,6 @@ however, since then there is a `\texttt{\textasciitilde }' in the middle of the 
 which will need to be quoted when used in the shell.
 
 \subsubsection*{Closures or repeated matches}
-    
 
 The extended globbing symbols `\texttt{\#}' and `\texttt{\#\#}', when they occur in a
 pattern, are equivalent to `\texttt{*}' and `\texttt{+}' in extended regular
@@ -12152,7 +12042,6 @@ perhaps more ksh-like, way of doing the same thing with a more
 indicative syntax than just a pair of parentheses.
 
 \subsubsection*{File types}
-    
 
 The simplest glob qualifiers are similar to what the completion system
 appends at the end of file names when the \texttt{LIST\_TYPES} option is on;
@@ -12176,7 +12065,6 @@ file: \texttt{(l2)} specifies exactly 2 links, \texttt{(l+3)} more than 3 links,
 \texttt{(l-5)} fewer than 5.
 
 \subsubsection*{File permissions}
-    
 
 Actually, the \texttt{(*)} qualifier really applies to the file's
 permissions, not it's type, although it does require the file to be an
@@ -12198,7 +12086,6 @@ and group, and neither readable nor executable by anyone else
 (`other').
 
 \subsubsection*{File ownership}
-    
 
 You can match on the other three mode bits, setuid ((s)), setgid ((S))
 and sticky ((t)), but I'm not going to go into what those are if you
@@ -12215,7 +12102,6 @@ can use names if you delimiit them, so \texttt{(u:pws:)} says that the owner
 must be user \texttt{pws}; similarly for groups with \texttt{(g)}.
 
 \subsubsection*{File times}
-    
 
 You can also pick files by modification ((m)) or access ((a)) time,
 either before ((-)), at, or after ((+)) a specific time, which may be
@@ -12236,7 +12122,6 @@ location and nature of the file.  Information here can change when some
 aspect of the file information, such as permissions, changes.
 
 \subsubsection*{File size}
-    
 
 The qualifier \texttt{(L)} refers to the file size (`L' is actually for
 length), by default in bytes, but it can be in kilobytes \texttt{(k)},
@@ -12254,7 +12139,6 @@ i.e. not counting children of children and deeper).  This changes
 automatically if necessary to make more space available.
 
 \subsubsection*{File matching properties}
-    
 
 There are a few qualifiers which affect option settings just for the
 match in question: \texttt{(N)} turns on \texttt{NULL\_GLOB}, so that the pattern
@@ -12272,7 +12156,6 @@ Other than being local to the pattern qualified, there is no difference
 in effect from setting the option itself.
 
 \subsubsection*{Combining qualifiers}
-    
 
 One of the reasons that some qualifiers have slightly obscure syntax is
 that you can chain any number of them together, which requires that the
@@ -12309,7 +12192,6 @@ can succeed, namely where the symlink is broken.  (This was pointed out
 to me by Oliver Kiddle.)
 
 \subsubsection*{Sorting and indexing qualifiers}
-    
 
 Normally the result of filename generation is sorted by alphabetic order
 of filename.  The globbing flags \texttt{(o)} and \texttt{(O)} allow you to sort
@@ -12357,7 +12239,6 @@ strips off the directory part of that name.  Modifiers are applied
 right at the end, after all file selection tasks.
 
 \subsubsection*{Evaluating code as a test}
-    
 
 The most complicated effect is produced by the \texttt{(e)} qualifer.  which
 is followed by a string delimited in the now-familiar way by either
@@ -12416,7 +12297,6 @@ so on); not surprisingly, its features are based around the shortcuts
 often required by shell users.
 
 \subsubsection*{Mixed-case matches}
-    
 
 The simplest sort of globbing flag will serve as an example.
 You can make a pattern, or a portion of a pattern, match
@@ -12511,7 +12391,6 @@ Ukrainian (which I remember because it's confusing in the United
 Kingdom), and so on.
 
 \subsubsection*{`Backreferences'}
-    
 
 The feature labelled as `backreferences' in the manual isn't really that
 at all, which is my fault.  Many regular expression matchers allow you
@@ -12618,7 +12497,6 @@ backtracking from the end until the whole thing is successful, leads to
 the `\texttt{(\textasciicircum foo)}' matching `\texttt{fo}'.
 
 \subsubsection*{Approximate matching}
-    
 
 To my knowledge, zsh is the first command line interpreter to make use
 of approximate matching.  This is very useful because it provides the
@@ -12734,7 +12612,6 @@ word on the command line; this is context-sensitive, so more
 sophisticated than the function I showed.
 
 \subsubsection*{Anchors}
-    
 
 The last two globbing flags are probably the least used.  They are there
 really for completeness.  They are \texttt{(\#s)}, to match only at the start
@@ -12805,7 +12682,6 @@ the first backreference, which is in turn put into \texttt{\$1}.  Then the
 second argument is used and \texttt{\$1} in uppercase is substituted.
 
 \subsubsection*{Essentials of the function}
-    
 
 The basic code in \texttt{zmv} is very simple.  It boils down to more or less
 the following.
@@ -12859,7 +12735,6 @@ plus backquote expansion, are performed, but otherwise \texttt{\$result} is
 left alone.
 
 \subsubsection*{More complicated examples}
-    
 
 \texttt{zmv} has some special handling for recursive globbing, but only with
 the patterns \texttt{**/} and \texttt{***/}.  If you put either of these in
@@ -12895,7 +12770,6 @@ tricks like this (though there's another, less powerful, programme of
 the same name which simply replaces strings).
 
 \subsubsection*{The effect of \texttt{zmv}}
-    
 
 In addition to renaming, \texttt{zmv} can be made to copy or link files.  If
 you call it \texttt{zcp} or \texttt{zln} instead of \texttt{zmv}, it will have those
@@ -12927,13 +12801,7 @@ example,
 
 
 
-
-
-
-\label{c6}
-\typeout{Original Yodl file: c6}
-
-    \chapter{Completion, old and new}\label{comp}
+\typeout{Original Yodl file: c6}\cleardoublepage\chapter{Completion, old and new}\label{comp}
 
 Completion of command arguments is something zsh is particularly good at.
 The simplest case is that you hit \texttt{<TAB>}, and the shell guesses what has
@@ -13316,8 +13184,6 @@ directory presented for the next selection, while \texttt{undo} is smart enough
 not only to remove that selection but return to completion on the parent
 directory.
 
-
-
 You can choose the manner in which the currently selected value in the
 completion list is highlighted using exactly the same mechanism as for
 specifying colours for particular types of matches; see the description of
@@ -13326,7 +13192,6 @@ the \texttt{list-colors} style below.
 \subsection{Other ways of changing completion behaviour}
 
 \subsubsection*{\texttt{COMPLETE\_ALIASES}}
-    
 
 If you set an alias such as
 \begin{verbatim}  alias pu=pushd\end{verbatim}
@@ -13346,7 +13211,6 @@ around: the first alias would not work without the extra \texttt{compdef}, but
 the second would.
 
 \subsubsection*{\texttt{AUTO\_REMOVE\_SLASH}}
-    
 
 This option is turned on by default.  If you complete a directory name and
 a slash is added --- which it usually is, both to tell you that you have
@@ -13382,7 +13246,6 @@ controlled by the \texttt{AUTO\_REMOVE\_SLASH} option, which applies only to
 directories inserted by the standard filename completion system.
 
 \subsubsection*{\texttt{AUTO\_PARAM\_SLASH}, \texttt{AUTO\_PARAM\_KEYS}}
-    
 
 These options come into effect when completing expressions with parameter
 substitutions.  If \texttt{AUTO\_PARAM\_SLASH} is set, then any parameter
@@ -13405,7 +13268,6 @@ if you type everything by hand, typing `\texttt{{[}}' will not have this magic
 effect.
 
 \subsubsection*{\texttt{COMPLETE\_IN\_WORD}}
-    
 
 If this is set, completion always takes place at the cursor position in the
 word.  For example if you typed `\texttt{Mafile}', went back over the `\texttt{f}',
@@ -13418,7 +13280,6 @@ completer described below) require it, so it's a good thing to set and get
 used to, unless you really need to complete only at the end of the word.
 
 \subsubsection*{\texttt{ALWAYS\_TO\_END}}
-    
 
 If this is set, the cursor is always moved to the end of the word after it
 is completed, even if completion took place in the middle.  This also
@@ -13427,7 +13288,6 @@ happens with menu completion.
 \subsection{Changing the way completions are displayed}
 
 \subsubsection*{\texttt{LIST\_TYPES}}
-    
 
 This is like the \texttt{-F} option to \texttt{ls}; files which appear in the
 completion listing have a trailing `\texttt{/}' for a directory, `\texttt{*}' for a
@@ -13443,7 +13303,6 @@ tell the shell that the values may be existing files to apply
 \texttt{LIST\_TYPES} to (though no harm is caused if no such files exist).
 
 \subsubsection*{\texttt{LIST\_PACKED}, \texttt{LIST\_ROWS\_FIRST}}
-    
 
 These affect the arrangement of the completion listing.  With
 \texttt{LIST\_PACKED}, completion lists are made as compact as possible by
@@ -13921,7 +13780,6 @@ all functions, so you can simply copy and modify one to make your own
 completer.
 
 \subsubsection*{\texttt{\_complete}}
-    
 
 This is the basic completion behaviour, which we've been assuming up to
 now.  Its major use is simply to check the context --- here meaning
@@ -13933,7 +13791,6 @@ if you write your own completion commands for special cases.  If you do
 this, you should make the parameter local to your function.
 
 \subsubsection*{\texttt{\_approximate}}
-    
 
 This does approximate completion:  it's actually written as a wrapper for
 the \texttt{\_complete} completer, so it does all the things that does, but it
@@ -14019,7 +13876,6 @@ be `\texttt{:completion::approximate-2:::}', and so on; the same happens with
 correction and `\texttt{correct-1}', etc., for the completer described next.
 
 \subsubsection*{\texttt{\_correct}}
-    
 
 This is very similar to \texttt{\_approximate}, except that the context is
 `\texttt{:completion::correct:*}' (or `\texttt{:completion::correct-<num>:*}' when
@@ -14049,7 +13905,6 @@ will be using the old filename correction mechanism; it's not yet possible
 to alter this.
 
 \subsubsection*{\texttt{\_expand}}
-    
 
 This actually performs expansion, not completion; the difference was
 explained at the start of the chapter.  If you use it, you should bind tab
@@ -14167,7 +14022,6 @@ that do substitutions, presenting the results as an expansion.  You
 would almost certainly want to add details to help this along.
 
 \subsubsection*{\texttt{\_history}}
-    
 
 This completes words from the shell's history, in other words everything
 you typed or had completed or expanded on previous lines.  There are three
@@ -14176,7 +14030,6 @@ for the command widget \texttt{\_history\_complete\_word} below.  That widget
 essentially performs the work of this completer as a special keystroke.
 
 \subsubsection*{\texttt{\_prefix}}
-    
 
 Strictly, this completer doesn't do completion itself, and should hence be
 in the group below starting with \texttt{\_match}.  However, it \emph{seems} to do
@@ -14252,7 +14105,6 @@ from the original suffix; otherwise it would simply leave the resulting
 word all joined together, as \texttt{expand-or-complete-prefix} usually does.
 
 \subsubsection*{\texttt{\_ignored}}
-    
 
 Like \texttt{\_prefix} this is a bit of a hybrid, mopping up after completions
 which have already been generated.  It allows you to have completions which
@@ -14291,7 +14143,6 @@ internally using \texttt{\$fignore} --- are not ignored.  So it should really be
 called `\texttt{\_not\_ignored}', but it isn't.
 
 \subsubsection*{\texttt{\_match}}
-    
 
 This and the remaining completers are utilities, which affect the main
 completers given above when put into the completion list rather than doing
@@ -14320,7 +14171,6 @@ The \texttt{\_match} completer uses the style \texttt{insert-unambiguous} in jus
 same way as does \texttt{\_approximate}.
 
 \subsubsection*{\texttt{\_all\_matches}}
-    
 
 This has a similar effect to performing expansion instead of completion:
 all the possible completions are inserted onto the command line.  However,
@@ -14370,7 +14220,6 @@ completions which were generated by the last completion, whatever that was
 result of any completion widget.
 
 \subsubsection*{\texttt{\_list}}
-    
 
 If you have this in the list of completers (at the beginning is as good as
 anything), then the first time you try completion, you only get a list;
@@ -14396,7 +14245,6 @@ what happens between those completion calls; looking at the command line is
 its only resource.
 
 \subsubsection*{\texttt{\_menu}}
-    
 
 This just implements menu completion in shell code; it should come before
 the `real' completion generators in the \texttt{completers} style.  It ignores
@@ -14405,7 +14253,6 @@ menu-completion widgets don't work well with it.  However, you can copy it
 and write your own completers.
 
 \subsubsection*{\texttt{\_oldlist}}
-    
 
 This completer is most useful when you are in the habit of using special
 completion functions, i.e. commands other than the standard completion
@@ -14440,7 +14287,6 @@ boolean value (it is on by default).  As Orwell put it, oldlisters
 unbellyfeel menucomp.
 
 \subsubsection*{Ordering completers}
-    
 
 I've given various suggestions about the order in which completers should
 come in, which might be confusing.  Here, therefore, is a suggested order;
@@ -14493,7 +14339,6 @@ better, it took me four or five attempts to get the styles right for this.
 \subsection{Changing the format of listings: groups etc.}
 
 \subsubsection*{\texttt{format}}
-    
 
 You can use this style if you want to find out where the completions in a
 completion listing come from.  The most basic use is to set it for the
@@ -14529,7 +14374,6 @@ You can set this for some other tag than \texttt{descriptions} and the format
 thus defined will be used only for completions of that tag.
 
 \subsubsection*{\texttt{group-name}, \texttt{group-order}}
-    
 
 In the \texttt{format} example just above, you may have wondered if it is
 possible to make the different types of completion appear separately,
@@ -14589,13 +14433,11 @@ appear after the ones for which you have defined the order and in some
 order decided by the function which generated the matches.
 
 \subsubsection*{\texttt{tag-order}}
-    
 
 As I already said, I've already described this, but it's here again for
 completeness.
 
 \subsubsection*{\texttt{verbose}, \texttt{auto-description}}
-    
 
 These are relatives of \texttt{format} as they add helpful messages to the
 listing.  If \texttt{verbose} is true, the function generating the matches may,
@@ -14619,7 +14461,6 @@ standard completion functions already have their own descriptions supplied,
 and this is more subtlety than most people will probably need.
 
 \subsubsection*{\texttt{list-colors}}
-    
 
 This is used to display lists of matches for files in different colours
 depending on the file type.  It is based on the syntax of the
@@ -14708,7 +14549,6 @@ repetitions of the previous bit of the pattern' with extended glob
 patterns; see the globbing manual page for full details.
 
 \subsubsection*{\texttt{ignored-patterns}}
-    
 
 Many shells, including zsh, have a parameter \texttt{\$fignore}, which gives a
 list of suffixes; filenames ending in any of these are not to be used in
@@ -14818,7 +14658,6 @@ list.  Of course, you should manipulate the completer list the way you
 want; this just shows the bare bones.
 
 \subsubsection*{\texttt{prefix-hidden}, \texttt{prefix-needed}}
-    
 
 You will know that when the shell lists matches for files, the directory
 part is removed.  The boolean style \texttt{prefix-hidden} extends this
@@ -14835,7 +14674,6 @@ same occasions as \texttt{prefix-hidden}.
 
 \subsubsection*{\texttt{list-packed}, \texttt{list-rows-first},
 \texttt{accept-exact}, \texttt{last-prompt}, \texttt{menu}}
-    
 
 The first two of these have already been introduced, and correspond to the
 \texttt{LIST\_PACKED} and \texttt{LIST\_ROWS\_FIRST} options.  The \texttt{accept-exact} and
@@ -14878,7 +14716,6 @@ As always, \texttt{yes} and \texttt{true} are equivalent, as are \texttt{no} and
 appears to assign a value to \texttt{true}.
 
 \subsubsection*{\texttt{hidden}}
-    
 
 This is a little obscure for most users.  Its context should be restricted
 to specific tags; any corresponding matches will not be shown in completion
@@ -14898,7 +14735,6 @@ in separate widgets that do completion; the relevant information is all
 together in the next section.
 
 \subsubsection*{Filenames (1): patterns: \texttt{file-patterns}}
-    
 
 It was explained above for the \texttt{tag-order} style that when a function
 uses pattern matching to generate file completions, such as all \texttt{*.ps}
@@ -14984,7 +14820,6 @@ are often those you usually don't want to complete.
 \subsubsection*{Filenames (2): paths: \texttt{ambiguous}, \texttt{expand}, \texttt{file-sort},
   \texttt{special-dirs}, \texttt{ignore-parents}, \texttt{list-suffixes},
   \texttt{squeeze-slashes}}
-    
 
 Filename completion is powerful enough to complete all parts of a path at
 once, for example `\texttt{/h/p/z}' will complete to `\texttt{/home/pws/zsh}'.  This
@@ -15091,7 +14926,6 @@ ordinary UNIX rule you can set \texttt{squeeze-slashes} to \texttt{true}.  Then 
 this example only files in the root directory will be completed.
 
 \subsubsection*{Processes: \texttt{command}, \texttt{insert-ids}}
-    
 
 Some functions, such as \texttt{kill}, take process IDs (i.e. numbers) as
 arguments.  These can be completed by using the \texttt{ps} command to generate
@@ -15134,7 +14968,6 @@ don't do anything which gets rid of information supplied by the user --- so
 is probably more useful in practice than it sounds.
 
 \subsubsection*{Job control: \texttt{numbers}}
-    
 
 Builtin functions that take process IDs usually also take job
 specifications, strings beginning with `\texttt{\%}' and followed either by
@@ -15153,7 +14986,6 @@ Note also that \texttt{prefix-needed} applies here; if it is set, you need to
 type the `\texttt{\%}' to complete jobs rather than processes.
 
 \subsubsection*{System information: users, groups, hosts etc.}
-    
 
 There are many occasions where you complete the names of users on the
 system, groups on the system (not to be confused with completion groups),
@@ -15201,7 +15033,6 @@ The other combined styles work in exactly the same way; just set the values
 separated by colons or `\texttt{@}', it doesn't matter which.
 
 \subsubsection*{URLs for web browsers}
-    
 
 Completion for URLs is done by setting a parallel path somewhere on your
 local machine.  The \texttt{urls} style specifies the top directory for this.
@@ -15249,7 +15080,6 @@ and when you type `\texttt{lynx http://www.footling.com/}', all the rest will
 be completed automatically.
 
 \subsubsection*{The X files}
-    
 
 There is another use for the \texttt{path} style with the tag `\texttt{colors}': it
 gives the path to a file which contains a list of colour names understood
@@ -15303,7 +15133,7 @@ you can use `\texttt{<ESC-.>}' to insert the last word of the previous command.
 Various styles are available.  You can set the `\texttt{stop}' style
 which makes it stop once before cycling past the end (or beginning) of
 the history list, telling you that the end was reached.
- 
+
 You can also set the `\texttt{list}' style to force matches to be listed, the
 `\texttt{sort}' style to sort matches in alphabetical order instead of by their
 age in the history list, and the `\texttt{remove-all-dups}' style, which ensures
@@ -15328,7 +15158,7 @@ pattern characters in the existing string are active, so this is a cross
 between expansion and completion.  You can also give it a numeric prefix to
 show the \texttt{N}th most recently modified file that matches the pattern.
 
-By the way, you can actually do the same by setting appropiate styles,
+By the way, you can actually do the same by setting appropriate styles,
 without any new functions.  The trick is to persuade the system to use
 the normal \texttt{\_files} completer with the \texttt{file-sort} style.  By
 restricting the use of the styles to the context of the widget --- which
@@ -15356,7 +15186,7 @@ if you are interested.  (It works even if you aren't interested, however.)
      completion so far didn't work.
   \item  First, \texttt{\_menu} comes along; it actually does nothing more
      than tell the system to use menu completion.
-  \item  Then \texttt{\_files} generats a list of files.  This uses
+  \item  Then \texttt{\_files} generates a list of files.  This uses
      the \texttt{file-sort} and \texttt{file-patterns} styles defined for the
      \texttt{most-recent-file} context.  They produce a set of files in
      modification time order, and include only regular files (so not
@@ -15385,7 +15215,7 @@ Omit the \texttt{file-patterns} line if you don't want the match restricted
 to regular files (I sometimes need the most recently modified directory,
 but often it's irrelevant).  The whole version using styles comes from
 Oliver Kiddle, who recommends using \texttt{\_generic} in this way any time
-you want to generate a widge from a specific completion such as
+you want to generate a widget from a specific completion such as
 \texttt{\_files}.  There is a brief section on \texttt{\_generic} below.
 
 \subsection{\texttt{\_next\_tags}}
@@ -15850,7 +15680,6 @@ see the finished product in the zsh 4.1 distribution.  It even has a few
 comments in.
 
 \subsubsection*{Basic structure}
-    
 
 Like the \texttt{cvs} command and a few other of the more complicated
 commands you might use, Perforce is run by a single command, \texttt{p4},
@@ -15958,7 +15787,7 @@ would be used, as you no doubt intended.
 This top level is only necessary for complex commands with multiple
 subcommands.  There are interesting titbits here, but if you just want
 to know how to complete a command with ordinary UNIX-style argument
-parsiing, skip to the next section.
+parsing, skip to the next section.
 
 The main \texttt{\_perforce} function has the two purposes described at the top of
 the previous subsection.  We need to decide whether we are in the first
@@ -16166,7 +15995,7 @@ syntax, but in your case you may get `\texttt{-}\texttt{-}' as the separator.
 seemed you'd already got to the last argument:  it's possible for
 options to have multiple arguments, and you can continue having
 sets of \texttt{:}\emph{description}\texttt{:}\emph{action} pairs.  This means the
-system needs some way of distinguishing these colons from ones indside
+system needs some way of distinguishing these colons from ones inside
 arguments.  While I'm digressing, you may also have noticed that I could
 have written the \texttt{-s}\emph{X} as an option with arguments, in which case
 you can have a bonus point.)
@@ -16210,7 +16039,6 @@ kind of context information.  We'll start from simple filenames and
 gradually add these possibilities in.
 
 \subsubsection*{Different types of file, part 1}
-    
 
 There are so many possibilities for files that I'm going to split up
 \texttt{\_perforce\_files} into individual functions handling different aspects.
@@ -16243,7 +16071,7 @@ and an argument.  The tag isn't present in \texttt{\_arguments}.  If you use
 own generic tag, \texttt{argument-rest}; this isn't usually all that useful,
 so we are going to supply more specific ones.
 
-In the first possiblity, it's the standard one for files, `\texttt{files}.
+In the first possibility, it's the standard one for files, `\texttt{files}.
 The function is the basic low-level one for completing files, too; it's
 described below, but you already know a lot about the effect since it's
 the completion system's workhorse which you use it all the time without
@@ -16279,7 +16107,6 @@ but we just saw that \texttt{\_alternative} did that, so as long as we always
 call \texttt{\_perforce\_subdir\_search} suitably, we're in the clear.
 
 \subsubsection*{Different types of file, part 2}
-    
 
 Furthermore, a Perforce file specification can look like a normal UNIX
 file path, or it can look like:
@@ -16386,7 +16213,7 @@ is just one element with no length.  That's an artefact of the the
 still get one zero-length string output, which we don't want.
 
 Finally, we pass the result to \texttt{compadd} as before.  Again, tags and
-the description havealready been handled and we just need to make sure
+the description have already been handled and we just need to make sure
 the appropriate options get passed in with \texttt{"\$@"}.  This time we use
 the `\texttt{-a}' option which tells \texttt{compadd} that any arguments are array
 name, not a list of completions.  This is more efficient; compadd only
@@ -16394,7 +16221,6 @@ needs to expand the array internally instead of the shell passing a
 potentially huge list to the builtin.
 
 \subsubsection*{Handling extra bits on a completion}
-    
 
 `Extra bits' on a completion could be anything; common examples include
 an extra value for a comma-separated list (the \texttt{\_values} functions is
@@ -16458,7 +16284,7 @@ we only need to look at what is at the left of the cursor, stored in
 \texttt{\$LBUFFER}.
 
 The function is called with the length of the suffix added to the
-function.  In this case, it's just a space --- we've finshed a normal
+function.  In this case, it's just a space --- we've finished a normal
 completion, so the system has automatically added a space to what's on
 the command line.  We therefore check we've just got one single
 character in the suffix, to avoid getting confused.
@@ -16758,7 +16584,6 @@ section I will show how to retrieve information from some special
 parameters made available by the \texttt{zsh/parameter} module.
 
 \subsubsection*{Files etc.: the function \texttt{\_files}}
-    
 
 You have already seen \texttt{\_files} in action.  Calling this with no arguments
 simply adds all possible files as completions, taking account of the word
@@ -16811,7 +16636,6 @@ usual completions for `\texttt{dog}'; likewise, it doesn't implement the
 use it directly.
 
 \subsubsection*{Parameters and options}
-    
 
 These can be completed by calls to the \texttt{\_parameters} and \texttt{\_options}
 functions, respectively.  Both set up their own tags, and \texttt{\_options} uses
@@ -16835,7 +16659,6 @@ guess the options they want to set or unset in this way, so it's probably
 better just to stick to \texttt{\_options}.
 
 \subsubsection*{Miscellaneous}
-    
 
 There are also many other completion functions adding matches of a certain
 type.  These can be used in the same way as \texttt{\_parameters} and
@@ -16941,7 +16764,6 @@ as \texttt{\$\{reswords\}} etc.
 \end{description}
 
 \subsubsection*{Other ways of getting at information}
-    
 
 Since the arguments to \texttt{compadd} undergo all the usual shell expansions,
 it's easy to get words from other sources for completion, and you can look
@@ -17171,7 +16993,6 @@ have to do anything special if the tag names are new, just make sure
 they're documented for anyone using the completion function.
 
 \subsubsection*{How to call functions so that `It Just Works'}
-    
 
 The simplest way of making your own completion function recognize tags
 is to use the \texttt{\_description} function, which is usually called with
@@ -17194,7 +17015,7 @@ The \texttt{\_description} function calls another function \texttt{\_setup} to d
 of the setting up of styles for the particular tag.  Mostly, \texttt{\_setup} is
 buried deeply enough that you don't need to worry about it yourself.
 Sometimes you can't do completion, and just want to print a message
-unconditionaly to say so, irrespective of tags etc.; the function
+unconditionally to say so, irrespective of tags etc.; the function
 \texttt{\_message} does this, taking the message as its sole argument.
 
 There are two levels above that; these implement the tags mechanism in
@@ -17391,7 +17212,6 @@ It's now an easy exercise to replace the example function I gave for
 the arguments to \texttt{\_alternative}.
 
 \subsubsection*{How to look up styles}
-    
 
 If your completion function gets really sophisticated, you may want it to
 look up styles to decide what its behaviour should be.  The same advice
@@ -17469,7 +17289,6 @@ to gum up the description of the functions in this section by mentioning it
 again.
 
 \subsubsection*{Handling ordinary arguments}
-    
 
 The most useful function is \texttt{\_arguments}.  There are many examples of
 this in the completion functions for external commands, since so many
@@ -17523,14 +17342,14 @@ one another.
      parameter --- \texttt{\_arguments} can't do that, since then it couldn't
      return a value.
 
-     You should also make the parameters \texttt{\$context}
+You should also make the parameters \texttt{\$context}
      and \texttt{\$line} local; the former is set to the new part to be
      added to \texttt{\$curcontext}, which, as you can find out from \texttt{\textasciicircum Xh},
      is \texttt{option-<option>-<arg>}, for example \texttt{option-file-1} for the
      first argument of the \texttt{option-file} option, or \texttt{argument-N}, for
      example \texttt{argument-2} for the second argument of the command.
 
-     In simple cases, you will just test the parameter \texttt{\$state}
+In simple cases, you will just test the parameter \texttt{\$state}
      after \texttt{\_arguments} has returned to see what to do: the return
      value is 300 to distinguish it from other returns where \texttt{\_arguments}
      itself performed the completion.
@@ -17592,7 +17411,6 @@ separated by colons, so if the line contains `\texttt{-P prefix 3}',
 \texttt{\$opt\_args{[}-P{]}} will contain `\texttt{prefix:3}'.
 
 \subsubsection*{Handling options}
-    
 
 Option handling is broadly similar, with the `\texttt{<where I am>}' part just
 giving the option name --- I already showed one example with `\texttt{-type}'
@@ -17730,7 +17548,6 @@ Note that many of these functions can take the most useful arguments to
 \texttt{compadd} and pass them on, even where I haven't explicitly said so.
 
 \subsubsection*{\texttt{\_call\_function}}
-    
 
 This is a simple front end to calling a function which may not be defined
 and hanging onto the return status of the function.  One good use for this
@@ -17753,7 +17570,6 @@ This function is too low level to know about the tags mechanism; use
 \texttt{\_wanted} or similar to handle tags properly.
 
 \subsubsection*{\texttt{\_contexts}}
-    
 
 This is another shorthand: the arguments it takes are a set of short
 contexts, in other words either names of commands or special contexts like
@@ -17772,7 +17588,6 @@ particular commands, or keys in a particular associative array.  I
 expect I'll describe that when 4.1 is finally released.
 
 \subsubsection*{\texttt{\_describe}}
-    
 
 Don't confuse this with \texttt{\_description} which was explained above and is
 the basic function for adding a description to a set of completions of a
@@ -17795,7 +17610,6 @@ an example for this, since to find something requiring it would almost need
 me to rewrite the completion system from scratch.
 
 \subsubsection*{\texttt{\_combination}}
-    
 
 This is the function at the heart of the completions such as
 \texttt{users-hosts} described above, where combinations of elements need to be
@@ -17837,7 +17651,6 @@ As you can see, this function is at a high enough level to handle the tags
 mechanism itself.
 
 \subsubsection*{\texttt{\_multi\_parts}}
-    
 
 This takes two arguments, a separator and a list of matches.  The list of
 matches is normal, except that each element is likely to contain the
@@ -17855,7 +17668,6 @@ is smaller too.  The \texttt{\_wanted} part handles the tags mechanism, which
 \texttt{\_multi\_parts} doesn't.
 
 \subsubsection*{\texttt{\_sep\_parts}}
-    
 
 This also completes a word piece by piece, but unlike \texttt{\_multi\_parts} the
 trial completions are also only supplied for each piece.  The arguments are
@@ -17871,7 +17683,6 @@ completes strings like `\texttt{apple+toast@plate}', piece by piece.  This is
 currently not used by the distributed completion code.
 
 \subsubsection*{\texttt{\_values}}
-    
 
 This works a little like \texttt{\_arguments}, but is designed for completing the
 values of a single argument in a form like `\texttt{key=val,flag,key=other}',
@@ -17919,7 +17730,6 @@ it can appear more than once in the value list.  The \texttt{\_values} function
 handles the context and tags in a similar way to \texttt{\_arguments}.
 
 \subsubsection*{\texttt{\_regex\_arguments}}
-    
 
 This function is for use when the behaviour of a set of command arguments
 is so complicated that even \texttt{\_arguments} can't help.  It allows you to
@@ -17940,11 +17750,7 @@ supposed to work without you needing to worry exactly how.  That's a bold
 hope, but at least much of the time you should be able to get away with
 using just the tab key and ordinary characters.
 
-
-\label{c7}
-\typeout{Original Yodl file: c7}
-
-    \chapter{Modules and other bits and pieces \emph{Not written}}\label{ragbag}
+\typeout{Original Yodl file: c7}\cleardoublepage\chapter{Modules and other bits and pieces \emph{Not written}}\label{ragbag}
 
 \section{Control over modules: \texttt{zmodload}}
 
@@ -17952,11 +17758,7 @@ using just the tab key and ordinary characters.
 
 \subsection{Low-level system interaction}
 
-
-
 \subsection{ZFTP}
-
-
 
 \section{Contributed bits}
 
@@ -17964,13 +17766,9 @@ using just the tab key and ordinary characters.
 
 \section{What's new in 4.1}
 
+\appendix
 
-
-
-
-    \appendix
-
-\chapter{Obtaining zsh and getting more information \emph{Not written}}
+\cleardoublepage\chapter{Obtaining zsh and getting more information \emph{Not written}}
 \label{appa}
 
 This appendix gives some useful pointers for finding zsh, more information
