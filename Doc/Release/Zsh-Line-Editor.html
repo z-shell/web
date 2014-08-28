@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on January 19, 2014 by texi2html 1.82
+<!-- Created on August 29, 2014 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -417,6 +417,9 @@ When <var>in-string</var> is typed, <var>out-string</var> will be
 pushed back and treated as input to the line editor.
 When <tt>-R</tt> is also used, interpret the <var>in-string</var>s as ranges.
 </p>
+<p>Note that both <var>in-string</var> and <var>out-string</var> are subject to the same
+form of interpretation, as described below.
+</p>
 </dd>
 <dt> <var>in-string command</var> ...</dt>
 <dd><p>Bind each <var>in-string</var> to each <var>command</var>.
@@ -692,26 +695,35 @@ command line) will start as usual with the &lsquo;<tt>main</tt>&rsquo; keymap se
 calls; most modern systems do.
 </p>
 <p>Installs <var>handler</var> (the name of a shell function) to handle input from
-file descriptor <var>fd</var>.  When zle is attempting to read data, it will
-examine both the terminal and the list of handled <var>fd</var>&rsquo;s.  If data
-becomes available on a handled <var>fd</var>, zle will call <var>handler</var> with
-the fd which is ready for reading as the only argument.  If the handler
-produces output to the terminal, it should call &lsquo;<tt>zle -I</tt>&rsquo; before doing
-so (see below).  The handler should not attempt to read from the terminal.
-Note that zle makes no attempt to check whether this fd is actually
+file descriptor <var>fd</var>.  Installing a handler for an <var>fd</var> which is
+already handled causes the existing handler to be replaced.  Any number of
+handlers for any number of readable file descriptors may be installed.
+Note that zle makes no attempt to check whether this <var>fd</var> is actually
 readable when installing the handler.  The user must make their own
 arrangements for handling the file descriptor when zle is not active.
 </p>
-<p>If the option <tt>-w</tt> is also given, the <var>handler</var> is instead a
-line editor widget, typically a shell function made into a widget using
-<tt>zle -N</tt>.  In that case <var>handler</var> can use all the facilities of
-zle to update the current editing line.  Note, however, that as handling
-<var>fd</var> takes place at a low level changes to the display will not
-automatically appear; the widget should call <tt>zle -R</tt> to force redisplay.
+<p>When zle is attempting to read data, it will examine both the terminal and
+the list of handled <var>fd</var>&rsquo;s.  If data becomes available on a handled
+<var>fd</var>, zle calls <var>handler</var> with the fd which is ready for reading
+as the first argument.  Under normal circumstances this is the only
+argument, but if an error was detected, a second argument provides
+details: &lsquo;<tt>hup</tt>&rsquo; for a disconnect, &lsquo;<tt>nval</tt>&rsquo; for a closed or otherwise
+invalid descriptor, or &lsquo;<tt>err</tt>&rsquo; for any other condition.  Systems that
+support only the &lsquo;select&rsquo; system call always use &lsquo;<tt>err</tt>&rsquo;.
 </p>
-<p>Any number of handlers for any number of readable file descriptors may be
-installed.  Installing a handler for an <var>fd</var> which is already handled
-causes the existing handler to be replaced.
+<p>If the option <tt>-w</tt> is also given, the <var>handler</var> is instead a line
+editor widget, typically a shell function made into a widget using
+&lsquo;<tt>zle -N</tt>&rsquo;.  In that case <var>handler</var> can use all the facilities of zle
+to update the current editing line.  Note, however, that as handling <var>fd</var>
+takes place at a low level changes to the display will not automatically
+appear; the widget should call &lsquo;<tt>zle -R</tt>&rsquo; to force redisplay.  As of this
+writing, widget handlers only support a single argument and thus are never
+passed a string for error state, so widgets must be prepared to test the
+descriptor themselves.
+</p>
+<p>If either type of handler produces output to the terminal, it should call
+&lsquo;<tt>zle -I</tt>&rsquo; before doing so (see below).  Handlers should not attempt to
+read from the terminal.
 </p>
 <p>If no <var>handler</var> is given, but an <var>fd</var> is present, any handler for
 that <var>fd</var> is removed.  If there is none, an error message is printed
@@ -726,7 +738,8 @@ silently return status 1.
 </p>
 <p>Note that this feature should be used with care.  Activity on one of the
 <var>fd</var>&rsquo;s which is not properly handled can cause the terminal to become
-unusable.
+unusable.  Removing an <var>fd</var> handler from within a signal trap may cause
+unpredictable behavior.
 </p>
 <p>Here is a simple example of using this feature.  A connection to a remote
 TCP port is created using the ztcp command; see 
@@ -735,7 +748,8 @@ which simply prints out any data which arrives on this connection.  Note
 that &lsquo;select&rsquo; will indicate that the file descriptor needs handling
 if the remote side has closed the connection; we handle that by testing
 for a failed read.
-</p><table><tr><td>&nbsp;</td><td><pre class="example">if ztcp pwspc 2811; then
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">if ztcp pwspc 2811; then
   tcpfd=$REPLY
   handler() {
     zle -I
@@ -961,20 +975,21 @@ parameters done after the last redisplay); read-only.
 <dt> <tt>CONTEXT</tt> (scalar)</dt>
 <dd><p>The context in which zle was called to read a line; read-only.  One of
 the values:
-</p><dl compact="compact">
-<dt> start</dt>
+</p>
+<dl compact="compact">
+<dt> <tt>start</tt></dt>
 <dd><p>The start of a command line (at prompt <tt>PS1</tt>).
 </p>
 </dd>
-<dt> cont</dt>
+<dt> <tt>cont</tt></dt>
 <dd><p>A continuation to a command line (at prompt <tt>PS2</tt>).
 </p>
 </dd>
-<dt> select</dt>
+<dt> <tt>select</tt></dt>
 <dd><p>In a <tt>select</tt> loop.
 </p>
 </dd>
-<dt> vared</dt>
+<dt> <tt>vared</tt></dt>
 <dd><p>Editing a variable in <tt>vared</tt>.
 </p>
 </dd>
@@ -1130,25 +1145,24 @@ is needed for character indexing to include <tt>PREDISPLAY</tt>.
 </p>
 <p>Each string consists of the following parts:
 </p>
-<dl compact="compact">
-<dt> Optionally, a &lsquo;<tt>P</tt>&rsquo; to signify that the start and end offset that</dt>
-<dd><p>follow include any string set by the <tt>PREDISPLAY</tt> special parameter;
+<ul>
+<li> 
+Optionally, a &lsquo;<tt>P</tt>&rsquo; to signify that the start and end offset that
+follow include any string set by the <tt>PREDISPLAY</tt> special parameter;
 this is needed if the predisplay string itself is to be highlighted.
 Whitespace may follow the &lsquo;<tt>P</tt>&rsquo;.
-</p></dd>
-<dt> A start offset in the same units as <tt>CURSOR</tt>, terminated by</dt>
-<dd><p>whitespace.
-</p></dd>
-<dt> An end offset in the same units as <tt>CURSOR</tt>, terminated by</dt>
-<dd><p>whitespace.
-</p></dd>
-<dt> A highlight specification in the same format as</dt>
-<dd><p>used for contexts in the parameter <tt>zle_highlight</tt>,
+</li><li> 
+A start offset in the same units as <tt>CURSOR</tt>, terminated by
+whitespace.
+</li><li> 
+An end offset in the same units as <tt>CURSOR</tt>, terminated by
+whitespace.
+</li><li> 
+A highlight specification in the same format as
+used for contexts in the parameter <tt>zle_highlight</tt>,
 <a href="#Character-Highlighting">Character Highlighting</a>;
 for example, <tt>standout</tt> or <tt>fg=red,bold</tt>.
-</p></dd>
-</dl>
-<br>
+</li></ul>
 
 <p>For example, 
 </p>
@@ -1715,8 +1729,11 @@ entered.  Hence this has the effect of repeating
 </p>
 </dd>
 <dt> <tt>vi-cmd-mode</tt></dt>
-<dd><p>Toggle between the &lsquo;<tt>main</tt>&rsquo; and &lsquo;<tt>vicmd</tt>&rsquo; keymaps;
+<dd><p>Select the &lsquo;<tt>vicmd</tt>&rsquo; keymap;
 the &lsquo;<tt>main</tt>&rsquo; keymap (insert mode) will be selected initially.
+</p>
+<p>In addition, the modifications that were made while in vi insert mode are
+merged to form a single undo event.
 </p>
 </dd>
 <dt> <tt>vi-repeat-search</tt></dt>
@@ -2822,6 +2839,14 @@ Otherwise the region is marked as active.
 <dt> <tt>spell-word</tt> (ESC-$ ESC-S ESC-s) (unbound) (unbound)</dt>
 <dd><p>Attempt spelling correction on the current word.
 </p>
+<a name="index-split_002dundo"></a>
+</dd>
+<dt> <tt>split-undo</tt></dt>
+<dd><p>Breaks the undo sequence at the current change.  This is useful in vi mode as
+changes made in insert mode are coalesced on entering command mode.  Similarly,
+<tt>undo</tt> will normally revert as one all the changes made by a user-defined
+widget.
+</p>
 <a name="index-undefined_002dkey"></a>
 </dd>
 <dt> <tt>undefined-key</tt></dt>
@@ -2835,6 +2860,10 @@ command is typed.  By default it beeps.
 user-defined widget, takes an optional argument indicating a previous state
 of the undo history as returned by the <tt>UNDO_CHANGE_NO</tt> variable;
 modifications are undone until that state is reached.
+</p>
+<p>Note that when invoked from vi command mode, the full prior change made in
+insert mode is reverted, the changes having been merged when command mode was
+selected.
 </p>
 <a name="index-redo"></a>
 </dd>
@@ -3139,10 +3168,10 @@ special array parameter <tt>region_highlight</tt>; see
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>January 19, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>August 29, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
-<font size="-1">Zsh version 5.0.5, released on January 5, 2014.</font>
+<font size="-1">Zsh version 5.0.6, released on August 28, 2014.</font>
 </p>
 </body>
 </html>

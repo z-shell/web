@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on January 19, 2014 by texi2html 1.82
+<!-- Created on August 29, 2014 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -171,9 +171,8 @@ shell features as well.  The autoloadable <tt>run-help</tt> function, found in
 <tt>Functions/Misc</tt>, searches for these helpfiles and performs several
 other tests to produce the most complete help possible for the command.
 </p>
-<p>There may already be a directory of help files on your system; look in
-<tt>/usr/share/zsh</tt> or <tt>/usr/local/share/zsh</tt> and subdirectories below
-those, or ask your system administrator.
+<p>Help files are installed by default to a subdirectory of <tt>/usr/share/zsh</tt>
+or <tt>/usr/local/share/zsh</tt>.
 </p>
 <p>To create your own help files with <tt>helpfiles</tt>, choose or create a
 directory where the individual command help files will reside.  For
@@ -181,25 +180,26 @@ example, you might choose <tt>~/zsh_help</tt>.  If you unpacked the zsh
 distribution in your home directory, you would use the commands:
 </p>
 <table><tr><td>&nbsp;</td><td><pre class="example">mkdir ~/zsh_help
-cd ~/zsh_help
-man zshall | colcrt - | \ 
-perl ~/zsh-5.0.5/Util/helpfiles
-</pre></td></tr></table>
-
-<a name="index-run_002dhelp_002c-use-of"></a>
-<p>Next, to use the <tt>run-help</tt> function, you need to add lines something
-like the following to your <tt>.zshrc</tt> or equivalent startup file:
-</p>
-<table><tr><td>&nbsp;</td><td><pre class="example">unalias run-help
-autoload run-help
-HELPDIR=~/zsh_help
+perl ~/zsh-5.0.6/Util/helpfiles ~/zsh_help
 </pre></td></tr></table>
 
 <a name="index-HELPDIR"></a>
 <p>The <tt>HELPDIR</tt> parameter tells <tt>run-help</tt> where to look for the help
-files.  If your system already has a help file directory installed, set
-<tt>HELPDIR</tt> to the path of that directory instead.
+files. When unset, it uses the default installation path.
+To use your own set of help files, set this to the appropriate path
+in one of your startup files:
 </p>
+<table><tr><td>&nbsp;</td><td><pre class="example">HELPDIR=~/zsh_help
+</pre></td></tr></table>
+
+<a name="index-run_002dhelp_002c-use-of"></a>
+<p>To use the <tt>run-help</tt> function, you need to add lines something
+like the following to your <tt>.zshrc</tt> or equivalent startup file:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">unalias run-help
+autoload run-help
+</pre></td></tr></table>
+
 <p>Note that in order for &lsquo;<tt>autoload run-help</tt>&rsquo; to work, the <tt>run-help</tt>
 file must be in one of the directories named in your <tt>fpath</tt> array (see
 <a href="Parameters.html#Parameters-Used-By-The-Shell">Parameters Used By The Shell</a>).  This should already be the case if you have a standard zsh
@@ -348,7 +348,7 @@ configuration.
 </p>
 <p>Run <tt>zkbd</tt> either as an autoloaded function, or as a shell script:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">zsh -f ~/zsh-5.0.5/Functions/Misc/zkbd
+<table><tr><td>&nbsp;</td><td><pre class="example">zsh -f ~/zsh-5.0.6/Functions/Misc/zkbd
 </pre></td></tr></table>
 
 <p>When you run <tt>zkbd</tt>, it first asks you to enter your terminal type; if
@@ -418,7 +418,7 @@ recreate that state.
 <p>To use <tt>reporter</tt>, read the script into your shell with the &lsquo;<tt>.</tt>&rsquo;
 command and redirect the output into a file:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">. ~/zsh-5.0.5/Util/reporter &gt; zsh.report
+<table><tr><td>&nbsp;</td><td><pre class="example">. ~/zsh-5.0.6/Util/reporter &gt; zsh.report
 </pre></td></tr></table>
 
 <p>You should check the <tt>zsh.report</tt> file for any sensitive information
@@ -1309,16 +1309,32 @@ is used as the command name.
 <dd><p>If enabled, this style causes the <tt>%c</tt> and <tt>%u</tt> format escapes to show
 when the working directory has uncommitted changes. The strings displayed by
 these escapes can be controlled via the <tt>stagedstr</tt> and <tt>unstagedstr</tt>
-styles. The only backends that currently support this option are <tt>git</tt> and
-<tt>hg</tt> (<tt>hg</tt> only supports unstaged).
+styles. The only backends that currently support this option are <tt>git</tt>,
+<tt>hg</tt>, and <tt>bzr</tt> (the latter two only support unstaged).
 </p>
 <p>For this style to be evaluated with the <tt>hg</tt> backend, the <tt>get-revision</tt>
 style needs to be set and the <tt>use-simple</tt> style needs to be unset. The
 latter is the default; the former is not.
 </p>
+<p>With the <tt>bzr</tt> backend, <em>lightweight checkouts</em> only honor this style if
+the <tt>use-server</tt> style is set.
+</p>
 <p>Note, the actions taken if this style is enabled are potentially expensive
 (read: they may be slow, depending on how big the current repository is).
 Therefore, it is disabled by default.
+</p>
+<a name="index-check_002dfor_002dstaged_002dchanges"></a>
+</dd>
+<dt> <tt>check-for-staged-changes</tt></dt>
+<dd><p>This style is like <tt>check-for-changes</tt>, but it never checks the worktree
+files, only the metadata in the <tt>.${vcs}</tt> dir.  Therefore,
+this style initializes only the <tt>%c</tt> escape (with <tt>stagedstr</tt>) but
+not the <tt>%u</tt> escape.  This style is faster than <tt>check-for-changes</tt>.
+</p>
+<p>In the <tt>git</tt> backend, this style checks for changes in the index.
+Other backends do not currently implement this style.
+</p>
+<p>This style is disabled by default.
 </p>
 <a name="index-stagedstr"></a>
 </dd>
@@ -1348,7 +1364,7 @@ when this style is looked up.
 </p>
 <p>For example, this style can be used to use binaries from non-default
 installation directories. Assume, <tt>git</tt> is installed in /usr/bin but
-your sysadmin installed a newer version in /usr/bin/local. Instead of
+your sysadmin installed a newer version in /usr/local/bin. Instead of
 changing the order of your <tt>$PATH</tt> parameter, you can do this:
 </p><table><tr><td>&nbsp;</td><td><pre class="example">zstyle ':vcs_info:git:*:-all-' command /usr/local/bin/git
 </pre></td></tr></table>
@@ -1368,6 +1384,9 @@ backend is only usable if you have set the environment variable
 <tt>P4CONFIG</tt> to a file name and have corresponding files in the root
 directories of each Perforce client.  See comments in the function
 <tt>VCS_INFO_detect_p4</tt> for more detail.
+</p>
+<p>The Bazaar backend (<tt>bzr</tt>) uses this to permit contacting the server
+about lightweight checkouts, see the <tt>check-for-changes</tt> style.
 </p>
 <a name="index-use_002dsimple"></a>
 </dd>
@@ -1455,6 +1474,9 @@ below for details.
 <dd><p>(empty list)
 </p></dd>
 <dt> <tt>check-for-changes</tt></dt>
+<dd><p>false
+</p></dd>
+<dt> <tt>check-for-staged-changes</tt></dt>
 <dd><p>false
 </p></dd>
 <dt> <tt>stagedstr</tt></dt>
@@ -2022,6 +2044,12 @@ the patch next-in-line to be applied and so forth.
 <p>The &lsquo;hook_com&rsquo; parameter is not used.
 </p>
 </dd>
+<dt> <tt>post-backend</tt></dt>
+<dd><p>Called as soon as the backend has finished collecting information.
+</p>
+<p>The &lsquo;<tt>hook_com</tt>&rsquo; keys available are as for the <tt>set-message</tt> hook.
+</p>
+</dd>
 <dt> <tt>post-quilt</tt></dt>
 <dd><p>Called after the <tt>quilt</tt> support is done. The following information
 is passed as arguments to the hook: 1. the quilt-support mode (&lsquo;addon&rsquo; or
@@ -2218,22 +2246,15 @@ function +vi-hgbookmarks() {
     # This makes the bookmarks string use only those
     # bookmarks. If there's more than one, it
     # concatenates them using commas.
-    local s i
     # The bookmarks returned by `hg' are available in
-    # the functions positional parameters.
-    (( $# == 0 )) &amp;&amp; return 0
-    for i in &quot;$@&quot;; do
-        if [[ $i == sh/* ]]; then
-            [[ -n $s ]] &amp;&amp; s=$s,
-            s=${s}$i
-        fi
-    done
+    # the function's positional parameters.
+    local s=&quot;${(Mj:,:)@:#sh/*}&quot;
     # Now, the communication with the code that calls
     # the hook functions is done via the hook_com[]
-    # hash. The key, at which the `gen-hg-bookmark-string'
-    # hook looks at is `hg-bookmark-string'. So:
+    # hash. The key at which the `gen-hg-bookmark-string'
+    # hook looks is `hg-bookmark-string'. So:
     hook_com[hg-bookmark-string]=$s
-    # And to signal, that we want to use the sting we
+    # And to signal that we want to use the string we
     # just generated, set the special variable `ret' to
     # something other than the default zero:
     ret=1
@@ -2750,6 +2771,13 @@ than the first word on the line.
 <table><tr><td>&nbsp;</td><td><pre class="example">bindkey -M vicmd v edit-command-line
 </pre></td></tr></table>
 
+<a name="index-expand_002dabsolute_002dpath"></a>
+</dd>
+<dt> <tt>expand-absolute-path</tt></dt>
+<dd><p>Expand the file name under the cursor to an absolute path, resolving
+symbolic links.  Where possible, the initial path segment is turned
+into a named directory or reference to a user&rsquo;s home directory.
+</p>
 <a name="index-history_002dbeginning_002dsearch_002dbackward_002dend"></a>
 <a name="index-history_002dbeginning_002dsearch_002dforward_002dend"></a>
 </dd>
@@ -3404,6 +3432,33 @@ the input may not be visible, and only the input keys are placed in
 not used.  Hence it is still possible to call <tt>executed-named-cmd</tt> and
 similar functions while reading a value.
 </p>
+<a name="index-replace_002dargument"></a>
+<a name="index-replace_002dargument_002dedit"></a>
+</dd>
+<dt> <tt>replace-argument</tt>, <tt>replace-argument-edit</tt></dt>
+<dd><p>The function <tt>replace-argument</tt> can be used to replace a command
+line argument in the current command line or, if the current command
+line is empty, in the last command line executed (the new command line
+is not executed).  Arguments are as delimited by standard shell syntax,
+</p>
+<p>If a numeric argument is given, that specifies the argument to be
+replaced.  0 means the command name, as in history expansion.
+A negative numeric argument counts backward from the last word.
+</p>
+<p>If no numeric argument is given, the current argument is replaced;
+this is the last argument if the previous history line is being used.
+</p>
+<p>The function prompts for a replacement argument.
+</p>
+<p>If the widget contains the string <tt>edit</tt>, for example is defined as
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">zle -N replace-argument-edit replace-argument
+</pre></td></tr></table>
+
+<p>then the function presents the current value of the argument for
+editing, otherwise the editing buffer for the replacement is
+initially empty.
+</p>
 <a name="index-replace_002dstring"></a>
 <a name="index-replace_002dstring_002dagain"></a>
 <a name="index-replace_002dpattern"></a>
@@ -3550,6 +3605,25 @@ alias until it reaches the command that will be executed.
 <p>The style <tt>whence</tt> is available in the context <tt>:zle:$WIDGET</tt>; this
 may be set to an array to give the command and options that will be used to
 investigate the command word found.  The default is <tt>whence -c</tt>.
+</p>
+<a name="index-zcalc_002dauto_002dinsert"></a>
+</dd>
+<dt> <tt>zcalc-auto-insert</tt></dt>
+<dd><p>This function is useful together with the <tt>zcalc</tt> function described in
+<a href="#Mathematical-Functions">Mathematical Functions</a>.
+It should be bound to a key representing a binary operator such
+as &lsquo;<tt>+</tt>&rsquo;, &lsquo;<tt>-</tt>&rsquo;, &lsquo;<tt>*</tt>&rsquo; or &lsquo;<tt>/</tt>&rsquo;.  When running in zcalc,
+if the key occurs at the start of the line or immediately following
+an open parenthesis, the text <tt>&quot;ans &quot;</tt> is inserted before the
+representation of the key itself.  This allows easy use of the
+answer from the previous calculation in the current line.  The
+text to be inserted before the symbol typed can be modified by setting
+the variable <tt>ZCALC_AUTO_INSERT_PREFIX</tt>.
+</p>
+<p>Hence, for example, typing &lsquo;<tt>+12</tt>&rsquo; followed by return adds 12
+to the previous result.
+</p>
+<p>When not in zcalc, the key simply inserts the symbol itself.
 </p>
 </dd>
 </dl>
@@ -4306,9 +4380,9 @@ line that would be executed, simplified to remove the effect of any
 flags, and quoted so that the output can be run as a complete zsh
 command line.  This is used by the completion system to decide how to
 complete after a file handled by <tt>zsh-mime-setup</tt>.
-)
+</p>
 <a name="index-pick_002dweb_002dbrowser"></a>
-</p></dd>
+</dd>
 <dt> <tt>pick-web-browser</tt></dt>
 <dd><p>This function is separate from the two MIME functions described above
 and can be assigned directly to a suffix:
@@ -4708,21 +4782,22 @@ require documentation here, but a few are worthy of special mention.
 by the prompt theme system (<a href="#Prompt-Themes">Prompt Themes</a>).  You seldom should need to run
 <tt>colors</tt> more than once.
 </p>
-<p>The eight base colors are: black, red, green, yellow, blue, magenta, cyan,
-and white.  Each of these has codes for foreground and background.  In
-addition there are eight intensity attributes: bold, faint, standout,
-underline, blink, reverse, and conceal.  Finally, there are six codes used
-to negate attributes: none (reset all attributes to the defaults), normal
-(neither bold nor faint), no-standout, no-underline, no-blink, and
-no-reverse.
+<p>The eight base colors are: <tt>black</tt>, <tt>red</tt>, <tt>green</tt>, <tt>yellow</tt>,
+<tt>blue</tt>, <tt>magenta</tt>, <tt>cyan</tt>, and <tt>white</tt>.  Each of these has codes for
+foreground and background.  In addition there are seven intensity attributes:
+<tt>bold</tt>, <tt>faint</tt>, <tt>standout</tt>, <tt>underline</tt>, <tt>blink</tt>, <tt>reverse</tt>,
+and <tt>conceal</tt>.  Finally, there are seven codes used to negate attributes:
+<tt>none</tt> (reset all attributes to the defaults), <tt>normal</tt>
+(neither bold nor faint), <tt>no-standout</tt>, <tt>no-underline</tt>, <tt>no-blink</tt>,
+<tt>no-reverse</tt>, and <tt>no-conceal</tt>.
 </p>
 <p>Some terminals do not support all combinations of colors and intensities.
 </p>
 <p>The associative arrays are:
 </p>
 <dl compact="compact">
-<dt> color</dt>
-<dt> colour</dt>
+<dt> <tt>color</tt></dt>
+<dt> <tt>colour</tt></dt>
 <dd><p>Map all the color names to their integer codes, and integer codes to the
 color names.  The eight base names map to the foreground color codes, as
 do names prefixed with &lsquo;<tt>fg-</tt>&rsquo;, such as &lsquo;<tt>fg-red</tt>&rsquo;.  Names prefixed
@@ -4734,17 +4809,17 @@ and the <tt>bg-</tt> form for backgrounds.
 other fourteen attributes from names to codes and codes to names.
 </p>
 </dd>
-<dt> fg</dt>
-<dt> fg_bold</dt>
-<dt> fg_no_bold</dt>
+<dt> <tt>fg</tt></dt>
+<dt> <tt>fg_bold</tt></dt>
+<dt> <tt>fg_no_bold</tt></dt>
 <dd><p>Map the eight basic color names to ANSI terminal escape sequences that set
 the corresponding foreground text properties.  The <tt>fg</tt> sequences change
 the color without changing the eight intensity attributes.
 </p>
 </dd>
-<dt> bg</dt>
-<dt> bg_bold</dt>
-<dt> bg_no_bold</dt>
+<dt> <tt>bg</tt></dt>
+<dt> <tt>bg_bold</tt></dt>
+<dt> <tt>bg_no_bold</tt></dt>
 <dd><p>Map the eight basic color names to ANSI terminal escape sequences that set
 the corresponding background properties.  The <tt>bg</tt> sequences change the
 color without changing the eight intensity attributes.
@@ -5194,10 +5269,10 @@ The usual expansions for the <tt>PS1</tt> and <tt>RPS1</tt> parameters may be us
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>January 19, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>August 29, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
-<font size="-1">Zsh version 5.0.5, released on January 5, 2014.</font>
+<font size="-1">Zsh version 5.0.6, released on August 28, 2014.</font>
 </p>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on January 19, 2014 by texi2html 1.82
+<!-- Created on August 29, 2014 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -386,6 +386,13 @@ if the number is a single digit:
 </p></dd>
 </dl>
 
+<p>In addition, if the system supports the POSIX <tt>gettimeofday</tt> system
+call, <tt>%.</tt> provides decimal fractions of a second since the epoch with
+leading zeroes.  By default three decimal places are provided, but a
+number of digits up to 6 may be given following the <tt>%</tt>; hence <tt>%6.</tt>
+outputs microseconds.  A typical example of this is the format
+&lsquo;<tt>%D{%H:%M:%S.%.}</tt>&rsquo;.
+</p>
 <p>The GNU extension that a &lsquo;<tt>-</tt>&rsquo; between the <tt>%</tt> and the
 format character causes a leading zero or space to be stripped
 is handled directly by the shell for the format characters <tt>d</tt>, <tt>f</tt>,
@@ -521,7 +528,8 @@ and <var>false-text</var> may both contain arbitrarily-nested escape
 sequences, including further ternary expressions.
 </p>
 <p>The left parenthesis may be preceded or followed by a positive integer <var>n</var>,
-which defaults to zero.  A negative integer will be multiplied by -1.
+which defaults to zero.  A negative integer will be multiplied by -1, except
+as noted below for &lsquo;<tt>l</tt>&rsquo;.
 The test character <var>x</var> may be any of the following:
 </p>
 <dl compact="compact">
@@ -566,7 +574,9 @@ counted as 0 elements.
 </p></dd>
 <dt> <tt>l</tt></dt>
 <dd><p>True if at least <var>n</var> characters have already been
-printed on the current line.
+printed on the current line.  When <var>n</var> is negative, true if at least
+<tt>abs</tt><tt>(</tt><var>n</var><tt>)</tt> characters remain before the opposite
+margin (thus the left margin for <tt>RPROMPT</tt>).
 </p></dd>
 <dt> <tt>S</tt></dt>
 <dd><p>True if the <tt>SECONDS</tt> parameter is at least <var>n</var>.
@@ -596,12 +606,20 @@ non-empty.
 <dd><p>Specifies truncation behaviour for the remainder of the prompt string.
 The third, deprecated, form is equivalent to &lsquo;<tt>%</tt><var>xstringx</var>&rsquo;,
 i.e. <var>x</var> may be &lsquo;<tt>&lt;</tt>&rsquo; or &lsquo;<tt>&gt;</tt>&rsquo;.
-The numeric argument, which in the third form may appear immediately
-after the &lsquo;<tt>[</tt>&rsquo;, specifies the maximum permitted length of
-the various strings that can be displayed in the prompt.
 The <var>string</var> will be displayed in
 place of the truncated portion of any string; note this does not
 undergo prompt expansion.
+</p>
+<p>The numeric argument, which in the third form may appear immediately
+after the &lsquo;<tt>[</tt>&rsquo;, specifies the maximum permitted length of
+the various strings that can be displayed in the prompt.
+In the first two forms, this numeric argument may be negative, in which
+case the truncation length is determined by subtracting the absolute
+value of the numeric argument from the number of character positions
+remaining on the current prompt line.  If this results in a zero or
+negative length, a length of 1 is used.  In other words, a negative
+argument arranges that after truncation at least <var>n</var> characters
+remain before the right margin (left margin for <tt>RPROMPT</tt>).
 </p>
 <p>The forms with &lsquo;<tt>&lt;</tt>&rsquo; truncate at the left of the string,
 and the forms with &lsquo;<tt>&gt;</tt>&rsquo; truncate at the right of the string.
@@ -622,12 +640,20 @@ string, or to the end of the next enclosing group of the &lsquo;<tt>%(</tt>&rsqu
 construct, or to the next truncation encountered at the same grouping
 level (i.e. truncations inside a &lsquo;<tt>%(</tt>&rsquo; are separate), which
 ever comes first.  In particular, a truncation with argument zero
-(e.g. &lsquo;<tt>%&lt;&lt;</tt>&rsquo;) marks the end of the range of the string to be
+(e.g., &lsquo;<tt>%&lt;&lt;</tt>&rsquo;) marks the end of the range of the string to be
 truncated while turning off truncation from there on. For example, the
 prompt &rsquo;%10&lt;...&lt;%~%&lt;&lt;%# &rsquo; will print a truncated representation of the
 current directory, followed by a &lsquo;<tt>%</tt>&rsquo; or &lsquo;<tt>#</tt>&rsquo;, followed by a
 space.  Without the &lsquo;<tt>%&lt;&lt;</tt>&rsquo;, those two characters would be included
-in the string to be truncated.
+in the string to be truncated.  Note that &lsquo;<tt>%-0&lt;&lt;</tt>&rsquo; is a distinct
+</p>
+<p>Truncation applies only within each individual line of the prompt, as
+delimited by embedded newlines (if any).  If the total length of any line
+of the prompt after truncation is greater than the terminal width, or if
+the part to be truncated contains embedded newlines, truncation behavior
+is undefined and may change in a future version of the shell.  Use
+&lsquo;<tt>%-<var>n</var>(l.<var>true-text</var>.<var>false-text</var>)</tt>&rsquo; to remove parts
+of the prompt when the available space is less than <var>n</var>.
 </p>
 </dd>
 </dl>
@@ -647,10 +673,10 @@ in the string to be truncated.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>January 19, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>August 29, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
-<font size="-1">Zsh version 5.0.5, released on January 5, 2014.</font>
+<font size="-1">Zsh version 5.0.6, released on August 28, 2014.</font>
 </p>
 </body>
 </html>

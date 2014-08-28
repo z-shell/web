@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on January 19, 2014 by texi2html 1.82
+<!-- Created on August 29, 2014 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -2411,9 +2411,9 @@ only be performed with the &lsquo;<tt>*</tt>&rsquo; inserted.
 </dd>
 <dt> <tt>matcher</tt></dt>
 <dd><p>This style is tested separately for each tag valid in the current
-context.  Its value is added to any match specifications given by the 
+context.  Its value is tried before any match specifications given by the 
 <tt>matcher-list</tt> style.  It should be in the form described in
-<a href="Completion-Widgets.html#Completion-Matching-Control">Completion Matching Control</a>.
+<a href="Completion-Widgets.html#Completion-Matching-Control">Completion Matching Control</a>.  For examples of this, see the description of the <tt>tag-order</tt> style.
 </p>
 <a name="index-matcher_002dlist_002c-completion-style"></a>
 </dd>
@@ -2433,13 +2433,15 @@ specification is prefixed with <tt>+</tt>, it is added to the existing list.
 Hence it is possible to create increasingly general specifications
 without repetition:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">zstyle ':completion:*' matcher-list '' '+m{a-z}={A-Z}' '+m{A-Z}={a-z}'
+<table><tr><td>&nbsp;</td><td><pre class="example">zstyle ':completion:*' matcher-list '' '+m:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
 </pre></td></tr></table>
 
 <p>It is possible to create match specifications valid for particular
-completers by using the third field of the context.  For example, to
-use the completers <tt>_complete</tt> and <tt>_prefix</tt> but only allow
-case-insensitive completion with <tt>_complete</tt>:
+completers by using the third field of the context.  This applies only
+to completers that override the global matcher-list, which as of this
+writing includes only <tt>_prefix</tt> and <tt>_ignored</tt>.  For example, to
+use the completers <tt>_complete</tt> and <tt>_prefix</tt> but allow
+case-insensitive completion only with <tt>_complete</tt>:
 </p>
 <table><tr><td>&nbsp;</td><td><pre class="example">zstyle ':completion:*' completer _complete _prefix
 zstyle ':completion:*:complete:*' matcher-list \ 
@@ -2780,7 +2782,7 @@ after &lsquo;<tt>a:/...</tt>&rsquo; and so on.
 <tt>_history_complete_word</tt> bindable command to decide which words
 should be completed.  
 </p>
-<p>If it is a singe number, only the last <var>N</var> words from the history
+<p>If it is a single number, only the last <var>N</var> words from the history
 will be completed.
 </p>
 <p>If it is a range of the form &lsquo;<var>max</var><tt>:</tt><var>slice</var>&rsquo;,
@@ -2884,6 +2886,16 @@ This style is also used similarly with the <tt>words</tt> style when
 completing words for the dict command. It allows words from different
 dictionary databases to be added separately.
 The default for this style is &lsquo;false&rsquo;.
+</p>
+<a name="index-show_002dambiguity_002c-completion-style"></a>
+</dd>
+<dt> <tt>show-ambiguity</tt></dt>
+<dd><p>If the <tt>zsh/complist</tt> module is loaded, this style can be used to
+highlight the first ambiguous character in completion lists. The
+value is either a color indication such as those supported by the
+<tt>list-colors</tt> style or, with a value of <tt>true</tt>, a default of
+underlining is selected. The highlighting is only applied if the
+completion display strings correspond to the actual matches.
 </p>
 <a name="index-show_002dcompleter_002c-completion-style"></a>
 </dd>
@@ -3538,6 +3550,16 @@ be controlled with the styles <tt>regular</tt>, <tt>global</tt> and <tt>disabled
 </p>
 <p>This function is also a bindable command, see
 <a href="#Bindable-Commands">Bindable Commands</a>.
+</p>
+<a name="index-_005fextensions"></a>
+</dd>
+<dt> <tt>_extensions</tt></dt>
+<dd><p>If the cursor follows the string &lsquo;<tt>*.</tt>&rsquo;, filename extensions are
+completed. The extensions are taken from files in current directory or a
+directory specified at the beginning of the current word. For exact matches,
+completion continues to allow other completers such as <tt>_expand</tt> to
+expand the pattern. The standard <tt>add-space</tt> and <tt>prefix-hidden</tt>
+styles are observed.
 </p>
 <a name="index-_005fhistory"></a>
 </dd>
@@ -5373,6 +5395,20 @@ complete the string  &lsquo;<tt>f</tt>&rsquo; to &lsquo;<tt>foo</tt>&rsquo; and 
 &lsquo;<tt>-r</tt>&rsquo;, &lsquo;<tt>-R</tt>&rsquo;, and &lsquo;<tt>-q</tt>&rsquo; and passes them on to the <tt>compadd</tt>
 builtin used to add the matches.
 </p>
+<a name="index-_005fsequence"></a>
+</dd>
+<dt> <tt>_sequence</tt> [ <tt>-s</tt> <var>sep</var> ] [ <tt>-n</tt> <var>max</var> ] [ <tt>-d</tt> ] <var>function</var> [ <tt>-</tt> ] ...</dt>
+<dd><p>This function is a wrapper to other functions for completing items in a
+separated list. The same function is used to complete each item in the
+list. The separator is specified with the <tt>-s</tt> option. If <tt>-s</tt> is
+omitted it will use &lsquo;<tt>,</tt>&rsquo;. Duplicate values are not matched unless
+<tt>-d</tt> is specified. If there is a fixed or maximum number of items in
+the list, this can be specified with the <tt>-n</tt> option.
+</p>
+<p>Common <tt>compadd</tt> options are passed on to the function. It is possible
+to use <tt>compadd</tt> directly with <tt>_sequence</tt>, though <tt>_values</tt> may
+be more appropriate in this situation.
+</p>
 <a name="index-_005fsetup"></a>
 </dd>
 <dt> <tt>_setup</tt> <var>tag</var> [ <var>group</var> ]</dt>
@@ -5648,10 +5684,10 @@ may be useful on your system.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>January 19, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>August 29, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
-<font size="-1">Zsh version 5.0.5, released on January 5, 2014.</font>
+<font size="-1">Zsh version 5.0.6, released on August 28, 2014.</font>
 </p>
 </body>
 </html>

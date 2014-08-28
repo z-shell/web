@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on January 19, 2014 by texi2html 1.82
+<!-- Created on August 29, 2014 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -108,8 +108,11 @@ ul.toc {list-style: none}
 <a name="index-commands_002c-simple"></a>
 <p>A <em>simple command</em> is a sequence of optional parameter
 assignments followed by blank-separated words,
-with optional redirections interspersed.
-The first word is the command to be executed, and the remaining
+with optional redirections interspersed.  For a description
+of assignment, see the beginning of
+<a href="Parameters.html#Parameters">Parameters</a>.
+</p>
+<p>The first word is the command to be executed, and the remaining
 words, if any, are arguments to the command.
 If a command name is given, the parameter assignments modify
 the environment of the command when it is executed.
@@ -460,7 +463,7 @@ during the <tt>try-list</tt> is not useful (unless this forms part of an
 enclosing <tt>always</tt> block).
 </p>
 <p>Regardless of <tt>TRY_BLOCK_ERROR</tt>, after the end of <tt>always-list</tt> the
-normal shell status <tt>$?</tt> is the value returned from <tt>always-list</tt>.
+normal shell status <tt>$?</tt> is the value returned from <tt>try-list</tt>.
 This will be non-zero if there was an error, even if <tt>TRY_BLOCK_ERROR</tt>
 was set to zero.
 </p>
@@ -688,44 +691,61 @@ shell constructs such as loops or conditions; this somewhat illogical
 behaviour can be recovered by setting the option <tt>CONTINUE_ON_ERROR</tt>.
 </p>
 <p>Fatal errors found in non-interactive shells include:
-</p><dl compact="compact">
-<dt> Failure to parse shell options passed when invoking the shell</dt>
-<dt> Failure to change options with the <tt>set</tt> builtin</dt>
-<dt> Parse errors of all sorts, including failures to parse</dt>
-<dd><p>mathematical expressions
-</p></dd>
-<dt> Failures to set or modify variable behaviour with <tt>typeset</tt>,</dt>
-<dd><p><tt>local</tt>, <tt>declare</tt>, <tt>export</tt>, <tt>integer</tt>, <tt>float</tt>
-</p></dd>
-<dt> Execution of incorrectly positioned loop control structures</dt>
-<dd><p>(<tt>continue</tt>, <tt>break</tt>)
-</p></dd>
-<dt> Attempts to use regular expression with no regular expression</dt>
-<dd><p>module available
-</p></dd>
-<dt> Disallowed operations when the <tt>RESTRICTED</tt> options is set</dt>
-<dt> Failure to create a pipe needed for a pipeline</dt>
-<dt> Failure to create a multio</dt>
-<dt> Failure to autoload a module needed for a declared shell feature</dt>
-<dt> Errors creating command or process substitutions</dt>
-<dt> Syntax errors in glob qualifiers</dt>
-<dt> File generation errors where not caught by the option <tt>BAD_PATTERN</tt></dt>
-<dt> All bad patterns used for matching within case statements</dt>
-<dt> File generation failures where not caused by <tt>NO_MATCH</tt> or</dt>
-<dt> All file generation errors where the pattern was used to create a</dt>
-<dd><p>multio
-</p></dd>
-<dt> Memory errors where detected by the shell</dt>
-<dt> Invalid subscripts to shell variables</dt>
-<dt> Attempts to assign read-only variables</dt>
-<dt> Logical errors with variables such as assignment to the wrong type</dt>
-<dt> Use of invalid variable names</dt>
-<dt> Errors in variable substitution syntax</dt>
-<dt> Failure to convert characters in <tt>$&rsquo;</tt>...<tt>&rsquo;</tt> expressions</dt>
-<dd><p>similar options
-</p></dd>
-</dl>
-<br>
+</p>
+<ul>
+<li> 
+Failure to parse shell options passed when invoking the shell
+</li><li> 
+Failure to change options with the <tt>set</tt> builtin
+</li><li> 
+Parse errors of all sorts, including failures to parse
+mathematical expressions
+</li><li> 
+Failures to set or modify variable behaviour with <tt>typeset</tt>,
+<tt>local</tt>, <tt>declare</tt>, <tt>export</tt>, <tt>integer</tt>, <tt>float</tt>
+</li><li> 
+Execution of incorrectly positioned loop control structures
+(<tt>continue</tt>, <tt>break</tt>)
+</li><li> 
+Attempts to use regular expression with no regular expression
+module available
+</li><li> 
+Disallowed operations when the <tt>RESTRICTED</tt> options is set
+</li><li> 
+Failure to create a pipe needed for a pipeline
+</li><li> 
+Failure to create a multio
+</li><li> 
+Failure to autoload a module needed for a declared shell feature
+</li><li> 
+Errors creating command or process substitutions
+</li><li> 
+Syntax errors in glob qualifiers
+</li><li> 
+File generation errors where not caught by the option <tt>BAD_PATTERN</tt>
+</li><li> 
+All bad patterns used for matching within case statements
+</li><li> 
+File generation failures where not caused by <tt>NO_MATCH</tt> or
+similar options
+</li><li> 
+All file generation errors where the pattern was used to create a
+multio
+</li><li> 
+Memory errors where detected by the shell
+</li><li> 
+Invalid subscripts to shell variables
+</li><li> 
+Attempts to assign read-only variables
+</li><li> 
+Logical errors with variables such as assignment to the wrong type
+</li><li> 
+Use of invalid variable names
+</li><li> 
+Errors in variable substitution syntax
+</li><li> 
+Failure to convert characters in <tt>$&rsquo;</tt>...<tt>&rsquo;</tt> expressions
+</li></ul>
 
 <p>If the <tt>POSIX_BUILTINS</tt> option is set, more errors associated with
 shell builtin commands are treated as fatal, as specified by the POSIX
@@ -905,10 +925,10 @@ command substitution occur, and &lsquo;<tt>\</tt>&rsquo; quotes the characters
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>January 19, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>August 29, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
-<font size="-1">Zsh version 5.0.5, released on January 5, 2014.</font>
+<font size="-1">Zsh version 5.0.6, released on August 28, 2014.</font>
 </p>
 </body>
 </html>

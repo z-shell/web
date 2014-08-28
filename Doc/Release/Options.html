@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on January 19, 2014 by texi2html 1.82
+<!-- Created on August 29, 2014 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -1230,6 +1230,24 @@ The file will still be periodically re-written to trim it when the
 number of lines grows 20% beyond the value specified by
 <tt>$SAVEHIST</tt> (see also the HIST_SAVE_BY_COPY option).
 </p>
+<a name="index-INC_005fAPPEND_005fHISTORY_005fTIME"></a>
+<a name="index-NO_005fINC_005fAPPEND_005fHISTORY_005fTIME"></a>
+<a name="index-INCAPPENDHISTORYTIME"></a>
+<a name="index-NOINCAPPENDHISTORYTIME"></a>
+<a name="index-history_002c-incremental-appending-to-a-file-with-time"></a>
+</dd>
+<dt> <tt>INC_APPEND_HISTORY_TIME</tt></dt>
+<dd><p>This option is a variant of <tt>INC_APPEND_HISTORY</tt> in which, where
+possible, the history entry is written out to the file after the
+command is finished, so that the time taken by the command is recorded
+correctly in the history file in <tt>EXTENDED_HISTORY</tt> format.  This
+means that the history entry will not be available immediately from
+other instances of the shell that are using the same history file.
+</p>
+<p>This option is only useful if <tt>INC_APPEND_HISTORY</tt> and
+<tt>SHARE_HISTORY</tt> are turned off.  The three options should be
+considered mutually exclusive.
+</p>
 <a name="index-SHARE_005fHISTORY"></a>
 <a name="index-NO_005fSHARE_005fHISTORY"></a>
 <a name="index-SHAREHISTORY"></a>
@@ -1241,10 +1259,10 @@ number of lines grows 20% beyond the value specified by
 <dd>
 <p>This option both imports new commands from the history file, and also
 causes your typed commands to be appended to the history file (the
-latter is like specifying <tt>INC_APPEND_HISTORY</tt>).
-The history lines are also output with timestamps ala
-<tt>EXTENDED_HISTORY</tt> (which makes it easier to find the spot where
-we left off reading the file after it gets re-written).
+latter is like specifying <tt>INC_APPEND_HISTORY</tt>, which should be turned
+off if this option is in effect).  The history lines are also output
+with timestamps ala <tt>EXTENDED_HISTORY</tt> (which makes it easier to find
+the spot where we left off reading the file after it gets re-written).
 </p>
 <p>By default, history movement commands visit the imported lines as
 well as the local lines, but you can toggle this on and off with the
@@ -1254,8 +1272,9 @@ some include them.
 </p>
 <p>If you find that you want more control over when commands
 get imported, you may wish to turn <tt>SHARE_HISTORY</tt> off,
-<tt>INC_APPEND_HISTORY</tt> on, and then manually import
-commands whenever you need them using &lsquo;<tt>fc -RI</tt>&rsquo;.
+<tt>INC_APPEND_HISTORY</tt> or <tt>INC_APPEND_HISTORY_TIME</tt> (see above) on,
+and then manually import commands whenever you need them using &lsquo;<tt>fc
+-RI</tt>&rsquo;.
 </p>
 </dd>
 </dl>
@@ -1407,6 +1426,9 @@ match words that will never be offered as corrections.
 <dt> <tt>CORRECT_ALL</tt> (<tt>-O</tt>)</dt>
 <dd><p>Try to correct the spelling of all arguments in a line.
 </p>
+<p>The shell variable <tt>CORRECT_IGNORE_FILE</tt> may be set to a pattern to
+match file names that will never be offered as corrections.
+</p>
 <a name="index-DVORAK"></a>
 <a name="index-NO_005fDVORAK"></a>
 <a name="index-NODVORAK"></a>
@@ -1489,7 +1511,7 @@ Has no effect if neither <tt>HASH_CMDS</tt> nor <tt>CORRECT</tt> is set.
 <a name="index-executables_002c-hashing"></a>
 </dd>
 <dt> <tt>HASH_EXECUTABLES_ONLY</tt></dt>
-<dd><p>When hashing commands because of <tt>HASH_COMMANDS</tt>, check that the
+<dd><p>When hashing commands because of <tt>HASH_CMDS</tt>, check that the
 file to be hashed is actually an executable.  This option
 is unset by default as if the path contains a large number of commands,
 or consists of many remote files, the additional tests can take
@@ -1519,7 +1541,7 @@ Thus if &lsquo;<tt>/usr/local/bin</tt>&rsquo; is in the user&rsquo;s path, and h
 (assuming it exists).
 Commands explicitly beginning with &lsquo;<tt>/</tt>&rsquo;, &lsquo;<tt>./</tt>&rsquo; or &lsquo;<tt>../</tt>&rsquo;
 are not subject to the path search.
-This also applies to the &lsquo;<tt>.</tt>&rsquo; builtin.
+This also applies to the &lsquo;<tt>.</tt>&rsquo; and <tt>source</tt> builtins.
 </p>
 <p>Note that subdirectories of the current directory are always searched for
 executables specified in this form.  This takes place before any search
@@ -2007,7 +2029,26 @@ except when &lsquo;<tt>-n</tt>&rsquo; is supplied to the shell at startup.
 </dd>
 <dt> <tt>FUNCTION_ARGZERO</tt> &lt;C&gt; &lt;Z&gt;</dt>
 <dd><p>When executing a shell function or sourcing a script, set <tt>$0</tt>
-temporarily to the name of the function/script.
+temporarily to the name of the function/script.  Note that toggling
+<tt>FUNCTION_ARGZERO</tt> from on to off (or off to on) does not change the
+current value of <tt>$0</tt>.  Only the state upon entry to the function or
+script has an effect.  Compare <tt>POSIX_ARGZERO</tt>.
+</p>
+<a name="index-LOCAL_005fLOOPS"></a>
+<a name="index-NO_005fLOCAL_005fLOOPS"></a>
+<a name="index-LOCALLOOPS"></a>
+<a name="index-NOLOCALLOOPS"></a>
+<a name="index-break_002c-inside-function"></a>
+<a name="index-continue_002c-inside-function"></a>
+<a name="index-function_002c-scope-of-break-and-continue"></a>
+</dd>
+<dt> <tt>LOCAL_LOOPS</tt></dt>
+<dd><p>When this option is not set, the effect of <tt>break</tt> and <tt>continue</tt>
+commands may propagate outside function scope, affecting loops in
+calling functions.  When the option is set in a calling function, a
+<tt>break</tt> or a <tt>continue</tt> that is not caught within a called function
+(regardless of the setting of the option within that function)
+produces a warning and the effect is cancelled.
 </p>
 <a name="index-LOCAL_005fOPTIONS"></a>
 <a name="index-NO_005fLOCAL_005fOPTIONS"></a>
@@ -2018,10 +2059,10 @@ temporarily to the name of the function/script.
 <dd><p>If this option is set at the point of return from a shell function,
 most options (including this one) which were in force upon entry to
 the function are restored; options that are not restored are
-<tt>PRIVILEGED</tt> and <tt>RESTRICTED</tt>.  Otherwise, only this option and the
-<tt>XTRACE</tt> and <tt>PRINT_EXIT_VALUE</tt> options are restored.  Hence
-if this is explicitly unset by a shell function the other options in
-force at the point of return will remain so.
+<tt>PRIVILEGED</tt> and <tt>RESTRICTED</tt>.  Otherwise, only this option,
+and the <tt>LOCAL_LOOPS</tt>, <tt>XTRACE</tt> and <tt>PRINT_EXIT_VALUE</tt> options are
+restored.  Hence if this is explicitly unset by a shell function the
+other options in force at the point of return will remain so.
 A shell function can also guarantee itself a known shell configuration
 with a formulation like &lsquo;<tt>emulate -L zsh</tt>&rsquo;; the <tt>-L</tt> activates
 <tt>LOCAL_OPTIONS</tt>.
@@ -2388,6 +2429,28 @@ as one unit, so aliases defined within the argument are not available even
 in later lines.  If in doubt, avoid use of aliases in non-interactive
 code.
 </p>
+<a name="index-POSIX_005fARGZERO"></a>
+<a name="index-NO_005fPOSIX_005fARGZERO"></a>
+<a name="index-POSIXARGZERO"></a>
+<a name="index-NOPOSIXARGZERO"></a>
+<a name="index-_00240_002c-using"></a>
+</dd>
+<dt> <tt>POSIX_ARGZERO</tt></dt>
+<dd><p>This option may be used to temporarily disable <tt>FUNCTION_ARGZERO</tt> and
+thereby restore the value of <tt>$0</tt> to the name used to invoke the shell
+(or as set by the <tt>-c</tt> command line option).  For compatibility with
+previous versions of the shell, emulations use <tt>NO_FUNCTION_ARGZERO</tt>
+instead of <tt>POSIX_ARGZERO</tt>, which may result in unexpected scoping of
+<tt>$0</tt> if the emulation mode is changed inside a function or script.
+To avoid this, explicitly enable <tt>POSIX_ARGZERO</tt> in the <tt>emulate</tt>
+command:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">emulate sh -o POSIX_ARGZERO
+</pre></td></tr></table>
+
+<p>Note that <tt>NO_POSIX_ARGZERO</tt> has no effect unless <tt>FUNCTION_ARGZERO</tt>
+was already enabled upon entry to the function or script.
+</p>
 <a name="index-POSIX_005fBUILTINS"></a>
 <a name="index-NO_005fPOSIX_005fBUILTINS"></a>
 <a name="index-POSIXBUILTINS"></a>
@@ -2487,7 +2550,10 @@ and with the option on as the characters <tt>a</tt>, <tt>b</tt>, <tt>d</tt>.
 traps for <tt>EXIT</tt> on exit from shell functions is suppressed.
 In that case, manipulating <tt>EXIT</tt> traps always alters the global
 trap for exiting the shell; the <tt>LOCAL_TRAPS</tt> option is
-ignored for the <tt>EXIT</tt> trap.
+ignored for the <tt>EXIT</tt> trap.  Furthermore, a <tt>return</tt> statement
+executed in a trap with no argument passes back from the function the
+value from the surrounding context, not from code executed within the
+trap.
 </p>
 <a name="index-SH_005fFILE_005fEXPANSION"></a>
 <a name="index-NO_005fSH_005fFILE_005fEXPANSION"></a>
@@ -3257,10 +3323,10 @@ options to the shell.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>January 19, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>August 29, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
-<font size="-1">Zsh version 5.0.5, released on January 5, 2014.</font>
+<font size="-1">Zsh version 5.0.6, released on August 28, 2014.</font>
 </p>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on January 19, 2014 by texi2html 1.82
+<!-- Created on August 29, 2014 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -61,8 +61,8 @@ ul.toc {list-style: none}
 
 <a name="Expansion-1"></a>
 <h1 class="chapter">14. Expansion</h1>
-<a name="index-expansion"></a>
 
+<a name="index-expansion"></a>
 <p>The following types of expansions are performed in the indicated order in
 five steps:
 </p>
@@ -896,6 +896,33 @@ entire expression.
 so that entries present in both the original substitution and as
 elements of <var>arrayname</var> are retained and others removed.
 </p>
+</dd>
+<dt> <tt>${</tt><var>name</var><tt>:^</tt><var>arrayname</var><tt>}</tt></dt>
+<dt> <tt>${</tt><var>name</var><tt>:^^</tt><var>arrayname</var><tt>}</tt></dt>
+<dd><p>Zips two arrays, such that the output array is twice as long as the
+shortest (longest for &lsquo;<tt>:^^</tt>&rsquo;) of <tt>name</tt> and <tt>arrayname</tt>, with
+the elements alternatingly being picked from them. For &lsquo;<tt>:^</tt>&rsquo;, if one
+of the input arrays is longer, the output will stop when the end of the
+shorter array is reached.  Thus,
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">a=(1 2 3 4); b=(a b); print ${a:^b}
+</pre></td></tr></table>
+
+<p>will output &lsquo;<tt>1 a 2 b</tt>&rsquo;.  For &lsquo;<tt>:^^</tt>&rsquo;, then the input is repeated
+until all of the longer array has been used up and the above will output
+&lsquo;<tt>1 a 2 b 3 a 4 b</tt>&rsquo;.
+</p>
+<p>Either or both inputs may be a scalar, they will be treated as an array
+of length 1 with the scalar as the only element. If either array is empty,
+the other array is output with no extra elements inserted.
+</p>
+<p>Currently the following code will output &lsquo;<tt>a b</tt>&rsquo; and &lsquo;<tt>1</tt>&rsquo; as two separate
+elements, which can be unexpected. The second print provides a workaround which
+should continue to work if this is changed.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">a=(a b); b=(1 2); print -l &quot;${a:^b}&quot;; print -l &quot;${${a:^b}}&quot;
+</pre></td></tr></table>
+
 </dd>
 <dt> <tt>${</tt><var>name</var><tt>:</tt><var>offset</var><tt>}</tt></dt>
 <dt> <tt>${</tt><var>name</var><tt>:</tt><var>offset</var><tt>:</tt><var>length</var><tt>}</tt></dt>
@@ -1792,18 +1819,24 @@ elements are removed from the array.
 was present, the array is reordered.
 </p>
 </dd>
-<dt> <tt>20.</tt> <em>Re-evaluation</em></dt>
+<dt> <tt>20.</tt> <tt>RC_EXPAND_PARAM</tt></dt>
+<dd><p>At this point the decision is made whether any resulting array elements
+are to be combined element by element with surrounding text, as given
+by either the <tt>RC_EXPAND_PARAM</tt> option or the &lsquo;<tt>^</tt>&rsquo; flag.
+</p>
+</dd>
+<dt> <tt>21.</tt> <em>Re-evaluation</em></dt>
 <dd><p>Any &lsquo;<tt>(e)</tt>&rsquo; flag is applied to the value, forcing it to be re-examined
 for new parameter substitutions, but also for command and arithmetic
 substitutions.
 </p>
 </dd>
-<dt> <tt>21.</tt> <em>Padding</em></dt>
+<dt> <tt>22.</tt> <em>Padding</em></dt>
 <dd><p>Any padding of the value by the &lsquo;<tt>(l.</tt><var>fill</var><tt>.)</tt>&rsquo; or
 &lsquo;<tt>(r.</tt><var>fill</var><tt>.)</tt>&rsquo; flags is applied.
 </p>
 </dd>
-<dt> <tt>22.</tt> <em>Semantic joining</em></dt>
+<dt> <tt>23.</tt> <em>Semantic joining</em></dt>
 <dd><p>In contexts where expansion semantics requires a single word to
 result, all words are rejoined with the first character of <tt>IFS</tt>
 between.  So in &lsquo;<tt>${(P</tt><tt>)${(f</tt><tt>)lines}}</tt>&rsquo;
@@ -1813,7 +1846,7 @@ joined again before the <tt>P</tt> flag can be applied.
 <p>If a single word is not required, this rule is skipped.
 </p>
 </dd>
-<dt> <tt>23.</tt> <em>Empty argument removal</em></dt>
+<dt> <tt>24.</tt> <em>Empty argument removal</em></dt>
 <dd><p>If the substitution does not appear in double quotes, any resulting
 zero-length argument, whether from a scalar or an element of an array,
 is elided from the list of arguments inserted into the command line.
@@ -2008,6 +2041,16 @@ that the step <var>n3</var> doesn&rsquo;t evenly divide the range.  Zero padding
 specified in any of the three numbers, specifying it in the third can be useful
 to pad for example &lsquo;<tt>{-99..100..01}</tt>&rsquo; which is not possible to specify by putting a
 0 on either of the first two numbers (i.e. pad to two characters).
+</p>
+<p>An expression of the form &lsquo;<tt>{</tt><var>c1</var><tt>..</tt><var>c2</var><tt>}</tt>&rsquo;, where
+<var>c1</var> and <var>c2</var> are single characters (which may be multibyte
+characters), is expanded to every character in the range from <var>c1</var> to
+<var>c2</var> in whatever character sequence is used internally.  For
+characters with code points below 128 this is US ASCII (this is the only
+case most users will need).  If any intervening character is not
+printable, appropriate quotation is used to render it printable.
+If the character sequence is reversed, the output is in reverse
+order, e.g. &lsquo;<tt>{d..a}</tt>&rsquo; is substituted as &lsquo;<tt>d c b a</tt>&rsquo;.
 </p>
 <p>If a brace expression matches none of the above forms, it is left
 unchanged, unless the option <tt>BRACE_CCL</tt> (an abbreviation for &lsquo;brace
@@ -2611,7 +2654,7 @@ except that recursive directory searching is not supported.)
 </dd>
 <dt> <tt>+(</tt>...<tt>)</tt></dt>
 <dd><p>Match at least one occurrence.  (Like &lsquo;<tt>(</tt>...<tt>)##</tt>&rsquo;,
-except that recursive directory searching is not supported..)
+except that recursive directory searching is not supported.)
 </p>
 </dd>
 <dt> <tt>?(</tt>...<tt>)</tt></dt>
@@ -3063,7 +3106,13 @@ contained within it are balanced; appearance of &lsquo;<tt>|</tt>&rsquo;, &lsquo
 recognised in this form even if a bare glob qualifier exists at the end of
 the pattern, for example &lsquo;<tt>*(#q*)(.)</tt>&rsquo; will recognise executable regular
 files if both options are set; however, mixed syntax should probably be
-avoided for the sake of clarity.
+avoided for the sake of clarity.  Note that within conditions using the
+&lsquo;<tt>[[</tt>&rsquo; form the presence of a parenthesised expression
+<tt>(#q...)</tt> at the end of a string indicates that globbing
+should be performed; the expression may include glob qualifiers, but
+it is also valid if it is simply <tt>(#q)</tt>.  This does
+not apply to the right hand side of pattern match operators as the
+syntax already has special significance.
 </p>
 <p>A qualifier may be any one of the following:
 </p>
@@ -3313,10 +3362,12 @@ time.
 <dd><p>files less than <var>n</var> bytes (<tt>-</tt>), more than <var>n</var> bytes (<tt>+</tt>), or
 exactly <var>n</var> bytes in length.
 </p>
-<p>If this flag is directly followed by a &lsquo;<tt>k</tt>&rsquo; (&lsquo;<tt>K</tt>&rsquo;), &lsquo;<tt>m</tt>&rsquo;
-(&lsquo;<tt>M</tt>&rsquo;), or &lsquo;<tt>p</tt>&rsquo; (&lsquo;<tt>P</tt>&rsquo;) (e.g. &lsquo;<tt>Lk-50</tt>&rsquo;) the check is performed
-with kilobytes, megabytes, or blocks (of 512 bytes) instead.  In this
-case a file is regarded as &quot;exactly&quot; the size if the file size rounded up
+<p>If this flag is directly followed by a <em>size specifier</em> &lsquo;<tt>k</tt>&rsquo; (&lsquo;<tt>K</tt>&rsquo;),
+&lsquo;<tt>m</tt>&rsquo; (&lsquo;<tt>M</tt>&rsquo;), or &lsquo;<tt>p</tt>&rsquo; (&lsquo;<tt>P</tt>&rsquo;) (e.g. &lsquo;<tt>Lk-50</tt>&rsquo;) the check is
+performed with kilobytes, megabytes, or blocks (of 512 bytes) instead.
+(On some systems additional specifiers are available for gigabytes,
+&lsquo;<tt>g</tt>&rsquo; or &lsquo;<tt>G</tt>&rsquo;, and terabytes, &lsquo;<tt>t</tt>&rsquo; or &lsquo;<tt>T</tt>&rsquo;.) If a size specifier
+is used a file is regarded as &quot;exactly&quot; the size if the file size rounded up
 to the next unit is equal to the test size.  Hence &lsquo;<tt>*(Lm1)</tt>&rsquo;
 matches files from 1 byte up to 1 Megabyte inclusive.  Note also that
 the set of files &quot;less than&quot; the test size only includes files that would
@@ -3358,9 +3409,17 @@ default) and the files they point to
 <a name="index-NUMERIC_005fGLOB_005fSORT_002c-setting-in-pattern"></a>
 </p>
 </dd>
+<dt> <tt>Y</tt><var>n</var></dt>
+<dd><p>enables short-circuit mode: the pattern will expand to at most <var>n</var>
+filenames.  If more than <var>n</var> matches exist, only the first <var>n</var>
+matches in directory traversal order will be considered.
+</p>
+<p>Implies <tt>oN</tt> when no <tt>o</tt><var>c</var> qualifier is used.
+</p>
+</dd>
 <dt> <tt>o</tt><var>c</var></dt>
 <dd><p>specifies how the names of the files should be sorted. If <var>c</var> is
-<tt>n</tt> they are sorted by name (the default); if it is <tt>L</tt> they
+<tt>n</tt> they are sorted by name; if it is <tt>L</tt> they
 are sorted depending on the size (length) of the files; if <tt>l</tt>
 they are sorted by the number of links; if <tt>a</tt>, <tt>m</tt>, or <tt>c</tt>
 they are sorted by the time of the last access, modification, or
@@ -3374,6 +3433,9 @@ youngest file. Also note that the modifiers <tt>^</tt> and <tt>-</tt> are used,
 so &lsquo;<tt>*(^-oL)</tt>&rsquo; gives a list of all files sorted by file size in descending
 order, following any symbolic links.  Unless <tt>oN</tt> is used, multiple order
 specifiers may occur to resolve ties.
+</p>
+<p>The default sorting is <tt>n</tt> (by name) unless the <tt>Y</tt> glob qualifier is used,
+in which case it is <tt>N</tt> (unsorted).
 </p>
 <p><tt>oe</tt> and <tt>o+</tt> are special cases; they are each followed by shell code,
 delimited as for the <tt>e</tt> glob qualifier and the <tt>+</tt> glob qualifier
@@ -3490,10 +3552,10 @@ print &lsquo;<tt>shmiltin.shmo</tt>&rsquo;.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>January 19, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>August 29, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
-<font size="-1">Zsh version 5.0.5, released on January 5, 2014.</font>
+<font size="-1">Zsh version 5.0.6, released on August 28, 2014.</font>
 </p>
 </body>
 </html>
