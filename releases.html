@@ -27,6 +27,56 @@
 </table>
 <hr size=1 noshade>
 
+<h2>Changes between versions 5.0.5 and 5.0.6</h2>
+
+<h3>Incompatibilities</h3>
+
+<p>
+The value of $? when a job becomes stopped is now the signal number plus 128,
+for compatibility with other shells.  Note that different operating systems
+use different values e.g. for SIGTSTP, so it is not possible in portable
+scripts to detect stopped jobs by comparing to a fixed number. Also, the value
+of $pipestatus is now updated when a job stops, not just when it exits.
+</p>
+
+<h3>Changes</h3>
+
+<ul>
+<li>
+If the option EXTENDED_GLOB is in effect, it is possible to force globbing
+within conditional code using the [[ ... ]] syntax by flagging that a certain
+string is a glob using the (#q) glob qualifier syntax. The resulting glob is
+treated as a single argument.  For example, [[ -n *.c(#qN) ]] tests whether
+there are any .c files in the current directory.
+</li>
+
+<li>
+In prompt strings, the %N(l.true.false) conditional (line length) and the
+%N&lt;..&lt; and %N&gt;..&gt; truncation operators now accept negative values
+of N, which count the remaining space to the opposite margin (positive values
+of N still count the space used since the start of the prompt). In PS1 and
+PROMPT, this counts to the right margin, whereas in RPS1 and RPROMPT, it
+counts to the left margin (not to the opposite prompt).
+</li>
+
+<li>
+Another new prompt feature is the %. escape within time strings, for example
+%D{%H:%M:%S.%.}.  It provides zero-padded decimal fractions of second; by
+default milliseconds are shown, but the number of digits may be indicated from
+1 to 6, e.g. "%6.".  (Note this is part of the extensions to strftime()
+formats rather than basic prompt escapes.)
+</li>
+
+<li>
+The operators :^ and :^^ in parameter substitution allow for array zipping in
+the form ${name:^array}. With the :^ operator, all entries in $name and $array
+will be output in alternating order. With :^ the longer array is trimmed
+whereas the :^^ operator repeats the shorter array enough to match the longer
+array.
+</li>
+</ul>
+
+
 <h2>Changes between versions 5.0.2 and 5.0.5</h2>
 
 Releases 5.0.3 and 5.0.4 were replaced with 5.0.5 because they contained
