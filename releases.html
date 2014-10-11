@@ -27,6 +27,43 @@
 </table>
 <hr size=1 noshade>
 
+<h2>Changes between versions 5.0.6 and 5.0.7</h2>
+
+<ul>
+<li>
+Contains a security fix to disallow evaluation of the initial values of
+integer variables imported from the environment (they are instead treated as
+literal numbers).  That could allow local privilege escalation, under some
+specific and atypical conditions where zsh is being invoked in privilege
+elevation contexts when the environment has not been properly sanitized, such
+as when zsh is invoked by sudo on systems where "env_reset" has been disabled.
+</li>
+
+<li>
+The default $fpath/$FPATH is now designed always to include
+/usr/local/share/zsh/site-functions.  This directory does not need to exist.
+Sites that set an explicit site directory can put that in /etc/zshenv as
+before.  The intention of the new path element is to increase the likelihood
+that locally added functions can be found with the shell running "out of the
+box", no matter how the shell was configured.
+</li>
+
+<li>
+In prompt strings, %e or the equivalent test %(e..) are used to output or test
+the execution / evaluation depth of a shell construct within functions etc.
+This is useful in $PS4.
+</li>
+
+<li>
+Redirections applied to function definitions take effect when the function is
+executed, not when it is defined.  Other shells already work this way.  For
+example, <code>fn() { echo hello } &gt;~/logfile</code> Running fn writes
+"hello" to logfile.  In older versions of the shell it would create an empty
+file at the point of definition.
+</li>
+</ul>
+
+
 <h2>Changes between versions 5.0.5 and 5.0.6</h2>
 
 <h3>Incompatibilities</h3>
@@ -1816,7 +1853,7 @@ completion.
 <div align=right>
 <address>
 <a name=Signature href="disclaimer.html">Disclaimer</A>
-Last modified: 2014-01-07
+Last modified: 2014-10-11
 </address>
 </div>
 

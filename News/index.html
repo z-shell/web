@@ -29,6 +29,13 @@ notes</a>.
 
 <dl>
 
+<dt><font size="+1"><font color="red">2014-10-08</font> : <b>Release 5.0.7</b></font></dt>
+<dd>Fix a possible security vulnerability by disabling the evaluation of
+certain variables imported from the environment. This could be exploited if
+zsh is running with elevated privileges and an attacker can control the
+environment (e.g. sudo without evn_reset). Also contains minor features
+and bug fixes.</dd>
+
 <dt><font size="+1"><font color="red">2014-08-29</font> : <b>Release 5.0.6</b></font></dt>
 <dd>New prompt expansions, new operators for array zipping, globbing in
 conditionals with EXTENDED_GLOB. Also contains bug fixes and improved
@@ -356,7 +363,7 @@ completion, line editing, modularity and parameter substitution.
 <div align=right>
 <address>
 <a name=Signature href="../disclaimer.html">Disclaimer</a>
-Last modified: 2014-08-29
+Last modified: 2014-10-11
 </address>
 </div>
 
