@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on August 29, 2014 by texi2html 1.82
+<!-- Created on October 11, 2014 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -524,7 +524,7 @@ the rightmost &lsquo;<tt>?</tt>&rsquo; in a context scan can similarly be omitte
 the same record of the last <var>l</var> and <var>r</var> is maintained across all
 forms of expansion.
 </p>
-<p>Note that if a &lsquo;<tt>&amp;</tt>&rsquo; is used within glob qualifers an extra backslash
+<p>Note that if a &lsquo;<tt>&amp;</tt>&rsquo; is used within glob qualifiers an extra backslash
 is needed as a <tt>&amp;</tt> is a special character in this case.
 </p>
 <p>If the option <tt>HIST_SUBST_PATTERN</tt> is set, <var>l</var> is treated as
@@ -708,7 +708,7 @@ spawned from the parent shell which will wait for their completion.
 <p>Another problem arises any time a job with a substitution that requires
 a temporary file is disowned by the shell, including the case where
 &lsquo;<tt>&amp;!</tt>&rsquo; or &lsquo;<tt>&amp;|</tt>&rsquo; appears at the end of a command containing a
-subsitution.  In that case the temporary file will not be cleaned up as
+substitution.  In that case the temporary file will not be cleaned up as
 the shell no longer has any memory of the job.  A workaround is to use
 a subshell, for example,
 </p>
@@ -892,7 +892,7 @@ entire expression.
 </p>
 </dd>
 <dt> <tt>${</tt><var>name</var><tt>:*</tt><var>arrayname</var><tt>}</tt></dt>
-<dd><p>Similar to the preceding subsitution, but in the opposite sense,
+<dd><p>Similar to the preceding substitution, but in the opposite sense,
 so that entries present in both the original substitution and as
 elements of <var>arrayname</var> are retained and others removed.
 </p>
@@ -966,7 +966,7 @@ print ${foo:$(echo 1 + 2)}
 </pre></td></tr></table>
 
 <p>all have the same effect, extracting the string starting at the fourth
-character of <tt>$foo</tt> if the substution would otherwise return a scalar,
+character of <tt>$foo</tt> if the substitution would otherwise return a scalar,
 or the array starting at the fourth element if <tt>$foo</tt> would return an
 array.  Note that with the option <tt>KSH_ARRAYS</tt> <tt>$foo</tt> always returns
 a scalar (regardless of the use of the offset syntax) and a form
@@ -1220,7 +1220,7 @@ that result from field splitting.
 <dt> <tt>D</tt></dt>
 <dd><p>Assume the string or array elements contain directories and attempt
 to substitute the leading part of these by names.  The remainder of
-the path (the whole of it if the leading part was not subsituted)
+the path (the whole of it if the leading part was not substituted)
 is then quoted so that the whole string can be used as a shell
 argument.  This is the reverse of &lsquo;<tt>~</tt>&rsquo; substitution:  see
 <a href="#Filename-Expansion">Filename Expansion</a>.
@@ -1458,14 +1458,15 @@ follow this argument.
 </p>
 </dd>
 <dt> <tt>~</tt></dt>
-<dd><p>Force string arguments to any of the flags below that follow within
-the parentheses to be treated as patterns.  Compare with a <tt>~</tt>
+<dd><p>Strings inserted into the expansion by any of the flags below are to
+be treated as patterns.  This applies to the string arguments of flags
+that follow <tt>~</tt> within the same set of parentheses.  Compare with <tt>~</tt>
 outside parentheses, which forces the entire substituted string to
 be treated as a pattern.  Hence, for example,
 </p><table><tr><td>&nbsp;</td><td><pre class="example">[[ &quot;?&quot; = ${(~j.|.)array} ]]
 </pre></td></tr></table>
-<p>with the <tt>EXTENDED_GLOB</tt> option set succeeds if and only if <tt>$array</tt>
-contains the string &lsquo;<tt>?</tt>&rsquo; as an element.  The argument may be
+<p>treats &lsquo;<tt>|</tt>&rsquo; as a pattern and succeeds if and only if <tt>$array</tt>
+contains the string &lsquo;<tt>?</tt>&rsquo; as an element.  The <tt>~</tt> may be
 repeated to toggle the behaviour; its effect only lasts to the
 end of the parenthesised group.
 </p>
@@ -1489,6 +1490,10 @@ often as needed) or spaces if <var>string1</var> is not given.  If both
 <var>string1</var> and <var>string2</var> are given, <tt>string2</tt> is inserted once
 directly to the left of each word, truncated if necessary, before
 <var>string1</var> is used to produce any remaining padding.
+</p>
+<p>If either of <var>string1</var> or <tt>string2</tt> is present but empty,
+i.e. there are two delimiters together at that point, the first
+character of <tt>$IFS</tt> is used instead.
 </p>
 <p>If the <tt>MULTIBYTE</tt> option is in effect, the flag <tt>m</tt> may also
 be given, in which case widths will be used for the calculation of
@@ -3477,6 +3482,12 @@ list of glob qualifiers.
 of a file name; for example, the pattern &lsquo;<tt>*(P:-f:)</tt>&rsquo; produces the
 command line arguments &lsquo;<tt>-f</tt> <var>file1</var> <tt>-f</tt> <var>file2</var> ...&rsquo;
 </p>
+<p>If the modifier <tt>^</tt> is active, then <var>string</var> will be appended
+instead of prepended.  Prepending and appending is done independently
+so both can be used on the same glob expression; for example by writing
+&lsquo;<tt>*(P:foo:^P:bar:^P:baz:)</tt>&rsquo; which produces the command line arguments
+&lsquo;<tt>foo</tt> <tt>baz</tt> <var>file1</var> <tt>bar</tt> ...&rsquo;
+</p>
 </dd>
 </dl>
 
@@ -3552,10 +3563,10 @@ print &lsquo;<tt>shmiltin.shmo</tt>&rsquo;.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>August 29, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Simon Ruderich</em> on <em>October 11, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
-<font size="-1">Zsh version 5.0.6, released on August 28, 2014.</font>
+<font size="-1">Zsh version 5.0.7, released on October 7, 2014.</font>
 </p>
 </body>
 </html>
