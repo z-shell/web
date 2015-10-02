@@ -27,6 +27,77 @@
 </table>
 <hr size=1 noshade>
 
+<h2>Changes between versions 5.0.8 and 5.1</h2>
+
+<p>
+The builtins declare, export, local, readonly and typeset now have
+corresponding reserved words.  When used in this form, the builtin syntax is
+extended so that assignments following the reserved word are treated similarly
+to assignments that appear at the start of the command line. For example,
+<pre>
+  local scalar=`echo one word` array=(several words)
+</pre>
+creates a local "scalar" containing the text "one word" and an array "array"
+containing the words "several" "words".
+</p>
+
+<ul>
+<li>
+The print builtin has new options -x and -X to expand tabs.
+</li>
+
+<li>
+Several new command completions and numerous updates to others.
+</li>
+
+<li>
+Options to "fc" to segregate internal and shared history.
+</li>
+
+<li>
+All emulations including "sh" use multibyte by default; several repairs to
+multibyte handling.
+</li>
+
+<li>
+ZLE supports "bracketed paste" mode to avoid interpreting pasted newlines as
+accept-line.  Pastes can be highlighted for visibility and to make it more
+obvious whether accept-line has occurred.
+</li>
+
+<li>
+Improved (though still not perfect) POSIX compatibility for getopts builtin
+when POSIX_BUILTINS is set.
+</li>
+
+<li>
+New setopt APPEND_CREATE for POSIX-compatible NO_CLOBBER behavior.
+</li>
+
+<li>
+Completion of date values now displays in a calendar format when the complist
+module is available.  Controllable by zstyle.
+</li>
+
+<li>
+New parameter UNDO_LIMIT_NO for more control over ZLE undo repeat.
+</li>
+
+<li>
+Several repairs/improvements to the contributed narrow-to-region ZLE function.
+</li>
+
+<li>
+Many changes to child-process and signal handling to eliminate race conditions
+and avoid deadlocks on descriptor and memory management.
+</li>
+
+<li>
+New builtin sysopen in zsh/system module for detailed control of file
+descriptor modes.
+</li>
+</ul>
+
 <h2>Changes between versions 5.0.7 and 5.0.8</h2>
 
 <ul>
