@@ -1,66 +1,67 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on October 11, 2014 by texi2html 1.82
-texi2html was written by: 
-            Lionel Cons <Lionel.Cons@cern.ch> (original author)
-            Karl Berry  <karl@freefriends.org>
-            Olaf Bachmann <obachman@mathematik.uni-kl.de>
-            and many others.
-Maintained by: Many creative people.
-Send bugs and suggestions to <texi2html-bug@nongnu.org>
--->
+<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 6. Shell Grammar</title>
+<title>zsh: 6 Shell Grammar</title>
 
-<meta name="description" content="zsh: 6. Shell Grammar">
-<meta name="keywords" content="zsh: 6. Shell Grammar">
+<meta name="description" content="zsh: 6 Shell Grammar">
+<meta name="keywords" content="zsh: 6 Shell Grammar">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 1.82">
+<meta name="Generator" content="texi2any">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
-pre.display {font-family: serif}
-pre.format {font-family: serif}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: serif; font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.roman {font-family:serif; font-weight:normal;}
-span.sansserif {font-family:sans-serif; font-weight:normal;}
-ul.toc {list-style: none}
+span.nocodebreak {white-space: nowrap}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: serif; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
 -->
 </style>
 
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-
+<body lang="en">
 <a name="Shell-Grammar"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="Files.html#Files-2" title="Previous section in reading order"> &lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Files.html#Files" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Files.html#Files-2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Simple-Commands-_0026-Pipelines" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="Files.html#Files" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
 <a name="Shell-Grammar-1"></a>
-<h1 class="chapter">6. Shell Grammar</h1>
+<h1 class="chapter">6 Shell Grammar</h1>
 <a name="index-shell-grammar"></a>
 <a name="index-grammar_002c-shell"></a>
 <table class="menu" border="0" cellspacing="0">
@@ -83,20 +84,19 @@ ul.toc {list-style: none}
 <tr><td align="left" valign="top"><a href="#Quoting">6.9 Quoting</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
-<hr size="6">
+<hr>
 <a name="Simple-Commands-_0026-Pipelines"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Shell-Grammar" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Precommand-Modifiers" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Shell-Grammar" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Shell-Grammar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Precommand-Modifiers" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -120,8 +120,9 @@ The value of a simple command is its exit status,
 or 128 plus the signal number if terminated by a signal.
 For example,
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">echo foo
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">echo foo
+</pre></div>
 
 <p>is a simple command with arguments.
 </p>
@@ -138,8 +139,9 @@ is the value of the last command, unless the pipeline is preceded by
 last command.
 For example,
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">echo foo | sed 's/foo/bar/'
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">echo foo | sed 's/foo/bar/'
+</pre></div>
 
 <p>is a pipeline, where the output (&lsquo;<tt>foo</tt>&rsquo; plus a newline) of the first
 command will be passed to the input of the second.
@@ -164,8 +166,9 @@ Both operators have equal precedence and are left associative.
 The value of the sublist is the value of the last pipeline executed.
 For example,
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">dmesg | grep panic &amp;&amp; print yes
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">dmesg | grep panic &amp;&amp; print yes
+</pre></div>
 
 <p>is a sublist consisting of two pipelines, the second just a simple command
 which will be executed if and only if the <tt>grep</tt> command returns a zero
@@ -191,20 +194,19 @@ A backgrounded pipeline returns a status of zero.
 whatsoever, including the complex commands below; this is implied wherever
 the word &lsquo;list&rsquo; appears in later descriptions.  For example, the commands
 in a shell function form a special sort of list.
-</p><hr size="6">
+</p><hr>
 <a name="Precommand-Modifiers"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Simple-Commands-_0026-Pipelines" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Complex-Commands" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Simple-Commands-_0026-Pipelines" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Shell-Grammar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Complex-Commands" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -222,19 +224,19 @@ a reserved word.
 <dl compact="compact">
 <dd><a name="index-_002d"></a>
 </dd>
-<dt> <tt>-</tt></dt>
+<dt><tt>-</tt></dt>
 <dd><p>The command is executed with a &lsquo;<tt>-</tt>&rsquo; prepended to its
 <tt>argv[0]</tt> string.
 </p>
 <a name="index-builtin"></a>
 </dd>
-<dt> <tt>builtin</tt></dt>
+<dt><tt>builtin</tt></dt>
 <dd><p>The command word is taken to be the name of a builtin command,
 rather than a shell function or external command.
 </p>
 <a name="index-command"></a>
 </dd>
-<dt> <tt>command</tt> [ <tt>-pvV</tt> ]</dt>
+<dt><tt>command</tt> [ <tt>-pvV</tt> ]</dt>
 <dd><p>The command word is taken to be the name of an external command,
 rather than a shell function or builtin.   If the <tt>POSIX_BUILTINS</tt> option
 is set, builtins will also be executed but certain special properties
@@ -245,7 +247,7 @@ is similar to <tt>whence</tt> and with <tt>-V</tt>, it is equivalent to <tt>when
 </p>
 <a name="index-exec"></a>
 </dd>
-<dt> <tt>exec</tt> [ <tt>-cl</tt> ] [ <tt>-a</tt> <var>argv0</var> ]</dt>
+<dt><tt>exec</tt> [ <tt>-cl</tt> ] [ <tt>-a</tt> <var>argv0</var> ]</dt>
 <dd><p>The following command together with any arguments is run in place
 of the current process, rather than as a sub-process.  The shell does not
 fork and is replaced.  The shell does not invoke <tt>TRAPEXIT</tt>, nor does it
@@ -266,33 +268,32 @@ for the <tt>ARGV0</tt> environment variable.
 </p>
 <a name="index-nocorrect"></a>
 </dd>
-<dt> <tt>nocorrect</tt></dt>
+<dt><tt>nocorrect</tt></dt>
 <dd><p>Spelling correction is not done on any of the words.  This must appear
 before any other precommand modifier, as it is interpreted immediately,
 before any parsing is done.  It has no effect in non-interactive shells.
 </p>
 <a name="index-noglob"></a>
 </dd>
-<dt> <tt>noglob</tt></dt>
+<dt><tt>noglob</tt></dt>
 <dd><p>Filename generation (globbing) is not performed on any of
 the words.
 </p>
 </dd>
 </dl>
-<hr size="6">
+<hr>
 <a name="Complex-Commands"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Precommand-Modifiers" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Alternate-Forms-For-Complex-Commands" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Precommand-Modifiers" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Shell-Grammar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Alternate-Forms-For-Complex-Commands" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -308,7 +309,7 @@ the words.
 <dd><a name="index-if"></a>
 <a name="index-if-construct"></a>
 </dd>
-<dt> <tt>if</tt> <var>list</var> <tt>then</tt> <var>list</var> [ <tt>elif</tt> <var>list</var> <tt>then</tt> <var>list</var> ] ... [ <tt>else</tt> <var>list</var> ] <tt>fi</tt></dt>
+<dt><tt>if</tt> <var>list</var> <tt>then</tt> <var>list</var> [ <tt>elif</tt> <var>list</var> <tt>then</tt> <var>list</var> ] ... [ <tt>else</tt> <var>list</var> ] <tt>fi</tt></dt>
 <dd><p>The <tt>if</tt> <var>list</var> is executed, and if it returns a zero exit status,
 the <tt>then</tt> <var>list</var> is executed.
 Otherwise, the <tt>elif</tt> <var>list</var> is executed and if its status is zero,
@@ -320,7 +321,7 @@ is executed.
 <a name="index-for-loops"></a>
 <a name="index-loops_002c-for"></a>
 </dd>
-<dt> <tt>for</tt> <var>name</var> ... [ <tt>in</tt> <var>word</var> ... ] <var>term</var> <tt>do</tt> <var>list</var> <tt>done</tt></dt>
+<dt><tt>for</tt> <var>name</var> ... [ <tt>in</tt> <var>word</var> ... ] <var>term</var> <tt>do</tt> <var>list</var> <tt>done</tt></dt>
 <dd><p>where <var>term</var> is at least one newline or <tt>;</tt>.
 Expand the list of <var>word</var>s, and set the parameter
 <var>name</var> to each of them in turn, executing
@@ -329,7 +330,7 @@ use the positional parameters instead of the <var>word</var>s.
 </p>
 <p>More than one parameter <var>name</var> can appear before the list of
 <var>word</var>s.  If <var>N</var> <var>name</var>s are given, then on each execution of the
-loop the next <tt>N</tt> <var>word</var>s are assigned to the corresponding
+loop the next <var>N</var> <var>word</var>s are assigned to the corresponding
 parameters.  If there are more <var>name</var>s than remaining <var>word</var>s, the
 remaining parameters are each set to the empty string.  Execution of the
 loop ends when there is no remaining <var>word</var> to assign to the first
@@ -337,7 +338,7 @@ loop ends when there is no remaining <var>word</var> to assign to the first
 in the list, else it will be treated as marking the end of the list.
 </p>
 </dd>
-<dt> <tt>for ((</tt> [<var>expr1</var>] <tt>;</tt> [<var>expr2</var>] <tt>;</tt> [<var>expr3</var>] <tt>)) do</tt> <var>list</var> <tt>done</tt></dt>
+<dt><tt>for ((</tt> [<var>expr1</var>] <tt>;</tt> [<var>expr2</var>] <tt>;</tt> [<var>expr3</var>] <tt>)) do</tt> <var>list</var> <tt>done</tt></dt>
 <dd><p>The arithmetic expression <var>expr1</var> is evaluated first (see
 <a href="Arithmetic-Evaluation.html#Arithmetic-Evaluation">Arithmetic Evaluation</a>).  The arithmetic expression
 <var>expr2</var> is repeatedly evaluated until it evaluates to zero and
@@ -349,7 +350,7 @@ as if it evaluated to 1.
 <a name="index-while-loops"></a>
 <a name="index-loops_002c-while"></a>
 </dd>
-<dt> <tt>while</tt> <var>list</var> <tt>do</tt> <var>list</var> <tt>done</tt></dt>
+<dt><tt>while</tt> <var>list</var> <tt>do</tt> <var>list</var> <tt>done</tt></dt>
 <dd><p>Execute the <tt>do</tt> <var>list</var> as long as the <tt>while</tt> <var>list</var>
 returns a zero exit status.
 </p>
@@ -357,7 +358,7 @@ returns a zero exit status.
 <a name="index-until-loops"></a>
 <a name="index-loops_002c-until"></a>
 </dd>
-<dt> <tt>until</tt> <var>list</var> <tt>do</tt> <var>list</var> <tt>done</tt></dt>
+<dt><tt>until</tt> <var>list</var> <tt>do</tt> <var>list</var> <tt>done</tt></dt>
 <dd><p>Execute the <tt>do</tt> <var>list</var> as long as <tt>until</tt> <var>list</var>
 returns a nonzero exit status.
 </p>
@@ -365,7 +366,7 @@ returns a nonzero exit status.
 <a name="index-repeat-loops"></a>
 <a name="index-loops_002c-repeat"></a>
 </dd>
-<dt> <tt>repeat</tt> <var>word</var> <tt>do</tt> <var>list</var> <tt>done</tt></dt>
+<dt><tt>repeat</tt> <var>word</var> <tt>do</tt> <var>list</var> <tt>done</tt></dt>
 <dd><p><var>word</var> is expanded and treated as an arithmetic expression,
 which must evaluate to a number <var>n</var>.
 <var>list</var> is then executed <var>n</var> times.
@@ -378,11 +379,21 @@ with the command &lsquo;<tt>enable -r repeat</tt>&rsquo;
 <a name="index-case-selection"></a>
 <a name="index-selection_002c-case"></a>
 </dd>
-<dt> <tt>case</tt> <var>word</var> <tt>in</tt> [ [<tt>(</tt>] <var>pattern</var> [ <tt>|</tt> <var>pattern</var> ] ... <tt>)</tt> <var>list</var> (<tt>;;</tt>|<tt>;&amp;</tt>|<tt>;|</tt>) ] ... <tt>esac</tt></dt>
+<dt><tt>case</tt> <var>word</var> <tt>in</tt> [ [<tt>(</tt>] <var>pattern</var> [ <tt>|</tt> <var>pattern</var> ] ... <tt>)</tt> <var>list</var> (<tt>;;</tt>|<tt>;&amp;</tt>|<tt>;|</tt>) ] ... <tt>esac</tt></dt>
 <dd><p>Execute the <var>list</var> associated with the first <var>pattern</var>
 that matches <var>word</var>, if any.  The form of the patterns
 is the same as that used for filename generation.  See
 <a href="Expansion.html#Filename-Generation">Filename Generation</a>.
+</p>
+<p>Note further that, unless the <tt>SH_GLOB</tt> option is set, the whole
+pattern with alternatives is treated by the shell as equivalent to a
+group of patterns within parentheses, although white space may appear
+about the parentheses and the vertical bar and will be stripped from the
+pattern at those points.  White space may appear elsewhere in the
+pattern; this is not stripped.  If the <tt>SH_GLOB</tt> option is set, so
+that an opening parenthesis can be unambiguously treated as part of the
+case syntax, the expression is parsed into separate words and these are
+treated as strict alternatives (as in other shells).
 </p>
 <p>If the <var>list</var> that is executed is terminated with <tt>;&amp;</tt> rather than
 <tt>;;</tt>, the following list is also executed.  The rule for
@@ -400,7 +411,7 @@ are tested with the same <var>word</var>.
 <a name="index-user-selection"></a>
 <a name="index-selection_002c-user"></a>
 </dd>
-<dt> <tt>select</tt> <var>name</var> [ <tt>in</tt> <var>word</var> ... <var>term</var> ] <tt>do</tt> <var>list</var> <tt>done</tt></dt>
+<dt><tt>select</tt> <var>name</var> [ <tt>in</tt> <var>word</var> ... <var>term</var> ] <tt>do</tt> <var>list</var> <tt>done</tt></dt>
 <dd><p>where <var>term</var> is one or more newline or <tt>;</tt> to terminate the <var>word</var>s.
 <a name="index-REPLY_002c-use-of"></a>
 Print the set of <var>word</var>s, each preceded by a number.
@@ -418,19 +429,19 @@ for each selection until a break or end-of-file is encountered.
 </p>
 <a name="index-subshell"></a>
 </dd>
-<dt> <tt>(</tt> <var>list</var> <tt>)</tt></dt>
+<dt><tt>(</tt> <var>list</var> <tt>)</tt></dt>
 <dd><p>Execute <var>list</var> in a subshell.  Traps set by the <tt>trap</tt> builtin
 are reset to their default values while executing <var>list</var>.
 </p>
 </dd>
-<dt> <tt>{</tt> <var>list</var> <tt>}</tt></dt>
+<dt><tt>{</tt> <var>list</var> <tt>}</tt></dt>
 <dd><p>Execute <var>list</var>.
 </p>
 <a name="index-always"></a>
 <a name="index-always-blocks"></a>
 <a name="index-try-blocks"></a>
 </dd>
-<dt> <tt>{</tt> <var>try-list</var> <tt>} always {</tt> <var>always-list</var> <tt>}</tt></dt>
+<dt><tt>{</tt> <var>try-list</var> <tt>} always {</tt> <var>always-list</var> <tt>}</tt></dt>
 <dd><p>First execute <var>try-list</var>.  Regardless of errors, or <tt>break</tt>,
 <tt>continue</tt>, or <tt>return</tt> commands encountered within <var>try-list</var>,
 execute <var>always-list</var>.  Execution then continues from the
@@ -471,14 +482,15 @@ was set to zero.
 This is an alternative to the usual convention of protecting code by
 executing it in a subshell.
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">{
+<div class="example">
+<pre class="example">{
     # code which may cause an error
   } always {
     # This code is executed regardless of the error.
     (( TRY_BLOCK_ERROR = 0 ))
 }
 # The error condition has been reset.
-</pre></td></tr></table>
+</pre></div>
 
 <p>An <tt>exit</tt> command (or a <tt>return</tt> command executed at the outermost
 function level of a script) encountered in <tt>try-list</tt> does <em>not</em> cause
@@ -487,9 +499,9 @@ after any <tt>EXIT</tt> trap has been executed.
 </p>
 <a name="index-function"></a>
 </dd>
-<dt> <tt>function</tt> <var>word</var> ... [ <tt>()</tt> ] [ <var>term</var> ] <tt>{</tt> <var>list</var> <tt>}</tt></dt>
-<dt> <var>word</var> ... <tt>()</tt> [ <var>term</var> ] <tt>{</tt> <var>list</var> <tt>}</tt></dt>
-<dt> <var>word</var> ... <tt>()</tt> [ <var>term</var> ] <var>command</var></dt>
+<dt><tt>function</tt> <var>word</var> ... [ <tt>()</tt> ] [ <var>term</var> ] <tt>{</tt> <var>list</var> <tt>}</tt></dt>
+<dt><var>word</var> ... <tt>()</tt> [ <var>term</var> ] <tt>{</tt> <var>list</var> <tt>}</tt></dt>
+<dt><var>word</var> ... <tt>()</tt> [ <var>term</var> ] <var>command</var></dt>
 <dd><p>where <var>term</var> is one or more newline or <tt>;</tt>.
 Define a function which is referenced by any one of <var>word</var>.
 Normally, only one <var>word</var> is provided; multiple <var>word</var>s
@@ -498,15 +510,16 @@ The body of the function is the <var>list</var> between
 the <tt>{</tt> and <tt>}</tt>.  See <a href="Functions.html#Functions">Functions</a>.
 </p>
 <p>If the option <tt>SH_GLOB</tt> is set for compatibility with other shells, then
-whitespace may appear between between the left and right parentheses when
+whitespace may appear between the left and right parentheses when
 there is a single <var>word</var>;  otherwise, the parentheses will be treated as
 forming a globbing pattern in that case.
 </p>
 <p>In any of the forms above, a redirection may appear outside the
 function body, for example
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">func() { ... } 2&gt;&amp;1
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">func() { ... } 2&gt;&amp;1
+</pre></div>
 
 <p>The redirection is stored with the function and applied whenever the
 function is executed.  Any variables in the redirection are expanded
@@ -515,7 +528,7 @@ at the point the function is executed, but outside the function scope.
 <a name="index-timing"></a>
 <a name="index-time"></a>
 </dd>
-<dt> <tt>time</tt> [ <var>pipeline</var> ]</dt>
+<dt><tt>time</tt> [ <var>pipeline</var> ]</dt>
 <dd><p>The <var>pipeline</var> is executed, and timing statistics are
 reported on the standard error in the form specified
 by the <tt>TIMEFMT</tt> parameter.
@@ -525,7 +538,7 @@ shell process and its children.
 <a name="index-conditional-expression"></a>
 <a name="index-_005b_005b"></a>
 </dd>
-<dt> <tt>[[</tt> <var>exp</var> <tt>]]</tt></dt>
+<dt><tt>[[</tt> <var>exp</var> <tt>]]</tt></dt>
 <dd><p>Evaluates the conditional expression <var>exp</var>
 and return a zero exit status if it is true.
 See <a href="Conditional-Expressions.html#Conditional-Expressions">Conditional Expressions</a>
@@ -533,20 +546,19 @@ for a description of <var>exp</var>.
 </p>
 </dd>
 </dl>
-<hr size="6">
+<hr>
 <a name="Alternate-Forms-For-Complex-Commands"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Complex-Commands" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Reserved-Words" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Complex-Commands" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Shell-Grammar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Reserved-Words" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -564,93 +576,95 @@ code is a concern.
 <p>The short versions below only work if <var>sublist</var> is of the form &lsquo;<tt>{</tt>
 <var>list</var> <tt>}</tt>&rsquo; or if the <tt>SHORT_LOOPS</tt> option is set.  For the <tt>if</tt>,
 <tt>while</tt> and <tt>until</tt> commands, in both these cases the test part of the
-loop must also be suitably delimited, such as by &lsquo;<tt>[[ ... ]]</tt>&rsquo; or &lsquo;<tt>((
-... ))</tt>&rsquo;, else the end of the test will not be recognized.  For the
+loop must also be suitably delimited, such as by &lsquo;<tt>[[</tt> <var>...</var> <tt>]]</tt>&rsquo; or
+&lsquo;<tt>((</tt> <var>...</var> <tt>))</tt>&rsquo;,
+else the end of the test will not be recognized.  For the
 <tt>for</tt>, <tt>repeat</tt>, <tt>case</tt> and <tt>select</tt> commands no such special form
 for the arguments is necessary, but the other condition (the special form
 of <var>sublist</var> or use of the <tt>SHORT_LOOPS</tt> option) still applies.
 </p>
 <dl compact="compact">
-<dt> <tt>if</tt> <var>list</var> <tt>{</tt> <var>list</var> <tt>}</tt> [ <tt>elif</tt> <var>list</var> <tt>{</tt> <var>list</var> <tt>}</tt> ] ... [ <tt>else {</tt> <var>list</var> <tt>}</tt> ]</dt>
+<dt><tt>if</tt> <var>list</var> <tt>{</tt> <var>list</var> <tt>}</tt> [ <tt>elif</tt> <var>list</var> <tt>{</tt> <var>list</var> <tt>}</tt> ] ... [ <tt>else {</tt> <var>list</var> <tt>}</tt> ]</dt>
 <dd><p>An alternate form of <tt>if</tt>.  The rules mean that
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">if [[ -o ignorebraces ]] {
+<div class="example">
+<pre class="example">if [[ -o ignorebraces ]] {
   print yes
 }
-</pre></td></tr></table>
+</pre></div>
 
 <p>works, but
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">if true {  # Does not work!
+<div class="example">
+<pre class="example">if true {  # Does not work!
   print yes
 }
 
-</pre></td></tr></table>
+</pre></div>
 
 <p>does <em>not</em>, since the test is not suitably delimited.
 </p>
 </dd>
-<dt> <tt>if</tt> <var>list</var> <var>sublist</var></dt>
-<dd><p>A short form of the alternate &lsquo;if&rsquo;.  The same limitations on the form of
+<dt><tt>if</tt> <var>list</var> <var>sublist</var></dt>
+<dd><p>A short form of the alternate <tt>if</tt>.  The same limitations on the form of
 <var>list</var> apply as for the previous form.
 </p>
 </dd>
-<dt> <tt>for</tt> <var>name</var> ... <tt>(</tt> <var>word</var> ... <tt>)</tt> <var>sublist</var></dt>
+<dt><tt>for</tt> <var>name</var> ... <tt>(</tt> <var>word</var> ... <tt>)</tt> <var>sublist</var></dt>
 <dd><p>A short form of <tt>for</tt>.
 </p>
 </dd>
-<dt> <tt>for</tt> <var>name</var> ... [ <tt>in</tt> <var>word</var> ... ] <var>term</var> <var>sublist</var></dt>
+<dt><tt>for</tt> <var>name</var> ... [ <tt>in</tt> <var>word</var> ... ] <var>term</var> <var>sublist</var></dt>
 <dd><p>where <var>term</var> is at least one newline or <tt>;</tt>.
 Another short form of <tt>for</tt>.
 </p>
 </dd>
-<dt> <tt>for ((</tt> [<var>expr1</var>] <tt>;</tt> [<var>expr2</var>] <tt>;</tt> [<var>expr3</var>] <tt>))</tt> <var>sublist</var></dt>
+<dt><tt>for ((</tt> [<var>expr1</var>] <tt>;</tt> [<var>expr2</var>] <tt>;</tt> [<var>expr3</var>] <tt>))</tt> <var>sublist</var></dt>
 <dd><p>A short form of the arithmetic <tt>for</tt> command.
 </p>
 <a name="index-foreach"></a>
 </dd>
-<dt> <tt>foreach</tt> <var>name</var> ... <tt>(</tt> <var>word</var> ... <tt>)</tt> <var>list</var> <tt>end</tt></dt>
+<dt><tt>foreach</tt> <var>name</var> ... <tt>(</tt> <var>word</var> ... <tt>)</tt> <var>list</var> <tt>end</tt></dt>
 <dd><p>Another form of <tt>for</tt>.
 </p>
 </dd>
-<dt> <tt>while</tt> <var>list</var> <tt>{</tt> <var>list</var> <tt>}</tt></dt>
+<dt><tt>while</tt> <var>list</var> <tt>{</tt> <var>list</var> <tt>}</tt></dt>
 <dd><p>An alternative form of <tt>while</tt>.  Note the limitations on the form of
 <var>list</var> mentioned above.
 </p>
 </dd>
-<dt> <tt>until</tt> <var>list</var> <tt>{</tt> <var>list</var> <tt>}</tt></dt>
+<dt><tt>until</tt> <var>list</var> <tt>{</tt> <var>list</var> <tt>}</tt></dt>
 <dd><p>An alternative form of <tt>until</tt>.  Note the limitations on the form of
 <var>list</var> mentioned above.
 </p>
 </dd>
-<dt> <tt>repeat</tt> <var>word</var> <var>sublist</var></dt>
+<dt><tt>repeat</tt> <var>word</var> <var>sublist</var></dt>
 <dd><p>This is a short form of <tt>repeat</tt>.
 </p>
 </dd>
-<dt> <tt>case</tt> <var>word</var> <tt>{</tt> [ [<tt>(</tt>] <var>pattern</var> [ <tt>|</tt> <var>pattern</var> ] ... <tt>)</tt> <var>list</var> (<tt>;;</tt>|<tt>;&amp;</tt>|<tt>;|</tt>) ] ... <tt>}</tt></dt>
+<dt><tt>case</tt> <var>word</var> <tt>{</tt> [ [<tt>(</tt>] <var>pattern</var> [ <tt>|</tt> <var>pattern</var> ] ... <tt>)</tt> <var>list</var> (<tt>;;</tt>|<tt>;&amp;</tt>|<tt>;|</tt>) ] ... <tt>}</tt></dt>
 <dd><p>An alternative form of <tt>case</tt>.
 </p>
 </dd>
-<dt> <tt>select</tt> <var>name</var> [ <tt>in</tt> <var>word</var> <var>term</var> ] <var>sublist</var></dt>
+<dt><tt>select</tt> <var>name</var> [ <tt>in</tt> <var>word</var> ... <var>term</var> ] <var>sublist</var></dt>
 <dd><p>where <var>term</var> is at least one newline or <tt>;</tt>.
 A short form of <tt>select</tt>.
 </p>
 </dd>
 </dl>
-<hr size="6">
+<hr>
 <a name="Reserved-Words"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Alternate-Forms-For-Complex-Commands" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Errors" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Alternate-Forms-For-Complex-Commands" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Shell-Grammar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Errors" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -665,24 +679,24 @@ word of a command unless quoted or disabled using <tt>disable -r</tt>:
 </p>
 <p><tt>do done esac then elif else fi for case
 if while function repeat time until
-select coproc nocorrect foreach end ! [[ { }</tt>
+select coproc nocorrect foreach end ! [[ { }
+declare export float integer local readonly typeset</tt>
 </p>
 <p>Additionally, &lsquo;<tt>}</tt>&rsquo; is recognized in any position if neither the
 <tt>IGNORE_BRACES</tt> option nor the <tt>IGNORE_CLOSE_BRACES</tt> option is set.
-</p><hr size="6">
+</p><hr>
 <a name="Errors"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Reserved-Words" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Comments" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Reserved-Words" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Shell-Grammar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Comments" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -703,78 +717,54 @@ behaviour can be recovered by setting the option <tt>CONTINUE_ON_ERROR</tt>.
 <p>Fatal errors found in non-interactive shells include:
 </p>
 <ul>
-<li> 
-Failure to parse shell options passed when invoking the shell
-</li><li> 
-Failure to change options with the <tt>set</tt> builtin
-</li><li> 
-Parse errors of all sorts, including failures to parse
+<li> Failure to parse shell options passed when invoking the shell
+</li><li> Failure to change options with the <tt>set</tt> builtin
+</li><li> Parse errors of all sorts, including failures to parse
 mathematical expressions
-</li><li> 
-Failures to set or modify variable behaviour with <tt>typeset</tt>,
+</li><li> Failures to set or modify variable behaviour with <tt>typeset</tt>,
 <tt>local</tt>, <tt>declare</tt>, <tt>export</tt>, <tt>integer</tt>, <tt>float</tt>
-</li><li> 
-Execution of incorrectly positioned loop control structures
+</li><li> Execution of incorrectly positioned loop control structures
 (<tt>continue</tt>, <tt>break</tt>)
-</li><li> 
-Attempts to use regular expression with no regular expression
+</li><li> Attempts to use regular expression with no regular expression
 module available
-</li><li> 
-Disallowed operations when the <tt>RESTRICTED</tt> options is set
-</li><li> 
-Failure to create a pipe needed for a pipeline
-</li><li> 
-Failure to create a multio
-</li><li> 
-Failure to autoload a module needed for a declared shell feature
-</li><li> 
-Errors creating command or process substitutions
-</li><li> 
-Syntax errors in glob qualifiers
-</li><li> 
-File generation errors where not caught by the option <tt>BAD_PATTERN</tt>
-</li><li> 
-All bad patterns used for matching within case statements
-</li><li> 
-File generation failures where not caused by <tt>NO_MATCH</tt> or
+</li><li> Disallowed operations when the <tt>RESTRICTED</tt> options is set
+</li><li> Failure to create a pipe needed for a pipeline
+</li><li> Failure to create a multio
+</li><li> Failure to autoload a module needed for a declared shell feature
+</li><li> Errors creating command or process substitutions
+</li><li> Syntax errors in glob qualifiers
+</li><li> File generation errors where not caught by the option <tt>BAD_PATTERN</tt>
+</li><li> All bad patterns used for matching within case statements
+</li><li> File generation failures where not caused by <tt>NO_MATCH</tt> or
 similar options
-</li><li> 
-All file generation errors where the pattern was used to create a
+</li><li> All file generation errors where the pattern was used to create a
 multio
-</li><li> 
-Memory errors where detected by the shell
-</li><li> 
-Invalid subscripts to shell variables
-</li><li> 
-Attempts to assign read-only variables
-</li><li> 
-Logical errors with variables such as assignment to the wrong type
-</li><li> 
-Use of invalid variable names
-</li><li> 
-Errors in variable substitution syntax
-</li><li> 
-Failure to convert characters in <tt>$&rsquo;</tt>...<tt>&rsquo;</tt> expressions
+</li><li> Memory errors where detected by the shell
+</li><li> Invalid subscripts to shell variables
+</li><li> Attempts to assign read-only variables
+</li><li> Logical errors with variables such as assignment to the wrong type
+</li><li> Use of invalid variable names
+</li><li> Errors in variable substitution syntax
+</li><li> Failure to convert characters in <tt>$'</tt>...<tt>'</tt> expressions
 </li></ul>
 
 <p>If the <tt>POSIX_BUILTINS</tt> option is set, more errors associated with
 shell builtin commands are treated as fatal, as specified by the POSIX
 standard.
 </p>
-<hr size="6">
+<hr>
 <a name="Comments"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Errors" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Aliasing" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Errors" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Shell-Grammar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Aliasing" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -790,20 +780,19 @@ standard.
 with the third character of the <tt>histchars</tt> parameter
 (&lsquo;<tt>#</tt>&rsquo; by default) causes that word and all the following
 characters up to a newline to be ignored.
-</p><hr size="6">
+</p><hr>
 <a name="Aliasing"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Comments" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Quoting" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Comments" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Shell-Grammar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Quoting" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -812,35 +801,61 @@ characters up to a newline to be ignored.
 <a name="Aliasing-1"></a>
 <h2 class="section">6.8 Aliasing</h2>
 <a name="index-aliasing"></a>
-<p>Every token in the shell input is checked to see if there
+<p>Every eligible <em>word</em> in the shell input is checked to see if there
 is an alias defined for it.
 If so, it is replaced by the text of the alias if it is in command
 position (if it could be the first word of a simple command),
 or if the alias is global.
-If the text ends with a space, the next word in the shell input
-is treated as though it were in command position for purposes of alias
-expansion.
+If the replacement text ends with a space, the next word in the shell input
+is always eligible for purposes of alias expansion.
 <a name="index-alias_002c-use-of"></a>
 <a name="index-aliases_002c-global"></a>
 An alias is defined using the <tt>alias</tt> builtin; global aliases
 may be defined using the <tt>-g</tt> option to that builtin.
+</p>
+<p>A <em>word</em> is defined as:
+</p>
+<ul>
+<li> Any plain string or glob pattern
+</li><li> Any quoted string, using any quoting method (note that the quotes
+must be part of the alias definition for this to be eligible)
+</li><li> Any parameter reference or command substitution
+</li><li> Any series of the foregoing, concatenated without whitespace or
+other tokens between them
+</li><li> Any reserved word (<tt>case</tt>, <tt>do</tt>, <tt>else</tt>, etc.)
+</li><li> With global aliasing, any command separator, any redirection
+operator, and &lsquo;<tt>(</tt>&rsquo; or &lsquo;<tt>)</tt>&rsquo; when not part of a glob pattern
+</li></ul>
+
+<p>It is not presently possible to alias the &lsquo;<tt>((</tt>&rsquo; token that
+introduces arithmetic expressions, because until a full statement has been
+parsed, it cannot be distinguished from two consecutive &lsquo;<tt>(</tt>&rsquo;
+tokens introducing nested subshells.
+</p>
+<p>When <tt>POSIX_ALIASES</tt> is set, only plain unquoted strings are eligible
+for aliasing.  The <tt>alias</tt> builtin does not reject ineligible aliases,
+but they are not expanded.
 </p>
 <p>Alias expansion is done on the shell input before any other expansion
 except history expansion.  Therefore, if an alias is defined for the
 word <tt>foo</tt>, alias expansion may be avoided by quoting part of the
 word, e.g. <tt>\foo</tt>.  Any form of quoting works, although there is
 nothing to prevent an alias being defined for the quoted form such as
-<tt>\foo</tt> as well.  For use with completion, which would remove an
-initial backslash followed by a character that isn&rsquo;t special, it may be
-more convenient to quote the word by starting with a single quote,
-i.e. <tt>&rsquo;foo</tt>; completion will automatically add the trailing single
-quote.
+<tt>\foo</tt> as well.  Also, if a separator such as <tt>&amp;&amp;</tt> is aliased,
+<tt>\&amp;&amp;</tt> turns into the two tokens <tt>\&amp;</tt> and <tt>&amp;</tt>, each of which may
+have been aliased separately.  Similarly for <tt>\&lt;&lt;</tt>, <tt>\&gt;|</tt>, etc.
+</p>
+<p>For use with completion, which would remove an initial backslash followed
+by a character that isn&rsquo;t special, it may be more convenient to quote the
+word by starting with a single quote, i.e. <tt>'foo</tt>; completion will
+automatically add the trailing single quote.
 </p>
 <p>There is a commonly encountered problem with aliases
 illustrated by the following code:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">alias echobar='echo bar'; echobar
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">alias echobar='echo bar'; echobar
+</pre></div>
 
 <p>This prints a message that the command <tt>echobar</tt> could not be found.
 This happens because aliases are expanded when the code is read in;
@@ -852,19 +867,21 @@ recommended in non-interactive code.
 </p>
 <p>Note also the unhelpful interaction of aliases and function definitions:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">alias func='noglob func'
+<div class="example">
+<pre class="example">alias func='noglob func'
 func() {
     echo Do something with $*
 }
-</pre></td></tr></table>
+</pre></div>
 
 <p>Because aliases are expanded in function definitions, this causes the
 following command to be executed:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">noglob func() {
+<div class="example">
+<pre class="example">noglob func() {
     echo Do something with $*
 }
-</pre></td></tr></table>
+</pre></div>
 
 <p>which defines <tt>noglob</tt> as well as <tt>func</tt> as functions with the
 body given.  To avoid this, either quote the name <tt>func</tt> or use the
@@ -872,20 +889,19 @@ alternative function definition form &lsquo;<tt>function func</tt>&rsquo;.  Ensu
 alias is defined after the function works but is problematic if the
 code fragment might be re-executed.
 </p>
-<hr size="6">
+<hr>
 <a name="Quoting"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Aliasing" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Aliasing" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Shell-Grammar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -894,33 +910,34 @@ code fragment might be re-executed.
 <a name="Quoting-1"></a>
 <h2 class="section">6.9 Quoting</h2>
 <a name="index-quoting"></a>
-<p>A character may be <var>quoted</var> (that is, made
+<p>A character may be <em>quoted</em> (that is, made
 to stand for itself) by preceding it with a &lsquo;<tt>\</tt>&rsquo;.
 &lsquo;<tt>\</tt>&rsquo; followed by a newline is ignored.
 </p>
-<p>A string enclosed between &lsquo;<tt>$&rsquo;</tt>&rsquo; and &lsquo;<tt>&rsquo;</tt>&rsquo; is
+<p>A string enclosed between &lsquo;<tt>$'</tt>&rsquo; and &lsquo;<tt>'</tt>&rsquo; is
 processed the same way as the string arguments of the
 <tt>print</tt> builtin, and the resulting string is considered to be
-entirely quoted.  A literal &lsquo;<tt>&rsquo;</tt>&rsquo; character can be included in the
-string by using the &lsquo;<tt>\&rsquo;</tt>&rsquo; escape.
+entirely quoted.  A literal &lsquo;<tt>'</tt>&rsquo; character can be included in the
+string by using the &lsquo;<tt>\'</tt>&rsquo; escape.
 </p>
 <a name="index-RC_005fQUOTES_002c-use-of"></a>
-<p>All characters enclosed between a pair of single quotes (<tt>&rsquo;&rsquo;</tt>) that
+<p>All characters enclosed between a pair of single quotes (<tt>''</tt>) that
 is not preceded by a &lsquo;<tt>$</tt>&rsquo; are quoted.  A single quote cannot appear
 within single quotes unless the option <tt>RC_QUOTES</tt> is set, in which case
 a pair of single quotes are turned into a single quote.  For example,
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">print ''''
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">print ''''
+</pre></div>
 
 <p>outputs nothing apart from a newline if <tt>RC_QUOTES</tt> is not set, but one
 single quote if it is set.
 </p>
 <p>Inside double quotes (<tt>&quot;&quot;</tt>), parameter and
 command substitution occur, and &lsquo;<tt>\</tt>&rsquo; quotes the characters
-&lsquo;<tt>\</tt>&rsquo;, &lsquo;<tt>&lsquo;</tt>&rsquo;, &lsquo;<tt>&quot;</tt>&rsquo;, and &lsquo;<tt>$</tt>&rsquo;.
-</p><hr size="6">
-<table cellpadding="1" cellspacing="1" border="0">
+&lsquo;<tt>\</tt>&rsquo;, &lsquo;<tt>`</tt>&rsquo;, &lsquo;<tt>&quot;</tt>&rsquo;, and &lsquo;<tt>$</tt>&rsquo;.
+</p><hr>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -928,17 +945,15 @@ command substitution occur, and &lsquo;<tt>\</tt>&rsquo; quotes the characters
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p>
- <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>October 11, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
- </font>
- <br>
-<font size="-1">Zsh version 5.0.7, released on October 7, 2014.</font>
-</p>
+<p><font size="-1">
+  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+</font></p>
+
+<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
 </body>
 </html>

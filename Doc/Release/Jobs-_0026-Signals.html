@@ -1,81 +1,81 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on October 11, 2014 by texi2html 1.82
-texi2html was written by: 
-            Lionel Cons <Lionel.Cons@cern.ch> (original author)
-            Karl Berry  <karl@freefriends.org>
-            Olaf Bachmann <obachman@mathematik.uni-kl.de>
-            and many others.
-Maintained by: Many creative people.
-Send bugs and suggestions to <texi2html-bug@nongnu.org>
--->
+<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 10. Jobs &amp; Signals</title>
+<title>zsh: 10 Jobs &amp; Signals</title>
 
-<meta name="description" content="zsh: 10. Jobs &amp; Signals">
-<meta name="keywords" content="zsh: 10. Jobs &amp; Signals">
+<meta name="description" content="zsh: 10 Jobs &amp; Signals">
+<meta name="keywords" content="zsh: 10 Jobs &amp; Signals">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 1.82">
+<meta name="Generator" content="texi2any">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
-pre.display {font-family: serif}
-pre.format {font-family: serif}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: serif; font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.roman {font-family:serif; font-weight:normal;}
-span.sansserif {font-family:sans-serif; font-weight:normal;}
-ul.toc {list-style: none}
+span.nocodebreak {white-space: nowrap}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: serif; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
 -->
 </style>
 
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-
+<body lang="en">
 <a name="Jobs-_0026-Signals"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="Functions.html#Trap-Functions" title="Previous section in reading order"> &lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Functions.html#Functions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Functions.html#Trap-Functions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Jobs" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="Functions.html#Functions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="Arithmetic-Evaluation.html#Arithmetic-Evaluation" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
 <a name="Jobs-_0026-Signals-1"></a>
-<h1 class="chapter">10. Jobs &amp; Signals</h1>
+<h1 class="chapter">10 Jobs &amp; Signals</h1>
 
-<hr size="6">
+<hr>
 <a name="Jobs"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Jobs-_0026-Signals" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Signals" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Jobs-_0026-Signals" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Jobs-_0026-Signals" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Jobs-_0026-Signals" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Jobs-_0026-Signals" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Signals" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Arithmetic-Evaluation.html#Arithmetic-Evaluation" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -90,8 +90,9 @@ command, and assigns them small integer numbers.
 When a job is started asynchronously with &lsquo;<tt>&amp;</tt>&rsquo;,
 the shell prints a line to standard error which looks like:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">[1] 1234
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">[1] 1234
+</pre></div>
 
 <p>indicating that the job which was started asynchronously was job number
 1 and had one (top-level) process, whose process ID was 1234.
@@ -154,22 +155,22 @@ A job can be referred to by the process ID of any process of the job
 or by one of the following:
 </p>
 <dl compact="compact">
-<dt> <tt>%</tt><var>number</var></dt>
+<dt><tt>%</tt><var>number</var></dt>
 <dd><p>The job with the given number.
 </p></dd>
-<dt> <tt>%</tt><var>string</var></dt>
+<dt><tt>%</tt><var>string</var></dt>
 <dd><p>Any job whose command line begins with <var>string</var>.
 </p></dd>
-<dt> <tt>%?</tt><var>string</var></dt>
+<dt><tt>%?</tt><var>string</var></dt>
 <dd><p>Any job whose command line contains <var>string</var>.
 </p></dd>
-<dt> <tt>%%</tt></dt>
+<dt><tt>%%</tt></dt>
 <dd><p>Current job.
 </p></dd>
-<dt> <tt>%+</tt></dt>
+<dt><tt>%+</tt></dt>
 <dd><p>Equivalent to &lsquo;<tt>%%</tt>&rsquo;.
 </p></dd>
-<dt> <tt>%-</tt></dt>
+<dt><tt>%-</tt></dt>
 <dd><p>Previous job.
 </p></dd>
 </dl>
@@ -201,20 +202,19 @@ a <tt>SIGHUP</tt> signal, if the <tt>HUP</tt> option is set.
 use the <cite>nohup</cite> command (see man page nohup(1))
 or the <tt>disown</tt> builtin.
 </p>
-<hr size="6">
+<hr>
 <a name="Signals"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Jobs" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Arithmetic-Evaluation.html#Arithmetic-Evaluation" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Jobs-_0026-Signals" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Jobs-_0026-Signals" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Jobs" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Jobs-_0026-Signals" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Arithmetic-Evaluation.html#Arithmetic-Evaluation" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Arithmetic-Evaluation.html#Arithmetic-Evaluation" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -240,8 +240,8 @@ process substitution, see
 <a href="Expansion.html#Process-Substitution">Process Substitution</a>, and the handler processes for
 multios, see
 the section Multios in <a href="Redirection.html#Redirection">Redirection</a>.
-</p><hr size="6">
-<table cellpadding="1" cellspacing="1" border="0">
+</p><hr>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Jobs-_0026-Signals" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Arithmetic-Evaluation.html#Arithmetic-Evaluation" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -249,17 +249,15 @@ the section Multios in <a href="Redirection.html#Redirection">Redirection</a>.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p>
- <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>October 11, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
- </font>
- <br>
-<font size="-1">Zsh version 5.0.7, released on October 7, 2014.</font>
-</p>
+<p><font size="-1">
+  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+</font></p>
+
+<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
 </body>
 </html>

@@ -1,83 +1,83 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on October 11, 2014 by texi2html 1.82
-texi2html was written by: 
-            Lionel Cons <Lionel.Cons@cern.ch> (original author)
-            Karl Berry  <karl@freefriends.org>
-            Olaf Bachmann <obachman@mathematik.uni-kl.de>
-            and many others.
-Maintained by: Many creative people.
-Send bugs and suggestions to <texi2html-bug@nongnu.org>
--->
+<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 25. Zftp Function System</title>
+<title>zsh: 25 Zftp Function System</title>
 
-<meta name="description" content="zsh: 25. Zftp Function System">
-<meta name="keywords" content="zsh: 25. Zftp Function System">
+<meta name="description" content="zsh: 25 Zftp Function System">
+<meta name="keywords" content="zsh: 25 Zftp Function System">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 1.82">
+<meta name="Generator" content="texi2any">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
-pre.display {font-family: serif}
-pre.format {font-family: serif}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: serif; font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.roman {font-family:serif; font-weight:normal;}
-span.sansserif {font-family:sans-serif; font-weight:normal;}
-ul.toc {list-style: none}
+span.nocodebreak {white-space: nowrap}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: serif; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
 -->
 </style>
 
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-
+<body lang="en">
 <a name="Zftp-Function-System"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Bugs" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-7" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Bugs" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-8" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
 <a name="Zftp-Function-System-1"></a>
-<h1 class="chapter">25. Zftp Function System</h1>
+<h1 class="chapter">25 Zftp Function System</h1>
 <a name="index-zftp-function-system"></a>
 <a name="index-FTP_002c-functions-for-using-shell-as-client"></a>
 
-<hr size="6">
-<a name="Description-7"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Installation" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<hr>
+<a name="Description-8"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Installation" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -118,26 +118,25 @@ invalid.  Note in particular the description of the variables
 </td></tr>
 </table>
 
-<hr size="6">
+<hr>
 <a name="Installation"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Description-7" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Zftp-Functions" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-8" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Zftp-Functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="Installation-3"></a>
+<a name="Installation-1"></a>
 <h2 class="section">25.2 Installation</h2>
 
 <p>You should make sure all the functions from the <tt>Functions/Zftp</tt>
@@ -151,10 +150,11 @@ the use of the system you need to call the <tt>zfinit</tt> function.  The
 following code in your <tt>.zshrc</tt> will arrange for this; assume the
 functions are stored in the directory <tt>~/myfns</tt>:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">fpath=(~/myfns $fpath)
+<div class="example">
+<pre class="example">fpath=(~/myfns $fpath)
 autoload -U zfinit
 zfinit
-</pre></td></tr></table>
+</pre></div>
 
 <p>Note that <tt>zfinit</tt> assumes you are using the <tt>zmodload</tt> method to
 load the <tt>zftp</tt> command.  If it is already built into the shell, change
@@ -162,26 +162,25 @@ load the <tt>zftp</tt> command.  If it is already built into the shell, change
 call to <tt>zfinit</tt> appears after any code to initialize the new completion
 system, else unnecessary <tt>compctl</tt> commands will be given.
 </p>
-<hr size="6">
+<hr>
 <a name="Zftp-Functions"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Installation" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Opening-a-connection" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Installation" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Opening-a-connection" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="Functions-2"></a>
+<a name="Functions-4"></a>
 <h2 class="section">25.3 Functions</h2>
 
 <p>The sequence of operations in performing a file transfer is essentially the
@@ -191,20 +190,19 @@ must use &lsquo;<tt>-</tt><tt>-</tt>&rsquo; rather than &lsquo;<tt>-</tt>&rsquo;
 are treated literally (a single &lsquo;<tt>-</tt>&rsquo; is treated as an argument).
 </p>
 
-<hr size="6">
+<hr>
 <a name="Opening-a-connection"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Zftp-Functions" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Directory-management" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Zftp-Functions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zftp-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Directory-management" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -213,10 +211,10 @@ are treated literally (a single &lsquo;<tt>-</tt>&rsquo; is treated as an argume
 <dl compact="compact">
 <dd><a name="index-zfparams"></a>
 </dd>
-<dt> <tt>zfparams [ <var>host</var> [ <var>user</var> [ <var>password</var> ... ] ] ]</tt></dt>
+<dt><tt>zfparams</tt> [ <var>host</var> [ <var>user</var> [ <var>password</var> ... ] ] ]</dt>
 <dd><p>Set or show the parameters for a future <tt>zfopen</tt> with no arguments.  If
 no arguments are given, the current parameters are displayed (the password
-will be shown as a line of asterisks).  If a host is given, and either the
+will be shown as a line of asterisks).  If a <var>host</var> is given, and either the
 <var>user</var> or <var>password</var> is not, they will be prompted for; also, any
 parameter given as &lsquo;<tt>?</tt>&rsquo; will be prompted for, and if the &lsquo;<tt>?</tt>&rsquo; is
 followed by a string, that will be used as the prompt.  As <tt>zfopen</tt> calls
@@ -229,7 +227,7 @@ to be deleted.
 </p>
 <a name="index-zfopen"></a>
 </dd>
-<dt> <tt>zfopen [ -1 ] [ <var>host</var> [ <var>user</var> [ <var>password</var> [ <var>account</var> ] ] ] ]</tt></dt>
+<dt><tt>zfopen</tt> [ <tt>-1</tt> ] [ <var>host</var> [ <var>user</var> [ <var>password</var> [ <var>account</var> ] ] ] ]</dt>
 <dd><p>If <var>host</var> is present, open a connection to that host under username
 <var>user</var> with password <var>password</var> (and, on the rare occasions when it
 is necessary, account <var>account</var>).  If a necessary parameter is missing or
@@ -259,7 +257,7 @@ slash beyond <var>host</var> are significant in <var>path</var>.
 </p>
 <a name="index-zfanon"></a>
 </dd>
-<dt> <tt>zfanon [ -1 ] <var>host</var></tt></dt>
+<dt><tt>zfanon</tt> [ <tt>-1</tt> ] <var>host</var></dt>
 <dd><p>Open a connection <var>host</var> for anonymous FTP.  The username used is
 &lsquo;<tt>anonymous</tt>&rsquo;.  The password (which will be reported the first time) is
 generated as <var>user</var><tt>@</tt><var>host</var>; this is then stored in the shell
@@ -270,20 +268,19 @@ suitable string.
 </dl>
 
 
-<hr size="6">
+<hr>
 <a name="Directory-management"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Opening-a-connection" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Status-commands" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Opening-a-connection" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zftp-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Status-commands" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -292,9 +289,9 @@ suitable string.
 <dl compact="compact">
 <dd><a name="index-zfcd"></a>
 </dd>
-<dt> <tt>zfcd [ <var>dir</var> ]</tt></dt>
-<dt> <tt>zfcd -</tt></dt>
-<dt> <tt>zfcd <var>old</var> <var>new</var></tt></dt>
+<dt><tt>zfcd</tt> [ <var>dir</var> ]</dt>
+<dt><tt>zfcd -</tt></dt>
+<dt><tt>zfcd</tt> <var>old</var> <var>new</var></dt>
 <dd><p>Change the current directory on the remote server:  this is implemented to
 have many of the features of the shell builtin <tt>cd</tt>.
 </p>
@@ -323,7 +320,7 @@ the form &lsquo;<tt>~name</tt>&rsquo; are not treated in this fashion.
 </p>
 <a name="index-zfhere"></a>
 </dd>
-<dt> <tt>zfhere</tt></dt>
+<dt><tt>zfhere</tt></dt>
 <dd><p>Change directory on the remote server to the one corresponding to the
 current local directory, with special handling of &lsquo;<tt>~</tt>&rsquo; as in <tt>zfcd</tt>.
 For example, if the current local directory is <tt>~/foo/bar</tt>, then
@@ -331,7 +328,7 @@ For example, if the current local directory is <tt>~/foo/bar</tt>, then
 </p>
 <a name="index-zfdir"></a>
 </dd>
-<dt> <tt>zfdir [ -rfd ] [ - ] [ <var>dir-options</var> ] [ <var>dir</var> ]</tt></dt>
+<dt><tt>zfdir</tt> [ <tt>-rfd</tt> ] [ <tt>-</tt> ] [ <var>dir-options</var> ] [ <var>dir</var> ]</dt>
 <dd><p>Produce a long directory listing.  The arguments <var>dir-options</var> and
 <var>dir</var> are passed directly to the server and their effect is
 implementation dependent, but specifying a particular remote directory
@@ -354,7 +351,7 @@ of file names in the current remote directory, if any.
 </p>
 <a name="index-zfls"></a>
 </dd>
-<dt> <tt>zfls</tt> [ <var>ls-options</var> ] [ <var>dir</var> ]</dt>
+<dt><tt>zfls</tt> [ <var>ls-options</var> ] [ <var>dir</var> ]</dt>
 <dd><p>List files on the remote server.  With no arguments, this will produce a
 simple list of file names for the current remote directory.  Any arguments
 are passed directly to the server.  No pager and no caching is used.
@@ -363,20 +360,19 @@ are passed directly to the server.  No pager and no caching is used.
 </dl>
 
 
-<hr size="6">
+<hr>
 <a name="Status-commands"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Directory-management" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Retrieving-files" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Directory-management" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zftp-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Retrieving-files" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -385,7 +381,7 @@ are passed directly to the server.  No pager and no caching is used.
 <dl compact="compact">
 <dd><a name="index-zftype"></a>
 </dd>
-<dt> <tt>zftype</tt> [ <var>type</var> ]</dt>
+<dt><tt>zftype</tt> [ <var>type</var> ]</dt>
 <dd><p>With no arguments, show the type of data to be transferred, usually ASCII
 or binary.  With an argument, change the type: the types &lsquo;<tt>A</tt>&rsquo; or
 &lsquo;<tt>ASCII</tt>&rsquo; for ASCII data and &lsquo;<tt>B</tt>&rsquo; or &lsquo;<tt>BINARY</tt>&rsquo;, &lsquo;<tt>I</tt>&rsquo; or
@@ -393,7 +389,7 @@ or binary.  With an argument, change the type: the types &lsquo;<tt>A</tt>&rsquo
 </p>
 <a name="index-zfstat"></a>
 </dd>
-<dt> <tt>zfstat</tt> [ -v ]</dt>
+<dt><tt>zfstat</tt> [ <tt>-v</tt> ]</dt>
 <dd><p>Show the status of the current or last connection, as well as the status of
 some of <tt>zftp</tt>&rsquo;s status variables.  With the <tt>-v</tt> option, a more
 verbose listing is produced by querying the server for its version of
@@ -403,20 +399,19 @@ events, too.
 </dl>
 
 
-<hr size="6">
+<hr>
 <a name="Retrieving-files"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Status-commands" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Sending-files" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Status-commands" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zftp-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Sending-files" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -431,7 +426,7 @@ see the description of the function <tt>zfrtime</tt> below for more information.
 <dl compact="compact">
 <dd><a name="index-zfget"></a>
 </dd>
-<dt> <tt>zfget [ -Gtc ] <var>file1</var> ...</tt></dt>
+<dt><tt>zfget</tt> [ <tt>-Gtc</tt> ] <var>file1</var> ...</dt>
 <dd><p>Retrieve all the listed files <var>file1</var> ... one at a time from the remote
 server.  If a file contains a &lsquo;<tt>/</tt>&rsquo;, the full name is passed to the
 remote server, but the file is stored locally under the name given by the
@@ -441,7 +436,7 @@ option has no effect.
 </p>
 <a name="index-zfuget"></a>
 </dd>
-<dt> <tt>zfuget [ -Gvst ] <var>file1</var> ...</tt></dt>
+<dt><tt>zfuget</tt> [ <tt>-Gvst</tt> ] <var>file1</var> ...</dt>
 <dd><p>As <tt>zfget</tt>, but only retrieve files where the version on the remote
 server is newer (has a later modification time), or where the local file
 does not exist.  If the remote file is older but the files have different
@@ -453,7 +448,7 @@ is working out whether or not to transfer them.
 </p>
 <a name="index-zfcget"></a>
 </dd>
-<dt> <tt>zfcget [ -Gt ] <var>file1</var> ...</tt></dt>
+<dt><tt>zfcget</tt> [ <tt>-Gt</tt> ] <var>file1</var> ...</dt>
 <dd><p>As <tt>zfget</tt>, but if any of the local files exists, and is shorter than
 the corresponding remote file, the command assumes that it is the result of
 a partially completed transfer and attempts to transfer the rest of the
@@ -464,8 +459,8 @@ of the FTP protocol, so is not guaranteed to work on all servers.
 </p>
 <a name="index-zfgcp"></a>
 </dd>
-<dt> <tt>zfgcp [ -Gt ] <var>remote-file</var> <var>local-file</var></tt></dt>
-<dt> <tt>zfgcp [ -Gt ] <var>rfile1</var> ... <var>ldir</var></tt></dt>
+<dt><tt>zfgcp</tt> [ <tt>-Gt</tt> ] <var>remote-file</var> <var>local-file</var></dt>
+<dt><tt>zfgcp</tt> [ <tt>-Gt</tt> ] <var>rfile1</var> ... <var>ldir</var></dt>
 <dd><p>This retrieves files from the remote server with arguments behaving
 similarly to the <tt>cp</tt> command.
 </p>
@@ -480,20 +475,19 @@ directory semantics.
 </dl>
 
 
-<hr size="6">
+<hr>
 <a name="Sending-files"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Retrieving-files" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Closing-the-connection" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Retrieving-files" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zftp-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Closing-the-connection" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -502,7 +496,7 @@ directory semantics.
 <dl compact="compact">
 <dd><a name="index-zfput"></a>
 </dd>
-<dt> <tt>zfput [ -r ] <var>file1</var> ...</tt></dt>
+<dt><tt>zfput</tt> [ <tt>-r</tt> ] <var>file1</var> ...</dt>
 <dd><p>Send all the <var>file1</var> ... given separately to the remote server.  If a
 filename contains a &lsquo;<tt>/</tt>&rsquo;, the full filename is used locally to find the
 file, but only the basename is used for the remote file name.
@@ -514,14 +508,14 @@ semantics, since &lsquo;<tt>/</tt>&rsquo; is used as a directory separator.
 </p>
 <a name="index-zfuput"></a>
 </dd>
-<dt> <tt>zfuput [ -vs ] <var>file1</var> ...</tt></dt>
-<dd><p>As <tt>zfput</tt>, but only send files which are newer than their local
+<dt><tt>zfuput</tt> [ <tt>-vs</tt> ] <var>file1</var> ...</dt>
+<dd><p>As <tt>zfput</tt>, but only send files which are newer than their remote
 equivalents, or if the remote file does not exist.  The logic is the same
 as for <tt>zfuget</tt>, but reversed between local and remote files.
 </p>
 <a name="index-zfcput"></a>
 </dd>
-<dt> <tt>zfcput <var>file1</var> ...</tt></dt>
+<dt><tt>zfcput</tt> <var>file1</var> ...</dt>
 <dd><p>As <tt>zfput</tt>, but if any remote file already exists and is shorter than the
 local equivalent, assume it is the result of an incomplete transfer and
 send the rest of the file to append to the existing part.  As the FTP
@@ -530,8 +524,8 @@ likely to work than <tt>zfcget</tt>.
 </p>
 <a name="index-zfpcp"></a>
 </dd>
-<dt> <tt>zfpcp <var>local-file</var> <var>remote-file</var></tt></dt>
-<dt> <tt>zfpcp <var>lfile1</var> ... <var>rdir</var></tt></dt>
+<dt><tt>zfpcp</tt> <var>local-file</var> <var>remote-file</var></dt>
+<dt><tt>zfpcp</tt> <var>lfile1</var> ... <var>rdir</var></dt>
 <dd><p>This sends files to the remote server with arguments behaving similarly to
 the <tt>cp</tt> command.
 </p>
@@ -556,20 +550,19 @@ then <tt>zfpcp</tt> will retry using the second form.
 </dl>
 
 
-<hr size="6">
+<hr>
 <a name="Closing-the-connection"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Sending-files" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Session-management" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Sending-files" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zftp-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Session-management" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -578,27 +571,26 @@ then <tt>zfpcp</tt> will retry using the second form.
 <dl compact="compact">
 <dd><a name="index-zfclose"></a>
 </dd>
-<dt> <tt>zfclose</tt></dt>
+<dt><tt>zfclose</tt></dt>
 <dd><p>Close the connection.
 </p>
 </dd>
 </dl>
 
 
-<hr size="6">
+<hr>
 <a name="Session-management"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Closing-the-connection" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Bookmarks" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Closing-the-connection" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zftp-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Bookmarks" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -607,7 +599,7 @@ then <tt>zfpcp</tt> will retry using the second form.
 <dl compact="compact">
 <dd><a name="index-zfsession"></a>
 </dd>
-<dt> <tt>zfsession</tt> [ <tt>-lvod</tt> ] [ <var>sessname</var> ]</dt>
+<dt><tt>zfsession</tt> [ <tt>-lvod</tt> ] [ <var>sessname</var> ]</dt>
 <dd><p>Allows you to manage multiple FTP sessions at once.  By default,
 connections take place in a session called &lsquo;<tt>default</tt>&rsquo;; by giving the
 command &lsquo;<tt>zfsession</tt> <var>sessname</var>&rsquo; you can change to a new or existing
@@ -631,7 +623,7 @@ It is safest not to delete sessions while background commands using
 </p>
 <a name="index-zftransfer"></a>
 </dd>
-<dt> <tt>zftransfer</tt> <var>sess1</var><tt>:</tt><var>file1</var> <var>sess2</var><tt>:</tt><var>file2</var></dt>
+<dt><tt>zftransfer</tt> <var>sess1</var><tt>:</tt><var>file1</var> <var>sess2</var><tt>:</tt><var>file2</var></dt>
 <dd><p>Transfer files between two sessions; no local copy is made.  The file
 is read from the session <var>sess1</var> as <var>file1</var> and written to session
 <var>sess2</var> as file <var>file2</var>; <var>file1</var> and <var>file2</var> may be relative to
@@ -650,20 +642,19 @@ versions of some operating systems, presumably due to a system bug.
 </dl>
 
 
-<hr size="6">
+<hr>
 <a name="Bookmarks"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Session-management" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Other-functions" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Session-management" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zftp-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Other-functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -679,7 +670,7 @@ directory where your zsh startup files live (usually <tt>~</tt>).
 <dl compact="compact">
 <dd><a name="index-zfmark"></a>
 </dd>
-<dt> <tt>zfmark [ </tt><var>bookmark</var><tt> ]</tt></dt>
+<dt><tt>zfmark</tt> [ <var>bookmark</var> ]</dt>
 <dd><p>If given an argument, mark the current host, user and directory under the
 name <var>bookmark</var> for later use by <tt>zfgoto</tt>.  If there is no connection
 open, use the values for the last connection immediately before it was
@@ -693,7 +684,7 @@ directly.
 </p>
 <a name="index-zfgoto"></a>
 </dd>
-<dt> <tt>zfgoto [ -n ] </tt><var>bookmark</var></dt>
+<dt><tt>zfgoto</tt> [ <tt>-n</tt> ] <var>bookmark</var></dt>
 <dd><p>Return to the location given by <var>bookmark</var>, as previously set by
 <tt>zfmark</tt>.  If the location has user &lsquo;<tt>ftp</tt>&rsquo; or &lsquo;<tt>anonymous</tt>&rsquo;, open
 the connection with <tt>zfanon</tt>, so that no password is required.  If the
@@ -711,20 +702,19 @@ from the zftp functions.
 </dl>
 
 
-<hr size="6">
+<hr>
 <a name="Other-functions"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Bookmarks" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Miscellaneous-Features" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Bookmarks" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zftp-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Miscellaneous-Features" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -737,14 +727,14 @@ alter <tt>zftp_chpwd</tt> and <tt>zftp_progress</tt>, in particular.
 <dl compact="compact">
 <dd><a name="index-zfinit"></a>
 </dd>
-<dt> <tt>zfinit [ -n ]</tt></dt>
+<dt><tt>zfinit</tt> [ <tt>-n</tt> ]</dt>
 <dd><p>As described above, this is used to initialize the zftp function system.
 The <tt>-n</tt> option should be used if the zftp command is already built into
 the shell.
 </p>
 <a name="index-zfautocheck"></a>
 </dd>
-<dt> <tt>zfautocheck [ -dn ]</tt></dt>
+<dt><tt>zfautocheck</tt> [ <tt>-dn</tt> ]</dt>
 <dd><p>This function is called to implement automatic reopening behaviour, as
 described in more detail below.  The options must appear in the first
 argument; <tt>-n</tt> prevents the command from changing to the old directory,
@@ -756,7 +746,7 @@ must also be correctly set.
 </p>
 <a name="index-zfcd_005fmatch"></a>
 </dd>
-<dt> <tt>zfcd_match <var>prefix</var> <var>suffix</var></tt></dt>
+<dt><tt>zfcd_match <var>prefix</var> <var>suffix</var></tt></dt>
 <dd><p>This performs matching for completion of remote directory names.  If the
 remote server is UNIX, it will attempt to persuade the server to list the
 remote directory with subdirectories marked, which usually works but is not
@@ -766,7 +756,7 @@ may not even look like filenames.
 </p>
 <a name="index-zfget_005fmatch"></a>
 </dd>
-<dt> <tt>zfget_match <var>prefix</var> <var>suffix</var></tt></dt>
+<dt><tt>zfget_match <var>prefix</var> <var>suffix</var></tt></dt>
 <dd><p>This performs matching for completion of remote filenames.  It caches files
 for the current directory (only) in the shell parameter <tt>$zftp_fcache</tt>.
 It is in the form to be called by the <tt>-K</tt> option of <tt>compctl</tt>, but
@@ -775,7 +765,7 @@ also works when called from a widget-style completion function with
 </p>
 <a name="index-zfrglob"></a>
 </dd>
-<dt> <tt>zfrglob <var>varname</var></tt></dt>
+<dt><tt>zfrglob <var>varname</var></tt></dt>
 <dd><p>Perform remote globbing, as describes in more detail below.  <var>varname</var>
 is the name of a variable containing the pattern to be expanded; if there
 were any matches, the same variable will be set to the expanded set of
@@ -783,7 +773,7 @@ filenames on return.
 </p>
 <a name="index-zfrtime"></a>
 </dd>
-<dt> <tt>zfrtime <var>lfile</var> <var>rfile</var> [ <var>time</var> ]</tt></dt>
+<dt><tt>zfrtime</tt> <var>lfile</var> <var>rfile</var> [ <var>time</var> ]</dt>
 <dd><p>Set the local file <var>lfile</var> to have the same modification time as the
 remote file <var>rfile</var>, or the explicit time <var>time</var> in FTP format
 <tt>CCYYMMDDhhmmSS</tt> for the GMT timezone.  This uses the shell&rsquo;s
@@ -792,7 +782,7 @@ GMT to local time.
 </p>
 <a name="index-zftp_005fchpwd_002c-supplied-version"></a>
 </dd>
-<dt> <tt>zftp_chpwd</tt></dt>
+<dt><tt>zftp_chpwd</tt></dt>
 <dd><p>This function is called every time a connection is opened, or closed, or
 the remote directory changes.  This version alters the title bar of an
 <tt>xterm</tt>-compatible or <tt>sun-cmd</tt> terminal emulator to reflect the 
@@ -800,24 +790,25 @@ local and remote hostnames and current directories.  It works best when
 combined with the function <tt>chpwd</tt>.  In particular, a function of 
 the form
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">chpwd() {
+<div class="example">
+<pre class="example">chpwd() {
   if [[ -n $ZFTP_USER ]]; then
     zftp_chpwd
   else
     # usual chpwd e.g put host:directory in title bar
   fi
 }
-</pre></td></tr></table>
+</pre></div>
 
 <p>fits in well.
 </p>
 <a name="index-zftp_005fprogress_002c-supplied-version"></a>
 </dd>
-<dt> <tt>zftp_progress</tt></dt>
+<dt><tt>zftp_progress</tt></dt>
 <dd><p>This function shows the status of the transfer.  It will not write anything
 unless the output is going to a terminal; however, if you transfer files in
 the background, you should turn off progress reports by hand using
-&lsquo;<tt>zstyle &rsquo;:zftp:*&rsquo; progress none</tt>&rsquo;.  Note also that if you alter it, any
+&lsquo;<tt>zstyle ':zftp:*' progress none</tt>&rsquo;.  Note also that if you alter it, any
 output <em>must</em> be to standard error, as standard output may be a file
 being received.  The form of the progress meter, or whether it is used at
 all, can be configured without altering the function, as described in the
@@ -825,27 +816,26 @@ next section.
 </p>
 <a name="index-zffcache"></a>
 </dd>
-<dt> <tt>zffcache</tt></dt>
+<dt><tt>zffcache</tt></dt>
 <dd><p>This is used to implement caching of files in the current directory for
 each session separately.  It is used by <tt>zfget_match</tt> and <tt>zfrglob</tt>.
 </p>
 </dd>
 </dl>
 
-<hr size="6">
+<hr>
 <a name="Miscellaneous-Features"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Other-functions" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Configuration-2" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Other-functions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -855,20 +845,19 @@ each session separately.  It is used by <tt>zfget_match</tt> and <tt>zfrglob</tt
 <h2 class="section">25.4 Miscellaneous Features</h2>
 
 
-<hr size="6">
-<a name="Configuration-2"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Miscellaneous-Features" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Remote-globbing" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<hr>
+<a name="Configuration"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Miscellaneous-Features" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Miscellaneous-Features" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Remote-globbing" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -881,7 +870,7 @@ each session separately.  It is used by <tt>zfget_match</tt> and <tt>zfrglob</tt
 <p>Various styles are available using the standard shell style mechanism,
 described in
 <a href="Zsh-Modules.html#The-zsh_002fzutil-Module">The zsh/zutil Module</a>. Briefly, the
-command &lsquo;<tt>zstyle &rsquo;:zftp:*&rsquo;</tt> <var>style</var> <var>value</var> ...&rsquo;.
+command &lsquo;<tt>zstyle ':zftp:*'</tt> <var>style</var> <var>value</var> ...&rsquo;.
 defines the <var>style</var> to have value <var>value</var>; more than one value may be
 given, although that is not useful in the cases described here.  These
 values will then be used throughout the zftp function system.  For more
@@ -900,7 +889,7 @@ called from.  The following styles are understood:
 <dl compact="compact">
 <dd><a name="index-progress_002c-zftp-style"></a>
 </dd>
-<dt> <tt>progress</tt></dt>
+<dt><tt>progress</tt></dt>
 <dd><p>Controls the way that <tt>zftp_progress</tt> reports on the progress of a
 transfer.  If empty, unset, or &lsquo;<tt>none</tt>&rsquo;, no progress report is made; if
 &lsquo;<tt>bar</tt>&rsquo; a growing bar of inverse video is shown; if &lsquo;<tt>percent</tt>&rsquo; (or any
@@ -916,7 +905,7 @@ bytes transferred so far.
 </p>
 <a name="index-update_002c-zftp-style"></a>
 </dd>
-<dt> <tt>update</tt></dt>
+<dt><tt>update</tt></dt>
 <dd><p>Specifies the minimum time interval between updates of the progress meter
 in seconds.  No update is made unless new data has been received, so the
 actual time interval is limited only by <tt>$ZFTP_TIMEOUT</tt>.
@@ -925,14 +914,14 @@ actual time interval is limited only by <tt>$ZFTP_TIMEOUT</tt>.
 </p>
 <a name="index-remote_002dglob_002c-zftp-style"></a>
 </dd>
-<dt> <tt>remote-glob</tt></dt>
-<dd><p>If set to &lsquo;1&rsquo;, &lsquo;yes&rsquo; or &lsquo;true&rsquo;, filename generation (globbing) is
+<dt><tt>remote-glob</tt></dt>
+<dd><p>If set to &lsquo;<tt>1</tt>&rsquo;, &lsquo;<tt>yes</tt>&rsquo; or &lsquo;<tt>true</tt>&rsquo;, filename generation (globbing) is
 performed on the remote machine instead of by zsh itself; see below.
 </p>
 <a name="index-titlebar_002c-zftp-style"></a>
 </dd>
-<dt> <tt>titlebar</tt></dt>
-<dd><p>If set to &lsquo;1&rsquo;, &lsquo;yes&rsquo; or &lsquo;true&rsquo;, <tt>zftp_chpwd</tt> will put the remote host and
+<dt><tt>titlebar</tt></dt>
+<dd><p>If set to &lsquo;<tt>1</tt>&rsquo;, &lsquo;<tt>yes</tt>&rsquo; or &lsquo;<tt>true</tt>&rsquo;, <tt>zftp_chpwd</tt> will put the remote host and
 remote directory into the titlebar of terminal emulators such as xterm or
 sun-cmd that allow this.
 </p>
@@ -940,8 +929,8 @@ sun-cmd that allow this.
 </p>
 <a name="index-chpwd_002c-zftp-style"></a>
 </dd>
-<dt> <tt>chpwd</tt></dt>
-<dd><p>If set to &lsquo;1&rsquo; &lsquo;yes&rsquo; or &lsquo;true&rsquo;, <tt>zftp_chpwd</tt> will call the function
+<dt><tt>chpwd</tt></dt>
+<dd><p>If set to &lsquo;<tt>1</tt>&rsquo; &lsquo;<tt>yes</tt>&rsquo; or &lsquo;<tt>true</tt>&rsquo;, <tt>zftp_chpwd</tt> will call the function
 <tt>chpwd</tt> when a connection is closed.  This is useful if the remote host
 details were put into the terminal title bar by <tt>zftp_chpwd</tt> and your
 usual <tt>chpwd</tt> also modifies the title bar.
@@ -958,20 +947,19 @@ values used by the function system.  This should not be modified or
 overwritten.
 </p>
 
-<hr size="6">
+<hr>
 <a name="Remote-globbing"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Configuration-2" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Automatic-and-temporary-reopening" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Miscellaneous-Features" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Automatic-and-temporary-reopening" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -1001,20 +989,19 @@ may in some cases be faster, as it avoids retrieving the entire list of
 directory contents.
 </p>
 
-<hr size="6">
+<hr>
 <a name="Automatic-and-temporary-reopening"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Remote-globbing" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Completion-3" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Remote-globbing" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Miscellaneous-Features" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-4" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -1048,10 +1035,11 @@ never close the connection automatically.
 <p>Information about the previous connection is given by the <tt>zfstat</tt>
 function.  So, for example, if that reports:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">Session:        default
+<div class="example">
+<pre class="example">Session:        default
 Not connected.
 Last session:   ftp.bar.com:/pub/textfiles
-</pre></td></tr></table>
+</pre></div>
 
 <p>then the command <tt>zfget file.txt</tt> will attempt to reopen a connection to
 <tt>ftp.bar.com</tt>, retrieve the file <tt>/pub/textfiles/file.txt</tt>, and
@@ -1063,20 +1051,19 @@ previous session, the connection for that session is the one which will be
 reopened.
 </p>
 
-<hr size="6">
-<a name="Completion-3"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Automatic-and-temporary-reopening" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<hr>
+<a name="Completion-4"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Automatic-and-temporary-reopening" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Miscellaneous-Features" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -1089,8 +1076,8 @@ is supported.  The older, <tt>compctl</tt>-style completion is defined when
 provided in the function <tt>Completion/Zsh/Command/_zftp</tt>, which should be
 installed with the other functions of the completion system and hence
 should automatically be available.
-</p><hr size="6">
-<table cellpadding="1" cellspacing="1" border="0">
+</p><hr>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="User-Contributions.html#User-Contributions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1098,17 +1085,15 @@ should automatically be available.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p>
- <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>October 11, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
- </font>
- <br>
-<font size="-1">Zsh version 5.0.7, released on October 7, 2014.</font>
-</p>
+<p><font size="-1">
+  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+</font></p>
+
+<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
 </body>
 </html>

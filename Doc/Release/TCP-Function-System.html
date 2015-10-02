@@ -1,83 +1,83 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on October 11, 2014 by texi2html 1.82
-texi2html was written by: 
-            Lionel Cons <Lionel.Cons@cern.ch> (original author)
-            Karl Berry  <karl@freefriends.org>
-            Olaf Bachmann <obachman@mathematik.uni-kl.de>
-            and many others.
-Maintained by: Many creative people.
-Send bugs and suggestions to <texi2html-bug@nongnu.org>
--->
+<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 24. TCP Function System</title>
+<title>zsh: 24 TCP Function System</title>
 
-<meta name="description" content="zsh: 24. TCP Function System">
-<meta name="keywords" content="zsh: 24. TCP Function System">
+<meta name="description" content="zsh: 24 TCP Function System">
+<meta name="keywords" content="zsh: 24 TCP Function System">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 1.82">
+<meta name="Generator" content="texi2any">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
-pre.display {font-family: serif}
-pre.format {font-family: serif}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: serif; font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.roman {font-family:serif; font-weight:normal;}
-span.sansserif {font-family:sans-serif; font-weight:normal;}
-ul.toc {list-style: none}
+span.nocodebreak {white-space: nowrap}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: serif; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
 -->
 </style>
 
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-
+<body lang="en">
 <a name="TCP-Function-System"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Bugs" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-2" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Bugs" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-7" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
 <a name="TCP-Function-System-1"></a>
-<h1 class="chapter">24. TCP Function System</h1>
+<h1 class="chapter">24 TCP Function System</h1>
 <a name="index-TCP-function-system"></a>
 <a name="index-ztcp_002c-function-system-based-on"></a>
 
-<hr size="6">
-<a name="Description-2"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#TCP-Function-System" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#TCP-Functions" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<hr>
+<a name="Description-7"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#TCP-Function-System" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#TCP-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#TCP-Functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -86,16 +86,14 @@ ul.toc {list-style: none}
 
 <p>A module <tt>zsh/net/tcp</tt> is provided to provide network I/O over
 TCP/IP from within the shell; see its description in
-<a href="Zsh-Modules.html#Zsh-Modules">Zsh Modules</a>
-.  This manual page describes a function suite based on the module.  
+<a href="Zsh-Modules.html#Zsh-Modules">Zsh Modules</a>.  This manual page describes a function suite based on the module.  
 If the module is installed, the functions are usually installed at the
 same time, in which case they will be available for
 autoloading in the default function search path.  In addition to the
 <tt>zsh/net/tcp</tt> module, the <tt>zsh/zselect</tt> module is used to implement
 timeouts on read operations.  For troubleshooting tips, consult the
 corresponding advice for the <tt>zftp</tt> functions described in
-<a href="Zftp-Function-System.html#Zftp-Function-System">Zftp Function System</a>
-.
+<a href="Zftp-Function-System.html#Zftp-Function-System">Zftp Function System</a>.
 </p>
 <p>There are functions corresponding to the basic I/O operations open, close,
 read and send, named <tt>tcp_open</tt> etc., as well as a function
@@ -122,20 +120,19 @@ functions.
 </td></tr>
 </table>
 
-<hr size="6">
+<hr>
 <a name="TCP-Functions"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Description-2" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Basic-I_002fO" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-7" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#TCP-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Basic-I_002fO" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -145,20 +142,19 @@ functions.
 <h2 class="section">24.2 TCP User Functions</h2>
 
 
-<hr size="6">
+<hr>
 <a name="Basic-I_002fO"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#TCP-Functions" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Session-Management" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#TCP-Functions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#TCP-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Session-Management" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -168,9 +164,9 @@ functions.
 <dl compact="compact">
 <dd><a name="index-tcp_005fopen"></a>
 </dd>
-<dt> <tt>tcp_open [-qz]</tt> <var>host port</var> <tt>[</tt> <var>sess</var> <tt>]</tt></dt>
-<dt> <tt>tcp_open [-qz] [ -s</tt> <var>sess</var> <tt>| -l</tt> <var>sess</var><tt>,... ] ... </tt></dt>
-<dt> <tt>tcp_open [-qz] [-a</tt> <var>fd</var> <tt>| -f</tt> <var>fd</var> <tt>] [</tt> <var>sess</var> <tt>]</tt></dt>
+<dt><tt>tcp_open</tt> [ <tt>-qz</tt> ] <var>host port</var> [ <var>sess</var> ]</dt>
+<dt><tt>tcp_open</tt> [ <tt>-qz</tt> ] [ <tt>-s</tt> <var>sess</var> | <tt>-l</tt> <var>sess</var>[<tt>,</tt>...] ] ...</dt>
+<dt><tt>tcp_open</tt> [ <tt>-qz</tt> ] [ <tt>-a</tt> <var>fd</var> | <tt>-f</tt> <var>fd</var> ] [ <var>sess</var> ]</dt>
 <dd><p>Open a new session.  In the first and simplest form, open a TCP connection
 to host <var>host</var> at port <var>port</var>; numeric and symbolic forms are
 understood for both.
@@ -217,7 +213,7 @@ will not print informational messages, although it will in any case exit
 with an appropriate status.
 </p>
 <p>If the line editor (zle) is in use, which is typically the case if the
-shell is interactive, <tt>tcp_open</tt> installs a handler inside <tt>zle</tt> which
+shell is interactive, <tt>tcp_open</tt> installs a handler inside zle which
 will check for new data at the same time as it checks for keyboard input.
 This is convenient as the shell consumes no CPU time while waiting; the
 test is performed by the operating system.  Giving the option <tt>-z</tt> to
@@ -239,7 +235,7 @@ is opened.  See the description below.
 </p>
 <a name="index-tcp_005fclose"></a>
 </dd>
-<dt> <tt>tcp_close [-qn] [ -a | -l</tt> <var>sess</var><tt>,... |</tt> <var>sess</var> <tt>... ]</tt></dt>
+<dt><tt>tcp_close</tt> [ <tt>-qn</tt> ] [ <tt>-a</tt> | <tt>-l</tt> <var>sess</var>[<tt>,</tt>...] | <var>sess</var> ... ]</dt>
 <dd><p>Close the named sessions, or the current session if none is given,
 or all open sessions if <tt>-a</tt> is given.  The options <tt>-l</tt> and <tt>-s</tt> are
 both handled for consistency with <tt>tcp_open</tt>, although the latter is
@@ -258,9 +254,10 @@ session.
 <p>If the option <tt>-q</tt> is given, no informational messages will be printed.
 </p>
 <a name="index-tcp_005fread"></a>
+
 </dd>
-<dt> <tt>tcp_read [-bdq] [ -t</tt> <var>TO</var> <tt>] [ -T</tt> <var>TO</var> <tt>]</tt></dt>
-<dt>     <tt>[ -a | -u</tt> <var>fd</var> <tt>... | -l</tt> <var>sess</var><tt>,... | -s</tt> <var>sess</var> <tt>...]</tt></dt>
+<dt><tt>tcp_read </tt>[ <tt>-bdq</tt> ] [ <tt>-t</tt> <var>TO</var> ] [ <tt>-T</tt> <var>TO</var> ]</dt>
+<dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[ <tt>-a</tt> | <tt>-u</tt> <var>fd</var>[<tt>,</tt>...] | <tt>-l</tt> <var>sess</var>[<tt>,</tt>...] | <tt>-s</tt> <var>sess</var> ... ]</dt>
 <dd><p>Perform a read operation on the current session, or on a list of
 sessions if any are given with <tt>-u</tt>, <tt>-l</tt> or <tt>-s</tt>, or all open
 sessions if the option <tt>-a</tt> is given.  Any of the <tt>-u</tt>, <tt>-l</tt> or
@@ -307,8 +304,8 @@ non-zero return status indicates some error condition.
 </p>
 <a name="index-tcp_005fsend"></a>
 </dd>
-<dt> <tt>tcp_send [-cnq] [ -s</tt> <var>sess</var> <tt>| -l</tt> <var>sess</var><tt>,... ]</tt> <var>data</var> <tt>...</tt></dt>
-<dt> <tt>tcp_send [-cnq] -a</tt> <var>data</var> <tt>...</tt></dt>
+<dt><tt>tcp_send</tt> [ <tt>-cnq</tt> ] [ <tt>-s</tt> <var>sess</var> | <tt>-l</tt> <var>sess</var>[<tt>,</tt>...] ] <var>data</var> ...</dt>
+<dt><tt>tcp_send</tt> [ <tt>-cnq</tt> ] <tt>-a</tt> <var>data</var> ...</dt>
 <dd><p>Send the supplied data strings to all the specified sessions in turn.  The
 underlying operation differs little from a &lsquo;<tt>print -r</tt>&rsquo; to the session&rsquo;s
 file descriptor, although it attempts to prevent the shell from dying owing
@@ -336,20 +333,19 @@ in the manner of <tt>$TCP_PROMPT</tt>.
 </dl>
 
 
-<hr size="6">
+<hr>
 <a name="Session-Management"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Basic-I_002fO" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Advanced-I_002fO" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Basic-I_002fO" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#TCP-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Advanced-I_002fO" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -359,9 +355,9 @@ in the manner of <tt>$TCP_PROMPT</tt>.
 <dl compact="compact">
 <dd><a name="index-tcp_005falias"></a>
 </dd>
-<dt> <tt>tcp_alias [-q]</tt> <var>alias</var><tt>=</tt><var>sess</var> <tt>...</tt></dt>
-<dt> <tt>tcp_alias [-q] [</tt> <var>alias</var> <tt>] ...</tt></dt>
-<dt> <tt>tcp_alias -d [-q]</tt> <var>alias</var> <tt>...</tt></dt>
+<dt><tt>tcp_alias</tt> [ <tt>-q</tt> ] <var>alias</var><tt>=</tt><var>sess</var> ...</dt>
+<dt><tt>tcp_alias</tt> [ <tt>-q</tt> ] [ <var>alias</var> ... ]</dt>
+<dt><tt>tcp_alias</tt> <tt>-d</tt> [ <tt>-q</tt> ] <var>alias</var> ...</dt>
 <dd><p>This function is not particularly well tested.
 </p>
 <p>The first form creates an alias for a session name; <var>alias</var> can then be
@@ -378,14 +374,14 @@ messages.
 </p>
 <a name="index-tcp_005flog"></a>
 </dd>
-<dt> <tt>tcp_log [-asc] [ -n | -N ] [</tt> <var>logfile</var> <tt>]</tt></dt>
+<dt><tt>tcp_log</tt> [ <tt>-asc</tt> ] [ <tt>-n</tt> | <tt>-N</tt> ] [ <var>logfile</var> ]</dt>
 <dd><p>With an argument <var>logfile</var>, all future input from <tt>tcp_read</tt> will be
 logged to the named file.  Unless <tt>-a</tt> (append) is given, this file will
 first be truncated or created empty.  With no arguments, show the current
 status of logging.
 </p>
 <p>With the option <tt>-s</tt>, per-session logging is enabled.  Input from
-<tt>tcp_read</tt> is output to the file <var>logfile</var>.<var>sess</var>.  As the
+<tt>tcp_read</tt> is output to the file <var>logfile</var><tt>.</tt><var>sess</var>.  As the
 session is automatically discriminated by the filename, the contents are
 raw (no <tt>$TCP_PROMPT</tt>).  The option  <tt>-a</tt> applies as above.
 Per-session logging and logging of all data in one file are not mutually
@@ -402,12 +398,12 @@ off all output by <tt>tcp_read</tt>.
 </p>
 <a name="index-tcp_005frename"></a>
 </dd>
-<dt> <tt>tcp_rename</tt> <var>old</var> <var>new</var></dt>
+<dt><tt>tcp_rename</tt> <var>old</var> <var>new</var></dt>
 <dd><p>Rename session <var>old</var> to session <var>new</var>.  The old name becomes invalid.
 </p>
 <a name="index-tcp_005fsess"></a>
 </dd>
-<dt> <tt>tcp_sess [</tt> <var>sess</var> <tt>[</tt> <var>command</var>  <tt>... ] ]</tt></dt>
+<dt><tt>tcp_sess</tt> [ <var>sess</var> [ <var>command</var> [ <var>arg</var> ... ] ] ]</dt>
 <dd><p>With no arguments, list all the open sessions and associated file
 descriptors.  The current session is marked with a star.  For use in
 functions, direct access to the parameters <tt>$tcp_by_name</tt>, <tt>$tcp_by_fd</tt>
@@ -417,29 +413,28 @@ and <tt>$TCP_SESS</tt> is probably more convenient; see below.
 This is equivalent to changing <tt>$TCP_SESS</tt> directly.
 </p>
 <p>With additional arguments, temporarily set the current session while
-executing the string <tt>command ...</tt>.  The first argument is re-evaluated
-so as to expand aliases etc., but the remaining arguments are passed
-through as the appear to <tt>tcp_sess</tt>.  The original session is restored
+executing &lsquo;<var>command</var> <var>arg</var> ...&rsquo;.  <var>command</var> is re-evaluated
+so as to expand aliases etc., but the remaining <var>arg</var>s are passed
+through as that appear to <tt>tcp_sess</tt>.  The original session is restored
 when <tt>tcp_sess</tt> exits.
 </p>
 </dd>
 </dl>
 
 
-<hr size="6">
+<hr>
 <a name="Advanced-I_002fO"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Session-Management" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#g_t_0060One_002dshot_0027-file-transfer" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Session-Management" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#TCP-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_0060One_002dshot_0027-file-transfer" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -449,7 +444,7 @@ when <tt>tcp_sess</tt> exits.
 <dl compact="compact">
 <dd><a name="index-tcp_005fcommand"></a>
 </dd>
-<dt> <tt>tcp_command</tt> <var>send-options</var> <tt>...</tt> <var>send-arguments</var> <tt>...</tt></dt>
+<dt><tt>tcp_command</tt> <var>send-option</var> ... <var>send-argument</var> ...</dt>
 <dd><p>This is a convenient front-end to <tt>tcp_send</tt>.  All arguments are passed
 to <tt>tcp_send</tt>, then the function pauses waiting for data.  While data is
 arriving at least every <tt>$TCP_TIMEOUT</tt> (default 0.3) seconds, data is
@@ -462,9 +457,10 @@ programme or function it is generally better to handle reading data by a
 more explicit method.
 </p>
 <a name="index-tcp_005fexpect"></a>
+
 </dd>
-<dt> <tt>tcp_expect [ -q ] [ -p </tt> <var>var</var> <tt> | -P </tt> <var>var</var> <tt>] [ -t </tt> <var>to</var> <tt>| -T</tt> <var>TO</var><tt>]</tt></dt>
-<dt> <tt>    [ -a | -s</tt> <var>sess</var> <tt>... | -l</tt> <var>sess</var><tt>,... ]</tt> <var>pattern</var> ...</dt>
+<dt><tt>tcp_expect </tt>[ <tt>-q</tt> ] [ <tt>-p</tt> <var>var</var> | <tt>-P</tt> <var>var</var> ] [ <tt>-t</tt> <var>TO</var> | <tt>-T</tt> <var>TO</var> ]</dt>
+<dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[ <tt>-a</tt> | <tt>-s</tt> <var>sess</var> | <tt>-l</tt> <var>sess</var>[<tt>,</tt>...] ] <var>pattern</var> ...</dt>
 <dd><p>Wait for input matching any of the given <var>pattern</var>s from any of the
 specified sessions.  Input is ignored until an input line matches one of
 the given patterns; at this point status zero is returned, the matching
@@ -517,7 +513,7 @@ call.
 </p>
 <a name="index-tcp_005fproxy"></a>
 </dd>
-<dt> <tt>tcp_proxy</tt></dt>
+<dt><tt>tcp_proxy</tt></dt>
 <dd><p>This is a simple-minded function to accept a TCP connection and execute a
 command with I/O redirected to the connection.  Extreme caution should be
 taken as there is no security whatsoever and this can leave your computer
@@ -537,8 +533,8 @@ connections.  It continues to accept new connections until interrupted.
 </p>
 <a name="index-tcp_005fspam"></a>
 </dd>
-<dt> <tt>tcp_spam [-ertv] [ -a | -s </tt> <var>sess</var> <tt>| -l</tt> <var>sess</var><tt>,... ]</tt> <var>cmd</var> <tt>...</tt></dt>
-<dd><p>Execute &lsquo;<var>cmd</var> <tt>...</tt>&rsquo; for each session in turn.  Note this executes
+<dt><tt>tcp_spam</tt> [ <tt>-ertv</tt> ] [ <tt>-a</tt> | <tt>-s</tt> <var>sess</var> | <tt>-l</tt> <var>sess</var>[<tt>,</tt>...] ] <var>cmd</var> [ <var>arg</var> ... ]</dt>
+<dd><p>Execute &lsquo;<var>cmd</var> [ <var>arg</var> ... ]&rsquo; for each session in turn.  Note this executes
 the command and arguments; it does not send the command line as data
 unless the <tt>-t</tt> (transmit) option is given.
 </p>
@@ -555,20 +551,20 @@ chosen implicitly are spammed in alphabetic order; sessions given by the
 given.  The <tt>-r</tt> flag reverses the order however it was arrived it.
 </p>
 <p>The <tt>-v</tt> flag specifies that a <tt>$TCP_PROMPT</tt> will be output before each
-session.  This is output after any modification to TCP_SESS by the
+session.  This is output after any modification to <tt>TCP_SESS</tt> by the
 user-defined <tt>tcp_on_spam</tt> function described below.  (Obviously that
 function is able to generate its own output.)
 </p>
-<p>If the option <tt>-e</tt> is present, the line given as <var>cmd ...</var> is executed
+<p>If the option <tt>-e</tt> is present, the line given as &lsquo;<var>cmd</var> [ <var>arg</var> ... ]&rsquo; is executed
 using <tt>eval</tt>, otherwise it is executed without any further processing.
 </p>
 <a name="index-tcp_005ftalk"></a>
 </dd>
-<dt> <tt>tcp_talk</tt></dt>
+<dt><tt>tcp_talk</tt></dt>
 <dd><p>This is a fairly simple-minded attempt to force input to the line editor to
-go straight to the default TCP_SESSION.
+go straight to the default <tt>TCP_SESS</tt>.
 </p>
-<p>An escape string, <tt>$TCP_TALK_ESCAPE</tt>, default &lsquo;:&rsquo;, is used to allow
+<p>An escape string, <tt>$TCP_TALK_ESCAPE</tt>, default &lsquo;<tt>:</tt>&rsquo;, is used to allow
 access to normal shell operation.  If it is on its own at the start of the
 line, or followed only by whitespace, the line editor returns to normal
 operation.  Otherwise, the string and any following whitespace are skipped
@@ -583,7 +579,7 @@ One simple approach is to alias some special character (such as &lsquo;<tt>%</tt
 </p>
 <a name="index-tcp_005fwait"></a>
 </dd>
-<dt> <tt>tcp_wait</tt></dt>
+<dt><tt>tcp_wait</tt></dt>
 <dd><p>The sole argument is an integer or floating point number which gives the
 seconds to delay.  The shell will do nothing for that period except wait
 for input on all TCP sessions by calling <tt>tcp_read -a</tt>.  This is similar
@@ -594,28 +590,27 @@ installed.
 </dl>
 
 
-<hr size="6">
+<hr>
 <a name="g_t_0060One_002dshot_0027-file-transfer"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Advanced-I_002fO" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#TCP-User_002ddefined-Functions" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Advanced-I_002fO" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#TCP-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#TCP-User_002ddefined-Functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">24.2.4 &lsquo;One-shot&rsquo; file transfer</h3>
 <dl compact="compact">
-<dt> <tt>tcp_point</tt> <var>port</var></dt>
-<dt> <tt>tcp_shoot</tt> <var>host</var> <var>port</var></dt>
+<dt><tt>tcp_point</tt> <var>port</var></dt>
+<dt><tt>tcp_shoot</tt> <var>host</var> <var>port</var></dt>
 <dd><p>This pair of functions provide a simple way to transfer a file between
 two hosts within the shell.  Note, however, that bulk data transfer is
 currently done using <tt>cat</tt>.  <tt>tcp_point</tt> reads any data arriving at
@@ -627,13 +622,15 @@ random four-digit number above 1024 until one works.
 <p>To transfer a file from host <tt>woodcock</tt> to host <tt>springes</tt>, on
 <tt>springes</tt>:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">tcp_point 8091 &gt;output_file
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">tcp_point 8091 &gt;output_file
+</pre></div>
 
 <p>and on <tt>woodcock</tt>:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">tcp_shoot springes 8091 &lt;input_file
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">tcp_shoot springes 8091 &lt;input_file
+</pre></div>
 
 <p>As these two functions do not require <tt>tcp_open</tt> to set up a TCP
 connection first, they may need to be autoloaded separately.
@@ -642,20 +639,19 @@ connection first, they may need to be autoloaded separately.
 </dl>
 
 
-<hr size="6">
+<hr>
 <a name="TCP-User_002ddefined-Functions"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#g_t_0060One_002dshot_0027-file-transfer" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#TCP-Utility-Functions" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_0060One_002dshot_0027-file-transfer" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#TCP-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#TCP-Utility-Functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -674,13 +670,13 @@ that the various parameters will reflect the new state.
 <dl compact="compact">
 <dd><a name="index-tcp_005fon_005falias"></a>
 </dd>
-<dt> <tt>tcp_on_alias</tt> <var>alias</var> <var>fd</var></dt>
+<dt><tt>tcp_on_alias</tt> <var>alias</var> <var>fd</var></dt>
 <dd><p>When an alias is defined, this function will be called with two arguments:
 the name of the alias, and the file descriptor of the corresponding session.
 </p>
 <a name="index-tcp_005fon_005fawol"></a>
 </dd>
-<dt> <tt>tcp_on_awol</tt> <var>sess</var> <var>fd</var></dt>
+<dt><tt>tcp_on_awol</tt> <var>sess</var> <var>fd</var></dt>
 <dd><p>If the function <tt>tcp_fd_handler</tt> is handling input from the line
 editor and detects that the file descriptor is no longer reusable,
 by default it removes it from the list of file descriptors handled
@@ -701,14 +697,14 @@ variation.  It has no pre-existing technical meaning known to the author.)
 </p>
 <a name="index-tcp_005fon_005fclose"></a>
 </dd>
-<dt> <tt>tcp_on_close</tt> <var>sess</var> <var>fd</var></dt>
+<dt><tt>tcp_on_close</tt> <var>sess</var> <var>fd</var></dt>
 <dd><p>This is called with the name of a session being closed and the file
 descriptor which corresponded to that session.  Both will be invalid by
 the time the function is called.
 </p>
 <a name="index-tcp_005fon_005fopen"></a>
 </dd>
-<dt> <tt>tcp_on_open</tt> <var>sess</var> <var>fd</var></dt>
+<dt><tt>tcp_on_open</tt> <var>sess</var> <var>fd</var></dt>
 <dd><p>This is called after a new session has been defined with the session name
 and file descriptor as arguments.  If it returns a non-zero status,
 opening the session is assumed to fail and the session is closed
@@ -717,13 +713,13 @@ remaining sessions given on the command line.
 </p>
 <a name="index-tcp_005fon_005frename"></a>
 </dd>
-<dt> <tt>tcp_on_rename</tt> <var>oldsess</var> <var>fd</var> <var>newsess</var></dt>
+<dt><tt>tcp_on_rename</tt> <var>oldsess</var> <var>fd</var> <var>newsess</var></dt>
 <dd><p>This is called after a session has been renamed with the three arguments
 old session name, file descriptor, new session name.
 </p>
 <a name="index-tcp_005fon_005fspam"></a>
 </dd>
-<dt> <tt>tcp_on_spam</tt> <var>sess</var> <var>command</var> <tt>...</tt></dt>
+<dt><tt>tcp_on_spam</tt> <var>sess</var> <var>command ...</var></dt>
 <dd><p>This is called once for each session spammed, just <em>before</em> a command is
 executed for a session by <tt>tcp_spam</tt>.  The arguments are the session name
 followed by the command list to be executed.  If <tt>tcp_spam</tt> was called
@@ -741,7 +737,7 @@ option to <tt>tcp_spam</tt>.
 </p>
 <a name="index-tcp_005fon_005funalias"></a>
 </dd>
-<dt> <tt>tcp_on_unalias</tt> <var>alias</var> <var>fd</var></dt>
+<dt><tt>tcp_on_unalias</tt> <var>alias</var> <var>fd</var></dt>
 <dd><p>This is called with the name of an alias and the corresponding session&rsquo;s
 file descriptor after an alias has been deleted.
 </p>
@@ -749,20 +745,19 @@ file descriptor after an alias has been deleted.
 </dl>
 
 
-<hr size="6">
+<hr>
 <a name="TCP-Utility-Functions"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#TCP-User_002ddefined-Functions" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#TCP-Parameters" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#TCP-User_002ddefined-Functions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#TCP-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#TCP-Parameters" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -775,7 +770,7 @@ if ever need to be called directly.
 <dl compact="compact">
 <dd><a name="index-tcp_005ffd_005fhandler"></a>
 </dd>
-<dt> <tt>tcp_fd_handler</tt></dt>
+<dt><tt>tcp_fd_handler</tt></dt>
 <dd><p>This is the function installed by <tt>tcp_open</tt> for handling input from
 within the line editor, if that is required.  It is in the format
 documented for the builtin &lsquo;<tt>zle -F</tt>&rsquo; in
@@ -789,7 +784,7 @@ idle at the editor prompt.
 </p>
 <a name="index-tcp_005foutput"></a>
 </dd>
-<dt> <tt>tcp_output [ -q ] -P</tt> <var>prompt</var> <tt>-F</tt> <var>fd</var> <tt>-S</tt> <var>sess</var></dt>
+<dt><tt>tcp_output</tt> [ <tt>-q</tt> ] <tt>-P</tt> <var>prompt</var> <tt>-F</tt> <var>fd</var> <tt>-S</tt> <var>sess</var></dt>
 <dd><p>This function is used for both logging and handling output to standard
 output, from within <tt>tcp_read</tt> and (if <tt>$TCP_OUTPUT</tt> is set)
 <tt>tcp_send</tt>.
@@ -797,21 +792,21 @@ output, from within <tt>tcp_read</tt> and (if <tt>$TCP_OUTPUT</tt> is set)
 <p>The <var>prompt</var> to use is specified by <tt>-P</tt>; the default is the empty
 string.  It can contain:
 </p><dl compact="compact">
-<dt> <tt>%c</tt></dt>
+<dt><tt>%c</tt></dt>
 <dd><p>Expands to 1 if the session is the current session, otherwise 0.  Used
 with ternary expressions such as &lsquo;<tt>%(c.-.+)</tt>&rsquo; to
 output &lsquo;<tt>+</tt>&rsquo; for the current session and &lsquo;<tt>-</tt>&rsquo; otherwise.
 </p>
 </dd>
-<dt> <tt>%f</tt></dt>
+<dt><tt>%f</tt></dt>
 <dd><p>Replaced by the session&rsquo;s file descriptor.
 </p>
 </dd>
-<dt> <tt>%s</tt></dt>
+<dt><tt>%s</tt></dt>
 <dd><p>Replaced by the session name.
 </p>
 </dd>
-<dt> <tt>%%</tt></dt>
+<dt><tt>%%</tt></dt>
 <dd><p>Replaced by a single &lsquo;<tt>%</tt>&rsquo;.
 </p>
 </dd>
@@ -826,20 +821,19 @@ descriptor for possible replacement in the prompt.
 </dd>
 </dl>
 
-<hr size="6">
+<hr>
 <a name="TCP-Parameters"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#TCP-Utility-Functions" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#TCP-User_002ddefined-Parameters" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#TCP-Utility-Functions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#TCP-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#TCP-User_002ddefined-Parameters" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -866,13 +860,13 @@ function.
 <dl compact="compact">
 <dd><a name="index-tcp_005fexpect_005flines"></a>
 </dd>
-<dt> <tt>tcp_expect_lines</tt></dt>
+<dt><tt>tcp_expect_lines</tt></dt>
 <dd><p>Array.  The set of lines read during the last call to <tt>tcp_expect</tt>,
 including the last (<tt>$TCP_LINE</tt>).
 </p>
 <a name="index-tcp_005ffilter"></a>
 </dd>
-<dt> <tt>tcp_filter</tt></dt>
+<dt><tt>tcp_filter</tt></dt>
 <dd><p>Array. May be set directly.  A set of extended globbing patterns which,
 if matched in <tt>tcp_output</tt>, will cause the line not to be printed to
 standard output.  The patterns should be defined as described for the
@@ -880,31 +874,31 @@ arguments to <tt>tcp_expect</tt>.  Output of line to log files is not affected.
 </p>
 <a name="index-TCP_005fHANDLER_005fACTIVE"></a>
 </dd>
-<dt> <tt>TCP_HANDLER_ACTIVE</tt></dt>
+<dt><tt>TCP_HANDLER_ACTIVE</tt></dt>
 <dd><p>Scalar.  Set to 1 within <tt>tcp_fd_handler</tt> to indicate to functions
 called recursively that they have been called during an editor session.
 Otherwise unset.
 </p>
 <a name="index-TCP_005fLINE"></a>
 </dd>
-<dt> <tt>TCP_LINE</tt></dt>
+<dt><tt>TCP_LINE</tt></dt>
 <dd><p>The last line read by <tt>tcp_read</tt>, and hence also <tt>tcp_expect</tt>.
 </p>
 <a name="index-TCP_005fLINE_005fFD"></a>
 </dd>
-<dt> <tt>TCP_LINE_FD</tt></dt>
+<dt><tt>TCP_LINE_FD</tt></dt>
 <dd><p>The file descriptor from which <tt>$TCP_LINE</tt> was read.
 <tt>${tcp_by_fd[$TCP_LINE_FD]}</tt> will give the corresponding session name.
 </p>
 <a name="index-tcp_005flines"></a>
 </dd>
-<dt> <tt>tcp_lines</tt></dt>
+<dt><tt>tcp_lines</tt></dt>
 <dd><p>Array. The set of lines read during the last call to <tt>tcp_read</tt>,
 including the last (<tt>$TCP_LINE</tt>).
 </p>
 <a name="index-TCP_005fLOG"></a>
 </dd>
-<dt> <tt>TCP_LOG</tt></dt>
+<dt><tt>TCP_LOG</tt></dt>
 <dd><p>May be set directly, although it is also controlled by <tt>tcp_log</tt>.
 The name of a file to which output from all sessions will be sent.
 The output is proceeded by the usual <tt>$TCP_PROMPT</tt>.  If it is not an
@@ -912,7 +906,7 @@ absolute path name, it will follow the user&rsquo;s current directory.
 </p>
 <a name="index-TCP_005fLOG_005fSESS"></a>
 </dd>
-<dt> <tt>TCP_LOG_SESS</tt></dt>
+<dt><tt>TCP_LOG_SESS</tt></dt>
 <dd><p>May be set directly, although it is also controlled by <tt>tcp_log</tt>.
 The prefix for a set of files to which output from each session separately
 will be sent; the full filename is <tt>${TCP_LOG_SESS}.</tt><var>sess</var>.
@@ -921,12 +915,12 @@ path name, it will follow the user&rsquo;s current directory.
 </p>
 <a name="index-tcp_005fno_005fspam_005flist"></a>
 </dd>
-<dt> <tt>tcp_no_spam_list</tt></dt>
+<dt><tt>tcp_no_spam_list</tt></dt>
 <dd><p>Array.  May be set directly.  See <tt>tcp_spam</tt> for how this is used.
 </p>
 <a name="index-TCP_005fOUTPUT"></a>
 </dd>
-<dt> <tt>TCP_OUTPUT</tt></dt>
+<dt><tt>TCP_OUTPUT</tt></dt>
 <dd><p>May be set directly.  If a non-empty string, any data sent to a session by
 <tt>tcp_send</tt> will be logged.  This parameter gives the prompt to be used
 in a file specified by <tt>$TCP_LOG</tt> but not in a file generated from
@@ -935,7 +929,7 @@ in a file specified by <tt>$TCP_LOG</tt> but not in a file generated from
 </p>
 <a name="index-TCP_005fPROMPT"></a>
 </dd>
-<dt> <tt>TCP_PROMPT</tt></dt>
+<dt><tt>TCP_PROMPT</tt></dt>
 <dd><p>May be set directly.  Used as the prefix for data read by <tt>tcp_read</tt>
 which is printed to standard output or to the log file given by
 <tt>$TCP_LOG</tt>, if any.  Any &lsquo;<tt>%s</tt>&rsquo;, &lsquo;<tt>%f</tt>&rsquo; or &lsquo;<tt>%%</tt>&rsquo; occurring in the
@@ -952,13 +946,13 @@ formatting before being output.
 </p>
 <a name="index-TCP_005fREAD_005fDEBUG"></a>
 </dd>
-<dt> <tt>TCP_READ_DEBUG</tt></dt>
+<dt><tt>TCP_READ_DEBUG</tt></dt>
 <dd><p>May be set directly.  If this has non-zero length, <tt>tcp_read</tt> will give
 some limited diagnostics about data being read.
 </p>
 <a name="index-TCP_005fSECONDS_005fSTART"></a>
 </dd>
-<dt> <tt>TCP_SECONDS_START</tt></dt>
+<dt><tt>TCP_SECONDS_START</tt></dt>
 <dd><p>This value is created and initialised to zero by tcp_open.
 </p>
 <p>The functions <tt>tcp_read</tt> and <tt>tcp_expect</tt> use the shell&rsquo;s
@@ -977,32 +971,32 @@ make a local copy and never set <tt>TCP_SECONDS_START</tt> to a non-zero value.
 </p>
 <a name="index-TCP_005fSESS"></a>
 </dd>
-<dt> <tt>TCP_SESS</tt></dt>
+<dt><tt>TCP_SESS</tt></dt>
 <dd><p>May be set directly.  The current session; must refer to one of the
 sessions established by <tt>tcp_open</tt>.
 </p>
 <a name="index-TCP_005fSILENT"></a>
 </dd>
-<dt> <tt>TCP_SILENT</tt></dt>
+<dt><tt>TCP_SILENT</tt></dt>
 <dd><p>May be set directly, although it is also controlled by <tt>tcp_log</tt>.
 If of non-zero length, data read by <tt>tcp_read</tt> will not be written to
 standard output, though may still be written to a log file.
 </p>
 <a name="index-tcp_005fspam_005flist"></a>
 </dd>
-<dt> <tt>tcp_spam_list</tt></dt>
+<dt><tt>tcp_spam_list</tt></dt>
 <dd><p>Array.  May be set directly.  See the description of the function
 <tt>tcp_spam</tt> for how this is used.
 </p>
 <a name="index-TCP_005fTALK_005fESCAPE"></a>
 </dd>
-<dt> <tt>TCP_TALK_ESCAPE</tt></dt>
+<dt><tt>TCP_TALK_ESCAPE</tt></dt>
 <dd><p>May be set directly.  See the description of the function <tt>tcp_talk</tt> for
 how this is used.
 </p>
 <a name="index-TCP_005fTIMEOUT"></a>
 </dd>
-<dt> <tt>TCP_TIMEOUT</tt></dt>
+<dt><tt>TCP_TIMEOUT</tt></dt>
 <dd><p>May be set directly.  Currently this is only used by the function
 <tt>tcp_command</tt>, see above.
 </p>
@@ -1010,20 +1004,19 @@ how this is used.
 </dl>
 
 
-<hr size="6">
+<hr>
 <a name="TCP-User_002ddefined-Parameters"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#TCP-Parameters" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#TCP-Utility-Parameters" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#TCP-Parameters" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#TCP-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#TCP-Utility-Parameters" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -1036,7 +1029,7 @@ a special effect if set by the user.
 <dl compact="compact">
 <dd><a name="index-tcp_005fon_005fread"></a>
 </dd>
-<dt> <tt>tcp_on_read</tt></dt>
+<dt><tt>tcp_on_read</tt></dt>
 <dd><p>This should be an associative array; if it is not, the behaviour is
 undefined.  Each key is the name of a shell function or other command,
 and the corresponding value is a shell pattern (using <tt>EXTENDED_GLOB</tt>).
@@ -1057,20 +1050,19 @@ is still stored in <tt>TCP_LINE</tt> and <tt>tcp_lines</tt>; this occurs after a
 </dl>
 
 
-<hr size="6">
+<hr>
 <a name="TCP-Utility-Parameters"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#TCP-User_002ddefined-Parameters" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#TCP-Examples" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#TCP-User_002ddefined-Parameters" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#TCP-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#TCP-Examples" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -1083,40 +1075,39 @@ directly, but should not usually be set by user code.
 <dl compact="compact">
 <dd><a name="index-tcp_005faliases"></a>
 </dd>
-<dt> <tt>tcp_aliases</tt></dt>
+<dt><tt>tcp_aliases</tt></dt>
 <dd><p>Associative array.  The keys are the names of sessions established with
 <tt>tcp_open</tt>; each value is a space-separated list of aliases which refer
 to that session.
 </p>
 <a name="index-tcp_005fby_005ffd"></a>
 </dd>
-<dt> <tt>tcp_by_fd</tt></dt>
+<dt><tt>tcp_by_fd</tt></dt>
 <dd><p>Associative array.  The keys are session file descriptors; each
 value is the name of that session.
 </p>
 <a name="index-tcp_005fby_005fname"></a>
 </dd>
-<dt> <tt>tcp_by_name</tt></dt>
+<dt><tt>tcp_by_name</tt></dt>
 <dd><p>Associative array.  The keys are the names of sessions; each value is the
 file descriptor associated with that session.
 </p>
 </dd>
 </dl>
 
-<hr size="6">
+<hr>
 <a name="TCP-Examples"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#TCP-Utility-Parameters" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#TCP-Bugs" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#TCP-Utility-Parameters" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#TCP-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#TCP-Bugs" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -1127,27 +1118,31 @@ file descriptor associated with that session.
 
 <p>Here is a trivial example using a remote calculator.
 </p>
-<p>TO create a calculator server on port 7337 (see the <tt>dc</tt> manual page for
+<p>To create a calculator server on port 7337 (see the <tt>dc</tt> manual page for
 quite how infuriating the underlying command is):
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">tcp_proxy 7337 dc
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">tcp_proxy 7337 dc
+</pre></div>
 
 <p>To connect to this from the same host with a session also named &lsquo;<tt>dc</tt>&rsquo;:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">tcp_open localhost 7337 dc
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">tcp_open localhost 7337 dc
+</pre></div>
 
 <p>To send a command to the remote session and wait a short while for output
 (assuming <tt>dc</tt> is the current session):
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">tcp_command 2 4 + p
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">tcp_command 2 4 + p
+</pre></div>
 
 <p>To close the session:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">tcp_close
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">tcp_close
+</pre></div>
 
 <p>The <tt>tcp_proxy</tt> needs to be killed to be stopped.  Note this will not
 usually kill any connections which have already been accepted, and also
@@ -1156,23 +1151,23 @@ that the port is not immediately available for reuse.
 <p>The following chunk of code puts a list of sessions into an xterm header,
 with the current session followed by a star.
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">print -n &quot;\033]2;TCP:&quot; ${(k)tcp_by_name:/$TCP_SESS/$TCP_SESS\*} &quot;\a&quot;
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">print -n &quot;\033]2;TCP:&quot; ${(k)tcp_by_name:/$TCP_SESS/$TCP_SESS\*} &quot;\a&quot;
+</pre></div>
 
-<hr size="6">
+<hr>
 <a name="TCP-Bugs"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#TCP-Examples" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#TCP-Examples" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#TCP-Function-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -1188,8 +1183,8 @@ newline can cause the function to block indefinitely.
 <p>Though the function suite works well for interactive use and for data
 arriving in small amounts, the performance when large amounts of data are
 being exchanged is likely to be extremely poor.
-</p><hr size="6">
-<table cellpadding="1" cellspacing="1" border="0">
+</p><hr>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1197,17 +1192,15 @@ being exchanged is likely to be extremely poor.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p>
- <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>October 11, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
- </font>
- <br>
-<font size="-1">Zsh version 5.0.7, released on October 7, 2014.</font>
-</p>
+<p><font size="-1">
+  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+</font></p>
+
+<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
 </body>
 </html>

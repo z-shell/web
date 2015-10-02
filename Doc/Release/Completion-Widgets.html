@@ -1,84 +1,84 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on October 11, 2014 by texi2html 1.82
-texi2html was written by: 
-            Lionel Cons <Lionel.Cons@cern.ch> (original author)
-            Karl Berry  <karl@freefriends.org>
-            Olaf Bachmann <obachman@mathematik.uni-kl.de>
-            and many others.
-Maintained by: Many creative people.
-Send bugs and suggestions to <texi2html-bug@nongnu.org>
--->
+<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 19. Completion Widgets</title>
+<title>zsh: 19 Completion Widgets</title>
 
-<meta name="description" content="zsh: 19. Completion Widgets">
-<meta name="keywords" content="zsh: 19. Completion Widgets">
+<meta name="description" content="zsh: 19 Completion Widgets">
+<meta name="keywords" content="zsh: 19 Completion Widgets">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 1.82">
+<meta name="Generator" content="texi2any">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
-pre.display {font-family: serif}
-pre.format {font-family: serif}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: serif; font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.roman {font-family:serif; font-weight:normal;}
-span.sansserif {font-family:sans-serif; font-weight:normal;}
-ul.toc {list-style: none}
+span.nocodebreak {white-space: nowrap}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: serif; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
 -->
 </style>
 
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-
+<body lang="en">
 <a name="Completion-Widgets"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="Zsh-Line-Editor.html#Character-Highlighting" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Description" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="Zsh-Line-Editor.html#Zsh-Line-Editor" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Zsh-Line-Editor.html#Zsh-Line-Editor" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Zsh-Line-Editor.html#Character-Highlighting" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-2" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-System.html#Completion-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
 <a name="Completion-Widgets-1"></a>
-<h1 class="chapter">19. Completion Widgets</h1>
+<h1 class="chapter">19 Completion Widgets</h1>
 <a name="index-completion_002c-widgets"></a>
 <a name="index-completion_002c-programmable"></a>
 <a name="index-completion_002c-controlling"></a>
 
-<hr size="6">
-<a name="Description"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Completion-Widgets" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Completion-Special-Parameters" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<hr>
+<a name="Description-2"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-Widgets" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-Widgets" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-Special-Parameters" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-System.html#Completion-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -99,8 +99,9 @@ command is described in
 builtin command provided by the <tt>zsh/zle</tt> module (see
 <a href="Zsh-Modules.html#The-zsh_002fzle-Module">The zsh/zle Module</a>). For example,
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">zle -C complete expand-or-complete completer
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">zle -C complete expand-or-complete completer
+</pre></div>
 
 <p>defines a widget named &lsquo;<tt>complete</tt>&rsquo;.  The second argument is the name
 of any of the builtin widgets that handle completions:
@@ -134,20 +135,19 @@ widget, in this case <tt>expand-or-complete</tt>.
 </td></tr>
 </table>
 
-<hr size="6">
+<hr>
 <a name="Completion-Special-Parameters"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Description" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Completion-Builtin-Commands" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-2" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-Widgets" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-Builtin-Commands" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-System.html#Completion-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -157,7 +157,7 @@ widget, in this case <tt>expand-or-complete</tt>.
 <h2 class="section">19.2 Completion Special Parameters</h2>
 
 <p>The parameters <tt>ZLE_REMOVE_SUFFIX_CHARS</tt> and <tt>ZLE_SPACE_SUFFIX_CHARS</tt>
-are used by the completion mechanism, but are not special.
+are used by the completion mechanism, but are not special. See
 <a href="Parameters.html#Parameters-Used-By-The-Shell">Parameters Used By The Shell</a>.
 </p>
 <p>Inside completion widgets, and any functions called from them, some
@@ -174,23 +174,24 @@ entered.
 <dl compact="compact">
 <dd><a name="index-CURRENT"></a>
 </dd>
-<dt> <tt>CURRENT</tt></dt>
+<dt><tt>CURRENT</tt></dt>
 <dd><p>This is the number of the current word, i.e. the word the cursor is
 currently on in the <tt>words</tt> array.  Note that this value is only
 correct if the <tt>ksharrays</tt> option is not set.
 </p>
 <a name="index-IPREFIX"></a>
 </dd>
-<dt> <tt>IPREFIX</tt></dt>
+<dt><tt>IPREFIX</tt></dt>
 <dd><p>Initially this will be set to the empty string.  This parameter functions
 like <tt>PREFIX</tt>; it contains a string which precedes the one in <tt>PREFIX</tt>
 and is not considered part of the list of matches.  Typically, a string is
 transferred from the beginning of <tt>PREFIX</tt> to the end of <tt>IPREFIX</tt>, for
 example:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">IPREFIX=${PREFIX%%\=*}=
+<div class="example">
+<pre class="example">IPREFIX=${PREFIX%%\=*}=
 PREFIX=${PREFIX#*=}
-</pre></td></tr></table>
+</pre></div>
 
 <p>causes the part of the prefix up to and including the first equal sign not
 to be treated as part of a matched string.  This can be done automatically
@@ -198,21 +199,21 @@ by the <tt>compset</tt> builtin, see below.
 </p>
 <a name="index-ISUFFIX"></a>
 </dd>
-<dt> <tt>ISUFFIX</tt></dt>
+<dt><tt>ISUFFIX</tt></dt>
 <dd><p>As <tt>IPREFIX</tt>, but for a suffix that should not be considered part
 of the matches; note that the <tt>ISUFFIX</tt> string follows the <tt>SUFFIX</tt>
 string.
 </p>
 <a name="index-PREFIX"></a>
 </dd>
-<dt> <tt>PREFIX</tt></dt>
+<dt><tt>PREFIX</tt></dt>
 <dd><p>Initially this will be set to the part of the current word from the
 beginning of the word up to the position of the cursor; it may be altered
 to give a common prefix for all matches.
 </p>
 <a name="index-QIPREFIX"></a>
 </dd>
-<dt> <tt>QIPREFIX</tt></dt>
+<dt><tt>QIPREFIX</tt></dt>
 <dd><p>This parameter is read-only and contains the quoted string up to the
 word being completed. E.g. when completing &lsquo;<tt>&quot;foo</tt>&rsquo;, this parameter
 contains the double quote. If the <tt>-q</tt> option of <tt>compset</tt> is used 
@@ -221,12 +222,12 @@ cursor on the &lsquo;<tt>bar</tt>&rsquo;, this parameter contains &lsquo;<tt>&qu
 </p>
 <a name="index-QISUFFIX"></a>
 </dd>
-<dt> <tt>QISUFFIX</tt></dt>
+<dt><tt>QISUFFIX</tt></dt>
 <dd><p>Like <tt>QIPREFIX</tt>, but containing the suffix.
 </p>
 <a name="index-SUFFIX"></a>
 </dd>
-<dt> <tt>SUFFIX</tt></dt>
+<dt><tt>SUFFIX</tt></dt>
 <dd><p>Initially this will be set to the part of the current word from the
 cursor position to the end; it may be altered to give a common suffix for
 all matches.  It is most useful when the option <tt>COMPLETE_IN_WORD</tt> is
@@ -236,7 +237,7 @@ prefix.
 <a name="index-compstate"></a>
 <a name="index-completion-widgets_002c-examining-and-setting-state-in"></a>
 </dd>
-<dt> <tt>compstate</tt></dt>
+<dt><tt>compstate</tt></dt>
 <dd><p>This is an associative array with various keys and values that the
 completion code uses to exchange information with the completion widget.
 The keys are:
@@ -244,7 +245,7 @@ The keys are:
 <dl compact="compact">
 <dd><a name="index-all_005fquotes_002c-compstate"></a>
 </dd>
-<dt> <tt>all_quotes</tt></dt>
+<dt><tt>all_quotes</tt></dt>
 <dd><p>The <tt>-q</tt> option of the <tt>compset</tt> builtin command (see below)
 allows a quoted string to be broken into separate words; if the cursor is
 on one of those words, that word will be completed, possibly invoking
@@ -253,23 +254,23 @@ types of quoted strings which are currently broken into parts in this
 fashion.  Its value contains one character for each quoting level.  The
 characters are a single quote or a double quote for strings quoted with
 these characters, a dollars sign for strings quoted with
-<tt>$&rsquo;</tt><var>...</var><tt>&rsquo;</tt> and a backslash for strings not starting with a
+<tt>$'</tt><var>...</var><tt>'</tt> and a backslash for strings not starting with a
 quote character.  The first character in the value always corresponds to the
 innermost quoting level.
 </p>
 <a name="index-context_002c-compstate"></a>
 </dd>
-<dt> <tt>context</tt></dt>
+<dt><tt>context</tt></dt>
 <dd><p>This will be set by the completion code to the overall context
 in which completion is attempted. Possible values are:
 </p>
 <dl compact="compact">
-<dt> <tt>array_value</tt></dt>
+<dt><tt>array_value</tt></dt>
 <dd><p>when completing inside the value of an array parameter assignment; in
 this case the <tt>words</tt> array contains the words inside the parentheses.
 </p>
 </dd>
-<dt> <tt>brace_parameter</tt></dt>
+<dt><tt>brace_parameter</tt></dt>
 <dd><p>when completing the name of a parameter in a parameter expansion beginning
 with <tt>${</tt>.  This context will also be set when completing parameter
 flags following <tt>${(</tt>; the full command line argument is presented
@@ -277,40 +278,40 @@ and the handler must test the value to be completed to ascertain that
 this is the case.
 </p>
 </dd>
-<dt> <tt>assign_parameter</tt></dt>
+<dt><tt>assign_parameter</tt></dt>
 <dd><p>when completing the name of a parameter in a parameter assignment.
 </p>
 </dd>
-<dt> <tt>command</tt></dt>
+<dt><tt>command</tt></dt>
 <dd><p>when completing for a normal command (either in command position or for
 an argument of the command).
 </p>
 </dd>
-<dt> <tt>condition</tt></dt>
+<dt><tt>condition</tt></dt>
 <dd><p>when completing inside a &lsquo;<tt>[[</tt>...<tt>]]</tt>&rsquo; conditional expression; in
 this case the <tt>words</tt> array contains only the words inside the
 conditional expression.
 </p>
 </dd>
-<dt> <tt>math</tt></dt>
+<dt><tt>math</tt></dt>
 <dd><p>when completing in a mathematical environment such as a
 &lsquo;<tt>((</tt>...<tt>))</tt>&rsquo; construct.
 </p>
 </dd>
-<dt> <tt>parameter</tt></dt>
+<dt><tt>parameter</tt></dt>
 <dd><p>when completing the name of a parameter in a parameter expansion beginning
 with <tt>$</tt> but not <tt>${</tt>.
 </p>
 </dd>
-<dt> <tt>redirect</tt></dt>
+<dt><tt>redirect</tt></dt>
 <dd><p>when completing after a redirection operator.
 </p>
 </dd>
-<dt> <tt>subscript</tt></dt>
+<dt><tt>subscript</tt></dt>
 <dd><p>when completing inside a parameter subscript.
 </p>
 </dd>
-<dt> <tt>value</tt></dt>
+<dt><tt>value</tt></dt>
 <dd><p>when completing the value of a parameter assignment.
 </p>
 </dd>
@@ -318,7 +319,7 @@ with <tt>$</tt> but not <tt>${</tt>.
 
 <a name="index-exact_002c-compstate"></a>
 </dd>
-<dt> <tt>exact</tt></dt>
+<dt><tt>exact</tt></dt>
 <dd><p>Controls the behaviour when the <tt>REC_EXACT</tt> option is set.  It will be
 set to <tt>accept</tt> if an exact match would be accepted, and will be unset
 otherwise.
@@ -328,19 +329,19 @@ was generated, the match is accepted.
 </p>
 <a name="index-exact_005fstring_002c-compstate"></a>
 </dd>
-<dt> <tt>exact_string</tt></dt>
+<dt><tt>exact_string</tt></dt>
 <dd><p>The string of an exact match if one was found, otherwise unset.
 </p>
 <a name="index-ignored_002c-compstate"></a>
 </dd>
-<dt> <tt>ignored</tt></dt>
+<dt><tt>ignored</tt></dt>
 <dd><p>The number of words that were ignored because they matched one of the
 patterns given with the <tt>-F</tt> option to the <tt>compadd</tt> builtin
 command.
 </p>
 <a name="index-insert_002c-compstate"></a>
 </dd>
-<dt> <tt>insert</tt></dt>
+<dt><tt>insert</tt></dt>
 <dd><p>This controls the manner in which a match is inserted into the command
 line.  On entry to the widget function, if it is unset the command line is
 not to be changed; if set to <tt>unambiguous</tt>, any prefix common to all
@@ -376,7 +377,7 @@ generated be inserted into the line.
 </p>
 <a name="index-insert_005fpositions_002c-compstate"></a>
 </dd>
-<dt> <tt>insert_positions</tt></dt>
+<dt><tt>insert_positions</tt></dt>
 <dd><p>When the completion system inserts an unambiguous string into the
 line, there may be multiple places where characters are missing or
 where the character inserted differs from at least one match.  The
@@ -385,7 +386,7 @@ positions, as indexes into the command line.
 </p>
 <a name="index-last_005fprompt_002c-compstate"></a>
 </dd>
-<dt> <tt>last_prompt</tt></dt>
+<dt><tt>last_prompt</tt></dt>
 <dd><p>If this is set to a non-empty string for every match added, the
 completion code will move the cursor back to the previous prompt after
 the list of completions has been displayed.  Initially this is set or
@@ -393,7 +394,7 @@ unset according to the <tt>ALWAYS_LAST_PROMPT</tt> option.
 </p>
 <a name="index-list_002c-compstate"></a>
 </dd>
-<dt> <tt>list</tt></dt>
+<dt><tt>list</tt></dt>
 <dd><p>This controls whether or how the list of matches will be displayed.  If it
 is unset or empty they will never be listed; if its value begins with
 <tt>list</tt>, they will always be listed; if it begins with <tt>autolist</tt>
@@ -420,7 +421,7 @@ changed there.
 </p>
 <a name="index-list_005flines_002c-compstate"></a>
 </dd>
-<dt> <tt>list_lines</tt></dt>
+<dt><tt>list_lines</tt></dt>
 <dd><p>This gives the number of lines that are needed to display the full
 list of completions.  Note that to calculate the total number of lines
 to display you need to add the number of lines needed for the command
@@ -429,20 +430,20 @@ special parameter.
 </p>
 <a name="index-list_005fmax_002c-compstate"></a>
 </dd>
-<dt> <tt>list_max</tt></dt>
+<dt><tt>list_max</tt></dt>
 <dd><p>Initially this is set to the value of the <tt>LISTMAX</tt> parameter.
 It may be set to any other value; when the widget exits this value
 will be used in the same way as the value of <tt>LISTMAX</tt>.
 </p>
 <a name="index-nmatches_002c-compstate"></a>
 </dd>
-<dt> <tt>nmatches</tt></dt>
+<dt><tt>nmatches</tt></dt>
 <dd><p>The number of matches generated and accepted by the completion code so
 far.
 </p>
 <a name="index-old_005finsert_002c-compstate"></a>
 </dd>
-<dt> <tt>old_insert</tt></dt>
+<dt><tt>old_insert</tt></dt>
 <dd><p>On entry to the widget this will be set to the number of the match of
 an old list of completions that is currently inserted into the command
 line. If no match has been inserted, this is unset.
@@ -455,7 +456,7 @@ inserted, this will be inserted after the old one.
 </p>
 <a name="index-old_005flist_002c-compstate"></a>
 </dd>
-<dt> <tt>old_list</tt></dt>
+<dt><tt>old_list</tt></dt>
 <dd><p>This is set to <tt>yes</tt> if there is still a valid list of completions
 from a previous completion at the time the widget is invoked.  This will
 usually be the case if and only if the previous editing operation was a
@@ -470,13 +471,13 @@ not be used.
 </p>
 <a name="index-parameter_002c-compstate"></a>
 </dd>
-<dt> <tt>parameter</tt></dt>
+<dt><tt>parameter</tt></dt>
 <dd><p>The name of the parameter when completing in a subscript or in the
 value of a parameter assignment.
 </p>
 <a name="index-pattern_005finsert_002c-compstate"></a>
 </dd>
-<dt> <tt>pattern_insert</tt></dt>
+<dt><tt>pattern_insert</tt></dt>
 <dd><p>Normally this is set to <tt>menu</tt>, which specifies that menu completion will
 be used whenever a set of matches was generated using pattern matching.  If
 it is set to any other non-empty string by the user and menu completion is
@@ -485,7 +486,7 @@ common prefix for the generated matches as with normal completion.
 </p>
 <a name="index-pattern_005fmatch_002c-compstate"></a>
 </dd>
-<dt> <tt>pattern_match</tt></dt>
+<dt><tt>pattern_match</tt></dt>
 <dd><p>Locally controls the behaviour given by the <tt>GLOB_COMPLETE</tt> option.
 Initially it is set to &lsquo;<tt>*</tt>&rsquo; if and only if the option is set.
 The completion widget may set it to this value, to an empty string
@@ -500,14 +501,14 @@ command are not used if this is set to a non-empty string.
 </p>
 <a name="index-quote_002c-compstate"></a>
 </dd>
-<dt> <tt>quote</tt></dt>
+<dt><tt>quote</tt></dt>
 <dd><p>When completing inside quotes, this contains the quotation character
 (i.e. either a single quote, a double quote, or a backtick).  Otherwise it
 is unset.
 </p>
 <a name="index-quoting_002c-compstate"></a>
 </dd>
-<dt> <tt>quoting</tt></dt>
+<dt><tt>quoting</tt></dt>
 <dd><p>When completing inside single quotes, this is set to the string
 <tt>single</tt>; inside double quotes, the string
 <tt>double</tt>; inside backticks, the string <tt>backtick</tt>.
@@ -515,13 +516,13 @@ Otherwise it is unset.
 </p>
 <a name="index-redirect_002c-compstate"></a>
 </dd>
-<dt> <tt>redirect</tt></dt>
+<dt><tt>redirect</tt></dt>
 <dd><p>The redirection operator when completing in a redirection position,
 i.e. one of <tt>&lt;</tt>, <tt>&gt;</tt>, etc.
 </p>
 <a name="index-restore_002c-compstate"></a>
 </dd>
-<dt> <tt>restore</tt></dt>
+<dt><tt>restore</tt></dt>
 <dd><p>This is set to <tt>auto</tt> before a function is entered, which forces the
 special parameters mentioned above (<tt>words</tt>, <tt>CURRENT</tt>, <tt>PREFIX</tt>,
 <tt>IPREFIX</tt>, <tt>SUFFIX</tt>, and <tt>ISUFFIX</tt>) to be restored to their
@@ -530,7 +531,7 @@ sets it to any other string, they will not be restored.
 </p>
 <a name="index-to_005fend_002c-compstate"></a>
 </dd>
-<dt> <tt>to_end</tt></dt>
+<dt><tt>to_end</tt></dt>
 <dd><p>Specifies the occasions on which the cursor is moved to the end of a string
 when a match is inserted.  On entry to a widget function, it may be
 <tt>single</tt> if this will happen when a single unambiguous match was inserted
@@ -545,13 +546,13 @@ other string is treated as <tt>match</tt>.
 </p>
 <a name="index-unambiguous_002c-compstate"></a>
 </dd>
-<dt> <tt>unambiguous</tt></dt>
+<dt><tt>unambiguous</tt></dt>
 <dd><p>This key is read-only and will always be set to the common (unambiguous)
 prefix the completion code has generated for all matches added so far.
 </p>
 <a name="index-unambiguous_005fcursor_002c-compstate"></a>
 </dd>
-<dt> <tt>unambiguous_cursor</tt></dt>
+<dt><tt>unambiguous_cursor</tt></dt>
 <dd><p>This gives the position the cursor would be placed at if the
 common prefix in the <tt>unambiguous</tt> key were inserted, relative to
 the value of that key. The cursor would be placed before the character
@@ -559,7 +560,7 @@ whose index is given by this key.
 </p>
 <a name="index-unambiguous_005fpositions_002c-compstate"></a>
 </dd>
-<dt> <tt>unambiguous_positions</tt></dt>
+<dt><tt>unambiguous_positions</tt></dt>
 <dd><p>This contains all positions where characters in the unambiguous string
 are missing or where the character inserted differs from at least one
 of the matches.  The positions are given as indexes into the string
@@ -567,7 +568,7 @@ given by the value of the <tt>unambiguous</tt> key.
 </p>
 <a name="index-vared_002c-compstate"></a>
 </dd>
-<dt> <tt>vared</tt></dt>
+<dt><tt>vared</tt></dt>
 <dd><p>If completion is called while editing a line using the <tt>vared</tt>
 builtin, the value of this key is set to the name of the parameter
 given as an argument to <tt>vared</tt>.  This key is only set while a <tt>vared</tt>
@@ -578,27 +579,26 @@ command is active.
 
 <a name="index-words"></a>
 </dd>
-<dt> <tt>words</tt></dt>
+<dt><tt>words</tt></dt>
 <dd><p>This array contains the words present on the command line currently being
 edited.
 </p>
 </dd>
 </dl>
 
-<hr size="6">
+<hr>
 <a name="Completion-Builtin-Commands"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Completion-Special-Parameters" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Completion-Condition-Codes" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-Special-Parameters" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-Widgets" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-Condition-Codes" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-System.html#Completion-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -609,17 +609,18 @@ edited.
 <dl compact="compact">
 <dd><a name="index-compadd"></a>
 <a name="index-completion-widgets_002c-adding-specified-matches"></a>
+
 </dd>
-<dt> <tt>compadd</tt> [ <tt>-akqQfenUld12C</tt> ] [ <tt>-F</tt> <var>array</var> ]</dt>
-<dt> [ <tt>-P</tt> <var>prefix</var> ] [ <tt>-S</tt> <var>suffix</var> ]</dt>
-<dt> [ <tt>-p</tt> <var>hidden-prefix</var> ] [ <tt>-s</tt> <var>hidden-suffix</var> ]</dt>
-<dt> [ <tt>-i</tt> <var>ignored-prefix</var> ] [ <tt>-I</tt> <var>ignored-suffix</var> ]</dt>
-<dt> [ <tt>-W</tt> <var>file-prefix</var> ] [ <tt>-d</tt> <var>array</var> ]</dt>
-<dt> [ <tt>-J</tt> <var>name</var> ] [ <tt>-V</tt> <var>name</var> ] [ <tt>-X</tt> <var>explanation</var> ] [ <tt>-x</tt> <var>message</var> ]</dt>
-<dt> [ <tt>-r</tt> <var>remove-chars</var> ] [ <tt>-R</tt> <var>remove-func</var> ]</dt>
-<dt> [ <tt>-D</tt> <var>array</var> ] [ <tt>-O</tt> <var>array</var> ] [ <tt>-A</tt> <var>array</var> ]</dt>
-<dt> [ <tt>-E</tt> <var>number</var> ]</dt>
-<dt> [ <tt>-M</tt> <var>match-spec</var> ] [ <tt>-</tt><tt>-</tt> ] [ <var>words</var> ... ]</dt>
+<dt><tt>compadd </tt>[ <tt>-akqQfenUlo12C</tt> ] [ <tt>-F</tt> <var>array</var> ]</dt>
+<dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-P</tt> <var>prefix</var> ] [ <tt>-S</tt> <var>suffix</var> ]</dt>
+<dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-p</tt> <var>hidden-prefix</var> ] [ <tt>-s</tt> <var>hidden-suffix</var> ]</dt>
+<dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-i</tt> <var>ignored-prefix</var> ] [ <tt>-I</tt> <var>ignored-suffix</var> ]</dt>
+<dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-W</tt> <var>file-prefix</var> ] [ <tt>-d</tt> <var>array</var> ]</dt>
+<dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-J</tt> <var>name</var> ] [ <tt>-V</tt> <var>name</var> ] [ <tt>-X</tt> <var>explanation</var> ] [ <tt>-x</tt> <var>message</var> ]</dt>
+<dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-r</tt> <var>remove-chars</var> ] [ <tt>-R</tt> <var>remove-func</var> ]</dt>
+<dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-D</tt> <var>array</var> ] [ <tt>-O</tt> <var>array</var> ] [ <tt>-A</tt> <var>array</var> ]</dt>
+<dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-E</tt> <var>number</var> ]</dt>
+<dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-M</tt> <var>match-spec</var> ] [ <tt>-</tt><tt>-</tt> ] [ <var>words</var> ... ]</dt>
 <dd>
 <p>This builtin command can be used to add matches directly and control
 all the information the completion code stores with each possible
@@ -629,7 +630,8 @@ non-zero if no matches were added.
 <p>The completion code breaks the string to complete into seven fields in
 the order: 
 </p>
-<blockquote><p><var>&lt;ipre&gt;&lt;apre&gt;&lt;hpre&gt;&lt;word&gt;&lt;hsuf&gt;&lt;asuf&gt;&lt;isuf&gt;</var>
+<blockquote>
+<p><var>&lt;ipre&gt;&lt;apre&gt;&lt;hpre&gt;&lt;word&gt;&lt;hsuf&gt;&lt;asuf&gt;&lt;isuf&gt;</var>
 </p></blockquote>
 
 <p>The first field
@@ -651,52 +653,52 @@ at the end of the <tt>compadd</tt> command line. The suffixes <var>&lt;hsuf&gt;<
 <p>The supported flags are:
 </p>
 <dl compact="compact">
-<dt> <tt>-P</tt> <var>prefix</var></dt>
+<dt><tt>-P</tt> <var>prefix</var></dt>
 <dd><p>This gives a string to be inserted before the given <var>words</var>.  The
 string given is not considered as part of the match and any shell
 metacharacters in it will not be quoted when the string is inserted.
 </p>
 </dd>
-<dt> <tt>-S</tt> <var>suffix</var></dt>
+<dt><tt>-S</tt> <var>suffix</var></dt>
 <dd><p>Like <tt>-P</tt>, but gives a string to be inserted after the match.
 </p>
 </dd>
-<dt> <tt>-p</tt> <var>hidden-prefix</var></dt>
+<dt><tt>-p</tt> <var>hidden-prefix</var></dt>
 <dd><p>This gives a string that should be inserted into the command line before the
 match but that should not appear in the list of matches. Unless the
 <tt>-U</tt> option is given, this string must be matched as part of the string
 on the command line.
 </p>
 </dd>
-<dt> <tt>-s</tt> <var>hidden-suffix</var></dt>
+<dt><tt>-s</tt> <var>hidden-suffix</var></dt>
 <dd><p>Like &lsquo;<tt>-p</tt>&rsquo;, but gives a string to insert after the match.
 </p>
 </dd>
-<dt> <tt>-i</tt> <var>ignored-prefix</var></dt>
+<dt><tt>-i</tt> <var>ignored-prefix</var></dt>
 <dd><p>This gives a string to insert into the command line just before any
 string given with the &lsquo;<tt>-P</tt>&rsquo; option.  Without &lsquo;<tt>-P</tt>&rsquo; the string is
 inserted before the string given with &lsquo;<tt>-p</tt>&rsquo; or directly before the
 match.
 </p>
 </dd>
-<dt> <tt>-I</tt> <var>ignored-suffix</var></dt>
+<dt><tt>-I</tt> <var>ignored-suffix</var></dt>
 <dd><p>Like <tt>-i</tt>, but gives an ignored suffix.
 </p>
 </dd>
-<dt> <tt>-a</tt></dt>
+<dt><tt>-a</tt></dt>
 <dd><p>With this flag the <var>words</var> are taken as names of arrays and the
 possible matches are their values.  If only some elements of the
 arrays are needed, the <var>words</var> may also contain subscripts, as in
 &lsquo;<tt>foo[2,-1]</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>-k</tt></dt>
+<dt><tt>-k</tt></dt>
 <dd><p>With this flag the <var>words</var> are taken as names of associative arrays
 and the possible matches are their keys.  As for <tt>-a</tt>, the
 <var>words</var> may also contain subscripts, as in &lsquo;<tt>foo[(R)*bar*]</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>-d</tt> <var>array</var></dt>
+<dt><tt>-d</tt> <var>array</var></dt>
 <dd><p>This adds per-match display strings. The <var>array</var> should contain one 
 element per <var>word</var> given. The completion code will then display the 
 first element instead of the first <var>word</var>, and so on. The
@@ -709,59 +711,59 @@ strings than <var>words</var>, the leftover display strings will be silently
 ignored.
 </p>
 </dd>
-<dt> <tt>-l</tt></dt>
+<dt><tt>-l</tt></dt>
 <dd><p>This option only has an effect if used together with the <tt>-d</tt>
 option. If it is given, the display strings are listed one per line,
 not arrayed in columns.
 </p>
 </dd>
-<dt> <tt>-o</tt></dt>
+<dt><tt>-o</tt></dt>
 <dd><p>This option only has an effect if used together with the <tt>-d</tt>
 option.  If it is given, the order of the output is determined by the
 match strings;  otherwise it is determined by the display strings
 (i.e. the strings given by the <tt>-d</tt> option).
 </p>
 </dd>
-<dt> <tt>-J</tt> <var>name</var></dt>
+<dt><tt>-J</tt> <var>name</var></dt>
 <dd><p>Gives the name of the group of matches the words should be stored in.
 </p>
 </dd>
-<dt> <tt>-V</tt> <var>name</var></dt>
+<dt><tt>-V</tt> <var>name</var></dt>
 <dd><p>Like <tt>-J</tt> but naming an unsorted group. These are in a different name
 space than groups created with the <tt>-J</tt> flag.
 </p>
 </dd>
-<dt> <tt>-1</tt></dt>
+<dt><tt>-1</tt></dt>
 <dd><p>If given together with the <tt>-V</tt> option, makes
 only consecutive duplicates in the group be removed. If combined with
 the <tt>-J</tt> option, this has no visible effect. Note that groups
 with and without this flag are in different name spaces.
 </p>
 </dd>
-<dt> <tt>-2</tt></dt>
+<dt><tt>-2</tt></dt>
 <dd><p>If given together with the <tt>-J</tt> or <tt>-V</tt> option, makes all
 duplicates be kept. Again, groups with and without this flag are in
 different name spaces.
 </p>
 </dd>
-<dt> <tt>-X</tt> <var>explanation</var></dt>
+<dt><tt>-X</tt> <var>explanation</var></dt>
 <dd><p>The <var>explanation</var> string will be printed with the list of matches,
 above the group currently selected.
 </p>
 </dd>
-<dt> <tt>-x</tt> <var>message</var></dt>
+<dt><tt>-x</tt> <var>message</var></dt>
 <dd><p>Like <tt>-X</tt>, but the <var>message</var> will be printed even if there are no 
 matches in the group.
 </p>
 </dd>
-<dt> <tt>-q</tt></dt>
+<dt><tt>-q</tt></dt>
 <dd><p>The suffix given with <tt>-S</tt> will be automatically removed if 
 the next character typed is a blank or does not insert anything, or if
 the suffix consists of only one character and the next character typed 
 is the same character.
 </p>
 </dd>
-<dt> <tt>-r</tt> <var>remove-chars</var></dt>
+<dt><tt>-r</tt> <var>remove-chars</var></dt>
 <dd><p>This is a more versatile form of the <tt>-q</tt> option.
 The suffix given with <tt>-S</tt> or the slash automatically added after
 completing directories will be automatically removed if
@@ -780,7 +782,7 @@ automatically added space will be removed when one of the characters in the
 list is typed.
 </p>
 </dd>
-<dt> <tt>-R</tt> <var>remove-func</var></dt>
+<dt><tt>-R</tt> <var>remove-func</var></dt>
 <dd><p>This is another form of the <tt>-r</tt> option. When a suffix 
 has been inserted and the completion accepted, the function
 <var>remove-func</var> will be called after the next character typed.  It is
@@ -789,7 +791,7 @@ parameters available in ordinary (non-completion) zle widgets (see
 <a href="Zsh-Line-Editor.html#Zsh-Line-Editor">Zsh Line Editor</a>) to analyse and modify the command line.
 </p>
 </dd>
-<dt> <tt>-f</tt></dt>
+<dt><tt>-f</tt></dt>
 <dd><p>If this flag is given, all of the matches built from <var>words</var> are
 marked as being the names of files.  They are not required to be actual
 filenames, but if they are, and the option <tt>LIST_TYPES</tt> is set, the
@@ -798,14 +800,14 @@ be shown. This also forces a slash to be added when the name of a
 directory is completed.
 </p>
 </dd>
-<dt> <tt>-e</tt></dt>
+<dt><tt>-e</tt></dt>
 <dd><p>This flag can be used to tell the completion code that the matches
 added are parameter names for a parameter expansion. This will make
 the <tt>AUTO_PARAM_SLASH</tt> and <tt>AUTO_PARAM_KEYS</tt> options be used for
 the matches.
 </p>
 </dd>
-<dt> <tt>-W</tt> <var>file-prefix</var></dt>
+<dt><tt>-W</tt> <var>file-prefix</var></dt>
 <dd><p>This string is a pathname that will be
 prepended to each of the matches formed by the given <var>words</var> together 
 with any prefix specified by the <tt>-p</tt> option to form a complete filename
@@ -813,7 +815,7 @@ for testing.  Hence it is only useful if combined with the <tt>-f</tt> flag, as
 the tests will not otherwise be performed.
 </p>
 </dd>
-<dt> <tt>-F</tt> <var>array</var></dt>
+<dt><tt>-F</tt> <var>array</var></dt>
 <dd><p>Specifies an array containing patterns. Words matching one of these
 patterns are ignored, i.e. not considered to be possible matches.
 </p>
@@ -823,13 +825,13 @@ literal patterns enclosed in parentheses and quoted, as in &lsquo;<tt>-F &quot;(
 taken as the patterns.
 </p>
 </dd>
-<dt> <tt>-Q</tt></dt>
+<dt><tt>-Q</tt></dt>
 <dd><p>This flag instructs the completion 
 code not to quote any metacharacters in the words when inserting them
 into the command line.
 </p>
 </dd>
-<dt> <tt>-M</tt> <var>match-spec</var></dt>
+<dt><tt>-M</tt> <var>match-spec</var></dt>
 <dd><p>This gives local match specifications as described below in
 <a href="#Completion-Matching-Control">Completion Matching Control</a>. This option may be given more than once.
 In this case all <var>match-spec</var>s given are concatenated with spaces
@@ -837,25 +839,25 @@ between them to form the specification string to use.
 Note that they will only be used if the <tt>-U</tt> option is not given.
 </p>
 </dd>
-<dt> <tt>-n</tt></dt>
+<dt><tt>-n</tt></dt>
 <dd><p>Specifies that the words added are to be used as possible
 matches, but are not to appear in the completion listing.
 </p>
 </dd>
-<dt> <tt>-U</tt></dt>
+<dt><tt>-U</tt></dt>
 <dd><p>If this flag is given, all words given will be accepted and no matching
 will be done by the completion code. Normally this is used in
 functions that do the matching themselves.
 </p>
 </dd>
-<dt> <tt>-O</tt> <var>array</var></dt>
+<dt><tt>-O</tt> <var>array</var></dt>
 <dd><p>If this option is given, the <var>words</var> are <em>not</em> added to the set of
 possible completions.  Instead, matching is done as usual and all of the
 <var>words</var> given as arguments that match the string on the command line
 will be stored in the array parameter whose name is given as <var>array</var>.
 </p>
 </dd>
-<dt> <tt>-A</tt> <var>array</var></dt>
+<dt><tt>-A</tt> <var>array</var></dt>
 <dd><p>As the <tt>-O</tt> option, except that instead of those of the <var>words</var> which
 match being stored in <var>array</var>, the strings generated internally by the
 completion code are stored. For example,
@@ -865,7 +867,7 @@ option stores the string &lsquo;<tt>nofoo</tt>&rsquo; in the array, whereas the 
 option stores the &lsquo;<tt>foo</tt>&rsquo; originally given.
 </p>
 </dd>
-<dt> <tt>-D</tt> <var>array</var></dt>
+<dt><tt>-D</tt> <var>array</var></dt>
 <dd><p>As with <tt>-O</tt>, the <var>words</var> are not added to the set of possible
 completions.  Instead, the completion code tests whether each <var>word</var> 
 in turn matches what is on the line.  If the <var>n</var>th <var>word</var> does not
@@ -873,7 +875,7 @@ match, the <var>n</var>th element of the <var>array</var> is removed.  Elements
 for which the corresponding <var>word</var> is matched are retained.
 </p>
 </dd>
-<dt> <tt>-C</tt></dt>
+<dt><tt>-C</tt></dt>
 <dd><p>This option adds a special match which expands to all other matches
 when inserted into the line, even those that are added after this
 option is used.  Together with the <tt>-d</tt> option it is possible to
@@ -883,7 +885,7 @@ the strings that would be inserted for the other matches, truncated to
 the width of the screen.
 </p>
 </dd>
-<dt> <tt>-E</tt></dt>
+<dt><tt>-E</tt> <var>number</var></dt>
 <dd><p>This option adds <var>number</var> empty matches after the <var>words</var> have
 been added.  An empty match takes up space in completion listings but
 will never be inserted in the line and can&rsquo;t be selected with menu
@@ -892,11 +894,13 @@ format completion lists and to make explanatory string be shown in
 completion lists (since empty matches can be given display strings
 with the <tt>-d</tt> option).  And because all but one empty string would
 otherwise be removed, this option implies the <tt>-V</tt> and <tt>-2</tt>
-options (even if an explicit <tt>-J</tt> option is given).
+options (even if an explicit <tt>-J</tt> option is given).  This can be
+important to note as it affects the name space into which matches are
+added.
 </p>
 </dd>
-<dt> <tt>-</tt></dt>
-<dt> <tt>-</tt><tt>-</tt></dt>
+<dt><tt>-</tt></dt>
+<dt><tt>-</tt><tt>-</tt></dt>
 <dd><p>This flag ends the list of flags and options. All arguments after it
 will be taken as the words to use as matches even if they begin with
 hyphens.
@@ -910,26 +914,26 @@ once, the first one (and its argument) will be used.
 <a name="index-compset"></a>
 <a name="index-completion-widgets_002c-modifying-special-parameters"></a>
 </dd>
-<dt> <tt>compset -p</tt> <var>number</var></dt>
-<dt> <tt>compset -P</tt> [ <var>number</var> ] <var>pattern</var></dt>
-<dt> <tt>compset -s</tt> <var>number</var></dt>
-<dt> <tt>compset -S</tt> [ <var>number</var> ] <var>pattern</var></dt>
-<dt> <tt>compset -n</tt> <var>begin</var> [ <var>end</var> ]</dt>
-<dt> <tt>compset -N</tt> <var>beg-pat</var> [ <var>end-pat</var> ]</dt>
-<dt> <tt>compset -q</tt></dt>
+<dt><tt>compset -p</tt> <var>number</var></dt>
+<dt><tt>compset -P</tt> [ <var>number</var> ] <var>pattern</var></dt>
+<dt><tt>compset -s</tt> <var>number</var></dt>
+<dt><tt>compset -S</tt> [ <var>number</var> ] <var>pattern</var></dt>
+<dt><tt>compset -n</tt> <var>begin</var> [ <var>end</var> ]</dt>
+<dt><tt>compset -N</tt> <var>beg-pat</var> [ <var>end-pat</var> ]</dt>
+<dt><tt>compset -q</tt></dt>
 <dd><p>This command simplifies modification of the special parameters,
 while its return status allows tests on them to be carried out.
 </p>
 <p>The options are:
 </p>
 <dl compact="compact">
-<dt> <tt>-p</tt> <var>number</var></dt>
+<dt><tt>-p</tt> <var>number</var></dt>
 <dd><p>If the contents of the <tt>PREFIX</tt> parameter is longer than <var>number</var>
 characters, the first <var>number</var> characters are removed from it and
 appended to the contents of the <tt>IPREFIX</tt> parameter.
 </p>
 </dd>
-<dt> <tt>-P</tt> [ <var>number</var> ] <var>pattern</var></dt>
+<dt><tt>-P</tt> [ <var>number</var> ] <var>pattern</var></dt>
 <dd><p>If the value of the <tt>PREFIX</tt> parameter begins with anything that
 matches the <var>pattern</var>, the matched portion is removed from
 <tt>PREFIX</tt> and appended to <tt>IPREFIX</tt>.
@@ -938,22 +942,22 @@ matches the <var>pattern</var>, the matched portion is removed from
 if <var>number</var> is given, anything up to the <var>number</var>th match is
 moved.  If the <var>number</var> is negative, the <var>number</var>th longest
 match is moved. For example, if <tt>PREFIX</tt> contains the string
-&lsquo;<tt>a=b=c</tt>&rsquo;, then <tt>compset -P &rsquo;*\=&rsquo;</tt> will move the string &lsquo;<tt>a=b=</tt>&rsquo; 
-into the <tt>IPREFIX</tt> parameter, but <tt>compset -P 1 &rsquo;*\=&rsquo;</tt> will move only
+&lsquo;<tt>a=b=c</tt>&rsquo;, then <tt>compset -P '*\='</tt> will move the string &lsquo;<tt>a=b=</tt>&rsquo; 
+into the <tt>IPREFIX</tt> parameter, but <tt>compset -P 1 '*\='</tt> will move only
 the string &lsquo;<tt>a=</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>-s</tt> <var>number</var></dt>
+<dt><tt>-s</tt> <var>number</var></dt>
 <dd><p>As <tt>-p</tt>, but transfer the last <var>number</var> characters from the
 value of <tt>SUFFIX</tt> to the front of the value of <tt>ISUFFIX</tt>.
 </p>
 </dd>
-<dt> <tt>-S</tt> [ <var>number</var> ] <var>pattern</var></dt>
+<dt><tt>-S</tt> [ <var>number</var> ] <var>pattern</var></dt>
 <dd><p>As <tt>-P</tt>, but match the last portion of <tt>SUFFIX</tt> and transfer the
 matched portion to the front of the value of <tt>ISUFFIX</tt>.
 </p>
 </dd>
-<dt> <tt>-n</tt> <var>begin</var> [ <var>end</var> ]</dt>
+<dt><tt>-n</tt> <var>begin</var> [ <var>end</var> ]</dt>
 <dd><p>If the current word position as specified by the parameter <tt>CURRENT</tt> 
 is greater than or equal to <var>begin</var>, anything up to the
 <var>begin</var>th word is removed from the <tt>words</tt> array and the value
@@ -968,7 +972,7 @@ the <tt>words</tt> array.
 from the last element of the <tt>words</tt> array.
 </p>
 </dd>
-<dt> <tt>-N</tt> <var>beg-pat</var> [ <var>end-pat</var> ]</dt>
+<dt><tt>-N</tt> <var>beg-pat</var> [ <var>end-pat</var> ]</dt>
 <dd><p>If one of the elements of the <tt>words</tt> array before the one at the
 index given by the value of the parameter <tt>CURRENT</tt> matches the
 pattern <var>beg-pat</var>, all elements up to and including the matching one are
@@ -985,7 +989,7 @@ array. If <tt>words</tt> contains no word matching <var>end-pat</var>, the
 testing and modification is performed as if it were not given.
 </p>
 </dd>
-<dt> <tt>-q</tt></dt>
+<dt><tt>-q</tt></dt>
 <dd><p>The word
 currently being completed is split on spaces into separate words,
 respecting the usual shell quoting conventions.  The 
@@ -1000,14 +1004,15 @@ reflect the word part that is completed.
 and the parameters were modified and non-zero otherwise. This allows
 one to use this builtin in tests such as:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">if compset -P '*\='; then ...
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">if compset -P '*\='; then ...
+</pre></div>
 
 <p>This forces anything up to and including the last equal sign to be
 ignored by the completion code.
 </p>
 </dd>
-<dt> <tt>compcall</tt> [ <tt>-TD</tt> ]</dt>
+<dt><tt>compcall</tt> [ <tt>-TD</tt> ]</dt>
 <dd><p>This allows the use of completions defined with the <tt>compctl</tt> builtin
 from within completion widgets.  The list of matches will be generated as
 if one of the non-widget completion functions (<tt>complete-word</tt>, etc.)
@@ -1026,20 +1031,19 @@ zero otherwise.
 </dd>
 </dl>
 
-<hr size="6">
+<hr>
 <a name="Completion-Condition-Codes"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Completion-Builtin-Commands" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Completion-Matching-Control" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-Builtin-Commands" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-Widgets" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-Matching-Control" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-System.html#Completion-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -1049,46 +1053,45 @@ zero otherwise.
 <h2 class="section">19.4 Completion Condition Codes</h2>
 <a name="index-completion-widgets_002c-condition-codes"></a>
 
-<p>The following additional condition codes for use within the <tt>[[ ... ]]</tt>
+<p>The following additional condition codes for use within the <tt>[[</tt> <var>...</var> <tt>]]</tt>
 construct are available in completion widgets.  These work on the special
 parameters.  All of these tests can also be performed by the <tt>compset</tt>
 builtin, but in the case of the condition codes the contents of the special
 parameters are not modified.
 </p>
 <dl compact="compact">
-<dt> <tt>-prefix</tt> [ <var>number</var> ] <var>pattern</var></dt>
+<dt><tt>-prefix</tt> [ <var>number</var> ] <var>pattern</var></dt>
 <dd><p>true if the test for the <tt>-P</tt> option of <tt>compset</tt> would succeed.
 </p>
 </dd>
-<dt> <tt>-suffix</tt> [ <var>number</var> ] <var>pattern</var></dt>
+<dt><tt>-suffix</tt> [ <var>number</var> ] <var>pattern</var></dt>
 <dd><p>true if the test for the <tt>-S</tt> option of <tt>compset</tt> would succeed.
 </p>
 </dd>
-<dt> <tt>-after</tt> <var>beg-pat</var></dt>
+<dt><tt>-after</tt> <var>beg-pat</var></dt>
 <dd><p>true if the test of the <tt>-N</tt> option with only the <var>beg-pat</var> given 
 would succeed.
 </p>
 </dd>
-<dt> <tt>-between</tt> <var>beg-pat end-pat</var></dt>
+<dt><tt>-between</tt> <var>beg-pat end-pat</var></dt>
 <dd><p>true if the test for the <tt>-N</tt> option with both patterns would succeed.
 </p>
 </dd>
 </dl>
 
-<hr size="6">
+<hr>
 <a name="Completion-Matching-Control"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Completion-Condition-Codes" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Completion-Widget-Example" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-Condition-Codes" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-Widgets" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-Widget-Example" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-System.html#Completion-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -1120,18 +1123,18 @@ a lower case initial character the string on the command line is changed
 into the corresponding part of the trial completion.
 </p>
 <dl compact="compact">
-<dt> <tt>m:</tt><var>lpat</var><tt>=</tt><var>tpat</var></dt>
-<dt> <tt>M:</tt><var>lpat</var><tt>=</tt><var>tpat</var></dt>
+<dt><tt>m:</tt><var>lpat</var><tt>=</tt><var>tpat</var></dt>
+<dt><tt>M:</tt><var>lpat</var><tt>=</tt><var>tpat</var></dt>
 <dd><p>Here, <var>lpat</var> is a pattern that matches on the command line,
 corresponding to <var>tpat</var> which matches in the trial completion.
 </p>
 </dd>
-<dt> <tt>l:</tt><var>lanchor</var><tt>|</tt><var>lpat</var><tt>=</tt><var>tpat</var></dt>
-<dt> <tt>L:</tt><var>lanchor</var><tt>|</tt><var>lpat</var><tt>=</tt><var>tpat</var></dt>
-<dt> <tt>l:</tt><var>lanchor</var><tt>||</tt><var>ranchor</var><tt>=</tt><var>tpat</var></dt>
-<dt> <tt>L:</tt><var>lanchor</var><tt>||</tt><var>ranchor</var><tt>=</tt><var>tpat</var></dt>
-<dt> <tt>b:</tt><var>lpat</var><tt>=</tt><var>tpat</var></dt>
-<dt> <tt>B:</tt><var>lpat</var><tt>=</tt><var>tpat</var></dt>
+<dt><tt>l:</tt><var>lanchor</var><tt>|</tt><var>lpat</var><tt>=</tt><var>tpat</var></dt>
+<dt><tt>L:</tt><var>lanchor</var><tt>|</tt><var>lpat</var><tt>=</tt><var>tpat</var></dt>
+<dt><tt>l:</tt><var>lanchor</var><tt>||</tt><var>ranchor</var><tt>=</tt><var>tpat</var></dt>
+<dt><tt>L:</tt><var>lanchor</var><tt>||</tt><var>ranchor</var><tt>=</tt><var>tpat</var></dt>
+<dt><tt>b:</tt><var>lpat</var><tt>=</tt><var>tpat</var></dt>
+<dt><tt>B:</tt><var>lpat</var><tt>=</tt><var>tpat</var></dt>
 <dd><p>These letters are for patterns that are anchored by another pattern on
 the left side. Matching for <var>lpat</var> and <var>tpat</var> is as for <tt>m</tt> and
 <tt>M</tt>, but the pattern <var>lpat</var> matched on the command line must be
@@ -1150,12 +1153,12 @@ anchor, but need to match only the beginning of the trial completion
 or the word on the command line, respectively.
 </p>
 </dd>
-<dt> <tt>r:</tt><var>lpat</var><tt>|</tt><var>ranchor</var><tt>=</tt><var>tpat</var></dt>
-<dt> <tt>R:</tt><var>lpat</var><tt>|</tt><var>ranchor</var><tt>=</tt><var>tpat</var></dt>
-<dt> <tt>r:</tt><var>lanchor</var><tt>||</tt><var>ranchor</var><tt>=</tt><var>tpat</var></dt>
-<dt> <tt>R:</tt><var>lanchor</var><tt>||</tt><var>ranchor</var><tt>=</tt><var>tpat</var></dt>
-<dt> <tt>e:</tt><var>lpat</var><tt>=</tt><var>tpat</var></dt>
-<dt> <tt>E:</tt><var>lpat</var><tt>=</tt><var>tpat</var></dt>
+<dt><tt>r:</tt><var>lpat</var><tt>|</tt><var>ranchor</var><tt>=</tt><var>tpat</var></dt>
+<dt><tt>R:</tt><var>lpat</var><tt>|</tt><var>ranchor</var><tt>=</tt><var>tpat</var></dt>
+<dt><tt>r:</tt><var>lanchor</var><tt>||</tt><var>ranchor</var><tt>=</tt><var>tpat</var></dt>
+<dt><tt>R:</tt><var>lanchor</var><tt>||</tt><var>ranchor</var><tt>=</tt><var>tpat</var></dt>
+<dt><tt>e:</tt><var>lpat</var><tt>=</tt><var>tpat</var></dt>
+<dt><tt>E:</tt><var>lpat</var><tt>=</tt><var>tpat</var></dt>
 <dd><p>As <tt>l</tt>, <tt>L</tt>, <tt>b</tt> and <tt>B</tt>, with the difference that the command
 line and trial completion patterns are anchored on the right side.
 Here an empty <var>ranchor</var> and the <tt>e</tt> and <tt>E</tt> forms force the
@@ -1189,8 +1192,8 @@ like normal character classes.  In anchor patterns correspondence classes
 also behave like normal character classes.
 </p>
 <p>The standard &lsquo;<tt>[:</tt><var>name</var><tt>:]</tt>&rsquo; forms described for standard shell
-patterns,
-<a href="Expansion.html#Filename-Generation">Filename Generation</a>,
+patterns (see
+<a href="Expansion.html#Filename-Generation">Filename Generation</a>)
 may appear in correspondence classes as well as normal character
 classes.  The only special behaviour in correspondence classes is if
 the form on the left and the form on the right are each one of
@@ -1231,9 +1234,10 @@ underscore are ignored when trying to match the trial completions
 generated and upper case letters on the line match the corresponding
 lower case letters in the words:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">compadd -M 'L:|[nN][oO]= M:_= M:{[:upper:]}={[:lower:]}' - \ 
+<div class="example">
+<pre class="example">compadd -M 'L:|[nN][oO]= M:_= M:{[:upper:]}={[:lower:]}' - \ 
   ${(k)options} 
-</pre></td></tr></table>
+</pre></div>
 
 <p>The first part says that the pattern &lsquo;<tt>[nN][oO]</tt>&rsquo; at the beginning
 (the empty anchor before the pipe symbol) of the string on the
@@ -1263,14 +1267,16 @@ by the same or other <var>match-spec</var>s.
 the same as in the option example, except here we wish to retain the
 characters in the list of completions:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">compadd -M 'm:{[:lower:]}={[:upper:]}' ... 
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">compadd -M 'm:{[:lower:]}={[:upper:]}' ... 
+</pre></div>
 
 <p>This makes lower case letters match their upper case counterparts.
 To make upper case letters match the lower case forms as well:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">compadd -M 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' ... 
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">compadd -M 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' ... 
+</pre></div>
 
 <p>A nice example for the use of <tt>*</tt> patterns is partial word
 completion. Sometimes you would like to make strings like &lsquo;<tt>c.s.u</tt>&rsquo;
@@ -1283,9 +1289,10 @@ separate sets of matches
 is a different problem to be solved by the implementation of the
 completion widget.  The example can be handled by:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">compadd -M 'r:|.=* r:|=*' \ 
+<div class="example">
+<pre class="example">compadd -M 'r:|.=* r:|=*' \ 
   - comp.sources.unix comp.sources.misc ...
-</pre></td></tr></table>
+</pre></div>
 
 <p>The first specification says that <var>lpat</var> is the empty string, while
 <var>anchor</var> is a dot; <var>tpat</var> is <tt>*</tt>, so this can match anything
@@ -1317,8 +1324,9 @@ at the end of the trial completion.
 </p>
 <p>More generally, the specification
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">compadd -M 'r:|[.,_-]=* r:|=*' ... 
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">compadd -M 'r:|[.,_-]=* r:|=*' ... 
+</pre></div>
 
 <p>allows one to complete words with abbreviations before any of the
 characters in the square brackets.  For example, to
@@ -1334,8 +1342,9 @@ determined by a leading upper case letter) or maybe one has to
 complete strings with trailing numbers. Here one could use the simple
 form with only one anchor as in:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">compadd -M 'r:|[[:upper:]0-9]=* r:|=*' LikeTHIS FooHoo 5foo123 5bar234
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">compadd -M 'r:|[[:upper:]0-9]=* r:|=*' LikeTHIS FooHoo 5foo123 5bar234
+</pre></div>
 
 <p>But with this, the string &lsquo;<tt>H</tt>&rsquo; would neither complete to &lsquo;<tt>FooHoo</tt>&rsquo;
 nor to &lsquo;<tt>LikeTHIS</tt>&rsquo; because in each case there is an upper case
@@ -1346,9 +1355,10 @@ by using &lsquo;<tt>r:|[[:upper:]0-9]=**</tt>&rsquo;, but then &lsquo;<tt>H</tt>
 strings because characters can be inserted before every upper case
 letter and digit. To avoid this one would use:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">compadd -M 'r:[^[:upper:]0-9]||[[:upper:]0-9]=** r:|=*' \ 
+<div class="example">
+<pre class="example">compadd -M 'r:[^[:upper:]0-9]||[[:upper:]0-9]=** r:|=*' \ 
     LikeTHIS FooHoo foo123 bar234
-</pre></td></tr></table>
+</pre></div>
 
 <p>By using these two anchors, a &lsquo;<tt>H</tt>&rsquo; matches only upper case &lsquo;<tt>H</tt>&rsquo;s that 
 are immediately preceded by something matching the left anchor
@@ -1360,20 +1370,19 @@ the string &lsquo;<tt>FooHoo</tt>&rsquo;, a &lsquo;<tt>2</tt>&rsquo; matches onl
 specific contexts by using the <tt>matcher</tt> and <tt>matcher-list</tt>
 styles. The values for the latter will be used everywhere.
 </p>
-<hr size="6">
+<hr>
 <a name="Completion-Widget-Example"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Completion-Matching-Control" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Completion-System.html#Completion-System" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-Matching-Control" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-Widgets" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Completion-System.html#Completion-System" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-System.html#Completion-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -1385,26 +1394,29 @@ styles. The values for the latter will be used everywhere.
 
 <p>The first step is to define the widget:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">zle -C complete complete-word complete-files
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">zle -C complete complete-word complete-files
+</pre></div>
 
 <p>Then the widget can be bound to a key using the <tt>bindkey</tt> builtin
 command:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">bindkey '^X\t' complete
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">bindkey '^X\t' complete
+</pre></div>
 
 <p>After that the shell function <tt>complete-files</tt> will be invoked
 after typing control-X and TAB. The function should then generate the
 matches, e.g.:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">complete-files () { compadd - * }
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">complete-files () { compadd - * }
+</pre></div>
 
 <p>This function will complete files in the current directory matching the 
 current word.
-</p><hr size="6">
-<table cellpadding="1" cellspacing="1" border="0">
+</p><hr>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-System.html#Completion-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1412,17 +1424,15 @@ current word.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p>
- <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>October 11, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
- </font>
- <br>
-<font size="-1">Zsh version 5.0.7, released on October 7, 2014.</font>
-</p>
+<p><font size="-1">
+  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+</font></p>
+
+<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
 </body>
 </html>

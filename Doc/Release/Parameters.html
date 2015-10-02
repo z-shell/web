@@ -1,82 +1,83 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on October 11, 2014 by texi2html 1.82
-texi2html was written by: 
-            Lionel Cons <Lionel.Cons@cern.ch> (original author)
-            Karl Berry  <karl@freefriends.org>
-            Olaf Bachmann <obachman@mathematik.uni-kl.de>
-            and many others.
-Maintained by: Many creative people.
-Send bugs and suggestions to <texi2html-bug@nongnu.org>
--->
+<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 15. Parameters</title>
+<title>zsh: 15 Parameters</title>
 
-<meta name="description" content="zsh: 15. Parameters">
-<meta name="keywords" content="zsh: 15. Parameters">
+<meta name="description" content="zsh: 15 Parameters">
+<meta name="keywords" content="zsh: 15 Parameters">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 1.82">
+<meta name="Generator" content="texi2any">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
-pre.display {font-family: serif}
-pre.format {font-family: serif}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: serif; font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.roman {font-family:serif; font-weight:normal;}
-span.sansserif {font-family:sans-serif; font-weight:normal;}
-ul.toc {list-style: none}
+span.nocodebreak {white-space: nowrap}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: serif; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
 -->
 </style>
 
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-
+<body lang="en">
 <a name="Parameters"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="Expansion.html#Glob-Qualifiers" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-1" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="Expansion.html#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Expansion.html#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Expansion.html#Glob-Qualifiers" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Description" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Options.html#Options" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
 <a name="Parameters-1"></a>
-<h1 class="chapter">15. Parameters</h1>
+<h1 class="chapter">15 Parameters</h1>
 <a name="index-parameters"></a>
+<a name="index-variables"></a>
 
-<hr size="6">
-<a name="Description-1"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Parameters" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Array-Parameters" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<hr>
+<a name="Description"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Parameters" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Parameters" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Array-Parameters" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Options.html#Options" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -86,43 +87,75 @@ ul.toc {list-style: none}
 A name may be any sequence of alphanumeric
 characters and underscores, or the single characters
 &lsquo;<tt>*</tt>&rsquo;, &lsquo;<tt>@</tt>&rsquo;, &lsquo;<tt>#</tt>&rsquo;, &lsquo;<tt>?</tt>&rsquo;, &lsquo;<tt>-</tt>&rsquo;, &lsquo;<tt>$</tt>&rsquo;, or &lsquo;<tt>!</tt>&rsquo;.
-The value may be a <em>scalar</em> (a string),
-an integer, an array (indexed numerically), or an <em>associative</em>
-array (an unordered set of name-value pairs, indexed by name).  To declare
-the type of a parameter, or to assign a scalar or integer value to a
-parameter, use the <tt>typeset</tt> builtin.
+A parameter whose name begins with an alphanumeric or underscore is also
+referred to as a <em>variable</em>.
+</p>
+<a name="index-scalar"></a>
+<a name="index-parameters_002c-scalar"></a>
+<a name="index-parameters_002c-array"></a>
+<a name="index-parameters_002c-associative-array"></a>
+<a name="index-hash"></a>
+<p>The attributes of a parameter determine the <em>type</em> of its value, often
+referred to as the parameter type or variable type, and also control
+other processing that may be applied to the value when it is referenced.
+The value type may be a <em>scalar</em> (a string, an integer, or a floating
+point number), an array (indexed numerically), or an <em>associative</em>
+array (an unordered set of name-value pairs, indexed by name, also
+referred to as a <em>hash</em>).
+</p>
+<a name="index-export"></a>
+<a name="index-environment"></a>
+<a name="index-environment-variables"></a>
+<a name="index-variables_002c-environment"></a>
+<p>Named scalar parameters may have the <em>exported</em>, <tt>-x</tt>, attribute, to
+copy them into the process environment, which is then passed from the
+shell to any new processes that it starts.  Exported parameters are called
+<em>environment variables</em>. The shell also <em>imports</em> environment variables
+at startup time and automatically marks the corresponding parameters as
+exported.  Some environment variables are not imported for reasons of
+security or because they would interfere with the correct operation of
+other shell features.
+</p>
+<a name="index-special-parameters"></a>
+<a name="index-parameters_002c-special"></a>
+<p>Parameters may also be <em>special</em>, that is, they have a predetermined
+meaning to the shell.  Special parameters cannot have their type changed
+or their readonly attribute turned off, and if a special parameter is
+unset, then later recreated, the special properties will be retained.
+</p>
+<p>To declare the type of a parameter, or to assign a string or numeric value
+to a scalar parameter, use the <tt>typeset</tt> builtin.
 <a name="index-typeset_002c-use-of"></a>
 </p>
-<p>The value of a scalar or integer parameter may also be assigned by
-writing:
+<p>The value of a scalar parameter may also be assigned by writing:
 <a name="index-assignment"></a>
 </p>
-<blockquote><p><var>name</var><tt>=</tt><var>value</var>
+<blockquote>
+<p><var>name</var><tt>=</tt><var>value</var>
 </p></blockquote>
 
-<p>If the integer attribute, <tt>-i</tt>, is set for <var>name</var>, the <var>value</var>
-is subject to arithmetic evaluation.  Furthermore, by replacing &lsquo;<tt>=</tt>&rsquo;
-with &lsquo;<tt>+=</tt>&rsquo;, a parameter can be added or appended to.
-</p>
 <p>In scalar assignment, <var>value</var> is expanded as a single string, in
 which the elements of arrays are joined together; filename expansion is
-not performed unless the option <tt>GLOB_ASSIGN</tt> is set.  See
-<a href="#Array-Parameters">Array Parameters</a> for additional forms of assignment.
+not performed unless the option <tt>GLOB_ASSIGN</tt> is set.
 </p>
-<p>To refer to the value of a parameter, write &lsquo;<tt>$</tt><var>name</var>&rsquo; or
+<p>When the integer attribute, <tt>-i</tt>, or a floating point attribute, <tt>-E</tt>
+or <tt>-F</tt>, is set for <var>name</var>, the <var>value</var> is subject to arithmetic
+evaluation.  Furthermore, by replacing &lsquo;<tt>=</tt>&rsquo; with &lsquo;<tt>+=</tt>&rsquo;, a parameter
+can be incremented or appended to.  See <a href="#Array-Parameters">Array Parameters</a> and
+<a href="Arithmetic-Evaluation.html#Arithmetic-Evaluation">Arithmetic Evaluation</a>
+for additional forms of assignment.
+</p>
+<p>Note that assignment may implicitly change the attributes of a parameter.
+For example, assigning a number to a variable in arithmetic evaluation may
+change its type to integer or float, and with <tt>GLOB_ASSIGN</tt> assigning a
+pattern to a variable may change its type to an array.
+</p>
+<p>To reference the value of a parameter, write &lsquo;<tt>$</tt><var>name</var>&rsquo; or
 &lsquo;<tt>${</tt><var>name</var><tt>}</tt>&rsquo;.  See
 <a href="Expansion.html#Parameter-Expansion">Parameter Expansion</a>
-for complete details.  This section also explains the effect
+for complete details.  That section also explains the effect
 of the difference between scalar and array assignment on parameter
 expansion.
-</p>
-<p>In the parameter lists that follow, the mark &lsquo;&lt;S&gt;&rsquo; indicates that the
-parameter is special.
-Special parameters cannot have their type changed or their
-readonly attribute turned off, and if a special parameter is unset, then
-later recreated, the special properties will be retained.  &lsquo;&lt;Z&gt;&rsquo; indicates
-that the parameter does not exist when the shell initializes in <tt>sh</tt> or
-<tt>ksh</tt> emulation mode.
 </p><table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top"><a href="#Array-Parameters">15.2 Array Parameters</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
@@ -135,20 +168,19 @@ that the parameter does not exist when the shell initializes in <tt>sh</tt> or
 <tr><td align="left" valign="top"><a href="#Parameters-Used-By-The-Shell">15.6 Parameters Used By The Shell</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
-<hr size="6">
+<hr>
 <a name="Array-Parameters"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Description-1" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Array-Subscripts" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Parameters" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Array-Subscripts" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Options.html#Options" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -160,65 +192,85 @@ that the parameter does not exist when the shell initializes in <tt>sh</tt> or
 <a name="index-set_002c-use-of"></a>
 <a name="index-array-assignment"></a>
 </p>
-<blockquote><p><tt>set -A</tt> <var>name</var> <var>value</var> ...
+<blockquote>
+<p><tt>set -A</tt> <var>name</var> <var>value</var> ...
 </p></blockquote>
-<blockquote><p><var>name</var><tt>=(</tt><var>value</var> ...<tt>)</tt>
+<blockquote>
+<p><var>name</var><tt>=(</tt><var>value</var> ...<tt>)</tt>
 </p></blockquote>
 
 <p>If no parameter <var>name</var> exists, an ordinary array parameter is created.
 If the parameter <var>name</var> exists and is a scalar, it is replaced by a new
-array.  Ordinary array parameters may also be explicitly declared with:
+array.  To append to an array without changing the existing values, use
+the syntax:
+</p>
+<blockquote>
+<p><var>name</var><tt>+=(</tt><var>value</var> ...<tt>)</tt>
+</p></blockquote>
+
+<p>Ordinary array parameters may also be explicitly declared with:
 <a name="index-typeset_002c-use-of-1"></a>
 </p>
-<blockquote><p><tt>typeset -a</tt> <var>name</var>
+<blockquote>
+<p><tt>typeset -a</tt> <var>name</var>
 </p></blockquote>
 
 <p>Associative arrays <em>must</em> be declared before assignment, by using:
 </p>
-<blockquote><p><tt>typeset -A</tt> <var>name</var>
+<blockquote>
+<p><tt>typeset -A</tt> <var>name</var>
 </p></blockquote>
 
 <p>When <var>name</var> refers to an associative array, the list in an assignment
 is interpreted as alternating keys and values:
 </p>
-<blockquote><p>set -A <var>name</var> <var>key</var> <var>value</var> ...
+<blockquote>
+<p><tt>set -A</tt> <var>name</var> <var>key</var> <var>value</var> ...
 </p></blockquote>
-<blockquote><p><var>name</var><tt>=(</tt><var>key</var> <var>value</var> ...<tt>)</tt>
+<blockquote>
+<p><var>name</var><tt>=(</tt><var>key</var> <var>value</var> ...<tt>)</tt>
 </p></blockquote>
 
 <p>Every <var>key</var> must have a <var>value</var> in this case.  Note that this
-assigns to the entire array, deleting any elements that do not appear
-in the list.
+assigns to the entire array, deleting any elements that do not appear in
+the list.  The append syntax may also be used with an associative array:
+</p>
+<blockquote>
+<p><var>name</var><tt>+=(</tt><var>key</var> <var>value</var> ...<tt>)</tt>
+</p></blockquote>
+
+<p>This adds a new key/value pair if the key is not already present, and
+replaces the value for the existing key if it is.
 </p>
 <p>To create an empty array (including associative arrays), use one of:
 </p>
-<blockquote><p><tt>set -A</tt> <var>name</var>
+<blockquote>
+<p><tt>set -A</tt> <var>name</var>
 </p></blockquote>
-<blockquote><p><var>name</var><tt>=()</tt>
+<blockquote>
+<p><var>name</var><tt>=()</tt>
 </p></blockquote>
 
 
-<hr size="6">
+<hr>
 <a name="Array-Subscripts"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Array-Parameters" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Array-Element-Assignment" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Array-Parameters" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Array-Parameters" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Array-Element-Assignment" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Options.html#Options" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">15.2.1 Array Subscripts</h3>
 <a name="index-subscripts"></a>
-
 <p>Individual elements of an array may be selected using a subscript.  A
 subscript of the form &lsquo;<tt>[</tt><var>exp</var><tt>]</tt>&rsquo; selects the single element
 <var>exp</var>, where <var>exp</var> is an arithmetic expression which will be subject
@@ -274,23 +326,44 @@ from the end of the array <tt>foo</tt>, and
 <p>Subscripting may also be performed on non-array values, in which
 case the subscripts specify a substring to be extracted.
 For example, if <tt>FOO</tt> is set to &lsquo;<tt>foobar</tt>&rsquo;, then
-&lsquo;<tt>echo $FOO[2,5]</tt>&rsquo; prints &lsquo;<tt>ooba</tt>&rsquo;.
+&lsquo;<tt>echo $FOO[2,5]</tt>&rsquo; prints &lsquo;<tt>ooba</tt>&rsquo;.  Note that
+some forms of subscripting described below perform pattern matching,
+and in that case the substring extends from the start of the match
+of the first subscript to the end of the match of the second
+subscript.  For example,
+</p>
+<div class="example">
+<pre class="example">string=&quot;abcdefghijklm&quot;
+print ${string[(r)d?,(r)h?]}
+</pre></div>
+
+<p>prints &lsquo;<tt>defghi</tt>&rsquo;.  This is an obvious generalisation of the
+rule for single-character matches.  For a single subscript,
+only a single character is referenced (not the range of characters
+covered by the match).
+</p>
+<p>Note that in substring operations the second subscript is handled
+differently by the <tt>r</tt> and <tt>R</tt> subscript flags: the former takes the
+shortest match as the length and the latter the longest match.  Hence
+in the former case a <tt>*</tt> at the end is redundant while in
+the latter case it matches the whole remainder of the string.  This
+does not affect the result of the single subscript case as here the
+length of the match is irrelevant.
 </p>
 
-<hr size="6">
+<hr>
 <a name="Array-Element-Assignment"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Array-Subscripts" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Subscript-Flags" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Array-Subscripts" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Array-Parameters" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Subscript-Flags" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Options.html#Options" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -299,7 +372,8 @@ For example, if <tt>FOO</tt> is set to &lsquo;<tt>foobar</tt>&rsquo;, then
 
 <p>A subscript may be used on the left side of an assignment like so:
 </p>
-<blockquote><p><var>name</var><tt>[</tt><var>exp</var><tt>]=</tt><var>value</var>
+<blockquote>
+<p><var>name</var><tt>[</tt><var>exp</var><tt>]=</tt><var>value</var>
 </p></blockquote>
 
 <p>In this form of assignment the element or range specified by <var>exp</var>
@@ -312,7 +386,8 @@ associative arrays.)
 </p>
 <p>This syntax also works as an argument to the <tt>typeset</tt> command:
 </p>
-<blockquote><p><tt>typeset</tt> <tt>&quot;</tt><var>name</var><tt>[</tt><var>exp</var><tt>]&quot;=</tt><var>value</var>
+<blockquote>
+<p><tt>typeset</tt> <tt>&quot;</tt><var>name</var><tt>[</tt><var>exp</var><tt>]&quot;=</tt><var>value</var>
 </p></blockquote>
 
 <p>The <var>value</var> may <em>not</em> be a parenthesized list in this case; only
@@ -325,31 +400,30 @@ could be used instead.
 that element.  To delete an element of an associative array, use the
 <tt>unset</tt> command:
 </p>
-<blockquote><p><tt>unset</tt> <tt>&quot;</tt><var>name</var><tt>[</tt><var>exp</var><tt>]&quot;</tt>
+<blockquote>
+<p><tt>unset</tt> <tt>&quot;</tt><var>name</var><tt>[</tt><var>exp</var><tt>]&quot;</tt>
 </p></blockquote>
 
 
-<hr size="6">
+<hr>
 <a name="Subscript-Flags"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Array-Element-Assignment" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Subscript-Parsing" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Array-Element-Assignment" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Array-Parameters" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Subscript-Parsing" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Options.html#Options" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">15.2.3 Subscript Flags</h3>
 <a name="index-subscript-flags"></a>
-
 <p>If the opening bracket, or the comma in a range, in any subscript
 expression is directly followed by an opening parenthesis, the string up
 to the matching closing one is considered to be a list of flags, as in
@@ -366,53 +440,54 @@ interpreted as a redirection.
 <p>The flags currently understood are:
 </p>
 <dl compact="compact">
-<dt> <tt>w</tt></dt>
+<dt><tt>w</tt></dt>
 <dd><p>If the parameter subscripted is a scalar then this flag makes
 subscripting work on words instead of characters.  The default word
 separator is whitespace.  This flag may not be used with the <tt>i</tt> or
 <tt>I</tt> flag.
 </p>
 </dd>
-<dt> <tt>s:</tt><var>string</var><tt>:</tt></dt>
+<dt><tt>s:</tt><var>string</var><tt>:</tt></dt>
 <dd><p>This gives the <var>string</var> that separates words (for use with the
 <tt>w</tt> flag).  The delimiter character <tt>:</tt> is arbitrary; see above.
 </p>
 </dd>
-<dt> <tt>p</tt></dt>
+<dt><tt>p</tt></dt>
 <dd><p>Recognize the same escape sequences as the <tt>print</tt> builtin in
 the string argument of a subsequent &lsquo;<tt>s</tt>&rsquo; flag.
 </p>
 </dd>
-<dt> <tt>f</tt></dt>
+<dt><tt>f</tt></dt>
 <dd><p>If the parameter subscripted is a scalar then this flag makes
 subscripting work on lines instead of characters, i.e. with elements
 separated by newlines.  This is a shorthand for &lsquo;<tt>pws:\n:</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>r</tt></dt>
+<dt><tt>r</tt></dt>
 <dd><p>Reverse subscripting: if this flag is given, the <var>exp</var> is taken as a
 pattern and the result is the first matching array element, substring or
 word (if the parameter is an array, if it is a scalar, or if it is a
 scalar and the &lsquo;<tt>w</tt>&rsquo; flag is given, respectively).  The subscript used
 is the number of the matching element, so that pairs of subscripts such as
-&lsquo;<tt>$foo[(r)</tt><var>??</var><tt>,3]</tt>&rsquo; and &lsquo;<tt>$foo[(r)</tt><var>??</var><tt>,(r)f*]</tt>&rsquo; are
+&lsquo;<tt>$foo[(r)??,3]</tt>&rsquo; and &lsquo;<tt>$foo[(r)??,(r)f*]</tt>&rsquo; are
 possible if the parameter is not an associative array.  If the
 parameter is an associative array, only the value part of each pair is
 compared to the pattern, and the result is that value.
 </p>
 <p>If a search through an ordinary array failed, the search sets the
 subscript to one past the end of the array, and hence
-<tt>${array[(r)pattern]}</tt> will substitute the empty string.  Thus the
+<tt>${array[(r)</tt><var>pattern</var><tt>]}</tt> will substitute the empty string.  Thus the
 success of a search can be tested by using the <tt>(i)</tt> flag, for
 example (assuming the option <tt>KSH_ARRAYS</tt> is not in effect):
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">[[ ${array[(i)pattern]} -le ${#array} ]]
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">[[ ${array[(i)pattern]} -le ${#array} ]]
+</pre></div>
 
 <p>If <tt>KSH_ARRAYS</tt> is in effect, the <tt>-le</tt> should be replaced by <tt>-lt</tt>.
 </p>
 </dd>
-<dt> <tt>R</tt></dt>
+<dt><tt>R</tt></dt>
 <dd><p>Like &lsquo;<tt>r</tt>&rsquo;, but gives the last match.  For associative arrays, gives
 all possible matches. May be used for assigning to ordinary array
 elements, but not for assigning to associative arrays.  On failure, for
@@ -427,12 +502,13 @@ matching).  The flag &lsquo;<tt>e</tt>&rsquo; can be added to inhibit pattern ma
 this flag does not inhibit other forms of substitution, care is still
 required; using a parameter to hold the key has the desired effect:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">key2='original key'
+<div class="example">
+<pre class="example">key2='original key'
 print ${array[(Re)$key2]}
-</pre></td></tr></table>
+</pre></div>
 
 </dd>
-<dt> <tt>i</tt></dt>
+<dt><tt>i</tt></dt>
 <dd><p>Like &lsquo;<tt>r</tt>&rsquo;, but gives the index of the match instead; this may not be
 combined with a second argument.  On the left side of an assignment,
 behaves like &lsquo;<tt>r</tt>&rsquo;.  For associative arrays, the key part of each pair
@@ -442,14 +518,14 @@ discussed under the description of &lsquo;<tt>r</tt>&rsquo;, or the empty string
 associative array.
 </p>
 </dd>
-<dt> <tt>I</tt></dt>
+<dt><tt>I</tt></dt>
 <dd><p>Like &lsquo;<tt>i</tt>&rsquo;, but gives the index of the last match, or all possible
 matching keys in an associative array.  On failure substitutes 0, or
 the empty string for an associative array.  This flag is best when
 testing for values or keys that do not exist.
 </p>
 </dd>
-<dt> <tt>k</tt></dt>
+<dt><tt>k</tt></dt>
 <dd><p>If used in a subscript on an associative array, this flag causes the keys
 to be interpreted as patterns, and returns the value for the first key
 found where <var>exp</var> is matched by the key.  Note this could be any
@@ -458,27 +534,27 @@ This flag does not work on the left side of an assignment to an associative
 array element.  If used on another type of parameter, this behaves like &lsquo;<tt>r</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>K</tt></dt>
+<dt><tt>K</tt></dt>
 <dd><p>On an associative array this is like &lsquo;<tt>k</tt>&rsquo; but returns all values where
 <var>exp</var> is matched by the keys.  On other types of parameters this has
 the same effect as &lsquo;<tt>R</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>n:</tt><var>expr</var><tt>:</tt></dt>
+<dt><tt>n:</tt><var>expr</var><tt>:</tt></dt>
 <dd><p>If combined with &lsquo;<tt>r</tt>&rsquo;, &lsquo;<tt>R</tt>&rsquo;, &lsquo;<tt>i</tt>&rsquo; or &lsquo;<tt>I</tt>&rsquo;, makes them give
 the <var>n</var>th or <var>n</var>th last match (if <var>expr</var> evaluates to
 <var>n</var>).  This flag is ignored when the array is associative.
 The delimiter character <tt>:</tt> is arbitrary; see above.
 </p>
 </dd>
-<dt> <tt>b:</tt><var>expr</var><tt>:</tt></dt>
+<dt><tt>b:</tt><var>expr</var><tt>:</tt></dt>
 <dd><p>If combined with &lsquo;<tt>r</tt>&rsquo;, &lsquo;<tt>R</tt>&rsquo;, &lsquo;<tt>i</tt>&rsquo; or &lsquo;<tt>I</tt>&rsquo;, makes them begin
 at the <var>n</var>th or <var>n</var>th last element, word, or character (if <var>expr</var>
 evaluates to <var>n</var>).  This flag is ignored when the array is associative.
 The delimiter character <tt>:</tt> is arbitrary; see above.
 </p>
 </dd>
-<dt> <tt>e</tt></dt>
+<dt><tt>e</tt></dt>
 <dd><p>This flag causes any pattern matching that would be performed on the
 subscript to use plain string matching instead.  Hence
 &lsquo;<tt>${array[(re)*]}</tt>&rsquo; matches only the array element whose value is <tt>*</tt>.
@@ -495,20 +571,19 @@ for either purpose on the left side of an assignment.
 <p>See <em>Parameter Expansion Flags</em> (<a href="Expansion.html#Parameter-Expansion">Parameter Expansion</a>) for additional ways to manipulate the results of array subscripting.
 </p>
 
-<hr size="6">
+<hr>
 <a name="Subscript-Parsing"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Subscript-Flags" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Positional-Parameters" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Subscript-Flags" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Array-Parameters" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Positional-Parameters" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Options.html#Options" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -520,17 +595,15 @@ patterns used for reverse subscripting (the &lsquo;<tt>r</tt>&rsquo;, &lsquo;<tt
 etc. flags), but it may also affect parameter substitutions that appear
 as part of an arithmetic expression in an ordinary subscript.
 </p>
-<p>It is possible to avoid the use of subscripts in assignments to associative
-array elements by using the syntax:
+<p>To avoid subscript parsing limitations in assignments to associative array
+elements, use the append syntax:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">
+<div class="example">
+<pre class="example">
    aa+=('key with &quot;*strange*&quot; characters' 'value string')
 
-</pre></td></tr></table>
+</pre></div>
 
-<p>This adds a new key/value pair if the key is not already present, and
-replaces the value for the existing key if it is.
-</p>
 <p>The basic rule to remember when writing a subscript expression is that all
 text between the opening &lsquo;<tt>[</tt>&rsquo; and the closing &lsquo;<tt>]</tt>&rsquo; is interpreted
 <em>as if</em> it were in double quotes (<a href="Shell-Grammar.html#Quoting">Quoting</a>).  However, unlike double quotes which normally cannot nest, subscript
@@ -571,10 +644,11 @@ can still write &lsquo;<tt>\&quot;</tt>&rsquo; (rather than &lsquo;<tt>\\\&quot;
 <tt>typeset</tt> builtin and an enclosing pair of double quotes; to refer to
 the value of that key, again use double quotes:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">typeset -A aa
+<div class="example">
+<pre class="example">typeset -A aa
 typeset &quot;aa[one\&quot;two\&quot;three\&quot;quotes]&quot;=QQQ
 print &quot;$aa[one\&quot;two\&quot;three\&quot;quotes]&quot;
-</pre></td></tr></table>
+</pre></div>
 
 <p>It is important to note that the quoting rules do not change when a
 parameter expansion with a subscript is nested inside another subscript
@@ -590,10 +664,11 @@ the sequences &lsquo;<tt>\*</tt>&rsquo;, and &lsquo;<tt>\@</tt>&rsquo; remain as
 appear in a subscript expression.  To use a literal &lsquo;<tt>*</tt>&rsquo; or &lsquo;<tt>@</tt>&rsquo; as
 an associative array key, the &lsquo;<tt>e</tt>&rsquo; flag must be used:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">typeset -A aa
+<div class="example">
+<pre class="example">typeset -A aa
 aa[(e)*]=star
 print $aa[(e)*]
-</pre></td></tr></table>
+</pre></div>
 
 <p>A last detail must be considered when reverse subscripting is performed.
 Parameters appearing in the subscript expression are first expanded and
@@ -625,20 +700,19 @@ characters of the second positional parameter, but &lsquo;<tt>$2[3,5]</tt>&rsquo
 entire second parameter concatenated with the filename generation pattern
 &lsquo;<tt>[3,5]</tt>&rsquo;.
 </p>
-<hr size="6">
+<hr>
 <a name="Positional-Parameters"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Subscript-Parsing" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Local-Parameters" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Subscript-Parsing" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Parameters" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Local-Parameters" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Options.html#Options" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -671,20 +745,19 @@ array assignment of the form &lsquo;<var>n</var><tt>=(</tt><var>value</var> ...<
 allowed, and has the effect of shifting all the values at positions greater
 than <var>n</var> by as many positions as necessary to accommodate the new values.
 </p>
-<hr size="6">
+<hr>
 <a name="Local-Parameters"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Positional-Parameters" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Parameters-Set-By-The-Shell" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Positional-Parameters" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Parameters" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Parameters-Set-By-The-Shell" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Options.html#Options" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -716,8 +789,9 @@ point the variable is made local, it will be set to an empty value (or zero
 in the case of integers).  
 The following:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">typeset PATH=/new/directory:$PATH
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">typeset PATH=/new/directory:$PATH
+</pre></div>
 
 <p>is valid for temporarily allowing the shell or programmes called from it to
 find the programs in <tt>/new/directory</tt> inside a function.
@@ -725,20 +799,19 @@ find the programs in <tt>/new/directory</tt> inside a function.
 <p>Note that the restriction in older versions of zsh that local parameters
 were never exported has been removed.
 </p>
-<hr size="6">
+<hr>
 <a name="Parameters-Set-By-The-Shell"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Local-Parameters" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Parameters-Used-By-The-Shell" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Local-Parameters" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Parameters" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Parameters-Used-By-The-Shell" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Options.html#Options" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -746,18 +819,22 @@ were never exported has been removed.
 
 <a name="Parameters-Set-By-The-Shell-1"></a>
 <h2 class="section">15.5 Parameters Set By The Shell</h2>
+<p>In the parameter lists that follow, the mark &lsquo;&lt;S&gt;&rsquo; indicates that the
+parameter is special.  &lsquo;&lt;Z&gt;&rsquo; indicates that the parameter does not exist
+when the shell initializes in <tt>sh</tt> or <tt>ksh</tt> emulation mode.
+</p>
 <p>The following parameters are automatically set by the shell:
 </p>
 <dl compact="compact">
 <dd><a name="index-_0021"></a>
 </dd>
-<dt> <tt>!</tt> &lt;S&gt;</dt>
+<dt><tt>!</tt> &lt;S&gt;</dt>
 <dd><p>The process ID of the last command started in the background with <tt>&amp;</tt>,
 or put into the background with the <tt>bg</tt> builtin.
 </p>
 <a name="index-_0023"></a>
 </dd>
-<dt> <tt>#</tt> &lt;S&gt;</dt>
+<dt><tt>#</tt> &lt;S&gt;</dt>
 <dd><p>The number of positional parameters in decimal.  Note that some confusion
 may occur with the syntax <tt>$#</tt><var>param</var> which substitutes the length of
 <var>param</var>.  Use <tt>${#}</tt> to resolve ambiguities.  In particular, the
@@ -766,12 +843,12 @@ the length of the parameter <tt>-</tt>, q.v.
 </p>
 <a name="index-ARGC"></a>
 </dd>
-<dt> <tt>ARGC</tt> &lt;S&gt; &lt;Z&gt;</dt>
+<dt><tt>ARGC</tt> &lt;S&gt; &lt;Z&gt;</dt>
 <dd><p>Same as <tt>#</tt>.
 </p>
 <a name="index-_0024"></a>
 </dd>
-<dt> <tt>$</tt> &lt;S&gt;</dt>
+<dt><tt>$</tt> &lt;S&gt;</dt>
 <dd><p>The process ID of this shell.  Note that this indicates the original
 shell started by invoking <tt>zsh</tt>; all processes forked from the shells
 without executing a new program, such as subshells started by
@@ -779,18 +856,18 @@ without executing a new program, such as subshells started by
 </p>
 <a name="index-_002d-1"></a>
 </dd>
-<dt> <tt>-</tt> &lt;S&gt;</dt>
+<dt><tt>-</tt> &lt;S&gt;</dt>
 <dd><p>Flags supplied to the shell on invocation or by the <tt>set</tt>
 or <tt>setopt</tt> commands.
 </p>
 <a name="index-_002a"></a>
 </dd>
-<dt> <tt>*</tt> &lt;S&gt;</dt>
+<dt><tt>*</tt> &lt;S&gt;</dt>
 <dd><p>An array containing the positional parameters.
 </p>
 <a name="index-argv"></a>
 </dd>
-<dt> <tt>argv</tt> &lt;S&gt; &lt;Z&gt;</dt>
+<dt><tt>argv</tt> &lt;S&gt; &lt;Z&gt;</dt>
 <dd><p>Same as <tt>*</tt>.  Assigning to <tt>argv</tt> changes the local positional
 parameters, but <tt>argv</tt> is <em>not</em> itself a local parameter.
 Deleting <tt>argv</tt> with <tt>unset</tt> in any function deletes it everywhere,
@@ -799,17 +876,17 @@ although only the innermost positional parameter array is deleted (so
 </p>
 <a name="index-_0040"></a>
 </dd>
-<dt> <tt>@</tt> &lt;S&gt;</dt>
+<dt><tt>@</tt> &lt;S&gt;</dt>
 <dd><p>Same as <tt>argv[@]</tt>, even when <tt>argv</tt> is not set.
 </p>
 <a name="index-_003f"></a>
 </dd>
-<dt> <tt>?</tt> &lt;S&gt;</dt>
+<dt><tt>?</tt> &lt;S&gt;</dt>
 <dd><p>The exit status returned by the last command.
 </p>
 <a name="index-0"></a>
 </dd>
-<dt> <tt>0</tt> &lt;S&gt;</dt>
+<dt><tt>0</tt> &lt;S&gt;</dt>
 <dd><p>The name used to invoke the current shell, or as set by the <tt>-c</tt> command
 line option upon invocation.  If the <tt>FUNCTION_ARGZERO</tt> option is set,
 <tt>$0</tt> is set upon entry to a shell function to the name of the function,
@@ -818,49 +895,55 @@ its previous value when the function or script returns.
 </p>
 <a name="index-status"></a>
 </dd>
-<dt> <tt>status</tt> &lt;S&gt; &lt;Z&gt;</dt>
+<dt><tt>status</tt> &lt;S&gt; &lt;Z&gt;</dt>
 <dd><p>Same as <tt>?</tt>.
 </p>
 <a name="index-pipestatus"></a>
 </dd>
-<dt> <tt>pipestatus</tt> &lt;S&gt; &lt;Z&gt;</dt>
+<dt><tt>pipestatus</tt> &lt;S&gt; &lt;Z&gt;</dt>
 <dd><p>An array containing the exit statuses returned by all commands in the
 last pipeline.
 </p>
 <a name="index-_005f"></a>
 </dd>
-<dt> <tt>_</tt> &lt;S&gt;</dt>
+<dt><tt>_</tt> &lt;S&gt;</dt>
 <dd><p>The last argument of the previous command.
 Also, this parameter is set in the environment of every command
 executed to the full pathname of the command.
 </p>
 <a name="index-CPUTYPE"></a>
 </dd>
-<dt> <tt>CPUTYPE</tt></dt>
+<dt><tt>CPUTYPE</tt></dt>
 <dd><p>The machine type (microprocessor class or machine model),
 as determined at run time.
 </p>
 <a name="index-EGID"></a>
 </dd>
-<dt> <tt>EGID</tt> &lt;S&gt;</dt>
+<dt><tt>EGID</tt> &lt;S&gt;</dt>
 <dd><p>The effective group ID of the shell process.  If you have sufficient
 privileges, you may change the effective group ID of the shell
 process by assigning to this parameter.  Also (assuming sufficient
 privileges), you may start a single command with a different
 effective group ID by &lsquo;<tt>(EGID=</tt><var>gid</var><tt>; command)</tt>&rsquo;
 </p>
+<p>If this is made local, it is not implicitly set to 0, but may be
+explicitly set locally.
+</p>
 <a name="index-EUID"></a>
 </dd>
-<dt> <tt>EUID</tt> &lt;S&gt;</dt>
+<dt><tt>EUID</tt> &lt;S&gt;</dt>
 <dd><p>The effective user ID of the shell process.  If you have sufficient
 privileges, you may change the effective user ID of the shell process
 by assigning to this parameter.  Also (assuming sufficient privileges),
 you may start a single command with a different
 effective user ID by &lsquo;<tt>(EUID=</tt><var>uid</var><tt>; command)</tt>&rsquo;
 </p>
+<p>If this is made local, it is not implicitly set to 0, but may be
+explicitly set locally.
+</p>
 <a name="index-ERRNO"></a>
 </dd>
-<dt> <tt>ERRNO</tt> &lt;S&gt;</dt>
+<dt><tt>ERRNO</tt> &lt;S&gt;</dt>
 <dd><p>The value of errno (see man page errno(3))
 as set by the most recently failed system call.
 This value is system dependent and is intended for debugging
@@ -869,16 +952,19 @@ allows the number to be turned into a name or message.
 </p>
 <a name="index-GID"></a>
 </dd>
-<dt> <tt>GID</tt> &lt;S&gt;</dt>
+<dt><tt>GID</tt> &lt;S&gt;</dt>
 <dd><p>The real group ID of the shell process.  If you have sufficient privileges,
 you may change the group ID of the shell process by assigning to this
 parameter.  Also (assuming sufficient privileges), you may start a single
 command under a different
 group ID by &lsquo;<tt>(GID=</tt><var>gid</var><tt>; command)</tt>&rsquo;
 </p>
+<p>If this is made local, it is not implicitly set to 0, but may be
+explicitly set locally.
+</p>
 <a name="index-HISTCMD"></a>
 </dd>
-<dt> <tt>HISTCMD</tt></dt>
+<dt><tt>HISTCMD</tt></dt>
 <dd><p>The current history event number in an interactive shell, in other
 words the event number for the command that caused <tt>$HISTCMD</tt>
 to be read.  If the current history event modifies the history,
@@ -886,12 +972,12 @@ to be read.  If the current history event modifies the history,
 </p>
 <a name="index-HOST"></a>
 </dd>
-<dt> <tt>HOST</tt></dt>
+<dt><tt>HOST</tt></dt>
 <dd><p>The current hostname.
 </p>
 <a name="index-LINENO"></a>
 </dd>
-<dt> <tt>LINENO</tt> &lt;S&gt;</dt>
+<dt><tt>LINENO</tt> &lt;S&gt;</dt>
 <dd><p>The line number of the current line within the current script, sourced
 file, or shell function being executed, whichever was started most
 recently.  Note that in the case of shell functions the line
@@ -900,7 +986,7 @@ not necessarily as displayed by the <tt>functions</tt> builtin.
 </p>
 <a name="index-LOGNAME"></a>
 </dd>
-<dt> <tt>LOGNAME</tt></dt>
+<dt><tt>LOGNAME</tt></dt>
 <dd><p>If the corresponding variable is not set in the environment of the
 shell, it is initialized to the login name corresponding to the
 current login session. This parameter is exported by default but
@@ -910,49 +996,49 @@ if that is available.
 </p>
 <a name="index-MACHTYPE"></a>
 </dd>
-<dt> <tt>MACHTYPE</tt></dt>
+<dt><tt>MACHTYPE</tt></dt>
 <dd><p>The machine type (microprocessor class or machine model),
 as determined at compile time.
 </p>
 <a name="index-OLDPWD"></a>
 </dd>
-<dt> <tt>OLDPWD</tt></dt>
+<dt><tt>OLDPWD</tt></dt>
 <dd><p>The previous working directory.  This is set when the shell initializes
 and whenever the directory changes.
 </p>
 <a name="index-OPTARG"></a>
 </dd>
-<dt> <tt>OPTARG</tt> &lt;S&gt;</dt>
+<dt><tt>OPTARG</tt> &lt;S&gt;</dt>
 <dd><p>The value of the last option argument processed by the <tt>getopts</tt>
 command.
 </p>
 <a name="index-OPTIND"></a>
 </dd>
-<dt> <tt>OPTIND</tt> &lt;S&gt;</dt>
+<dt><tt>OPTIND</tt> &lt;S&gt;</dt>
 <dd><p>The index of the last option argument processed by the <tt>getopts</tt>
 command.
 </p>
 <a name="index-OSTYPE"></a>
 </dd>
-<dt> <tt>OSTYPE</tt></dt>
+<dt><tt>OSTYPE</tt></dt>
 <dd><p>The operating system, as determined at compile time.
 </p>
 <a name="index-PPID"></a>
 </dd>
-<dt> <tt>PPID</tt> &lt;S&gt;</dt>
+<dt><tt>PPID</tt> &lt;S&gt;</dt>
 <dd><p>The process ID of the parent of the shell.  As for <tt>$$</tt>, the
 value indicates the parent of the original shell and does not
 change in subshells.
 </p>
 <a name="index-PWD"></a>
 </dd>
-<dt> <tt>PWD</tt></dt>
+<dt><tt>PWD</tt></dt>
 <dd><p>The present working directory.  This is set when the shell initializes
 and whenever the directory changes.
 </p>
 <a name="index-RANDOM"></a>
 </dd>
-<dt> <tt>RANDOM</tt> &lt;S&gt;</dt>
+<dt><tt>RANDOM</tt> &lt;S&gt;</dt>
 <dd><p>A pseudo-random integer from 0 to 32767, newly generated each time
 this parameter is referenced.  The random number generator
 can be seeded by assigning a numeric value to <tt>RANDOM</tt>.
@@ -964,7 +1050,7 @@ referenced or seeded in the parent shell in between subshell invocations.
 </p>
 <a name="index-SECONDS"></a>
 </dd>
-<dt> <tt>SECONDS</tt> &lt;S&gt;</dt>
+<dt><tt>SECONDS</tt> &lt;S&gt;</dt>
 <dd><p>The number of seconds since shell invocation.  If this parameter
 is assigned a value, then the value returned upon reference
 will be the value that was assigned plus the number of seconds
@@ -981,45 +1067,60 @@ the documentation for the builtin <tt>typeset</tt> in
 </p>
 <a name="index-SHLVL"></a>
 </dd>
-<dt> <tt>SHLVL</tt> &lt;S&gt;</dt>
+<dt><tt>SHLVL</tt> &lt;S&gt;</dt>
 <dd><p>Incremented by one each time a new shell is started.
 </p>
 <a name="index-signals"></a>
 </dd>
-<dt> <tt>signals</tt></dt>
+<dt><tt>signals</tt></dt>
 <dd><p>An array containing the names of the signals.
 </p>
 <a name="index-TRY_005fBLOCK_005fERROR"></a>
 </dd>
-<dt> <tt>TRY_BLOCK_ERROR</tt> &lt;S&gt;</dt>
+<dt><tt>TRY_BLOCK_ERROR</tt> &lt;S&gt;</dt>
 <dd><p>In an <tt>always</tt> block, indicates whether the preceding list of code
 caused an error.  The value is 1 to indicate an error, 0 otherwise.
 It may be reset, clearing the error condition.  See
 <a href="Shell-Grammar.html#Complex-Commands">Complex Commands</a>
 </p>
+<a name="index-TRY_005fBLOCK_005fINTERRUPT"></a>
+</dd>
+<dt><tt>TRY_BLOCK_INTERRUPT</tt> &lt;S&gt;</dt>
+<dd><p>This variable works in a similar way to <tt>TRY_BLOCK_ERROR</tt>, but
+represents the status of an interrupt from the signal SIGINT, which
+typically comes from the keyboard when the user types <tt>^C</tt>.  If set to
+0, any such interrupt will be reset; otherwise, the interrupt is
+propagated after the <tt>always</tt> block.
+</p>
+<p>Note that it is possible that an interrupt arrives during the execution
+of the <tt>always</tt> block; this interrupt is also propagated.
+</p>
 <a name="index-TTY"></a>
 </dd>
-<dt> <tt>TTY</tt></dt>
+<dt><tt>TTY</tt></dt>
 <dd><p>The name of the tty associated with the shell, if any.
 </p>
 <a name="index-TTYIDLE"></a>
 </dd>
-<dt> <tt>TTYIDLE</tt> &lt;S&gt;</dt>
+<dt><tt>TTYIDLE</tt> &lt;S&gt;</dt>
 <dd><p>The idle time of the tty associated with the shell in seconds or -1 if there
 is no such tty.
 </p>
 <a name="index-UID"></a>
 </dd>
-<dt> <tt>UID</tt> &lt;S&gt;</dt>
+<dt><tt>UID</tt> &lt;S&gt;</dt>
 <dd><p>The real user ID of the shell process.  If you have sufficient privileges,
 you may change the user ID of the shell by assigning to this parameter.
 Also (assuming sufficient privileges), you may start a single command
 under a different
 user ID by &lsquo;<tt>(UID=</tt><var>uid</var><tt>; command)</tt>&rsquo;
 </p>
+<p>If this is made local, it is not implicitly set to 0, but may be
+explicitly set locally.
+</p>
 <a name="index-USERNAME"></a>
 </dd>
-<dt> <tt>USERNAME</tt> &lt;S&gt;</dt>
+<dt><tt>USERNAME</tt> &lt;S&gt;</dt>
 <dd><p>The username corresponding to the real user ID of the shell process.  If you
 have sufficient privileges, you may change the username (and also the
 user ID and group ID) of the shell by assigning to this parameter.
@@ -1029,13 +1130,13 @@ by &lsquo;<tt>(USERNAME=</tt><var>username</var><tt>; command)</tt>&rsquo;
 </p>
 <a name="index-VENDOR"></a>
 </dd>
-<dt> <tt>VENDOR</tt></dt>
+<dt><tt>VENDOR</tt></dt>
 <dd><p>The vendor, as determined at compile time.
 </p>
 <a name="index-zsh_005feval_005fcontext"></a>
 <a name="index-ZSH_005fEVAL_005fCONTEXT"></a>
 </dd>
-<dt> <tt>zsh_eval_context</tt> &lt;S&gt; &lt;Z&gt; (<tt>ZSH_EVAL_CONTEXT</tt> &lt;S&gt;)</dt>
+<dt><tt>zsh_eval_context</tt> &lt;S&gt; &lt;Z&gt; (<tt>ZSH_EVAL_CONTEXT</tt> &lt;S&gt;)</dt>
 <dd><p>An array (colon-separated list) indicating the context of shell
 code that is being run.  Each time a piece of shell code that
 is stored within the shell is executed a string is temporarily appended to
@@ -1048,104 +1149,104 @@ as pipelines or subshells.  Use <tt>$ZSH_SUBSHELL</tt> to detect subshells.
 </p>
 <p>The context is one of the following:
 </p><dl compact="compact">
-<dt> <tt>cmdarg</tt></dt>
+<dt><tt>cmdarg</tt></dt>
 <dd><p>Code specified by the <tt>-c</tt> option to the command line that invoked
 the shell.
 </p>
 </dd>
-<dt> <tt>cmdsubst</tt></dt>
-<dd><p>Command substitution using the <tt>&lsquo;</tt><var>...</var><tt>&lsquo;</tt> or
+<dt><tt>cmdsubst</tt></dt>
+<dd><p>Command substitution using the <tt>`</tt><var>...</var><tt>`</tt> or
 <tt>$(</tt><var>...</var><tt>)</tt> construct.
 </p>
 </dd>
-<dt> <tt>equalsubst</tt></dt>
+<dt><tt>equalsubst</tt></dt>
 <dd><p>File substitution using the <tt>=(</tt><var>...</var><tt>)</tt> construct.
 </p>
 </dd>
-<dt> <tt>eval</tt></dt>
+<dt><tt>eval</tt></dt>
 <dd><p>Code executed by the <tt>eval</tt> builtin.
 </p>
 </dd>
-<dt> <tt>evalautofunc</tt></dt>
+<dt><tt>evalautofunc</tt></dt>
 <dd><p>Code executed with the <tt>KSH_AUTOLOAD</tt> mechanism in order to define
 an autoloaded function.
 </p>
 </dd>
-<dt> <tt>fc</tt></dt>
+<dt><tt>fc</tt></dt>
 <dd><p>Code from the shell history executed by the <tt>-e</tt> option to the <tt>fc</tt>
 builtin.
 </p>
 </dd>
-<dt> <tt>file</tt></dt>
+<dt><tt>file</tt></dt>
 <dd><p>Lines of code being read directly from a file, for example by
 the <tt>source</tt> builtin.
 </p>
 </dd>
-<dt> <tt>filecode</tt></dt>
+<dt><tt>filecode</tt></dt>
 <dd><p>Lines of code being read from a <tt>.zwc</tt> file instead of directly
 from the source file.
 </p>
 </dd>
-<dt> <tt>globqual</tt></dt>
+<dt><tt>globqual</tt></dt>
 <dd><p>Code executed by the <tt>e</tt> or <tt>+</tt> glob qualifier.
 </p>
 </dd>
-<dt> <tt>globsort</tt></dt>
+<dt><tt>globsort</tt></dt>
 <dd><p>Code executed to order files by the <tt>o</tt> glob qualifier.
 </p>
 </dd>
-<dt> <tt>insubst</tt></dt>
+<dt><tt>insubst</tt></dt>
 <dd><p>File substitution using the <tt>&lt;(</tt><var>...</var><tt>)</tt> construct.
 </p>
 </dd>
-<dt> <tt>loadautofunc</tt></dt>
+<dt><tt>loadautofunc</tt></dt>
 <dd><p>Code read directly from a file to define an autoloaded function.
 </p>
 </dd>
-<dt> <tt>outsubst</tt></dt>
+<dt><tt>outsubst</tt></dt>
 <dd><p>File substitution using the <tt>&gt;(</tt><var>...</var><tt>)</tt> construct.
 </p>
 </dd>
-<dt> <tt>sched</tt></dt>
+<dt><tt>sched</tt></dt>
 <dd><p>Code executed by the <tt>sched</tt> builtin.
 </p>
 </dd>
-<dt> <tt>shfunc</tt></dt>
+<dt><tt>shfunc</tt></dt>
 <dd><p>A shell function.
 </p>
 </dd>
-<dt> <tt>stty</tt></dt>
+<dt><tt>stty</tt></dt>
 <dd><p>Code passed to <tt>stty</tt> by the <tt>STTY</tt> environment variable.
 Normally this is passed directly to the system&rsquo;s <tt>stty</tt> command,
 so this value is unlikely to be seen in practice.
 </p>
 </dd>
-<dt> <tt>style</tt></dt>
+<dt><tt>style</tt></dt>
 <dd><p>Code executed as part of a style retrieved by the <tt>zstyle</tt> builtin
 from the <tt>zsh/zutil</tt> module.
 </p>
 </dd>
-<dt> <tt>toplevel</tt></dt>
+<dt><tt>toplevel</tt></dt>
 <dd><p>The highest execution level of a script or interactive shell.
 </p>
 </dd>
-<dt> <tt>trap</tt></dt>
+<dt><tt>trap</tt></dt>
 <dd><p>Code executed as a trap defined by the <tt>trap</tt> builtin.  Traps
 defined as functions have the context <tt>shfunc</tt>.  As traps are
 asynchronous they may have a different hierarchy from other
 code.
 </p>
 </dd>
-<dt> <tt>zpty</tt></dt>
+<dt><tt>zpty</tt></dt>
 <dd><p>Code executed by the <tt>zpty</tt> builtin from the <tt>zsh/zpty</tt> module.
 </p>
 </dd>
-<dt> <tt>zregexparse-guard</tt></dt>
+<dt><tt>zregexparse-guard</tt></dt>
 <dd><p>Code executed as a guard by the <tt>zregexparse</tt> command from the
 <tt>zsh/zutil</tt> module.
 </p>
 </dd>
-<dt> <tt>zregexparse-action</tt></dt>
+<dt><tt>zregexparse-action</tt></dt>
 <dd><p>Code executed as an action by the <tt>zregexparse</tt> command from the
 <tt>zsh/zutil</tt> module.
 </p>
@@ -1154,13 +1255,13 @@ code.
 
 <a name="index-ZSH_005fNAME"></a>
 </dd>
-<dt> <tt>ZSH_NAME</tt></dt>
+<dt><tt>ZSH_NAME</tt></dt>
 <dd><p>Expands to the basename of the command used to invoke this instance
 of zsh.
 </p>
 <a name="index-ZSH_005fPATCHLEVEL"></a>
 </dd>
-<dt> <tt>ZSH_PATCHLEVEL</tt></dt>
+<dt><tt>ZSH_PATCHLEVEL</tt></dt>
 <dd><p>The revision string for the version number of the ChangeLog file
 in the zsh distribution.  This is most useful in order to keep
 track of versions of the shell during development between releases;
@@ -1168,12 +1269,12 @@ hence most users should not use it and should instead rely on
 <tt>$ZSH_VERSION</tt>.
 </p>
 </dd>
-<dt> <tt>zsh_scheduled_events</tt></dt>
+<dt><tt>zsh_scheduled_events</tt></dt>
 <dd><p>See <a href="Zsh-Modules.html#The-zsh_002fsched-Module">The zsh/sched Module</a>.
 </p>
 <a name="index-ZSH_005fSUBSHELL-_003cS_003e"></a>
 </dd>
-<dt> <tt>ZSH_SUBSHELL</tt></dt>
+<dt><tt>ZSH_SUBSHELL</tt></dt>
 <dd><p>Readonly integer.  Initially zero, incremented each time the shell forks
 to create a subshell for executing code.  Hence &lsquo;<tt>(print $ZSH_SUBSHELL)</tt>&rsquo;
 and &lsquo;<tt>print $(print $ZSH_SUBSHELL)</tt>&rsquo; output 1, while
@@ -1181,25 +1282,24 @@ and &lsquo;<tt>print $(print $ZSH_SUBSHELL)</tt>&rsquo; output 1, while
 </p>
 <a name="index-ZSH_005fVERSION"></a>
 </dd>
-<dt> <tt>ZSH_VERSION</tt></dt>
+<dt><tt>ZSH_VERSION</tt></dt>
 <dd><p>The version number of the release of zsh.
 </p>
 </dd>
 </dl>
-<hr size="6">
+<hr>
 <a name="Parameters-Used-By-The-Shell"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Parameters-Set-By-The-Shell" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Options.html#Options" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Parameters-Set-By-The-Shell" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Parameters" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Options.html#Options" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Options.html#Options" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -1207,7 +1307,9 @@ and &lsquo;<tt>print $(print $ZSH_SUBSHELL)</tt>&rsquo; output 1, while
 
 <a name="Parameters-Used-By-The-Shell-1"></a>
 <h2 class="section">15.6 Parameters Used By The Shell</h2>
-<p>The following parameters are used by the shell.
+<p>The following parameters are used by the shell.  Again, &lsquo;&lt;S&gt;&rsquo; indicates
+that the parameter is special and &lsquo;&lt;Z&gt;&rsquo; indicates that the parameter does
+not exist when the shell initializes in <tt>sh</tt> or <tt>ksh</tt> emulation mode.
 </p>
 <p>In cases where there are two parameters with an upper- and lowercase
 form of the same name, such as <tt>path</tt> and <tt>PATH</tt>, the lowercase form
@@ -1222,7 +1324,7 @@ recreated, and recreating one of the pair will recreate the other.
 <dl compact="compact">
 <dd><a name="index-ARGV0"></a>
 </dd>
-<dt> <tt>ARGV0</tt></dt>
+<dt><tt>ARGV0</tt></dt>
 <dd><p>If exported, its value is used as the <tt>argv[0]</tt> of external commands.
 Usually used in constructs like &lsquo;<tt>ARGV0=emacs nethack</tt>&rsquo;.
 </p>
@@ -1230,7 +1332,7 @@ Usually used in constructs like &lsquo;<tt>ARGV0=emacs nethack</tt>&rsquo;.
 <a name="index-slow-connection_002c-editing-over"></a>
 <a name="index-BAUD"></a>
 </dd>
-<dt> <tt>BAUD</tt></dt>
+<dt><tt>BAUD</tt></dt>
 <dd><p>The rate in bits per second at which data reaches the terminal.
 The line editor will use this value in order to compensate for a slow
 terminal by delaying updates to the display until necessary.  If the
@@ -1245,19 +1347,19 @@ rate of the slowest part of the link for best performance.
 <a name="index-cdpath"></a>
 <a name="index-CDPATH"></a>
 </dd>
-<dt> <tt>cdpath</tt> &lt;S&gt; &lt;Z&gt; (<tt>CDPATH</tt> &lt;S&gt;)</dt>
+<dt><tt>cdpath</tt> &lt;S&gt; &lt;Z&gt; (<tt>CDPATH</tt> &lt;S&gt;)</dt>
 <dd><p>An array (colon-separated list)
 of directories specifying the search path for the <tt>cd</tt> command.
 </p>
 <a name="index-COLUMNS"></a>
 </dd>
-<dt> <tt>COLUMNS</tt> &lt;S&gt;</dt>
+<dt><tt>COLUMNS</tt> &lt;S&gt;</dt>
 <dd><p>The number of columns for this terminal session.
 Used for printing select lists and for the line editor.
 </p>
 <a name="index-CORRECT_005fIGNORE"></a>
 </dd>
-<dt> <tt>CORRECT_IGNORE</tt></dt>
+<dt><tt>CORRECT_IGNORE</tt></dt>
 <dd><p>If set, is treated as a pattern during spelling correction.  Any
 potential correction that matches the pattern is ignored.  For example,
 if the value is &lsquo;<tt>_*</tt>&rsquo; then completion functions (which, by
@@ -1269,7 +1371,7 @@ directory would still be completed).
 </p>
 <a name="index-CORRECT_005fIGNORE_005fFILE"></a>
 </dd>
-<dt> <tt>CORRECT_IGNORE_FILE</tt></dt>
+<dt><tt>CORRECT_IGNORE_FILE</tt></dt>
 <dd><p>If set, is treated as a pattern during spelling correction of file names.
 Any file name that matches the pattern is never offered as a correction.
 For example, if the value is &lsquo;<tt>.*</tt>&rsquo; then dot file names will never be
@@ -1278,7 +1380,7 @@ offered as spelling corrections.  This is useful with the
 </p>
 <a name="index-DIRSTACKSIZE"></a>
 </dd>
-<dt> <tt>DIRSTACKSIZE</tt></dt>
+<dt><tt>DIRSTACKSIZE</tt></dt>
 <dd><p>The maximum size of the directory stack, by default there is no limit.  If the
 stack gets larger than this, it will be truncated automatically.
 This is useful with the <tt>AUTO_PUSHD</tt> option.
@@ -1286,7 +1388,7 @@ This is useful with the <tt>AUTO_PUSHD</tt> option.
 </p>
 <a name="index-ENV"></a>
 </dd>
-<dt> <tt>ENV</tt></dt>
+<dt><tt>ENV</tt></dt>
 <dd><p>If the <tt>ENV</tt> environment variable is set when zsh is invoked as <tt>sh</tt>
 or <tt>ksh</tt>, <tt>$ENV</tt> is sourced after the profile scripts.  The value of
 <tt>ENV</tt> is subjected to parameter expansion, command substitution, and
@@ -1295,7 +1397,7 @@ arithmetic expansion before being interpreted as a pathname.  Note that
 </p>
 <a name="index-FCEDIT"></a>
 </dd>
-<dt> <tt>FCEDIT</tt></dt>
+<dt><tt>FCEDIT</tt></dt>
 <dd><p>The default editor for the <tt>fc</tt> builtin.  If <tt>FCEDIT</tt> is not set,
 the parameter <tt>EDITOR</tt> is used; if that is not set either, a builtin
 default, usually <tt>vi</tt>, is used.
@@ -1303,7 +1405,7 @@ default, usually <tt>vi</tt>, is used.
 <a name="index-fignore"></a>
 <a name="index-FIGNORE"></a>
 </dd>
-<dt> <tt>fignore</tt> &lt;S&gt; &lt;Z&gt; (<tt>FIGNORE</tt> &lt;S&gt;)</dt>
+<dt><tt>fignore</tt> &lt;S&gt; &lt;Z&gt; (<tt>FIGNORE</tt> &lt;S&gt;)</dt>
 <dd><p>An array (colon separated list)
 containing the suffixes of files to be ignored
 during filename completion.  However, if completion only generates files
@@ -1312,7 +1414,7 @@ with suffixes in this list, then these files are completed anyway.
 <a name="index-fpath"></a>
 <a name="index-FPATH"></a>
 </dd>
-<dt> <tt>fpath</tt> &lt;S&gt; &lt;Z&gt; (<tt>FPATH</tt> &lt;S&gt;)</dt>
+<dt><tt>fpath</tt> &lt;S&gt; &lt;Z&gt; (<tt>FPATH</tt> &lt;S&gt;)</dt>
 <dd><p>An array (colon separated list)
 of directories specifying the search path for
 function definitions.  This path is searched when a function
@@ -1321,7 +1423,7 @@ file is found, then it is read and executed in the current environment.
 </p>
 <a name="index-histchars"></a>
 </dd>
-<dt> <tt>histchars</tt> &lt;S&gt;</dt>
+<dt><tt>histchars</tt> &lt;S&gt;</dt>
 <dd><p>Three characters used by the shell&rsquo;s history and lexical analysis
 mechanism.  The first character signals the start of a history
 expansion (default &lsquo;<tt>!</tt>&rsquo;).  The second character signals the
@@ -1334,37 +1436,57 @@ rejected with an error message.
 </p>
 <a name="index-HISTCHARS"></a>
 </dd>
-<dt> <tt>HISTCHARS</tt> &lt;S&gt; &lt;Z&gt;</dt>
+<dt><tt>HISTCHARS</tt> &lt;S&gt; &lt;Z&gt;</dt>
 <dd><p>Same as <tt>histchars</tt>.  (Deprecated.)
 </p>
 <a name="index-HISTFILE"></a>
 </dd>
-<dt> <tt>HISTFILE</tt></dt>
+<dt><tt>HISTFILE</tt></dt>
 <dd><p>The file to save the history in when an interactive shell exits.
 If unset, the history is not saved.
 </p>
 <a name="index-HISTORY_005fIGNORE"></a>
 </dd>
-<dt> <tt>HISTORY_IGNORE</tt></dt>
+<dt><tt>HISTORY_IGNORE</tt></dt>
 <dd><p>If set, is treated as a pattern at the time history files are written.
 Any potential history entry that matches the pattern is skipped.  For
 example, if the value is &lsquo;<tt>fc *</tt>&rsquo; then commands that invoke the
-interactive history editor are never written to the history file (compare
-the <tt>HIST_NO_STORE</tt> option or the <tt>zshaddhistory</tt> hook, either of
-which would prevent such commands from being added to the interactive
-history at all).
+interactive history editor are never written to the history file.
 </p>
+<p>Note that <tt>HISTORY_IGNORE</tt> defines a single pattern: to
+specify alternatives use the
+&lsquo;<tt>(</tt><var>first</var><tt>|</tt><var>second</var><tt>|</tt><var>...</var><tt>)</tt>&rsquo; syntax.
+</p>
+<p>Compare the <tt>HIST_NO_STORE</tt> option or the <tt>zshaddhistory</tt> hook,
+either of which would prevent such commands from being added to the
+interactive history at all.  If you wish to use <tt>HISTORY_IGNORE</tt> to
+stop history being added in the first place, you can define the
+following hook:
+</p>
+<div class="example">
+<pre class="example">zshaddhistory() {
+  emulate -L zsh
+  ## uncomment if HISTORY_IGNORE
+  ## should use EXTENDED_GLOB syntax
+  # setopt extendedglob
+  [[ $1 != ${~HISTORY_IGNORE} ]]
+}
+</pre></div>
+
 <a name="index-HISTSIZE"></a>
 </dd>
-<dt> <tt>HISTSIZE</tt> &lt;S&gt;</dt>
+<dt><tt>HISTSIZE</tt> &lt;S&gt;</dt>
 <dd><p>The maximum number of events stored in the internal history list.
 If you use the <tt>HIST_EXPIRE_DUPS_FIRST</tt> option, setting this value
 larger than the <tt>SAVEHIST</tt> size will give you the difference as a
 cushion for saving duplicated history events.
 </p>
+<p>If this is made local, it is not implicitly set to 0, but may be
+explicitly set locally.
+</p>
 <a name="index-HOME"></a>
 </dd>
-<dt> <tt>HOME</tt> &lt;S&gt;</dt>
+<dt><tt>HOME</tt> &lt;S&gt;</dt>
 <dd><p>The default argument for the <tt>cd</tt> command.  This is not set automatically
 by the shell in <tt>sh</tt>, <tt>ksh</tt> or <tt>csh</tt> emulation, but it is typically
 present in the environment anyway, and if it becomes set it has its usual
@@ -1372,7 +1494,7 @@ special behaviour.
 </p>
 <a name="index-IFS"></a>
 </dd>
-<dt> <tt>IFS</tt> &lt;S&gt;</dt>
+<dt><tt>IFS</tt> &lt;S&gt;</dt>
 <dd><p>Internal field separators (by default space, tab, newline and NUL), that
 are used to separate words which result from
 command or parameter expansion and words read by
@@ -1389,7 +1511,7 @@ a different effect from setting the parameter to an empty string.
 </p>
 <a name="index-KEYBOARD_005fHACK"></a>
 </dd>
-<dt> <tt>KEYBOARD_HACK</tt></dt>
+<dt><tt>KEYBOARD_HACK</tt></dt>
 <dd><p>This variable defines a character to be removed from the end of the
 command line before interpreting it (interactive shells only). It is
 intended to fix the problem with keys placed annoyingly close to return
@@ -1404,31 +1526,31 @@ If the option is explicitly unset, this variable is set to empty.
 </p>
 <a name="index-KEYTIMEOUT"></a>
 </dd>
-<dt> <tt>KEYTIMEOUT</tt></dt>
+<dt><tt>KEYTIMEOUT</tt></dt>
 <dd><p>The time the shell waits, in hundredths of seconds, for another key to
 be pressed when reading bound multi-character sequences.
 </p>
 <a name="index-LANG"></a>
 </dd>
-<dt> <tt>LANG</tt> &lt;S&gt;</dt>
+<dt><tt>LANG</tt> &lt;S&gt;</dt>
 <dd><p>This variable determines the locale category for any category not
 specifically selected via a variable starting with &lsquo;<tt>LC_</tt>&rsquo;.
 </p>
 <a name="index-LC_005fALL"></a>
 </dd>
-<dt> <tt>LC_ALL</tt> &lt;S&gt;</dt>
+<dt><tt>LC_ALL</tt> &lt;S&gt;</dt>
 <dd><p>This variable overrides the value of the &lsquo;<tt>LANG</tt>&rsquo; variable and the value
 of any of the other variables starting with &lsquo;<tt>LC_</tt>&rsquo;.
 </p>
 <a name="index-LC_005fCOLLATE"></a>
 </dd>
-<dt> <tt>LC_COLLATE</tt> &lt;S&gt;</dt>
+<dt><tt>LC_COLLATE</tt> &lt;S&gt;</dt>
 <dd><p>This variable determines the locale category for character collation
 information within ranges in glob brackets and for sorting.
 </p>
 <a name="index-LC_005fCTYPE"></a>
 </dd>
-<dt> <tt>LC_CTYPE</tt> &lt;S&gt;</dt>
+<dt><tt>LC_CTYPE</tt> &lt;S&gt;</dt>
 <dd><p>This variable determines the locale category for character handling
 functions.  If the <tt>MULTIBYTE</tt> option is in effect this variable or
 <tt>LANG</tt> should contain a value that reflects the character set in
@@ -1439,13 +1561,13 @@ Linux distributions) or <tt>en_US.ISO8859-1</tt> (MacOS).
 </p>
 <a name="index-LC_005fMESSAGES"></a>
 </dd>
-<dt> <tt>LC_MESSAGES</tt> &lt;S&gt;</dt>
+<dt><tt>LC_MESSAGES</tt> &lt;S&gt;</dt>
 <dd><p>This variable determines the language in which messages should be
 written.  Note that zsh does not use message catalogs.
 </p>
 <a name="index-LC_005fNUMERIC"></a>
 </dd>
-<dt> <tt>LC_NUMERIC</tt> &lt;S&gt;</dt>
+<dt><tt>LC_NUMERIC</tt> &lt;S&gt;</dt>
 <dd><p>This variable affects the decimal point character and thousands
 separator character for the formatted input/output functions
 and string conversion functions.  Note that zsh ignores this
@@ -1453,19 +1575,19 @@ setting when parsing floating point mathematical expressions.
 </p>
 <a name="index-LC_005fTIME"></a>
 </dd>
-<dt> <tt>LC_TIME</tt> &lt;S&gt;</dt>
+<dt><tt>LC_TIME</tt> &lt;S&gt;</dt>
 <dd><p>This variable determines the locale category for date and time
 formatting in prompt escape sequences.
 </p>
 <a name="index-LINES"></a>
 </dd>
-<dt> <tt>LINES</tt> &lt;S&gt;</dt>
+<dt><tt>LINES</tt> &lt;S&gt;</dt>
 <dd><p>The number of lines for this terminal session.
 Used for printing select lists and for the line editor.
 </p>
 <a name="index-LISTMAX"></a>
 </dd>
-<dt> <tt>LISTMAX</tt></dt>
+<dt><tt>LISTMAX</tt></dt>
 <dd><p>In the line editor, the number of matches to list without asking
 first. If the value is negative, the list will be shown if it spans at 
 most as many lines as given by the absolute value.
@@ -1474,25 +1596,25 @@ off the screen.
 </p>
 <a name="index-LOGCHECK"></a>
 </dd>
-<dt> <tt>LOGCHECK</tt></dt>
+<dt><tt>LOGCHECK</tt></dt>
 <dd><p>The interval in seconds between checks for login/logout activity
 using the <tt>watch</tt> parameter.
 </p>
 <a name="index-MAIL"></a>
 </dd>
-<dt> <tt>MAIL</tt></dt>
+<dt><tt>MAIL</tt></dt>
 <dd><p>If this parameter is set and <tt>mailpath</tt> is not set,
 the shell looks for mail in the specified file.
 </p>
 <a name="index-MAILCHECK"></a>
 </dd>
-<dt> <tt>MAILCHECK</tt></dt>
+<dt><tt>MAILCHECK</tt></dt>
 <dd><p>The interval in seconds between checks for new mail.
 </p>
 <a name="index-mailpath"></a>
 <a name="index-MAILPATH"></a>
 </dd>
-<dt> <tt>mailpath</tt> &lt;S&gt; &lt;Z&gt; (<tt>MAILPATH</tt> &lt;S&gt;)</dt>
+<dt><tt>mailpath</tt> &lt;S&gt; &lt;Z&gt; (<tt>MAILPATH</tt> &lt;S&gt;)</dt>
 <dd><p>An array (colon-separated list) of filenames to check for
 new mail.  Each filename can be followed by a &lsquo;<tt>?</tt>&rsquo; and a
 message that will be printed.  The message will undergo
@@ -1506,24 +1628,24 @@ file in every subdirectory of the element.
 <a name="index-manpath"></a>
 <a name="index-MANPATH"></a>
 </dd>
-<dt> <tt>manpath</tt> &lt;S&gt; &lt;Z&gt; (<tt>MANPATH</tt> &lt;S&gt; &lt;Z&gt;)</dt>
+<dt><tt>manpath</tt> &lt;S&gt; &lt;Z&gt; (<tt>MANPATH</tt> &lt;S&gt; &lt;Z&gt;)</dt>
 <dd><p>An array (colon-separated list)
 whose value is not used by the shell.  The <tt>manpath</tt>
 array can be useful, however, since setting it also sets
 <tt>MANPATH</tt>, and vice versa.
 </p>
 </dd>
-<dt> <tt>match</tt></dt>
-<dt> <tt>mbegin</tt></dt>
-<dt> <tt>mend</tt></dt>
+<dt><tt>match</tt></dt>
+<dt><tt>mbegin</tt></dt>
+<dt><tt>mend</tt></dt>
 <dd><p>Arrays set by the shell when the <tt>b</tt> globbing flag is used in pattern
 matches.  See the subsection <em>Globbing flags</em> in
 <a href="Expansion.html#Filename-Generation">Filename Generation</a>.
 </p>
 </dd>
-<dt> <tt>MATCH</tt></dt>
-<dt> <tt>MBEGIN</tt></dt>
-<dt> <tt>MEND</tt></dt>
+<dt><tt>MATCH</tt></dt>
+<dt><tt>MBEGIN</tt></dt>
+<dt><tt>MEND</tt></dt>
 <dd><p>Set by the shell when the <tt>m</tt> globbing flag is used in pattern
 matches.  See the subsection <em>Globbing flags</em> in
 <a href="Expansion.html#Filename-Generation">Filename Generation</a>.
@@ -1531,7 +1653,7 @@ matches.  See the subsection <em>Globbing flags</em> in
 <a name="index-module_005fpath"></a>
 <a name="index-MODULE_005fPATH"></a>
 </dd>
-<dt> <tt>module_path</tt> &lt;S&gt; &lt;Z&gt; (<tt>MODULE_PATH</tt> &lt;S&gt;)</dt>
+<dt><tt>module_path</tt> &lt;S&gt; &lt;Z&gt; (<tt>MODULE_PATH</tt> &lt;S&gt;)</dt>
 <dd><p>An array (colon-separated list)
 of directories that <tt>zmodload</tt>
 searches for dynamically loadable modules.
@@ -1549,7 +1671,7 @@ module loading.
 <a name="index-csh_002c-null-command-style"></a>
 <a name="index-ksh_002c-null-command-style"></a>
 </dd>
-<dt> <tt>NULLCMD</tt> &lt;S&gt;</dt>
+<dt><tt>NULLCMD</tt> &lt;S&gt;</dt>
 <dd><p>The command name to assume if a redirection is specified
 with no command.  Defaults to <tt>cat</tt>.  For <cite>sh</cite>/<cite>ksh</cite>
 behavior, change this to <tt>:</tt>.  For <cite>csh</cite>-like
@@ -1559,7 +1681,7 @@ error message if null commands are entered.
 <a name="index-path"></a>
 <a name="index-PATH"></a>
 </dd>
-<dt> <tt>path</tt> &lt;S&gt; &lt;Z&gt; (<tt>PATH</tt> &lt;S&gt;)</dt>
+<dt><tt>path</tt> &lt;S&gt; &lt;Z&gt; (<tt>PATH</tt> &lt;S&gt;)</dt>
 <dd><p>An array (colon-separated list)
 of directories to search for commands.
 When this parameter is set, each directory is scanned
@@ -1567,33 +1689,33 @@ and all files found are put in a hash table.
 </p>
 <a name="index-POSTEDIT"></a>
 </dd>
-<dt> <tt>POSTEDIT</tt> &lt;S&gt;</dt>
+<dt><tt>POSTEDIT</tt> &lt;S&gt;</dt>
 <dd><p>This string is output whenever the line editor exits.
 It usually contains termcap strings to reset the terminal.
 </p>
 <a name="index-PROMPT"></a>
 </dd>
-<dt> <tt>PROMPT</tt> &lt;S&gt; &lt;Z&gt;</dt>
+<dt><tt>PROMPT</tt> &lt;S&gt; &lt;Z&gt;</dt>
 <dd><a name="index-PROMPT2"></a>
 </dd>
-<dt> <tt>PROMPT2</tt> &lt;S&gt; &lt;Z&gt;</dt>
+<dt><tt>PROMPT2</tt> &lt;S&gt; &lt;Z&gt;</dt>
 <dd><a name="index-PROMPT3"></a>
 </dd>
-<dt> <tt>PROMPT3</tt> &lt;S&gt; &lt;Z&gt;</dt>
+<dt><tt>PROMPT3</tt> &lt;S&gt; &lt;Z&gt;</dt>
 <dd><a name="index-PROMPT4"></a>
 </dd>
-<dt> <tt>PROMPT4</tt> &lt;S&gt; &lt;Z&gt;</dt>
+<dt><tt>PROMPT4</tt> &lt;S&gt; &lt;Z&gt;</dt>
 <dd><p>Same as <tt>PS1</tt>, <tt>PS2</tt>, <tt>PS3</tt> and <tt>PS4</tt>,
 respectively.
 </p>
 <a name="index-prompt"></a>
 </dd>
-<dt> <tt>prompt</tt> &lt;S&gt; &lt;Z&gt;</dt>
+<dt><tt>prompt</tt> &lt;S&gt; &lt;Z&gt;</dt>
 <dd><p>Same as <tt>PS1</tt>.
 </p>
 <a name="index-PROMPT_005fEOL_005fMARK"></a>
 </dd>
-<dt> <tt>PROMPT_EOL_MARK</tt></dt>
+<dt><tt>PROMPT_EOL_MARK</tt></dt>
 <dd><p>When the <tt>PROMPT_CR</tt> and <tt>PROMPT_SP</tt> options are set, the
 <tt>PROMPT_EOL_MARK</tt> parameter can be used to customize how the end of
 partial lines are shown.  This parameter undergoes prompt expansion, with
@@ -1602,7 +1724,7 @@ equivalent to the value &lsquo;<tt>%B%S%#%s%b</tt>&rsquo;.
 </p>
 <a name="index-PS1"></a>
 </dd>
-<dt> <tt>PS1</tt> &lt;S&gt;</dt>
+<dt><tt>PS1</tt> &lt;S&gt;</dt>
 <dd><p>The primary prompt string, printed before a command is read.
 It undergoes a special form of expansion
 before being displayed; see
@@ -1610,7 +1732,7 @@ before being displayed; see
 </p>
 <a name="index-PS2"></a>
 </dd>
-<dt> <tt>PS2</tt> &lt;S&gt;</dt>
+<dt><tt>PS2</tt> &lt;S&gt;</dt>
 <dd><p>The secondary prompt, printed when the shell needs more information
 to complete a command.
 It is expanded in the same way as <tt>PS1</tt>.
@@ -1619,14 +1741,14 @@ marks which are currently being processed.
 </p>
 <a name="index-PS3"></a>
 </dd>
-<dt> <tt>PS3</tt> &lt;S&gt;</dt>
+<dt><tt>PS3</tt> &lt;S&gt;</dt>
 <dd><p>Selection prompt used within a <tt>select</tt> loop.
 It is expanded in the same way as <tt>PS1</tt>.
 The default is &lsquo;<tt>?# </tt>&rsquo;.
 </p>
 <a name="index-PS4"></a>
 </dd>
-<dt> <tt>PS4</tt> &lt;S&gt;</dt>
+<dt><tt>PS4</tt> &lt;S&gt;</dt>
 <dd><p>The execution trace prompt.  Default is &lsquo;<tt>+%N:%i&gt; </tt>&rsquo;, which displays
 the name of the current shell structure and the line number within it.
 In sh or ksh emulation, the default is &lsquo;<tt>+ </tt>&rsquo;.
@@ -1634,20 +1756,20 @@ In sh or ksh emulation, the default is &lsquo;<tt>+ </tt>&rsquo;.
 <a name="index-psvar"></a>
 <a name="index-PSVAR"></a>
 </dd>
-<dt> <tt>psvar</tt> &lt;S&gt; &lt;Z&gt; (<tt>PSVAR</tt> &lt;S&gt;)</dt>
+<dt><tt>psvar</tt> &lt;S&gt; &lt;Z&gt; (<tt>PSVAR</tt> &lt;S&gt;)</dt>
 <dd><p>An array (colon-separated list) whose elements can be used in
 <tt>PROMPT</tt> strings.  Setting <tt>psvar</tt> also sets <tt>PSVAR</tt>, and
 vice versa.
 </p>
 <a name="index-READNULLCMD"></a>
 </dd>
-<dt> <tt>READNULLCMD</tt> &lt;S&gt;</dt>
+<dt><tt>READNULLCMD</tt> &lt;S&gt;</dt>
 <dd><p>The command name to assume if a single input redirection
 is specified with no command.  Defaults to <tt>more</tt>.
 </p>
 <a name="index-REPORTTIME"></a>
 </dd>
-<dt> <tt>REPORTTIME</tt></dt>
+<dt><tt>REPORTTIME</tt></dt>
 <dd><p>If nonnegative, commands whose combined user and system execution times
 (measured in seconds) are greater than this value have timing
 statistics printed for them.  Output is suppressed for commands
@@ -1657,7 +1779,7 @@ to be printed in this case.
 </p>
 <a name="index-REPLY"></a>
 </dd>
-<dt> <tt>REPLY</tt></dt>
+<dt><tt>REPLY</tt></dt>
 <dd><p>This parameter is reserved by convention to pass string values between
 shell scripts and shell builtins in situations where a function call or
 redirection are impossible or undesirable.  The <tt>read</tt> builtin and the
@@ -1667,15 +1789,15 @@ modules also employ <tt>REPLY</tt> for similar purposes.
 </p>
 <a name="index-reply"></a>
 </dd>
-<dt> <tt>reply</tt></dt>
+<dt><tt>reply</tt></dt>
 <dd><p>As <tt>REPLY</tt>, but for array values rather than strings.
 </p>
 <a name="index-RPROMPT"></a>
 </dd>
-<dt> <tt>RPROMPT</tt> &lt;S&gt;</dt>
+<dt><tt>RPROMPT</tt> &lt;S&gt;</dt>
 <dd><a name="index-RPS1"></a>
 </dd>
-<dt> <tt>RPS1</tt> &lt;S&gt;</dt>
+<dt><tt>RPS1</tt> &lt;S&gt;</dt>
 <dd><p>This prompt is displayed on the right-hand side of the screen
 when the primary prompt is being displayed on the left.
 This does not work if the <tt>SINGLE_LINE_ZLE</tt> option is set.
@@ -1683,10 +1805,10 @@ It is expanded in the same way as <tt>PS1</tt>.
 </p>
 <a name="index-RPROMPT2"></a>
 </dd>
-<dt> <tt>RPROMPT2</tt> &lt;S&gt;</dt>
+<dt><tt>RPROMPT2</tt> &lt;S&gt;</dt>
 <dd><a name="index-RPS2"></a>
 </dd>
-<dt> <tt>RPS2</tt> &lt;S&gt;</dt>
+<dt><tt>RPS2</tt> &lt;S&gt;</dt>
 <dd><p>This prompt is displayed on the right-hand side of the screen
 when the secondary prompt is being displayed on the left.
 This does not work if the <tt>SINGLE_LINE_ZLE</tt> option is set.
@@ -1694,12 +1816,15 @@ It is expanded in the same way as <tt>PS2</tt>.
 </p>
 <a name="index-SAVEHIST"></a>
 </dd>
-<dt> <tt>SAVEHIST</tt></dt>
+<dt><tt>SAVEHIST</tt></dt>
 <dd><p>The maximum number of history events to save in the history file.
+</p>
+<p>If this is made local, it is not implicitly set to 0, but may be
+explicitly set locally.
 </p>
 <a name="index-SPROMPT"></a>
 </dd>
-<dt> <tt>SPROMPT</tt> &lt;S&gt;</dt>
+<dt><tt>SPROMPT</tt> &lt;S&gt;</dt>
 <dd><p>The prompt used for spelling correction.  The sequence
 &lsquo;<tt>%R</tt>&rsquo; expands to the string which presumably needs spelling
 correction, and &lsquo;<tt>%r</tt>&rsquo; expands to the proposed correction.
@@ -1707,7 +1832,7 @@ All other prompt escapes are also allowed.
 </p>
 <a name="index-STTY"></a>
 </dd>
-<dt> <tt>STTY</tt></dt>
+<dt><tt>STTY</tt></dt>
 <dd><p>If this parameter is set in a command&rsquo;s environment, the shell runs the
 <tt>stty</tt> command with the value of this parameter as arguments in order to
 set up the terminal before executing the command. The modes apply only to the
@@ -1723,7 +1848,7 @@ window size specifications; these will not be local to the command.
 </p>
 <a name="index-TERM"></a>
 </dd>
-<dt> <tt>TERM</tt> &lt;S&gt;</dt>
+<dt><tt>TERM</tt> &lt;S&gt;</dt>
 <dd><p>The type of terminal in use.  This is used when looking up termcap
 sequences.  An assignment to <tt>TERM</tt> causes zsh to re-initialize the
 terminal, even if the value does not change (e.g., &lsquo;<tt>TERM=$TERM</tt>&rsquo;).  It
@@ -1733,7 +1858,7 @@ take effect.
 </p>
 <a name="index-TERMINFO"></a>
 </dd>
-<dt> <tt>TERMINFO</tt> &lt;S&gt;</dt>
+<dt><tt>TERMINFO</tt> &lt;S&gt;</dt>
 <dd><p>A reference to a compiled description of the terminal, used by the
 &lsquo;terminfo&rsquo; library when the system has it; see man page terminfo(5).
 If set, this causes the shell to reinitialise the terminal, making
@@ -1741,7 +1866,7 @@ the workaround &lsquo;<tt>TERM=$TERM</tt>&rsquo; unnecessary.
 </p>
 <a name="index-TIMEFMT"></a>
 </dd>
-<dt> <tt>TIMEFMT</tt></dt>
+<dt><tt>TIMEFMT</tt></dt>
 <dd><p>The format of process time reports with the <tt>time</tt> keyword.
 The default is &lsquo;<tt>%J  %U user %S system %P cpu %*E total</tt>&rsquo;.
 Recognizes the following escape sequences, although not all
@@ -1749,68 +1874,68 @@ may be available on all systems, and some that are available
 may not be useful:
 </p>
 <dl compact="compact">
-<dt> <tt>%%</tt></dt>
+<dt><tt>%%</tt></dt>
 <dd><p>A &lsquo;<tt>%</tt>&rsquo;.
 </p></dd>
-<dt> <tt>%U</tt></dt>
+<dt><tt>%U</tt></dt>
 <dd><p>CPU seconds spent in user mode.
 </p></dd>
-<dt> <tt>%S</tt></dt>
+<dt><tt>%S</tt></dt>
 <dd><p>CPU seconds spent in kernel mode.
 </p></dd>
-<dt> <tt>%E</tt></dt>
+<dt><tt>%E</tt></dt>
 <dd><p>Elapsed time in seconds.
 </p></dd>
-<dt> <tt>%P</tt></dt>
+<dt><tt>%P</tt></dt>
 <dd><p>The CPU percentage, computed as
-(100*<tt>%U</tt>+<tt>%S</tt>)/<tt>%E</tt>.
+100*(<tt>%U</tt>+<tt>%S</tt>)/<tt>%E</tt>.
 </p></dd>
-<dt> <tt>%W</tt></dt>
+<dt><tt>%W</tt></dt>
 <dd><p>Number of times the process was swapped.
 </p></dd>
-<dt> <tt>%X</tt></dt>
+<dt><tt>%X</tt></dt>
 <dd><p>The average amount in (shared) text space used in kilobytes.
 </p></dd>
-<dt> <tt>%D</tt></dt>
+<dt><tt>%D</tt></dt>
 <dd><p>The average amount in (unshared) data/stack space used in
 kilobytes.
 </p></dd>
-<dt> <tt>%K</tt></dt>
-<dd><p>The total space used (%X+%D) in kilobytes.
+<dt><tt>%K</tt></dt>
+<dd><p>The total space used (<tt>%X</tt>+<tt>%D</tt>) in kilobytes.
 </p></dd>
-<dt> <tt>%M</tt></dt>
+<dt><tt>%M</tt></dt>
 <dd><p>The  maximum memory the process had in use at any time in
 megabytes.
 </p></dd>
-<dt> <tt>%F</tt></dt>
+<dt><tt>%F</tt></dt>
 <dd><p>The number of major page faults (page needed to be brought
 from disk).
 </p></dd>
-<dt> <tt>%R</tt></dt>
+<dt><tt>%R</tt></dt>
 <dd><p>The number of minor page faults.
 </p></dd>
-<dt> <tt>%I</tt></dt>
+<dt><tt>%I</tt></dt>
 <dd><p>The number of input operations.
 </p></dd>
-<dt> <tt>%O</tt></dt>
+<dt><tt>%O</tt></dt>
 <dd><p>The number of output operations.
 </p></dd>
-<dt> <tt>%r</tt></dt>
+<dt><tt>%r</tt></dt>
 <dd><p>The number of socket messages received.
 </p></dd>
-<dt> <tt>%s</tt></dt>
+<dt><tt>%s</tt></dt>
 <dd><p>The number of socket messages sent.
 </p></dd>
-<dt> <tt>%k</tt></dt>
+<dt><tt>%k</tt></dt>
 <dd><p>The number of signals received.
 </p></dd>
-<dt> <tt>%w</tt></dt>
+<dt><tt>%w</tt></dt>
 <dd><p>Number of voluntary context switches (waits).
 </p></dd>
-<dt> <tt>%c</tt></dt>
+<dt><tt>%c</tt></dt>
 <dd><p>Number of involuntary context switches.
 </p></dd>
-<dt> <tt>%J</tt></dt>
+<dt><tt>%J</tt></dt>
 <dd><p>The name of this job.
 </p></dd>
 </dl>
@@ -1822,7 +1947,7 @@ format (hours and minutes are only printed if they are not zero).
 </p>
 <a name="index-TMOUT"></a>
 </dd>
-<dt> <tt>TMOUT</tt></dt>
+<dt><tt>TMOUT</tt></dt>
 <dd><p>If this parameter is nonzero, the shell will receive an <tt>ALRM</tt>
 signal if a command is not entered within the specified number of
 seconds after issuing a prompt. If there is a trap on <tt>SIGALRM</tt>, it
@@ -1834,7 +1959,7 @@ scheduled to <tt>TMOUT</tt> seconds after the last keypress.
 </p>
 <a name="index-TMPPREFIX"></a>
 </dd>
-<dt> <tt>TMPPREFIX</tt></dt>
+<dt><tt>TMPPREFIX</tt></dt>
 <dd><p>A pathname prefix which the shell will use for all temporary files.
 Note that this should include an initial part for the file name as
 well as any directory names.  The default is &lsquo;<tt>/tmp/zsh</tt>&rsquo;.
@@ -1842,43 +1967,57 @@ well as any directory names.  The default is &lsquo;<tt>/tmp/zsh</tt>&rsquo;.
 <a name="index-watch"></a>
 <a name="index-WATCH"></a>
 </dd>
-<dt> <tt>watch</tt> &lt;S&gt; &lt;Z&gt; (<tt>WATCH</tt> &lt;S&gt;)</dt>
+<dt><tt>watch</tt> &lt;S&gt; &lt;Z&gt; (<tt>WATCH</tt> &lt;S&gt;)</dt>
 <dd><p>An array (colon-separated list) of login/logout events to report.
-If it contains the single word &lsquo;<tt>all</tt>&rsquo;, then all login/logout events
+</p>
+<p>If it contains the single word &lsquo;<tt>all</tt>&rsquo;, then all login/logout events
 are reported.  If it contains the single word &lsquo;<tt>notme</tt>&rsquo;, then all
 events are reported as with &lsquo;<tt>all</tt>&rsquo; except <tt>$USERNAME</tt>.
-An entry in this list may consist of a username,
+</p>
+<p>An entry in this list may consist of a username,
 an &lsquo;<tt>@</tt>&rsquo; followed by a remote hostname,
-and a &lsquo;<tt>%</tt>&rsquo; followed by a line (tty).
+and a &lsquo;<tt>%</tt>&rsquo; followed by a line (tty).  Any of these may
+be a pattern (be sure to quote this during the assignment to
+<tt>watch</tt> so that it does not immediately perform file generation);
+the setting of the <tt>EXTENDED_GLOB</tt> option is respected.
 Any or all of these components may be present in an entry;
 if a login/logout event matches all of them,
 it is reported.
 </p>
+<p>For example, with the <tt>EXTENDED_GLOB</tt> option set, the following:
+</p>
+<div class="example">
+<pre class="example">watch=('^(pws|barts)')
+</pre></div>
+
+<p>causes reports for activity assoicated with any user other than <tt>pws</tt>
+or <tt>barts</tt>.
+</p>
 <a name="index-WATCHFMT"></a>
 </dd>
-<dt> <tt>WATCHFMT</tt></dt>
+<dt><tt>WATCHFMT</tt></dt>
 <dd><p>The format of login/logout reports if the <tt>watch</tt> parameter is set.
 Default is &lsquo;<tt>%n has %a %l from %m</tt>&rsquo;.
 Recognizes the following escape sequences:
 </p>
 <dl compact="compact">
-<dt> <tt>%n</tt></dt>
+<dt><tt>%n</tt></dt>
 <dd><p>The name of the user that logged in/out.
 </p>
 </dd>
-<dt> <tt>%a</tt></dt>
+<dt><tt>%a</tt></dt>
 <dd><p>The observed action, i.e. &quot;logged on&quot; or &quot;logged off&quot;.
 </p>
 </dd>
-<dt> <tt>%l</tt></dt>
+<dt><tt>%l</tt></dt>
 <dd><p>The line (tty) the user is logged in on.
 </p>
 </dd>
-<dt> <tt>%M</tt></dt>
+<dt><tt>%M</tt></dt>
 <dd><p>The full hostname of the remote host.
 </p>
 </dd>
-<dt> <tt>%m</tt></dt>
+<dt><tt>%m</tt></dt>
 <dd><p>The hostname up to the first &lsquo;<tt>.</tt>&rsquo;.  If only the
 IP address is available or the utmp field contains
 the name of an X-windows display, the whole name is printed.
@@ -1889,40 +2028,46 @@ field in the utmp on your machine.  Otherwise they are
 treated as ordinary strings.
 </p>
 </dd>
-<dt> <tt>%S</tt> (<tt>%s</tt>)</dt>
+<dt><tt>%S</tt> (<tt>%s</tt>)</dt>
 <dd><p>Start (stop) standout mode.
 </p>
 </dd>
-<dt> <tt>%U</tt> (<tt>%u</tt>)</dt>
+<dt><tt>%U</tt> (<tt>%u</tt>)</dt>
 <dd><p>Start (stop) underline mode.
 </p>
 </dd>
-<dt> <tt>%B</tt> (<tt>%b</tt>)</dt>
+<dt><tt>%B</tt> (<tt>%b</tt>)</dt>
 <dd><p>Start (stop) boldface mode.
 </p>
 </dd>
-<dt> <tt>%t</tt></dt>
-<dt> <tt>%@</tt></dt>
+<dt><tt>%t</tt></dt>
+<dt><tt>%@</tt></dt>
 <dd><p>The time, in 12-hour, am/pm format.
 </p>
 </dd>
-<dt> <tt>%T</tt></dt>
+<dt><tt>%T</tt></dt>
 <dd><p>The time, in 24-hour format.
 </p>
 </dd>
-<dt> <tt>%w</tt></dt>
+<dt><tt>%w</tt></dt>
 <dd><p>The date in &lsquo;<var>day</var><tt>-</tt><var>dd</var>&rsquo; format.
 </p>
 </dd>
-<dt> <tt>%W</tt></dt>
+<dt><tt>%W</tt></dt>
 <dd><p>The date in &lsquo;<var>mm</var><tt>/</tt><var>dd</var><tt>/</tt><var>yy</var>&rsquo; format.
 </p>
 </dd>
-<dt> <tt>%D</tt></dt>
+<dt><tt>%D</tt></dt>
 <dd><p>The date in &lsquo;<var>yy</var><tt>-</tt><var>mm</var><tt>-</tt><var>dd</var>&rsquo; format.
 </p>
 </dd>
-<dt> <tt>%(</tt><var>x</var><tt>:</tt><var>true-text</var><tt>:</tt><var>false-text</var><tt>)</tt></dt>
+<dt><tt>%D{</tt><var>string</var><tt>}</tt></dt>
+<dd><p>The date formatted as <var>string</var> using the <tt>strftime</tt> function, with
+zsh extensions as described by
+<a href="Prompt-Expansion.html#Prompt-Expansion">Prompt Expansion</a>.
+</p>
+</dd>
+<dt><tt>%(</tt><var>x</var><tt>:</tt><var>true-text</var><tt>:</tt><var>false-text</var><tt>)</tt></dt>
 <dd><p>Specifies a ternary expression.
 The character following the <var>x</var> is
 arbitrary; the same character is used to separate the text
@@ -1952,13 +2097,13 @@ both separators must be present in any case.
 
 <a name="index-WORDCHARS"></a>
 </dd>
-<dt> <tt>WORDCHARS</tt> &lt;S&gt;</dt>
+<dt><tt>WORDCHARS</tt> &lt;S&gt;</dt>
 <dd><p>A list of non-alphanumeric characters considered part of a word
 by the line editor.
 </p>
 <a name="index-ZBEEP"></a>
 </dd>
-<dt> <tt>ZBEEP</tt></dt>
+<dt><tt>ZBEEP</tt></dt>
 <dd><p>If set, this gives a string of characters, which can use all the same codes
 as the <tt>bindkey</tt> command as described in
 <a href="Zsh-Modules.html#The-zsh_002fzle-Module">The zsh/zle Module</a>, that will be output to the terminal
@@ -1970,23 +2115,47 @@ precedence over the <tt>NOBEEP</tt> option.
 </p>
 <a name="index-ZDOTDIR"></a>
 </dd>
-<dt> <tt>ZDOTDIR</tt></dt>
+<dt><tt>ZDOTDIR</tt></dt>
 <dd><p>The directory to search for shell startup files (.zshrc, etc),
 if not <tt>$HOME</tt>.
 </p>
+<a name="index-zle_005fbracketed_005fpaste"></a>
+<a name="index-bracketed-paste"></a>
+<a name="index-enabling-bracketed-paste"></a>
+</dd>
+<dt><tt>zle_bracketed_paste</tt></dt>
+<dd><p>Many terminal emulators have a feature that allows applications to
+identify when text is pasted into the terminal rather than being typed
+normally. For ZLE, this means that special characters such as tabs
+and newlines can be inserted instead of invoking editor commands.
+Furthermore, pasted text forms a single undo event and if the region is
+active, pasted text will replace the region.
+</p>
+<p>This two-element array contains the terminal escape sequences for
+enabling and disabling the feature. These escape sequences are used to
+enable bracketed paste when ZLE is active and disable it at other times.
+Unsetting the parameter has the effect of ensuring that bracketed paste
+remains disabled.
+</p>
+<a name="index-zle_005fhighlight"></a>
+</dd>
+<dt><tt>zle_highlight</tt></dt>
+<dd><p>An array describing contexts in which ZLE should highlight the input text.
+See <a href="Zsh-Line-Editor.html#Character-Highlighting">Character Highlighting</a>.
+</p>
 <a name="index-ZLE_005fLINE_005fABORTED"></a>
 </dd>
-<dt> <tt>ZLE_LINE_ABORTED</tt></dt>
+<dt><tt>ZLE_LINE_ABORTED</tt></dt>
 <dd><p>This parameter is set by the line editor when an error occurs.  It
 contains the line that was being edited at the point of the error.
-&lsquo;<tt>print -zr &ndash; $ZLE_LINE_ABORTED</tt>&rsquo; can be used to recover the line.
+&lsquo;<tt>print -zr -- $ZLE_LINE_ABORTED</tt>&rsquo; can be used to recover the line.
 Only the most recent line of this kind is remembered.
 </p>
 <a name="index-ZLE_005fREMOVE_005fSUFFIX_005fCHARS"></a>
 <a name="index-ZLE_005fSPACE_005fSUFFIX_005fCHARS"></a>
 </dd>
-<dt> <tt>ZLE_REMOVE_SUFFIX_CHARS</tt></dt>
-<dt> <tt>ZLE_SPACE_SUFFIX_CHARS</tt></dt>
+<dt><tt>ZLE_REMOVE_SUFFIX_CHARS</tt></dt>
+<dt><tt>ZLE_SPACE_SUFFIX_CHARS</tt></dt>
 <dd><p>These parameters are used by the line editor.  In certain circumstances
 suffixes (typically space or slash) added by the completion system
 will be removed automatically, either because the next editing command
@@ -2002,15 +2171,17 @@ suffix to be removed and replaced by a space.
 <p>If <tt>ZLE_REMOVE_SUFFIX_CHARS</tt> is not set, the default behaviour is
 equivalent to:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">ZLE_REMOVE_SUFFIX_CHARS=$' \t\n;&amp;|'
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">ZLE_REMOVE_SUFFIX_CHARS=$' \t\n;&amp;|'
+</pre></div>
 
 <p>If <tt>ZLE_REMOVE_SUFFIX_CHARS</tt> is set but is empty, no characters have this
 behaviour.  <tt>ZLE_SPACE_SUFFIX_CHARS</tt> takes precedence, so that the
 following:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">ZLE_SPACE_SUFFIX_CHARS=$'&amp;|'
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">ZLE_SPACE_SUFFIX_CHARS=$'&amp;|'
+</pre></div>
 
 <p>causes the characters &lsquo;<tt>&amp;</tt>&rsquo; and &lsquo;<tt>|</tt>&rsquo; to remove the suffix but to
 replace it with a space.
@@ -2029,7 +2200,7 @@ See the completion system documentation in
 </p>
 <a name="index-ZLE_005fRPROMPT_005fINDENT"></a>
 </dd>
-<dt> <tt>ZLE_RPROMPT_INDENT &lt;S&gt;</tt></dt>
+<dt><tt>ZLE_RPROMPT_INDENT</tt> &lt;S&gt;</dt>
 <dd><p>If set, used to give the indentation between the right hand side of
 the right prompt in the line editor as given by <tt>RPS1</tt> or <tt>RPROMPT</tt>
 and the right hand side of the screen.  If not set, the value 1 is used.
@@ -2043,8 +2214,8 @@ Some experimentation is necessary.
 </p>
 </dd>
 </dl>
-<hr size="6">
-<table cellpadding="1" cellspacing="1" border="0">
+<hr>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Options.html#Options" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -2052,17 +2223,15 @@ Some experimentation is necessary.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p>
- <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>October 11, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
- </font>
- <br>
-<font size="-1">Zsh version 5.0.7, released on October 7, 2014.</font>
-</p>
+<p><font size="-1">
+  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+</font></p>
+
+<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
 </body>
 </html>

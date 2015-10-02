@@ -1,71 +1,73 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on October 11, 2014 by texi2html 1.82
-texi2html was written by: 
-            Lionel Cons <Lionel.Cons@cern.ch> (original author)
-            Karl Berry  <karl@freefriends.org>
-            Olaf Bachmann <obachman@mathematik.uni-kl.de>
-            and many others.
-Maintained by: Many creative people.
-Send bugs and suggestions to <texi2html-bug@nongnu.org>
--->
+<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 11. Arithmetic Evaluation</title>
+<title>zsh: 11 Arithmetic Evaluation</title>
 
-<meta name="description" content="zsh: 11. Arithmetic Evaluation">
-<meta name="keywords" content="zsh: 11. Arithmetic Evaluation">
+<meta name="description" content="zsh: 11 Arithmetic Evaluation">
+<meta name="keywords" content="zsh: 11 Arithmetic Evaluation">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 1.82">
+<meta name="Generator" content="texi2any">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
-pre.display {font-family: serif}
-pre.format {font-family: serif}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: serif; font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.roman {font-family:serif; font-weight:normal;}
-span.sansserif {font-family:sans-serif; font-weight:normal;}
-ul.toc {list-style: none}
+span.nocodebreak {white-space: nowrap}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: serif; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
 -->
 </style>
 
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-
+<body lang="en">
 <a name="Arithmetic-Evaluation"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#Signals" title="Previous section in reading order"> &lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#Jobs-_0026-Signals" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#Signals" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="Conditional-Expressions.html#Conditional-Expressions" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#Jobs-_0026-Signals" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="Conditional-Expressions.html#Conditional-Expressions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
 <a name="Arithmetic-Evaluation-1"></a>
-<h1 class="chapter">11. Arithmetic Evaluation</h1>
+<h1 class="chapter">11 Arithmetic Evaluation</h1>
 <a name="index-arithmetic-evaluation"></a>
 <a name="index-evaluation_002c-arithmetic"></a>
 <a name="index-let_002c-use-of"></a>
 <p>The shell can perform integer and floating point arithmetic, either using
-the builtin <tt>let</tt>, or via a substitution of the form <tt>$((...))</tt>.  For
+the builtin <tt>let</tt>, or via a substitution of the form
+<tt>$((</tt><var>...</var><tt>))</tt>.  For
 integers, the shell is usually compiled to use 8-byte precision where this
 is available, otherwise precision is 4 bytes.  This can be tested, for
 example, by giving the command &lsquo;<tt>print - $(( 12345678901 ))</tt>&rsquo;; if the
@@ -85,13 +87,15 @@ of the expression is non-zero, 1 if it is zero, and 2 if an error occurred.
 </p>
 <p>For example, the following statement
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">(( val = 2 + 1 ))
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">(( val = 2 + 1 ))
+</pre></div>
 
 <p>is equivalent to
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">let &quot;val = 2 + 1&quot;
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">let &quot;val = 2 + 1&quot;
+</pre></div>
 
 <p>both assigning the value 3 to the shell variable <tt>val</tt> and returning a
 zero status.
@@ -99,7 +103,8 @@ zero status.
 <a name="index-arithmetic-base"></a>
 <a name="index-bases_002c-in-arithmetic"></a>
 <p>Integers can be in bases other than 10.
-A leading &lsquo;<tt>0x</tt>&rsquo; or &lsquo;<tt>0X</tt>&rsquo; denotes hexadecimal.
+A leading &lsquo;<tt>0x</tt>&rsquo; or &lsquo;<tt>0X</tt>&rsquo; denotes hexadecimal and a leading
+&lsquo;<tt>0b</tt>&rsquo; or &lsquo;<tt>0B</tt>&rsquo; binary.
 Integers may also be of the form &lsquo;<var>base</var><tt>#</tt><var>n</var>&rsquo;,
 where <var>base</var> is a decimal number between two and thirty-six
 representing the arithmetic base and <var>n</var>
@@ -126,10 +131,11 @@ and if it occurs more than once in a mathematical expression, the last
 encountered is used.  For clarity it is recommended that it appear at the
 beginning of an expression.  As an example:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">typeset -i 16 y
+<div class="example">
+<pre class="example">typeset -i 16 y
 print $(( [#8] x = 32, y = 32 ))
 print $x $y
-</pre></td></tr></table>
+</pre></div>
 
 <p>outputs first &lsquo;<tt>8#40</tt>&rsquo;, the rightmost value in the given output base, and
 then &lsquo;<tt>8#40 16#20</tt>&rsquo;, because <tt>y</tt> has been explicitly declared to
@@ -143,9 +149,10 @@ is used).  This indicates that underscores should be inserted into the
 output string, grouping the number for visual clarity.  The following
 integer specifies the number of digits to group together.  For example:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">setopt cbases
+<div class="example">
+<pre class="example">setopt cbases
 print $(( [#16_4] 65536 ** 2 ))
-</pre></td></tr></table>
+</pre></div>
 
 <p>outputs &lsquo;<tt>0x1_0000_0000</tt>&rsquo;.
 </p>
@@ -153,17 +160,18 @@ print $(( [#16_4] 65536 ** 2 ))
 point numbers, in which case the base must be omitted; grouping
 is away from the decimal point.  For example,
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">zmodload zsh/mathfunc
+<div class="example">
+<pre class="example">zmodload zsh/mathfunc
 print $(( [#_] sqrt(1e7) ))
-</pre></td></tr></table>
+</pre></div>
 
 <p>outputs &lsquo;<tt>3_162.277_660_168_379_5</tt>&rsquo; (the number of decimal places
 shown may vary).
 </p>
 <a name="index-C_005fBASES_002c-use-of"></a>
 <a name="index-OCTAL_005fZEROES_002c-use-of"></a>
-<p>If the <tt>C_BASES</tt> option is set, hexadecimal numbers in the standard C
-format, for example <tt>0xFF</tt> instead of the usual &lsquo;<tt>16#FF</tt>&rsquo;.  If the
+<p>If the <tt>C_BASES</tt> option is set, hexadecimal numbers are output in the standard C
+format, for example &lsquo;<tt>0xFF</tt>&rsquo; instead of the usual &lsquo;<tt>16#FF</tt>&rsquo;.  If the
 option <tt>OCTAL_ZEROES</tt> is also set (it is not by default), octal numbers
 will be treated similarly and hence appear as &lsquo;<tt>077</tt>&rsquo; instead of
 &lsquo;<tt>8#77</tt>&rsquo;.  This option has no effect on the output of bases other than
@@ -190,49 +198,49 @@ associativity of expressions as in C.
 (listed in decreasing order of precedence):
 </p>
 <dl compact="compact">
-<dt> <tt>+ - ! ~ ++ &ndash;</tt></dt>
+<dt><tt>+ - ! ~ ++ --</tt></dt>
 <dd><p>unary plus/minus, logical NOT, complement, {pre,post}{in,de}crement
 </p></dd>
-<dt> <tt>&lt;&lt; &gt;&gt;</tt></dt>
+<dt><tt>&lt;&lt; &gt;&gt;</tt></dt>
 <dd><p>bitwise shift left, right
 </p></dd>
-<dt> <tt>&amp;</tt></dt>
+<dt><tt>&amp;</tt></dt>
 <dd><p>bitwise AND
 </p></dd>
-<dt> <tt>^</tt></dt>
+<dt><tt>^</tt></dt>
 <dd><p>bitwise XOR
 </p></dd>
-<dt> <tt>|</tt></dt>
+<dt><tt>|</tt></dt>
 <dd><p>bitwise OR
 </p></dd>
-<dt> <tt>**</tt></dt>
+<dt><tt>**</tt></dt>
 <dd><p>exponentiation
 </p></dd>
-<dt> <tt>* / %</tt></dt>
+<dt><tt>* / %</tt></dt>
 <dd><p>multiplication, division, modulus (remainder)
 </p></dd>
-<dt> <tt>+ -</tt></dt>
+<dt><tt>+ -</tt></dt>
 <dd><p>addition, subtraction
 </p></dd>
-<dt> <tt>&lt; &gt; &lt;= &gt;=</tt></dt>
+<dt><tt>&lt; &gt; &lt;= &gt;=</tt></dt>
 <dd><p>comparison
 </p></dd>
-<dt> <tt>== !=</tt></dt>
+<dt><tt>== !=</tt></dt>
 <dd><p>equality and inequality
 </p></dd>
-<dt> <tt>&amp;&amp;</tt></dt>
+<dt><tt>&amp;&amp;</tt></dt>
 <dd><p>logical AND
 </p></dd>
-<dt> <tt>|| ^^</tt></dt>
+<dt><tt>|| ^^</tt></dt>
 <dd><p>logical OR, XOR
 </p></dd>
-<dt> <tt>? :</tt></dt>
+<dt><tt>? :</tt></dt>
 <dd><p>ternary operator
 </p></dd>
-<dt> <tt>= += -= *= /= %= &amp;= ^= |= &lt;&lt;= &gt;&gt;= &amp;&amp;= ||= ^^= **=</tt></dt>
+<dt><tt>= += -= *= /= %= &amp;= ^= |= &lt;&lt;= &gt;&gt;= &amp;&amp;= ||= ^^= **=</tt></dt>
 <dd><p>assignment
 </p></dd>
-<dt> <tt>,</tt></dt>
+<dt><tt>,</tt></dt>
 <dd><p>comma operator
 </p></dd>
 </dl>
@@ -247,59 +255,59 @@ properties) of the operators are altered to be the same as those in
 most other languages that support the relevant operators:
 </p>
 <dl compact="compact">
-<dt> <tt>+ - ! ~ ++ &ndash;</tt></dt>
+<dt><tt>+ - ! ~ ++ --</tt></dt>
 <dd><p>unary plus/minus, logical NOT, complement, {pre,post}{in,de}crement
 </p></dd>
-<dt> <tt>**</tt></dt>
+<dt><tt>**</tt></dt>
 <dd><p>exponentiation
 </p></dd>
-<dt> <tt>* / %</tt></dt>
+<dt><tt>* / %</tt></dt>
 <dd><p>multiplication, division, modulus (remainder)
 </p></dd>
-<dt> <tt>+ -</tt></dt>
+<dt><tt>+ -</tt></dt>
 <dd><p>addition, subtraction
 </p></dd>
-<dt> <tt>&lt;&lt; &gt;&gt;</tt></dt>
+<dt><tt>&lt;&lt; &gt;&gt;</tt></dt>
 <dd><p>bitwise shift left, right
 </p></dd>
-<dt> <tt>&lt; &gt; &lt;= &gt;=</tt></dt>
+<dt><tt>&lt; &gt; &lt;= &gt;=</tt></dt>
 <dd><p>comparison
 </p></dd>
-<dt> <tt>== !=</tt></dt>
+<dt><tt>== !=</tt></dt>
 <dd><p>equality and inequality
 </p></dd>
-<dt> <tt>&amp;</tt></dt>
+<dt><tt>&amp;</tt></dt>
 <dd><p>bitwise AND
 </p></dd>
-<dt> <tt>^</tt></dt>
+<dt><tt>^</tt></dt>
 <dd><p>bitwise XOR
 </p></dd>
-<dt> <tt>|</tt></dt>
+<dt><tt>|</tt></dt>
 <dd><p>bitwise OR
 </p></dd>
-<dt> <tt>&amp;&amp;</tt></dt>
+<dt><tt>&amp;&amp;</tt></dt>
 <dd><p>logical AND
 </p></dd>
-<dt> <tt>^^</tt></dt>
+<dt><tt>^^</tt></dt>
 <dd><p>logical XOR
 </p></dd>
-<dt> <tt>||</tt></dt>
+<dt><tt>||</tt></dt>
 <dd><p>logical OR
 </p></dd>
-<dt> <tt>? :</tt></dt>
+<dt><tt>? :</tt></dt>
 <dd><p>ternary operator
 </p></dd>
-<dt> <tt>= += -= *= /= %= &amp;= ^= |= &lt;&lt;= &gt;&gt;= &amp;&amp;= ||= ^^= **=</tt></dt>
+<dt><tt>= += -= *= /= %= &amp;= ^= |= &lt;&lt;= &gt;&gt;= &amp;&amp;= ||= ^^= **=</tt></dt>
 <dd><p>assignment
 </p></dd>
-<dt> <tt>,</tt></dt>
+<dt><tt>,</tt></dt>
 <dd><p>comma operator
 </p></dd>
 </dl>
 
 <p>Note the precedence of exponentiation in both cases is below
 that of unary operators, hence &lsquo;<tt>-3**2</tt>&rsquo; evaluates as &lsquo;<tt>9</tt>&rsquo;, not
-<tt>-9</tt>.  Use parentheses where necessary: &lsquo;<tt>-(3**2)</tt>&rsquo;.  This is
+&lsquo;<tt>-9</tt>&rsquo;.  Use parentheses where necessary: &lsquo;<tt>-(3**2)</tt>&rsquo;.  This is
 for compatibility with other shells.
 </p>
 <a name="index-mathematical-functions_002c-use-of"></a>
@@ -314,20 +322,21 @@ functions.
 </p>
 <p>An expression of the form &lsquo;<tt>##</tt><var>x</var>&rsquo; where <var>x</var> is any character
 sequence such as &lsquo;<tt>a</tt>&rsquo;, &lsquo;<tt>^A</tt>&rsquo;, or &lsquo;<tt>\M-\C-x</tt>&rsquo; gives the value of
-this character and an expression of the form &lsquo;<tt>#</tt><var>foo</var>&rsquo; gives the
-value of the first character of the contents of the parameter <var>foo</var>.
+this character and an expression of the form &lsquo;<tt>#</tt><var>name</var>&rsquo; gives the
+value of the first character of the contents of the parameter <var>name</var>.
 Character values are according to the character set used in the current
 locale; for multibyte character handling the option <tt>MULTIBYTE</tt> must be
-set.  Note that this form is different from &lsquo;<tt>$#</tt><var>foo</var>&rsquo;, a standard
-parameter substitution which gives the length of the parameter <var>foo</var>.
+set.  Note that this form is different from &lsquo;<tt>$#</tt><var>name</var>&rsquo;, a standard
+parameter substitution which gives the length of the parameter <var>name</var>.
 &lsquo;<tt>#\</tt>&rsquo; is accepted instead of &lsquo;<tt>##</tt>&rsquo;, but its use is deprecated.
 </p>
 <p>Named parameters and subscripted arrays can be referenced by name within an
 arithmetic expression without using the parameter expansion syntax.  For
 example,
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">((val2 = val1 * 2))
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">((val2 = val1 * 2))
+</pre></div>
 
 <p>assigns twice the value of <tt>$val1</tt> to the parameter named <tt>val2</tt>.
 </p>
@@ -358,6 +367,15 @@ necessary.  In addition, if any operator which requires an integer
 equivalents with assignment) is given a floating point argument, it will be
 silently rounded down to the next integer.
 </p>
+<p>Users should beware that, in common with many other programming
+languages but not software designed for calculation, the evaluation of
+an expression in zsh is taken a term at a time and promotion of integers
+to floating point does not occur in terms only containing integers.  A
+typical result of this is that a division such as <tt>6/8</tt> is truncated,
+in this being rounded down to 0.  The <tt>FORCE_FLOAT</tt> shell option can
+be used in scripts or functions where floating point evaluation is
+required throughout.
+</p>
 <p>Scalar variables can hold integer or floating point values at different
 times; there is no memory of the numeric type in this case.
 </p>
@@ -367,18 +385,19 @@ retain that type either until the type is explicitly changed or until the
 end of the scope.  This can have unforeseen consequences.  For example, in
 the loop
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">for (( f = 0; f &lt; 1; f += 0.1 )); do
+<div class="example">
+<pre class="example">for (( f = 0; f &lt; 1; f += 0.1 )); do
 # use $f
 done
-</pre></td></tr></table>
+</pre></div>
 
 <p>if <tt>f</tt> has not already been declared, the first assignment will cause it
 to be created as an integer, and consequently the operation &lsquo;<tt>f += 0.1</tt>&rsquo;
 will always cause the result to be truncated to zero, so that the loop will
 fail.  A simple fix would be to turn the initialization into &lsquo;<tt>f = 0.0</tt>&rsquo;.
 It is therefore best to declare numeric variables with explicit types.
-</p><hr size="6">
-<table cellpadding="1" cellspacing="1" border="0">
+</p><hr>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#Jobs-_0026-Signals" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Conditional-Expressions.html#Conditional-Expressions" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -386,17 +405,15 @@ It is therefore best to declare numeric variables with explicit types.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p>
- <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>October 11, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
- </font>
- <br>
-<font size="-1">Zsh version 5.0.7, released on October 7, 2014.</font>
-</p>
+<p><font size="-1">
+  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+</font></p>
+
+<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
 </body>
 </html>

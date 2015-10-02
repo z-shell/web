@@ -1,82 +1,82 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on October 11, 2014 by texi2html 1.82
-texi2html was written by: 
-            Lionel Cons <Lionel.Cons@cern.ch> (original author)
-            Karl Berry  <karl@freefriends.org>
-            Olaf Bachmann <obachman@mathematik.uni-kl.de>
-            and many others.
-Maintained by: Many creative people.
-Send bugs and suggestions to <texi2html-bug@nongnu.org>
--->
+<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 4. Invocation</title>
+<title>zsh: 4 Invocation</title>
 
-<meta name="description" content="zsh: 4. Invocation">
-<meta name="keywords" content="zsh: 4. Invocation">
+<meta name="description" content="zsh: 4 Invocation">
+<meta name="keywords" content="zsh: 4 Invocation">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 1.82">
+<meta name="Generator" content="texi2any">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
-pre.display {font-family: serif}
-pre.format {font-family: serif}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: serif; font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.roman {font-family:serif; font-weight:normal;}
-span.sansserif {font-family:sans-serif; font-weight:normal;}
-ul.toc {list-style: none}
+span.nocodebreak {white-space: nowrap}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: serif; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
 -->
 </style>
 
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-
+<body lang="en">
 <a name="Invocation"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="Roadmap.html#Programming" title="Previous section in reading order"> &lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Roadmap.html#Programming" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Invocation-2" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="Files.html#Files" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
 <a name="Invocation-1"></a>
-<h1 class="chapter">4. Invocation</h1>
+<h1 class="chapter">4 Invocation</h1>
 <a name="index-invocation"></a>
 
-<hr size="6">
+<hr>
 <a name="Invocation-2"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Invocation" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Compatibility" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Invocation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Invocation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Invocation" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Invocation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Compatibility" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Files.html#Files" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -90,19 +90,19 @@ ul.toc {list-style: none}
 where the shell will read commands from:
 </p>
 <dl compact="compact">
-<dt> <tt>-c</tt></dt>
+<dt><tt>-c</tt></dt>
 <dd><p>Take the first argument as a command to execute, rather than reading commands
 from a script or standard input.  If any further arguments are given, the
 first one is assigned to <tt>$0</tt>, rather than being used as a positional
 parameter.
 </p>
 </dd>
-<dt> <tt>-i</tt></dt>
+<dt><tt>-i</tt></dt>
 <dd><p>Force shell to be interactive.  It is still possible to specify a
 script to execute.
 </p>
 </dd>
-<dt> <tt>-s</tt></dt>
+<dt><tt>-s</tt></dt>
 <dd><p>Force shell to read commands from the standard input.
 If the <tt>-s</tt> flag is not present and an argument is given,
 the first argument is taken to be the pathname of a script to
@@ -131,8 +131,9 @@ builtin, see
 a single-letter option, but takes a following string as the option name.
 For example,
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">zsh -x -o shwordsplit scr
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">zsh -x -o shwordsplit scr
+</pre></div>
 
 <p>runs the script <tt>scr</tt>, setting the <tt>XTRACE</tt> option by the corresponding
 letter &lsquo;<tt>-x</tt>&rsquo; and the <tt>SH_WORD_SPLIT</tt> option by name.
@@ -183,20 +184,19 @@ can be stacked after the &lsquo;<tt>-b</tt>&rsquo; and will take effect as norma
 </td></tr>
 </table>
 
-<hr size="6">
+<hr>
 <a name="Compatibility"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Invocation-2" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Restricted-Shell" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Invocation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Invocation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Invocation-2" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Invocation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Restricted-Shell" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Files.html#Files" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -278,20 +278,19 @@ Also, the
 and
 <tt>SINGLE_LINE_ZLE</tt>
 options are set if zsh is invoked as <tt>ksh</tt>.
-</p><hr size="6">
+</p><hr>
 <a name="Restricted-Shell"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Compatibility" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Files.html#Files" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Invocation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Invocation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Compatibility" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Invocation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Files.html#Files" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Files.html#Files" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -308,31 +307,22 @@ letter &lsquo;<tt>r</tt>&rsquo; from the invocation name.  The following are dis
 restricted mode:
 </p>
 <ul>
-<li> 
-changing directories with the <tt>cd</tt> builtin
-</li><li> 
-changing or unsetting the <tt>PATH</tt>, <tt>path</tt>, <tt>MODULE_PATH</tt>,
+<li> changing directories with the <tt>cd</tt> builtin
+</li><li> changing or unsetting the <tt>PATH</tt>, <tt>path</tt>, <tt>MODULE_PATH</tt>,
 <tt>module_path</tt>, <tt>SHELL</tt>, <tt>HISTFILE</tt>, <tt>HISTSIZE</tt>, <tt>GID</tt>, <tt>EGID</tt>,
 <tt>UID</tt>, <tt>EUID</tt>, <tt>USERNAME</tt>, <tt>LD_LIBRARY_PATH</tt>,
 <tt>LD_AOUT_LIBRARY_PATH</tt>, <tt>LD_PRELOAD</tt> and  <tt>LD_AOUT_PRELOAD</tt>
 parameters
-</li><li> 
-specifying command names containing <tt>/</tt>
-</li><li> 
-specifying command pathnames using <tt>hash</tt>
-</li><li> 
-redirecting output to files
-</li><li> 
-using the <tt>exec</tt> builtin command to replace the shell with another
+</li><li> specifying command names containing <tt>/</tt>
+</li><li> specifying command pathnames using <tt>hash</tt>
+</li><li> redirecting output to files
+</li><li> using the <tt>exec</tt> builtin command to replace the shell with another
 command
-</li><li> 
-using <tt>jobs -Z</tt> to overwrite the shell process&rsquo; argument and
+</li><li> using <tt>jobs -Z</tt> to overwrite the shell process&rsquo; argument and
 environment space
-</li><li> 
-using the <tt>ARGV0</tt> parameter to override <tt>argv[0]</tt> for external
+</li><li> using the <tt>ARGV0</tt> parameter to override <tt>argv[0]</tt> for external
 commands
-</li><li> 
-turning off restricted mode with <tt>set +r</tt> or <tt>unsetopt
+</li><li> turning off restricted mode with <tt>set +r</tt> or <tt>unsetopt
 RESTRICTED</tt>
 </li></ul>
 
@@ -345,8 +335,8 @@ add further restrictions by disabling selected builtins.
 <tt>RESTRICTED</tt> option.  This immediately enables all the restrictions
 described above even if the shell still has not processed all startup
 files.
-</p><hr size="6">
-<table cellpadding="1" cellspacing="1" border="0">
+</p><hr>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Invocation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Files.html#Files" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -354,17 +344,15 @@ files.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p>
- <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>October 11, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
- </font>
- <br>
-<font size="-1">Zsh version 5.0.7, released on October 7, 2014.</font>
-</p>
+<p><font size="-1">
+  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+</font></p>
+
+<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
 </body>
 </html>

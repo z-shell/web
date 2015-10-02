@@ -1,93 +1,94 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on October 11, 2014 by texi2html 1.82
-texi2html was written by: 
-            Lionel Cons <Lionel.Cons@cern.ch> (original author)
-            Karl Berry  <karl@freefriends.org>
-            Olaf Bachmann <obachman@mathematik.uni-kl.de>
-            and many others.
-Maintained by: Many creative people.
-Send bugs and suggestions to <texi2html-bug@nongnu.org>
--->
+<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 14. Expansion</title>
+<title>zsh: 14 Expansion</title>
 
-<meta name="description" content="zsh: 14. Expansion">
-<meta name="keywords" content="zsh: 14. Expansion">
+<meta name="description" content="zsh: 14 Expansion">
+<meta name="keywords" content="zsh: 14 Expansion">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 1.82">
+<meta name="Generator" content="texi2any">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
-pre.display {font-family: serif}
-pre.format {font-family: serif}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: serif; font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.roman {font-family:serif; font-weight:normal;}
-span.sansserif {font-family:sans-serif; font-weight:normal;}
-ul.toc {list-style: none}
+span.nocodebreak {white-space: nowrap}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: serif; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
 -->
 </style>
 
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-
+<body lang="en">
 <a name="Expansion"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="Prompt-Expansion.html#Conditional-Substrings-in-Prompts" title="Previous section in reading order"> &lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Prompt-Expansion.html#Prompt-Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Prompt-Expansion.html#Conditional-Substrings-in-Prompts" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#History-Expansion" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="Prompt-Expansion.html#Prompt-Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
 <a name="Expansion-1"></a>
-<h1 class="chapter">14. Expansion</h1>
+<h1 class="chapter">14 Expansion</h1>
 
 <a name="index-expansion"></a>
 <p>The following types of expansions are performed in the indicated order in
 five steps:
 </p>
 <dl compact="compact">
-<dt> <em>History Expansion</em></dt>
+<dt><em>History Expansion</em></dt>
 <dd><p>This is performed only in interactive shells.
 </p>
 </dd>
-<dt> <em>Alias Expansion</em></dt>
+<dt><em>Alias Expansion</em></dt>
 <dd><p>Aliases are expanded immediately before the command line is parsed as
 explained
 in <a href="Shell-Grammar.html#Aliasing">Aliasing</a>.
 </p>
 </dd>
-<dt> <em>Process Substitution</em></dt>
-<dt> <em>Parameter Expansion</em></dt>
-<dt> <em>Command Substitution</em></dt>
-<dt> <em>Arithmetic Expansion</em></dt>
-<dt> <em>Brace Expansion</em></dt>
+<dt><em>Process Substitution</em></dt>
+<dt><em>Parameter Expansion</em></dt>
+<dt><em>Command Substitution</em></dt>
+<dt><em>Arithmetic Expansion</em></dt>
+<dt><em>Brace Expansion</em></dt>
 <dd><p>These five are performed in one step in left-to-right fashion.  After
 these expansions, all unquoted occurrences of the characters &lsquo;<tt>\</tt>&rsquo;,
-&lsquo;<tt>&rsquo;</tt>&rsquo; and &lsquo;<tt>&quot;</tt>&rsquo; are removed.
+&lsquo;<tt>'</tt>&rsquo; and &lsquo;<tt>&quot;</tt>&rsquo; are removed.
 </p>
 </dd>
-<dt> <em>Filename Expansion</em></dt>
+<dt><em>Filename Expansion</em></dt>
 <dd><p>If the <tt>SH_FILE_EXPANSION</tt> option is set, the order of expansion is
 modified for compatibility with <cite>sh</cite> and <cite>ksh</cite>.  In that case
 <em>filename expansion</em> is performed immediately after <em>alias expansion</em>,
@@ -95,7 +96,7 @@ preceding the set of five expansions mentioned above.
 </p>
 <a name="index-globbing"></a>
 </dd>
-<dt> <em>Filename Generation</em></dt>
+<dt><em>Filename Generation</em></dt>
 <dd><p>This expansion, commonly referred to as <cite>globbing</cite>, is always done last.
 </p>
 </dd>
@@ -121,20 +122,19 @@ preceding the set of five expansions mentioned above.
 <tr><td align="left" valign="top"><a href="#Filename-Generation">14.8 Filename Generation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
-<hr size="6">
+<hr>
 <a name="History-Expansion"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Expansion" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Overview" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Expansion" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Overview" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -168,32 +168,31 @@ you may see in your prompt (see
 <tr><td align="left" valign="top"><a href="#Modifiers">14.1.4 Modifiers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
-<hr size="6">
+<hr>
 <a name="Overview"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#History-Expansion" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Event-Designators" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#History-Expansion" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#History-Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Event-Designators" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="Overview-2"></a>
+<a name="Overview-1"></a>
 <h3 class="subsection">14.1.1 Overview</h3>
 <a name="index-histchars_002c-use-of-1"></a>
 <p>A history expansion begins with the first character of the <tt>histchars</tt>
 parameter, which is &lsquo;<tt>!</tt>&rsquo; by default, and may occur anywhere on the
 command line; history expansions do not nest.  The &lsquo;<tt>!</tt>&rsquo; can be escaped
-with &lsquo;<tt>\</tt>&rsquo; or can be enclosed between a pair of single quotes (<tt>&rsquo;&rsquo;</tt>)
+with &lsquo;<tt>\</tt>&rsquo; or can be enclosed between a pair of single quotes (<tt>''</tt>)
 to suppress its special meaning.  Double quotes will <em>not</em> work for
 this.  Following this history character is an optional event designator
 (<a href="#Event-Designators">Event Designators</a>) and then an optional word
@@ -242,20 +241,19 @@ subsequent &lsquo;<tt>!</tt>&rsquo; characters have no special significance.
 <a name="index-fc_002c-use-of"></a>
 <p>A less convenient but more comprehensible form of command history support
 is provided by the <tt>fc</tt> builtin.
-</p><hr size="6">
+</p><hr>
 <a name="Event-Designators"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Overview" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Word-Designators" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Overview" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#History-Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Word-Designators" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -266,67 +264,66 @@ is provided by the <tt>fc</tt> builtin.
 <a name="index-history-event-designators"></a>
 <a name="index-event-designators_002c-history"></a>
 <p>An event designator is a reference to a command-line entry in the history
-list.  In the list below, remember that the initial <tt>&lsquo;!&rsquo;</tt> in each item
+list.  In the list below, remember that the initial <tt>`!'</tt> in each item
 may be changed to another character by setting the <tt>histchars</tt>
 parameter.
 </p>
 <dl compact="compact">
-<dt> <tt>!</tt></dt>
+<dt><tt>!</tt></dt>
 <dd><p>Start a history expansion, except when followed by a blank, newline,
 &lsquo;<tt>=</tt>&rsquo; or &lsquo;<tt>(</tt>&rsquo;.  If followed immediately by a word designator
 (<a href="#Word-Designators">Word Designators</a>), this forms a history reference
 with no event designator (<a href="#Overview">Overview</a>).
 </p>
 </dd>
-<dt> <tt>!!</tt></dt>
+<dt><tt>!!</tt></dt>
 <dd><p>Refer to the previous command.
 By itself, this expansion
 repeats the previous command.
 </p>
 </dd>
-<dt> <tt>!</tt><var>n</var></dt>
+<dt><tt>!</tt><var>n</var></dt>
 <dd><p>Refer to command-line <var>n</var>.
 </p>
 </dd>
-<dt> <tt>!-</tt><var>n</var></dt>
+<dt><tt>!-</tt><var>n</var></dt>
 <dd><p>Refer to the current command-line minus <var>n</var>.
 </p>
 </dd>
-<dt> <tt>!</tt><var>str</var></dt>
+<dt><tt>!</tt><var>str</var></dt>
 <dd><p>Refer to the most recent command starting with <var>str</var>.
 </p>
 </dd>
-<dt> <tt>!?</tt><var>str</var>[<tt>?</tt>]</dt>
+<dt><tt>!?</tt><var>str</var>[<tt>?</tt>]</dt>
 <dd><p>Refer to the most recent command containing <var>str</var>.  The trailing
 &lsquo;<tt>?</tt>&rsquo; is necessary if this reference is to be followed by a modifier or
 followed by any text that is not to be considered part of <var>str</var>.
 </p>
 </dd>
-<dt> <tt>!#</tt></dt>
+<dt><tt>!#</tt></dt>
 <dd><p>Refer to the current command line typed in so far.  The line is
 treated as if it were complete up to and including the word before the
 one with the &lsquo;<tt>!#</tt>&rsquo; reference.
 </p>
 </dd>
-<dt> <tt>!{</tt>...<tt>}</tt></dt>
+<dt><tt>!{</tt>...<tt>}</tt></dt>
 <dd><p>Insulate a history reference from adjacent characters (if necessary).
 </p>
 </dd>
 </dl>
-<hr size="6">
+<hr>
 <a name="Word-Designators"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Event-Designators" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Modifiers" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Event-Designators" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#History-Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Modifiers" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -344,31 +341,31 @@ It may be omitted only if the word designator begins with a
 Word designators include:
 </p>
 <dl compact="compact">
-<dt> <tt>0</tt></dt>
+<dt><tt>0</tt></dt>
 <dd><p>The first input word (command).
 </p></dd>
-<dt> <var>n</var></dt>
+<dt><var>n</var></dt>
 <dd><p>The <var>n</var>th argument.
 </p></dd>
-<dt> <tt>^</tt></dt>
+<dt><tt>^</tt></dt>
 <dd><p>The first argument.  That is, <tt>1</tt>.
 </p></dd>
-<dt> <tt>$</tt></dt>
+<dt><tt>$</tt></dt>
 <dd><p>The last argument.
 </p></dd>
-<dt> <tt>%</tt></dt>
+<dt><tt>%</tt></dt>
 <dd><p>The word matched by (the most recent) <tt>?</tt><var>str</var> search.
 </p></dd>
-<dt> <var>x</var><tt>-</tt><var>y</var></dt>
+<dt><var>x</var><tt>-</tt><var>y</var></dt>
 <dd><p>A range of words; <var>x</var> defaults to <tt>0</tt>.
 </p></dd>
-<dt> <tt>*</tt></dt>
+<dt><tt>*</tt></dt>
 <dd><p>All the arguments, or a null value if there are none.
 </p></dd>
-<dt> <var>x</var><tt>*</tt></dt>
+<dt><var>x</var><tt>*</tt></dt>
 <dd><p>Abbreviates &lsquo;<var>x</var><tt>-$</tt>&rsquo;.
 </p></dd>
-<dt> <var>x</var><tt>-</tt></dt>
+<dt><var>x</var><tt>-</tt></dt>
 <dd><p>Like &lsquo;<var>x</var><tt>*</tt>&rsquo; but omitting word <tt>$</tt>.
 </p></dd>
 </dl>
@@ -377,20 +374,19 @@ Word designators include:
 &lsquo;<tt>!%</tt>&rsquo;, &lsquo;<tt>!:%</tt>&rsquo; or &lsquo;<tt>!?</tt><var>str</var><tt>?:%</tt>&rsquo;, and only when used after a
 <tt>!?</tt> expansion (possibly in an earlier command).  Anything else results
 in an error, although the error may not be the most obvious one.
-</p><hr size="6">
+</p><hr>
 <a name="Modifiers"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Word-Designators" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Process-Substitution" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Word-Designators" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#History-Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Process-Substitution" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -410,21 +406,21 @@ of <em>filename generation</em> and <em>parameter expansion</em>, except where
 noted.
 </p>
 <dl compact="compact">
-<dt> <tt>a</tt></dt>
+<dt><tt>a</tt></dt>
 <dd><p>Turn a file name into an absolute path:  prepends the current directory,
 if necessary, and resolves any use of &lsquo;<tt>..</tt>&rsquo; and &lsquo;<tt>.</tt>&rsquo; in the path.
 Note that the transformation takes place even if the file or any
 intervening directories do not exist.
 </p>
 </dd>
-<dt> <tt>A</tt></dt>
+<dt><tt>A</tt></dt>
 <dd><p>As &lsquo;<tt>a</tt>&rsquo;, but also resolve use of symbolic links where possible.
 Note that resolution of &lsquo;<tt>..</tt>&rsquo; occurs <em>before</em> resolution of symbolic
 links.  This call is equivalent to <tt>a</tt> unless your system has the
 <tt>realpath</tt> system call (modern systems do).
 </p>
 </dd>
-<dt> <tt>c</tt></dt>
+<dt><tt>c</tt></dt>
 <dd><p>Resolve a command name into an absolute path by searching the command
 path given by the <tt>PATH</tt> variable.  This does not work for commands
 containing directory parts.  Note also that this does not usually work as
@@ -432,39 +428,39 @@ a glob qualifier unless a file of the same name is found in the
 current directory.
 </p>
 </dd>
-<dt> <tt>e</tt></dt>
+<dt><tt>e</tt></dt>
 <dd><p>Remove all but the part of the filename extension following the &lsquo;<tt>.</tt>&rsquo;;
 see the definition of the filename extension in the description of the
 <tt>r</tt> modifier below.  Note that according to that definition the result
 will be empty if the string ends with a &lsquo;<tt>.</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>h</tt></dt>
+<dt><tt>h</tt></dt>
 <dd><p>Remove a trailing pathname component, leaving the head.  This works
 like &lsquo;<tt>dirname</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>l</tt></dt>
+<dt><tt>l</tt></dt>
 <dd><p>Convert the words to all lowercase.
 </p>
 </dd>
-<dt> <tt>p</tt></dt>
+<dt><tt>p</tt></dt>
 <dd><p>Print the new command but do not execute it.  Only works with history
 expansion.
 </p>
 </dd>
-<dt> <tt>q</tt></dt>
+<dt><tt>q</tt></dt>
 <dd><p>Quote the substituted words, escaping further substitutions.  Works
 with history expansion and parameter expansion, though for parameters
 it is only useful if the resulting text is to be re-evaluated such as
 by <tt>eval</tt>.
 </p>
 </dd>
-<dt> <tt>Q</tt></dt>
+<dt><tt>Q</tt></dt>
 <dd><p>Remove one level of quotes from the substituted words.
 </p>
 </dd>
-<dt> <tt>r</tt></dt>
+<dt><tt>r</tt></dt>
 <dd><p>Remove a filename extension leaving the root name.  Strings with no
 filename extension are not altered.  A filename
 extension is a &lsquo;<tt>.</tt>&rsquo; followed by any number of characters (including
@@ -473,7 +469,7 @@ of the string.  For example, the extension of
 &lsquo;<tt>foo.orig.c</tt>&rsquo; is &lsquo;<tt>.c</tt>&rsquo;, and &lsquo;<tt>dir.c/foo</tt>&rsquo; has no extension.
 </p>
 </dd>
-<dt> <tt>s/</tt><var>l</var><tt>/</tt><var>r</var>[<tt>/</tt>]</dt>
+<dt><tt>s/</tt><var>l</var><tt>/</tt><var>r</var>[<tt>/</tt>]</dt>
 <dd><p>Substitute <var>r</var> for <var>l</var> as described below.
 The substitution is done only for the
 first string that matches <var>l</var>.  For arrays and for filename
@@ -488,23 +484,23 @@ position shown.
 <p>See further notes on this form of substitution below.
 </p>
 </dd>
-<dt> <tt>&amp;</tt></dt>
+<dt><tt>&amp;</tt></dt>
 <dd><p>Repeat the previous <tt>s</tt> substitution.  Like <tt>s</tt>, may be preceded
 immediately by a <tt>g</tt>.  In parameter expansion the <tt>&amp;</tt> must appear
 inside braces, and in filename generation it must be quoted with a
 backslash.
 </p>
 </dd>
-<dt> <tt>t</tt></dt>
+<dt><tt>t</tt></dt>
 <dd><p>Remove all leading pathname components, leaving the tail.  This works
 like &lsquo;<tt>basename</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>u</tt></dt>
+<dt><tt>u</tt></dt>
 <dd><p>Convert the words to all uppercase.
 </p>
 </dd>
-<dt> <tt>x</tt></dt>
+<dt><tt>x</tt></dt>
 <dd><p>Like <tt>q</tt>, but break into words at whitespace.  Does not work with
 parameter expansion.
 </p>
@@ -526,6 +522,19 @@ forms of expansion.
 </p>
 <p>Note that if a &lsquo;<tt>&amp;</tt>&rsquo; is used within glob qualifiers an extra backslash
 is needed as a <tt>&amp;</tt> is a special character in this case.
+</p>
+<p>Also note that the order of expansions affects the interpretation of
+<var>l</var> and <var>r</var>.  When used in a history expansion, which occurs before
+any other expansions, <var>l</var> and <var>r</var> are treated as literal strings
+(except as explained for <tt>HIST_SUBST_PATTERN</tt> below).  When used in
+parameter expansion, the replacement of <var>r</var> into the parameter&rsquo;s value
+is done first, and then any additional process, parameter, command,
+arithmetic, or brace references are applied, which may evaluate those
+substitutions and expansions more than once if <var>l</var> appears more than
+once in the starting value.  When used in a glob qualifier, any
+substitutions or expansions are performed once at the time the qualifier
+is parsed, even before the &lsquo;<tt>:s</tt>&rsquo; expression itself is divided into
+<var>l</var> and <var>r</var> sides.
 </p>
 <p>If the option <tt>HIST_SUBST_PATTERN</tt> is set, <var>l</var> is treated as
 a pattern of the usual form described in
@@ -551,8 +560,9 @@ backslashes.
 <p>For example, the following piece of filename generation code
 with the <tt>EXTENDED_GLOB</tt> option:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">print *.c(#q:s/#%(#b)s(*).c/'S${match[1]}.C'/)
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">print *.c(#q:s/#%(#b)s(*).c/'S${match[1]}.C'/)
+</pre></div>
 
 <p>takes the expansion of <tt>*.c</tt> and applies the glob qualifiers in the
 <tt>(#q</tt><var>...</var><tt>)</tt> expression, which consists of a substitution
@@ -567,12 +577,12 @@ parameter expansion and filename generation.  They are listed here to
 provide a single point of reference for all modifiers.
 </p>
 <dl compact="compact">
-<dt> <tt>f</tt></dt>
+<dt><tt>f</tt></dt>
 <dd><p>Repeats the immediately (without a colon) following modifier until the
 resulting word doesn&rsquo;t change any more.
 </p>
 </dd>
-<dt> <tt>F:</tt><var>expr</var><tt>:</tt></dt>
+<dt><tt>F:</tt><var>expr</var><tt>:</tt></dt>
 <dd><p>Like <tt>f</tt>, but repeats only <var>n</var> times if the expression
 <var>expr</var> evaluates to <var>n</var>.  Any character can be used instead of
 the &lsquo;<tt>:</tt>&rsquo;; if &lsquo;<tt>(</tt>&rsquo;, &lsquo;<tt>[</tt>&rsquo;, or &lsquo;<tt>{</tt>&rsquo;
@@ -581,32 +591,31 @@ the closing delimiter should be &rsquo;<tt>)</tt>&rsquo;, &lsquo;<tt>]</tt>&rsqu
 respectively.
 </p>
 </dd>
-<dt> <tt>w</tt></dt>
+<dt><tt>w</tt></dt>
 <dd><p>Makes the immediately following modifier work on each word in the
 string.
 </p>
 </dd>
-<dt> <tt>W:</tt><var>sep</var><tt>:</tt></dt>
+<dt><tt>W:</tt><var>sep</var><tt>:</tt></dt>
 <dd><p>Like <tt>w</tt> but words are considered to be the parts of the string
 that are separated by <var>sep</var>. Any character can be used instead of
 the &lsquo;<tt>:</tt>&rsquo;; opening parentheses are handled specially, see above.
 </p>
 </dd>
 </dl>
-<hr size="6">
+<hr>
 <a name="Process-Substitution"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Modifiers" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Parameter-Expansion" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Modifiers" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Parameter-Expansion" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -638,9 +647,10 @@ pipes (FIFOs), the command argument will be a named pipe.  If the form with
 <var>list</var>.  If <tt>&lt;</tt> is used, then the file passed as an argument will
 be connected to the output of the <var>list</var> process.  For example,
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example"><tt>paste &lt;(cut -f1</tt> <var>file1</var><tt>) &lt;(cut -f3</tt> <var>file2</var><tt>) |
+<div class="example">
+<pre class="example"><tt>paste &lt;(cut -f1</tt> <var>file1</var><tt>) &lt;(cut -f3</tt> <var>file2</var><tt>) |
 tee &gt;(</tt><var>process1</var><tt>) &gt;(</tt><var>process2</var><tt>) &gt;/dev/null</tt>
-</pre></td></tr></table>
+</pre></div>
 
 <p>cuts fields 1 and 3 from the files <var>file1</var> and <var>file2</var> respectively,
 pastes the results together, and sends it to the processes
@@ -679,8 +689,9 @@ information using a pipe, so that programmes that expect to lseek
 <p>Also note that the previous example can be more compactly and
 efficiently written (provided the <tt>MULTIOS</tt> option is set) as:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example"><tt>paste &lt;(cut -f1</tt> <var>file1</var><tt>) &lt;(cut -f3</tt> <var>file2</var><tt>)</tt> <tt>&gt; &gt;(</tt><var>process1</var><tt>) &gt; &gt;(</tt><var>process2</var><tt>)</tt>
-</pre></td></tr></table>
+<div class="example">
+<pre class="example"><tt>paste &lt;(cut -f1</tt> <var>file1</var><tt>) &lt;(cut -f3</tt> <var>file2</var><tt>)</tt> <tt>&gt; &gt;(</tt><var>process1</var><tt>) &gt; &gt;(</tt><var>process2</var><tt>)</tt>
+</pre></div>
 
 <p>The shell uses pipes instead of FIFOs to implement the latter
 two process substitutions in the above example.
@@ -693,14 +704,16 @@ the same as described in the section <em>MULTIOS</em> in
 <a href="Redirection.html#Redirection">Redirection</a>.  Hence in a simplified
 version of the example above:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example"><tt>paste &lt;(cut -f1</tt> <var>file1</var><tt>) &lt;(cut -f3</tt> <var>file2</var><tt>)</tt> <tt>&gt; &gt;(</tt><var>process</var><tt>)</tt>
-</pre></td></tr></table>
+<div class="example">
+<pre class="example"><tt>paste &lt;(cut -f1</tt> <var>file1</var><tt>) &lt;(cut -f3</tt> <var>file2</var><tt>)</tt> <tt>&gt; &gt;(</tt><var>process</var><tt>)</tt>
+</pre></div>
 
 <p>(note that no <tt>MULTIOS</tt> are involved), <var>process</var> will be run
 asynchronously as far as the parent shell is concerned.  The workaround is:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example"><tt>{ paste &lt;(cut -f1</tt> <var>file1</var><tt>) &lt;(cut -f3</tt> <var>file2</var><tt>) }</tt> <tt>&gt; &gt;(</tt><var>process</var><tt>)</tt>
-</pre></td></tr></table>
+<div class="example">
+<pre class="example"><tt>{ paste &lt;(cut -f1</tt> <var>file1</var><tt>) &lt;(cut -f3</tt> <var>file2</var><tt>) }</tt> <tt>&gt; &gt;(</tt><var>process</var><tt>)</tt>
+</pre></div>
 
 <p>The extra processes here are
 spawned from the parent shell which will wait for their completion.
@@ -712,8 +725,9 @@ substitution.  In that case the temporary file will not be cleaned up as
 the shell no longer has any memory of the job.  A workaround is to use
 a subshell, for example,
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">(mycmd =(myoutput)) &amp;!
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">(mycmd =(myoutput)) &amp;!
+</pre></div>
 
 <p>as the forked subshell will wait for the command to finish then remove
 the temporary file.
@@ -723,35 +737,36 @@ an appropriate length of time is to pass it as a parameter to
 an anonymous shell function (a piece of shell code that is run
 immediately with function scope).  For example, this code:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">() {
+<div class="example">
+<pre class="example">() {
    print File $1:
    cat $1
 } =(print This be the verse)
-</pre></td></tr></table>
+</pre></div>
 
 <p>outputs something resembling the following
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">File /tmp/zsh6nU0kS:
+<div class="example">
+<pre class="example">File /tmp/zsh6nU0kS:
 This be the verse
-</pre></td></tr></table>
+</pre></div>
 
 <p>The temporary file created by the process substitution will be deleted
 when the function exits.
 </p>
-<hr size="6">
+<hr>
 <a name="Parameter-Expansion"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Process-Substitution" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Parameter-Expansion-Flags" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Process-Substitution" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Parameter-Expansion-Flags" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -783,7 +798,7 @@ applied:  for example, <tt>${i:s/foo/bar/}</tt> performs string
 substitution on the expansion of parameter <tt>$i</tt>.
 </p>
 <dl compact="compact">
-<dt> <tt>${</tt><var>name</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>}</tt></dt>
 <dd><p>The value, if any, of the parameter <var>name</var> is substituted.
 The braces are required if the expansion is to be followed by
 a letter, digit, or underscore that is not to be interpreted
@@ -803,35 +818,35 @@ element of an array.  No field splitting is done on the result unless the
 See also the flags <tt>=</tt> and <tt>s:</tt><var>string</var><tt>:</tt>.
 </p>
 </dd>
-<dt> <tt>${+</tt><var>name</var><tt>}</tt></dt>
+<dt><tt>${+</tt><var>name</var><tt>}</tt></dt>
 <dd><p>If <var>name</var> is the name of a set parameter &lsquo;<tt>1</tt>&rsquo; is substituted,
 otherwise &lsquo;<tt>0</tt>&rsquo; is substituted.
 </p>
 </dd>
-<dt> <tt>${</tt><var>name</var><tt>-</tt><var>word</var><tt>}</tt></dt>
-<dt> <tt>${</tt><var>name</var><tt>:-</tt><var>word</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>-</tt><var>word</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>:-</tt><var>word</var><tt>}</tt></dt>
 <dd><p>If <var>name</var> is set, or in the second form is non-null, then substitute
 its value; otherwise substitute <var>word</var>.  In the second form <var>name</var>
 may be omitted, in which case <var>word</var> is always substituted.
 </p>
 </dd>
-<dt> <tt>${</tt><var>name</var><tt>+</tt><var>word</var><tt>}</tt></dt>
-<dt> <tt>${</tt><var>name</var><tt>:+</tt><var>word</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>+</tt><var>word</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>:+</tt><var>word</var><tt>}</tt></dt>
 <dd><p>If <var>name</var> is set, or in the second form is non-null, then substitute
 <var>word</var>; otherwise substitute nothing.
 </p>
 </dd>
-<dt> <tt>${</tt><var>name</var><tt>=</tt><var>word</var><tt>}</tt></dt>
-<dt> <tt>${</tt><var>name</var><tt>:=</tt><var>word</var><tt>}</tt></dt>
-<dt> <tt>${</tt><var>name</var><tt>::=</tt><var>word</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>=</tt><var>word</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>:=</tt><var>word</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>::=</tt><var>word</var><tt>}</tt></dt>
 <dd><p>In the first form, if <var>name</var> is unset then set it to <var>word</var>; in the
 second form, if <var>name</var> is unset or null then set it to <var>word</var>; and
 in the third form, unconditionally set <var>name</var> to <var>word</var>.  In all
 forms, the value of the parameter is then substituted.
 </p>
 </dd>
-<dt> <tt>${</tt><var>name</var><tt>?</tt><var>word</var><tt>}</tt></dt>
-<dt> <tt>${</tt><var>name</var><tt>:?</tt><var>word</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>?</tt><var>word</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>:?</tt><var>word</var><tt>}</tt></dt>
 <dd><p>In the first form, if <var>name</var> is set, or in the second form if <var>name</var>
 is both set and non-null, then substitute its value; otherwise, print
 <var>word</var> and exit from the shell.  Interactive shells instead return to
@@ -852,8 +867,8 @@ the substitution is not quoted, or if the &lsquo;<tt>(@)</tt>&rsquo; flag or the
 performed on each array element separately.
 </p>
 <dl compact="compact">
-<dt> <tt>${</tt><var>name</var><tt>#</tt><var>pattern</var><tt>}</tt></dt>
-<dt> <tt>${</tt><var>name</var><tt>##</tt><var>pattern</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>#</tt><var>pattern</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>##</tt><var>pattern</var><tt>}</tt></dt>
 <dd><p>If the <var>pattern</var> matches the beginning of the value of
 <var>name</var>, then substitute the value of <var>name</var> with
 the matched portion deleted; otherwise, just
@@ -863,8 +878,8 @@ in the second form, the largest matching pattern is
 preferred.
 </p>
 </dd>
-<dt> <tt>${</tt><var>name</var><tt>%</tt><var>pattern</var><tt>}</tt></dt>
-<dt> <tt>${</tt><var>name</var><tt>%%</tt><var>pattern</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>%</tt><var>pattern</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>%%</tt><var>pattern</var><tt>}</tt></dt>
 <dd><p>If the <var>pattern</var> matches the end of the value of
 <var>name</var>, then substitute the value of <var>name</var> with
 the matched portion deleted; otherwise, just
@@ -874,7 +889,7 @@ in the second form, the largest matching pattern is
 preferred.
 </p>
 </dd>
-<dt> <tt>${</tt><var>name</var><tt>:#</tt><var>pattern</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>:#</tt><var>pattern</var><tt>}</tt></dt>
 <dd><p>If the <var>pattern</var> matches the value of <var>name</var>, then substitute
 the empty string; otherwise, just substitute the value of <var>name</var>.
 If <var>name</var> is an array
@@ -882,7 +897,7 @@ the matching array elements are removed (use the &lsquo;<tt>(M)</tt>&rsquo; flag
 remove the non-matched elements).
 </p>
 </dd>
-<dt> <tt>${</tt><var>name</var><tt>:|</tt><var>arrayname</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>:|</tt><var>arrayname</var><tt>}</tt></dt>
 <dd><p>If <var>arrayname</var> is the name (N.B., not contents) of an array
 variable, then any elements contained in <var>arrayname</var> are removed
 from the substitution of <var>name</var>.  If the substitution is scalar,
@@ -891,22 +906,23 @@ quoted, the elements of <var>arrayname</var> are instead tested against the
 entire expression.
 </p>
 </dd>
-<dt> <tt>${</tt><var>name</var><tt>:*</tt><var>arrayname</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>:*</tt><var>arrayname</var><tt>}</tt></dt>
 <dd><p>Similar to the preceding substitution, but in the opposite sense,
 so that entries present in both the original substitution and as
 elements of <var>arrayname</var> are retained and others removed.
 </p>
 </dd>
-<dt> <tt>${</tt><var>name</var><tt>:^</tt><var>arrayname</var><tt>}</tt></dt>
-<dt> <tt>${</tt><var>name</var><tt>:^^</tt><var>arrayname</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>:^</tt><var>arrayname</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>:^^</tt><var>arrayname</var><tt>}</tt></dt>
 <dd><p>Zips two arrays, such that the output array is twice as long as the
 shortest (longest for &lsquo;<tt>:^^</tt>&rsquo;) of <tt>name</tt> and <tt>arrayname</tt>, with
 the elements alternatingly being picked from them. For &lsquo;<tt>:^</tt>&rsquo;, if one
 of the input arrays is longer, the output will stop when the end of the
 shorter array is reached.  Thus,
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">a=(1 2 3 4); b=(a b); print ${a:^b}
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">a=(1 2 3 4); b=(a b); print ${a:^b}
+</pre></div>
 
 <p>will output &lsquo;<tt>1 a 2 b</tt>&rsquo;.  For &lsquo;<tt>:^^</tt>&rsquo;, then the input is repeated
 until all of the longer array has been used up and the above will output
@@ -920,12 +936,13 @@ the other array is output with no extra elements inserted.
 elements, which can be unexpected. The second print provides a workaround which
 should continue to work if this is changed.
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">a=(a b); b=(1 2); print -l &quot;${a:^b}&quot;; print -l &quot;${${a:^b}}&quot;
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">a=(a b); b=(1 2); print -l &quot;${a:^b}&quot;; print -l &quot;${${a:^b}}&quot;
+</pre></div>
 
 </dd>
-<dt> <tt>${</tt><var>name</var><tt>:</tt><var>offset</var><tt>}</tt></dt>
-<dt> <tt>${</tt><var>name</var><tt>:</tt><var>offset</var><tt>:</tt><var>length</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>:</tt><var>offset</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>:</tt><var>offset</var><tt>:</tt><var>length</var><tt>}</tt></dt>
 <dd><p>This syntax gives effects similar to parameter subscripting
 in the form <tt>$</tt><var>name</var><tt>[</tt><var>start</var><tt>,</tt><var>end</var><tt>]</tt>, but is
 compatible with other shells; note that both <var>offset</var> and <var>length</var>
@@ -959,11 +976,12 @@ count multibyte characters where appropriate.
 as for scalar assignment; in addition, they are then subject to arithmetic
 evaluation.  Hence, for example
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">print ${foo:3}
+<div class="example">
+<pre class="example">print ${foo:3}
 print ${foo: 1 + 2}
 print ${foo:$(( 1 + 2))}
 print ${foo:$(echo 1 + 2)}
-</pre></td></tr></table>
+</pre></div>
 
 <p>all have the same effect, extracting the string starting at the fourth
 character of <tt>$foo</tt> if the substitution would otherwise return a scalar,
@@ -995,8 +1013,8 @@ prepending <tt>$0</tt>.  Hence <tt>${*:0:1}</tt> substitutes <tt>$0</tt> and
 <tt>${*:1:1}</tt> substitutes <tt>$1</tt>.
 </p>
 </dd>
-<dt> <tt>${</tt><var>name</var><tt>/</tt><var>pattern</var><tt>/</tt><var>repl</var><tt>}</tt></dt>
-<dt> <tt>${</tt><var>name</var><tt>//</tt><var>pattern</var><tt>/</tt><var>repl</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>/</tt><var>pattern</var><tt>/</tt><var>repl</var><tt>}</tt></dt>
+<dt><tt>${</tt><var>name</var><tt>//</tt><var>pattern</var><tt>/</tt><var>repl</var><tt>}</tt></dt>
 <dd><p>Replace the longest possible match of <var>pattern</var> in the expansion of
 parameter <var>name</var> by string <var>repl</var>.  The first form
 replaces just the first occurrence, the second form all occurrences.
@@ -1024,10 +1042,11 @@ the flags <tt>M</tt>, <tt>R</tt>, <tt>B</tt>, <tt>E</tt> and <tt>N</tt> are not 
 </p>
 <p>For example,
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">foo=&quot;twinkle twinkle little star&quot; sub=&quot;t*e&quot; rep=&quot;spy&quot;
+<div class="example">
+<pre class="example">foo=&quot;twinkle twinkle little star&quot; sub=&quot;t*e&quot; rep=&quot;spy&quot;
 print ${foo//${~sub}/$rep}
 print ${(S)foo//${~sub}/$rep}
-</pre></td></tr></table>
+</pre></div>
 
 <p>Here, the &lsquo;<tt>~</tt>&rsquo; ensures that the text of <tt>$sub</tt> is treated as a
 pattern rather than a plain string.  In the first case, the longest
@@ -1036,7 +1055,7 @@ while in the second case, the shortest matches are taken and the
 result is &lsquo;<tt>spy spy lispy star</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>${#</tt><var>spec</var><tt>}</tt></dt>
+<dt><tt>${#</tt><var>spec</var><tt>}</tt></dt>
 <dd><p>If <var>spec</var> is one of the above substitutions, substitute
 the length in characters of the result instead of
 the result itself.  If <var>spec</var> is an array expression,
@@ -1046,8 +1065,15 @@ forms, which may affect other sub-expressions in <var>spec</var>.
 Note that &lsquo;<tt>^</tt>&rsquo;, &lsquo;<tt>=</tt>&rsquo;, and &lsquo;<tt>~</tt>&rsquo;, below, must appear
 to the left of &lsquo;<tt>#</tt>&rsquo; when these forms are combined.
 </p>
+<p>If the option <tt>POSIX_IDENTIFIERS</tt> is not set, and <var>spec</var> is a
+simple name, then the braces are optional; this is true even
+for special parameters so e.g. <tt>$#-</tt> and <tt>$#*</tt> take the length
+of the string <tt>$-</tt> and the array <tt>$*</tt> respectively.  If
+<tt>POSIX_IDENTIFIERS</tt> is set, then braces are required for
+the <tt>#</tt> to be treated in this fashion.
+</p>
 </dd>
-<dt> <tt>${^</tt><var>spec</var><tt>}</tt></dt>
+<dt><tt>${^</tt><var>spec</var><tt>}</tt></dt>
 <dd><a name="index-RC_005fEXPAND_005fPARAM_002c-toggle"></a>
 <a name="index-array-expansion-style_002c-rc"></a>
 <a name="index-rc_002c-array-expansion-style"></a>
@@ -1070,7 +1096,7 @@ If word splitting is also in effect the
 elements.
 </p>
 </dd>
-<dt> <tt>${=</tt><var>spec</var><tt>}</tt></dt>
+<dt><tt>${=</tt><var>spec</var><tt>}</tt></dt>
 <dd><a name="index-SH_005fWORD_005fSPLIT_002c-toggle"></a>
 <a name="index-field-splitting_002c-sh-style_002c-parameter"></a>
 <a name="index-sh_002c-field-splitting-style_002c-parameter"></a>
@@ -1087,7 +1113,7 @@ of <var>spec</var> <em>before</em> the assignment to <var>name</var> is performe
 This affects the result of array assignments with the <tt>A</tt> flag.
 </p>
 </dd>
-<dt> <tt>${~</tt><var>spec</var><tt>}</tt></dt>
+<dt><tt>${~</tt><var>spec</var><tt>}</tt></dt>
 <dd><a name="index-GLOB_005fSUBST_002c-toggle"></a>
 <p>Turn on the <tt>GLOB_SUBST</tt> option for the evaluation of
 <var>spec</var>; if the &lsquo;<tt>~</tt>&rsquo; is doubled, turn it off.  When this option is
@@ -1129,20 +1155,19 @@ whole expression, the other (redundant) surrounding the <tt>$(foo)</tt> as
 before.
 </p>
 
-<hr size="6">
+<hr>
 <a name="Parameter-Expansion-Flags"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Parameter-Expansion" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Rules" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Parameter-Expansion" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Parameter-Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Rules" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -1159,7 +1184,7 @@ means the same thing as the more readable &lsquo;(<tt>%%qqq</tt>)&rsquo;.  The
 following flags are supported:
 </p>
 <dl compact="compact">
-<dt> <tt>#</tt></dt>
+<dt><tt>#</tt></dt>
 <dd><p>Evaluate the resulting words as numeric expressions and output the
 characters corresponding to the resulting integer.  Note that this form is
 entirely distinct from use of the <tt>#</tt> without parentheses.
@@ -1168,7 +1193,7 @@ entirely distinct from use of the <tt>#</tt> without parentheses.
 (i.e. not an ASCII character) it is treated as a Unicode character.
 </p>
 </dd>
-<dt> <tt>%</tt></dt>
+<dt><tt>%</tt></dt>
 <dd><p>Expand all <tt>%</tt> escapes in the resulting words in the same way as in
 prompts (see 
 <a href="Prompt-Expansion.html#Prompt-Expansion">Prompt Expansion</a>). If this flag is given twice,
@@ -1177,7 +1202,7 @@ setting of the <tt>PROMPT_PERCENT</tt>, <tt>PROMPT_SUBST</tt> and <tt>PROMPT_BAN
 options.
 </p>
 </dd>
-<dt> <tt>@</tt></dt>
+<dt><tt>@</tt></dt>
 <dd><p>In double quotes, array elements are put into separate words.
 E.g., &lsquo;<tt>&quot;${(@)foo}&quot;</tt>&rsquo; is equivalent to &lsquo;<tt>&quot;${foo[@]}&quot;</tt>&rsquo; and
 &lsquo;<tt>&quot;${(@)foo[1,2]}&quot;</tt>&rsquo; is the same as &lsquo;<tt>&quot;$foo[1]&quot; &quot;$foo[2]&quot;</tt>&rsquo;.
@@ -1185,7 +1210,7 @@ This is distinct from <em>field splitting</em> by the <tt>f</tt>, <tt>s</tt>
 or <tt>z</tt> flags, which still applies within each array element.
 </p>
 </dd>
-<dt> <tt>A</tt></dt>
+<dt><tt>A</tt></dt>
 <dd><p>Create an array parameter with &lsquo;<tt>${</tt>...<tt>=</tt>...<tt>}</tt>&rsquo;,
 &lsquo;<tt>${</tt>...<tt>:=</tt>...<tt>}</tt>&rsquo; or &lsquo;<tt>${</tt>...<tt>::=</tt>...<tt>}</tt>&rsquo;.
 If this flag is repeated (as in &lsquo;<tt>AA</tt>&rsquo;), create an associative
@@ -1197,27 +1222,51 @@ an array, for example by using &lsquo;<tt>${(AA)=</tt><var>name</var><tt>=</tt>.
 to activate field splitting, when creating an associative array.
 </p>
 </dd>
-<dt> <tt>a</tt></dt>
+<dt><tt>a</tt></dt>
 <dd><p>Sort in array index order; when combined with &lsquo;<tt>O</tt>&rsquo; sort in reverse
 array index order.  Note that &lsquo;<tt>a</tt>&rsquo; is therefore equivalent to the
 default but &lsquo;<tt>Oa</tt>&rsquo; is useful for obtaining an array&rsquo;s elements in reverse
 order.
 </p>
 </dd>
-<dt> <tt>c</tt></dt>
+<dt><tt>b</tt></dt>
+<dd><p>Quote with backslashes only characters that are special to pattern
+matching. This is useful when the contents of the variable are to be
+tested using <tt>GLOB_SUBST</tt>, including the <tt>${~</tt><var>...</var><tt>}</tt> switch.
+</p>
+<p>Quoting using one of the <tt>q</tt> family of flags does not work
+for this purpose since quotes are not stripped from non-pattern
+characters by <tt>GLOB_SUBST</tt>.  In other words,
+</p>
+<div class="example">
+<pre class="example">pattern=${(q)str}
+[[ $str = ${~pattern} ]]
+</pre></div>
+
+<p>works if <tt>$str</tt> is &lsquo;<tt>a*b</tt>&rsquo; but not if it is &lsquo;<tt>a b</tt>&rsquo;, whereas
+</p>
+<div class="example">
+<pre class="example">pattern=${(b)str}
+[[ $str = ${~pattern} ]]
+</pre></div>
+
+<p>is always true for any possible value of <tt>$str</tt>.
+</p>
+</dd>
+<dt><tt>c</tt></dt>
 <dd><p>With <tt>${#</tt><var>name</var><tt>}</tt>, count the total number of characters in an array,
 as if the elements were concatenated with spaces between them.  This is not
 a true join of the array, so other expressions used with this flag may have
 an effect on the elements of the array before it is counted.
 </p>
 </dd>
-<dt> <tt>C</tt></dt>
+<dt><tt>C</tt></dt>
 <dd><p>Capitalize the resulting words.  &lsquo;Words&rsquo; in this case refers to sequences
 of alphanumeric characters separated by non-alphanumerics, <em>not</em> to words
 that result from field splitting.
 </p>
 </dd>
-<dt> <tt>D</tt></dt>
+<dt><tt>D</tt></dt>
 <dd><p>Assume the string or array elements contain directories and attempt
 to substitute the leading part of these by names.  The remainder of
 the path (the whole of it if the leading part was not substituted)
@@ -1226,23 +1275,23 @@ argument.  This is the reverse of &lsquo;<tt>~</tt>&rsquo; substitution:  see
 <a href="#Filename-Expansion">Filename Expansion</a>.
 </p>
 </dd>
-<dt> <tt>e</tt></dt>
+<dt><tt>e</tt></dt>
 <dd><p>Perform <em>parameter expansion</em>, <em>command substitution</em> and
 <em>arithmetic expansion</em> on the result. Such expansions can be
 nested but too deep recursion may have unpredictable effects.
 </p>
 </dd>
-<dt> <tt>f</tt></dt>
+<dt><tt>f</tt></dt>
 <dd><p>Split the result of the expansion at newlines. This is a shorthand
 for &lsquo;<tt>ps:\n:</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>F</tt></dt>
+<dt><tt>F</tt></dt>
 <dd><p>Join the words of arrays together using newline as a separator.
 This is a shorthand for &lsquo;<tt>pj:\n:</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>g:opts:</tt></dt>
+<dt><tt>g:</tt><var>opts</var><tt>:</tt></dt>
 <dd><p>Process escape sequences like the echo builtin when no options are given
 (<tt>g::</tt>).  With the <tt>o</tt> option, octal escapes don&rsquo;t take a leading
 zero.  With the <tt>c</tt> option, sequences like &lsquo;<tt>^X</tt>&rsquo; are also processed.
@@ -1251,11 +1300,11 @@ print builtin.  With both of the <tt>o</tt> and <tt>e</tt> options, behaves like
 print builtin except that in none of these modes is &lsquo;<tt>\c</tt>&rsquo; interpreted.
 </p>
 </dd>
-<dt> <tt>i</tt></dt>
+<dt><tt>i</tt></dt>
 <dd><p>Sort case-insensitively.  May be combined with &lsquo;<tt>n</tt>&rsquo; or &lsquo;<tt>O</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>k</tt></dt>
+<dt><tt>k</tt></dt>
 <dd><p>If <var>name</var> refers to an associative array, substitute the <em>keys</em>
 (element names) rather than the values of the elements.  Used with
 subscripts (including ordinary arrays), force indices or keys to be
@@ -1263,11 +1312,11 @@ substituted even if the subscript form refers to values.  However,
 this flag may not be combined with subscript ranges.
 </p>
 </dd>
-<dt> <tt>L</tt></dt>
+<dt><tt>L</tt></dt>
 <dd><p>Convert all letters in the result to lower case.
 </p>
 </dd>
-<dt> <tt>n</tt></dt>
+<dt><tt>n</tt></dt>
 <dd><p>Sort decimal integers numerically; if the first differing
 characters of two test strings are not digits, sorting
 is lexical.   Integers with more initial zeroes
@@ -1276,7 +1325,7 @@ foo2 foo3 foo20 foo23</tt>&rsquo; is sorted into the order shown.
 May be combined with &lsquo;<tt>i</tt>&rsquo; or &lsquo;<tt>O</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>o</tt></dt>
+<dt><tt>o</tt></dt>
 <dd><p>Sort the resulting words in ascending order; if this appears on its
 own the sorting is lexical and case-sensitive (unless the locale
 renders it case-insensitive).  Sorting in ascending order is the
@@ -1284,13 +1333,13 @@ default for other forms of sorting, so this is ignored if combined
 with &lsquo;<tt>a</tt>&rsquo;, &lsquo;<tt>i</tt>&rsquo; or &lsquo;<tt>n</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>O</tt></dt>
+<dt><tt>O</tt></dt>
 <dd><p>Sort the resulting words in descending order; &lsquo;<tt>O</tt>&rsquo; without &lsquo;<tt>a</tt>&rsquo;,
 &lsquo;<tt>i</tt>&rsquo; or &lsquo;<tt>n</tt>&rsquo; sorts in reverse lexical order.  May be combined
 with &lsquo;<tt>a</tt>&rsquo;, &lsquo;<tt>i</tt>&rsquo; or &lsquo;<tt>n</tt>&rsquo; to reverse the order of sorting.
 </p>
 </dd>
-<dt> <tt>P</tt></dt>
+<dt><tt>P</tt></dt>
 <dd><p>This forces the value of the parameter <var>name</var> to be interpreted as a
 further parameter name, whose value will be used where appropriate.
 Note that flags set with one of the <tt>typeset</tt> family of commands
@@ -1303,10 +1352,10 @@ have &lsquo;<tt>foo=bar</tt>&rsquo; and &lsquo;<tt>bar=baz</tt>&rsquo;, the stri
 <tt>${(P)${foo}}</tt>, and <tt>${(P)$(echo bar)}</tt> will be expanded to &lsquo;<tt>baz</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>q</tt></dt>
+<dt><tt>q</tt></dt>
 <dd><p>Quote characters that are special to the shell in the resulting words with
 backslashes; unprintable or invalid characters are quoted using the
-<tt>$&rsquo;\</tt><var>NNN</var><tt>&rsquo;</tt> form, with separate quotes for each octet.
+<tt>$'\</tt><var>NNN</var><tt>'</tt> form, with separate quotes for each octet.
 </p>
 <p>If this flag is given twice, the resulting words are quoted in single
 quotes and if it is given three times, the words are quoted in double
@@ -1322,11 +1371,11 @@ protect special characters.  Typically this form gives the most readable
 output.
 </p>
 </dd>
-<dt> <tt>Q</tt></dt>
+<dt><tt>Q</tt></dt>
 <dd><p>Remove one level of quotes from the resulting words.
 </p>
 </dd>
-<dt> <tt>t</tt></dt>
+<dt><tt>t</tt></dt>
 <dd><p>Use a string describing the type of the parameter where the value
 of the parameter would usually appear. This string consists of keywords
 separated by hyphens (&lsquo;<tt>-</tt>&rsquo;). The first keyword in the string describes
@@ -1335,96 +1384,100 @@ the main type, it can be one of &lsquo;<tt>scalar</tt>&rsquo;, &lsquo;<tt>array<
 more detail:
 </p>
 <dl compact="compact">
-<dt> <tt>local</tt></dt>
+<dt><tt>local</tt></dt>
 <dd><p>for local parameters
 </p>
 </dd>
-<dt> <tt>left</tt></dt>
+<dt><tt>left</tt></dt>
 <dd><p>for left justified parameters
 </p>
 </dd>
-<dt> <tt>right_blanks</tt></dt>
+<dt><tt>right_blanks</tt></dt>
 <dd><p>for right justified parameters with leading blanks
 </p>
 </dd>
-<dt> <tt>right_zeros</tt></dt>
+<dt><tt>right_zeros</tt></dt>
 <dd><p>for right justified parameters with leading zeros
 </p>
 </dd>
-<dt> <tt>lower</tt></dt>
+<dt><tt>lower</tt></dt>
 <dd><p>for parameters whose value is converted to all lower case when it is
 expanded
 </p>
 </dd>
-<dt> <tt>upper</tt></dt>
+<dt><tt>upper</tt></dt>
 <dd><p>for parameters whose value is converted to all upper case when it is
 expanded
 </p>
 </dd>
-<dt> <tt>readonly</tt></dt>
+<dt><tt>readonly</tt></dt>
 <dd><p>for readonly parameters
 </p>
 </dd>
-<dt> <tt>tag</tt></dt>
+<dt><tt>tag</tt></dt>
 <dd><p>for tagged parameters
 </p>
 </dd>
-<dt> <tt>export</tt></dt>
+<dt><tt>export</tt></dt>
 <dd><p>for exported parameters
 </p>
 </dd>
-<dt> <tt>unique</tt></dt>
+<dt><tt>unique</tt></dt>
 <dd><p>for arrays which keep only the first occurrence of duplicated values
 </p>
 </dd>
-<dt> <tt>hide</tt></dt>
+<dt><tt>hide</tt></dt>
 <dd><p>for parameters with the &lsquo;hide&rsquo; flag
 </p>
 </dd>
-<dt> <tt>special</tt></dt>
+<dt><tt>hideval</tt></dt>
+<dd><p>for parameters with the &lsquo;hideval&rsquo; flag
+</p>
+</dd>
+<dt><tt>special</tt></dt>
 <dd><p>for special parameters defined by the shell
 </p>
 </dd>
 </dl>
 
 </dd>
-<dt> <tt>u</tt></dt>
+<dt><tt>u</tt></dt>
 <dd><p>Expand only the first occurrence of each unique word.
 </p>
 </dd>
-<dt> <tt>U</tt></dt>
+<dt><tt>U</tt></dt>
 <dd><p>Convert all letters in the result to upper case.
 </p>
 </dd>
-<dt> <tt>v</tt></dt>
+<dt><tt>v</tt></dt>
 <dd><p>Used with <tt>k</tt>, substitute (as two consecutive words) both the key
 and the value of each associative array element.  Used with subscripts,
 force values to be substituted even if the subscript form refers to
 indices or keys.
 </p>
 </dd>
-<dt> <tt>V</tt></dt>
+<dt><tt>V</tt></dt>
 <dd><p>Make any special characters in the resulting words visible.
 </p>
 </dd>
-<dt> <tt>w</tt></dt>
+<dt><tt>w</tt></dt>
 <dd><p>With <tt>${#</tt><var>name</var><tt>}</tt>, count words in arrays or strings; the <tt>s</tt>
 flag may be used to set a word delimiter.
 </p>
 </dd>
-<dt> <tt>W</tt></dt>
+<dt><tt>W</tt></dt>
 <dd><p>Similar to <tt>w</tt> with the difference that empty words between
 repeated delimiters are also counted.
 </p>
 </dd>
-<dt> <tt>X</tt></dt>
+<dt><tt>X</tt></dt>
 <dd><p>With this flag, parsing errors occurring with the <tt>Q</tt>, <tt>e</tt> and <tt>#</tt>
 flags or the pattern matching forms such as
 &lsquo;<tt>${</tt><var>name</var><tt>#</tt><var>pattern</var><tt>}</tt>&rsquo; are reported.  Without the flag,
 errors are silently ignored.
 </p>
 </dd>
-<dt> <tt>z</tt></dt>
+<dt><tt>z</tt></dt>
 <dd><p>Split the result of the expansion into words using shell parsing to
 find the words, i.e. taking into account any quoting in the value.
 Comments are not treated specially but as ordinary strings, similar
@@ -1437,7 +1490,7 @@ in &lsquo;<tt>${${(z)foo}[2]}</tt>&rsquo;. Likewise, to remove the quotes in the
 resulting words use &lsquo;<tt>${(Q)${(z)foo}}</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>0</tt></dt>
+<dt><tt>0</tt></dt>
 <dd><p>Split the result of the expansion on null bytes.  This is a shorthand
 for &lsquo;<tt>ps:\0:</tt>&rsquo;.
 </p>
@@ -1451,34 +1504,52 @@ of a colon as delimiters, but note that when a flag takes more than one
 argument, a matched pair of delimiters must surround each argument.
 </p>
 <dl compact="compact">
-<dt> <tt>p</tt></dt>
+<dt><tt>p</tt></dt>
 <dd><p>Recognize the same escape sequences as the <tt>print</tt> builtin
 in string arguments to any of the flags described below that
 follow this argument.
 </p>
+<p>Alternatively, with this option string arguments may be in the form
+<tt>$</tt><var>var</var> in which case the value of the variable is substituted.
+Note this form is strict; the string argument does not undergo general
+parameter expansion.
+</p>
+<p>For example,
+</p>
+<div class="example">
+<pre class="example">sep=:
+val=a:b:c
+print ${(ps.$sep.)val}
+</pre></div>
+
+<p>splits the variable on a <tt>:</tt>.
+</p>
 </dd>
-<dt> <tt>~</tt></dt>
+<dt><tt>~</tt></dt>
 <dd><p>Strings inserted into the expansion by any of the flags below are to
 be treated as patterns.  This applies to the string arguments of flags
 that follow <tt>~</tt> within the same set of parentheses.  Compare with <tt>~</tt>
 outside parentheses, which forces the entire substituted string to
 be treated as a pattern.  Hence, for example,
-</p><table><tr><td>&nbsp;</td><td><pre class="example">[[ &quot;?&quot; = ${(~j.|.)array} ]]
-</pre></td></tr></table>
+</p>
+<div class="example">
+<pre class="example">[[ &quot;?&quot; = ${(~j.|.)array} ]]
+</pre></div>
+
 <p>treats &lsquo;<tt>|</tt>&rsquo; as a pattern and succeeds if and only if <tt>$array</tt>
 contains the string &lsquo;<tt>?</tt>&rsquo; as an element.  The <tt>~</tt> may be
 repeated to toggle the behaviour; its effect only lasts to the
 end of the parenthesised group.
 </p>
 </dd>
-<dt> <tt>j:</tt><var>string</var><tt>:</tt></dt>
+<dt><tt>j:</tt><var>string</var><tt>:</tt></dt>
 <dd><p>Join the words of arrays together using <var>string</var> as a separator.
 <a name="index-SH_005fWORD_005fSPLIT_002c-use-of"></a>
 Note that this occurs before field splitting by the <tt>s:</tt><var>string</var><tt>:</tt>
 flag or the <tt>SH_WORD_SPLIT</tt> option.
 </p>
 </dd>
-<dt> <tt>l:</tt><var>expr</var><tt>::</tt><var>string1</var><tt>::</tt><var>string2</var><tt>:</tt></dt>
+<dt><tt>l:</tt><var>expr</var><tt>::</tt><var>string1</var><tt>::</tt><var>string2</var><tt>:</tt></dt>
 <dd><p>Pad the resulting words on the left.  Each word will be truncated if
 required and placed in a field <var>expr</var> characters wide.
 </p>
@@ -1487,11 +1558,11 @@ optional; neither, the first, or both may be given.  Note that the same
 pairs of delimiters must be used for each of the three arguments.  The
 space to the left will be filled with <var>string1</var> (concatenated as
 often as needed) or spaces if <var>string1</var> is not given.  If both
-<var>string1</var> and <var>string2</var> are given, <tt>string2</tt> is inserted once
+<var>string1</var> and <var>string2</var> are given, <var>string2</var> is inserted once
 directly to the left of each word, truncated if necessary, before
 <var>string1</var> is used to produce any remaining padding.
 </p>
-<p>If either of <var>string1</var> or <tt>string2</tt> is present but empty,
+<p>If either of <var>string1</var> or <var>string2</var> is present but empty,
 i.e. there are two delimiters together at that point, the first
 character of <tt>$IFS</tt> is used instead.
 </p>
@@ -1507,7 +1578,7 @@ treated as occupying one unit of width.
 mechanism to be used for generating repetitions of control characters.
 </p>
 </dd>
-<dt> <tt>m</tt></dt>
+<dt><tt>m</tt></dt>
 <dd><p>Only useful together with one of the flags <tt>l</tt> or <tt>r</tt> or with the
 <tt>#</tt> length operator when the <tt>MULTIBYTE</tt> option
 is in effect.  Use the character width reported by the system in
@@ -1525,7 +1596,7 @@ except for the case where combining characters themselves have non-zero
 width (true in certain alphabets).
 </p>
 </dd>
-<dt> <tt>r:</tt><var>expr</var><tt>::</tt><var>string1</var><tt>::</tt><var>string2</var><tt>:</tt></dt>
+<dt><tt>r:</tt><var>expr</var><tt>::</tt><var>string1</var><tt>::</tt><var>string2</var><tt>:</tt></dt>
 <dd><p>As <tt>l</tt>, but pad the words on the right and insert <var>string2</var>
 immediately to the right of the string to be padded.
 </p>
@@ -1535,7 +1606,7 @@ words, and right padding to the second half.  If the string to be
 padded has odd width the extra padding is applied on the left.
 </p>
 </dd>
-<dt> <tt>s:</tt><var>string</var><tt>:</tt></dt>
+<dt><tt>s:</tt><var>string</var><tt>:</tt></dt>
 <dd><p>Force field splitting at the
 separator <var>string</var>.  Note that a <var>string</var> of two or more
 characters means that all of them must match in sequence; this differs from
@@ -1548,16 +1619,17 @@ element.
 are retained inside double quotes is disabled for arrays generated
 by splitting; hence the following:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">line=&quot;one::three&quot;
+<div class="example">
+<pre class="example">line=&quot;one::three&quot;
 print -l &quot;${(s.:.)line}&quot;
-</pre></td></tr></table>
+</pre></div>
 
 <p>produces two lines of output for <tt>one</tt> and <tt>three</tt> and elides the
-empty field.  To override this behaviour, supply the &quot;(@)&quot; flag as well,
+empty field.  To override this behaviour, supply the &lsquo;<tt>(@)</tt>&rsquo; flag as well,
 i.e.  <tt>&quot;${(@s.:.)line}&quot;</tt>.
 </p>
 </dd>
-<dt> <tt>Z:</tt><var>opts</var><tt>:</tt></dt>
+<dt><tt>Z:</tt><var>opts</var><tt>:</tt></dt>
 <dd><p>As <tt>z</tt> but takes a combination of option letters between a following
 pair of delimiter characters.  With no options the effect is identical
 to <tt>z</tt>.  <tt>(Z+c+)</tt>
@@ -1573,7 +1645,7 @@ semicolons.  Options are combined within the same set of delimiters,
 e.g. <tt>(Z+Cn+)</tt>.
 </p>
 </dd>
-<dt> <tt>_:</tt><var>flags</var><tt>:</tt></dt>
+<dt><tt>_:</tt><var>flags</var><tt>:</tt></dt>
 <dd><p>The underscore (<tt>_</tt>) flag is reserved for future use.  As of this
 revision of zsh, there are no valid <var>flags</var>; anything following an
 underscore, other than an empty pair of delimiters, is treated as an
@@ -1587,7 +1659,7 @@ error, and the flag itself has no effect.
 used with the <tt>${</tt>...<tt>/</tt>...<tt>}</tt> forms.
 </p>
 <dl compact="compact">
-<dt> <tt>S</tt></dt>
+<dt><tt>S</tt></dt>
 <dd><p>Search substrings as well as beginnings or ends; with <tt>#</tt> start
 from the beginning and with <tt>%</tt> start from the end of the string.
 With substitution via <tt>${</tt>...<tt>/</tt>...<tt>}</tt> or
@@ -1595,7 +1667,7 @@ With substitution via <tt>${</tt>...<tt>/</tt>...<tt>}</tt> or
 shortest instead of the longest match should be replaced.
 </p>
 </dd>
-<dt> <tt>I:</tt><var>expr</var><tt>:</tt></dt>
+<dt><tt>I:</tt><var>expr</var><tt>:</tt></dt>
 <dd><p>Search the <var>expr</var>th match (where <var>expr</var> evaluates to a number).
 This only applies when searching for substrings, either with the <tt>S</tt>
 flag, or with <tt>${</tt>...<tt>/</tt>...<tt>}</tt> (only the <var>expr</var>th match is
@@ -1610,8 +1682,9 @@ position for the match moves backwards from the end as the index increases,
 while with the other forms it moves forward from the start.
 </p>
 <p>Hence with the string
-</p><table><tr><td>&nbsp;</td><td><pre class="example">which switch is the right switch for Ipswich?
-</pre></td></tr></table>
+</p><div class="example">
+<pre class="example">which switch is the right switch for Ipswich?
+</pre></div>
 <p>substitutions of the form
 <tt>${</tt>(<tt>SI:</tt><var>N</var><tt>:</tt>)<tt>string#w*ch}</tt> as <var>N</var> increases
 from 1 will match and remove &lsquo;<tt>which</tt>&rsquo;, &lsquo;<tt>witch</tt>&rsquo;, &lsquo;<tt>witch</tt>&rsquo; and
@@ -1623,43 +1696,42 @@ form using &lsquo;<tt>%%</tt>&rsquo; will remove the same matches as for &lsquo;
 order.
 </p>
 </dd>
-<dt> <tt>B</tt></dt>
+<dt><tt>B</tt></dt>
 <dd><p>Include the index of the beginning of the match in the result.
 </p>
 </dd>
-<dt> <tt>E</tt></dt>
+<dt><tt>E</tt></dt>
 <dd><p>Include the index of the end of the match in the result.
 </p>
 </dd>
-<dt> <tt>M</tt></dt>
+<dt><tt>M</tt></dt>
 <dd><p>Include the matched portion in the result.
 </p>
 </dd>
-<dt> <tt>N</tt></dt>
+<dt><tt>N</tt></dt>
 <dd><p>Include the length of the match in the result.
 </p>
 </dd>
-<dt> <tt>R</tt></dt>
+<dt><tt>R</tt></dt>
 <dd><p>Include the unmatched portion in the result (the <em>R</em>est).
 </p>
 </dd>
 </dl>
 
 
-<hr size="6">
+<hr>
 <a name="Rules"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Parameter-Expansion-Flags" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Examples-1" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Parameter-Expansion-Flags" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Parameter-Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Examples" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -1667,14 +1739,14 @@ order.
 <h3 class="subsection">14.3.2 Rules</h3>
 
 <p>Here is a summary of the rules for substitution; this assumes that braces
-are present around the substitution, i.e. <tt>${...}</tt>.  Some particular
+are present around the substitution, i.e. <tt>${</tt><var>...</var><tt>}</tt>.  Some particular
 examples are given below.  Note that the Zsh Development Group accepts
 <em>no responsibility</em> for any brain damage which may occur during the
 reading of the following rules.
 </p>
 <dl compact="compact">
-<dt> <tt>1.</tt> <em>Nested substitution</em></dt>
-<dd><p>If multiple nested <tt>${...}</tt> forms are present, substitution is
+<dt><tt>1.</tt> <em>Nested substitution</em></dt>
+<dd><p>If multiple nested <tt>${</tt><var>...</var><tt>}</tt> forms are present, substitution is
 performed from the inside outwards.  At each level, the substitution takes
 account of whether the current value is a scalar or an array, whether the
 whole substitution is in double quotes, and what flags are supplied to the
@@ -1698,7 +1770,7 @@ substitution then applies the modifier <tt>:h</tt> and takes the directory part
 of the path.)
 </p>
 </dd>
-<dt> <tt>2.</tt> <em>Internal parameter flags</em></dt>
+<dt><tt>2.</tt> <em>Internal parameter flags</em></dt>
 <dd><p>Any parameter flags set by one of the <tt>typeset</tt> family of commands,
 in particular the <tt>L</tt>, <tt>R</tt>, <tt>Z</tt>, <tt>u</tt> and <tt>l</tt> flags for padding
 and capitalization, are applied directly to the parameter value.
@@ -1706,7 +1778,7 @@ Note these flags are options to the command, e.g. &lsquo;<tt>typeset -Z</tt>&rsq
 they are not the same as the flags used within parameter substitutions.
 </p>
 </dd>
-<dt> <tt>3.</tt> <em>Parameter subscripting</em></dt>
+<dt><tt>3.</tt> <em>Parameter subscripting</em></dt>
 <dd><p>If the value is a raw parameter reference with a subscript, such as
 <tt>${</tt><var>var</var><tt>[3]}</tt>, the effect of subscripting is applied directly to
 the parameter.  Subscripts are evaluated left to right; subsequent
@@ -1718,12 +1790,12 @@ original array).  Any number of subscripts may appear.  Flags such as
 <tt>(k)</tt> and <tt>(v)</tt> which alter the result of subscripting are applied.
 </p>
 </dd>
-<dt> <tt>4.</tt> <em>Parameter name replacement</em></dt>
+<dt><tt>4.</tt> <em>Parameter name replacement</em></dt>
 <dd><p>The effect of any <tt>(P)</tt> flag, which treats the value so far as a
 parameter name and replaces it with the corresponding value, is applied.
 </p>
 </dd>
-<dt> <tt>5.</tt> <em>Double-quoted joining</em></dt>
+<dt><tt>5.</tt> <em>Double-quoted joining</em></dt>
 <dd><p>If the value after this process is an array, and the substitution
 appears in double quotes, and neither an <tt>(@)</tt> flag nor a <tt>#</tt>
 length operator is present at the current level, then words of the
@@ -1733,7 +1805,7 @@ modified).  If the <tt>(j)</tt> flag is present, that is used for joining
 instead of <tt>$IFS</tt>.
 </p>
 </dd>
-<dt> <tt>6.</tt> <em>Nested subscripting</em></dt>
+<dt><tt>6.</tt> <em>Nested subscripting</em></dt>
 <dd><p>Any remaining subscripts (i.e. of a nested substitution) are evaluated at
 this point, based on whether the value is an array or a scalar.  As with
 <tt>3.</tt>, multiple subscripts can appear.  Note that <tt>${foo[2,4][2]}</tt> is
@@ -1743,24 +1815,24 @@ both cases), but not to <tt>&quot;${${foo[2,4]}[2]}&quot;</tt> (the nested subst
 returns a scalar because of the quotes).
 </p>
 </dd>
-<dt> <tt>7.</tt> <em>Modifiers</em></dt>
+<dt><tt>7.</tt> <em>Modifiers</em></dt>
 <dd><p>Any modifiers, as specified by a trailing &lsquo;<tt>#</tt>&rsquo;, &lsquo;<tt>%</tt>&rsquo;, &lsquo;<tt>/</tt>&rsquo;
 (possibly doubled) or by a set of modifiers of the form <tt>:...</tt> (see
 <a href="#Modifiers">Modifiers</a> in <a href="#History-Expansion">History Expansion</a>), are applied to the words
 of the value at this level.
 </p>
 </dd>
-<dt> <tt>8.</tt> <em>Character evaluation</em></dt>
+<dt><tt>8.</tt> <em>Character evaluation</em></dt>
 <dd><p>Any <tt>(#)</tt> flag is applied, evaluating the result so far numerically
 as a character.
 </p>
 </dd>
-<dt> <tt>9.</tt> <em>Length</em></dt>
+<dt><tt>9.</tt> <em>Length</em></dt>
 <dd><p>Any initial <tt>#</tt> modifier, i.e. in the form <tt>${#</tt><var>var</var><tt>}</tt>, is
 used to evaluate the length of the expression so far.
 </p>
 </dd>
-<dt> <tt>10.</tt> <em>Forced joining</em></dt>
+<dt><tt>10.</tt> <em>Forced joining</em></dt>
 <dd><p>If the &lsquo;<tt>(j)</tt>&rsquo; flag is present, or no &lsquo;<tt>(j)</tt>&rsquo; flag is present but
 the string is to be split as given by rule <tt>11.</tt>, and joining
 did not take place at step <tt>5.</tt>, any words in the value are joined
@@ -1769,7 +1841,7 @@ Note that the &lsquo;<tt>(F)</tt>&rsquo; flag implicitly supplies a string for j
 manner.
 </p>
 </dd>
-<dt> <tt>11.</tt> <em>Simple word splitting</em></dt>
+<dt><tt>11.</tt> <em>Simple word splitting</em></dt>
 <dd><p>If one of the &lsquo;<tt>(s)</tt>&rsquo; or &lsquo;<tt>(f)</tt>&rsquo; flags are present, or the &lsquo;<tt>=</tt>&rsquo;
 specifier was present (e.g. <tt>${=</tt><var>var</var><tt>}</tt>), the word is split on
 occurrences of the specified string, or (for <tt>=</tt> with neither of the two
@@ -1781,31 +1853,31 @@ occurrences of any of the characters in <tt>$IFS</tt>.  Note this step, too,
 takes place at all levels of a nested substitution.
 </p>
 </dd>
-<dt> <tt>12.</tt> <em>Case modification</em></dt>
+<dt><tt>12.</tt> <em>Case modification</em></dt>
 <dd><p>Any case modification from one of the flags <tt>(L)</tt>, <tt>(U)</tt> or <tt>(C)</tt>
 is applied.
 </p>
 </dd>
-<dt> <tt>13.</tt> <em>Escape sequence replacement</em></dt>
+<dt><tt>13.</tt> <em>Escape sequence replacement</em></dt>
 <dd><p>First any replacements from the <tt>(g)</tt> flag are performed, then any
 prompt-style formatting from the <tt>(%)</tt> family of flags is applied.
 </p>
 </dd>
-<dt> <tt>14.</tt> <em>Quote application</em></dt>
+<dt><tt>14.</tt> <em>Quote application</em></dt>
 <dd><p>Any quoting or unquoting using <tt>(q)</tt> and <tt>(Q)</tt> and related flags
 is applied.
 </p>
 </dd>
-<dt> <tt>15.</tt> <em>Directory naming</em></dt>
+<dt><tt>15.</tt> <em>Directory naming</em></dt>
 <dd><p>Any directory name substitution using <tt>(D)</tt> flag is applied.
 </p>
 </dd>
-<dt> <tt>16.</tt> <em>Visibility enhancement</em></dt>
+<dt><tt>16.</tt> <em>Visibility enhancement</em></dt>
 <dd><p>Any modifications to make characters visible using the <tt>(V)</tt> flag
 are applied.
 </p>
 </dd>
-<dt> <tt>17.</tt> <em>Lexical word splitting</em></dt>
+<dt><tt>17.</tt> <em>Lexical word splitting</em></dt>
 <dd><p>If the &rsquo;<tt>(z)</tt>&rsquo; flag or one of the forms of the &rsquo;<tt>(Z)</tt>&rsquo; flag is
 present, the word is split as if it were a shell command line, so that
 quotation marks and other metacharacters are used to decide what
@@ -1814,34 +1886,34 @@ from that described by rule <tt>11.</tt>: it does not use <tt>$IFS</tt>, and
 does not cause forced joining.
 </p>
 </dd>
-<dt> <tt>18.</tt> <em>Uniqueness</em></dt>
+<dt><tt>18.</tt> <em>Uniqueness</em></dt>
 <dd><p>If the result is an array and the &lsquo;<tt>(u)</tt>&rsquo; flag was present, duplicate
 elements are removed from the array.
 </p>
 </dd>
-<dt> <tt>19.</tt> <em>Ordering</em></dt>
+<dt><tt>19.</tt> <em>Ordering</em></dt>
 <dd><p>If the result is still an array and one of the &lsquo;<tt>(o)</tt>&rsquo; or &lsquo;<tt>(O)</tt>&rsquo; flags
 was present, the array is reordered.
 </p>
 </dd>
-<dt> <tt>20.</tt> <tt>RC_EXPAND_PARAM</tt></dt>
+<dt><tt>20.</tt> <tt>RC_EXPAND_PARAM</tt></dt>
 <dd><p>At this point the decision is made whether any resulting array elements
 are to be combined element by element with surrounding text, as given
 by either the <tt>RC_EXPAND_PARAM</tt> option or the &lsquo;<tt>^</tt>&rsquo; flag.
 </p>
 </dd>
-<dt> <tt>21.</tt> <em>Re-evaluation</em></dt>
+<dt><tt>21.</tt> <em>Re-evaluation</em></dt>
 <dd><p>Any &lsquo;<tt>(e)</tt>&rsquo; flag is applied to the value, forcing it to be re-examined
 for new parameter substitutions, but also for command and arithmetic
 substitutions.
 </p>
 </dd>
-<dt> <tt>22.</tt> <em>Padding</em></dt>
+<dt><tt>22.</tt> <em>Padding</em></dt>
 <dd><p>Any padding of the value by the &lsquo;<tt>(l.</tt><var>fill</var><tt>.)</tt>&rsquo; or
 &lsquo;<tt>(r.</tt><var>fill</var><tt>.)</tt>&rsquo; flags is applied.
 </p>
 </dd>
-<dt> <tt>23.</tt> <em>Semantic joining</em></dt>
+<dt><tt>23.</tt> <em>Semantic joining</em></dt>
 <dd><p>In contexts where expansion semantics requires a single word to
 result, all words are rejoined with the first character of <tt>IFS</tt>
 between.  So in &lsquo;<tt>${(P</tt><tt>)${(f</tt><tt>)lines}}</tt>&rsquo;
@@ -1851,7 +1923,7 @@ joined again before the <tt>P</tt> flag can be applied.
 <p>If a single word is not required, this rule is skipped.
 </p>
 </dd>
-<dt> <tt>24.</tt> <em>Empty argument removal</em></dt>
+<dt><tt>24.</tt> <em>Empty argument removal</em></dt>
 <dd><p>If the substitution does not appear in double quotes, any resulting
 zero-length argument, whether from a scalar or an element of an array,
 is elided from the list of arguments inserted into the command line.
@@ -1864,20 +1936,19 @@ it occurs after any of the above parameter operations.
 </dl>
 
 
-<hr size="6">
-<a name="Examples-1"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Rules" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Command-Substitution" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<hr>
+<a name="Examples"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Rules" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Parameter-Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Command-Substitution" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -1895,7 +1966,7 @@ content of the file a single string.
 Suppose that <tt>$foo</tt> contains the array <tt>(bar baz</tt><tt>)</tt>:
 </p>
 <dl compact="compact">
-<dt> <tt>&quot;${(@)${foo}[1]}&quot;</tt></dt>
+<dt><tt>&quot;${(@)${foo}[1]}&quot;</tt></dt>
 <dd><p>This produces the result <tt>b</tt>.  First, the inner substitution
 <tt>&quot;${foo}&quot;</tt>, which has no array (<tt>@</tt>) flag, produces a single word
 result <tt>&quot;bar baz&quot;</tt>.  The outer substitution <tt>&quot;${(@)...[1]}&quot;</tt> detects
@@ -1903,7 +1974,7 @@ that this is a scalar, so that (despite the &lsquo;<tt>(@)</tt>&rsquo; flag) the
 picks the first character. 
 </p>
 </dd>
-<dt> <tt>&quot;${${(@)foo}[1]}&quot;</tt></dt>
+<dt><tt>&quot;${${(@)foo}[1]}&quot;</tt></dt>
 <dd><p>This produces the result &lsquo;<tt>bar</tt>&rsquo;.  In this case, the inner substitution
 <tt>&quot;${(@)foo}&quot;</tt> produces the array &lsquo;<tt>(bar baz</tt><tt>)</tt>&rsquo;.  The outer
 substitution <tt>&quot;${...[1]}&quot;</tt> detects that this is an array and picks the
@@ -1916,15 +1987,15 @@ first word.  This is similar to the simple case <tt>&quot;${foo[1]}&quot;</tt>.
 contains the array &lsquo;<tt>(ax1 bx1</tt><tt>)</tt>&rsquo;.  Then
 </p>
 <dl compact="compact">
-<dt> <tt>${(s/x/)foo}</tt></dt>
+<dt><tt>${(s/x/)foo}</tt></dt>
 <dd><p>produces the words &lsquo;<tt>a</tt>&rsquo;, &lsquo;<tt>1 b</tt>&rsquo; and &lsquo;<tt>1</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>${(j/x/s/x/)foo}</tt></dt>
+<dt><tt>${(j/x/s/x/)foo}</tt></dt>
 <dd><p>produces &lsquo;<tt>a</tt>&rsquo;, &lsquo;<tt>1</tt>&rsquo;, &lsquo;<tt>b</tt>&rsquo; and &lsquo;<tt>1</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>${(s/x/)foo%%1*}</tt></dt>
+<dt><tt>${(s/x/)foo%%1*}</tt></dt>
 <dd><p>produces &lsquo;<tt>a</tt>&rsquo; and &lsquo;<tt> b</tt>&rsquo; (note the extra space).  As substitution
 occurs before either joining or splitting, the operation  first generates
 the modified array <tt>(ax bx</tt><tt>)</tt>, which is joined to give
@@ -1934,20 +2005,19 @@ empty string will then be elided, as it is not in double quotes.
 </dd>
 </dl>
 
-<hr size="6">
+<hr>
 <a name="Command-Substitution"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Examples-1" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Arithmetic-Expansion" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Examples" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Arithmetic-Expansion" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -1959,7 +2029,7 @@ empty string will then be elided, as it is not in double quotes.
 <a name="index-substitution_002c-command"></a>
 <p>A command enclosed in parentheses preceded by a dollar sign, like
 &lsquo;<tt>$(</tt>...<tt>)</tt>&rsquo;, or quoted with grave 
-accents, like &lsquo;<tt>&lsquo;</tt>...<tt>&lsquo;</tt>&rsquo;, is replaced with its standard output, with
+accents, like &lsquo;<tt>`</tt>...<tt>`</tt>&rsquo;, is replaced with its standard output, with
 any trailing newlines deleted.
 If the substitution is not enclosed in double quotes, the
 output is broken into words using the <tt>IFS</tt> parameter.
@@ -1968,20 +2038,19 @@ The substitution &lsquo;<tt>$(cat</tt> <var>foo</var><tt>)</tt>&rsquo; may be re
 by the equivalent but faster &lsquo;<tt>$(&lt;</tt><var>foo</var><tt>)</tt>&rsquo;.
 In either case, if the option <tt>GLOB_SUBST</tt> is set,
 the output is eligible for filename generation.
-</p><hr size="6">
+</p><hr>
 <a name="Arithmetic-Expansion"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Command-Substitution" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Brace-Expansion" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command-Substitution" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Brace-Expansion" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -1997,20 +2066,19 @@ with the value of the arithmetic expression <var>exp</var>.  <var>exp</var> is
 subjected to <em>parameter expansion</em>, <em>command substitution</em>
 and <em>arithmetic expansion</em> before it is evaluated.
 See <a href="Arithmetic-Evaluation.html#Arithmetic-Evaluation">Arithmetic Evaluation</a>.
-</p><hr size="6">
+</p><hr>
 <a name="Brace-Expansion"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Arithmetic-Expansion" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Filename-Expansion" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Arithmetic-Expansion" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Filename-Expansion" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -2083,20 +2151,19 @@ has similar effects.
 in <a href="#Parameter-Expansion">Parameter Expansion</a>
 above.
 </p>
-<hr size="6">
+<hr>
 <a name="Filename-Expansion"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Brace-Expansion" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Dynamic-named-directories" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Brace-Expansion" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Dynamic-named-directories" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -2134,20 +2201,19 @@ option exchanges the effects of &lsquo;<tt>~+</tt>&rsquo; and &lsquo;<tt>~-</tt>
 followed by a number.
 </p>
 
-<hr size="6">
+<hr>
 <a name="Dynamic-named-directories"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Filename-Expansion" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Static-named-directories" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Filename-Expansion" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Filename-Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Static-named-directories" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -2189,8 +2255,9 @@ directory is <tt>/home/myname/src/zsh</tt> and the dynamic name for
 <tt>/home/myname/src</tt> (which has 16 characters) is <tt>s</tt>, then the function
 sets
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">reply=(s 16)
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">reply=(s 16)
+</pre></div>
 
 <p>The directory name so returned is compared with possible static names for
 parts of the directory path, as described below; it is used if the prefix
@@ -2215,7 +2282,8 @@ beginning with the string <tt>p:</tt> to directories below
 <tt>/home/pws/perforce</tt>.  In this simple case a static name for the
 directory would be just as effective.
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">zsh_directory_name() {
+<div class="example">
+<pre class="example">zsh_directory_name() {
   emulate -L zsh
   setopt extendedglob
   local -a match mbegin mend
@@ -2245,23 +2313,22 @@ directory would be just as effective.
   fi
   return 0
 }
-</pre></td></tr></table>
+</pre></div>
 
 
-<hr size="6">
+<hr>
 <a name="Static-named-directories"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Dynamic-named-directories" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#g_t_0060_003d_0027-expansion" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Dynamic-named-directories" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Filename-Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_0060_003d_0027-expansion" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -2293,20 +2360,19 @@ if they are the same length.
 The parameters <tt>$PWD</tt> and <tt>$OLDPWD</tt> are never abbreviated in this fashion.
 </p>
 
-<hr size="6">
+<hr>
 <a name="g_t_0060_003d_0027-expansion"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Static-named-directories" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Notes" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Static-named-directories" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Filename-Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Notes" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -2321,20 +2387,19 @@ exists by that name, the word is replaced
 by the full pathname of the command.
 </p>
 
-<hr size="6">
+<hr>
 <a name="Notes"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#g_t_0060_003d_0027-expansion" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Filename-Generation" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_0060_003d_0027-expansion" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Filename-Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Filename-Generation" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -2355,20 +2420,19 @@ argument in the form &lsquo;<var>identifier</var><tt>=</tt><var>expression</var>
 for file expansion as described in the previous paragraph.  Quoting the
 first &lsquo;<tt>=</tt>&rsquo; also inhibits this.
 </p>
-<hr size="6">
+<hr>
 <a name="Filename-Generation"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Notes" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Glob-Operators" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Notes" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Expansion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Glob-Operators" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -2404,35 +2468,34 @@ No filename generation pattern
 matches the files &lsquo;<tt>.</tt>&rsquo; or &lsquo;<tt>..</tt>&rsquo;.  In other instances of pattern
 matching, the &lsquo;<tt>/</tt>&rsquo; and &lsquo;<tt>.</tt>&rsquo; are not treated specially.
 </p>
-<hr size="6">
+<hr>
 <a name="Glob-Operators"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Filename-Generation" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#ksh_002dlike-Glob-Operators" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Filename-Generation" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Filename-Generation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#ksh_002dlike-Glob-Operators" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">14.8.1 Glob Operators</h3>
 <dl compact="compact">
-<dt> <tt>*</tt></dt>
+<dt><tt>*</tt></dt>
 <dd><p>Matches any string, including the null string.
 </p>
 </dd>
-<dt> <tt>?</tt></dt>
+<dt><tt>?</tt></dt>
 <dd><p>Matches any character.
 </p>
 </dd>
-<dt> <tt>[</tt>...<tt>]</tt></dt>
+<dt><tt>[</tt>...<tt>]</tt></dt>
 <dd><p>Matches any of the enclosed characters.  Ranges of characters
 can be specified by separating two characters by a &lsquo;<tt>-</tt>&rsquo;.
 A &lsquo;<tt>-</tt>&rsquo; or &lsquo;<tt>]</tt>&rsquo; may be matched by including it as the
@@ -2446,56 +2509,56 @@ including any modifications due to local language settings, see
 man page ctype(3):
 </p>
 <dl compact="compact">
-<dt> <tt>[:alnum:]</tt></dt>
+<dt><tt>[:alnum:]</tt></dt>
 <dd><p>The character is alphanumeric
 </p>
 </dd>
-<dt> <tt>[:alpha:]</tt></dt>
+<dt><tt>[:alpha:]</tt></dt>
 <dd><p>The character is alphabetic
 </p>
 </dd>
-<dt> <tt>[:ascii:]</tt></dt>
+<dt><tt>[:ascii:]</tt></dt>
 <dd><p>The character is 7-bit, i.e. is a single-byte character without
 the top bit set.
 </p>
 </dd>
-<dt> <tt>[:blank:]</tt></dt>
+<dt><tt>[:blank:]</tt></dt>
 <dd><p>The character is either space or tab
 </p>
 </dd>
-<dt> <tt>[:cntrl:]</tt></dt>
+<dt><tt>[:cntrl:]</tt></dt>
 <dd><p>The character is a control character
 </p>
 </dd>
-<dt> <tt>[:digit:]</tt></dt>
+<dt><tt>[:digit:]</tt></dt>
 <dd><p>The character is a decimal digit
 </p>
 </dd>
-<dt> <tt>[:graph:]</tt></dt>
+<dt><tt>[:graph:]</tt></dt>
 <dd><p>The character is a printable character other than whitespace
 </p>
 </dd>
-<dt> <tt>[:lower:]</tt></dt>
+<dt><tt>[:lower:]</tt></dt>
 <dd><p>The character is a lowercase letter
 </p>
 </dd>
-<dt> <tt>[:print:]</tt></dt>
+<dt><tt>[:print:]</tt></dt>
 <dd><p>The character is printable
 </p>
 </dd>
-<dt> <tt>[:punct:]</tt></dt>
+<dt><tt>[:punct:]</tt></dt>
 <dd><p>The character is printable but neither alphanumeric nor whitespace
 </p>
 </dd>
-<dt> <tt>[:space:]</tt></dt>
+<dt><tt>[:space:]</tt></dt>
 <dd><p>The character is whitespace
 </p>
 </dd>
-<dt> <tt>[:upper:]</tt></dt>
+<dt><tt>[:upper:]</tt></dt>
 <dd><p>The character is an uppercase letter
 </p>
 </dd>
-<dt> <tt>[:xdigit:]</tt></dt>
+<dt><tt>[:xdigit:]</tt></dt>
 <dd><p>The character is a hexadecimal digit
 </p>
 </dd>
@@ -2505,23 +2568,39 @@ the top bit set.
 is not sensitive to the locale:
 </p>
 <dl compact="compact">
-<dt> <tt>[:IDENT:]</tt></dt>
+<dt><tt>[:IDENT:]</tt></dt>
 <dd><p>The character is allowed to form part of a shell identifier, such
 as a parameter name
 </p>
 </dd>
-<dt> <tt>[:IFS:]</tt></dt>
+<dt><tt>[:IFS:]</tt></dt>
 <dd><p>The character is used as an input field separator, i.e. is contained in the
 <tt>IFS</tt> parameter
 </p>
 </dd>
-<dt> <tt>[:IFSSPACE:]</tt></dt>
+<dt><tt>[:IFSSPACE:]</tt></dt>
 <dd><p>The character is an IFS white space character; see the documentation
 for <tt>IFS</tt> in
 <a href="Parameters.html#Parameters-Used-By-The-Shell">Parameters Used By The Shell</a>.
 </p>
 </dd>
-<dt> <tt>[:WORD:]</tt></dt>
+<dt><tt>[:INCOMPLETE:]</tt></dt>
+<dd><p>Matches a byte that starts an incomplete multibyte character.
+Note that there may be a sequence of more than one bytes that
+taken together form the prefix of a multibyte character.  To
+test for a potentially incomplete byte sequence, use the pattern
+&lsquo;<tt>[[:INCOMPLETE:]]*</tt>&rsquo;.  This will never match a sequence starting
+with a valid multibyte character.
+</p>
+</dd>
+<dt><tt>[:INVALID:]</tt></dt>
+<dd><p>Matches a byte that does not start a valid multibyte character.
+Note this may be a continuation byte of an incomplete multibyte
+character as any part of a multibyte string consisting of invalid and
+incomplete multibyte characters is treated as single bytes.
+</p>
+</dd>
+<dt><tt>[:WORD:]</tt></dt>
 <dd><p>The character is treated as part of a word; this test is sensitive
 to the value of the <tt>WORDCHARS</tt> parameter
 </p>
@@ -2535,13 +2614,13 @@ character sets can be used alongside other types,
 e.g. &lsquo;<tt>[[:alpha:]0-9]</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>[^</tt>...<tt>]</tt></dt>
-<dt> <tt>[!</tt>...<tt>]</tt></dt>
+<dt><tt>[^</tt>...<tt>]</tt></dt>
+<dt><tt>[!</tt>...<tt>]</tt></dt>
 <dd><p>Like <tt>[</tt>...<tt>]</tt>, except that it matches any character which is
 not in the given set.
 </p>
 </dd>
-<dt> <tt>&lt;</tt>[<var>x</var>]<tt>-</tt>[<var>y</var>]<tt>&gt;</tt></dt>
+<dt><tt>&lt;</tt>[<var>x</var>]<tt>-</tt>[<var>y</var>]<tt>&gt;</tt></dt>
 <dd><p>Matches any number in the range <var>x</var> to <var>y</var>, inclusive.
 Either of the numbers may be omitted to make the range open-ended;
 hence &lsquo;<tt>&lt;-&gt;</tt>&rsquo; matches any number.  To match individual digits, the
@@ -2556,7 +2635,7 @@ match always succeeds.  Expressions such as &lsquo;<tt>&lt;0-9&gt;[^[:digit:]]*<
 used instead.
 </p>
 </dd>
-<dt> <tt>(</tt>...<tt>)</tt></dt>
+<dt><tt>(</tt>...<tt>)</tt></dt>
 <dd><p>Matches the enclosed pattern.  This is used for grouping.
 If the <tt>KSH_GLOB</tt> option is set, then a
 &lsquo;<tt>@</tt>&rsquo;, &lsquo;<tt>*</tt>&rsquo;, &lsquo;<tt>+</tt>&rsquo;, &lsquo;<tt>?</tt>&rsquo; or &lsquo;<tt>!</tt>&rsquo; immediately preceding
@@ -2572,14 +2651,14 @@ match a sequence of directories.  For example, <tt>foo/(a*/)#bar</tt> matches
 <tt>foo/bar</tt>, <tt>foo/any/bar</tt>, <tt>foo/any/anyother/bar</tt>, and so on.
 </p>
 </dd>
-<dt> <var>x</var><tt>|</tt><var>y</var></dt>
+<dt><var>x</var><tt>|</tt><var>y</var></dt>
 <dd><p>Matches either <var>x</var> or <var>y</var>.
 This operator has lower precedence than any other.
 The &lsquo;<tt>|</tt>&rsquo; character
 must be within parentheses, to avoid interpretation as a pipeline.
 </p>
 </dd>
-<dt> <tt>^</tt><var>x</var></dt>
+<dt><tt>^</tt><var>x</var></dt>
 <dd><p>(Requires <tt>EXTENDED_GLOB</tt> to be set.)
 Matches anything except the pattern <var>x</var>.
 This has a higher precedence than &lsquo;<tt>/</tt>&rsquo;, so &lsquo;<tt>^foo/bar</tt>&rsquo;
@@ -2587,7 +2666,7 @@ will search directories in &lsquo;<tt>.</tt>&rsquo; except &lsquo;<tt>./foo</tt>
 for a file named &lsquo;<tt>bar</tt>&rsquo;.
 </p>
 </dd>
-<dt> <var>x</var><tt>~</tt><var>y</var></dt>
+<dt><var>x</var><tt>~</tt><var>y</var></dt>
 <dd><p>(Requires <tt>EXTENDED_GLOB</tt> to be set.)
 Match anything that matches the pattern <var>x</var> but does not match <var>y</var>.
 This has lower precedence than any operator except &lsquo;<tt>|</tt>&rsquo;, so
@@ -2599,7 +2678,7 @@ In the exclusion pattern (<var>y</var>), &lsquo;<tt>/</tt>&rsquo; and &lsquo;<tt
 specially the way they usually are in globbing.
 </p>
 </dd>
-<dt> <var>x</var><tt>#</tt></dt>
+<dt><var>x</var><tt>#</tt></dt>
 <dd><p>(Requires <tt>EXTENDED_GLOB</tt> to be set.)
 Matches zero or more occurrences of the pattern <var>x</var>.
 This operator has high precedence; &lsquo;<tt>12#</tt>&rsquo; is equivalent to &lsquo;<tt>1(2#)</tt>&rsquo;,
@@ -2611,7 +2690,7 @@ invalid and must be replaced by
 &lsquo;<tt>*(!(</tt><var>foo</var><tt>))</tt>&rsquo;).
 </p>
 </dd>
-<dt> <var>x</var><tt>##</tt></dt>
+<dt><var>x</var><tt>##</tt></dt>
 <dd><p>(Requires <tt>EXTENDED_GLOB</tt> to be set.)
 Matches one or more occurrences of the pattern <var>x</var>.
 This operator has high precedence; &lsquo;<tt>12##</tt>&rsquo; is equivalent to &lsquo;<tt>1(2##)</tt>&rsquo;,
@@ -2622,20 +2701,19 @@ form &lsquo;<tt>1(2##)</tt>&rsquo; which should therefore be avoided.)
 </dd>
 </dl>
 
-<hr size="6">
+<hr>
 <a name="ksh_002dlike-Glob-Operators"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Glob-Operators" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Precedence" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Glob-Operators" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Filename-Generation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Precedence" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -2648,45 +2726,44 @@ This character need not be unquoted to have special effects,
 but the &lsquo;<tt>(</tt>&rsquo; must be.
 </p>
 <dl compact="compact">
-<dt> <tt>@(</tt>...<tt>)</tt></dt>
+<dt><tt>@(</tt>...<tt>)</tt></dt>
 <dd><p>Match the pattern in the parentheses.  (Like &lsquo;<tt>(</tt>...<tt>)</tt>&rsquo;.)
 </p>
 </dd>
-<dt> <tt>*(</tt>...<tt>)</tt></dt>
+<dt><tt>*(</tt>...<tt>)</tt></dt>
 <dd><p>Match any number of occurrences.  (Like &lsquo;<tt>(</tt>...<tt>)#</tt>&rsquo;,
 except that recursive directory searching is not supported.)
 </p>
 </dd>
-<dt> <tt>+(</tt>...<tt>)</tt></dt>
+<dt><tt>+(</tt>...<tt>)</tt></dt>
 <dd><p>Match at least one occurrence.  (Like &lsquo;<tt>(</tt>...<tt>)##</tt>&rsquo;,
 except that recursive directory searching is not supported.)
 </p>
 </dd>
-<dt> <tt>?(</tt>...<tt>)</tt></dt>
+<dt><tt>?(</tt>...<tt>)</tt></dt>
 <dd><p>Match zero or one occurrence.  (Like &lsquo;<tt>(|</tt>...<tt>)</tt>&rsquo;.)
 </p>
 </dd>
-<dt> <tt>!(</tt>...<tt>)</tt></dt>
+<dt><tt>!(</tt>...<tt>)</tt></dt>
 <dd><p>Match anything but the expression in parentheses.
 (Like &lsquo;<tt>(^(</tt>...<tt>))</tt>&rsquo;.)
 </p>
 </dd>
 </dl>
 
-<hr size="6">
+<hr>
 <a name="Precedence"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#ksh_002dlike-Glob-Operators" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Globbing-Flags" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#ksh_002dlike-Glob-Operators" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Filename-Generation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Globbing-Flags" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -2706,20 +2783,19 @@ within &lsquo;<tt>[[</tt>...<tt>]]</tt>&rsquo;), a &lsquo;<tt>/</tt>&rsquo; is n
 not special after a &lsquo;<tt>~</tt>&rsquo; appearing outside parentheses in a filename
 pattern.
 </p>
-<hr size="6">
+<hr>
 <a name="Globbing-Flags"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Precedence" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Approximate-Matching" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Precedence" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Filename-Generation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Approximate-Matching" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -2732,18 +2808,18 @@ the <tt>EXTENDED_GLOB</tt> option. All take the form
 forms:
 </p>
 <dl compact="compact">
-<dt> <tt>i</tt></dt>
+<dt><tt>i</tt></dt>
 <dd><p>Case insensitive:  upper or lower case characters in the pattern match
 upper or lower case characters.
 </p>
 </dd>
-<dt> <tt>l</tt></dt>
+<dt><tt>l</tt></dt>
 <dd><p>Lower case characters in the pattern match upper or lower case
 characters; upper case characters in the pattern still only match
 upper case characters.
 </p>
 </dd>
-<dt> <tt>I</tt></dt>
+<dt><tt>I</tt></dt>
 <dd><p>Case sensitive:  locally negates the effect of <tt>i</tt> or <tt>l</tt> from
 that point on.
 </p>
@@ -2751,7 +2827,7 @@ that point on.
 <a name="index-mbegin"></a>
 <a name="index-mend"></a>
 </dd>
-<dt> <tt>b</tt></dt>
+<dt><tt>b</tt></dt>
 <dd><p>Activate backreferences for parenthesised groups in the pattern;
 this does not work in filename generation.  When a pattern with a set of
 active parentheses is matched, the strings matched by the groups are
@@ -2767,11 +2843,12 @@ parentheses can be referenced.
 </p>
 <p>For example,
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">foo=&quot;a string with a message&quot;
+<div class="example">
+<pre class="example">foo=&quot;a string with a message&quot;
 if [[ $foo = (a|an)' '(#b)(*)' '* ]]; then
   print ${foo[$mbegin[1],$mend[1]]}
 fi
-</pre></td></tr></table>
+</pre></div>
 
 <p>prints &lsquo;<tt>string with a</tt>&rsquo;.  Note that the first parenthesis is before the
 <tt>(#b)</tt> and does not create a backreference.
@@ -2804,12 +2881,12 @@ start and end indices are set to -1.
 <p>Pattern matching with backreferences is slightly slower than without.
 </p>
 </dd>
-<dt> <tt>B</tt></dt>
+<dt><tt>B</tt></dt>
 <dd><p>Deactivate backreferences, negating the effect of the <tt>b</tt> flag from that
 point on.
 </p>
 </dd>
-<dt> <tt>c</tt><var>N</var><tt>,</tt><var>M</var></dt>
+<dt><tt>c</tt><var>N</var><tt>,</tt><var>M</var></dt>
 <dd><p>The flag <tt>(#c</tt><var>N</var><tt>,</tt><var>M</var><tt>)</tt> can be used anywhere
 that the <tt>#</tt> or <tt>##</tt> operators can be used except in the expressions
 &lsquo;<tt>(*/)#</tt>&rsquo; and &lsquo;<tt>(*/)##</tt>&rsquo; in filename generation, where &lsquo;<tt>/</tt>&rsquo;
@@ -2826,7 +2903,7 @@ limit on the number of matches.
 <a name="index-MBEGIN"></a>
 <a name="index-MEND"></a>
 </dd>
-<dt> <tt>m</tt></dt>
+<dt><tt>m</tt></dt>
 <dd><p>Set references to the match data for the entire string matched; this is
 similar to backreferencing and does not work in filename generation.  The
 flag must be in effect at the end of the pattern, i.e. not local to a
@@ -2837,9 +2914,10 @@ otherwise the string matched is obvious.
 </p>
 <p>For example,
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">arr=(veldt jynx grimps waqf zho buck)
+<div class="example">
+<pre class="example">arr=(veldt jynx grimps waqf zho buck)
 print ${arr//(#m)[aeiou]/${(U)MATCH}}
-</pre></td></tr></table>
+</pre></div>
 
 <p>forces all the matches (i.e. all vowels) into uppercase, printing
 &lsquo;<tt>vEldt jynx grImps wAqf zhO bUck</tt>&rsquo;.
@@ -2849,17 +2927,17 @@ references, other than the extra substitutions required for the
 replacement strings in cases such as the example shown.
 </p>
 </dd>
-<dt> <tt>M</tt></dt>
+<dt><tt>M</tt></dt>
 <dd><p>Deactivate the <tt>m</tt> flag, hence no references to match data will be
 created.
 </p>
 </dd>
-<dt> <tt>a</tt><var>num</var></dt>
+<dt><tt>a</tt><var>num</var></dt>
 <dd><p>Approximate matching: <var>num</var> errors are allowed in the string matched by
 the pattern.  The rules for this are described in the next subsection.
 </p>
 </dd>
-<dt> <tt>s</tt>, <tt>e</tt></dt>
+<dt><tt>s</tt>, <tt>e</tt></dt>
 <dd><p>Unlike the other flags, these have only a local effect, and each must
 appear on its own:  &lsquo;<tt>(#s)</tt>&rsquo; and &lsquo;<tt>(#e)</tt>&rsquo; are the only valid forms.
 The &lsquo;<tt>(#s)</tt>&rsquo; flag succeeds only at the start of the test string, and the
@@ -2886,7 +2964,7 @@ need to use &lsquo;<tt>(&quot;&quot;~(#s))</tt>&rsquo; to match a zero-length po
 not at the start.
 </p>
 </dd>
-<dt> <tt>q</tt></dt>
+<dt><tt>q</tt></dt>
 <dd><p>A &lsquo;<tt>q</tt>&rsquo; and everything up to the closing parenthesis of the globbing
 flags are ignored by the pattern matching code.  This is intended to
 support the use of glob qualifiers, see below.  The result is that
@@ -2899,7 +2977,7 @@ the latter case the &lsquo;<tt>(#b)</tt>&rsquo; is useful for backreferences and
 qualifiers are also not applied in ordinary pattern matching.
 </p>
 </dd>
-<dt> <tt>u</tt></dt>
+<dt><tt>u</tt></dt>
 <dd><p>Respect the current locale in determining the presence of multibyte
 characters in a pattern, provided the shell was compiled with 
 <tt>MULTIBYTE_SUPPORT</tt>.  This overrides the <tt>MULTIBYTE</tt>
@@ -2909,7 +2987,7 @@ encoding, although any extension of ASCII supported by the system
 library may be used.)
 </p>
 </dd>
-<dt> <tt>U</tt></dt>
+<dt><tt>U</tt></dt>
 <dd><p>All characters are considered to be a single byte long.  The opposite
 of <tt>u</tt>.  This overrides the <tt>MULTIBYTE</tt> option.
 </p>
@@ -2926,27 +3004,26 @@ of <tt>u</tt>.  This overrides the <tt>MULTIBYTE</tt> option.
 <p>When using the ksh syntax for grouping both <tt>KSH_GLOB</tt> and
 <tt>EXTENDED_GLOB</tt> must be set and the left parenthesis should be
 preceded by <tt>@</tt>.  Note also that the flags do not affect letters
-inside <tt>[...]</tt> groups, in other words <tt>(#i</tt><tt>)[a-z]</tt>
+inside <tt>[</tt>...<tt>]</tt> groups, in other words <tt>(#i</tt><tt>)[a-z]</tt>
 still matches only lowercase letters.  Finally, note that when
 examining whole paths case-insensitively every directory must be
 searched for all files which match, so that a pattern of the form
 <tt>(#i</tt><tt>)/foo/bar/...</tt> is potentially slow.
 </p>
 
-<hr size="6">
+<hr>
 <a name="Approximate-Matching"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Globbing-Flags" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Recursive-Globbing" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Globbing-Flags" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Filename-Generation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Recursive-Globbing" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -2957,20 +3034,20 @@ which cannot exceed the number specified in the
 <tt>(#a</tt><var>num</var><tt>)</tt> flags.  Four types of error are recognised:
 </p>
 <dl compact="compact">
-<dt> 1.</dt>
+<dt>1.</dt>
 <dd><p>Different characters, as in <tt>fooxbar</tt> and <tt>fooybar</tt>.
 </p>
 </dd>
-<dt> 2.</dt>
+<dt>2.</dt>
 <dd><p>Transposition of characters, as in <tt>banana</tt> and <tt>abnana</tt>.
 </p>
 </dd>
-<dt> 3.</dt>
+<dt>3.</dt>
 <dd><p>A character missing in the target string, as with the pattern <tt>road</tt> and
 target string <tt>rod</tt>.
 </p>
 </dd>
-<dt> 4.</dt>
+<dt>4.</dt>
 <dd><p>An extra character appearing in the target string, as with <tt>stove</tt>
 and <tt>strove</tt>.
 </p>
@@ -3021,20 +3098,19 @@ approximate match.  It is best to place the <tt>(#a1)</tt> after any path
 segments which are known to be correct.
 </p>
 
-<hr size="6">
+<hr>
 <a name="Recursive-Globbing"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Approximate-Matching" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Glob-Qualifiers" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Approximate-Matching" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Filename-Generation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Glob-Qualifiers" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -3049,13 +3125,15 @@ therefore matches files in the current directory as well as
 subdirectories.
 Thus:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">ls (*/)#bar
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">ls (*/)#bar
+</pre></div>
 
 <p>or
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">ls **/bar
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">ls **/bar
+</pre></div>
 
 <p>does a recursive directory search for files named &lsquo;<tt>bar</tt>&rsquo; (potentially
 including the file &lsquo;<tt>bar</tt>&rsquo; in the current directory).  This form does not
@@ -3064,20 +3142,19 @@ otherwise identical.  Neither of these can be combined with other forms of
 globbing within the same path segment; in that case, the &lsquo;<tt>*</tt>&rsquo;
 operators revert to their usual effect.
 </p>
-<hr size="6">
+<hr>
 <a name="Glob-Qualifiers"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Recursive-Globbing" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Recursive-Globbing" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Filename-Generation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -3100,7 +3177,8 @@ the glob pattern by doubling the parentheses, in this case producing
 &lsquo;<tt>((^x))</tt>&rsquo;.
 </p>
 <p>If the option <tt>EXTENDED_GLOB</tt> is set, a different syntax for glob
-qualifiers is available, namely &lsquo;<tt>(#qx)</tt>&rsquo; where <tt>x</tt> is any of the same
+qualifiers is available, namely &lsquo;<tt>(#q</tt><var>x</var><tt>)</tt>&rsquo;
+where <var>x</var> is any of the same
 glob qualifiers used in the other format.  The qualifiers must still appear
 at the end of the pattern.  However, with this syntax multiple glob
 qualifiers may be chained together.  They are treated as a logical AND of
@@ -3113,7 +3191,7 @@ the pattern, for example &lsquo;<tt>*(#q*)(.)</tt>&rsquo; will recognise executa
 files if both options are set; however, mixed syntax should probably be
 avoided for the sake of clarity.  Note that within conditions using the
 &lsquo;<tt>[[</tt>&rsquo; form the presence of a parenthesised expression
-<tt>(#q...)</tt> at the end of a string indicates that globbing
+<tt>(#q</tt><var>...</var><tt>)</tt> at the end of a string indicates that globbing
 should be performed; the expression may include glob qualifiers, but
 it is also valid if it is simply <tt>(#q)</tt>.  This does
 not apply to the right hand side of pattern match operators as the
@@ -3122,98 +3200,98 @@ syntax already has special significance.
 <p>A qualifier may be any one of the following:
 </p>
 <dl compact="compact">
-<dt> <tt>/</tt></dt>
+<dt><tt>/</tt></dt>
 <dd><p>directories
 </p>
 </dd>
-<dt> <tt>F</tt></dt>
+<dt><tt>F</tt></dt>
 <dd><p>&lsquo;full&rsquo; (i.e. non-empty) directories.  Note that the
 opposite sense <tt>(^F</tt><tt>)</tt> expands to empty directories
 and all non-directories.  Use <tt>(/^F</tt><tt>)</tt> for
 empty directories.
 </p>
 </dd>
-<dt> <tt>.</tt></dt>
+<dt><tt>.</tt></dt>
 <dd><p>plain files
 </p>
 </dd>
-<dt> <tt>@</tt></dt>
+<dt><tt>@</tt></dt>
 <dd><p>symbolic links
 </p>
 </dd>
-<dt> <tt>=</tt></dt>
+<dt><tt>=</tt></dt>
 <dd><p>sockets
 </p>
 </dd>
-<dt> <tt>p</tt></dt>
+<dt><tt>p</tt></dt>
 <dd><p>named pipes (FIFOs)
 </p>
 </dd>
-<dt> <tt>*</tt></dt>
-<dd><p>executable plain files (0100)
+<dt><tt>*</tt></dt>
+<dd><p>executable plain files (0100 or 0010 or 0001)
 </p>
 </dd>
-<dt> <tt>%</tt></dt>
+<dt><tt>%</tt></dt>
 <dd><p>device files (character or block special)
 </p>
 </dd>
-<dt> <tt>%b</tt></dt>
+<dt><tt>%b</tt></dt>
 <dd><p>block special files
 </p>
 </dd>
-<dt> <tt>%c</tt></dt>
+<dt><tt>%c</tt></dt>
 <dd><p>character special files
 </p>
 </dd>
-<dt> <tt>r</tt></dt>
+<dt><tt>r</tt></dt>
 <dd><p>owner-readable files (0400)
 </p>
 </dd>
-<dt> <tt>w</tt></dt>
+<dt><tt>w</tt></dt>
 <dd><p>owner-writable files (0200)
 </p>
 </dd>
-<dt> <tt>x</tt></dt>
+<dt><tt>x</tt></dt>
 <dd><p>owner-executable files (0100)
 </p>
 </dd>
-<dt> <tt>A</tt></dt>
+<dt><tt>A</tt></dt>
 <dd><p>group-readable files (0040)
 </p>
 </dd>
-<dt> <tt>I</tt></dt>
+<dt><tt>I</tt></dt>
 <dd><p>group-writable files (0020)
 </p>
 </dd>
-<dt> <tt>E</tt></dt>
+<dt><tt>E</tt></dt>
 <dd><p>group-executable files (0010)
 </p>
 </dd>
-<dt> <tt>R</tt></dt>
+<dt><tt>R</tt></dt>
 <dd><p>world-readable files (0004)
 </p>
 </dd>
-<dt> <tt>W</tt></dt>
+<dt><tt>W</tt></dt>
 <dd><p>world-writable files (0002)
 </p>
 </dd>
-<dt> <tt>X</tt></dt>
+<dt><tt>X</tt></dt>
 <dd><p>world-executable files (0001)
 </p>
 </dd>
-<dt> <tt>s</tt></dt>
+<dt><tt>s</tt></dt>
 <dd><p>setuid files (04000)
 </p>
 </dd>
-<dt> <tt>S</tt></dt>
+<dt><tt>S</tt></dt>
 <dd><p>setgid files (02000)
 </p>
 </dd>
-<dt> <tt>t</tt></dt>
+<dt><tt>t</tt></dt>
 <dd><p>files with the sticky bit (01000)
 </p>
 </dd>
-<dt> <tt>f</tt><var>spec</var></dt>
+<dt><tt>f</tt><var>spec</var></dt>
 <dd><p>files with access rights matching <var>spec</var>. This <var>spec</var> may be a
 octal number optionally preceded by a &lsquo;<tt>=</tt>&rsquo;, a &lsquo;<tt>+</tt>&rsquo;, or a
 &lsquo;<tt>-</tt>&rsquo;. If none of these characters is given, the behavior is the
@@ -3257,8 +3335,8 @@ permission, and for which other users don&rsquo;t have read or execute
 permission.
 </p>
 </dd>
-<dt> <tt>e</tt><var>string</var></dt>
-<dt> <tt>+</tt><var>cmd</var></dt>
+<dt><tt>e</tt><var>string</var></dt>
+<dt><tt>+</tt><var>cmd</var></dt>
 <dd><p>The <var>string</var> will be executed as shell code.  The filename will be
 included in the list if and only if the code returns a zero status (usually
 the status of the last command).
@@ -3283,7 +3361,7 @@ string, which overrides the value of <tt>REPLY</tt>.  If set to an array, the
 latter is inserted into the command line word by word.
 </p>
 <p>For example, suppose a directory contains a single file &lsquo;<tt>lonely</tt>&rsquo;.  Then
-the expression &lsquo;<tt>*(e:&rsquo;reply=(${REPLY}{1,2})&rsquo;:)</tt>&rsquo; will cause the words
+the expression &lsquo;<tt>*(e:'reply=(${REPLY}{1,2})':)</tt>&rsquo; will cause the words
 &lsquo;<tt>lonely1</tt>&rsquo; and &lsquo;<tt>lonely2</tt>&rsquo; to be inserted into the command line.  Note
 the quoting of <var>string</var>.
 </p>
@@ -3293,33 +3371,34 @@ characters following the <tt>+</tt> that are alphanumeric or underscore.
 Typically <var>cmd</var> will be the name of a shell function that contains the
 appropriate test.  For example,
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">nt() { [[ $REPLY -nt $NTREF ]] }
+<div class="example">
+<pre class="example">nt() { [[ $REPLY -nt $NTREF ]] }
 NTREF=reffile
 ls -l *(+nt)
-</pre></td></tr></table>
+</pre></div>
 
 <p>lists all files in the directory that have been modified more recently than
 <tt>reffile</tt>.
 </p>
 </dd>
-<dt> <tt>d</tt><var>dev</var></dt>
+<dt><tt>d</tt><var>dev</var></dt>
 <dd><p>files on the device <var>dev</var>
 </p>
 </dd>
-<dt> <tt>l</tt>[<tt>-</tt>|<tt>+</tt>]<var>ct</var></dt>
+<dt><tt>l</tt>[<tt>-</tt>|<tt>+</tt>]<var>ct</var></dt>
 <dd><p>files having a link count less than <var>ct</var> (<tt>-</tt>), greater than
 <var>ct</var> (<tt>+</tt>), or equal to <var>ct</var>
 </p>
 </dd>
-<dt> <tt>U</tt></dt>
+<dt><tt>U</tt></dt>
 <dd><p>files owned by the effective user ID
 </p>
 </dd>
-<dt> <tt>G</tt></dt>
+<dt><tt>G</tt></dt>
 <dd><p>files owned by the effective group ID
 </p>
 </dd>
-<dt> <tt>u</tt><var>id</var></dt>
+<dt><tt>u</tt><var>id</var></dt>
 <dd><p>files owned by user ID <var>id</var> if that is a number.  Otherwise,
 <var>id</var> specifies a user name: the
 character after the &lsquo;<tt>u</tt>&rsquo; will be taken as a separator and the string
@@ -3331,11 +3410,11 @@ owned by this user.  For example, &lsquo;<tt>u:foo:</tt>&rsquo; or &lsquo;<tt>u[
 files owned by user &lsquo;<tt>foo</tt>&rsquo;.
 </p>
 </dd>
-<dt> <tt>g</tt><var>id</var></dt>
+<dt><tt>g</tt><var>id</var></dt>
 <dd><p>like <tt>u</tt><var>id</var> but with group IDs or names
 </p>
 </dd>
-<dt> <tt>a</tt>[<tt>Mwhms</tt>][<tt>-</tt>|<tt>+</tt>]<var>n</var></dt>
+<dt><tt>a</tt>[<tt>Mwhms</tt>][<tt>-</tt>|<tt>+</tt>]<var>n</var></dt>
 <dd><p>files accessed exactly <var>n</var> days ago.  Files accessed within the last
 <var>n</var> days are selected using a negative value for <var>n</var> (<tt>-</tt><var>n</var>).
 Files accessed more than <var>n</var> days ago are selected by a positive <var>n</var>
@@ -3353,17 +3432,17 @@ six hours ago, as times strictly between five and six hours are treated
 as five hours.
 </p>
 </dd>
-<dt> <tt>m</tt>[<tt>Mwhms</tt>][<tt>-</tt>|<tt>+</tt>]<var>n</var></dt>
+<dt><tt>m</tt>[<tt>Mwhms</tt>][<tt>-</tt>|<tt>+</tt>]<var>n</var></dt>
 <dd><p>like the file access qualifier, except that it uses the file modification
 time.
 </p>
 </dd>
-<dt> <tt>c</tt>[<tt>Mwhms</tt>][<tt>-</tt>|<tt>+</tt>]<var>n</var></dt>
+<dt><tt>c</tt>[<tt>Mwhms</tt>][<tt>-</tt>|<tt>+</tt>]<var>n</var></dt>
 <dd><p>like the file access qualifier, except that it uses the file inode change
 time.
 </p>
 </dd>
-<dt> <tt>L</tt>[<tt>+</tt>|<tt>-</tt>]<var>n</var></dt>
+<dt><tt>L</tt>[<tt>+</tt>|<tt>-</tt>]<var>n</var></dt>
 <dd><p>files less than <var>n</var> bytes (<tt>-</tt>), more than <var>n</var> bytes (<tt>+</tt>), or
 exactly <var>n</var> bytes in length.
 </p>
@@ -3380,41 +3459,41 @@ not match the equality test; hence &lsquo;<tt>*(Lm-1)</tt>&rsquo; only matches
 files of zero size.
 </p>
 </dd>
-<dt> <tt>^</tt></dt>
+<dt><tt>^</tt></dt>
 <dd><p>negates all qualifiers following it
 </p>
 </dd>
-<dt> <tt>-</tt></dt>
+<dt><tt>-</tt></dt>
 <dd><p>toggles between making the qualifiers work on symbolic links (the
 default) and the files they point to
 </p>
 </dd>
-<dt> <tt>M</tt></dt>
+<dt><tt>M</tt></dt>
 <dd><p>sets the <tt>MARK_DIRS</tt> option for the current pattern
 <a name="index-MARK_005fDIRS_002c-setting-in-pattern"></a>
 </p>
 </dd>
-<dt> <tt>T</tt></dt>
+<dt><tt>T</tt></dt>
 <dd><p>appends a trailing qualifier mark to the filenames, analogous to the
 <tt>LIST_TYPES</tt> option, for the current pattern (overrides <tt>M</tt>)
 </p>
 </dd>
-<dt> <tt>N</tt></dt>
+<dt><tt>N</tt></dt>
 <dd><p>sets the <tt>NULL_GLOB</tt> option for the current pattern
 <a name="index-NULL_005fGLOB_002c-setting-in-pattern"></a>
 </p>
 </dd>
-<dt> <tt>D</tt></dt>
+<dt><tt>D</tt></dt>
 <dd><p>sets the <tt>GLOB_DOTS</tt> option for the current pattern
 <a name="index-GLOB_005fDOTS_002c-setting-in-pattern"></a>
 </p>
 </dd>
-<dt> <tt>n</tt></dt>
+<dt><tt>n</tt></dt>
 <dd><p>sets the <tt>NUMERIC_GLOB_SORT</tt> option for the current pattern
 <a name="index-NUMERIC_005fGLOB_005fSORT_002c-setting-in-pattern"></a>
 </p>
 </dd>
-<dt> <tt>Y</tt><var>n</var></dt>
+<dt><tt>Y</tt><var>n</var></dt>
 <dd><p>enables short-circuit mode: the pattern will expand to at most <var>n</var>
 filenames.  If more than <var>n</var> matches exist, only the first <var>n</var>
 matches in directory traversal order will be considered.
@@ -3422,7 +3501,7 @@ matches in directory traversal order will be considered.
 <p>Implies <tt>oN</tt> when no <tt>o</tt><var>c</var> qualifier is used.
 </p>
 </dd>
-<dt> <tt>o</tt><var>c</var></dt>
+<dt><tt>o</tt><var>c</var></dt>
 <dd><p>specifies how the names of the files should be sorted. If <var>c</var> is
 <tt>n</tt> they are sorted by name; if it is <tt>L</tt> they
 are sorted depending on the size (length) of the files; if <tt>l</tt>
@@ -3454,14 +3533,14 @@ repeated, but note that the maximum number of sort operators of any kind
 that may appear in any glob expression is 12.
 </p>
 </dd>
-<dt> <tt>O</tt><var>c</var></dt>
+<dt><tt>O</tt><var>c</var></dt>
 <dd><p>like &lsquo;<tt>o</tt>&rsquo;, but sorts in descending order; i.e. &lsquo;<tt>*(^oc)</tt>&rsquo; is the
 same as &lsquo;<tt>*(Oc)</tt>&rsquo; and &lsquo;<tt>*(^Oc)</tt>&rsquo; is the same as &lsquo;<tt>*(oc)</tt>&rsquo;; &lsquo;<tt>Od</tt>&rsquo;
 puts files in the current directory before those in subdirectories at each
 level of the search.
 </p>
 </dd>
-<dt> <tt>[</tt><var>beg</var>[<tt>,</tt><var>end</var>]<tt>]</tt></dt>
+<dt><tt>[</tt><var>beg</var>[<tt>,</tt><var>end</var>]<tt>]</tt></dt>
 <dd><p>specifies which of the matched filenames should be included in the
 returned list. The syntax is the same as for array
 subscripts. <var>beg</var> and the optional <var>end</var> may be mathematical
@@ -3470,7 +3549,7 @@ them count from the last match backward. E.g.: &lsquo;<tt>*(-OL[1,3])</tt>&rsquo
 gives a list of the names of the three largest files.
 </p>
 </dd>
-<dt> <tt>P</tt><var>string</var></dt>
+<dt><tt>P</tt><var>string</var></dt>
 <dd><p>The <var>string</var> will be prepended to each glob match as a separate
 word.  <var>string</var> is delimited in the same way as arguments to the
 <tt>e</tt> glob qualifier described above.  The qualifier can be repeated;
@@ -3497,58 +3576,71 @@ whole list matches if at least one of the sublists matches (they are
 however, affect all matches generated, independent of the sublist in
 which they are given.  These are the qualifiers &lsquo;<tt>M</tt>&rsquo;, &lsquo;<tt>T</tt>&rsquo;,
 &lsquo;<tt>N</tt>&rsquo;, &lsquo;<tt>D</tt>&rsquo;, &lsquo;<tt>n</tt>&rsquo;, &lsquo;<tt>o</tt>&rsquo;, &lsquo;<tt>O</tt>&rsquo; and the subscripts given
-in brackets (&lsquo;<tt>[...]</tt>&rsquo;).
+in brackets (&lsquo;<tt>[</tt><var>...</var><tt>]</tt>&rsquo;).
 </p>
 <p>If a &lsquo;<tt>:</tt>&rsquo; appears in a qualifier list, the remainder of the expression in
 parenthesis is interpreted as a modifier (see <a href="#Modifiers">Modifiers</a>
 in <a href="#History-Expansion">History Expansion</a>).  Each modifier must be introduced by a
 separate &lsquo;<tt>:</tt>&rsquo;.  Note also that the result after modification does not
 have to be an existing file.  The name of any existing file can be followed
-by a modifier of the form &lsquo;<tt>(:..)</tt>&rsquo; even if no actual filename generation
+by a modifier of the form &lsquo;<tt>(:</tt><var>...</var><tt>)</tt>&rsquo;
+even if no actual filename generation
 is performed, although note that the presence of the parentheses
 causes the entire expression to be subjected to any global pattern matching
 options such as <tt>NULL_GLOB</tt>. Thus:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">ls *(-/)
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">ls *(-/)
+</pre></div>
 
 <p>lists all directories and symbolic links that point to directories,
 and
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">ls *(%W)
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">ls *(-@)
+</pre></div>
+
+<p>lists all broken symbolic links, and
+</p>
+<div class="example">
+<pre class="example">ls *(%W)
+</pre></div>
 
 <p>lists all world-writable device files in the current directory, and
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">ls *(W,X)
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">ls *(W,X)
+</pre></div>
 
 <p>lists all files in the current directory that are
 world-writable or world-executable, and
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">echo /tmp/foo*(u0^@:t)
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">echo /tmp/foo*(u0^@:t)
+</pre></div>
 
 <p>outputs the basename of all root-owned files beginning with the string
 &lsquo;<tt>foo</tt>&rsquo; in <tt>/tmp</tt>, ignoring symlinks, and
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">ls *.*~(lex|parse).[ch](^D^l1)
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">ls *.*~(lex|parse).[ch](^D^l1)
+</pre></div>
 
 <p>lists all files having a link count of one whose names contain a dot
 (but not those starting with a dot, since <tt>GLOB_DOTS</tt> is explicitly
 switched off) except for <tt>lex.c</tt>, <tt>lex.h</tt>, <tt>parse.c</tt> and <tt>parse.h</tt>.
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">print b*.pro(#q:s/pro/shmo/)(#q.:s/builtin/shmiltin/)
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">print b*.pro(#q:s/pro/shmo/)(#q.:s/builtin/shmiltin/)
+</pre></div>
 
 <p>demonstrates how colon modifiers and other qualifiers may be chained
 together.  The ordinary qualifier &lsquo;<tt>.</tt>&rsquo; is applied first, then the colon
 modifiers in order from left to right.  So if <tt>EXTENDED_GLOB</tt> is set and
 the base pattern matches the regular file <tt>builtin.pro</tt>, the shell will
 print &lsquo;<tt>shmiltin.shmo</tt>&rsquo;.
-</p><hr size="6">
-<table cellpadding="1" cellspacing="1" border="0">
+</p><hr>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -3556,17 +3648,15 @@ print &lsquo;<tt>shmiltin.shmo</tt>&rsquo;.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p>
- <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>October 11, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
- </font>
- <br>
-<font size="-1">Zsh version 5.0.7, released on October 7, 2014.</font>
-</p>
+<p><font size="-1">
+  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+</font></p>
+
+<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
 </body>
 </html>

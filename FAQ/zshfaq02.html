@@ -1,6 +1,10 @@
-<html>
-<head>
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
 <title> Z-Shell Frequently-Asked Questions </title>
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+</style>
 </head>
 <body >
 <hr>
@@ -300,9 +304,9 @@ Otherwise, your aliases probably contain references to the command
 </pre>
 
   (which converts your home directory to a <code>~</code>).  In fact, this problem is
-  better solved by defining the special function chpwd() (see the manual).
-  Note also that the <code>;</code> at the end of the function is optional in zsh,
-  but not in ksh or sh (for sh's where it exists).
+  better solved by defining the special function chpwd() (see
+  the manual). Note also that the <code>;</code> at the end of the function is
+  optional in zsh, but not in ksh or sh (for sh's where it exists).
 <p>
 Here is Bart Schaefer's guide to converting csh aliases for zsh.
 <p>
@@ -386,6 +390,33 @@ There is one other serious problem with aliases: consider
   <code>/bin/ls</code>, which gets a bit recursive.  This can be avoided if you use
   <code>function</code> to define a function, which doesn't expand aliases.  It is
   possible to argue for extra warnings somewhere in this mess.
+<p>
+One workaround for this is to use the "function" keyword instead:
+  <pre>
+
+    alias l='/bin/ls -F'
+    function l { /bin/ls -la "$@" | more }
+  
+</pre>
+
+  The <code>l</code> after <code>function</code> is not expanded.  Note you don't need
+  the <code>LPAR()RPAR()</code> in this case, although it's harmless.
+<p>
+You need to be careful if you are defining a function with multiple
+  names; most people don't need to do this, so it's an unusual problem,
+  but in case you do you should be aware that in versions of the shell
+  before 5.1 names after the first <em>were</em> expanded:
+  <pre>
+
+    function a b c { ... }
+  
+</pre>
+
+  Here, <code>b</code> and <code>c</code>, but not <code>a</code>, have aliases expanded.
+  This oddity was fixed in version 5.1.
+<p>
+The rest of this item assumes you use the (more common,
+  but equivalent) <code>LPAR()RPAR()</code> definitions.
 <p>
 Bart Schaefer's rule is:  Define first those aliases you expect to
   use in the body of a function, but define the function first if the

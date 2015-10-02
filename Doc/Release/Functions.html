@@ -1,66 +1,67 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on October 11, 2014 by texi2html 1.82
-texi2html was written by: 
-            Lionel Cons <Lionel.Cons@cern.ch> (original author)
-            Karl Berry  <karl@freefriends.org>
-            Olaf Bachmann <obachman@mathematik.uni-kl.de>
-            and many others.
-Maintained by: Many creative people.
-Send bugs and suggestions to <texi2html-bug@nongnu.org>
--->
+<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 9. Functions</title>
+<title>zsh: 9 Functions</title>
 
-<meta name="description" content="zsh: 9. Functions">
-<meta name="keywords" content="zsh: 9. Functions">
+<meta name="description" content="zsh: 9 Functions">
+<meta name="keywords" content="zsh: 9 Functions">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 1.82">
+<meta name="Generator" content="texi2any">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
-pre.display {font-family: serif}
-pre.format {font-family: serif}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: serif; font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.roman {font-family:serif; font-weight:normal;}
-span.sansserif {font-family:sans-serif; font-weight:normal;}
-ul.toc {list-style: none}
+span.nocodebreak {white-space: nowrap}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: serif; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
 -->
 </style>
 
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-
+<body lang="en">
 <a name="Functions"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="Command-Execution.html#Command-Execution" title="Previous section in reading order"> &lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Command-Execution.html#Command-Execution" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Command-Execution.html#Command-Execution" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Autoloading-Functions" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="Command-Execution.html#Command-Execution" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#Jobs-_0026-Signals" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
 <a name="Functions-1"></a>
-<h1 class="chapter">9. Functions</h1>
+<h1 class="chapter">9 Functions</h1>
 <a name="index-functions"></a>
 <a name="index-function_002c-use-of"></a>
 <p>Shell functions are defined with the <tt>function</tt> reserved word or the
@@ -86,20 +87,19 @@ of the caller.
 <a name="index-unfunction_002c-use-of"></a>
 Functions can be undefined with the <tt>unfunction</tt> builtin.
 </p>
-<hr size="6">
+<hr>
 <a name="Autoloading-Functions"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Functions" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Anonymous-Functions" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Functions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Functions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Anonymous-Functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#Jobs-_0026-Signals" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -116,9 +116,10 @@ body.  When the function is first executed, the shell searches for its
 definition using the elements of the <tt>fpath</tt> variable.  Thus to define
 functions for autoloading, a typical sequence is:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">fpath=(~/myfuncs $fpath)
+<div class="example">
+<pre class="example">fpath=(~/myfuncs $fpath)
 autoload myfunc1 myfunc2 ...
-</pre></td></tr></table>
+</pre></div>
 
 <p>The usual alias expansion during reading will be suppressed if the
 <tt>autoload</tt> builtin or its equivalent is given the option <tt>-U</tt>. This is
@@ -132,7 +133,7 @@ corresponding information is compiled into the latter.
 files, the newest of which is used to load the definition for the function:
 </p>
 <dl compact="compact">
-<dt> <var>element</var><tt>.zwc</tt></dt>
+<dt><var>element</var><tt>.zwc</tt></dt>
 <dd><p>A file created with the <tt>zcompile</tt> builtin command, which is expected to
 contain the definitions for all functions in the directory named
 <var>element</var>.  The file is treated in the same manner as a directory
@@ -150,14 +151,14 @@ functions, with the disadvantage that functions included must be explicitly
 recompiled by hand before the shell notices any changes.
 </p>
 </dd>
-<dt> <var>element</var><tt>/</tt><var>function</var><tt>.zwc</tt></dt>
+<dt><var>element</var><tt>/</tt><var>function</var><tt>.zwc</tt></dt>
 <dd><p>A file created with <tt>zcompile</tt>, which is expected to contain the
 definition for <var>function</var>.  It may include other function definitions
 as well, but those are neither loaded nor executed; a file found in this
 way is searched <em>only</em> for the definition of <var>function</var>.
 </p>
 </dd>
-<dt> <var>element</var><tt>/</tt><var>function</var></dt>
+<dt><var>element</var><tt>/</tt><var>function</var></dt>
 <dd><p>A file of zsh command text, taken to be the definition for <var>function</var>.
 </p>
 </dd>
@@ -191,10 +192,11 @@ arguments, at the end.
 </p>
 <p>For example, suppose the autoload file <tt>func</tt> contains
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">func() { print This is func; }
+<div class="example">
+<pre class="example">func() { print This is func; }
 print func is initialized
 
-</pre></td></tr></table>
+</pre></div>
 
 <p>then &lsquo;<tt>func; func</tt>&rsquo; with <tt>KSH_AUTOLOAD</tt> set will produce both messages
 on the first call, but only the message &lsquo;<tt>This is func</tt>&rsquo; on the second
@@ -207,24 +209,27 @@ but which loads its own definition by searching <tt>fpath</tt>, by using
 &lsquo;<tt>autoload -X</tt>&rsquo; within a shell function.  For example, the following are
 equivalent:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">myfunc() {
+<div class="example">
+<pre class="example">myfunc() {
   autoload -X
 }
 myfunc args...
-</pre></td></tr></table>
+</pre></div>
 
 <p>and
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">unfunction myfunc   # if myfunc was defined
+<div class="example">
+<pre class="example">unfunction myfunc   # if myfunc was defined
 autoload myfunc
 myfunc args...
-</pre></td></tr></table>
+</pre></div>
 
 <p>In fact, the <tt>functions</tt> command outputs &lsquo;<tt>builtin autoload -X</tt>&rsquo; as
 the body of an autoloaded function.  This is done so that
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">eval &quot;$(functions)&quot;
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">eval &quot;$(functions)&quot;
+</pre></div>
 
 <p>produces a reasonable result.  A true autoloaded function can be
 identified by the presence of the comment &lsquo;<tt># undefined</tt>&rsquo; in the body,
@@ -233,24 +238,24 @@ because all comments are discarded from defined functions.
 <p>To load the definition of an autoloaded function <tt>myfunc</tt> without
 executing <tt>myfunc</tt>, use:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">autoload +X myfunc
-</pre></td></tr></table>
+<div class="example">
+<pre class="example">autoload +X myfunc
+</pre></div>
 
 
-<hr size="6">
+<hr>
 <a name="Anonymous-Functions"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Autoloading-Functions" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Special-Functions" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Functions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Functions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Autoloading-Functions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Special-Functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#Jobs-_0026-Signals" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -285,19 +290,21 @@ variable scope.
 </p>
 <p>For example,
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">variable=outside
+<div class="example">
+<pre class="example">variable=outside
 function {
   local variable=inside
   print &quot;I am $variable with arguments $*&quot;
 } this and that
 print &quot;I am $variable&quot;
-</pre></td></tr></table>
+</pre></div>
 
 <p>outputs the following:
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">I am inside with arguments this and that
+<div class="example">
+<pre class="example">I am inside with arguments this and that
 I am outside
-</pre></td></tr></table>
+</pre></div>
 
 <p>Note that function definitions with arguments that expand to nothing,
 for example &lsquo;<tt>name=; function $name { </tt><var>...</var><tt> }</tt>&rsquo;, are not
@@ -305,20 +312,19 @@ treated as anonymous functions.  Instead, they are treated as normal
 function definitions where the definition is silently discarded.
 </p>
 
-<hr size="6">
+<hr>
 <a name="Special-Functions"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Anonymous-Functions" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Hook-Functions" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Functions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Functions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Anonymous-Functions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Hook-Functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#Jobs-_0026-Signals" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -327,20 +333,19 @@ function definitions where the definition is silently discarded.
 <p>Certain functions, if defined, have special meaning to the shell.
 </p>
 
-<hr size="6">
+<hr>
 <a name="Hook-Functions"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Special-Functions" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Trap-Functions" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Functions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Functions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Special-Functions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Special-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Trap-Functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#Jobs-_0026-Signals" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -367,13 +372,13 @@ it may run at the next opportunity).
 <dd><a name="index-chpwd"></a>
 <a name="index-chpwd_005ffunctions"></a>
 </dd>
-<dt> <tt>chpwd</tt></dt>
+<dt><tt>chpwd</tt></dt>
 <dd><p>Executed whenever the current working directory is changed.
 </p>
 <a name="index-periodic"></a>
 <a name="index-periodic_005ffunctions"></a>
 </dd>
-<dt> <tt>periodic</tt></dt>
+<dt><tt>periodic</tt></dt>
 <dd><a name="index-PERIOD"></a>
 <p>If the parameter <tt>PERIOD</tt>
 is set, this function is executed every <tt>$PERIOD</tt>
@@ -386,7 +391,7 @@ Hence the set of functions is always called together.
 <a name="index-precmd"></a>
 <a name="index-precmd_005ffunctions"></a>
 </dd>
-<dt> <tt>precmd</tt></dt>
+<dt><tt>precmd</tt></dt>
 <dd><p>Executed before each prompt.  Note that precommand functions are not
 re-executed simply because the command line is redrawn, as happens, for
 example, when a notification about an exiting job is displayed.
@@ -394,12 +399,12 @@ example, when a notification about an exiting job is displayed.
 <a name="index-preexec"></a>
 <a name="index-preexec_005ffunctions"></a>
 </dd>
-<dt> <tt>preexec</tt></dt>
+<dt><tt>preexec</tt></dt>
 <dd><p>Executed just after a command has been read and is about to be
-executed.  If the history mechanism is active (and the line was not
-discarded from the history buffer), the string that the user typed is
-passed as the first argument, otherwise it is an empty string.  The
-actual command that will be executed (including expanded aliases) is
+executed.  If the history mechanism is active (regardless of whether the
+line was discarded from the history buffer), the string that the user
+typed is passed as the first argument, otherwise it is an empty string.
+The actual command that will be executed (including expanded aliases) is
 passed in two different forms: the second argument is a single-line,
 size-limited version of the command (with things like function bodies
 elided); the third argument contains the full text that is being
@@ -408,7 +413,7 @@ executed.
 <a name="index-zshaddhistory"></a>
 <a name="index-zshaddhistory_005ffunctions"></a>
 </dd>
-<dt> <tt>zshaddhistory</tt></dt>
+<dt><tt>zshaddhistory</tt></dt>
 <dd><a name="index-history_002c-hook-when-line-is-saved"></a>
 <p>Executed when a history line has been read interactively, but
 before it is executed.  The sole argument is the complete history
@@ -439,16 +444,17 @@ which is usually the correct behaviour.  Then it switches the history
 context so that the line will be written to a history file in the
 current directory.
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">zshaddhistory() {
+<div class="example">
+<pre class="example">zshaddhistory() {
   print -sr -- ${1%%$'\n'}
   fc -p .zsh_local_history
 }
-</pre></td></tr></table>
+</pre></div>
 
 <a name="index-zshexit"></a>
 <a name="index-zshexit_005ffunctions"></a>
 </dd>
-<dt> <tt>zshexit</tt></dt>
+<dt><tt>zshexit</tt></dt>
 <dd><p>Executed at the point where the main shell is about to exit normally.
 This is not called by exiting subshells, nor when the <tt>exec</tt>
 precommand modifier is used before an external command.  Also, unlike
@@ -458,20 +464,19 @@ precommand modifier is used before an external command.  Also, unlike
 </dl>
 
 
-<hr size="6">
+<hr>
 <a name="Trap-Functions"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Hook-Functions" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#Jobs-_0026-Signals" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Functions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Functions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Hook-Functions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Special-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#Jobs-_0026-Signals" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#Jobs-_0026-Signals" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
@@ -482,7 +487,7 @@ precommand modifier is used before an external command.  Also, unlike
 hook arrays.
 </p>
 <dl compact="compact">
-<dt> <tt>TRAP</tt><var>NAL</var></dt>
+<dt><tt>TRAP</tt><var>NAL</var></dt>
 <dd><a name="index-signals_002c-trapping"></a>
 <a name="index-trapping-signals"></a>
 <p>If defined and non-null,
@@ -503,18 +508,19 @@ the return status of the trap is retained.
 plus the signal number.  Hence the following causes the handler for
 <tt>SIGINT</tt> to print a message, then mimic the usual effect of the signal.
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">TRAPINT() {
+<div class="example">
+<pre class="example">TRAPINT() {
   print &quot;Caught SIGINT, aborting.&quot;
   return $(( 128 + $1 ))
 }
-</pre></td></tr></table>
+</pre></div>
 
 <p>The functions <tt>TRAPZERR</tt>, <tt>TRAPDEBUG</tt> and <tt>TRAPEXIT</tt> are never
 executed inside other traps.
 </p>
 <a name="index-TRAPDEBUG"></a>
 </dd>
-<dt> <tt>TRAPDEBUG</tt></dt>
+<dt><tt>TRAPDEBUG</tt></dt>
 <dd><p>If the option <tt>DEBUG_BEFORE_CMD</tt> is set (as it is by default), executed
 before each command; otherwise executed after each command.  See
 the description of the <tt>trap</tt> builtin in
@@ -523,7 +529,7 @@ in debug traps.
 </p>
 <a name="index-TRAPEXIT"></a>
 </dd>
-<dt> <tt>TRAPEXIT</tt></dt>
+<dt><tt>TRAPEXIT</tt></dt>
 <dd><p>Executed when the shell exits,
 or when the current function exits if defined inside a function.
 The value of <tt>$?</tt> at the start of execution is the exit status of the
@@ -532,7 +538,7 @@ shell or the return status of the function exiting.
 <a name="index-TRAPZERR"></a>
 <a name="index-TRAPERR"></a>
 </dd>
-<dt> <tt>TRAPZERR</tt></dt>
+<dt><tt>TRAPZERR</tt></dt>
 <dd><p>Executed whenever a command has a non-zero exit status.  However, the
 function is not executed if the command occurred in a sublist followed by
 &lsquo;<tt>&amp;&amp;</tt>&rsquo; or &lsquo;<tt>||</tt>&rsquo;; only the final command in a sublist of this type
@@ -550,37 +556,36 @@ with one form removes any trap of the other form for the same signal;
 removing a trap in either form removes all traps for the same signal.
 The forms
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">TRAPNAL() { 
+<div class="example">
+<pre class="example">TRAPNAL() { 
  # code
 }
-</pre></td></tr></table>
+</pre></div>
 
 <p>(&rsquo;function traps&rsquo;) and
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">trap '
+<div class="example">
+<pre class="example">trap '
  # code
 ' NAL
-</pre></td></tr></table>
+</pre></div>
 
 <p>(&rsquo;list traps&rsquo;) are equivalent in most ways, the exceptions being the
 following:
 </p>
 <ul>
-<li> 
-Function traps have all the properties of normal functions,
+<li> Function traps have all the properties of normal functions,
 appearing in the list of functions and being called with their own
 function context rather than the context where the trap was triggered.
-</li><li> 
-The return status from function traps is special, whereas a return
+</li><li> The return status from function traps is special, whereas a return
 from a list trap causes the surrounding context to return with the given
 status.
-</li><li> 
-Function traps are not reset within subshells, in accordance with
+</li><li> Function traps are not reset within subshells, in accordance with
 zsh behaviour; list traps are reset, in accordance with POSIX
 behaviour.
 </li></ul>
-<hr size="6">
-<table cellpadding="1" cellspacing="1" border="0">
+<hr>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Functions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#Jobs-_0026-Signals" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -588,17 +593,15 @@ behaviour.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="zsh.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p>
- <font size="-1">
-  This document was generated by <em>Simon Ruderich</em> on <em>October 11, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
- </font>
- <br>
-<font size="-1">Zsh version 5.0.7, released on October 7, 2014.</font>
-</p>
+<p><font size="-1">
+  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+</font></p>
+
+<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
 </body>
 </html>
