@@ -27,6 +27,22 @@
 </table>
 <hr size=1 noshade>
 
+<h2>Changes between versions 5.1 and 5.1.1</h2>
+
+<ul>
+<li>
+The ZLE variables YANK_ACTIVE, YANK_START and YANK_END have been added and are
+useful for managing highlighting.
+</li>
+
+<li>
+The zsh-specific pattern match range tests have been supplemented with
+[:INCOMPLETE:] and [:INVALID:] to help detect the state of partially
+read multibyte character strings.
+</li>
+</ul>
+
+
 <h2>Changes between versions 5.0.8 and 5.1</h2>
 
 <p>
@@ -1991,7 +2007,7 @@ completion.
 <div align=right>
 <address>
 <a name=Signature href="disclaimer.html">Disclaimer</A>
-Last modified: 2014-10-11
+Last modified: 2015-10-02
 </address>
 </div>
 
