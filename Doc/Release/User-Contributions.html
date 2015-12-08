@@ -94,21 +94,23 @@ such as shell functions, look for comments in the function source files.
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Recent-Directories">26.3 Remembering Recent Directories</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Version-Control-Information">26.4 Gathering information from version control systems</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Other-Directory-Functions">26.4 Abbreviated dynamic references to directories</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Prompt-Themes">26.5 Prompt Themes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Version-Control-Information">26.5 Gathering information from version control systems</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#ZLE-Functions">26.6 ZLE Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Prompt-Themes">26.6 Prompt Themes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Exception-Handling">26.7 Exception Handling</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#ZLE-Functions">26.7 ZLE Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#MIME-Functions">26.8 MIME Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Exception-Handling">26.8 Exception Handling</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Mathematical-Functions">26.9 Mathematical Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#MIME-Functions">26.9 MIME Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#User-Configuration-Functions">26.10 User Configuration Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Mathematical-Functions">26.10 Mathematical Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Other-Functions">26.11 Other Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#User-Configuration-Functions">26.11 User Configuration Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Other-Functions">26.12 Other Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
@@ -179,7 +181,7 @@ distribution in your home directory, you would use the commands:
 </p>
 <div class="example">
 <pre class="example">mkdir ~/zsh_help
-perl ~/zsh-5.1.1/Util/helpfiles ~/zsh_help
+perl ~/zsh-5.2/Util/helpfiles ~/zsh_help
 </pre></div>
 
 <a name="index-HELPDIR"></a>
@@ -350,7 +352,7 @@ configuration.
 <p>Run <tt>zkbd</tt> either as an autoloaded function, or as a shell script:
 </p>
 <div class="example">
-<pre class="example">zsh -f ~/zsh-5.1.1/Functions/Misc/zkbd
+<pre class="example">zsh -f ~/zsh-5.2/Functions/Misc/zkbd
 </pre></div>
 
 <p>When you run <tt>zkbd</tt>, it first asks you to enter your terminal type; if
@@ -421,7 +423,7 @@ recreate that state.
 command and redirect the output into a file:
 </p>
 <div class="example">
-<pre class="example">. ~/zsh-5.1.1/Util/reporter &gt; zsh.report
+<pre class="example">. ~/zsh-5.2/Util/reporter &gt; zsh.report
 </pre></div>
 
 <p>You should check the <tt>zsh.report</tt> file for any sensitive information
@@ -721,6 +723,19 @@ unabbreviated from and contain an absolute path, i.e. they start with <tt>/</tt>
 Usually the first entry should be left as the current directory.
 </p>
 </dd>
+<dt><tt>-p '</tt><var>pattern</var><tt>'</tt></dt>
+<dd><p>Prunes any items in the directory list that match the given extended glob
+pattern; the pattern needs to be quoted from immediate expansion on the
+command line.  The pattern is matched against each completely expanded
+file name in the list; the full string must match, so wildcards at the
+end (e.g. <tt>'*removeme*'</tt>) are needed to remove entries with a given
+substring.
+</p>
+<p>If output is to a terminal, then the function will print the new list
+after pruning and prompt for confirmation by the user.  This output and
+confirmation step can be skipped by using <tt>-P</tt> instead of <tt>-p</tt>.
+</p>
+</dd>
 </dl>
 
 
@@ -929,7 +944,7 @@ also works.
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Use-with-dynamic-directory-naming" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Recent-Directories" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Version-Control-Information" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Other-Directory-Functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -962,10 +977,280 @@ command line.  See the contents of the function <tt>chpwd_recent_dirs</tt> for
 more details.
 </p>
 <hr>
-<a name="Version-Control-Information"></a>
+<a name="Other-Directory-Functions"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Details-of-directory-handling" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#User-Contributions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Usage" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="index-directories_002c-named_002c-dynamic_002c-helper-function"></a>
+<a name="index-dynamic-directory-naming_002c-helper-function"></a>
+<a name="index-named-directories_002c-dynamic_002c-helper-function"></a>
+<a name="index-zsh_005fdirectory_005fname_005fgeneric"></a>
+
+<a name="Abbreviated-dynamic-references-to-directories"></a>
+<h2 class="section">26.4 Abbreviated dynamic references to directories</h2>
+
+<p>The dynamic directory naming system is described in the subsection
+<em>Dynamic named directories</em> of
+<a href="Expansion.html#Filename-Expansion">Filename Expansion</a>.  In this, a reference to
+<tt>~[</tt><var>...</var><tt>]</tt> is expanded by a function found by the hooks
+mechanism.
+</p>
+<p>The contributed function <tt>zsh_directory_name_generic</tt> provides a
+system allowing the user to refer to directories with only a limited
+amount of new code.  It supports all three of the standard interfaces
+for directory naming: converting from a name to a directory, converting
+in the reverse direction to find a short name, and completion of names.
+</p>
+<p>The main feature of this function is a path-like syntax,
+combining abbreviations at multiple levels separated by &quot;:&quot;.
+As an example, ~[g:p:s] might specify:
+</p><dl compact="compact">
+<dt><tt>g</tt></dt>
+<dd><p>The top level directory for your git area.  This first component
+has to match, or the function will retrun indicating another
+directory name hook function should be tried.
+</p>
+</dd>
+<dt><tt>p</tt></dt>
+<dd><p>The name of a project within your git area.
+</p>
+</dd>
+<dt><tt>s</tt></dt>
+<dd><p>The source area within that project.
+</p>
+</dd>
+</dl>
+<p>This allows you to collapse references to long hierarchies to a very
+compact form, particularly if the hierarchies are similar across different
+areas of the disk.
+</p>
+<p>Name components may be completed: if a description is shown at the top
+of the list of completions, it includes the path to which previous
+components expand, while the description for an individual completion
+shows the path segment it would add.  No additional configuration is
+needed for this as the completion system is aware of the dynamic
+directory name mechanism.
+</p>
+
+<hr>
+<a name="Usage"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Other-Directory-Functions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Other-Directory-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration-2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">26.4.1 Usage</h3>
+
+<p>To use the function, first define a wrapper function for your specific
+case.  We&rsquo;ll assume it&rsquo;s to be autoloaded.  This can have any name but
+we&rsquo;ll refer to it as zdn_mywrapper.  This wrapper function will define
+various variables and then call this function with the same arguments
+that the wrapper function gets.  This configuration is described below.
+</p>
+<p>Then arrange for the wrapper to be run as a zsh_directory_name hook:
+</p>
+<div class="example">
+<pre class="example">autoload -Uz add-zsh-hook zsh_diretory_name_generic zdn_mywrapper
+add-zsh-hook -U zsh_directory_name zdn_mywrapper
+</pre></div>
+
+
+<hr>
+<a name="Configuration-2"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Usage" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Other-Directory-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Complete-example" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">26.4.2 Configuration</h3>
+
+<p>The wrapper function should define a local associative array zdn_top.
+Alternatively, this can be set with a style called <tt>mapping</tt>.  The
+context for the style is <tt>:zdn:</tt><var>wrapper-name</var> where
+<var>wrapper-name</var> is the function calling zsh_directory_name_generic;
+for example:
+</p>
+<div class="example">
+<pre class="example">zstyle :zdn:zdn_mywrapper: mapping zdn_mywrapper_top
+</pre></div>
+
+<p>The keys in this associative array correspond to the first component of
+the name.  The values are matching directories.  They may have an
+optional suffix with a slash followed by a colon and the name of a
+variable in the same format to give the next component.  (The slash
+before the colon is to disambiguate the case where a colon is needed in
+the path for a drive.  There is otherwise no syntax for escaping this,
+so path components whose names start with a colon are not supported.)  A
+special component <tt>:default:</tt> specifies a variable in the form
+<tt>/:</tt><var>var</var> (the path section is ignored and so is usually empty)
+that will be used for the next component if no variable is given for the
+path.  Variables referred to within <tt>zdn_top</tt> have the same format as
+<tt>zdn_top</tt> itself, but contain relative paths.
+</p>
+<p>For example,
+</p>
+<div class="example">
+<pre class="example">local -A zdn_top=(
+  g   ~/git
+  ga  ~/alternate/git
+  gs  /scratch/$USER/git/:second2
+  :default: /:second1
+)
+</pre></div>
+
+<p>This specifies the behaviour of a directory referred to as <tt>~[g:...]</tt>
+or <tt>~[ga:...]</tt> or <tt>~[gs:...]</tt>.  Later path components are optional;
+in that case <tt>~[g]</tt> expands to <tt>~/git</tt>, and so on.  <tt>gs</tt> expands
+to <tt>/scratch/$USER/git</tt> and uses the associative array <tt>second2</tt> to
+match the second component; <tt>g</tt> and <tt>ga</tt> use the associative array
+<tt>second1</tt> to match the second component.
+</p>
+<p>When expanding a name to a directory, if the first component is not <tt>g</tt> or
+<tt>ga</tt> or <tt>gs</tt>, it is not an error; the function simply returns 1 so that a
+later hook function can be tried.  However, matching the first component
+commits the function, so if a later component does not match, an error
+is printed (though this still does not stop later hooks from being
+executed).
+</p>
+<p>For components after the first, a relative path is expected, but note that
+multiple levels may still appear.  Here is an example of <tt>second1</tt>:
+</p>
+<div class="example">
+<pre class="example">local -A second1=(
+  p   myproject
+  s   somproject
+  os  otherproject/subproject/:third
+)
+</pre></div>
+
+<p>The path as found from <tt>zdn_top</tt> is extended with the matching
+directory, so <tt>~[g:p]</tt> becomes <tt>~/git/myproject</tt>.  The slash between
+is added automatically (it&rsquo;s not possible to have a later component
+modify the name of a directory already matched).  Only <tt>os</tt> specifies
+a variable for a third component, and there&rsquo;s no <tt>:default:</tt>, so it&rsquo;s
+an error to use a name like <tt>~[g:p:x]</tt> or <tt>~[ga:s:y]</tt> because
+there&rsquo;s nowhere to look up the <tt>x</tt> or <tt>y</tt>.
+</p>
+<p>The associative arrays need to be visible within this function; the
+generic function therefore uses internal variable names beginning
+<tt>_zdn_</tt> in order to avoid clashes.  Note that the variable <tt>reply</tt>
+needs to be passed back to the shell, so should not be local in the
+calling function.
+</p>
+<p>The function does not test whether directories assembled by component
+actually exist; this allows the system to work across automounted
+file systems.  The error from the command trying to use a non-existent
+directory should be sufficient to indicate the problem.
+</p>
+
+<hr>
+<a name="Complete-example"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration-2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Other-Directory-Functions" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Version-Control-Information" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">26.4.3 Complete example</h3>
+
+<p>Here is a full fictitious but usable autoloadable definition of the
+example function defined by the code above.  So <tt>~[gs:p:s]</tt> expands
+to <tt>/scratch/$USER/git/myscratchproject/top/srcdir</tt> (with <tt>$USER</tt>
+also expanded).
+</p>
+<div class="example">
+<pre class="example">local -A zdn_top=(
+  g   ~/git
+  ga  ~/alternate/git
+  gs  /scratch/$USER/git/:second2
+  :default: /:second1
+)
+
+local -A second1=(
+  p   myproject
+  s   somproject
+  os  otherproject/subproject/:third
+)
+
+local -A second2=(
+  p   myscratchproject
+  s   somescratchproject
+)
+
+local -A third=(
+  s   top/srcdir
+  d   top/documentation
+)
+
+# autoload not needed if you did this at initialisation...
+autoload -Uz zsh_directory_name_generic
+zsh_directory_name_generic &quot;$@
+</pre></div>
+
+<p>It is also possible to use global associative arrays, suitably named,
+and set the style for the context of your wrapper function to
+refer to this.  Then your set up code would contain the following:
+</p>
+<div class="example">
+<pre class="example">typeset -A zdn_mywrapper_top=(...)
+# ... and so on for other associative arrays ...
+zstyle ':zdn:zdn_mywrapper:' mapping zdn_mywrapper_top
+autoload -Uz add-zsh-hook zsh_directory_name_generic zdn_mywrapper
+add-zsh-hook -U zsh_directory_name zdn_mywrapper
+</pre></div>
+
+<p>and the function <tt>zdn_mywrapper</tt> would contain only the following:
+</p>
+<div class="example">
+<pre class="example">zsh_directory_name_generic &quot;$@&quot;
+</pre></div>
+
+<hr>
+<a name="Version-Control-Information"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Complete-example" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Quickstart" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -980,7 +1265,7 @@ more details.
 </tr></table>
 
 <a name="Gathering-information-from-version-control-systems"></a>
-<h2 class="section">26.4 Gathering information from version control systems</h2>
+<h2 class="section">26.5 Gathering information from version control systems</h2>
 <a name="index-version-control-utility"></a>
 
 <p>In a lot of cases, it is nice to automatically retrieve information from
@@ -1051,7 +1336,7 @@ specific <tt>$psvar</tt> entries to be available.
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Version-Control-Information" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Version-Control-Information" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Configuration-2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration-3" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1062,7 +1347,7 @@ specific <tt>$psvar</tt> entries to be available.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">26.4.1 Quickstart</h3>
+<h3 class="subsection">26.5.1 Quickstart</h3>
 
 <p>To get this feature working quickly (including colors), you can do the
 following (assuming, you loaded <tt>vcs_info</tt> properly - see above):
@@ -1134,7 +1419,7 @@ wasted time there.
 </p>
 
 <hr>
-<a name="Configuration-2"></a>
+<a name="Configuration-3"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Quickstart" title="Previous section in reading order"> &lt; </a>]</td>
@@ -1150,7 +1435,7 @@ wasted time there.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">26.4.2 Configuration</h3>
+<h3 class="subsection">26.5.2 Configuration</h3>
 
 <p>The <tt>vcs_info</tt> feature can be configured via <tt>zstyle</tt>.
 </p>
@@ -1682,7 +1967,7 @@ no replacements are performed at all, it is just a string.
 <a name="Oddities"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Configuration-2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration-3" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Version-Control-Information" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Quilt-Support" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -1695,7 +1980,7 @@ no replacements are performed at all, it is just a string.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">26.4.3 Oddities</h3>
+<h3 class="subsection">26.5.3 Oddities</h3>
 
 <p>If you want to use the <tt>%b</tt> (bold off) prompt expansion in <tt>formats</tt>,
 which expands <tt>%b</tt> itself, use <tt>%%b</tt>. That will cause the <tt>vcs_info</tt>
@@ -1723,7 +2008,7 @@ expansions and this only needs to be done for those.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">26.4.4 Quilt Support</h3>
+<h3 class="subsection">26.5.4 Quilt Support</h3>
 
 <p><cite>Quilt</cite> is not a version control system, therefore this is not implemented
 as a backend. It can help keeping track of a series of patches. People use it
@@ -1776,7 +2061,7 @@ otherwise would be something like &lsquo;svn&rsquo; or &lsquo;cvs&rsquo;) will b
 identifier is the second element. <tt>vcs_info</tt> will have filled in a proper
 value for the &quot;repository&rsquo;s&quot; root directory and the string containing the
 information about quilt&rsquo;s state will be available as the &lsquo;misc&rsquo; replacement
-(and <tt>%Q</tt> for compatibility with &lsquo;addon&rsquo; mode.
+(and <tt>%Q</tt> for compatibility with &lsquo;addon&rsquo; mode).
 </p>
 <p>What is left to discuss is how &lsquo;standalone&rsquo; mode is detected. The detection
 itself is a series of searches for directories. You can have this detection
@@ -1829,7 +2114,7 @@ non-zero return value is interpreted as false.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">26.4.5 Function Descriptions (Public API)</h3>
+<h3 class="subsection">26.5.5 Function Descriptions (Public API)</h3>
 
 <dl compact="compact">
 <dd><a name="index-vcs_005finfo"></a>
@@ -1906,7 +2191,7 @@ without restarting the shell.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">26.4.6 Variable Description</h3>
+<h3 class="subsection">26.5.6 Variable Description</h3>
 
 <dl compact="compact">
 <dt><tt>${vcs_info_msg_</tt><var>N</var><tt>_}</tt> (Note the trailing underscore)</dt>
@@ -1942,7 +2227,7 @@ style above.)
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">26.4.7 Hooks in vcs_info</h3>
+<h3 class="subsection">26.5.7 Hooks in vcs_info</h3>
 
 <p>Hooks are places in <tt>vcs_info</tt> where you can run your own code. That
 code can communicate with the code that called it and through that,
@@ -2217,7 +2502,7 @@ They contain some explanatory code.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">26.4.8 Examples</h3>
+<h3 class="subsection">26.5.8 Examples</h3>
 
 <p>Don&rsquo;t use <tt>vcs_info</tt> at all (even though it&rsquo;s in your prompt):
 </p><div class="example">
@@ -2329,7 +2614,7 @@ a customised bookmark string for the <tt>hg</tt> backend.
 <pre class="example">zstyle ':vcs_info:hg+gen-hg-bookmark-string:*' hooks hgbookmarks
 </pre></div>
 
-<p>And then we define the &lsquo;<tt>+vi-hgbookmarks</tt> function:
+<p>And then we define the &lsquo;<tt>+vi-hgbookmarks</tt>&rsquo; function:
 </p><div class="example">
 <pre class="example">
 function +vi-hgbookmarks() {
@@ -2356,7 +2641,6 @@ function +vi-hgbookmarks() {
     ret=1
     return 0
 }
-
 </pre></div>
 
 <p>Some longer examples and code snippets which might be useful are available in
@@ -2384,7 +2668,7 @@ directory.
 </tr></table>
 
 <a name="Prompt-Themes-1"></a>
-<h2 class="section">26.5 Prompt Themes</h2>
+<h2 class="section">26.6 Prompt Themes</h2>
 
 
 <hr>
@@ -2404,7 +2688,7 @@ directory.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">26.5.1 Installation</h3>
+<h3 class="subsection">26.6.1 Installation</h3>
 
 <p>You should make sure all the functions from the <tt>Functions/Prompts</tt>
 directory of the source distribution are available; they all begin with
@@ -2443,7 +2727,7 @@ promptinit
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">26.5.2 Theme Selection</h3>
+<h3 class="subsection">26.6.2 Theme Selection</h3>
 
 <p>Use the <tt>prompt</tt> command to select your preferred theme.  This command
 may be added to your <tt>.zshrc</tt> following the call to <tt>promptinit</tt> in
@@ -2515,7 +2799,7 @@ normally call a theme&rsquo;s setup function directly.
 </tr></table>
 
 <a name="ZLE-Functions-1"></a>
-<h2 class="section">26.6 ZLE Functions</h2>
+<h2 class="section">26.7 ZLE Functions</h2>
 
 
 <hr>
@@ -2535,7 +2819,7 @@ normally call a theme&rsquo;s setup function directly.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">26.6.1 Widgets</h3>
+<h3 class="subsection">26.7.1 Widgets</h3>
 
 <p>These functions all implement user-defined ZLE widgets (see
 <a href="Zsh-Line-Editor.html#Zsh-Line-Editor">Zsh Line Editor</a>) which can be bound to keystrokes in interactive shells.  To use them,
@@ -2582,7 +2866,9 @@ select-word-style bash
 <dd><p>The eight &lsquo;<tt>-match</tt>&rsquo; functions are drop-in replacements for the
 builtin widgets without the suffix.  By default they behave in a similar
 way.  However, by the use of styles and the function <tt>select-word-style</tt>,
-the way words are matched can be altered.
+the way words are matched can be altered.  For comparison, the widgets
+described in <a href="Zsh-Line-Editor.html#Text-Objects">Text Objects</a> use fixed definitions of words, compatible
+with the <tt>vim</tt> editor.
 </p>
 <p>The simplest way of configuring the functions is to use
 <tt>select-word-style</tt>, which can either be called as a normal function with
@@ -2706,9 +2992,10 @@ matched against each <var>pattern</var> in turn until one matches; if it does,
 the context is extended by a colon and the corresponding <var>subcontext</var>.
 Note that the test is made against the original word on the line, with no
 stripping of quotes.  Special handling is done between words: the current
-context is examined and if it contains the string <tt>back</tt>, the word before
-the cursor is considered, else the word after cursor is considered. Some
-examples are given below.
+context is examined and if it contains the string <tt>between</tt> the word
+is set to a single space; else if it is contains the string <tt>back</tt>,
+the word before the cursor is considered, else the word after cursor is
+considered. Some examples are given below.
 </p>
 <p>The style <tt>skip-whitespace-first</tt> is only used with the
 <tt>forward-word</tt> widget.  If it is set to true, then <tt>forward-word</tt>
@@ -2798,6 +3085,112 @@ extract the command argument around the cursor.
 <p>The <tt>word-context</tt> style is implemented by the function
 <tt>match-word-context</tt>.  This should not usually need to be called
 directly.
+</p>
+<a name="index-bracketed_002dpaste_002dmagic"></a>
+</dd>
+<dt>bracketed-paste-magic</dt>
+<dd><p>The <tt>bracketed-paste</tt> widget (see <a href="Zsh-Line-Editor.html#Miscellaneous">Miscellaneous</a> in <a href="Zsh-Line-Editor.html#Zle-Widgets">Widgets</a>)
+inserts pasted text literally into the editor buffer rather than interpret
+it as keystrokes.  This disables some common usages where the self-insert
+widget is replaced in order to accomplish some extra processing.  An
+example is the contributed <tt>url-quote-magic</tt> widget described below.
+</p>
+<p>The <tt>bracketed-paste-magic</tt> widget is meant to replace <tt>bracketed-paste</tt>
+with a wrapper that re-enables these self-insert actions, and other
+actions as selected by zstyles.  Therefore this widget is installed with
+</p>
+<div class="example">
+<pre class="example">autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+</pre></div>
+
+<p>Other than enabling some widget processing, <tt>bracketed-paste-magic</tt>
+attempts to replicate <tt>bracketed-paste</tt> as faithfully as possible.
+</p>
+<p>The following zstyles may be set to control processing of pasted text.
+All are looked up in the context &lsquo;<tt>:bracketed-paste-magic</tt>&rsquo;.
+</p>
+<dl compact="compact">
+<dt><tt>active-widgets</tt></dt>
+<dd><p>A list of patterns matching widget names that should be activated during
+the paste.  All other key sequences are processed as self-insert-unmeta.
+The default is &lsquo;<tt>self-*</tt>&rsquo; so any user-defined widgets named with that
+prefix are active along with the builtin self-insert.
+</p>
+<p>If this style is not set (explicitly deleted) or set to an empty value,
+no widgets are active and the pasted text is inserted literally.  If the
+value includes &lsquo;<tt>undefined-key</tt>&rsquo;, any unknown sequences are discarded
+from the pasted text.
+</p>
+</dd>
+<dt><tt>inactive-keys</tt></dt>
+<dd><p>The inverse of <tt>active-widgets</tt>, a list of key sequences that always use
+<tt>self-insert-unmeta</tt> even when bound to an active widget.  Note that
+this is a list of literal key sequences, not patterns.
+</p>
+</dd>
+<dt><tt>paste-init</tt></dt>
+<dd><p>A list of function names, called in widget context (but not as widgets).
+The functions are called in order until one of them returns a non-zero
+status.  The parameter &lsquo;<tt>PASTED</tt>&rsquo; contains the initial state of the
+pasted text.  All other ZLE parameters such as &lsquo;<tt>BUFFER</tt>&rsquo; have their
+normal values and side-effects, and full history is available, so for
+example <tt>paste-init</tt> functions may move words from <tt>BUFFER</tt> into
+<tt>PASTED</tt> to make those words visible to the <tt>active-widgets</tt>.
+</p>
+<p>A non-zero return from a <tt>paste-init</tt> function does <em>not</em> prevent the
+paste itself from proceeding.
+</p>
+<p>Loading <tt>bracketed-paste-magic</tt> defines <tt>backward-extend-paste</tt>, a
+helper function for use in <tt>paste-init</tt>.
+</p>
+<div class="example">
+<pre class="example">zstyle :bracketed-paste-magic paste-init \ 
+       backward-extend-paste
+</pre></div>
+
+<p>When a paste would insert into the middle of a word or append text to a
+word already on the line, <tt>backward-extend-paste</tt> moves the prefix
+from <tt>LBUFFER</tt> into <tt>PASTED</tt> so that the <tt>active-widgets</tt> see the
+full word so far.  This may be useful with <tt>url-quote-magic</tt>.
+</p>
+</dd>
+<dt><tt>paste-finish</tt></dt>
+<dd><p>Another list of function names called in order until one returns non-zero.
+These functions are called <em>after</em> the pasted text has been processed
+by the <tt>active-widgets</tt>, but <em>before</em> it is inserted into &lsquo;<tt>BUFFER</tt>&rsquo;.
+ZLE parameters have their normal values and side-effects.
+</p>
+<p>A non-zero return from a <tt>paste-finish</tt> function does <em>not</em> prevent
+the paste itself from proceeding.
+</p>
+<p>Loading <tt>bracketed-paste-magic</tt> also defines <tt>quote-paste</tt>, a helper
+function for use in <tt>paste-finish</tt>.
+</p>
+<div class="example">
+<pre class="example">zstyle :bracketed-paste-magic paste-finish \ 
+       quote-paste
+zstyle :bracketed-paste-magic:finish quote-style \ 
+       qqq
+</pre></div>
+
+<p>When the pasted text is inserted into <tt>BUFFER</tt>, it is quoted per the
+<tt>quote-style</tt> value.  To forcibly turn off the built-in numeric prefix
+quoting of <tt>bracketed-paste</tt>, use:
+</p>
+<div class="example">
+<pre class="example">zstyle :bracketed-paste-magic:finish quote-style \ 
+       none
+</pre></div>
+
+</dd>
+</dl>
+
+<p><em>Important:</em> During <tt>active-widgets</tt> processing of the paste (after
+<tt>paste-init</tt> and before <tt>paste-finish</tt>), <tt>BUFFER</tt> starts empty and
+history is restricted, so cursor motions, etc., may not pass outside of
+the pasted content.  Text assigned to <tt>BUFFER</tt> by the active widgets
+is copied back into <tt>PASTED</tt> before <tt>paste-finish</tt>.
 </p>
 <a name="index-copy_002dearlier_002dword"></a>
 </dd>
@@ -3715,6 +4108,75 @@ start of the previous line.  Using a numeric argument less than -1
 has the effect of moving the line above the cursor up by minus that
 number of lines.
 </p>
+<a name="index-url_002dquote_002dmagic"></a>
+</dd>
+<dt><tt>url-quote-magic</tt></dt>
+<dd><p>This widget replaces the built-in <tt>self-insert</tt> to make it easier to
+type URLs as command line arguments.  As you type, the input character is
+analyzed and, if it may need quoting, the current word is checked for a
+URI scheme.  If one is found and the current word is not already in
+quotes, a backslash is inserted before the input character.
+</p>
+<p>Styles to control quoting behavior:
+</p>
+<dl compact="compact">
+<dt><tt>url-metas</tt></dt>
+<dd><p>This style is looked up in the context &lsquo;<tt>:url-quote-magic:</tt><var>scheme</var>&rsquo;
+(where <var>scheme</var> is that of the current URL, e.g. &quot;<tt>ftp</tt>&quot;).  The value
+is a string listing the characters to be treated as globbing
+metacharacters when appearing in a URL using that scheme.  The default is
+to quote all zsh extended globbing characters, excluding &rsquo;<tt>&lt;</tt>&rsquo; and
+&rsquo;<tt>&gt;</tt>&rsquo; but including braces (as in brace expansion).  See also
+<tt>url-seps</tt>.
+</p>
+</dd>
+<dt><tt>url-seps</tt></dt>
+<dd><p>Like <tt>url-metas</tt>, but lists characters that should be considered command
+separators, redirections, history references, etc.  The default is to
+quote the standard set of shell separators, excluding those that overlap
+with the extended globbing characters, but including &rsquo;<tt>&lt;</tt>&rsquo; and
+&rsquo;<tt>&gt;</tt>&rsquo; and the first character of <tt>$histchars</tt>.
+</p>
+</dd>
+<dt><tt>url-globbers</tt></dt>
+<dd><p>This style is looked up in the context &lsquo;<tt>:url-quote-magic</tt>&rsquo;.  The values
+form a list of command names that are expected to do their own globbing
+on the URL string.  This implies that they are aliased to use the
+&lsquo;<tt>noglob</tt>&rsquo; modifier.  When the first word on the line matches one of the
+values <em>and</em> the URL refers to a local file (see <tt>url-local-schema</tt>),
+only the <tt>url-seps</tt> characters are quoted; the <tt>url-metas</tt> are left
+alone, allowing them to affect command-line parsing, completion, etc.  The
+default values are a literal &lsquo;<tt>noglob</tt>&rsquo; plus (when the <tt>zsh/parameter</tt>
+module is available) any commands aliased to the helper function
+&lsquo;<tt>urlglobber</tt>&rsquo; or its alias &lsquo;<tt>globurl</tt>&rsquo;.
+</p>
+</dd>
+<dt><tt>url-local-schema</tt></dt>
+<dd><p>This style is always looked up in the context &lsquo;<tt>:urlglobber</tt>&rsquo;, even
+though it is used by both url-quote-magic and urlglobber.  The values form
+a list of URI schema that should be treated as referring to local files by
+their real local path names, as opposed to files which are specified
+relative to a web-server-defined document root.  The defaults are
+&quot;<tt>ftp</tt>&quot; and &quot;<tt>file</tt>&quot;.
+</p>
+</dd>
+<dt><tt>url-other-schema</tt></dt>
+<dd><p>Like <tt>url-local-schema</tt>, but lists all other URI schema upon which
+<tt>urlglobber</tt> and <tt>url-quote-magic</tt> should act.  If the URI on the
+command line does not have a scheme appearing either in this list or in
+<tt>url-local-schema</tt>, it is not magically quoted.  The default values are
+&quot;<tt>http</tt>&quot;, &quot;<tt>https</tt>&quot;, and &quot;<tt>ftp</tt>&quot;.  When a scheme appears both here
+and in <tt>url-local-schema</tt>, it is quoted differently depending on whether
+the command name appears in <tt>url-globbers</tt>.
+</p>
+</dd>
+</dl>
+
+<p>Loading <tt>url-quote-magic</tt> also defines a helper function &lsquo;<tt>urlglobber</tt>&rsquo;
+and aliases &lsquo;<tt>globurl</tt>&rsquo; to &lsquo;<tt>noglob urlglobber</tt>&rsquo;.  This function takes
+a local URL apart, attempts to pattern-match the local file portion of the
+URL path, and then puts the results back into URL format again.
+</p>
 <a name="index-which_002dcommand-1"></a>
 </dd>
 <dt><tt>which-command</tt></dt>
@@ -3768,7 +4230,7 @@ to the previous result.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">26.6.2 Utility Functions</h3>
+<h3 class="subsection">26.7.2 Utility Functions</h3>
 
 <p>These functions are useful in constructing widgets.  They
 should be loaded with &lsquo;<tt>autoload -U</tt> <var>function</var>&rsquo; and called
@@ -3868,7 +4330,7 @@ within the widget where <tt>modify-current-argument</tt> is called.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">26.6.3 Styles</h3>
+<h3 class="subsection">26.7.3 Styles</h3>
 
 <p>The behavior of several of the above widgets can be controlled by the use
 of the <tt>zstyle</tt> mechanism.  In particular, widgets that interact with
@@ -4089,7 +4551,7 @@ whether the <tt>widget</tt> style is used.
 </tr></table>
 
 <a name="Exception-Handling-1"></a>
-<h2 class="section">26.7 Exception Handling</h2>
+<h2 class="section">26.8 Exception Handling</h2>
 
 <p>Two functions are provided to enable zsh to provide exception handling in a
 form that should be familiar from other languages.
@@ -4199,7 +4661,7 @@ eliminate this problem.
 </tr></table>
 
 <a name="MIME-Functions-1"></a>
-<h2 class="section">26.8 MIME Functions</h2>
+<h2 class="section">26.9 MIME Functions</h2>
 
 <p>Three functions are available to provide handling of files recognised by
 extension, for example to dispatch a file <tt>text.ps</tt> when executed as a
@@ -4627,7 +5089,7 @@ for Opera, and <tt>%b -remote &quot;openUrl(%u)&quot;</tt> for all others.
 </tr></table>
 
 <a name="Mathematical-Functions-1"></a>
-<h2 class="section">26.9 Mathematical Functions</h2>
+<h2 class="section">26.10 Mathematical Functions</h2>
 
 <dl compact="compact">
 <dd><a name="index-zcalc"></a>
@@ -4645,6 +5107,14 @@ variables declared to be integers) are by default evaluated using
 integer arithmetic, which is not how an ordinary desk calculator
 operates.  To force floating point operation, pass the option <tt>-f</tt>;
 see further notes below.
+</p>
+<p>If the file <tt>~/.zcalcrc</tt> exists it will be sourced inside the function
+once it is set up and about to process the command line.  This
+can be used, for example, to set shell options; <tt>emulate -L zsh</tt>
+and <tt>setopt extendedglob</tt> are in effect at this point.  Any
+failure to source the file if it exists is treated as fatal.
+As with other initialisation files, the directory <tt>$ZDOTDIR</tt> is used
+instead of <tt>$HOME</tt> if it is set.
 </p>
 <p>The mathematical library <tt>zsh/mathfunc</tt> will be loaded if it is
 available; see
@@ -4821,7 +5291,7 @@ The functions have not necessarily been defined by <tt>zmathfuncdef</tt>.
 </tr></table>
 
 <a name="User-Configuration-Functions-1"></a>
-<h2 class="section">26.10 User Configuration Functions</h2>
+<h2 class="section">26.11 User Configuration Functions</h2>
 
 <p>The <tt>zsh/newuser</tt> module comes with a function to aid in configuring
 shell options for new users.  If the module is installed, this function can
@@ -4888,7 +5358,7 @@ detect any such conflicts.
 </tr></table>
 
 <a name="Other-Functions-1"></a>
-<h2 class="section">26.11 Other Functions</h2>
+<h2 class="section">26.12 Other Functions</h2>
 
 <p>There are a large number of helpful functions in the <tt>Functions/Misc</tt>
 directory of the zsh distribution.  Most are very simple and do not
@@ -4912,7 +5382,7 @@ require documentation here, but a few are worthy of special mention.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">26.11.1 Descriptions</h3>
+<h3 class="subsection">26.12.1 Descriptions</h3>
 
 <dl compact="compact">
 <dd><a name="index-colors"></a>
@@ -5402,7 +5872,7 @@ unchanged.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">26.11.2 Styles</h3>
+<h3 class="subsection">26.12.2 Styles</h3>
 
 <dl compact="compact">
 <dd><a name="index-insert_002dtab_002c-completion-style-1"></a>
@@ -5447,9 +5917,9 @@ The usual expansions for the <tt>PS1</tt> and <tt>RPS1</tt> parameters may be us
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
+<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
 </body>
 </html>

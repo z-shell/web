@@ -44,8 +44,8 @@ ul.no-bullet {list-style: none}
 
 <body lang="en">
 <h1>The Z Shell Manual</h1>
-<h3 align="right">Version 5.1.1</h3>
-<h3 align="right">Updated September 11, 2015</h3>
+<h3 align="right">Version 5.2</h3>
+<h3 align="right">Updated December 2, 2015</h3>
 <strong>Original documentation by Paul Falstad</strong><br>
 <p>This is a texinfo version of the documentation for the Z Shell, originally by 
 Paul Falstad.
@@ -81,7 +81,7 @@ into another language, under the above conditions for modified versions.
 POSIX shells, but its default mode is not POSIX compatible, either.
 </p>
 <a name="index-version"></a>
-<p>Version 5.1.1, last updated September 11, 2015.
+<p>Version 5.2, last updated December 2, 2015.
 </p>
 <table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top"><a href="The-Z-Shell-Manual.html#The-Z-Shell-Manual">1 The Z Shell Manual</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -332,35 +332,37 @@ Zsh Modules
 </td></tr>
 <tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fpcre-Module">22.20 The zsh/pcre Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fregex-Module">22.21 The zsh/regex Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fparam_002fprivate-Module">22.21 The zsh/param/private Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fsched-Module">22.22 The zsh/sched Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fregex-Module">22.22 The zsh/regex Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fnet_002fsocket-Module">22.23 The zsh/net/socket Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fsched-Module">22.23 The zsh/sched Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fstat-Module">22.24 The zsh/stat Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fnet_002fsocket-Module">22.24 The zsh/net/socket Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fsystem-Module">22.25 The zsh/system Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fstat-Module">22.25 The zsh/stat Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fnet_002ftcp-Module">22.26 The zsh/net/tcp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fsystem-Module">22.26 The zsh/system Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002ftermcap-Module">22.27 The zsh/termcap Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fnet_002ftcp-Module">22.27 The zsh/net/tcp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fterminfo-Module">22.28 The zsh/terminfo Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002ftermcap-Module">22.28 The zsh/termcap Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fzftp-Module">22.29 The zsh/zftp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fterminfo-Module">22.29 The zsh/terminfo Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fzle-Module">22.30 The zsh/zle Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fzftp-Module">22.30 The zsh/zftp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fzleparameter-Module">22.31 The zsh/zleparameter Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fzle-Module">22.31 The zsh/zle Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fzprof-Module">22.32 The zsh/zprof Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fzleparameter-Module">22.32 The zsh/zleparameter Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fzpty-Module">22.33 The zsh/zpty Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fzprof-Module">22.33 The zsh/zprof Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fzselect-Module">22.34 The zsh/zselect Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fzpty-Module">22.34 The zsh/zpty Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fzutil-Module">22.35 The zsh/zutil Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fzselect-Module">22.35 The zsh/zselect Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fzutil-Module">22.36 The zsh/zutil Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
 Calendar Function System
@@ -402,21 +404,23 @@ User Contributions
 </td></tr>
 <tr><td align="left" valign="top"><a href="User-Contributions.html#Recent-Directories">26.3 Remembering Recent Directories</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="User-Contributions.html#Version-Control-Information">26.4 Gathering information from version control systems</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="User-Contributions.html#Other-Directory-Functions">26.4 Abbreviated dynamic references to directories</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="User-Contributions.html#Prompt-Themes">26.5 Prompt Themes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="User-Contributions.html#Version-Control-Information">26.5 Gathering information from version control systems</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="User-Contributions.html#ZLE-Functions">26.6 ZLE Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="User-Contributions.html#Prompt-Themes">26.6 Prompt Themes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="User-Contributions.html#Exception-Handling">26.7 Exception Handling</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="User-Contributions.html#ZLE-Functions">26.7 ZLE Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="User-Contributions.html#MIME-Functions">26.8 MIME Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="User-Contributions.html#Exception-Handling">26.8 Exception Handling</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="User-Contributions.html#Mathematical-Functions">26.9 Mathematical Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="User-Contributions.html#MIME-Functions">26.9 MIME Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="User-Contributions.html#User-Configuration-Functions">26.10 User Configuration Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="User-Contributions.html#Mathematical-Functions">26.10 Mathematical Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="User-Contributions.html#Other-Functions">26.11 Other Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="User-Contributions.html#User-Configuration-Functions">26.11 User Configuration Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="User-Contributions.html#Other-Functions">26.12 Other Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
 </pre></th></tr></table>
@@ -430,9 +434,9 @@ User Contributions
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
+<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
 </body>
 </html>

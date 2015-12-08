@@ -186,8 +186,11 @@ which no alias has been defined.
 <a name="index-autoloading-functions-1"></a>
 </dd>
 <dt><tt>autoload</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>TUXkmtz</tt> ] [ <tt>-w</tt> ] [ <var>name</var> ... ]</dt>
-<dd><p>Equivalent to <tt>functions -u</tt>, with the exception of <tt>-X</tt>/<tt>+X</tt> and
-<tt>-w</tt>.
+<dd><a name="index-fpath_002c-searching"></a>
+<p>Equivalent to <tt>functions -u</tt>, with the exception of <tt>-X</tt>/<tt>+X</tt> and
+<tt>-w</tt>.  See the section &lsquo;Autoloading Functions&rsquo; in <a href="Functions.html#Functions">Functions</a> for full details.  The <tt>fpath</tt> parameter
+will be searched to find the function definition when the function is
+first referenced.
 </p>
 <p>The flag <tt>-X</tt> may be used only inside a shell function, and may not be
 followed by a <var>name</var>.  It causes the calling function to be marked for
@@ -628,7 +631,7 @@ enable them.
 <a name="index-ksh_002c-compatibility"></a>
 <a name="index-csh_002c-compatibility"></a>
 </dd>
-<dt><tt>emulate</tt> [ <tt>-LR</tt> ] [ {<tt>zsh</tt>|<tt>sh</tt>|<tt>ksh</tt>|<tt>csh</tt>} [ <var>flags</var> ... ] ]</dt>
+<dt><tt>emulate</tt> [ <tt>-lLR</tt> ] [ {<tt>zsh</tt>|<tt>sh</tt>|<tt>ksh</tt>|<tt>csh</tt>} [ <var>flags</var> ... ] ]</dt>
 <dd><p>Without any argument print current emulation mode.
 </p>
 <p>With single argument set up zsh options to emulate the specified shell
@@ -664,6 +667,14 @@ function, if any; normally these options are turned off in all emulation
 modes except <tt>ksh</tt>. The <tt>-L</tt> switch is mutually exclusive with the
 use of <tt>-c</tt> in <var>flags</var>.
 </p>
+<p>If there is a single argument and the <tt>-l</tt> switch is given, the
+options that would be set or unset (the latter indicated with the prefix
+&lsquo;<tt>no</tt>&rsquo;) are listed.  <tt>-l</tt> can be combined with <tt>-L</tt> or <tt>-R</tt> and
+the list will be modified in the appropriate way.  Note the list does
+not depend on the current setting of options, i.e. it includes all
+options that may in principle change, not just those that would actually
+change.
+</p>
 <p>The <var>flags</var> may be any of the invocation-time flags described in
 <a href="Invocation.html#Invocation">Invocation</a>,
 except that &lsquo;<tt>-o EMACS</tt>&rsquo; and &lsquo;<tt>-o VI</tt>&rsquo; may not be used.  Flags such
@@ -697,7 +708,6 @@ function is loaded as well as when it is run.
 <pre class="example">emulate sh -c 'fni() { setopt cshnullglob; }
 fno() { fni; }'
 fno
-
 </pre></div>
 
 <p>The two functions <tt>fni</tt> and <tt>fno</tt> are defined with sticky <tt>sh</tt>
@@ -2321,12 +2331,8 @@ for this function; the flag <tt>-T</tt> does the same, but turns off tracing
 on any function called from the present one, unless that function also
 has the <tt>-t</tt> or <tt>-T</tt> flag.  The <tt>-u</tt> and <tt>-U</tt> flags cause the
 function to be marked for autoloading; <tt>-U</tt> also causes alias
-expansion to be suppressed when the function is loaded.  The <tt>fpath</tt>
-parameter will be searched to find the function definition when the
-function is first referenced; see <a href="Functions.html#Functions">Functions</a>. The <tt>-k</tt> and
-<tt>-z</tt> flags make the function be loaded using ksh-style or zsh-style
-autoloading respectively. If neither is given, the setting of the
-<tt>KSH_AUTOLOAD</tt> option determines how the function is loaded.
+expansion to be suppressed when the function is loaded.  See the
+description of the &lsquo;<tt>autoload</tt>&rsquo; builtin for details.
 </p>
 <p>Note that the builtin <tt>functions</tt> provides the same basic capabilities
 as <tt>typeset -f</tt> but gives access to a few extra options.
@@ -2737,7 +2743,7 @@ builtin.
 <dd><p>This builtin command can be used to compile functions or scripts,
 storing the compiled form in a file, and to examine files containing
 the compiled form.  This allows faster autoloading of functions and
-execution of scripts by avoiding parsing of the text when the files
+sourcing of scripts by avoiding parsing of the text when the files
 are read.
 </p>
 <p>The first form (without the <tt>-c</tt>, <tt>-a</tt> or <tt>-t</tt> options) creates a
@@ -2750,6 +2756,7 @@ is autoloaded; see
 for a description of how autoloaded functions are searched.  The
 extension <tt>.zwc</tt> stands for &lsquo;zsh word code&rsquo;.
 </p>
+<a name="index-fpath_002c-with-zcompile"></a>
 <p>If there is at least one <var>name</var> argument, all the named files
 are compiled into the output <var>file</var> given as the first argument.  If
 <var>file</var> does not end in <tt>.zwc</tt>, this extension is automatically
@@ -3202,9 +3209,9 @@ dynamic loading of modules.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
+<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
 </body>
 </html>

@@ -637,6 +637,12 @@ are only expanded when first parsing command or assignment arguments.
 Process substitutions may be used following redirection operators; in this
 case, the substitution must appear with no trailing string.
 </p>
+<p>Note that &lsquo;<tt>&lt;&lt;(</tt><var>list</var><tt>)</tt>&rsquo; is not a special syntax; it
+is equivalent to &lsquo;<tt>&lt; &lt;(</tt><var>list</var><tt>)</tt>&rsquo;, redirecting
+standard input from the result of process substitution.  Hence all
+the following documentation applies.  The second form (with the space)
+is recommended for clarity.
+</p>
 <p>In the case of the <tt>&lt;</tt> or <tt>&gt;</tt> forms, the shell runs the commands in
 <var>list</var> as a subprocess of the job executing the shell command line.
 If the system supports the <tt>/dev/fd</tt>
@@ -1349,7 +1355,16 @@ Note that flags set with one of the <tt>typeset</tt> family of commands
 <p>If used with a nested parameter or command substitution, the result of that
 will be taken as a parameter name in the same way.  For example, if you
 have &lsquo;<tt>foo=bar</tt>&rsquo; and &lsquo;<tt>bar=baz</tt>&rsquo;, the strings <tt>${(P)foo}</tt>,
-<tt>${(P)${foo}}</tt>, and <tt>${(P)$(echo bar)}</tt> will be expanded to &lsquo;<tt>baz</tt>&rsquo;.
+<tt>${(P)${foo}}</tt>, and <tt>${(P)$(echo bar)}</tt> will be expanded to
+&lsquo;<tt>baz</tt>&rsquo;.
+</p>
+<p>Likewise, if the reference is itself nested, the expression with the
+flag is treated as if it were directly replaced by the parameter name.
+It is an error if this nested substitution produces an array with more
+than one word.  For example, if &lsquo;<tt>name=assoc</tt>&rsquo; where the parameter
+<tt>assoc</tt> is an associative array, then
+&lsquo;<tt>${${(P)name}[elt]}</tt>&rsquo; refers to the element of the associative
+subscripted &lsquo;<tt>elt</tt>&rsquo;.
 </p>
 </dd>
 <dt><tt>q</tt></dt>
@@ -1755,9 +1770,13 @@ outermost.  The flags are not propagated up to enclosing
 substitutions; the nested substitution will return either a scalar or an
 array as determined by the flags, possibly adjusted for quoting.  All the
 following steps take place where applicable at all levels of substitution.
-Note that, unless the &lsquo;<tt>(P)</tt>&rsquo; flag is present, the flags and any subscripts
-apply directly to the value of the nested substitution; for example, the
-expansion <tt>${${foo}}</tt> behaves exactly the same as <tt>${foo}</tt>.
+</p>
+<p>Note that, unless the &lsquo;<tt>(P)</tt>&rsquo; flag is present, the flags and any
+subscripts apply directly to the value of the nested substitution; for
+example, the expansion <tt>${${foo}}</tt> behaves exactly the same as
+<tt>${foo}</tt>.  When the &lsquo;<tt>(P)</tt>&rsquo; flag is present in a nested substitution,
+the other substitution rules are applied to the value <em>before</em> it is
+interpreted as a name, so <tt>${${(P)foo}}</tt> may differ from <tt>${(P)foo}</tt>.
 </p>
 <p>At each nested level of substitution, the substituted words undergo all
 forms of single-word substitution (i.e. not filename generation), including
@@ -1771,11 +1790,18 @@ of the path.)
 </p>
 </dd>
 <dt><tt>2.</tt> <em>Internal parameter flags</em></dt>
-<dd><p>Any parameter flags set by one of the <tt>typeset</tt> family of commands,
-in particular the <tt>L</tt>, <tt>R</tt>, <tt>Z</tt>, <tt>u</tt> and <tt>l</tt> flags for padding
-and capitalization, are applied directly to the parameter value.
-Note these flags are options to the command, e.g. &lsquo;<tt>typeset -Z</tt>&rsquo;;
-they are not the same as the flags used within parameter substitutions.
+<dd><p>Any parameter flags set by one of the <tt>typeset</tt> family of commands, in
+particular the <tt>-L</tt>, <tt>-R</tt>, <tt>-Z</tt>, <tt>-u</tt> and <tt>-l</tt> options for
+padding and capitalization, are applied directly to the parameter value.
+Note these flags are options to the command, e.g. &lsquo;<tt>typeset -Z</tt>&rsquo;; they
+are not the same as the flags used within parameter substitutions.
+</p>
+<p>At the outermost level of substitution, the &lsquo;<tt>(P)</tt>&rsquo; flag (rule <tt>4.</tt>)
+ignores these transformations and uses the unmodified value of the
+parameter as the name to be replaced.  This is usually the desired
+behavior because padding may make the value syntactically illegal as a
+parameter name, but if capitalization changes are desired, use the
+<tt>${${(P)foo}}</tt> form (rule <tt>25.</tt>).
 </p>
 </dd>
 <dt><tt>3.</tt> <em>Parameter subscripting</em></dt>
@@ -1787,21 +1813,27 @@ subscript.  Thus if <tt>var</tt> is an array, <tt>${var[1][2]}</tt> is the secon
 character of the first word, but <tt>${var[2,4][2]}</tt> is the entire third
 word (the second word of the range of words two through four of the
 original array).  Any number of subscripts may appear.  Flags such as
-<tt>(k)</tt> and <tt>(v)</tt> which alter the result of subscripting are applied.
+&lsquo;<tt>(k)</tt>&rsquo; and &lsquo;<tt>(v)</tt>&rsquo; which alter the result of subscripting are applied.
 </p>
 </dd>
 <dt><tt>4.</tt> <em>Parameter name replacement</em></dt>
-<dd><p>The effect of any <tt>(P)</tt> flag, which treats the value so far as a
-parameter name and replaces it with the corresponding value, is applied.
+<dd><p>At the outermost level of nesting only, the &lsquo;<tt>(P)</tt>&rsquo; flag is applied.  This
+treats the value so far as a parameter name (which may include a subscript
+expression) and replaces that with the corresponding value.  This
+replacement occurs later if the &lsquo;<tt>(P)</tt>&rsquo; flag appears in a nested
+substitution.
+</p>
+<p>If the value so far names a parameter that has internal flags (rule <tt>2.</tt>),
+those internal flags are applied to the new value after replacement.
 </p>
 </dd>
 <dt><tt>5.</tt> <em>Double-quoted joining</em></dt>
 <dd><p>If the value after this process is an array, and the substitution
-appears in double quotes, and neither an <tt>(@)</tt> flag nor a <tt>#</tt>
+appears in double quotes, and neither an &lsquo;<tt>(@)</tt>&rsquo; flag nor a &lsquo;<tt>#</tt>&rsquo;
 length operator is present at the current level, then words of the
 value are joined with the first character of the parameter <tt>$IFS</tt>,
 by default a space, between each word (single word arrays are not
-modified).  If the <tt>(j)</tt> flag is present, that is used for joining
+modified).  If the &lsquo;<tt>(j)</tt>&rsquo; flag is present, that is used for joining
 instead of <tt>$IFS</tt>.
 </p>
 </dd>
@@ -1817,25 +1849,25 @@ returns a scalar because of the quotes).
 </dd>
 <dt><tt>7.</tt> <em>Modifiers</em></dt>
 <dd><p>Any modifiers, as specified by a trailing &lsquo;<tt>#</tt>&rsquo;, &lsquo;<tt>%</tt>&rsquo;, &lsquo;<tt>/</tt>&rsquo;
-(possibly doubled) or by a set of modifiers of the form <tt>:...</tt> (see
+(possibly doubled) or by a set of modifiers of the form &lsquo;<tt>:...</tt>&rsquo; (see
 <a href="#Modifiers">Modifiers</a> in <a href="#History-Expansion">History Expansion</a>), are applied to the words
 of the value at this level.
 </p>
 </dd>
 <dt><tt>8.</tt> <em>Character evaluation</em></dt>
-<dd><p>Any <tt>(#)</tt> flag is applied, evaluating the result so far numerically
+<dd><p>Any &lsquo;<tt>(#)</tt>&rsquo; flag is applied, evaluating the result so far numerically
 as a character.
 </p>
 </dd>
 <dt><tt>9.</tt> <em>Length</em></dt>
-<dd><p>Any initial <tt>#</tt> modifier, i.e. in the form <tt>${#</tt><var>var</var><tt>}</tt>, is
+<dd><p>Any initial &lsquo;<tt>#</tt>&rsquo; modifier, i.e. in the form <tt>${#</tt><var>var</var><tt>}</tt>, is
 used to evaluate the length of the expression so far.
 </p>
 </dd>
 <dt><tt>10.</tt> <em>Forced joining</em></dt>
 <dd><p>If the &lsquo;<tt>(j)</tt>&rsquo; flag is present, or no &lsquo;<tt>(j)</tt>&rsquo; flag is present but
 the string is to be split as given by rule <tt>11.</tt>, and joining
-did not take place at step <tt>5.</tt>, any words in the value are joined
+did not take place at rule <tt>5.</tt>, any words in the value are joined
 together using the given string or the first character of <tt>$IFS</tt> if none.
 Note that the &lsquo;<tt>(F)</tt>&rsquo; flag implicitly supplies a string for joining in this
 manner.
@@ -1854,26 +1886,26 @@ takes place at all levels of a nested substitution.
 </p>
 </dd>
 <dt><tt>12.</tt> <em>Case modification</em></dt>
-<dd><p>Any case modification from one of the flags <tt>(L)</tt>, <tt>(U)</tt> or <tt>(C)</tt>
+<dd><p>Any case modification from one of the flags &lsquo;<tt>(L)</tt>&rsquo;, &lsquo;<tt>(U)</tt>&rsquo; or &lsquo;<tt>(C)</tt>&rsquo;
 is applied.
 </p>
 </dd>
 <dt><tt>13.</tt> <em>Escape sequence replacement</em></dt>
-<dd><p>First any replacements from the <tt>(g)</tt> flag are performed, then any
-prompt-style formatting from the <tt>(%)</tt> family of flags is applied.
+<dd><p>First any replacements from the &lsquo;<tt>(g)</tt>&rsquo; flag are performed, then any
+prompt-style formatting from the &lsquo;<tt>(%)</tt>&rsquo; family of flags is applied.
 </p>
 </dd>
 <dt><tt>14.</tt> <em>Quote application</em></dt>
-<dd><p>Any quoting or unquoting using <tt>(q)</tt> and <tt>(Q)</tt> and related flags
+<dd><p>Any quoting or unquoting using &lsquo;<tt>(q)</tt>&rsquo; and &lsquo;<tt>(Q)</tt>&rsquo; and related flags
 is applied.
 </p>
 </dd>
 <dt><tt>15.</tt> <em>Directory naming</em></dt>
-<dd><p>Any directory name substitution using <tt>(D)</tt> flag is applied.
+<dd><p>Any directory name substitution using &lsquo;<tt>(D)</tt>&rsquo; flag is applied.
 </p>
 </dd>
 <dt><tt>16.</tt> <em>Visibility enhancement</em></dt>
-<dd><p>Any modifications to make characters visible using the <tt>(V)</tt> flag
+<dd><p>Any modifications to make characters visible using the &lsquo;<tt>(V)</tt>&rsquo; flag
 are applied.
 </p>
 </dd>
@@ -1918,7 +1950,7 @@ substitutions.
 result, all words are rejoined with the first character of <tt>IFS</tt>
 between.  So in &lsquo;<tt>${(P</tt><tt>)${(f</tt><tt>)lines}}</tt>&rsquo;
 the value of <tt>${lines}</tt> is split at newlines, but then must be
-joined again before the <tt>P</tt> flag can be applied.
+joined again before the &lsquo;<tt>(P)</tt>&rsquo; flag can be applied.
 </p>
 <p>If a single word is not required, this rule is skipped.
 </p>
@@ -1931,6 +1963,13 @@ is elided from the list of arguments inserted into the command line.
 <p>Strictly speaking, the removal happens later as the same happens with
 other forms of substitution; the point to note here is simply that
 it occurs after any of the above parameter operations.
+</p>
+</dd>
+<dt><tt>25.</tt> <em>Nested parameter name replacement</em></dt>
+<dd><p>If the &lsquo;<tt>(P)</tt>&rsquo; flag is present and rule <tt>4.</tt> has not applied, the
+value so far is treated as a parameter name (which may include a subscript
+expression) and replaced with the corresponding value, with internal flags
+(rule <tt>2.</tt>) applied to the new value.
 </p>
 </dd>
 </dl>
@@ -3142,6 +3181,22 @@ otherwise identical.  Neither of these can be combined with other forms of
 globbing within the same path segment; in that case, the &lsquo;<tt>*</tt>&rsquo;
 operators revert to their usual effect.
 </p>
+<p>Even shorter forms are available when the option <tt>GLOB_STAR_SHORT</tt> is
+set.  In that case if no <tt>/</tt> immediately follows a <tt>**</tt> or <tt>***</tt>
+they are treated as if both a <tt>/</tt> plus a further <tt>*</tt> are present.
+Hence:
+</p>
+<div class="example">
+<pre class="example">setopt GLOBSTARSHORT
+ls **.c
+</pre></div>
+
+<p>is equivalent to
+</p>
+<div class="example">
+<pre class="example">ls **/*.c
+</pre></div>
+
 <hr>
 <a name="Glob-Qualifiers"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -3654,9 +3709,9 @@ print &lsquo;<tt>shmiltin.shmo</tt>&rsquo;.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
+<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
 </body>
 </html>

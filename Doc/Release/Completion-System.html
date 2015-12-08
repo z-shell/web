@@ -4631,6 +4631,11 @@ possible completions.  When it contains &lsquo;<tt>-d</tt>&rsquo; or an argument
 option &lsquo;<tt>-c</tt>&rsquo; will not be considered.  However, after &lsquo;<tt>-a</tt>&rsquo;
 both sets will still be considered valid.
 </p>
+<p>If an option in a set appears on the command line, it is stored in the
+associative array &lsquo;<tt>opt_args</tt>&rsquo; with &rsquo;<var>set</var><tt>-</tt><var>option</var>&rsquo;
+as a key.  In the example above, a key &lsquo;<tt>set1--c</tt>&rsquo; is used if the option
+&lsquo;<tt>-c</tt>&rsquo; is on the command line.
+</p>
 <p>If the name given for one of the mutually exclusive sets is of the form
 &lsquo;<tt>(</tt><var>name</var><tt>)</tt>&rsquo; then only one value from each set will ever
 be completed; more formally, all specifications are mutually
@@ -5836,9 +5841,9 @@ may be useful on your system.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
+<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
 </body>
 </html>

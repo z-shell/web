@@ -733,6 +733,22 @@ will be an array or a scalar.
 <dt><tt>GLOB_DOTS</tt> (<tt>-4</tt>)</dt>
 <dd><p>Do not require a leading &lsquo;<tt>.</tt>&rsquo; in a filename to be matched explicitly.
 </p>
+<a name="index-GLOB_005fSTAR_005fSHORT"></a>
+<a name="index-NO_005fGLOB_005fSTAR_005fSHORT"></a>
+<a name="index-GLOBSTARSHORT"></a>
+<a name="index-NOGLOBSTARSHORT"></a>
+<a name="index-globbing_002c-short-forms"></a>
+<a name="index-globbing_002c-_002a_002a-special"></a>
+</dd>
+<dt><tt>GLOB_STAR_SHORT</tt></dt>
+<dd><p>When this option is set and the default zsh-style globbing is in
+effect, the pattern &lsquo;<tt>**/*</tt>&rsquo; can be abbreviated to &lsquo;<tt>**</tt>&rsquo; and the
+pattern &lsquo;<tt>***/*</tt>&rsquo; can be abbreviated to <tt>***</tt>.  Hence &lsquo;<tt>**.c</tt>&rsquo;
+finds a file ending in <tt>.c</tt> in any subdirectory, and &lsquo;<tt>***.c</tt>&rsquo; does
+the same while also following symbolic links.  A <tt>/</tt> immediately
+after the &lsquo;<tt>**</tt>&rsquo; or &lsquo;<tt>***</tt>&rsquo; forces the pattern to be treated as the
+unabbreviated form.
+</p>
 <a name="index-GLOB_005fSUBST"></a>
 <a name="index-NO_005fGLOB_005fSUBST"></a>
 <a name="index-GLOBSUBST"></a>
@@ -964,7 +980,8 @@ Otherwise they are treated as an error.
 </dd>
 <dt><tt>WARN_CREATE_GLOBAL</tt></dt>
 <dd><p>Print a warning message when a global parameter is created in a function
-by an assignment.  This often indicates that a parameter has not been
+by an assignment or in math context.
+This often indicates that a parameter has not been
 declared local when it should have been.  Parameters explicitly declared
 global from within a function using <tt>typeset -g</tt> do not cause a warning.
 Note that there is no warning when a local parameter is assigned to in
@@ -1942,14 +1959,14 @@ like C and other programming languages;
 <a href="Arithmetic-Evaluation.html#Arithmetic-Evaluation">Arithmetic Evaluation</a>
 has an explicit list.
 </p>
-<a name="index-DEBUG_005fBEFORE_005fCMD-_003cD_003e"></a>
-<a name="index-NO_005fDEBUG_005fBEFORE_005fCMD-_003cD_003e"></a>
-<a name="index-DEBUGBEFORECMD-_003cD_003e"></a>
-<a name="index-NODEBUGBEFORECMD-_003cD_003e"></a>
+<a name="index-DEBUG_005fBEFORE_005fCMD"></a>
+<a name="index-NO_005fDEBUG_005fBEFORE_005fCMD"></a>
+<a name="index-DEBUGBEFORECMD"></a>
+<a name="index-NODEBUGBEFORECMD"></a>
 <a name="index-traps_002c-DEBUG_002c-before-or-after-command"></a>
 <a name="index-DEBUG-trap_002c-before-or-after-command"></a>
 </dd>
-<dt><tt>DEBUG_BEFORE_CMD</tt></dt>
+<dt><tt>DEBUG_BEFORE_CMD</tt> &lt;D&gt;</dt>
 <dd><p>Run the <tt>DEBUG</tt> trap before each command; otherwise it is run after
 each command.  Setting this option mimics the behaviour of ksh 93; with
 the option unset the behaviour is that of ksh 88.
@@ -3364,9 +3381,9 @@ options to the shell.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
+<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
 </body>
 </html>

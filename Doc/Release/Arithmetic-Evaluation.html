@@ -348,7 +348,7 @@ can be specified with the <tt>integer</tt> builtin.
 Arithmetic evaluation is performed on the value of each
 assignment to a named parameter declared integer
 in this manner.  Assigning a floating point number to an integer results in
-rounding down to the next integer.
+rounding towards zero.
 </p>
 <a name="index-parameters_002c-floating-point"></a>
 <a name="index-floating-point-parameters"></a>
@@ -363,16 +363,16 @@ format.
 </p>
 <p>Promotion of integer to floating point values is performed where
 necessary.  In addition, if any operator which requires an integer
-(&lsquo;<tt>~</tt>&rsquo;, &lsquo;<tt>&amp;</tt>&rsquo;, &lsquo;<tt>|</tt>&rsquo;, &lsquo;<tt>^</tt>&rsquo;, &lsquo;<tt>%</tt>&rsquo;, &lsquo;<tt>&lt;&lt;</tt>&rsquo;, &lsquo;<tt>&gt;&gt;</tt>&rsquo; and their
-equivalents with assignment) is given a floating point argument, it will be
-silently rounded down to the next integer.
+(&lsquo;<tt>&amp;</tt>&rsquo;, &lsquo;<tt>|</tt>&rsquo;, &lsquo;<tt>^</tt>&rsquo;, &lsquo;<tt>&lt;&lt;</tt>&rsquo;, &lsquo;<tt>&gt;&gt;</tt>&rsquo; and their equivalents with
+assignment) is given a floating point argument, it will be silently rounded
+towards zero except for &lsquo;<tt>~</tt>&rsquo; which rounds down.
 </p>
 <p>Users should beware that, in common with many other programming
 languages but not software designed for calculation, the evaluation of
 an expression in zsh is taken a term at a time and promotion of integers
 to floating point does not occur in terms only containing integers.  A
 typical result of this is that a division such as <tt>6/8</tt> is truncated,
-in this being rounded down to 0.  The <tt>FORCE_FLOAT</tt> shell option can
+in this being rounded towards 0.  The <tt>FORCE_FLOAT</tt> shell option can
 be used in scripts or functions where floating point evaluation is
 required throughout.
 </p>
@@ -411,9 +411,9 @@ It is therefore best to declare numeric variables with explicit types.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
+<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
 </body>
 </html>

@@ -170,6 +170,10 @@ completion system.
 <dd><p>Interface to the PCRE library.
 </p>
 </dd>
+<dt><tt>zsh/param/private</tt></dt>
+<dd><p>Builtins for managing private-scoped parameters in function context.
+</p>
+</dd>
 <dt><tt>zsh/regex</tt></dt>
 <dd><p>Interface to the POSIX regex library.
 </p>
@@ -271,35 +275,37 @@ styles.
 </td></tr>
 <tr><td align="left" valign="top"><a href="#The-zsh_002fpcre-Module">22.20 The zsh/pcre Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fregex-Module">22.21 The zsh/regex Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fparam_002fprivate-Module">22.21 The zsh/param/private Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fsched-Module">22.22 The zsh/sched Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fregex-Module">22.22 The zsh/regex Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fnet_002fsocket-Module">22.23 The zsh/net/socket Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fsched-Module">22.23 The zsh/sched Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fstat-Module">22.24 The zsh/stat Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fnet_002fsocket-Module">22.24 The zsh/net/socket Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fsystem-Module">22.25 The zsh/system Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fstat-Module">22.25 The zsh/stat Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fnet_002ftcp-Module">22.26 The zsh/net/tcp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fsystem-Module">22.26 The zsh/system Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002ftermcap-Module">22.27 The zsh/termcap Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fnet_002ftcp-Module">22.27 The zsh/net/tcp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fterminfo-Module">22.28 The zsh/terminfo Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002ftermcap-Module">22.28 The zsh/termcap Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzftp-Module">22.29 The zsh/zftp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fterminfo-Module">22.29 The zsh/terminfo Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzle-Module">22.30 The zsh/zle Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzftp-Module">22.30 The zsh/zftp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzleparameter-Module">22.31 The zsh/zleparameter Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzle-Module">22.31 The zsh/zle Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzprof-Module">22.32 The zsh/zprof Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzleparameter-Module">22.32 The zsh/zleparameter Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzpty-Module">22.33 The zsh/zpty Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzprof-Module">22.33 The zsh/zprof Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzselect-Module">22.34 The zsh/zselect Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzpty-Module">22.34 The zsh/zpty Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzutil-Module">22.35 The zsh/zutil Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzselect-Module">22.35 The zsh/zselect Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzutil-Module">22.36 The zsh/zutil Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 <hr>
@@ -2471,11 +2477,15 @@ directory, the current working directory.
 </dd>
 <dt><tt>history</tt></dt>
 <dd><p>This associative array maps history event numbers to the full history lines.
+Although it is presented as an associative array, the array of all values
+(<tt>${history[@]}</tt>) is guaranteed to be returned in order from most recent
+to oldest history event, that is, by decreasing history event number.
 </p>
 <a name="index-historywords"></a>
 </dd>
 <dt><tt>historywords</tt></dt>
-<dd><p>A special array containing the words stored in the history.
+<dd><p>A special array containing the words stored in the history.  These also
+appear in most to least recent order.
 </p>
 <a name="index-jobdirs"></a>
 </dd>
@@ -2596,7 +2606,7 @@ where the <tt>source</tt> or &lsquo;<tt>.</tt>&rsquo; command was executed.
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fparameter-Module" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zsh-Modules" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#The-zsh_002fregex-Module" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-zsh_002fparam_002fprivate-Module" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -2667,8 +2677,7 @@ used to implement the &quot;find all non-overlapping matches&quot; functionality
 <p>A simple example of &quot;find all non-overlapping matches&quot;:
 </p>
 <div class="example">
-<pre class="example">
-string=&quot;The following zip codes: 78884 90210 99513&quot;
+<pre class="example">string=&quot;The following zip codes: 78884 90210 99513&quot;
 pcre_compile -m &quot;\d{5}&quot;
 accum=()
 pcre_match -b -- $string
@@ -2678,8 +2687,6 @@ while [[ $? -eq 0 ]] do
     pcre_match -b -n $b[2] -- $string
 done
 print -l $accum
-
-
 </pre></div>
 
 </dd>
@@ -2710,10 +2717,124 @@ the <tt>-i</tt> switch of <tt>pcre_compile</tt>.
 </dd>
 </dl>
 <hr>
-<a name="The-zsh_002fregex-Module"></a>
+<a name="The-zsh_002fparam_002fprivate-Module"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fpcre-Module" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Zsh-Modules" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#The-zsh_002fregex-Module" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+
+<a name="The-zsh_002fparam_002fprivate-Module-1"></a>
+<h2 class="section">22.21 The zsh/param/private Module</h2>
+
+<p>The <tt>zsh/param/private</tt> module is used to create parameters whose scope
+is limited to the current function body, and <em>not</em> to other functions
+called by the current function.
+</p>
+<p>This module provides a single autoloaded builtin:
+</p>
+<dl compact="compact">
+<dd><a name="index-private"></a>
+<a name="index-private-parameter_002c-creating"></a>
+</dd>
+<dt><tt>private</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>AHUahlprtux</tt> ] [ {<tt>+</tt>|<tt>-</tt>}<tt>EFLRZi</tt> [ <var>n</var> ] ] [ <var>name</var>[<tt>=</tt><var>value</var>] ... ]</dt>
+<dd><p>The <tt>private</tt> builtin accepts all the same options and arguments as <tt>local</tt>
+(<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands">Shell Builtin Commands</a>) except
+for the &lsquo;<tt>-</tt><tt>T</tt>&rsquo; option.  Tied parameters may not be made private.
+</p>
+<p>If used at the top level (outside a function scope), <tt>private</tt> creates a
+normal parameter in the same manner as <tt>declare</tt> or <tt>typeset</tt>.  A
+warning about this is printed if <tt>WARN_CREATE_GLOBAL</tt> is set
+(<a href="Options.html#Options">Options</a>).  Used inside a
+function scope, <tt>private</tt> creates a local parameter similar to one
+declared with <tt>local</tt>, except having special properties noted below.
+</p>
+<p>Special parameters which expose or manipulate internal shell state, such
+as <tt>ARGC</tt>, <tt>argv</tt>, <tt>COLUMNS</tt>, <tt>LINES</tt>, <tt>UID</tt>, <tt>EUID</tt>, <tt>IFS</tt>,
+<tt>PROMPT</tt>, <tt>RANDOM</tt>, <tt>SECONDS</tt>, etc., cannot be made private unless
+the &lsquo;<tt>-</tt><tt>h</tt>&rsquo; option is used to hide the special meaning of the
+parameter.  This may change in the future.
+</p>
+</dd>
+</dl>
+
+<p>As with other <tt>typeset</tt> equivalents, <tt>private</tt> is both a builtin and a
+reserved word, so arrays may be assigned with parenthesized word list
+<var>name</var><tt>=(</tt><var>value</var>...<tt>)</tt> syntax.  However, the reserved
+word &lsquo;<tt>private</tt>&rsquo; is not available until <tt>zsh/param/private</tt> is loaded,
+so care must be taken with order of execution and parsing for function
+definitions which use <tt>private</tt>.  To compensate for this, the module
+also adds the option &lsquo;<tt>-P</tt>&rsquo; to the &lsquo;<tt>local</tt>&rsquo; builtin to declare private
+parameters.
+</p>
+<p>For example, this construction fails if <tt>zsh/param/private</tt> has not yet
+been loaded when &lsquo;<tt>bad_declaration</tt>&rsquo; is defined:
+</p><div class="example">
+<pre class="example">bad_declaration() {
+  zmodload zsh/param/private
+  private array=( one two three )
+}
+</pre></div>
+
+<p>This construction works because <tt>local</tt> is already a keyword, and the
+module is loaded before the statement is executed:
+</p><div class="example">
+<pre class="example">good_declaration() {
+  zmodload zsh/param/private
+  local -P array=( one two three )
+}
+</pre></div>
+
+<p>The following is usable in scripts but may have trouble with <tt>autoload</tt>:
+</p><div class="example">
+<pre class="example">zmodload zsh/param/private
+iffy_declaration() {
+  private array=( one two three )
+}
+</pre></div>
+
+<p>The <tt>private</tt> builtin may always be used with scalar assignments and
+for declarations without assignments.
+</p>
+<p>Parameters declared with <tt>private</tt> have the following properties:
+</p>
+<ul>
+<li> Within the function body where it is declared, the parameter
+behaves as a local, except as noted above for tied or special parameters.
+</li><li> The type of a parameter declared private cannot be changed in the
+scope where it was declared, even if the parameter is unset.  Thus an
+array cannot be assigned to a private scalar, etc.
+</li><li> Within any other function called by the declaring function, the
+private parameter does <em>NOT</em> hide other parameters of the same name, so
+for example a global parameter of the same name is visible and may be
+assigned or unset.  This includes calls to anonymous functions, although
+that may also change in the future.
+</li><li> An exported private remains in the environment of inner scopes but
+appears unset for the current shell in those scopes.  Generally, exporting
+private parameters should be avoided.
+</li></ul>
+
+<p>Note that this differs from the static scope defined by compiled languages
+derived from C, in that the a new call to the same function creates a new
+scope, i.e., the parameter is still associated with the call stack rather
+than with the function definition.  It differs from ksh &lsquo;<tt>typeset -S</tt>&rsquo;
+because the syntax used to define the function has no bearing on whether
+the parameter scope is respected.
+</p><hr>
+<a name="The-zsh_002fregex-Module"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-zsh_002fparam_002fprivate-Module" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zsh-Modules" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fsched-Module" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -2728,7 +2849,7 @@ the <tt>-i</tt> switch of <tt>pcre_compile</tt>.
 </tr></table>
 
 <a name="The-zsh_002fregex-Module-1"></a>
-<h2 class="section">22.21 The zsh/regex Module</h2>
+<h2 class="section">22.22 The zsh/regex Module</h2>
 
 <a name="index-regular-expressions"></a>
 <a name="index-regex"></a>
@@ -2780,7 +2901,7 @@ instead of <tt>MATCH</tt> and <tt>match</tt>.
 </tr></table>
 
 <a name="The-zsh_002fsched-Module-1"></a>
-<h2 class="section">22.22 The zsh/sched Module</h2>
+<h2 class="section">22.23 The zsh/sched Module</h2>
 
 <p>The <tt>zsh/sched</tt> module makes available one builtin command and one
 parameter.
@@ -2866,7 +2987,7 @@ so that indices may become invalid.
 </tr></table>
 
 <a name="The-zsh_002fnet_002fsocket-Module-1"></a>
-<h2 class="section">22.23 The zsh/net/socket Module</h2>
+<h2 class="section">22.24 The zsh/net/socket Module</h2>
 
 <p>The <tt>zsh/net/socket</tt> module makes available one builtin command:
 </p>
@@ -2900,7 +3021,7 @@ command line editing, file I/O, and job control mechanisms.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.23.1 Outbound Connections</h3>
+<h3 class="subsection">22.24.1 Outbound Connections</h3>
 <a name="index-sockets_002c-outbound-Unix-domain"></a>
 
 <dl compact="compact">
@@ -2916,6 +3037,13 @@ connection.
 </p>
 <p>In order to elicit more verbose output, use <tt>-v</tt>.
 </p>
+<p>File descriptors can be closed with normal shell syntax when no longer
+needed, for example:
+</p>
+<div class="example">
+<pre class="example">exec {REPLY}&gt;&amp;-
+</pre></div>
+
 </dd>
 </dl>
 
@@ -2937,7 +3065,7 @@ connection.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.23.2 Inbound Connections</h3>
+<h3 class="subsection">22.24.2 Inbound Connections</h3>
 <a name="index-sockets_002c-inbound-Unix-domain"></a>
 
 <dl compact="compact">
@@ -2991,7 +3119,7 @@ it will wait for one.
 </tr></table>
 
 <a name="The-zsh_002fstat-Module-1"></a>
-<h2 class="section">22.24 The zsh/stat Module</h2>
+<h2 class="section">22.25 The zsh/stat Module</h2>
 
 <p>The <tt>zsh/stat</tt> module makes available one builtin command under
 two possible names:
@@ -3206,7 +3334,7 @@ standard output and no individual element has been selected.
 </tr></table>
 
 <a name="The-zsh_002fsystem-Module-1"></a>
-<h2 class="section">22.25 The zsh/system Module</h2>
+<h2 class="section">22.26 The zsh/system Module</h2>
 
 <p>The <tt>zsh/system</tt> module makes available various builtin commands and
 parameters.
@@ -3229,7 +3357,7 @@ parameters.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.25.1 Builtins</h3>
+<h3 class="subsection">22.26.1 Builtins</h3>
 
 <dl compact="compact">
 <dd><a name="index-syserror"></a>
@@ -3481,7 +3609,7 @@ version of the shell before it was implemented).
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.25.2 Math Functions</h3>
+<h3 class="subsection">22.26.2 Math Functions</h3>
 
 <dl compact="compact">
 <dt><tt>systell(<var>fd</var>)</tt></dt>
@@ -3509,7 +3637,7 @@ descriptor passed as an argument.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.25.3 Parameters</h3>
+<h3 class="subsection">22.26.3 Parameters</h3>
 
 <dl compact="compact">
 <dd><a name="index-errnos"></a>
@@ -3567,7 +3695,7 @@ of the main shell process.
 </tr></table>
 
 <a name="The-zsh_002fnet_002ftcp-Module-1"></a>
-<h2 class="section">22.26 The zsh/net/tcp Module</h2>
+<h2 class="section">22.27 The zsh/net/tcp Module</h2>
 
 <p>The <tt>zsh/net/tcp</tt> module makes available one builtin command:
 </p>
@@ -3662,7 +3790,7 @@ listening.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.26.1 Outbound Connections</h3>
+<h3 class="subsection">22.27.1 Outbound Connections</h3>
 <a name="index-sockets_002c-outbound-TCP"></a>
 
 <dl compact="compact">
@@ -3699,7 +3827,7 @@ descriptor for the connection.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.26.2 Inbound Connections</h3>
+<h3 class="subsection">22.27.2 Inbound Connections</h3>
 <a name="index-sockets_002c-inbound-TCP"></a>
 
 <dl compact="compact">
@@ -3755,7 +3883,7 @@ it will wait for one.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.26.3 Closing Connections</h3>
+<h3 class="subsection">22.27.3 Closing Connections</h3>
 <a name="index-sockets_002c-closing-TCP"></a>
 
 <dl compact="compact">
@@ -3794,7 +3922,7 @@ to force such a socket closed, use <tt>-f</tt>.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.26.4 Example</h3>
+<h3 class="subsection">22.27.4 Example</h3>
 <a name="index-TCP_002c-example"></a>
 <p>Here is how to create a TCP connection between two instances of zsh.  We
 need to pick an unassigned port; here we use the randomly chosen 5123.
@@ -3856,7 +3984,7 @@ ztcp -c $fd
 </tr></table>
 
 <a name="The-zsh_002ftermcap-Module-1"></a>
-<h2 class="section">22.27 The zsh/termcap Module</h2>
+<h2 class="section">22.28 The zsh/termcap Module</h2>
 
 <p>The <tt>zsh/termcap</tt> module makes available one builtin command:
 </p>
@@ -3901,7 +4029,7 @@ their values.
 </tr></table>
 
 <a name="The-zsh_002fterminfo-Module-1"></a>
-<h2 class="section">22.28 The zsh/terminfo Module</h2>
+<h2 class="section">22.29 The zsh/terminfo Module</h2>
 
 <p>The <tt>zsh/terminfo</tt> module makes available one builtin command:
 </p>
@@ -3946,7 +4074,7 @@ their values.
 </tr></table>
 
 <a name="The-zsh_002fzftp-Module-1"></a>
-<h2 class="section">22.29 The zsh/zftp Module</h2>
+<h2 class="section">22.30 The zsh/zftp Module</h2>
 
 <p>The <tt>zsh/zftp</tt> module makes available one builtin command:
 </p>
@@ -3991,7 +4119,7 @@ more information on how responses from the server may be printed.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.29.1 Subcommands</h3>
+<h3 class="subsection">22.30.1 Subcommands</h3>
 <a name="index-zftp_002c-subcommands"></a>
 
 <dl compact="compact">
@@ -4274,7 +4402,7 @@ background commands which use <tt>zftp</tt> are still active.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.29.2 Parameters</h3>
+<h3 class="subsection">22.30.2 Parameters</h3>
 <a name="index-zftp_002c-parameters"></a>
 <p>The following shell parameters are used by <tt>zftp</tt>.  Currently none
 of them are special.
@@ -4471,7 +4599,7 @@ specifies that no messages should be printed.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.29.3 Functions</h3>
+<h3 class="subsection">22.30.3 Functions</h3>
 <a name="index-zftp_002c-functions"></a>
 
 <dl compact="compact">
@@ -4558,7 +4686,7 @@ user to decide whether the function should be defined and to use
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.29.4 Problems</h3>
+<h3 class="subsection">22.30.4 Problems</h3>
 <a name="index-zftp_002c-problems"></a>
 
 <p>A connection may not be opened in the left hand side of a pipe as this
@@ -4597,7 +4725,7 @@ This is presumably a bug in the operating system.
 </tr></table>
 
 <a name="The-zsh_002fzle-Module-1"></a>
-<h2 class="section">22.30 The zsh/zle Module</h2>
+<h2 class="section">22.31 The zsh/zle Module</h2>
 
 <p>The <tt>zsh/zle</tt> module contains the Zsh Line Editor.  See
 <a href="Zsh-Line-Editor.html#Zsh-Line-Editor">Zsh Line Editor</a>.
@@ -4620,7 +4748,7 @@ This is presumably a bug in the operating system.
 </tr></table>
 
 <a name="The-zsh_002fzleparameter-Module-1"></a>
-<h2 class="section">22.31 The zsh/zleparameter Module</h2>
+<h2 class="section">22.32 The zsh/zleparameter Module</h2>
 
 <a name="index-parameters_002c-special-2"></a>
 <p>The <tt>zsh/zleparameter</tt> module defines two special parameters that can be 
@@ -4668,7 +4796,7 @@ of the shell function implementing the completion widget.
 </tr></table>
 
 <a name="The-zsh_002fzprof-Module-1"></a>
-<h2 class="section">22.32 The zsh/zprof Module</h2>
+<h2 class="section">22.33 The zsh/zprof Module</h2>
 
 <a name="index-functions_002c-profiling"></a>
 <p>When loaded, the <tt>zsh/zprof</tt> causes shell functions to be profiled.
@@ -4749,7 +4877,7 @@ counters and will not show the listing.
 </tr></table>
 
 <a name="The-zsh_002fzpty-Module-1"></a>
-<h2 class="section">22.33 The zsh/zpty Module</h2>
+<h2 class="section">22.34 The zsh/zpty Module</h2>
 
 <p>The <tt>zsh/zpty</tt> module offers one builtin:
 </p>
@@ -4864,7 +4992,7 @@ form of calls to the <tt>zpty</tt> builtin.
 </tr></table>
 
 <a name="The-zsh_002fzselect-Module-1"></a>
-<h2 class="section">22.34 The zsh/zselect Module</h2>
+<h2 class="section">22.35 The zsh/zselect Module</h2>
 
 <p>The <tt>zsh/zselect</tt> module makes available one builtin command:
 </p>
@@ -4953,7 +5081,7 @@ in the select operation the appropriate error message is printed.
 </tr></table>
 
 <a name="The-zsh_002fzutil-Module-1"></a>
-<h2 class="section">22.35 The zsh/zutil Module</h2>
+<h2 class="section">22.36 The zsh/zutil Module</h2>
 
 <a name="index-builtins_002c-utility"></a>
 <p>The <tt>zsh/zutil</tt> module only adds some builtins:
@@ -5315,9 +5443,9 @@ bar=(-a '' -b xyz)
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>October 2, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.1.1, released on September 11, 2015.</font>
+<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
 </body>
 </html>
