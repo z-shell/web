@@ -27,6 +27,59 @@
 </table>
 <hr size=1 noshade>
 
+<h2>Changes between versions 5.1.1 and 5.2</h2>
+
+<h3>Incompatibilities</h3>
+
+<p>
+The behaviour of the parameter flag (P) has changed when it appears
+in a nested parameter group, in order to make it more useful in
+such cases.  A (P) in the outermost parameter group behaves as
+before.
+</p>
+
+<h3>Changes</h3>
+
+<ul>
+<li>
+The new module zsh/param/private can be loaded to allow the shell
+to define parameters that are private to a function scope (i.e. are
+not propagated to nested functions called within this function).
+</li>
+
+<li>
+The parameter flag ${(P)...} is now more useful when it appears in
+a nested expansion.  For example,
+
+<pre>
+  typeset -A assoc=(one un two deux three trois)
+  name=assoc
+  print ${${(P)name}[one]}
+</pre>
+
+now prints "un".  In previous versions of the shell the value of the
+substitution was fully expanded on return from ${(P)name}, making
+associative array subscripting difficult.  As a side effect, flags
+for formatting appearing in the inner substitution now affect the
+substitution of the name (into "assoc" in this case), which is not
+normally useful: flags that should apply to the value must be in the
+outer substitution.
+</li>
+
+<li>
+The GLOB_STAR_SHORT option allows the pattern **/* to be shortened to
+just ** if no / follows. so **.c searches recursively for a file whose
+name has the suffix ".c".
+</li>
+
+<li>
+The effect of the WARN_CREATE_GLOBAL option has been significantly
+extended, so expect it to cause additional warning messages about
+parameters created globally within function scope.
+</li>
+</ul>
+
+
 <h2>Changes between versions 5.1 and 5.1.1</h2>
 
 <ul>
