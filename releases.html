@@ -27,6 +27,244 @@
 </table>
 <hr size=1 noshade>
 
+<h2>Changes between versions 5.2 and 5.3</h2>
+
+<h3>Incompatibilities</h3>
+
+<ul>
+<li>
+In character classes delimited by "[" and "]" within patterns, whether
+used for filename generation (globbing) or other forms of pattern
+matching, it used not to be possible to quote "-" when used for a range,
+or "^" and "!" when used for negating a character set.  The characters can
+now be quoted by any of the standard shell means, but note that
+the "[" and "]" must not be quoted.  For example,
+
+<pre>
+  [[ $a = ['a-z'] ]]
+</pre>
+
+matches if the variable a contains just one of the characters "a", "-"
+or "z" only.  Previously this would have matched any lower case ASCII
+letter.  Note therefore the useful fact that
+
+<pre>
+  [[ $a = ["$cset"] ]]
+</pre>
+
+matches any character contained in the variable "cset".  A consequence
+of this change is that variables that should have active ranges need
+(with default zsh options) to be indicated explicitly, e.g.
+
+<pre>
+  cset="a-z"
+  [[ b = [${~cset}] ]]
+</pre>
+
+The "~" causes the "-" character to be active.  In sh emulation the
+"~" is unncessary in this example and double quotes must be used to
+suppress the range behaviour of the "-".
+</li>
+
+<li>
+The first argument to 'repeat' is now evaluated as an arithmetic
+expression.  It was always documented to be an arithmetic expression, but
+until now the decimal integer at the start of the value was used and the
+remainder of the value discarded.  This could lead to different behaviour
+if the argument contains non-numeric characters, or if the argument has
+leading zeroes and the OCTAL_ZEROES option is set.
+</li>
+
+<li>
+<p>
+For some time the shell has had a POSIX_TRAPS option which determines
+whether the EXIT trap has POSIX behaviour (the trap is only run at shell
+exit) or traditional zsh behaviour (the trap is run once and discarded
+when the enclosing fuction or shell exits, whichever happens first).
+The use of this option has now been made "sticky" on the EXIT trap ---
+in other words, the setting of the option at the point where the trap is
+set now determines whether the trap has POSIX or traditional zsh
+behaviour.  This means that changing the option after the trap was set
+no longer has any effect.
+</p>
+
+<p>
+Other aspects of EXIT trap handling have not changed --- there is still
+only one EXIT trap at any point in a programme, so it is not generally
+useful to combine POSIX and non-POSIX behaviour in the same script.
+</p>
+</li>
+
+<li>
+There was an undocumented feature dating from the early days of zsh
+that glob qualifiers consisting only of the digits 0 to 7 were treated
+as an octal file mode to "and" with the modes of files being tested.
+This has been removed in order to be more sensitive to syntax errors.
+The "f" qualifier has for many years been the documented way of testing
+file modes; it allows the "and" test ("*(f+1)" is the documented
+equivalent of "*(1)") as well as many other forms.
+</li>
+
+<li>
+<p>
+The completion helper function _arguments now escapes both backslashes
+and colons in the values of option arguments when populating the $opt_args
+associative array.  Previously, colons were escaped with a backslash but
+backslashes were not themselves escaped with a backslash, which lead to
+ambiguity: '-x foo\:bar' (one argument with a backslashed colon) and
+'-x foo\\ bar' (two arguments, and the first one ends in a backslash) would
+both set $opt_args[-x] to the same value.  This example assumes the -x
+option's spec declared two arguments, as in:
+</p>
+
+<pre>
+    _arguments : -x:foo:${action}:bar:$action
+</pre>
+
+<p>
+For the more common case of non-repeatable options that take a single
+argument, completion functions now have to unescape not only colons but
+also backslashes when obtaining the option's argument from $opt_args.
+</p>
+</li>
+
+<li>
+Previously, if the function command_not_found_handler was run
+in place of a command-not-found error, and the function returned
+non-zero status, zsh set the status to 127 and printed an error message
+anyway.  Now, the status from the handler is retained and no additional
+message is printed.  The main reasons for this change are that it was not
+possible to return a non-zero status to the parent shell from a command
+executed as a replacement, and the new implementation is more consistent
+with other shells.
+</li>
+
+<li>
+The output of "typeset -p" (and synonyms) now takes into account the
+function scope and export state of each parameter.  Exported parameters
+are output as "export" commands unless the parameter is also local, and
+other parameters not local to the scope are output with the "-g" option.
+Previously, only "typeset" commands were output, never using "-g".
+</li>
+
+<li>
+At spelling-correction prompt ($SPROMPT), where the choices offered are
+[nyae], previously &lt;Enter&gt; would be accepted to mean [N] and &lt;Space&gt; and
+&lt;Tab&gt; would be accepted to mean [Y].  Now &lt;Space&gt; and &lt;Tab&gt; are invalid
+choices: typing either of them remains at the prompt.
+</li>
+
+<li>
+The $ary[i,j] subscript syntax to take a slice of an array behaves
+differently when both i and j are larger than the number of elements in
+the array.  When i == j, such a slice always yields an empty array, and
+when i &lt; j it always yields an array of one empty string element.  The
+following example illustrates how this differs from past versions.
+
+<pre>
+     nargs() { print $# }
+     a=(one two)
+     for i in 1 2 3 4; do
+      for j in 1 2 3 4 5; do
+       print -n "$i $j =&gt; "
+       nargs "${(@)a[i,j]}"
+      done
+     done
+     
+     5.2       |  5.3 **
+     ----------+----------
+     1 1 =&gt; 1  |  1 1 =&gt; 1
+     1 2 =&gt; 2  |  1 2 =&gt; 2
+     1 3 =&gt; 2  |  1 3 =&gt; 2
+     1 4 =&gt; 2  |  1 4 =&gt; 2
+     1 5 =&gt; 2  |  1 5 =&gt; 2
+     2 1 =&gt; 0  |  2 1 =&gt; 0
+     2 2 =&gt; 1  |  2 2 =&gt; 1
+     2 3 =&gt; 1  |  2 3 =&gt; 1
+     2 4 =&gt; 1  |  2 4 =&gt; 1
+     2 5 =&gt; 1  |  2 5 =&gt; 1
+     3 1 =&gt; 0  |  3 1 =&gt; 0
+     3 2 =&gt; 0  |  3 2 =&gt; 0
+     3 3 =&gt; 0  |  3 3 =&gt; 0
+     3 4 =&gt; 0  |  3 4 =&gt; 1   **
+     3 5 =&gt; 0  |  3 5 =&gt; 1   **
+     4 1 =&gt; 0  |  4 1 =&gt; 0
+     4 2 =&gt; 0  |  4 2 =&gt; 0
+     4 3 =&gt; 0  |  4 3 =&gt; 0
+     4 4 =&gt; 1  |  4 4 =&gt; 0   **
+     4 5 =&gt; 1  |  4 5 =&gt; 1
+</pre>
+</li>
+</ul>
+
+<h3>Changes</h3>
+
+<ul>
+<li>
+It is possible to enable character width support for Unicode 9 by
+configuring with `--enable-unicode9'; this compiles in some additional
+tables.  At some point this support may move into a module, in which
+case the configure option will be changed to cause the module to be
+permanently loaded.  This option is not useful unless your terminal also
+supports Unicode 9.
+</li>
+
+<li>
+The new word modifier ':P' computes the physical path of the argument.
+It is different from the existing ':a' modifier which always resolves
+'/before/here/../after' to '/before/after', and differs from the
+existing ':A' modifier which resolves symlinks only after 'here/..' is
+removed, even when /before/here is itself a symbolic link.  It is
+recommended to review uses of ':A' and, if appropriate, convert them
+to ':P' as soon as compatibility with 5.2 is no longer a requirement.
+</li>
+
+<li>
+The output of "typeset -p" uses "export" commands or the "-g" option
+for parameters that are not local to the current scope.  Previously,
+all output was in the form of "typeset" commands, never using "-g".
+</li>
+
+<li>
+vi-repeat-change can repeat user-defined widgets if the widget calls
+zle -f vichange.
+</li>
+
+<li>
+The parameter $registers now makes the contents of vi register buffers
+available to user-defined widgets.
+</li>
+
+<li>
+New vi-up-case and vi-down-case builtin widgets bound to gU/gu (or U/u
+in visual mode) for doing case conversion.
+</li>
+
+<li>
+A new select-word-match function provides vim-style text objects with
+configurable word boundaries using the existing match-words-by-style
+mechanism.
+</li>
+
+<li>
+Support for the conditional expression [[ -v var ]] to test if a
+variable is set for compatibility with other shells.
+</li>
+
+<li>
+The print and printf builtins have a new option -v to assign the output
+to a variable. This is for bash compatibility but with the additional
+feature that, for an array, a separate element is used each time the
+format is reused.
+</li>
+
+<li>
+New x: syntax in completion match specifications make it possible to
+disable match specifications hardcoded in completion functions.
+</li>
+</ul>
+
+
 <h2>Changes between versions 5.1.1 and 5.2</h2>
 
 <h3>Incompatibilities</h3>
@@ -2060,7 +2298,7 @@ completion.
 <div align=right>
 <address>
 <a name=Signature href="disclaimer.html">Disclaimer</A>
-Last modified: 2015-10-02
+Last modified: 2016-12-17
 </address>
 </div>
 
