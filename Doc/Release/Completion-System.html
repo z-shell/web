@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
 <head>
 <title>zsh: 20 Completion System</title>
 
@@ -31,9 +31,8 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space: nowrap}
 span.nolinebreak {white-space: nowrap}
-span.roman {font-family: serif; font-weight: normal}
+span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
@@ -62,10 +61,10 @@ ul.no-bullet {list-style: none}
 
 <a name="Completion-System-1"></a>
 <h1 class="chapter">20 Completion System</h1>
-<a name="index-completion-system"></a>
+<p><a name="index-completion-system"></a>
 <a name="index-completion_002c-programmable-1"></a>
 <a name="index-completion_002c-controlling-1"></a>
-
+</p>
 <hr>
 <a name="Description-3"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -167,7 +166,9 @@ as &lsquo;widgets&rsquo;.  These proliferate as new completions are required.
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Completion-Functions">20.6 Utility Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Completion-Directories">20.7 Completion Directories</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Completion-Directories">20.8 Completion Directories</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Completion-System-Variables">20.7 Completion System Variables</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
@@ -191,9 +192,9 @@ as &lsquo;widgets&rsquo;.  These proliferate as new completions are required.
 
 <a name="Initialization-1"></a>
 <h2 class="section">20.2 Initialization</h2>
-<a name="index-compinstall"></a>
+<p><a name="index-compinstall"></a>
 <a name="index-completion-system_002c-installing"></a>
-
+</p>
 <p>If the system was installed completely, it should be enough to
 call the shell function <tt>compinit</tt> from your initialization file; see the
 next section.  However, the function <tt>compinstall</tt> can be run by a user
@@ -243,9 +244,9 @@ end, where you are specifically asked for confirmation.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">20.2.1 Use of compinit</h3>
-<a name="index-compinit"></a>
+<p><a name="index-compinit"></a>
 <a name="index-completion-system_002c-initializing"></a>
-
+</p>
 <p>This section describes the use of <tt>compinit</tt> to initialize completion for
 the current session when called directly; if you have run
 <tt>compinstall</tt> it will be called automatically from your <tt>.zshrc</tt>.
@@ -305,8 +306,8 @@ option <tt>-u</tt>, and to make <tt>compinit</tt> silently ignore all insecure f
 and directories use the option <tt>-i</tt>.  This security check is skipped
 entirely when the <tt>-C</tt> option is given.
 </p>
-<a name="index-compaudit"></a>
-<p>The security check can be retried at any time by running the function
+<p><a name="index-compaudit"></a>
+The security check can be retried at any time by running the function
 <tt>compaudit</tt>.  This is the same check used by <tt>compinit</tt>, but when it
 is executed directly any changes to <tt>fpath</tt> are made local to the
 function so they do not persist.  The directories to be checked may be
@@ -316,8 +317,8 @@ to <tt>fpath</tt> as necessary.  To force a check of exactly the directories
 currently named in <tt>fpath</tt>, set <tt>_compdir</tt> to an empty string before
 calling <tt>compaudit</tt> or <tt>compinit</tt>.
 </p>
-<a name="index-bashcompinit"></a>
-<p>The function <tt>bashcompinit</tt> provides compatibility with bash&rsquo;s programmable
+<p><a name="index-bashcompinit"></a>
+The function <tt>bashcompinit</tt> provides compatibility with bash&rsquo;s programmable
 completion system.  When run it will define the functions, <tt>compgen</tt> and
 <tt>complete</tt> which correspond to the bash builtins with the same names.
 It will then be possible to use completion specifications and functions
@@ -342,8 +343,8 @@ written for bash.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">20.2.2 Autoloaded files</h3>
-<a name="index-completion-system_002c-autoloaded-functions"></a>
-
+<p><a name="index-completion-system_002c-autoloaded-functions"></a>
+</p>
 <p>The convention for autoloaded functions used in completion is that they
 start with an underscore; as already mentioned, the <tt>fpath/FPATH</tt>
 parameter must contain the directory in which they are stored.  If <tt>zsh</tt>
@@ -360,8 +361,8 @@ subdirectories of the subdirectories to the path: this allows
 the functions to be in the same format as in the <tt>zsh</tt> source
 distribution.
 </p>
-<a name="index-compdef_002c-use-of-by-compinit"></a>
-<p>When <tt>compinit</tt> is run, it searches all such files accessible via
+<p><a name="index-compdef_002c-use-of-by-compinit"></a>
+When <tt>compinit</tt> is run, it searches all such files accessible via
 <tt>fpath/FPATH</tt> and reads the first line of each of them.  This line should
 contain one of the tags described below.  Files whose first line does not
 start with one of these tags are not considered to be part of the
@@ -620,9 +621,9 @@ matching &lsquo;<tt>*.log</tt>&rsquo;.
 <p>The following function is defined by <tt>compinit</tt> and may be called
 directly.
 </p>
-<a name="index-compdef"></a>
+<p><a name="index-compdef"></a>
 <a name="index-completion-system_002c-adding-definitions"></a>
-<dl compact="compact">
+</p><dl compact="compact">
 <dt><tt>compdef</tt> [ <tt>-ane</tt> ] <var>function name</var> ... [ <tt>-</tt>{<tt>p</tt>|<tt>P</tt>} <var>pattern</var> ... [ <tt>-N</tt> <var>name</var> ...]]</dt>
 <dt><tt>compdef -d</tt> <var>name</var> ...</dt>
 <dt><tt>compdef -k</tt> [ <tt>-an</tt> ] <var>function style key-sequence</var> [ <var>key-sequence</var> ... ]</dt>
@@ -723,8 +724,8 @@ used to complete options for commands that understand the
 
 <a name="Completion-System-Configuration-1"></a>
 <h2 class="section">20.3 Completion System Configuration</h2>
-<a name="index-completion-system_002c-configuration"></a>
-
+<p><a name="index-completion-system_002c-configuration"></a>
+</p>
 <p>This section gives a short overview of how the completion system works,
 and then more detail on how users can configure how and when matches are
 generated.
@@ -953,8 +954,8 @@ common tags and styles.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">20.3.2 Standard Tags</h3>
-<a name="index-completion-system_002c-tags"></a>
-
+<p><a name="index-completion-system_002c-tags"></a>
+</p>
 <p>Some of the following are only used when looking up particular styles
 and do not refer to a type of match.
 </p>
@@ -1079,6 +1080,11 @@ the <tt>cdpath</tt> array is set
 </dd>
 <dt><tt>domains</tt></dt>
 <dd><p>for network domains
+</p>
+<a name="index-email_002d_002a_002c-completion-tag"></a>
+</dd>
+<dt><tt>email-</tt><var>plugin</var></dt>
+<dd><p>for email addresses from the &lsquo;<tt>_email-</tt><var>plugin</var>&rsquo; backend of <tt>_email_addresses</tt>
 </p>
 <a name="index-expansions_002c-completion-tag"></a>
 </dd>
@@ -1431,8 +1437,8 @@ what program is installed for a particular command name.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">20.3.3 Standard Styles</h3>
-<a name="index-completion-system_002c-styles"></a>
-
+<p><a name="index-completion-system_002c-styles"></a>
+</p>
 <p>Note that the values of several of these styles represent boolean
 values.  Any of the strings &lsquo;<tt>true</tt>&rsquo;, &lsquo;<tt>on</tt>&rsquo;,
 &lsquo;<tt>yes</tt>&rsquo;, and &lsquo;<tt>1</tt>&rsquo; can be used for the value &lsquo;true&rsquo; and
@@ -1447,7 +1453,7 @@ corresponding to a type of match, and if no style was found, for the
 <tt>list-colors</tt> and styles controlling completion listing such as 
 <tt>list-packed</tt> and <tt>last-prompt</tt>.  When tested for the <tt>default</tt>
 tag, only the <var>function</var> field of the context will be set so that
-a style using the default tag will normally be defined along the lines of:
+a style using the <tt>default</tt> tag will normally be defined along the lines of:
 </p>
 <div class="example">
 <pre class="example">zstyle ':completion:*:default' menu ...
@@ -1457,7 +1463,7 @@ a style using the default tag will normally be defined along the lines of:
 <dd><a name="index-accept_002dexact_002c-completion-style"></a>
 </dd>
 <dt><tt>accept-exact</tt></dt>
-<dd><p>This is tested for the default tag in addition to the tags valid for
+<dd><p>This is tested for the <tt>default</tt> tag in addition to the tags valid for
 the current context.  If it is set to &lsquo;true&rsquo; and any of the trial
 matches is the same as the string on the command line, this match will
 immediately be accepted (even if it would otherwise be considered
@@ -1937,7 +1943,8 @@ of the links themselves.
 <a name="index-filter_002c-completion-style"></a>
 </dd>
 <dt><tt>filter</tt></dt>
-<dd><p>This is used by the LDAP plugin for e-mail address completion to specify
+<dd><p>The <tt>ldap</tt> plugin of email address completion (see <tt>_email_addresses</tt>) uses
+this style to specify
 the attributes to match against when filtering entries.  So for example, if
 the style is set to &lsquo;<tt>sn</tt>&rsquo;, matching is done against surnames.  Standard
 LDAP filtering is used so normal completion matching is bypassed.  If this
@@ -2248,6 +2255,16 @@ number of errors that were accepted.
 the string &lsquo;<tt>pattern</tt>&rsquo;.  Then the pattern on the line is left
 unchanged if it does not match unambiguously.
 </p>
+<a name="index-gain_002dprivileges_002c-completion-style"></a>
+</dd>
+<dt><tt>gain-privileges</tt></dt>
+<dd><p>If set to <tt>true</tt>, this style enables the use of commands like <tt>sudo</tt>
+or <tt>doas</tt> to gain extra privileges when retrieving information for
+completion. This is only done when a command such as <tt>sudo</tt> appears on
+the command-line. To force the use of, e.g. <tt>sudo</tt> or to override any
+prefix that might be added due to <tt>gain-privileges</tt>, the <tt>command</tt>
+style can be used with a value that begins with a hyphen.
+</p>
 <a name="index-keep_002dprefix_002c-completion-style"></a>
 </dd>
 <dt><tt>keep-prefix</tt></dt>
@@ -2445,8 +2462,9 @@ only be performed with the &lsquo;<tt>*</tt>&rsquo; inserted.
 </dd>
 <dt><tt>matcher</tt></dt>
 <dd><p>This style is tested separately for each tag valid in the current
-context.  Its value is tried before any match specifications given by the 
-<tt>matcher-list</tt> style.  It should be in the form described in
+context.  Its value is placed before any match specifications given by the
+<tt>matcher-list</tt> style so can override them via the use of an <tt>x:</tt>
+specification.  The value should be in the form described in
 <a href="Completion-Widgets.html#Completion-Matching-Control">Completion Matching Control</a>.  For examples of this, see the description of the <tt>tag-order</tt> style.
 </p>
 <a name="index-matcher_002dlist_002c-completion-style"></a>
@@ -3369,8 +3387,8 @@ completion will not be delayed.
 
 <a name="Control-Functions-1"></a>
 <h2 class="section">20.4 Control Functions</h2>
-<a name="index-completion-system_002c-choosing-completers"></a>
-
+<p><a name="index-completion-system_002c-choosing-completers"></a>
+</p>
 <p>The initialization script <tt>compinit</tt> redefines all the widgets
 which perform completion to call the supplied widget function
 <tt>_main_complete</tt>.  This function acts as a wrapper calling the
@@ -3404,8 +3422,8 @@ although users may write their own.  Note that in contexts the leading
 underscore is stripped, for example basic completion is performed in the
 context &lsquo;<tt>:completion::complete:</tt><var>...</var>&rsquo;.
 </p>
-<a name="index-completion-system_002c-completers"></a>
-<dl compact="compact">
+<p><a name="index-completion-system_002c-completers"></a>
+</p><dl compact="compact">
 <dd><a name="index-_005fall_005fmatches"></a>
 </dd>
 <dt><tt>_all_matches</tt></dt>
@@ -3498,6 +3516,22 @@ special parameters that are available inside zle and completion
 widgets to find out if the command line hasn&rsquo;t changed since the last
 time completion was tried.  Only then are the <tt>_ignored</tt>,
 <tt>_correct</tt> and <tt>_approximate</tt> completers called.
+</p>
+<a name="index-_005fcanonical_005fpaths"></a>
+</dd>
+<dt><tt>_canonical_paths</tt> [ <tt>-A</tt> <var>var</var> ] [ <tt>-N</tt> ] [ <tt>-MJV12nfX</tt> ] <var>tag</var> <var>descr</var> [ <var>paths</var> ... ]</dt>
+<dd><p>This completion function completes all paths given to it, and also tries to
+offer completions which point to the same file as one of the paths given
+(relative path when an absolute path is given, and vice versa; when <tt>..</tt>&rsquo;s
+are present in the word to be completed; and some paths got from symlinks).
+</p>
+<p><tt>-A</tt>, if specified, takes the paths from the array variable specified. Paths can
+also be specified on the command line as shown above.  <tt>-N</tt>, if specified,
+prevents canonicalizing the paths given before using them for completion, in
+case they are already so. The options <tt>-M</tt>, <tt>-J</tt>, <tt>-V</tt>, <tt>-1</tt>, <tt>-2</tt>,
+<tt>-n</tt>, <tt>-F</tt>, <tt>-X</tt> are passed to <tt>compadd</tt>.
+</p>
+<p>See <tt>_description</tt> for a description of <var>tag</var> and <var>descr</var>.
 </p>
 <a name="index-_005fcomplete"></a>
 </dd>
@@ -3620,6 +3654,16 @@ directory specified at the beginning of the current word. For exact matches,
 completion continues to allow other completers such as <tt>_expand</tt> to
 expand the pattern. The standard <tt>add-space</tt> and <tt>prefix-hidden</tt>
 styles are observed.
+</p>
+<a name="index-_005fexternal_005fpwds"></a>
+</dd>
+<dt><tt>_external_pwds</tt></dt>
+<dd><p>Completes current directories of other zsh processes belonging to the
+current user.
+</p>
+<p>This is intended to be used via <tt>_generic</tt>, bound to a custom key
+combination. Note that pattern matching is enabled so matching is
+performed similar to how it works with the <tt>_match</tt> completer.
 </p>
 <a name="index-_005fhistory"></a>
 </dd>
@@ -3758,7 +3802,8 @@ for the current context; remember that the context for completers is less
 specific than that for contextual completion as the full context has not
 yet been determined.  Elements of the array may have one of the following
 forms:
-</p><dl compact="compact">
+</p>
+<dl compact="compact">
 <dt><tt>$</tt><var>hash</var></dt>
 <dd>
 <p><var>hash</var> is the name of an associative array.  Note this is not a full
@@ -3804,8 +3849,8 @@ The return status of the function is irrelevant.
 
 <a name="Bindable-Commands-1"></a>
 <h2 class="section">20.5 Bindable Commands</h2>
-<a name="index-completion-system_002c-bindable-commands"></a>
-
+<p><a name="index-completion-system_002c-bindable-commands"></a>
+</p>
 <p>In addition to the context-dependent completions provided, which are
 expected to work in an intuitively obvious way, there are a few widgets
 implementing special behaviour which can be bound separately to keys.  The
@@ -4028,7 +4073,7 @@ emacs and vi respectively.
 <tr><td valign="middle" align="left">[<a href="#Completion-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Bindable-Commands" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-System" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Completion-Directories" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-System-Variables" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-Using-compctl.html#Completion-Using-compctl" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -4042,8 +4087,8 @@ emacs and vi respectively.
 
 <a name="Utility-Functions"></a>
 <h2 class="section">20.6 Utility Functions</h2>
-<a name="index-completion-system_002c-utility-functions"></a>
-
+<p><a name="index-completion-system_002c-utility-functions"></a>
+</p>
 <p>Descriptions follow for utility functions that may be
 useful when writing completion functions.  If functions are installed in
 subdirectories, most of these reside in the
@@ -4053,14 +4098,15 @@ generating matches all follow the convention of returning status zero if they
 generated completions and non-zero if no matching completions could be 
 added.
 </p>
-<p>Two more features are offered by the <tt>_main_complete</tt> function.  The
-arrays <tt>compprefuncs</tt> and <tt>comppostfuncs</tt> may contain
-names of functions that are to be called immediately before or after
-completion has been tried.  A function will only be called once unless
-it explicitly reinserts itself into the array.
-</p>
 <dl compact="compact">
-<dd><a name="index-_005fall_005flabels"></a>
+<dd><a name="index-_005fabsolute_005fcommand_005fpaths"></a>
+</dd>
+<dt><tt>_absolute_command_paths</tt></dt>
+<dd><p>This function completes external commands as absolute paths (unlike
+<tt>_command_names -e</tt> which completes their basenames).  It takes no
+arguments.
+</p>
+<a name="index-_005fall_005flabels"></a>
 </dd>
 <dt><tt>_all_labels</tt> [ <tt>-x</tt> ] [ <tt>-12VJ</tt> ] <var>tag</var> <var>name</var> <var>descr</var> [ <var>command</var> <var>arg</var> ... ]</dt>
 <dd><p>This is a convenient interface to the <tt>_next_label</tt> function below,
@@ -4191,8 +4237,9 @@ even if one or more of the options take
 arguments.  For example, if <tt>-x</tt> takes an argument, with no
 <tt>-s</tt>, &lsquo;<tt>-xy</tt>&rsquo; is considered as a single (unhandled) option; with
 <tt>-s</tt>, <tt>-xy</tt> is an option with the argument &lsquo;<tt>y</tt>&rsquo;; with both <tt>-s</tt>
-and <tt>-w</tt>, <tt>-xy</tt> may be the option <tt>-x</tt> and the option <tt>-y</tt> with
-arguments still to come.
+and <tt>-w</tt>, <tt>-xy</tt> is the option <tt>-x</tt> and the option <tt>-y</tt> with
+arguments to <tt>-x</tt> (and to <tt>-y</tt>, if it takes arguments) still to come
+in subsequent words.
 </p>
 </dd>
 <dt><tt>-W</tt></dt>
@@ -4442,7 +4489,7 @@ form below, the <var>action</var> will be executed by calling the
 <tt>_all_labels</tt> function to process all tag labels.  No special handling
 of tags is needed unless a function call introduces a new one.
 </p>
-<p>The functions called to execute <var>action</var>s will be called with the the
+<p>The functions called to execute <var>action</var>s will be called with the
 elements of the array named by the &lsquo;<tt>-O</tt> <var>name</var>&rsquo; option as arguments.
 This can be used, for example, to pass the same set of options for the
 <tt>compadd</tt> builtin to all <var>action</var>s.
@@ -4569,8 +4616,8 @@ command line after the command name excluding all options and their
 arguments.  Options are stored in the associative array
 &lsquo;<tt>opt_args</tt>&rsquo; with option names as keys and their arguments as
 the values.  For options that have more than one argument these are
-given as one string, separated by colons.  All colons in the original
-arguments are preceded with backslashes.
+given as one string, separated by colons.  All colons and backslashes
+in the original arguments are preceded with backslashes.
 </p>
 <p>The parameter &lsquo;<tt>context</tt>&rsquo; is set when returning to the calling function
 to perform an action of the form &lsquo;<tt>-&gt;</tt><var>string</var>&rsquo;.  It is set to an
@@ -4815,7 +4862,7 @@ is empty or a single hyphen it is ignored.
 </p>
 <a name="index-_005fcall_005fprogram"></a>
 </dd>
-<dt><tt>_call_program</tt> <var>tag</var> <var>string</var> ...</dt>
+<dt><tt>_call_program</tt> [ <tt>-p</tt> ] <var>tag</var> <var>string</var> ...</dt>
 <dd><p>This function provides a mechanism for the user to override the use of an
 external command.  It looks up the <tt>command</tt> style with the supplied
 <var>tag</var>.  If the style is set, its value is used as the command to
@@ -4823,6 +4870,15 @@ execute.  The <var>string</var>s from the call to <tt>_call_program</tt>, or fro
 style if set, are concatenated with spaces between them and the resulting
 string is evaluated.  The return status is the return status of the command
 called.
+</p>
+<p>If the option &lsquo;<tt>-p</tt>&rsquo; is supplied it indicates that the command
+output is influenced by the permissions it is run with. If the
+<tt>gain-privileges</tt> style is set to true, <tt>_call_program</tt> will make
+use of commands such as <tt>sudo</tt>, if present on the command-line, to
+match the permissions to whatever the final command is likely to run
+under. When looking up the <tt>gain-privileges</tt> and <tt>command</tt> styles,
+the command component of the zstyle context will end with a slash
+(&lsquo;<tt>/</tt>&rsquo;) followed by the command that would be used to gain privileges.
 </p>
 <a name="index-_005fcombination"></a>
 </dd>
@@ -4870,6 +4926,25 @@ be given after the fieldname, separated from it by a colon.
 <tt>compadd</tt> when generating matches from the style value, or to 
 the functions for the fields if they are called.
 </p>
+<a name="index-_005fcommand_005fnames"></a>
+</dd>
+<dt><tt>_command_names</tt> [ <tt>-e</tt> | <tt>-</tt> ]</dt>
+<dd><p>This function completes words that are valid at command position: names of
+aliases, builtins, hashed commands, functions, and so on.  With the <tt>-e</tt>
+flag, only hashed commands are completed.  The <tt>-</tt> flag is ignored.
+</p>
+<a name="index-_005fcompleters"></a>
+</dd>
+<dt><tt>_completers</tt> [ <tt>-p</tt> ]</dt>
+<dd><p>This function completes names of completers.
+</p>
+<dl compact="compact">
+<dt><tt>-p</tt></dt>
+<dd><p>Include the leading underscore (&lsquo;<tt>_</tt>&rsquo;) in the matches.
+</p>
+</dd>
+</dl>
+
 <a name="index-_005fdescribe"></a>
 
 </dd>
@@ -4882,13 +4957,13 @@ different completion options <var>opt</var>s.
 <p>The <var>descr</var> is taken as a string to display above the matches if the
 <tt>format</tt> style for the <tt>descriptions</tt> tag is set.  This is followed by
 one or two names of arrays followed by options to pass to <tt>compadd</tt>.  The
-first array contains the possible completions with their descriptions in
+array <var>name1</var> contains the possible completions with their descriptions in
 the form &lsquo;<var>completion</var><tt>:</tt><var>description</var>&rsquo;.  Any literal colons in
-<var>completion</var> must be quoted with a backslash.  If a second array is
-given, it should have the same number of elements as the first; in this
+<var>completion</var> must be quoted with a backslash.  If a <var>name2</var> is
+given, it should have the same number of elements as <var>name1</var>; in this
 case the corresponding elements are added as possible completions instead
-of the <var>completion</var> strings from the first array.  The completion list
-will retain the descriptions from the first array.  Finally, a set of
+of the <var>completion</var> strings from <var>name1</var>.  The completion list
+will retain the descriptions from <var>name1</var>.  Finally, a set of
 completion options can appear.
 </p>
 <p>If the option &lsquo;<tt>-o</tt>&rsquo; appears before the first argument, the matches added
@@ -4975,6 +5050,24 @@ matches.  Almost all calls to <tt>compadd</tt> within the completion system use
 a similar format; this ensures that user-specified styles are correctly
 passed down to the builtins which implement the internals of completion.
 </p>
+<a name="index-_005fdir_005flist"></a>
+</dd>
+<dt><tt>_dir_list</tt> [ <tt>-s</tt> <var>sep</var> ] [ <tt>-S</tt> ]</dt>
+<dd><p>Complete a list of directory names separated by colons
+(the same format as <tt>$PATH</tt>).
+</p>
+<dl compact="compact">
+<dt><tt>-s</tt> <var>sep</var></dt>
+<dd><p>Use <var>sep</var> as separator between items.
+<var>sep</var> defaults to a colon (&lsquo;<tt>:</tt>&rsquo;).
+</p>
+</dd>
+<dt><tt>-S</tt></dt>
+<dd><p>Add <var>sep</var> instead of slash (&lsquo;<tt>/</tt>&rsquo;) as an autoremoveable suffix.
+</p>
+</dd>
+</dl>
+
 <a name="index-_005fdispatch"></a>
 </dd>
 <dt><tt>_dispatch</tt> <var>context string</var> ...</dt>
@@ -4990,6 +5083,45 @@ for default completion to be used as a fallback.
 <tt>$service</tt> to the <var>string</var> being tried, and sets
 the <var>context/command</var> field (the fourth) of the <tt>$curcontext</tt>
 parameter to the <var>context</var> given as the first argument.
+</p>
+<a name="index-_005femail_005faddresses"></a>
+</dd>
+<dt><tt>_email_addresses</tt> [ <tt>-c</tt> ] [ <tt>-n</tt> <var>plugin</var> ]</dt>
+<dd><p>Complete email addresses.  Addresses are provided by plugins.
+</p>
+<dl compact="compact">
+<dt><tt>-c</tt></dt>
+<dd><p>Complete bare <tt>localhost@domain.tld</tt> addresses, without a name part or
+a comment.
+Without this option, RFC822 &lsquo;<var>Firstname Lastname</var> <tt>&lt;</tt><var>address</var><tt>&gt;</tt>&rsquo;
+strings are completed.
+</p>
+</dd>
+<dt><tt>-n</tt> <var>plugin</var></dt>
+<dd><p>Complete aliases from <var>plugin</var>.  
+</p>
+</dd>
+</dl>
+
+<p>The following plugins are available by default:
+<tt>_email-ldap</tt> (see the <tt>filter</tt> style),
+<tt>_email-local</tt> (completes <var>user</var><tt>@</tt><var>hostname</var> Unix addresses),
+<tt>_email-mail</tt> (completes aliases from <tt>~/.mailrc</tt>),
+<tt>_email-mush</tt>,
+<tt>_email-mutt</tt>,
+and
+<tt>_email-pine</tt>.
+</p>
+<p>Addresses from the <tt>_email-</tt><var>foo</var> plugin are added under the
+tag &lsquo;<tt>email-</tt><var>foo</var>&rsquo;.
+</p>
+<p><em>Writing plugins</em>
+</p>
+<p>Plugins are written as separate functions with names starting with &lsquo;<tt>_email-</tt>&rsquo;.
+They are invoked with the <tt>-c</tt> option and <tt>compadd</tt> options.
+They should either do their own completion or
+set the <tt>$reply</tt> array to a list of &lsquo;<var>alias</var><tt>:</tt><var>address</var>&rsquo; elements and return <tt>300</tt>.
+New plugins will be picked up and run automatically.
 </p>
 <a name="index-_005ffiles"></a>
 </dd>
@@ -5084,7 +5216,7 @@ additional matches generated later are not inserted on the command line.
 </p>
 <a name="index-_005fmulti_005fparts"></a>
 </dd>
-<dt><tt>_multi_parts</tt> <var>sep</var> <var>array</var></dt>
+<dt><tt>_multi_parts</tt> [ <tt>-i</tt> ] <var>sep</var> <var>array</var></dt>
 <dd><p>The argument <var>sep</var> is a separator character.
 The <var>array</var> may be either the
 name of an array parameter or a literal array in the form
@@ -5626,11 +5758,18 @@ particular tag is to be tried, the <tt>_requested</tt> function should be
 called (see above).
 </p>
 <p>If &lsquo;<tt>-C</tt> <var>name</var>&rsquo; is given, <var>name</var> is temporarily stored in the
-argument field (the fifth) of the context in the <tt>curcontext</tt> parameter
+<var>argument</var> field (the fifth) of the context in the <tt>curcontext</tt> parameter
 during the call to <tt>_tags</tt>; the field is restored on exit.  This
 allows <tt>_tags</tt> to use a more 
 specific context without having to change and reset the
 <tt>curcontext</tt> parameter (which has the same effect).
+</p>
+<a name="index-_005ftilde_005ffiles"></a>
+</dd>
+<dt><tt>_tilde_files</tt></dt>
+<dd><p>Like <tt>_files</tt>, but resolve leading tildes according to the rules of
+filename expansion, so the suggested completions don&rsquo;t start with
+a &lsquo;<tt>~</tt>&rsquo; even if the filename on the command-line does.
 </p>
 <a name="index-_005fvalues"></a>
 </dd>
@@ -5762,14 +5901,75 @@ accept options to be passed down to <tt>compadd</tt>.
 different name for the argument context field.  The <tt>-x</tt> option has
 the same meaning as for <tt>_description</tt>.
 </p>
+<a name="index-_005fwidgets"></a>
+</dd>
+<dt><tt>_widgets</tt> [ <tt>-g</tt> <var>pattern</var> ]</dt>
+<dd><p>This function completes names of zle widgets (see
+<a href="Zsh-Line-Editor.html#Zle-Widgets">Widgets</a>).  The <var>pattern</var>, if present, is matched against values of the <tt>$widgets</tt>
+special parameter, documented in 
+<a href="Zsh-Modules.html#The-zsh_002fzleparameter-Module">The zsh/zleparameter Module</a>.
+</p>
 </dd>
 </dl>
 
 <hr>
-<a name="Completion-Directories"></a>
+<a name="Completion-System-Variables"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Completion-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-Functions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-System" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-Directories" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="Completion-Using-compctl.html#Completion-Using-compctl" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+
+<a name="Completion-System-Variables-1"></a>
+<h2 class="section">20.7 Completion System Variables</h2>
+<p><a name="index-completion-system_002c-variables"></a>
+</p>
+<p>There are some standard variables, initialised by the <tt>_main_complete</tt>
+function and then used from other functions.
+</p>
+<p>The standard variables are:
+</p>
+<dl compact="compact">
+<dt><tt>_comp_caller_options</tt></dt>
+<dd><p>The completion system uses <tt>setopt</tt> to set a number of options. This
+allows functions to be written without concern for compatibility with
+every possible combination of user options. However, sometimes completion
+needs to know what the user&rsquo;s option preferences are. These are saved
+in the <tt>_comp_caller_options</tt> associative array. Option names, spelled
+in lowercase without underscores, are mapped to one or other of the
+strings &lsquo;<tt>on</tt>&rsquo; and &lsquo;<tt>off</tt>&rsquo;.
+</p>
+
+</dd>
+<dt><tt>_comp_priv_prefix</tt></dt>
+<dd><p>Completion functions such as <tt>_sudo</tt> can set the <tt>_comp_priv_prefix</tt>
+array to a command prefix that may then be used by <tt>_call_program</tt> to
+match the privileges when calling programs to generate matches.
+</p>
+</dd>
+</dl>
+
+<p>Two more features are offered by the <tt>_main_complete</tt> function.  The
+arrays <tt>compprefuncs</tt> and <tt>comppostfuncs</tt> may contain
+names of functions that are to be called immediately before or after
+completion has been tried.  A function will only be called once unless
+it explicitly reinserts itself into the array.
+</p>
+<hr>
+<a name="Completion-Directories"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Completion-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-System-Variables" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-System" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-Using-compctl.html#Completion-Using-compctl" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-Using-compctl.html#Completion-Using-compctl" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -5784,9 +5984,9 @@ the same meaning as for <tt>_description</tt>.
 </tr></table>
 
 <a name="Completion-Directories-1"></a>
-<h2 class="section">20.7 Completion Directories</h2>
-<a name="index-completion-system_002c-directory-structure"></a>
-
+<h2 class="section">20.8 Completion Directories</h2>
+<p><a name="index-completion-system_002c-directory-structure"></a>
+</p>
 <p>In the source distribution, the files are contained in various
 subdirectories of the <tt>Completion</tt> directory.  They may have been
 installed in the same structure, or into one single function directory.
@@ -5841,9 +6041,9 @@ may be useful on your system.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 17, 2016</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
+<font size="-1">Zsh version 5.3, released on December 11, 2016.</font>
 </body>
 </html>

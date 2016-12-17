@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
 <head>
 <title>zsh: 10 Jobs &amp; Signals</title>
 
@@ -31,9 +31,8 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space: nowrap}
 span.nolinebreak {white-space: nowrap}
-span.roman {font-family: serif; font-weight: normal}
+span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
@@ -81,9 +80,9 @@ ul.no-bullet {list-style: none}
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">10.1 Jobs</h2>
-<a name="index-jobs"></a>
+<p><a name="index-jobs"></a>
 <a name="index-MONITOR_002c-use-of"></a>
-<p>If the <tt>MONITOR</tt> option is set,
+If the <tt>MONITOR</tt> option is set,
 an interactive shell associates a <em>job</em> with each pipeline.
 It keeps a table of current jobs, printed by the <tt>jobs</tt>
 command, and assigns them small integer numbers.
@@ -148,9 +147,9 @@ output like they do when they try to read input.
 suspended.  This (intentionally) does not apply if the command is
 continued via &lsquo;<tt>kill -CONT</tt>&rsquo;, nor when it is continued with <tt>bg</tt>.
 </p>
-<a name="index-jobs_002c-referring-to"></a>
+<p><a name="index-jobs_002c-referring-to"></a>
 <a name="index-referring-to-jobs"></a>
-<p>There are several ways to refer to jobs in the shell.
+There are several ways to refer to jobs in the shell.
 A job can be referred to by the process ID of any process of the job
 or by one of the following:
 </p>
@@ -159,10 +158,10 @@ or by one of the following:
 <dd><p>The job with the given number.
 </p></dd>
 <dt><tt>%</tt><var>string</var></dt>
-<dd><p>Any job whose command line begins with <var>string</var>.
+<dd><p>The last job whose command line begins with <var>string</var>.
 </p></dd>
 <dt><tt>%?</tt><var>string</var></dt>
-<dd><p>Any job whose command line contains <var>string</var>.
+<dd><p>The last job whose command line contains <var>string</var>.
 </p></dd>
 <dt><tt>%%</tt></dt>
 <dd><p>Current job.
@@ -195,10 +194,10 @@ jobs will be terminated, and the running jobs will be sent
 a <tt>SIGHUP</tt> signal, if the <tt>HUP</tt> option is set.
 <a name="index-HUP_002c-use-of"></a>
 </p>
-<a name="index-jobs_002c-disowning"></a>
+<p><a name="index-jobs_002c-disowning"></a>
 <a name="index-disowning-jobs"></a>
 <a name="index-disown_002c-use-of"></a>
-<p>To avoid having the shell terminate the running jobs, either
+To avoid having the shell terminate the running jobs, either
 use the <cite>nohup</cite> command (see man page nohup(1))
 or the <tt>disown</tt> builtin.
 </p>
@@ -228,10 +227,10 @@ Otherwise, signals have the values
 inherited by the shell from its parent
 (but see the <tt>TRAP</tt><var>NAL</var> special functions in <a href="Functions.html#Functions">Functions</a>).
 </p>
-<a name="index-exiting-shell_002c-and-asynchronous-jobs"></a>
+<p><a name="index-exiting-shell_002c-and-asynchronous-jobs"></a>
 <a name="index-asynchronous-jobs_002c-and-exiting-shell"></a>
 <a name="index-jobs_002c-asynchronous_002c-and-exiting-shell"></a>
-<p>Certain jobs are run asynchronously by the shell other than those
+Certain jobs are run asynchronously by the shell other than those
 explicitly put into the background; even in cases where the shell
 would usually wait for such jobs, an explicit <tt>exit</tt> command
 or exit due to the option <tt>ERR_EXIT</tt> will cause the shell to
@@ -255,9 +254,9 @@ the section Multios in <a href="Redirection.html#Redirection">Redirection</a>.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 17, 2016</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
+<font size="-1">Zsh version 5.3, released on December 11, 2016.</font>
 </body>
 </html>

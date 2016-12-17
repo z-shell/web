@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
 <head>
 <title>zsh: 11 Arithmetic Evaluation</title>
 
@@ -31,9 +31,8 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space: nowrap}
 span.nolinebreak {white-space: nowrap}
-span.roman {font-family: serif; font-weight: normal}
+span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
@@ -62,10 +61,10 @@ ul.no-bullet {list-style: none}
 
 <a name="Arithmetic-Evaluation-1"></a>
 <h1 class="chapter">11 Arithmetic Evaluation</h1>
-<a name="index-arithmetic-evaluation"></a>
+<p><a name="index-arithmetic-evaluation"></a>
 <a name="index-evaluation_002c-arithmetic"></a>
 <a name="index-let_002c-use-of"></a>
-<p>The shell can perform integer and floating point arithmetic, either using
+The shell can perform integer and floating point arithmetic, either using
 the builtin <tt>let</tt>, or via a substitution of the form
 <tt>$((</tt><var>...</var><tt>))</tt>.  For
 integers, the shell is usually compiled to use 8-byte precision where this
@@ -100,9 +99,9 @@ of the expression is non-zero, 1 if it is zero, and 2 if an error occurred.
 <p>both assigning the value 3 to the shell variable <tt>val</tt> and returning a
 zero status.
 </p>
-<a name="index-arithmetic-base"></a>
+<p><a name="index-arithmetic-base"></a>
 <a name="index-bases_002c-in-arithmetic"></a>
-<p>Integers can be in bases other than 10.
+Integers can be in bases other than 10.
 A leading &lsquo;<tt>0x</tt>&rsquo; or &lsquo;<tt>0X</tt>&rsquo; denotes hexadecimal and a leading
 &lsquo;<tt>0b</tt>&rsquo; or &lsquo;<tt>0B</tt>&rsquo; binary.
 Integers may also be of the form &lsquo;<var>base</var><tt>#</tt><var>n</var>&rsquo;,
@@ -168,9 +167,9 @@ print $(( [#_] sqrt(1e7) ))
 <p>outputs &lsquo;<tt>3_162.277_660_168_379_5</tt>&rsquo; (the number of decimal places
 shown may vary).
 </p>
-<a name="index-C_005fBASES_002c-use-of"></a>
+<p><a name="index-C_005fBASES_002c-use-of"></a>
 <a name="index-OCTAL_005fZEROES_002c-use-of"></a>
-<p>If the <tt>C_BASES</tt> option is set, hexadecimal numbers are output in the standard C
+If the <tt>C_BASES</tt> option is set, hexadecimal numbers are output in the standard C
 format, for example &lsquo;<tt>0xFF</tt>&rsquo; instead of the usual &lsquo;<tt>16#FF</tt>&rsquo;.  If the
 option <tt>OCTAL_ZEROES</tt> is also set (it is not by default), octal numbers
 will be treated similarly and hence appear as &lsquo;<tt>077</tt>&rsquo; instead of
@@ -189,9 +188,9 @@ taken for a parameter name.  All numeric parts (before and after the
 decimal point and in the exponent) may contain underscores after the
 leading digit for visual guidance; these are ignored in computation.
 </p>
-<a name="index-arithmetic-operators"></a>
+<p><a name="index-arithmetic-operators"></a>
 <a name="index-operators_002c-arithmetic"></a>
-<p>An arithmetic expression uses nearly the same syntax and
+An arithmetic expression uses nearly the same syntax and
 associativity of expressions as in C.
 </p>
 <p>In the native mode of operation, the following operators are supported
@@ -310,9 +309,9 @@ that of unary operators, hence &lsquo;<tt>-3**2</tt>&rsquo; evaluates as &lsquo;
 &lsquo;<tt>-9</tt>&rsquo;.  Use parentheses where necessary: &lsquo;<tt>-(3**2)</tt>&rsquo;.  This is
 for compatibility with other shells.
 </p>
-<a name="index-mathematical-functions_002c-use-of"></a>
+<p><a name="index-mathematical-functions_002c-use-of"></a>
 <a name="index-functions_002c-math_002c-use-of"></a>
-<p>Mathematical functions can be called with the syntax
+Mathematical functions can be called with the syntax
 &lsquo;<var>func</var><tt>(</tt><var>args</var><tt>)</tt>&rsquo;, where the function decides
 if the <var>args</var> is used as a string or a comma-separated list of
 arithmetic expressions. The shell currently defines no mathematical
@@ -350,10 +349,10 @@ assignment to a named parameter declared integer
 in this manner.  Assigning a floating point number to an integer results in
 rounding towards zero.
 </p>
-<a name="index-parameters_002c-floating-point"></a>
+<p><a name="index-parameters_002c-floating-point"></a>
 <a name="index-floating-point-parameters"></a>
 <a name="index-float_002c-use-of"></a>
-<p>Likewise, floating point numbers can be declared with the <tt>float</tt>
+Likewise, floating point numbers can be declared with the <tt>float</tt>
 builtin; there are two types, differing only in their output format, as
 described for the <tt>typeset</tt> builtin.  The output format can be bypassed
 by using arithmetic substitution instead of the parameter substitution,
@@ -411,9 +410,9 @@ It is therefore best to declare numeric variables with explicit types.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 17, 2016</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
+<font size="-1">Zsh version 5.3, released on December 11, 2016.</font>
 </body>
 </html>

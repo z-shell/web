@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
 <head>
 <title>zsh: 6 Shell Grammar</title>
 
@@ -31,9 +31,8 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space: nowrap}
 span.nolinebreak {white-space: nowrap}
-span.roman {font-family: serif; font-weight: normal}
+span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
@@ -62,9 +61,9 @@ ul.no-bullet {list-style: none}
 
 <a name="Shell-Grammar-1"></a>
 <h1 class="chapter">6 Shell Grammar</h1>
-<a name="index-shell-grammar"></a>
+<p><a name="index-shell-grammar"></a>
 <a name="index-grammar_002c-shell"></a>
-<table class="menu" border="0" cellspacing="0">
+</p><table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top"><a href="#Simple-Commands-_0026-Pipelines">6.1 Simple Commands &amp; Pipelines</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Precommand-Modifiers">6.2 Precommand Modifiers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -104,9 +103,9 @@ ul.no-bullet {list-style: none}
 
 <a name="Simple-Commands-_0026-Pipelines-1"></a>
 <h2 class="section">6.1 Simple Commands &amp; Pipelines</h2>
-<a name="index-simple-commands"></a>
+<p><a name="index-simple-commands"></a>
 <a name="index-commands_002c-simple"></a>
-<p>A <em>simple command</em> is a sequence of optional parameter
+A <em>simple command</em> is a sequence of optional parameter
 assignments followed by blank-separated words,
 with optional redirections interspersed.  For a description
 of assignment, see the beginning of
@@ -126,8 +125,8 @@ For example,
 
 <p>is a simple command with arguments.
 </p>
-<a name="index-pipeline"></a>
-<p>A <em>pipeline</em> is either a simple command, or a sequence of two or more
+<p><a name="index-pipeline"></a>
+A <em>pipeline</em> is either a simple command, or a sequence of two or more
 simple commands where each command is separated from the next by &lsquo;<tt>|</tt>&rsquo;
 or &lsquo;<tt>|&amp;</tt>&rsquo;.  Where commands are separated by &lsquo;<tt>|</tt>&rsquo;, the standard
 output of the first command is connected to the
@@ -146,9 +145,9 @@ For example,
 <p>is a pipeline, where the output (&lsquo;<tt>foo</tt>&rsquo; plus a newline) of the first
 command will be passed to the input of the second.
 </p>
-<a name="index-coproc"></a>
+<p><a name="index-coproc"></a>
 <a name="index-coprocess"></a>
-<p>If a pipeline is preceded by &lsquo;<tt>coproc</tt>&rsquo;, it is executed as a coprocess;
+If a pipeline is preceded by &lsquo;<tt>coproc</tt>&rsquo;, it is executed as a coprocess;
 a two-way pipe is established between it and the parent shell.  The
 shell can read from or write to the coprocess by means of the &lsquo;<tt>&gt;&amp;p</tt>&rsquo;
 and &lsquo;<tt>&lt;&amp;p</tt>&rsquo; redirection operators or with &lsquo;<tt>print -p</tt>&rsquo; and &lsquo;<tt>read -p</tt>&rsquo;.
@@ -156,8 +155,8 @@ A pipeline cannot be preceded by both &lsquo;<tt>coproc</tt>&rsquo; and &lsquo;<
 If job control is active, the coprocess can be treated in other than input
 and output as an ordinary background job.
 </p>
-<a name="index-sublist"></a>
-<p>A <em>sublist</em> is either a single pipeline, or a sequence of two or more
+<p><a name="index-sublist"></a>
+A <em>sublist</em> is either a single pipeline, or a sequence of two or more
 pipelines separated by &lsquo;<tt>&amp;&amp;</tt>&rsquo; or &lsquo;<tt>||</tt>&rsquo;.  If two pipelines are separated
 by &lsquo;<tt>&amp;&amp;</tt>&rsquo;, the second pipeline is executed only if the first succeeds
 (returns a zero status).  If two pipelines are separated by &lsquo;<tt>||</tt>&rsquo;, the
@@ -175,8 +174,8 @@ which will be executed if and only if the <tt>grep</tt> command returns a zero
 status.  If it does not, the value of the sublist is that return status, else
 it is the status returned by the <tt>print</tt> (almost certainly zero).
 </p>
-<a name="index-list"></a>
-<p>A <em>list</em> is a sequence of zero or more sublists, in which each sublist
+<p><a name="index-list"></a>
+A <em>list</em> is a sequence of zero or more sublists, in which each sublist
 is terminated by &lsquo;<tt>;</tt>&rsquo;, &lsquo;<tt>&amp;</tt>&rsquo;, &lsquo;<tt>&amp;|</tt>&rsquo;, &lsquo;<tt>&amp;!</tt>&rsquo;, or a newline.
 This terminator
 may optionally be omitted from the last sublist in the list when the
@@ -214,9 +213,9 @@ in a shell function form a special sort of list.
 
 <a name="Precommand-Modifiers-1"></a>
 <h2 class="section">6.2 Precommand Modifiers</h2>
-<a name="index-precommand-modifiers"></a>
+<p><a name="index-precommand-modifiers"></a>
 <a name="index-modifiers_002c-precommand"></a>
-<p>A simple command may be preceded by a <em>precommand modifier</em>,
+A simple command may be preceded by a <em>precommand modifier</em>,
 which will alter how the command is interpreted.  These modifiers are
 shell builtin commands with the exception of <tt>nocorrect</tt> which is
 a reserved word.
@@ -301,9 +300,9 @@ the words.
 
 <a name="Complex-Commands-1"></a>
 <h2 class="section">6.3 Complex Commands</h2>
-<a name="index-complex-commands"></a>
+<p><a name="index-complex-commands"></a>
 <a name="index-commands_002c-complex"></a>
-<p>A <em>complex command</em> in zsh is one of the following:
+A <em>complex command</em> in zsh is one of the following:
 </p>
 <dl compact="compact">
 <dd><a name="index-if"></a>
@@ -566,9 +565,9 @@ for a description of <var>exp</var>.
 
 <a name="Alternate-Forms-For-Complex-Commands-1"></a>
 <h2 class="section">6.4 Alternate Forms For Complex Commands</h2>
-<a name="index-alternate-forms-for-complex-commands"></a>
+<p><a name="index-alternate-forms-for-complex-commands"></a>
 <a name="index-commands_002c-alternate-forms-for-complex"></a>
-<p>Many of zsh&rsquo;s complex commands have alternate forms.  These are
+Many of zsh&rsquo;s complex commands have alternate forms.  These are
 non-standard and are likely not to be obvious even to seasoned shell
 programmers; they should not be used anywhere that portability of shell
 code is a concern.
@@ -671,9 +670,9 @@ A short form of <tt>select</tt>.
 
 <a name="Reserved-Words-1"></a>
 <h2 class="section">6.5 Reserved Words</h2>
-<a name="index-reserved-words"></a>
+<p><a name="index-reserved-words"></a>
 <a name="index-disable_002c-use-of"></a>
-<p>The following words are recognized as reserved words when used as the first
+The following words are recognized as reserved words when used as the first
 word of a command unless quoted or disabled using <tt>disable -r</tt>:
 </p>
 <p><tt>do done esac then elif else fi for case
@@ -703,8 +702,8 @@ declare export float integer local readonly typeset</tt>
 
 <a name="Errors-1"></a>
 <h2 class="section">6.6 Errors</h2>
-<a name="index-errors_002c-handling-of"></a>
-<p>Certain errors are treated as fatal by the shell: in an interactive
+<p><a name="index-errors_002c-handling-of"></a>
+Certain errors are treated as fatal by the shell: in an interactive
 shell, they cause control to return to the command line, and in a
 non-interactive shell they cause the shell to be aborted.  In older
 versions of zsh, a non-interactive shell running a script would not
@@ -771,10 +770,10 @@ standard.
 
 <a name="Comments-1"></a>
 <h2 class="section">6.7 Comments</h2>
-<a name="index-comments"></a>
+<p><a name="index-comments"></a>
 <a name="index-INTERACTIVE_005fCOMMENTS_002c-use-of"></a>
 <a name="index-histchars_002c-use-of"></a>
-<p>In non-interactive shells, or in interactive shells with the
+In non-interactive shells, or in interactive shells with the
 <tt>INTERACTIVE_COMMENTS</tt> option set, a word beginning
 with the third character of the <tt>histchars</tt> parameter
 (&lsquo;<tt>#</tt>&rsquo; by default) causes that word and all the following
@@ -799,8 +798,8 @@ characters up to a newline to be ignored.
 
 <a name="Aliasing-1"></a>
 <h2 class="section">6.8 Aliasing</h2>
-<a name="index-aliasing"></a>
-<p>Every eligible <em>word</em> in the shell input is checked to see if there
+<p><a name="index-aliasing"></a>
+Every eligible <em>word</em> in the shell input is checked to see if there
 is an alias defined for it.
 If so, it is replaced by the text of the alias if it is in command
 position (if it could be the first word of a simple command),
@@ -908,8 +907,8 @@ code fragment might be re-executed.
 
 <a name="Quoting-1"></a>
 <h2 class="section">6.9 Quoting</h2>
-<a name="index-quoting"></a>
-<p>A character may be <em>quoted</em> (that is, made
+<p><a name="index-quoting"></a>
+A character may be <em>quoted</em> (that is, made
 to stand for itself) by preceding it with a &lsquo;<tt>\</tt>&rsquo;.
 &lsquo;<tt>\</tt>&rsquo; followed by a newline is ignored.
 </p>
@@ -919,8 +918,8 @@ processed the same way as the string arguments of the
 entirely quoted.  A literal &lsquo;<tt>'</tt>&rsquo; character can be included in the
 string by using the &lsquo;<tt>\'</tt>&rsquo; escape.
 </p>
-<a name="index-RC_005fQUOTES_002c-use-of"></a>
-<p>All characters enclosed between a pair of single quotes (<tt>''</tt>) that
+<p><a name="index-RC_005fQUOTES_002c-use-of"></a>
+All characters enclosed between a pair of single quotes (<tt>''</tt>) that
 is not preceded by a &lsquo;<tt>$</tt>&rsquo; are quoted.  A single quote cannot appear
 within single quotes unless the option <tt>RC_QUOTES</tt> is set, in which case
 a pair of single quotes are turned into a single quote.  For example,
@@ -950,9 +949,9 @@ command substitution occur, and &lsquo;<tt>\</tt>&rsquo; quotes the characters
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 17, 2016</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
+<font size="-1">Zsh version 5.3, released on December 11, 2016.</font>
 </body>
 </html>

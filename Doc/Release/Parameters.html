@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
 <head>
 <title>zsh: 15 Parameters</title>
 
@@ -31,9 +31,8 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space: nowrap}
 span.nolinebreak {white-space: nowrap}
-span.roman {font-family: serif; font-weight: normal}
+span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
@@ -62,9 +61,9 @@ ul.no-bullet {list-style: none}
 
 <a name="Parameters-1"></a>
 <h1 class="chapter">15 Parameters</h1>
-<a name="index-parameters"></a>
+<p><a name="index-parameters"></a>
 <a name="index-variables"></a>
-
+</p>
 <hr>
 <a name="Description"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -90,12 +89,12 @@ characters and underscores, or the single characters
 A parameter whose name begins with an alphanumeric or underscore is also
 referred to as a <em>variable</em>.
 </p>
-<a name="index-scalar"></a>
+<p><a name="index-scalar"></a>
 <a name="index-parameters_002c-scalar"></a>
 <a name="index-parameters_002c-array"></a>
 <a name="index-parameters_002c-associative-array"></a>
 <a name="index-hash"></a>
-<p>The attributes of a parameter determine the <em>type</em> of its value, often
+The attributes of a parameter determine the <em>type</em> of its value, often
 referred to as the parameter type or variable type, and also control
 other processing that may be applied to the value when it is referenced.
 The value type may be a <em>scalar</em> (a string, an integer, or a floating
@@ -103,11 +102,11 @@ point number), an array (indexed numerically), or an <em>associative</em>
 array (an unordered set of name-value pairs, indexed by name, also
 referred to as a <em>hash</em>).
 </p>
-<a name="index-export"></a>
+<p><a name="index-export"></a>
 <a name="index-environment"></a>
 <a name="index-environment-variables"></a>
 <a name="index-variables_002c-environment"></a>
-<p>Named scalar parameters may have the <em>exported</em>, <tt>-x</tt>, attribute, to
+Named scalar parameters may have the <em>exported</em>, <tt>-x</tt>, attribute, to
 copy them into the process environment, which is then passed from the
 shell to any new processes that it starts.  Exported parameters are called
 <em>environment variables</em>. The shell also <em>imports</em> environment variables
@@ -116,9 +115,9 @@ exported.  Some environment variables are not imported for reasons of
 security or because they would interfere with the correct operation of
 other shell features.
 </p>
-<a name="index-special-parameters"></a>
+<p><a name="index-special-parameters"></a>
 <a name="index-parameters_002c-special"></a>
-<p>Parameters may also be <em>special</em>, that is, they have a predetermined
+Parameters may also be <em>special</em>, that is, they have a predetermined
 meaning to the shell.  Special parameters cannot have their type changed
 or their readonly attribute turned off, and if a special parameter is
 unset, then later recreated, the special properties will be retained.
@@ -275,8 +274,8 @@ replaces the value for the existing key if it is.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">15.2.1 Array Subscripts</h3>
-<a name="index-subscripts"></a>
-<p>Individual elements of an array may be selected using a subscript.  A
+<p><a name="index-subscripts"></a>
+Individual elements of an array may be selected using a subscript.  A
 subscript of the form &lsquo;<tt>[</tt><var>exp</var><tt>]</tt>&rsquo; selects the single element
 <var>exp</var>, where <var>exp</var> is an arithmetic expression which will be subject
 to arithmetic expansion as if it were surrounded by
@@ -428,8 +427,8 @@ that element.  To delete an element of an associative array, use the
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">15.2.3 Subscript Flags</h3>
-<a name="index-subscript-flags"></a>
-<p>If the opening bracket, or the comma in a range, in any subscript
+<p><a name="index-subscript-flags"></a>
+If the opening bracket, or the comma in a range, in any subscript
 expression is directly followed by an opening parenthesis, the string up
 to the matching closing one is considered to be a list of flags, as in
 &lsquo;<var>name</var><tt>[(</tt><var>flags</var><tt>)</tt><var>exp</var><tt>]</tt>&rsquo;.
@@ -1262,6 +1261,20 @@ code.
 </dd>
 </dl>
 
+<a name="index-ZSH_005fARGZERO"></a>
+</dd>
+<dt><tt>ZSH_ARGZERO</tt></dt>
+<dd><p>If zsh was invoked to run a script, this is the name of the script.
+Otherwise, it is the name used to invoke the current shell.  This is
+the same as the value of <tt>$0</tt> when the <tt>POSIX_ARGZERO</tt> option is
+set, but is always available.
+</p>
+<a name="index-ZSH_005fEXECUTION_005fSTRING"></a>
+</dd>
+<dt><tt>ZSH_EXECUTION_STRING</tt></dt>
+<dd><p>If the shell was started with the option <tt>-c</tt>, this contains
+the argument passed to the option.  Otherwise it is not set.
+</p>
 <a name="index-ZSH_005fNAME"></a>
 </dd>
 <dt><tt>ZSH_NAME</tt></dt>
@@ -1280,6 +1293,12 @@ hence most users should not use it and should instead rely on
 </dd>
 <dt><tt>zsh_scheduled_events</tt></dt>
 <dd><p>See <a href="Zsh-Modules.html#The-zsh_002fsched-Module">The zsh/sched Module</a>.
+</p>
+<a name="index-ZSH_005fSCRIPT"></a>
+</dd>
+<dt><tt>ZSH_SCRIPT</tt></dt>
+<dd><p>If zsh was invoked to run a script, this is the name of the script,
+otherwise it is unset.
 </p>
 <a name="index-ZSH_005fSUBSHELL-_003cS_003e"></a>
 </dd>
@@ -1402,7 +1421,8 @@ This is useful with the <tt>AUTO_PUSHD</tt> option.
 or <tt>ksh</tt>, <tt>$ENV</tt> is sourced after the profile scripts.  The value of
 <tt>ENV</tt> is subjected to parameter expansion, command substitution, and
 arithmetic expansion before being interpreted as a pathname.  Note that
-<tt>ENV</tt> is <em>not</em> used unless zsh is emulating <cite>sh</cite> or <cite>ksh</cite>.
+<tt>ENV</tt> is <em>not</em> used unless the shell is interactive and zsh is
+emulating <cite>sh</cite> or <cite>ksh</cite>.
 </p>
 <a name="index-FCEDIT"></a>
 </dd>
@@ -1776,6 +1796,21 @@ vice versa.
 <dd><p>The command name to assume if a single input redirection
 is specified with no command.  Defaults to <tt>more</tt>.
 </p>
+<a name="index-REPORTMEMORY"></a>
+</dd>
+<dt><tt>REPORTMEMORY</tt></dt>
+<dd><p>If nonnegative, commands whose maximum resident set size (roughly
+speaking, main memory usage) in megabytes is greater than this
+value have timing statistics reported.  The format used to output
+statistics is the value of the <tt>TIMEFMT</tt> parameter, which is the same
+as for the <tt>REPORTTIME</tt> variable and the <tt>time</tt> builtin; note that
+by default this does not output memory usage.  Appending
+<tt>&quot; max RSS %M&quot;</tt> to the value of <tt>TIMEFMT</tt> causes it to output the
+value that triggered the report.  If <tt>REPORTTIME</tt> is also in use,
+at most a single report is printed for both triggers.  This feature
+requires the <tt>getrusage()</tt> system call, commonly supported by
+modern Unix-like systems.
+</p>
 <a name="index-REPORTTIME"></a>
 </dd>
 <dt><tt>REPORTTIME</tt></dt>
@@ -1839,6 +1874,22 @@ explicitly set locally.
 correction, and &lsquo;<tt>%r</tt>&rsquo; expands to the proposed correction.
 All other prompt escapes are also allowed.
 </p>
+<p>The actions available at the prompt are <tt>[nyae]</tt>:
+</p><dl compact="compact">
+<dt><tt>n</tt> (&lsquo;no&rsquo;) (default)</dt>
+<dd><p>Discard the correction and run the command.
+</p></dd>
+<dt><tt>y</tt> (&lsquo;yes&rsquo;)</dt>
+<dd><p>Make the correction and run the command.
+</p></dd>
+<dt><tt>a</tt> (&lsquo;abort&rsquo;)</dt>
+<dd><p>Discard the entire command line without running it.
+</p></dd>
+<dt><tt>e</tt> (&lsquo;edit&rsquo;)</dt>
+<dd><p>Resume editing the command line.
+</p></dd>
+</dl>
+
 <a name="index-STTY"></a>
 </dd>
 <dt><tt>STTY</tt></dt>
@@ -1868,10 +1919,21 @@ take effect.
 <a name="index-TERMINFO"></a>
 </dd>
 <dt><tt>TERMINFO</tt> &lt;S&gt;</dt>
-<dd><p>A reference to a compiled description of the terminal, used by the
-&lsquo;terminfo&rsquo; library when the system has it; see man page terminfo(5).
-If set, this causes the shell to reinitialise the terminal, making
-the workaround &lsquo;<tt>TERM=$TERM</tt>&rsquo; unnecessary.
+<dd><p>A reference to your terminfo database, used by the &lsquo;terminfo&rsquo; library when the
+system has it; see man page terminfo(5).
+If set, this causes the shell to reinitialise the terminal, making the
+workaround &lsquo;<tt>TERM=$TERM</tt>&rsquo; unnecessary.
+</p>
+<a name="index-TERMINFO_005fDIRS"></a>
+</dd>
+<dt><tt>TERMINFO_DIRS</tt> &lt;S&gt;</dt>
+<dd><p>A colon-seprarated list of terminfo databases, used by the &lsquo;terminfo&rsquo; library
+when the system has it; see man page terminfo(5). This variable is only
+used by certain terminal libraries, in particular ncurses; see
+man page terminfo(5) to check support on your system.  If set, this
+causes the shell to reinitialise the terminal, making the workaround
+&lsquo;<tt>TERM=$TERM</tt>&rsquo; unnecessary.  Note that unlike other colon-separated
+arrays this is not tied to a zsh array.
 </p>
 <a name="index-TIMEFMT"></a>
 </dd>
@@ -1972,6 +2034,16 @@ scheduled to <tt>TMOUT</tt> seconds after the last keypress.
 <dd><p>A pathname prefix which the shell will use for all temporary files.
 Note that this should include an initial part for the file name as
 well as any directory names.  The default is &lsquo;<tt>/tmp/zsh</tt>&rsquo;.
+</p>
+<a name="index-TMPSUFFIX"></a>
+</dd>
+<dt><tt>TMPSUFFIX</tt></dt>
+<dd><p>A filename suffix which the shell will use for temporary files created
+by process substitutions (e.g., &lsquo;<tt>=(<var>list</var>)</tt>&rsquo;).
+Note that the value should include a leading dot &lsquo;<tt>.</tt>&rsquo; if intended
+to be interpreted as a file extension.  The default is not to append
+any suffix, thus this parameter should be assigned only when needed
+and then unset again.
 </p>
 <a name="index-watch"></a>
 <a name="index-WATCH"></a>
@@ -2238,9 +2310,9 @@ Some experimentation is necessary.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 17, 2016</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
+<font size="-1">Zsh version 5.3, released on December 11, 2016.</font>
 </body>
 </html>

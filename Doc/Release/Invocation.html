@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
 <head>
 <title>zsh: 4 Invocation</title>
 
@@ -31,9 +31,8 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space: nowrap}
 span.nolinebreak {white-space: nowrap}
-span.roman {font-family: serif; font-weight: normal}
+span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
@@ -62,8 +61,8 @@ ul.no-bullet {list-style: none}
 
 <a name="Invocation-1"></a>
 <h1 class="chapter">4 Invocation</h1>
-<a name="index-invocation"></a>
-
+<p><a name="index-invocation"></a>
+</p>
 <hr>
 <a name="Invocation-2"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -82,11 +81,11 @@ ul.no-bullet {list-style: none}
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">4.1 Invocation</h2>
-<a name="index-shell-options"></a>
+<p><a name="index-shell-options"></a>
 <a name="index-options_002c-shell"></a>
 <a name="index-shell-flags"></a>
 <a name="index-flags_002c-shell"></a>
-<p>The following flags are interpreted by the shell when invoked to determine
+The following flags are interpreted by the shell when invoked to determine
 where the shell will read commands from:
 </p>
 <dl compact="compact">
@@ -142,8 +141,8 @@ Options may be turned <em>off</em> by name by using <tt>+o</tt> instead of <tt>-
 &lsquo;<tt>-xo shwordsplit</tt>&rsquo; or &lsquo;<tt>-xoshwordsplit</tt>&rsquo; is equivalent to
 &lsquo;<tt>-x -o shwordsplit</tt>&rsquo;.
 </p>
-<a name="index-long-option"></a>
-<p>Options may also be specified by name in GNU long option style,
+<p><a name="index-long-option"></a>
+Options may also be specified by name in GNU long option style,
 &lsquo;<tt>-</tt><tt>-</tt><var>option-name</var>&rsquo;.  When this is done, &lsquo;<tt>-</tt>&rsquo; characters in the
 option name are permitted: they are translated into &lsquo;<tt>_</tt>&rsquo;, and thus ignored.
 So, for example, &lsquo;<tt>zsh -</tt><tt>-sh-word-split</tt>&rsquo; invokes zsh with the
@@ -154,9 +153,9 @@ Unlike other option syntaxes, GNU-style long options cannot be stacked with
 any other options, so for example &lsquo;<tt>-x-shwordsplit</tt>&rsquo; is an error,
 rather than being treated like &lsquo;<tt>-x -</tt><tt>-shwordsplit</tt>&rsquo;.
 </p>
-<a name="index-_002d_002dversion"></a>
+<p><a name="index-_002d_002dversion"></a>
 <a name="index-_002d_002dhelp"></a>
-<p>The special GNU-style option &lsquo;<tt>-</tt><tt>-version</tt>&rsquo; is handled; it sends to
+The special GNU-style option &lsquo;<tt>-</tt><tt>-version</tt>&rsquo; is handled; it sends to
 standard output the shell&rsquo;s version information, then exits successfully.
 &lsquo;<tt>-</tt><tt>-help</tt>&rsquo; is also handled; it sends to standard output a list of
 options that can be used when invoking the shell, then exits successfully.
@@ -204,10 +203,10 @@ can be stacked after the &lsquo;<tt>-b</tt>&rsquo; and will take effect as norma
 
 <a name="Compatibility-1"></a>
 <h2 class="section">4.2 Compatibility</h2>
-<a name="index-compatibility"></a>
+<p><a name="index-compatibility"></a>
 <a name="index-sh-compatibility"></a>
 <a name="index-ksh-compatibility"></a>
-<p>Zsh tries to emulate <cite>sh</cite> or <cite>ksh</cite> when it is invoked as
+Zsh tries to emulate <cite>sh</cite> or <cite>ksh</cite> when it is invoked as
 <tt>sh</tt> or <tt>ksh</tt> respectively; more precisely, it looks at the first
 letter of the name by which it was invoked, excluding any initial &lsquo;<tt>r</tt>&rsquo;
 (assumed to stand for &lsquo;restricted&rsquo;), and if that is &lsquo;<tt>b</tt>&rsquo;, &lsquo;<tt>s</tt>&rsquo; or &lsquo;<tt>k</tt>&rsquo; it
@@ -237,8 +236,8 @@ parameters are not special and not initialized by the shell:
 <tt>status</tt>,
 <tt>watch</tt>.
 </p>
-<a name="index-ENV_002c-use-of"></a>
-<p>The usual zsh startup/shutdown scripts are not executed.  Login shells
+<p><a name="index-ENV_002c-use-of"></a>
+The usual zsh startup/shutdown scripts are not executed.  Login shells
 source <tt>/etc/profile</tt> followed by <tt>$HOME/.profile</tt>.  If the
 <tt>ENV</tt> environment variable is set on invocation, <tt>$ENV</tt> is sourced
 after the profile scripts.  The value of <tt>ENV</tt> is subjected to
@@ -298,9 +297,9 @@ options are set if zsh is invoked as <tt>ksh</tt>.
 
 <a name="Restricted-Shell-1"></a>
 <h2 class="section">4.3 Restricted Shell</h2>
-<a name="index-restricted-shell"></a>
+<p><a name="index-restricted-shell"></a>
 <a name="index-RESTRICTED"></a>
-<p>When the basename of the command used to invoke zsh starts with the letter
+When the basename of the command used to invoke zsh starts with the letter
 &lsquo;<tt>r</tt>&rsquo; or the &lsquo;<tt>-r</tt>&rsquo; command line option is supplied at invocation, the
 shell becomes restricted.  Emulation mode is determined after stripping the
 letter &lsquo;<tt>r</tt>&rsquo; from the invocation name.  The following are disabled in
@@ -308,11 +307,11 @@ restricted mode:
 </p>
 <ul>
 <li> changing directories with the <tt>cd</tt> builtin
-</li><li> changing or unsetting the <tt>PATH</tt>, <tt>path</tt>, <tt>MODULE_PATH</tt>,
-<tt>module_path</tt>, <tt>SHELL</tt>, <tt>HISTFILE</tt>, <tt>HISTSIZE</tt>, <tt>GID</tt>, <tt>EGID</tt>,
-<tt>UID</tt>, <tt>EUID</tt>, <tt>USERNAME</tt>, <tt>LD_LIBRARY_PATH</tt>,
-<tt>LD_AOUT_LIBRARY_PATH</tt>, <tt>LD_PRELOAD</tt> and  <tt>LD_AOUT_PRELOAD</tt>
-parameters
+</li><li> changing or unsetting the <tt>EGID</tt>, <tt>EUID</tt>, <tt>GID</tt>,
+<tt>HISTFILE</tt>, <tt>HISTSIZE</tt>, <tt>IFS</tt>, <tt>LD_AOUT_LIBRARY_PATH</tt>,
+<tt>LD_AOUT_PRELOAD</tt>, <tt>LD_LIBRARY_PATH</tt>, <tt>LD_PRELOAD</tt>,
+<tt>MODULE_PATH</tt>, <tt>module_path</tt>, <tt>PATH</tt>, <tt>path</tt>, <tt>SHELL</tt>,
+<tt>UID</tt> and <tt>USERNAME</tt> parameters
 </li><li> specifying command names containing <tt>/</tt>
 </li><li> specifying command pathnames using <tt>hash</tt>
 </li><li> redirecting output to files
@@ -350,9 +349,9 @@ files.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 17, 2016</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
+<font size="-1">Zsh version 5.3, released on December 11, 2016.</font>
 </body>
 </html>

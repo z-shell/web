@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
 <head>
 <title>zsh: 13 Prompt Expansion</title>
 
@@ -31,9 +31,8 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space: nowrap}
 span.nolinebreak {white-space: nowrap}
-span.roman {font-family: serif; font-weight: normal}
+span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
@@ -81,13 +80,13 @@ ul.no-bullet {list-style: none}
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">13.1 Expansion of Prompt Sequences</h2>
-<a name="index-prompt-expansion"></a>
+<p><a name="index-prompt-expansion"></a>
 <a name="index-expansion_002c-prompt"></a>
-<p>Prompt sequences undergo a special form of expansion.  This type of expansion
+Prompt sequences undergo a special form of expansion.  This type of expansion
 is also available using the <tt>-P</tt> option to the <tt>print</tt> builtin.
 </p>
-<a name="index-PROMPT_005fSUBST_002c-use-of"></a>
-<p>If the <tt>PROMPT_SUBST</tt> option is set, the prompt string is first subjected to
+<p><a name="index-PROMPT_005fSUBST_002c-use-of"></a>
+If the <tt>PROMPT_SUBST</tt> option is set, the prompt string is first subjected to
 <em>parameter expansion</em>,
 <em>command substitution</em> and
 <em>arithmetic expansion</em>.
@@ -96,13 +95,13 @@ See
 </p>
 <p>Certain escape sequences may be recognised in the prompt string.
 </p>
-<a name="index-PROMPT_005fBANG_002c-use-of"></a>
-<p>If the <tt>PROMPT_BANG</tt> option is set, a &lsquo;<tt>!</tt>&rsquo; in the prompt is replaced
+<p><a name="index-PROMPT_005fBANG_002c-use-of"></a>
+If the <tt>PROMPT_BANG</tt> option is set, a &lsquo;<tt>!</tt>&rsquo; in the prompt is replaced
 by the current history event number.  A literal &lsquo;<tt>!</tt>&rsquo; may then be
 represented as &lsquo;<tt>!!</tt>&rsquo;.
 </p>
-<a name="index-PROMPT_005fPERCENT_002c-use-of"></a>
-<p>If the <tt>PROMPT_PERCENT</tt> option is set, certain escape sequences that
+<p><a name="index-PROMPT_005fPERCENT_002c-use-of"></a>
+If the <tt>PROMPT_PERCENT</tt> option is set, certain escape sequences that
 start with &lsquo;<tt>%</tt>&rsquo; are expanded.
 Many escapes are followed by a single character, although some of these
 take an optional integer argument that
@@ -682,9 +681,9 @@ of the prompt when the available space is less than <var>n</var>.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 17, 2016</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
+<font size="-1">Zsh version 5.3, released on December 11, 2016.</font>
 </body>
 </html>

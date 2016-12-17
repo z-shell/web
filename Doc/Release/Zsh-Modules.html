@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
 <head>
 <title>zsh: 22 Zsh Modules</title>
 
@@ -31,9 +31,8 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space: nowrap}
 span.nolinebreak {white-space: nowrap}
-span.roman {font-family: serif; font-weight: normal}
+span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
@@ -62,8 +61,8 @@ ul.no-bullet {list-style: none}
 
 <a name="Zsh-Modules-1"></a>
 <h1 class="chapter">22 Zsh Modules</h1>
-<a name="index-modules"></a>
-
+<p><a name="index-modules"></a>
+</p>
 <hr>
 <a name="Description-5"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -598,9 +597,9 @@ completion lists will be colored.  Note, however, that <tt>complist</tt> will
 not automatically be loaded if it is not linked in:  on systems with
 dynamic loading, &lsquo;<tt>zmodload zsh/complist</tt>&rsquo; is required.
 </p>
-<a name="index-ZLS_005fCOLORS"></a>
+<p><a name="index-ZLS_005fCOLORS"></a>
 <a name="index-ZLS_005fCOLOURS"></a>
-<p>The parameters <tt>ZLS_COLORS</tt> and <tt>ZLS_COLOURS</tt> describe how matches
+The parameters <tt>ZLS_COLORS</tt> and <tt>ZLS_COLOURS</tt> describe how matches
 are highlighted.  To turn on highlighting an empty value suffices, in
 which case all the default values given below will be used.  The format of
 the value of these parameters is the same as used by the GNU version of the
@@ -753,8 +752,8 @@ the default values will have no visible effect.  The <tt>colors</tt>
 function from the contribution can be used to get associative arrays
 containing the codes for ANSI terminals (see
 <a href="User-Contributions.html#Other-Functions">Other Functions</a>).  For example, after loading <tt>colors</tt>, one could use
-&lsquo;<tt>$colors[red]</tt>&rsquo; to get the code for foreground color red and
-&lsquo;<tt>$colors[bg-green]</tt>&rsquo; for the code for background color green.
+&lsquo;<tt>$color[red]</tt>&rsquo; to get the code for foreground color red and
+&lsquo;<tt>$color[bg-green]</tt>&rsquo; for the code for background color green.
 </p>
 <p>If the completion system invoked by compinit is used, these
 parameters should not be set directly because the system controls them 
@@ -854,10 +853,10 @@ should be used.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.7.3 Menu selection</h3>
-<a name="index-completion_002c-selecting-by-cursor"></a>
+<p><a name="index-completion_002c-selecting-by-cursor"></a>
 <a name="index-MENUSELECT"></a>
 <a name="index-menu_002dselect"></a>
-<p>The <tt>zsh/complist</tt> module also offers an alternative style of selecting
+The <tt>zsh/complist</tt> module also offers an alternative style of selecting
 matches from a list, called menu selection, which can be used if the
 shell is set up to return to the last prompt after showing a
 completion list (see the <tt>ALWAYS_LAST_PROMPT</tt> option in
@@ -1340,7 +1339,11 @@ attributes supported are <tt>blink</tt>, <tt>bold</tt>, <tt>dim</tt>, <tt>revers
 for character output.  The color <tt>default</tt> is sometimes available
 (in particular if the library is ncurses), specifying the foreground
 or background color with which the terminal started.  The color pair
-<tt>default/default</tt> is always available.
+<tt>default/default</tt> is always available. To use more than the 8 named
+colors (red, green, etc.) construct the <var>fg_col</var><tt>/</tt><var>bg_col</var>
+pairs where <var>fg_col</var> and <var>bg_col</var> are decimal integers, e.g
+<tt>128/200</tt>.  The maximum color value is 254 if the terminal supports
+256 colors.
 </p>
 <p><tt>bg</tt> overrides the color and other attributes of all characters in the
 window.  Its usual use is to set the background initially, but it will
@@ -2202,6 +2205,10 @@ that it is therefore only useful immediately after a call to <tt>gamma</tt> or
 <tt>lgamma</tt>.  Note also that &lsquo;<tt>signgam()</tt>&rsquo; and &lsquo;<tt>signgam</tt>&rsquo; are
 distinct expressions.
 </p>
+<p>The functions <tt>min</tt>, <tt>max</tt>, and <tt>sum</tt> are defined not in this module
+but in the <tt>zmathfunc</tt> autoloadable function, described in
+<a href="User-Contributions.html#Mathematical-Functions">Mathematical Functions</a>.
+</p>
 <p>The following functions take two floating point arguments: <tt>copysign</tt>,
 <tt>fmod</tt>, <tt>hypot</tt>, <tt>nextafter</tt>.
 </p>
@@ -2707,9 +2714,9 @@ print -l $accum
 print text variable contains only &quot;d's&quot;.
 </pre></div>
 
-<a name="index-REMATCH_005fPCRE-1"></a>
+<p><a name="index-REMATCH_005fPCRE-1"></a>
 <a name="index-NO_005fCASE_005fMATCH-1"></a>
-<p>If the <tt>REMATCH_PCRE</tt> option is set, the <tt>=~</tt> operator is equivalent to
+If the <tt>REMATCH_PCRE</tt> option is set, the <tt>=~</tt> operator is equivalent to
 <tt>-pcre-match</tt>, and the <tt>NO_CASE_MATCH</tt> option may be used.  Note that
 <tt>NO_CASE_MATCH</tt> never applies to the <tt>pcre_match</tt> builtin, instead use
 the <tt>-i</tt> switch of <tt>pcre_compile</tt>.
@@ -2941,6 +2948,11 @@ afterwards.  This should be used with any scheduled event that produces
 visible output to the terminal; it is not needed, for example, with
 output that updates a terminal emulator&rsquo;s title bar.
 </p>
+<p>To effect changes to the editor buffer when an event executes, use the
+&lsquo;<tt>zle</tt>&rsquo; command with no arguments to test whether the editor is active,
+and if it is, then use &lsquo;<tt>zle </tt><var>widget</var>&rsquo; to access the editor via
+the named <var>widget</var>.
+</p>
 <p>The <tt>sched</tt> builtin is not made available by default when the shell
 starts in a mode emulating another shell.  It can be made available
 with the command &lsquo;<tt>zmodload -F zsh/sched b:sched</tt>&rsquo;.
@@ -3022,8 +3034,8 @@ command line editing, file I/O, and job control mechanisms.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.24.1 Outbound Connections</h3>
-<a name="index-sockets_002c-outbound-Unix-domain"></a>
-
+<p><a name="index-sockets_002c-outbound-Unix-domain"></a>
+</p>
 <dl compact="compact">
 <dt><tt>zsocket</tt> [ <tt>-v</tt> ] [ <tt>-d</tt> <var>fd</var> ] <var>filename</var></dt>
 <dd><p>Open a new Unix domain connection to <var>filename</var>.
@@ -3066,8 +3078,8 @@ needed, for example:
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.24.2 Inbound Connections</h3>
-<a name="index-sockets_002c-inbound-Unix-domain"></a>
-
+<p><a name="index-sockets_002c-inbound-Unix-domain"></a>
+</p>
 <dl compact="compact">
 <dt><tt>zsocket</tt> <tt>-l</tt> [ <tt>-v</tt> ] [ <tt>-d</tt> <var>fd</var> ] <var>filename</var></dt>
 <dd><p><tt>zsocket -l</tt> will open a socket listening on <var>filename</var>.
@@ -3791,8 +3803,8 @@ listening.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.27.1 Outbound Connections</h3>
-<a name="index-sockets_002c-outbound-TCP"></a>
-
+<p><a name="index-sockets_002c-outbound-TCP"></a>
+</p>
 <dl compact="compact">
 <dt><tt>ztcp</tt> [ <tt>-v</tt> ] [ <tt>-d</tt> <var>fd</var> ] <var>host</var> [ <var>port</var> ]</dt>
 <dd><p>Open a new TCP connection to <var>host</var>.  If the <var>port</var> is
@@ -3828,8 +3840,8 @@ descriptor for the connection.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.27.2 Inbound Connections</h3>
-<a name="index-sockets_002c-inbound-TCP"></a>
-
+<p><a name="index-sockets_002c-inbound-TCP"></a>
+</p>
 <dl compact="compact">
 <dt><tt>ztcp</tt> <tt>-l</tt> [ <tt>-v</tt> ] [ <tt>-d</tt> <var>fd</var> ] <var>port</var></dt>
 <dd><p><tt>ztcp -l</tt> will open a socket listening on TCP
@@ -3884,8 +3896,8 @@ it will wait for one.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.27.3 Closing Connections</h3>
-<a name="index-sockets_002c-closing-TCP"></a>
-
+<p><a name="index-sockets_002c-closing-TCP"></a>
+</p>
 <dl compact="compact">
 <dt><tt>ztcp</tt> <tt>-cf</tt> [ <tt>-v</tt> ] [ <var>fd</var> ]</dt>
 <dt><tt>ztcp</tt> <tt>-c</tt> [ <tt>-v</tt> ] [ <var>fd</var> ]</dt>
@@ -3923,8 +3935,8 @@ to force such a socket closed, use <tt>-f</tt>.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.27.4 Example</h3>
-<a name="index-TCP_002c-example"></a>
-<p>Here is how to create a TCP connection between two instances of zsh.  We
+<p><a name="index-TCP_002c-example"></a>
+Here is how to create a TCP connection between two instances of zsh.  We
 need to pick an unassigned port; here we use the randomly chosen 5123.
 </p>
 <p>On <tt>host1</tt>,
@@ -4120,8 +4132,8 @@ more information on how responses from the server may be printed.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.30.1 Subcommands</h3>
-<a name="index-zftp_002c-subcommands"></a>
-
+<p><a name="index-zftp_002c-subcommands"></a>
+</p>
 <dl compact="compact">
 <dd><a name="index-FTP_002c-starting-a-session"></a>
 </dd>
@@ -4403,8 +4415,8 @@ background commands which use <tt>zftp</tt> are still active.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.30.2 Parameters</h3>
-<a name="index-zftp_002c-parameters"></a>
-<p>The following shell parameters are used by <tt>zftp</tt>.  Currently none
+<p><a name="index-zftp_002c-parameters"></a>
+The following shell parameters are used by <tt>zftp</tt>.  Currently none
 of them are special.
 </p>
 <dl compact="compact">
@@ -4600,8 +4612,8 @@ specifies that no messages should be printed.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.30.3 Functions</h3>
-<a name="index-zftp_002c-functions"></a>
-
+<p><a name="index-zftp_002c-functions"></a>
+</p>
 <dl compact="compact">
 <dd><a name="index-zftp_005fchpwd_002c-specification"></a>
 </dd>
@@ -4687,8 +4699,8 @@ user to decide whether the function should be defined and to use
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.30.4 Problems</h3>
-<a name="index-zftp_002c-problems"></a>
-
+<p><a name="index-zftp_002c-problems"></a>
+</p>
 <p>A connection may not be opened in the left hand side of a pipe as this
 occurs in a subshell and the file information is not updated in the main
 shell.  In the case of type or mode changes or closing the connection in a
@@ -4764,14 +4776,16 @@ used to access internal information of the Zsh Line Editor (see
 <a name="index-widgets-1"></a>
 </dd>
 <dt><tt>widgets</tt></dt>
-<dd><p>This associative array contains one entry per widget defined. The name 
+<dd><p>This associative array contains one entry per widget. The name 
 of the widget is the key and the value gives information about the
-widget. It is either the string &lsquo;<tt>builtin</tt>&rsquo; for builtin widgets, a
-string of the form &lsquo;<tt>user:</tt><var>name</var>&rsquo; for user-defined widgets,
-where <var>name</var> is the name of the shell function implementing the
-widget, or it is a string of the form
-&lsquo;<tt>completion:</tt><var>type</var><tt>:</tt><var>name</var>&rsquo;, for completion widgets. In
-the last case <var>type</var> is the name of the builtin widgets the
+widget. It is either
+  the string &lsquo;<tt>builtin</tt>&rsquo; for builtin widgets,
+  a string of the form &lsquo;<tt>user:</tt><var>name</var>&rsquo; for user-defined widgets,
+    where <var>name</var> is the name of the shell function implementing the widget,
+  a string of the form &lsquo;<tt>completion:</tt><var>type</var><tt>:</tt><var>name</var>&rsquo;
+    for completion widgets,
+  or a null value if the widget is not yet fully defined.
+In the penultimate case, <var>type</var> is the name of the builtin widget the
 completion widget imitates in its behavior and <var>name</var> is the name
 of the shell function implementing the completion widget.
 </p>
@@ -5274,13 +5288,14 @@ The resulting strings are stored in the <var>array</var>.
 </p>
 <a name="index-zparseopts"></a>
 </dd>
-<dt><tt>zparseopts</tt> [ <tt>-DKME</tt> ] [ <tt>-a</tt> <var>array</var> ] [ <tt>-A</tt> <var>assoc</var> ] <var>spec</var> ...</dt>
+<dt><tt>zparseopts</tt> [ <tt>-D</tt> <tt>-K</tt> <tt>-M</tt> <tt>-E</tt> ] [ <tt>-a</tt> <var>array</var> ] [ <tt>-A</tt> <var>assoc</var> ] <var>spec</var> ...</dt>
 <dd><p>This builtin simplifies the parsing of options in positional parameters,
 i.e. the set of arguments given by <tt>$*</tt>.  Each <var>spec</var> describes one
 option and must be of the form &lsquo;<var>opt</var>[<tt>=</tt><var>array</var>]&rsquo;.  If an option
 described by <var>opt</var> is found in the positional parameters it is copied
 into the <var>array</var> specified with the <tt>-a</tt> option; if the optional
-&lsquo;<tt>=</tt><var>array</var>&rsquo; is given, it is instead copied into that array.
+&lsquo;<tt>=</tt><var>array</var>&rsquo; is given, it is instead copied into that array, which
+should be declared as a normal array and never as an associative array.
 </p>
 <p>Note that it is an error to give any <var>spec</var> without an
 &lsquo;<tt>=</tt><var>array</var>&rsquo; unless one of the <tt>-a</tt> or <tt>-A</tt> options is used.
@@ -5329,7 +5344,10 @@ first colon.
 </dd>
 </dl>
 
-<p>The options of <tt>zparseopts</tt> itself are:
+<p>The options of <tt>zparseopts</tt> itself cannot be stacked because, for
+example, the stack &lsquo;<tt>-DEK</tt>&rsquo; is indistinguishable from a <var>spec</var> for
+the GNU-style long option &lsquo;<tt>--DEK</tt>&rsquo;.  The options of <tt>zparseopts</tt>
+itself are:
 </p>
 <dl compact="compact">
 <dt><tt>-a</tt> <var>array</var></dt>
@@ -5443,9 +5461,9 @@ bar=(-a '' -b xyz)
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 17, 2016</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
+<font size="-1">Zsh version 5.3, released on December 11, 2016.</font>
 </body>
 </html>

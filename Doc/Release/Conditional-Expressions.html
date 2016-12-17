@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
 <head>
 <title>zsh: 12 Conditional Expressions</title>
 
@@ -31,9 +31,8 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space: nowrap}
 span.nolinebreak {white-space: nowrap}
-span.roman {font-family: serif; font-weight: normal}
+span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
@@ -62,9 +61,9 @@ ul.no-bullet {list-style: none}
 
 <a name="Conditional-Expressions-1"></a>
 <h1 class="chapter">12 Conditional Expressions</h1>
-<a name="index-conditional-expressions"></a>
+<p><a name="index-conditional-expressions"></a>
 <a name="index-expressions_002c-conditional"></a>
-<p>A <em>conditional expression</em> is used with the <tt>[[</tt>
+A <em>conditional expression</em> is used with the <tt>[[</tt>
 compound command to test attributes of files and to compare strings.
 Each expression can be constructed from one or more
 of the following unary or binary expressions:
@@ -138,6 +137,10 @@ is open and associated with a terminal device.
 <dd><p>true if <var>file</var> exists and has its setuid bit set.
 </p>
 </dd>
+<dt><tt>-v</tt> <var>varname</var></dt>
+<dd><p>true if shell variable <var>varname</var> is set.
+</p>
+</dd>
 <dt><tt>-w</tt> <var>file</var></dt>
 <dd><p>true if <var>file</var> exists and is writable by current process.
 </p>
@@ -189,8 +192,10 @@ not newer than its modification time.
 <dt><var>string</var> <tt>=</tt> <var>pattern</var></dt>
 <dt><var>string</var> <tt>==</tt> <var>pattern</var></dt>
 <dd><p>true if <var>string</var> matches <var>pattern</var>.
-The &lsquo;<tt>==</tt>&rsquo; form is the preferred one.  The &lsquo;<tt>=</tt>&rsquo; form is for
-backward compatibility and should be considered obsolete.
+The two forms are exactly equivalent.  The &lsquo;<tt>=</tt>&rsquo; form is
+the traditional shell syntax (and hence the only one generally used
+with the <tt>test</tt> and <tt>[</tt> builtins); the &lsquo;<tt>==</tt>&rsquo; form provides
+compatibility with other sorts of computer language.
 </p>
 </dd>
 <dt><var>string</var> <tt>!=</tt> <var>pattern</var></dt>
@@ -366,9 +371,9 @@ condition is true, the message &lsquo;<tt>File exists.</tt>&rsquo; is printed.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 17, 2016</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
+<font size="-1">Zsh version 5.3, released on December 11, 2016.</font>
 </body>
 </html>

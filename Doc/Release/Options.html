@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
 <head>
 <title>zsh: 16 Options</title>
 
@@ -31,9 +31,8 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space: nowrap}
 span.nolinebreak {white-space: nowrap}
-span.roman {font-family: serif; font-weight: normal}
+span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
@@ -62,8 +61,8 @@ ul.no-bullet {list-style: none}
 
 <a name="Options-2"></a>
 <h1 class="chapter">16 Options</h1>
-<a name="index-options"></a>
-<table class="menu" border="0" cellspacing="0">
+<p><a name="index-options"></a>
+</p><table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top"><a href="#Specifying-Options">16.1 Specifying Options</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Description-of-Options">16.2 Description of Options</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -93,8 +92,8 @@ ul.no-bullet {list-style: none}
 
 <a name="Specifying-Options-1"></a>
 <h2 class="section">16.1 Specifying Options</h2>
-<a name="index-options_002c-specifying"></a>
-<p>Options are primarily referred to by name.
+<p><a name="index-options_002c-specifying"></a>
+Options are primarily referred to by name.
 These names are case insensitive and underscores are ignored.
 For example, &lsquo;<tt>allexport</tt>&rsquo; is equivalent to &lsquo;<tt>A__lleXP_ort</tt>&rsquo;.
 </p>
@@ -145,8 +144,8 @@ calling scripts do not strip trailing whitespace.
 
 <a name="Description-of-Options-1"></a>
 <h2 class="section">16.2 Description of Options</h2>
-<a name="index-options_002c-description"></a>
-<p>In the following list, options set by default in all emulations are marked
+<p><a name="index-options_002c-description"></a>
+In the following list, options set by default in all emulations are marked
 &lt;D&gt;; those set by default only in csh, ksh, sh, or zsh emulations are marked
 &lt;C&gt;, &lt;K&gt;, &lt;S&gt;, &lt;Z&gt; as appropriate.  When listing options (by &lsquo;<tt>setopt</tt>&rsquo;,
 &lsquo;<tt>unsetopt</tt>&rsquo;, &lsquo;<tt>set -o</tt>&rsquo; or &lsquo;<tt>set +o</tt>&rsquo;), those turned on by default
@@ -2365,7 +2364,8 @@ such redirections fail (see <a href="Redirection.html#Redirection">Redirection</
 is set, array elements are numbered from zero, an array parameter
 without subscript refers to the first element instead of the whole array,
 and braces are required to delimit a subscript (&lsquo;<tt>${path[2]}</tt>&rsquo; rather
-than just &lsquo;<tt>$path[2]</tt>&rsquo;).
+than just &lsquo;<tt>$path[2]</tt>&rsquo;) or to apply modifiers to any parameter
+(&lsquo;<tt>${PWD:h}</tt>&rsquo; rather than &lsquo;<tt>$PWD:h</tt>&rsquo;).
 </p>
 <a name="index-KSH_005fAUTOLOAD"></a>
 <a name="index-NO_005fKSH_005fAUTOLOAD"></a>
@@ -2546,6 +2546,12 @@ the parameter <tt>$#</tt> even if followed by a valid parameter name.
 When it is unset, zsh allows expressions of the form <tt>$#</tt><var>name</var>
 to refer to the length of <tt>$</tt><var>name</var>, even for special variables,
 for example in expressions such as <tt>$#-</tt> and <tt>$#*</tt>.
+</p>
+<p>Another difference is that with the option set assignment to an
+unset variable in arithmetic context causes the variable to be created
+as a scalar rather than a numeric type.  So after &lsquo;<tt>unset t; (( t = 3
+))</tt>&rsquo;. without <tt>POSIX_IDENTIFIERS</tt> set <tt>t</tt> has integer type, while with
+it set it has scalar type.
 </p>
 <p>When the option is unset and multibyte character support is enabled (i.e. it
 is compiled in and the option <tt>MULTIBYTE</tt> is set), then additionally any
@@ -2934,8 +2940,8 @@ a terminal.
 
 <a name="Option-Aliases-1"></a>
 <h2 class="section">16.3 Option Aliases</h2>
-<a name="index-options_002c-aliases"></a>
-<p>Some options have alternative names.  These aliases are never used for
+<p><a name="index-options_002c-aliases"></a>
+Some options have alternative names.  These aliases are never used for
 output, but can be used just like normal option names when specifying
 options to the shell.
 </p>
@@ -3067,9 +3073,9 @@ options to the shell.
 
 <a name="Single-Letter-Options-1"></a>
 <h2 class="section">16.4 Single Letter Options</h2>
-<a name="index-options_002c-single-letter"></a>
+<p><a name="index-options_002c-single-letter"></a>
 <a name="index-single-letter-options"></a>
-
+</p>
 <hr>
 <a name="Default-set"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -3381,9 +3387,9 @@ options to the shell.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 17, 2016</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
+<font size="-1">Zsh version 5.3, released on December 11, 2016.</font>
 </body>
 </html>

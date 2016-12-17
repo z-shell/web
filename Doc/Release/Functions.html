@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
 <head>
 <title>zsh: 9 Functions</title>
 
@@ -31,9 +31,8 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space: nowrap}
 span.nolinebreak {white-space: nowrap}
-span.roman {font-family: serif; font-weight: normal}
+span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
@@ -62,9 +61,9 @@ ul.no-bullet {list-style: none}
 
 <a name="Functions-1"></a>
 <h1 class="chapter">9 Functions</h1>
-<a name="index-functions"></a>
+<p><a name="index-functions"></a>
 <a name="index-function_002c-use-of"></a>
-<p>Shell functions are defined with the <tt>function</tt> reserved word or the
+Shell functions are defined with the <tt>function</tt> reserved word or the
 special syntax &lsquo;<var>funcname</var> <tt>()</tt>&rsquo;.
 Shell functions are read in and stored internally.
 Alias names are resolved when the function is read.
@@ -79,11 +78,11 @@ caller.  A trap on <tt>EXIT</tt> set inside a function
 is executed after the function completes in the environment
 of the caller.
 </p>
-<a name="index-return_002c-use-of"></a>
-<p>The <tt>return</tt> builtin is used to return from function calls.
+<p><a name="index-return_002c-use-of"></a>
+The <tt>return</tt> builtin is used to return from function calls.
 </p>
-<a name="index-functions_002c-use-of"></a>
-<p>Function identifiers can be listed with the <tt>functions</tt> builtin.
+<p><a name="index-functions_002c-use-of"></a>
+Function identifiers can be listed with the <tt>functions</tt> builtin.
 <a name="index-unfunction_002c-use-of"></a>
 Functions can be undefined with the <tt>unfunction</tt> builtin.
 </p>
@@ -105,12 +104,12 @@ Functions can be undefined with the <tt>unfunction</tt> builtin.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">9.1 Autoloading Functions</h2>
-<a name="index-autoloading-functions"></a>
+<p><a name="index-autoloading-functions"></a>
 <a name="index-functions_002c-autoloading"></a>
-
-<a name="index-autoload_002c-use-of"></a>
+</p>
+<p><a name="index-autoload_002c-use-of"></a>
 <a name="index-fpath_002c-use-of"></a>
-<p>A function can be marked as <em>undefined</em> using the <tt>autoload</tt> builtin
+A function can be marked as <em>undefined</em> using the <tt>autoload</tt> builtin
 (or &lsquo;<tt>functions -u</tt>&rsquo; or &lsquo;<tt>typeset -fu</tt>&rsquo;).  Such a function has no
 body.  When the function is first executed, the shell searches for its
 definition using the elements of the <tt>fpath</tt> variable.  Thus to define
@@ -171,8 +170,8 @@ definition for the function that is sought, the leftmost in the <tt>fpath</tt>
 is chosen; and third, within a directory, the newer of either a compiled
 function or an ordinary function definition is used.
 </p>
-<a name="index-KSH_005fAUTOLOAD_002c-use-of"></a>
-<p>If the <tt>KSH_AUTOLOAD</tt> option is set, or the file contains only a
+<p><a name="index-KSH_005fAUTOLOAD_002c-use-of"></a>
+If the <tt>KSH_AUTOLOAD</tt> option is set, or the file contains only a
 simple definition of the function, the file&rsquo;s contents will be executed.
 This will normally define the function in question, but may also perform
 initialization, which is executed in the context of the function execution,
@@ -260,9 +259,9 @@ executing <tt>myfunc</tt>, use:
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">9.2 Anonymous Functions</h2>
-<a name="index-anonymous-functions"></a>
+<p><a name="index-anonymous-functions"></a>
 <a name="index-functions_002c-anonymous"></a>
-
+</p>
 <p>If no name is given for a function, it is &lsquo;anonymous&rsquo; and is handled
 specially.  Either form of function definition may be used: a &lsquo;<tt>()</tt>&rsquo; with
 no preceding name, or a &lsquo;<tt>function</tt>&rsquo; with an immediately following open
@@ -350,9 +349,9 @@ function definitions where the definition is silently discarded.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">9.3.1 Hook Functions</h3>
-<a name="index-functions_002c-hook"></a>
+<p><a name="index-functions_002c-hook"></a>
 <a name="index-hook-functions"></a>
-
+</p>
 <p>For the functions below, it is possible to define an array that has the
 same name as the function with &lsquo;<tt>_functions</tt>&rsquo; appended.  Any element in
 such an array is taken as the name of a function to execute; it is executed
@@ -548,8 +547,8 @@ case).
 </dd>
 </dl>
 
-<a name="index-trap_002c-use-of"></a>
-<p>The functions beginning &lsquo;<tt>TRAP</tt>&rsquo; may alternatively be defined with the
+<p><a name="index-trap_002c-use-of"></a>
+The functions beginning &lsquo;<tt>TRAP</tt>&rsquo; may alternatively be defined with the
 <tt>trap</tt> builtin:  this may be preferable for some uses.  Setting a trap
 with one form removes any trap of the other form for the same signal;
 removing a trap in either form removes all traps for the same signal.
@@ -598,9 +597,9 @@ behaviour.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 17, 2016</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
+<font size="-1">Zsh version 5.3, released on December 11, 2016.</font>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
 <head>
 <title>zsh: 18 Zsh Line Editor</title>
 
@@ -31,9 +31,8 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space: nowrap}
 span.nolinebreak {white-space: nowrap}
-span.roman {font-family: serif; font-weight: normal}
+span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
@@ -62,10 +61,10 @@ ul.no-bullet {list-style: none}
 
 <a name="Zsh-Line-Editor-1"></a>
 <h1 class="chapter">18 Zsh Line Editor</h1>
-<a name="index-line-editor"></a>
+<p><a name="index-line-editor"></a>
 <a name="index-editor_002c-line"></a>
 <a name="index-ZLE"></a>
-
+</p>
 <hr>
 <a name="Description-1"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -84,8 +83,8 @@ ul.no-bullet {list-style: none}
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">18.1 Description</h2>
-<a name="index-ZLE_002c-use-of"></a>
-<p>If the <tt>ZLE</tt> option is set (which it is by default in interactive shells)
+<p><a name="index-ZLE_002c-use-of"></a>
+If the <tt>ZLE</tt> option is set (which it is by default in interactive shells)
 and the shell input is attached to the terminal, the user
 is able to edit command lines.
 </p>
@@ -101,15 +100,15 @@ This mode
 is similar to <cite>ksh</cite>, and uses no termcap sequences.  If <tt>TERM</tt> is
 &quot;emacs&quot;, the <tt>ZLE</tt> option will be unset by default.
 </p>
-<a name="index-BAUD_002c-use-of"></a>
+<p><a name="index-BAUD_002c-use-of"></a>
 <a name="index-COLUMNS_002c-use-of"></a>
 <a name="index-LINES_002c-use-of"></a>
-<p>The parameters <tt>BAUD</tt>, <tt>COLUMNS</tt>, and <tt>LINES</tt> are also used by the
+The parameters <tt>BAUD</tt>, <tt>COLUMNS</tt>, and <tt>LINES</tt> are also used by the
 line editor. See
 <a href="Parameters.html#Parameters-Used-By-The-Shell">Parameters Used By The Shell</a>.
 </p>
-<a name="index-zle_005fhighlight_002c-use-of"></a>
-<p>The parameter <tt>zle_highlight</tt> is also used by the line editor; see
+<p><a name="index-zle_005fhighlight_002c-use-of"></a>
+The parameter <tt>zle_highlight</tt> is also used by the line editor; see
 <a href="#Character-Highlighting">Character Highlighting</a>.  Highlighting
 of special characters and the region between the cursor and the
 mark (as set with <tt>set-mark-command</tt> in Emacs mode, or by <tt>visual-mode</tt>
@@ -162,10 +161,10 @@ bindings mentioned here use the <tt>digit-argument</tt> widget.
 
 <a name="Keymaps-1"></a>
 <h2 class="section">18.2 Keymaps</h2>
-<a name="index-keymaps"></a>
+<p><a name="index-keymaps"></a>
 <a name="index-key-bindings"></a>
 <a name="index-bindings_002c-key"></a>
-<p>A keymap in ZLE contains a set of bindings between key sequences
+A keymap in ZLE contains a set of bindings between key sequences
 and ZLE commands.  The empty key sequence cannot be bound.
 </p>
 <p>There can be any number of keymaps at any time, and each keymap has one
@@ -207,9 +206,9 @@ can never be removed.  However, it can be linked to other names, which can
 be removed.  In the future other special keymaps may be added; users should
 avoid using names beginning with &lsquo;<tt>.</tt>&rsquo; for their own keymaps.
 </p>
-<a name="index-VISUAL"></a>
+<p><a name="index-VISUAL"></a>
 <a name="index-EDITOR"></a>
-<p>In addition to these names, either &lsquo;<tt>emacs</tt>&rsquo; or &lsquo;<tt>viins</tt>&rsquo; is
+In addition to these names, either &lsquo;<tt>emacs</tt>&rsquo; or &lsquo;<tt>viins</tt>&rsquo; is
 also linked to the name &lsquo;<tt>main</tt>&rsquo;.  If one of the <tt>VISUAL</tt> or
 <tt>EDITOR</tt> environment variables contain the string &lsquo;<tt>vi</tt>&rsquo; when the shell
 starts up then it will be &lsquo;<tt>viins</tt>&rsquo;, otherwise it will be &lsquo;<tt>emacs</tt>&rsquo;.
@@ -288,8 +287,8 @@ in user-defined widgets with the <tt>read-command</tt> widget, described in
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">18.2.2 Local Keymaps</h3>
-<a name="index-local-keymaps"></a>
-<p>While for normal editing a single keymap is used exclusively, in many
+<p><a name="index-local-keymaps"></a>
+While for normal editing a single keymap is used exclusively, in many
 modes a local keymap allows for some keys to be customised. For example,
 in an incremental search mode, a binding in the <tt>isearch</tt> keymap will
 override a binding in the <tt>main</tt> keymap but all keys that are not
@@ -323,8 +322,8 @@ by the binding of <tt>^Xb</tt> in the local keymap.
 
 <a name="Zle-Builtins-1"></a>
 <h2 class="section">18.3 Zle Builtins</h2>
-<a name="index-zle_002c-builtin-commands"></a>
-<p>The ZLE module contains three related builtin commands. The <tt>bindkey</tt>
+<p><a name="index-zle_002c-builtin-commands"></a>
+The ZLE module contains three related builtin commands. The <tt>bindkey</tt>
 command manipulates keymaps and key bindings; the <tt>vared</tt> command invokes
 ZLE on the value of a shell parameter; and the <tt>zle</tt> command manipulates
 editing widgets and allows command line access to ZLE commands from within
@@ -701,6 +700,13 @@ When repeatedly invoking a kill widget, text is appended to the cutbuffer
 instead of replacing it, but when wrapping such widgets, it is necessary
 to call &lsquo;<tt>zle -f kill</tt>&rsquo; to retain this effect.
 </p>
+<p><tt>vichange</tt> for indicating that the widget represents a vi change that
+can be repeated as a whole with &lsquo;<tt>vi-repeat-change</tt>&rsquo;. The flag should be set
+early in the function before inspecting the value of <tt>NUMERIC</tt> or invoking
+other widgets. This has no effect for a widget invoked from insert mode. If
+insert mode is active when the widget finishes, the change extends until next
+returning to command mode.
+</p>
 <a name="index-completion-widgets_002c-creating"></a>
 </dd>
 <dt><tt>-C</tt> <var>widget</var> <var>completion-widget</var> <var>function</var></dt>
@@ -970,8 +976,8 @@ it should call the <tt>beep</tt> widget directly.
 
 <a name="Widgets"></a>
 <h2 class="section">18.4 Widgets</h2>
-<a name="index-widgets"></a>
-<p>All actions in the editor are performed by &lsquo;widgets&rsquo;.  A widget&rsquo;s job is
+<p><a name="index-widgets"></a>
+All actions in the editor are performed by &lsquo;widgets&rsquo;.  A widget&rsquo;s job is
 simply to perform some small action.  The ZLE commands that key sequences
 in keymaps are bound to are in fact widgets.  Widgets can be user-defined
 or built in.
@@ -1007,8 +1013,8 @@ starting with &lsquo;<tt>.</tt>&rsquo;.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">18.5 User-Defined Widgets</h2>
-<a name="index-widgets_002c-user_002ddefined"></a>
-<p>User-defined widgets, being implemented as shell functions,
+<p><a name="index-widgets_002c-user_002ddefined"></a>
+User-defined widgets, being implemented as shell functions,
 can execute any normal shell command.  They can also run other widgets
 (whether built-in or user-defined) using the <tt>zle</tt> builtin command.
 The standard input of the function is closed to prevent external commands
@@ -1017,9 +1023,9 @@ from unintentionally blocking ZLE by reading from the terminal, but
 they can examine and edit the ZLE buffer being edited by
 reading and setting the special parameters described below.
 </p>
-<a name="index-parameters_002c-editor"></a>
+<p><a name="index-parameters_002c-editor"></a>
 <a name="index-parameters_002c-zle"></a>
-<p>These special parameters are always available in widget functions, but
+These special parameters are always available in widget functions, but
 are not in any way special outside ZLE.  If they have some normal value
 outside ZLE, that value is temporarily inaccessible, but will return
 when the widget function exits.  These special parameters in fact have
@@ -1076,7 +1082,7 @@ the values:
 </p>
 </dd>
 <dt><tt>select</tt></dt>
-<dd><p>In a <tt>select</tt> loop.
+<dd><p>In a <tt>select</tt> loop (at prompt <tt>PS3</tt>).
 </p>
 </dd>
 <dt><tt>vared</tt></dt>
@@ -1113,6 +1119,21 @@ history.  Note this is not the same as the parameter <tt>HISTCMD</tt>,
 which always gives the number of the history line being added to the main
 shell&rsquo;s history.  <tt>HISTNO</tt> refers to the line being retrieved within
 zle.
+</p>
+<a name="index-ISEARCHMATCH_005fACTIVE"></a>
+<a name="index-ISEARCHMATCH_005fSTART"></a>
+<a name="index-ISEARCHMATCH_005fEND"></a>
+</dd>
+<dt><tt>ISEARCHMATCH_ACTIVE</tt> (integer)</dt>
+<dt><tt>ISEARCHMATCH_START</tt> (integer)</dt>
+<dt><tt>ISEARCHMATCH_END</tt> (integer)</dt>
+<dd><p><tt>ISEARCHMATCH_ACTIVE</tt> indicates whether a part of the <tt>BUFFER</tt> is
+currently matched by an incremental search pattern. <tt>ISEARCHMATCH_START</tt>
+and <tt>ISEARCHMATCH_END</tt> give the location of the matched part and are
+in the same units as <tt>CURSOR</tt>. They are only valid for reading
+when <tt>ISEARCHMATCH_ACTIVE</tt> is non-zero.
+</p>
+<p>All parameters are read-only.
 </p>
 <a name="index-KEYMAP"></a>
 </dd>
@@ -1169,7 +1190,7 @@ cursor remains between the new <tt>$LBUFFER</tt> and the old <tt>$RBUFFER</tt>.
 <dt><tt>MARK</tt> (integer)</dt>
 <dd><p>Like <tt>CURSOR</tt>, but for the mark. With vi-mode operators that wait for
 a movement command to select a region of text, setting <tt>MARK</tt> allows
-the selection to extend in both directions from the the initial cursor
+the selection to extend in both directions from the initial cursor
 position.
 </p>
 <a name="index-NUMERIC"></a>
@@ -1270,6 +1291,27 @@ as soon as the line is accepted.
 <p>The final highlighting on the command line depends on both <tt>region_highlight</tt>
 and <tt>zle_highlight</tt>; see
 <a href="#Character-Highlighting">Character Highlighting</a> for details.
+</p>
+<a name="index-registers"></a>
+</dd>
+<dt><tt>registers</tt> (associative array)</dt>
+<dd><p>The contents of each of the vi register buffers. These are
+typically set using <tt>vi-set-buffer</tt> followed by a delete, change or
+yank command.
+</p>
+<a name="index-SUFFIX_005fACTIVE"></a>
+<a name="index-SUFFIX_005fSTART"></a>
+<a name="index-SUFFIX_005fEND"></a>
+</dd>
+<dt><tt>SUFFIX_ACTIVE</tt> (integer)</dt>
+<dt><tt>SUFFIX_START</tt> (integer)</dt>
+<dt><tt>SUFFIX_END</tt> (integer)</dt>
+<dd><p><tt>SUFFIX_ACTIVE</tt> indicates whether an auto-removable completion suffix
+is currently active. <tt>SUFFIX_START</tt> and <tt>SUFFIX_END</tt> give the
+location of the suffix and are in the same units as <tt>CURSOR</tt>. They are
+only valid for reading when <tt>SUFFIX_ACTIVE</tt> is non-zero.
+</p>
+<p>All parameters are read-only.
 </p>
 <a name="index-UNDO_005fCHANGE_005fNO"></a>
 </dd>
@@ -1417,6 +1459,12 @@ widget:
 zle -N zle-isearch-exit
 </pre></div>
 
+<a name="index-zle_002dline_002dpre_002dredraw"></a>
+</dd>
+<dt><tt>zle-line-pre-redraw</tt></dt>
+<dd><p>Executed whenever the input line is about to be redrawn, providing an
+opportunity to update the region_highlight array.
+</p>
 <a name="index-zle_002dline_002dinit"></a>
 </dd>
 <dt><tt>zle-line-init</tt></dt>
@@ -1479,8 +1527,8 @@ old keymap is passed as the sole argument.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">18.6 Standard Widgets</h2>
-<a name="index-widgets_002c-standard"></a>
-<p>The following is a list of all the standard widgets,
+<p><a name="index-widgets_002c-standard"></a>
+The following is a list of all the standard widgets,
 and their default bindings in emacs mode,
 vi command mode and vi insert mode
 (the &lsquo;<tt>emacs</tt>&rsquo;, &lsquo;<tt>vicmd</tt>&rsquo; and &lsquo;<tt>viins</tt>&rsquo; keymaps, respectively).
@@ -2266,6 +2314,14 @@ without going past the end of the line.
 <dt><tt>down-case-word</tt> (<tt>ESC-L ESC-l</tt>) (unbound) (unbound)</dt>
 <dd><p>Convert the current word to all lowercase and move past it.
 </p>
+<a name="index-vi_002ddown_002dcase"></a>
+</dd>
+<dt><tt>vi-down-case</tt> (unbound) (<tt>gu</tt>) (unbound)</dt>
+<dd><p>Read a movement command from the keyboard, and convert all characters
+from the cursor position to the endpoint of the movement to lowercase.
+If the movement command is <tt>vi-down-case</tt>, swap the case of all
+characters on the current line.
+</p>
 <a name="index-kill_002dword"></a>
 </dd>
 <dt><tt>kill-word</tt> (<tt>ESC-D ESC-d</tt>) (unbound) (unbound)</dt>
@@ -2460,10 +2516,27 @@ to the left.
 <dt><tt>transpose-words</tt> (<tt>ESC-T ESC-t</tt>) (unbound) (unbound)</dt>
 <dd><p>Exchange the current word with the one before it.
 </p>
+<p>With a positive numeric argument <em>N</em>, the word around the cursor, or
+following it if the cursor is between words, is transposed with the
+preceding <em>N</em> words.  The cursor is put at the end of the resulting
+group of words.
+</p>
+<p>With a negative numeric argument <em>-N</em>, the effect is the same as using
+a positive argument <em>N</em> except that the original cursor position is
+retained, regardless of how the words are rearranged.
+</p>
 <a name="index-vi_002dunindent"></a>
 </dd>
 <dt><tt>vi-unindent</tt> (unbound) (<tt>&lt;</tt>) (unbound)</dt>
 <dd><p>Unindent a number of lines.
+</p>
+<a name="index-vi_002dup_002dcase"></a>
+</dd>
+<dt><tt>vi-up-case</tt> (unbound) (<tt>gU</tt>) (unbound)</dt>
+<dd><p>Read a movement command from the keyboard, and convert all characters
+from the cursor position to the endpoint of the movement to lowercase.
+If the movement command is <tt>vi-up-case</tt>, swap the case of all
+characters on the current line.
 </p>
 <a name="index-up_002dcase_002dword"></a>
 </dd>
@@ -2763,10 +2836,18 @@ a desired suffix-preservation behavior.
 <dd><p>This widget is invoked when text is pasted to the terminal emulator. It
 is not intended to be bound to actual keys but instead to the special
 sequence generated by the terminal emulator when text is pasted.
+</p>
+<p>When invoked interactively, the pasted text is inserted to the buffer
+and placed in the cutbuffer.
 If a numeric argument is given, shell quoting will be applied to the
-pasted text before it is inserted. When called from a widget function,
-an argument can be given to specify a variable to which pasted text is
-assigned.
+pasted text before it is inserted.
+</p>
+<p>When a named buffer is specified with <tt>vi-set-buffer</tt> (<tt>&quot;x</tt>),
+the pasted text is stored in that named buffer but not inserted.
+</p>
+<p>When called from a widget function as &lsquo;<tt>bracketed-paste</tt> <var>name</var>&lsquo;, the
+pasted text is assigned to the variable <var>name</var> and no other processing is
+done.
 </p>
 <p>See also the <tt>zle_bracketed_paste</tt> parameter.
 </p>
@@ -2811,8 +2892,12 @@ point and mark are not swapped.
 <a name="index-execute_002dnamed_002dcmd"></a>
 </dd>
 <dt><tt>execute-named-cmd</tt> (<tt>ESC-x</tt>) (<tt>:</tt>) (unbound)</dt>
-<dd><p>Read the name of an editor command and
-execute it.  A restricted set of editing functions is available in the
+<dd><p>Read the name of an editor command and execute it.  Aliasing this
+widget with &lsquo;<tt>zle -A</tt>&rsquo; or replacing it with &lsquo;<tt>zle -N</tt>&rsquo; has no
+effect when interpreting key bindings, but &lsquo;<tt>zle execute-named-cmd</tt>&rsquo;
+will invoke such an alias or replacement.
+</p>
+<p>A restricted set of editing functions is available in the
 mini-buffer.  Keys are looked up in the special
 <tt>command</tt> keymap, and if not found there in the main keymap.
 An interrupt signal, as defined by the stty setting, will
@@ -2854,7 +2939,8 @@ The bindings of the current insert mode will be used.
 <dt><tt>execute-last-named-cmd</tt> (<tt>ESC-z</tt>) (unbound) (unbound)</dt>
 <dd><p>Redo the last function executed with <tt>execute-named-cmd</tt>.
 </p>
-<p>Currently this command may not be redefined or called by name.
+<p>Like <tt>execute-named-cmd</tt>, this command may not be redefined,
+but it may be called by name.
 </p>
 <a name="index-get_002dline"></a>
 </dd>
@@ -3014,7 +3100,7 @@ concerned replaces the previous contents of the specified buffer. If
 a named buffer is specified using a capital, the newly cut text is
 appended to the buffer instead of overwriting it. When using the <tt>&quot;_</tt>
 buffer, nothing happens. This can be useful for deleting text without
-affecting the normal registers.
+affecting any buffers.
 </p>
 <p>If no buffer is specified for a cut or change command, <tt>&quot;1</tt> is used, and
 the contents of <tt>&quot;1</tt> to <tt>&quot;8</tt> are each shifted along one buffer;
@@ -3153,8 +3239,8 @@ continue the argument.  Otherwise, execute vi-beginning-of-line.
 
 <a name="Text-Objects-1"></a>
 <h3 class="subsection">18.6.7 Text Objects</h3>
-<a name="index-text-objects"></a>
-<p>Text objects are commands that can be used to select a block of text
+<p><a name="index-text-objects"></a>
+Text objects are commands that can be used to select a block of text
 according to some criteria. They are a feature of the vim text editor
 and so are primarily intended for use with vi operators or from visual
 selection mode. However, they can also be used from vi-insert or emacs
@@ -3224,8 +3310,8 @@ argument, multiple words will be selected.
 <a name="Character-Highlighting-1"></a>
 <h2 class="section">18.7 Character Highlighting</h2>
 
-<a name="index-zle_005fhighlight_002c-setting"></a>
-<p>The line editor has the ability to highlight characters or regions
+<p><a name="index-zle_005fhighlight_002c-setting"></a>
+The line editor has the ability to highlight characters or regions
 of the line that have a particular significance.  This is controlled
 by the array parameter <tt>zle_highlight</tt>, if it has been set by the user.
 </p>
@@ -3253,15 +3339,14 @@ area of the command line matched by the search string or pattern.
 </p>
 </dd>
 <dt><tt>region</tt></dt>
-<dd><p>The region between the cursor (point) and the mark as set with
-<tt>set-mark-command</tt>.  The region is only highlighted if it is active,
-which is the case if <tt>set-mark-command</tt> or <tt>exchange-point-and-mark</tt>
-has been called and the line has not been subsequently modified.  The
-region can be deactivated by calling <tt>set-mark-command</tt> with a
-negative numeric argument, or reactivated by calling
-<tt>exchange-point-and-mark</tt> with a zero numeric argument.  Note
-that whether or not the region is active has no effect on its
-use within widgets, it simply determines whether it is highlighted.
+<dd><p>The currently selected text. In emacs terminology, this is referred to as
+the region and is bounded by the cursor (point) and the mark. The region
+is only highlighted if it is active, which is the case after the mark
+is modified with <tt>set-mark-command</tt> or <tt>exchange-point-and-mark</tt>.
+Note that whether or not the region is active has no effect on its
+use within emacs style widgets, it simply determines whether it is
+highlighted. In vi mode, the region corresponds to selected text in
+visual mode.
 </p>
 <a name="index-special-characters_002c-highlighting"></a>
 <a name="index-highlighting_002c-special-characters"></a>
@@ -3473,9 +3558,9 @@ special array parameter <tt>region_highlight</tt>; see
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 17, 2016</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
+<font size="-1">Zsh version 5.3, released on December 11, 2016.</font>
 </body>
 </html>

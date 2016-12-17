@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
 <head>
 <title>zsh: 26 User Contributions</title>
 
@@ -31,9 +31,8 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space: nowrap}
 span.nolinebreak {white-space: nowrap}
-span.roman {font-family: serif; font-weight: normal}
+span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
@@ -62,8 +61,8 @@ ul.no-bullet {list-style: none}
 
 <a name="User-Contributions-1"></a>
 <h1 class="chapter">26 User Contributions</h1>
-<a name="index-user-contributions"></a>
-
+<p><a name="index-user-contributions"></a>
+</p>
 <hr>
 <a name="Description-9"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -154,8 +153,8 @@ such as shell functions, look for comments in the function source files.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">26.2.1 Accessing On-Line Help</h3>
-<a name="index-helpfiles-utility"></a>
-
+<p><a name="index-helpfiles-utility"></a>
+</p>
 <p>The key sequence <tt>ESC h</tt> is normally bound by ZLE to execute the
 <tt>run-help</tt> widget (see
 <a href="Zsh-Line-Editor.html#Zsh-Line-Editor">Zsh Line Editor</a>).  This invokes the <tt>run-help</tt> command with the command word from the
@@ -181,11 +180,11 @@ distribution in your home directory, you would use the commands:
 </p>
 <div class="example">
 <pre class="example">mkdir ~/zsh_help
-perl ~/zsh-5.2/Util/helpfiles ~/zsh_help
+perl ~/zsh-5.3/Util/helpfiles ~/zsh_help
 </pre></div>
 
-<a name="index-HELPDIR"></a>
-<p>The <tt>HELPDIR</tt> parameter tells <tt>run-help</tt> where to look for the help
+<p><a name="index-HELPDIR"></a>
+The <tt>HELPDIR</tt> parameter tells <tt>run-help</tt> where to look for the help
 files. When unset, it uses the default installation path.
 To use your own set of help files, set this to the appropriate path
 in one of your startup files:
@@ -194,8 +193,8 @@ in one of your startup files:
 <pre class="example">HELPDIR=~/zsh_help
 </pre></div>
 
-<a name="index-run_002dhelp_002c-use-of"></a>
-<p>To use the <tt>run-help</tt> function, you need to add lines something
+<p><a name="index-run_002dhelp_002c-use-of"></a>
+To use the <tt>run-help</tt> function, you need to add lines something
 like the following to your <tt>.zshrc</tt> or equivalent startup file:
 </p>
 <div class="example">
@@ -228,9 +227,9 @@ appropriate directory.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">26.2.2 Recompiling Functions</h3>
-<a name="index-functions_002c-recompiling"></a>
+<p><a name="index-functions_002c-recompiling"></a>
 <a name="index-zrecompile-utility"></a>
-
+</p>
 <p>If you frequently edit your zsh functions, or periodically update your zsh
 installation to track the latest developments, you may find that function
 digests compiled with the <tt>zcompile</tt> builtin are frequently out of date
@@ -340,10 +339,10 @@ arguments.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">26.2.3 Keyboard Definition</h3>
-<a name="index-keyboard-definition"></a>
-
-<a name="index-zkbd"></a>
-<p>The large number of possible combinations of keyboards, workstations,
+<p><a name="index-keyboard-definition"></a>
+</p>
+<p><a name="index-zkbd"></a>
+The large number of possible combinations of keyboards, workstations,
 terminals, emulators, and window systems makes it impossible for zsh to
 have built-in key bindings for every situation.  The <tt>zkbd</tt> utility,
 found in <tt>Functions/Misc</tt>, can help you quickly create key bindings for your
@@ -352,7 +351,7 @@ configuration.
 <p>Run <tt>zkbd</tt> either as an autoloaded function, or as a shell script:
 </p>
 <div class="example">
-<pre class="example">zsh -f ~/zsh-5.2/Functions/Misc/zkbd
+<pre class="example">zsh -f ~/zsh-5.3/Functions/Misc/zkbd
 </pre></div>
 
 <p>When you run <tt>zkbd</tt>, it first asks you to enter your terminal type; if
@@ -403,8 +402,8 @@ appropriate directory.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">26.2.4 Dumping Shell State</h3>
-<a name="index-reporter-utility"></a>
-
+<p><a name="index-reporter-utility"></a>
+</p>
 <p>Occasionally you may encounter what appears to be a bug in the shell,
 particularly if you are using a beta version of zsh or a development
 release.  Usually it is sufficient to send a description of the
@@ -423,7 +422,7 @@ recreate that state.
 command and redirect the output into a file:
 </p>
 <div class="example">
-<pre class="example">. ~/zsh-5.2/Util/reporter &gt; zsh.report
+<pre class="example">. ~/zsh-5.3/Util/reporter &gt; zsh.report
 </pre></div>
 
 <p>You should check the <tt>zsh.report</tt> file for any sensitive information
@@ -516,15 +515,15 @@ any prefix, even a single letter; thus <tt>a</tt> is the same as <tt>aliases</tt
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">26.2.5 Manipulating Hook Functions</h3>
-<a name="index-hook-function-utility"></a>
-
+<p><a name="index-hook-function-utility"></a>
+</p>
 <dl compact="compact">
 <dd><a name="index-add_002dzsh_002dhook"></a>
 </dd>
-<dt><tt>add-zsh-hook</tt> [ <tt>-dD</tt> ] [ <tt>-Uzk</tt> ] <var>hook</var> <var>function</var></dt>
+<dt><tt>add-zsh-hook</tt> [ <tt>-L</tt> | <tt>-dD</tt> ] [ <tt>-Uzk</tt> ] <var>hook</var> <var>function</var></dt>
 <dd><p>Several functions are special to the shell, as described in the section
 Special Functions, <a href="Functions.html#Functions">Functions</a>,
-in that they are automatic called at a specific point during shell execution.
+in that they are automatically called at specific points during shell execution.
 Each has an associated array consisting of names of functions to be
 called at the same point; these are so-called &lsquo;hook functions&rsquo;.
 The shell function <tt>add-zsh-hook</tt> provides a simple way of adding or
@@ -539,6 +538,10 @@ still be manipulated as a hook.
 <p><var>function</var> is name of an ordinary shell function.  If no options
 are given this will be added to the array of functions to be executed
 in the given context.
+Functions are invoked in the order they were added.
+</p>
+<p>If the option <tt>-L</tt> is given, the current values for the hook arrays
+are listed with <tt>typeset</tt>.
 </p>
 <p>If the option <tt>-d</tt> is given, the <var>function</var> is removed from
 the array of functions to be executed.
@@ -550,6 +553,57 @@ functions to be executed.
 <p>The options <tt>-U</tt>, <tt>-z</tt> and <tt>-k</tt> are passed as arguments to
 <tt>autoload</tt> for <var>function</var>.  For functions contributed with zsh, the
 options <tt>-Uz</tt> are appropriate.
+</p>
+<a name="index-add_002dzle_002dhook_002dwidget"></a>
+</dd>
+<dt><tt>add-zle-hook-widget</tt> [ <tt>-L</tt> | <tt>-dD</tt> ] [ <tt>-Uzk</tt> ] <var>hook</var> <var>widgetname</var></dt>
+<dd><p>Several widget names are special to the line editor, as described in the section
+Special Widgets, <a href="Zsh-Line-Editor.html#Zle-Widgets">Widgets</a>,
+in that they are automatically called at specific points during editing.
+Unlike function hooks, these do not use a predefined array of other names
+to call at the same point; the shell function <tt>add-zle-hook-widget</tt>
+maintains a similar array and arranges for the special widget to invoke
+those additional widgets.
+</p>
+<p><var>hook</var> is one of <tt>isearch-exit</tt>, <tt>isearch-update</tt>,
+<tt>line-pre-redraw</tt>, <tt>line-init</tt>, <tt>line-finish</tt>, <tt>history-line-set</tt>,
+or <tt>keymap-select</tt>, corresponding to each of the special widgets
+<tt>zle-isearch-exit</tt>, etc.  The special widget names are also accepted
+as the <var>hook</var> argument.
+</p>
+<p><var>widgetname</var> is the name of a ZLE widget.  If no options are given this
+is added to the array of widgets to be invoked in the given hook context.
+Widgets are invoked in the order they were added, with
+</p><div class="example">
+<pre class="example"><tt>zle </tt><var>widgetname</var><tt> -Nw -- &quot;$@&quot;</tt>
+</pre></div>
+
+<p><a name="index-WIDGET_002c-in-hooks"></a>
+Note that this means that the &lsquo;<tt>WIDGET</tt>&rsquo; special parameter tracks the
+<var>widgetname</var> when the widget function is called, rather than tracking
+the name of the corresponding special hook widget.
+</p>
+<p>If the option <tt>-d</tt> is given, the <var>widgetname</var> is removed from
+the array of widgets to be executed.
+</p>
+<p>If the option <tt>-D</tt> is given, the <var>widgetname</var> is treated as a pattern
+and any matching names of widgets are removed from the array.
+</p>
+<p>If <var>widgetname</var> does not name an existing widget when added to the
+array, it is assumed that a shell function also named <var>widgetname</var> is
+meant to provide the implementation of the widget.  This name is therefore
+marked for autoloading, and the options <tt>-U</tt>, <tt>-z</tt> and <tt>-k</tt> are
+passed as arguments to <tt>autoload</tt> as with <tt>add-zsh-hook</tt>.  The
+widget is also created with &lsquo;<tt>zle -N </tt><var>widgetname</var>&rsquo; to cause the
+corresponding function to be loaded the first time the hook is called.
+</p>
+<p>The arrays of <var>widgetname</var> are currently maintained in <tt>zstyle</tt>
+contexts, one for each <var>hook</var> context, with a style of &lsquo;<tt>widgets</tt>&rsquo;.
+If the <tt>-L</tt> option is given, this set of styles is listed with
+&lsquo;<tt>zstyle -L</tt>&rsquo;.  This implementation may change, and the special widgets
+that refer to the styles are created only if <tt>add-zle-hook-widget</tt> is
+called to add at least one widget, so if this function is used for any
+hooks, then all hooks should be managed only via this function.
 </p>
 </dd>
 </dl>
@@ -1266,8 +1320,8 @@ add-zsh-hook -U zsh_directory_name zdn_mywrapper
 
 <a name="Gathering-information-from-version-control-systems"></a>
 <h2 class="section">26.5 Gathering information from version control systems</h2>
-<a name="index-version-control-utility"></a>
-
+<p><a name="index-version-control-utility"></a>
+</p>
 <p>In a lot of cases, it is nice to automatically retrieve information from
 version control systems (VCSs), such as subversion, CVS or git, to be able
 to provide it to the user; possibly in the user&rsquo;s prompt. So that you can
@@ -1570,7 +1624,7 @@ matches, <tt>vcs_info</tt> will be disabled. This style is checked in the
 <p>Say, <tt>~/.zsh</tt> is a directory under version control, in which you do
 not want <tt>vcs_info</tt> to be active, do:
 </p><div class="example">
-<pre class="example">zstyle ':vcs_info:*' disable-patterns &quot;$HOME/.zsh(|/*)&quot;
+<pre class="example">zstyle ':vcs_info:*' disable-patterns &quot;${(b)HOME}/.zsh(|/*)&quot;
 </pre></div>
 
 <a name="index-use_002dquilt"></a>
@@ -1594,7 +1648,7 @@ in a given directory. See <tt>Quilt Support</tt> for details.
 <a name="index-quiltcommand"></a>
 </dd>
 <dt><tt>quiltcommand</tt></dt>
-<dd><p>When <tt>quilt</tt> itself is called in quilt support the value of this style
+<dd><p>When <tt>quilt</tt> itself is called in quilt support, the value of this style
 is used as the command name.
 </p>
 <a name="index-check_002dfor_002dchanges"></a>
@@ -2270,6 +2324,7 @@ executed <tt>before</tt> statically registered ones (the ones added by
 For example:
 </p><div class="example">
 <pre class="example">
+
 +vi-git-myfirsthook(){
     user_data[myval]=$myval
 }
@@ -2587,6 +2642,7 @@ checking out the debugging output, disable it again:
 <p>Now, let&rsquo;s define the function:
 </p><div class="example">
 <pre class="example">
+
 function +vi-svn2subversion() {
     [[ ${hook_com[vcs_orig]} == svn ]] &amp;&amp; hook_com[vcs]=subversion
 }
@@ -2601,6 +2657,7 @@ backend is:
 </pre></div>
 <div class="example">
 <pre class="example">
+
 function +vi-svn2subversion() {
     hook_com[vcs]=subversion
 }
@@ -2617,6 +2674,7 @@ a customised bookmark string for the <tt>hg</tt> backend.
 <p>And then we define the &lsquo;<tt>+vi-hgbookmarks</tt>&rsquo; function:
 </p><div class="example">
 <pre class="example">
+
 function +vi-hgbookmarks() {
     # The default is to connect all bookmark names by
     # commas. This mixes things up a little.
@@ -2854,6 +2912,8 @@ select-word-style bash
 <a name="index-capitalize_002dword_002dmatch"></a>
 <a name="index-up_002dcase_002dword_002dmatch"></a>
 <a name="index-down_002dcase_002dword_002dmatch"></a>
+<a name="index-delete_002dwhole_002dword_002dmatch"></a>
+<a name="index-select_002dword_002dmatch"></a>
 <a name="index-select_002dword_002dstyle"></a>
 <a name="index-match_002dword_002dcontext"></a>
 <a name="index-match_002dwords_002dby_002dstyle"></a>
@@ -2862,19 +2922,21 @@ select-word-style bash
 <dt><tt>kill-word-match</tt>, <tt>backward-kill-word-match</tt></dt>
 <dt><tt>transpose-words-match</tt>, <tt>capitalize-word-match</tt></dt>
 <dt><tt>up-case-word-match</tt>, <tt>down-case-word-match</tt></dt>
+<dt><tt>delete-whole-word-match</tt>, <tt>select-word-match</tt></dt>
 <dt><tt>select-word-style</tt>, <tt>match-word-context</tt>, <tt>match-words-by-style</tt></dt>
-<dd><p>The eight &lsquo;<tt>-match</tt>&rsquo; functions are drop-in replacements for the
+<dd><p>The first eight &lsquo;<tt>-match</tt>&rsquo; functions are drop-in replacements for the
 builtin widgets without the suffix.  By default they behave in a similar
 way.  However, by the use of styles and the function <tt>select-word-style</tt>,
-the way words are matched can be altered.  For comparison, the widgets
-described in <a href="Zsh-Line-Editor.html#Text-Objects">Text Objects</a> use fixed definitions of words, compatible
+the way words are matched can be altered. <tt>select-word-match</tt> is intended
+to be used as a text object in vi mode but with custom word styles. For
+comparison, the widgets described in <a href="Zsh-Line-Editor.html#Text-Objects">Text Objects</a> use fixed definitions of words, compatible
 with the <tt>vim</tt> editor.
 </p>
 <p>The simplest way of configuring the functions is to use
 <tt>select-word-style</tt>, which can either be called as a normal function with
 the appropriate argument, or invoked as a user-defined widget that will
 prompt for the first character of the word style to be used.  The first
-time it is invoked, the eight <tt>-match</tt> functions will automatically
+time it is invoked, the first eight <tt>-match</tt> functions will automatically
 replace the builtin versions, so they do not need to be loaded explicitly.
 </p>
 <p>The word styles available are as follows.  Only the first character
@@ -3031,7 +3093,7 @@ the context.
 </p>
 <div class="example">
 <pre class="example">zstyle ':zle:*' word-context \ 
-       &quot;*/*&quot; file &quot;[[:space:]]&quot; whitespace
+       &quot;*/*&quot; filename &quot;[[:space:]]&quot; whitespace
 zstyle ':zle:transpose-words:whitespace' word-style shell
 zstyle ':zle:transpose-words:filename' word-style normal
 zstyle ':zle:transpose-words:filename' word-chars ''
@@ -3058,6 +3120,17 @@ before the next word, including all characters specified by the
 non-word characters following that word (7) the remainder of the line.  Any
 of the elements may be an empty string; the calling function should test
 for this to decide whether it can perform its function.
+</p>
+<p>If the variable <tt>matched_words</tt> is defined by the caller to
+<tt>match-words-by-style</tt> as an associative array (<tt>local -A
+matched_words</tt>), then the seven values given above should be retrieved
+from it as elements named <tt>start</tt>, <tt>word-before-cursor</tt>,
+<tt>ws-before-cursor</tt>, <tt>ws-after-cursor</tt>, <tt>word-after-cursor</tt>,
+<tt>ws-after-word</tt>, and <tt>end</tt>.  In addition the element
+<tt>is-word-start</tt> is 1 if the cursor is on the start of a word or
+subword, or on white space before it (the cases can be distinguished by
+testing the <tt>ws-after-cursor</tt> element) and 0 otherwise.  This form is
+recommended for future compatibility.
 </p>
 <p>It is possible to pass options with arguments to <tt>match-words-by-style</tt>
 to override the use of styles.  The options are:
@@ -3088,7 +3161,7 @@ directly.
 </p>
 <a name="index-bracketed_002dpaste_002dmagic"></a>
 </dd>
-<dt>bracketed-paste-magic</dt>
+<dt><tt>bracketed-paste-magic</tt></dt>
 <dd><p>The <tt>bracketed-paste</tt> widget (see <a href="Zsh-Line-Editor.html#Miscellaneous">Miscellaneous</a> in <a href="Zsh-Line-Editor.html#Zle-Widgets">Widgets</a>)
 inserts pasted text literally into the editor buffer rather than interpret
 it as keystrokes.  This disables some common usages where the self-insert
@@ -3225,7 +3298,7 @@ little typing as possible.
 spots.  It can be invoked repeatedly to cycle between all positions
 reported by the completion system.
 </p>
-<a name="index-delete_002dwhole_002dword_002dmatch"></a>
+<a name="index-delete_002dwhole_002dword_002dmatch-1"></a>
 </dd>
 <dt><tt>delete-whole-word-match</tt></dt>
 <dd><p>This is another function which works like the <tt>-match</tt> functions
@@ -4177,6 +4250,18 @@ and aliases &lsquo;<tt>globurl</tt>&rsquo; to &lsquo;<tt>noglob urlglobber</tt>&
 a local URL apart, attempts to pattern-match the local file portion of the
 URL path, and then puts the results back into URL format again.
 </p>
+<a name="index-vi_002dpipe"></a>
+</dd>
+<dt><tt>vi-pipe</tt></dt>
+<dd><p>This function reads a movement command from the keyboard and then
+prompts for an external command. The part of the buffer covered by
+the movement is piped to the external command and then replaced by
+the command&rsquo;s output. If the movement command is bound to vi-pipe,
+the current line is used.
+</p>
+<p>The function serves as an example for reading a vi movement command
+from within a user-defined widget.
+</p>
 <a name="index-which_002dcommand-1"></a>
 </dd>
 <dt><tt>which-command</tt></dt>
@@ -4206,6 +4291,9 @@ the variable <tt>ZCALC_AUTO_INSERT_PREFIX</tt>.
 </p>
 <p>Hence, for example, typing &lsquo;<tt>+12</tt>&rsquo; followed by return adds 12
 to the previous result.
+</p>
+<p>If zcalc is in RPN mode (<tt>-r</tt> option) the effect of this binding is
+automatically suppressed as operators alone on a line are meaningful.
 </p>
 <p>When not in zcalc, the key simply inserts the symbol itself.
 </p>
@@ -4785,7 +4873,7 @@ Windows mount, then
 types even if they are executable.  As this example shows, the complete
 file name is matched against the pattern, regardless of how the file
 was passed to the handler.  The file is resolved to a full path using
-the <tt>:A</tt> modifier described in
+the <tt>:P</tt> modifier described in
 <a href="Expansion.html#Modifiers">Modifiers</a>;
 this means that symbolic links are resolved where possible, so that
 links into other file systems behave in the correct fashion.
@@ -5094,7 +5182,7 @@ for Opera, and <tt>%b -remote &quot;openUrl(%u)&quot;</tt> for all others.
 <dl compact="compact">
 <dd><a name="index-zcalc"></a>
 </dd>
-<dt><tt>zcalc</tt> [ <tt>-ef</tt> ] [ <var>expression</var> ... ]</dt>
+<dt><tt>zcalc</tt> [ <tt>-erf</tt> ] [ <var>expression</var> ... ]</dt>
 <dd><p>A reasonably powerful calculator based on zsh&rsquo;s arithmetic evaluation
 facility.  The syntax is similar to that of formulae in most programming
 languages; see
@@ -5143,8 +5231,14 @@ first few positional parameters.  A visual indication of this is given when
 the calculator starts.
 </p>
 <p>The constants <tt>PI</tt> (3.14159...) and <tt>E</tt> (2.71828...) are provided.
-Parameter assignment is possible, but note that all parameters will be put
-into the global namespace.
+Parameter assignment is possible, but note that all parameters will be
+put into the global namespace unless the <tt>:local</tt> special command is
+used.  The function creates local variables whose names start with
+<tt>_</tt>, so users should avoid doing so.  The variables <tt>ans</tt> (the last
+answer) and <tt>stack</tt> (the stack in RPN mode) may be referred to
+directly; <tt>stack</tt> is an array but elements of it are numeric.  Various
+other special variables are used locally with their standard meaning,
+for example <tt>compcontext</tt>, <tt>match</tt>, <tt>mbegin</tt>, <tt>mend</tt>, <tt>psvar</tt>.
 </p>
 <p>The output base can be initialised by passing the option &lsquo;<tt>-#</tt><var>base</var>&rsquo;,
 for example &lsquo;<tt>zcalc -#16</tt>&rsquo; (the &lsquo;<tt>#</tt>&rsquo; may have to be quoted, depending
@@ -5158,11 +5252,78 @@ interactively line by line.
 point, hence for example the expression &lsquo;<tt>3/4</tt>&rsquo; evaluates to 0.75
 rather than 0.  Options must appear in separate words.
 </p>
+<p>If the option &lsquo;<tt>-r</tt>&rsquo; is set, RPN (Reverse Polish Notation) mode is
+entered.  This has various additional properties:
+</p><dl compact="compact">
+<dt>Stack</dt>
+<dd><p>Evaluated values are maintained in a stack; this is contained in
+an array named <tt>stack</tt> with the most recent value in <tt>${stack[1]}</tt>.
+</p>
+</dd>
+<dt>Operators and functions</dt>
+<dd><p>If the line entered matches an operator (<tt>+</tt>, <tt>-</tt>, <tt>*</tt>,
+<tt>/</tt>, <tt>**</tt>, <tt>^</tt>, <tt>|</tt> or <tt>&amp;</tt>) or a function supplied by the
+<tt>zsh/mathfunc</tt> library, the bottom element or elements of the stack
+are popped to use as the argument or arguments.  The higher elements
+of stack (least recent) are used as earlier arguments.  The result is
+then pushed into <tt>${stack[1]}</tt>.
+</p>
+</dd>
+<dt>Expressions</dt>
+<dd><p>Other expressions are evaluated normally, printed, and added to the
+stack as numeric values.  The syntax within expressions on a single line
+is normal shell arithmetic (not RPN).
+</p>
+</dd>
+<dt>Stack listing</dt>
+<dd><p>If an integer follows the option <tt>-r</tt> with no space, then
+on every evaluation that many elements of the stack, where available,
+are printed instead of just the most recent result.  Hence, for example,
+<tt>zcalc -r4</tt> shows <tt>$stack[4]</tt> to <tt>$stack[1]</tt> each time results
+are printed.
+</p>
+</dd>
+<dt>Duplication: <tt>=</tt></dt>
+<dd><p>The pseudo-operator <tt>=</tt> causes the most recent element of
+the stack to be duplicated onto the stack.
+</p>
+</dd>
+<dt><tt>pop</tt></dt>
+<dd><p>The pseudo-function <tt>pop</tt> causes the most recent element of
+the stack to be popped.  A &lsquo;<tt>&gt;</tt>&rsquo; on its own has the same effect.
+</p>
+</dd>
+<dt><tt>&gt;</tt><var>ident</var></dt>
+<dd><p>The expression <tt>&gt;</tt> followed (with no space) by a shell identifier
+causes the most recent element of the stack to be popped and
+assigned to the variable with that name.  The variable is
+local to the <tt>zcalc</tt> function.
+</p>
+</dd>
+<dt><tt>&lt;</tt><var>ident</var></dt>
+<dd><p>The expression <tt>&lt;</tt> followed (with no space) by a shell identifier
+causes the value of the variable with that name to be pushed
+onto the stack.  <var>ident</var> may be an integer, in which
+case the previous result with that number (as shown before
+the <tt>&gt;</tt> in the standard <tt>zcalc</tt> prompt) is put on the stack.
+</p>
+</dd>
+<dt>Exchange: <tt>xy</tt></dt>
+<dd><p>The pseudo-function <tt>xy</tt> causes the most recent two elements of
+the stack to be exchanged.  &lsquo;<tt>&lt;&gt;</tt>&rsquo; has the same effect.
+</p>
+</dd>
+</dl>
+
 <p>The prompt is configurable via the parameter <tt>ZCALCPROMPT</tt>, which
 undergoes standard prompt expansion.  The index of the current entry is
 stored locally in the first element of the array <tt>psvar</tt>, which can be
 referred to in <tt>ZCALCPROMPT</tt> as &lsquo;<tt>%1v</tt>&rsquo;.  The default prompt is
 &lsquo;<tt>%1v&gt; </tt>&rsquo;.
+</p>
+<p>The variable <tt>ZCALC_ACTIVE</tt> is set within the function and can
+be tested by nested functions; it has the value <tt>rpn</tt> if RPN mode is
+active, else 1.
 </p>
 <p>A few special commands are available; these are introduced by a colon.
 For backward compatibility, the colon may be omitted for certain
@@ -5209,8 +5370,7 @@ Space is optional after <tt>:!</tt>.
 </p>
 </dd>
 <dt><tt>:local</tt> <var>arg</var> ...</dt>
-<dd><p>Declare variables local to the function.  Note that certain variables
-are used by the function for its own purposes.  Other variables
+<dd><p>Declare variables local to the function.  Other variables
 may be used, too, but they will be taken from or put into the global
 scope.
 </p>
@@ -5227,7 +5387,13 @@ The function is defined using <tt>zmathfuncdef</tt>, see below.
 <pre class="example">:f cube $1 * $1 * $1
 </pre></div>
 
-<p>defines a function to cube the sole argument.
+<p>defines a function to cube the sole argument.  Functions so defined, or
+indeed any functions defined directly or indirectly using <tt>functions
+-M</tt>, are available to execute by typing only the name on the line in RPN
+mode; this pops the appropriate number of arguments off the stack
+to pass to the function, i.e. 1 in the case of the example <tt>cube</tt>
+function.  If there are optional arguments only the mandatory
+arguments are supplied by this means.
 </p>
 </dd>
 <dt><tt>[#</tt><var>base</var><tt>]</tt></dt>
@@ -5241,9 +5407,31 @@ Note that setting an output base suppresses floating point output; use
 &lsquo;<tt>[#]</tt>&rsquo; to return to normal operation.
 </p>
 </dd>
+<dt><tt>$</tt><var>var</var></dt>
+<dd><p>Print out the value of var literally; does not affect the calculation.
+To use the value of var, omit the leading &lsquo;<tt>$</tt>&rsquo;.
+</p>
+</dd>
 </dl>
 
 <p>See the comments in the function for a few extra tips.
+</p>
+<a name="index-max"></a>
+<a name="index-min"></a>
+<a name="index-sum"></a>
+<a name="index-zmathfunc"></a>
+</dd>
+<dt><tt>min(</tt><var>arg</var><tt>, ...)</tt></dt>
+<dt><tt>max(</tt><var>arg</var><tt>, ...)</tt></dt>
+<dt><tt>sum(</tt><var>arg</var><tt>, ...)</tt></dt>
+<dt><tt>zmathfunc</tt></dt>
+<dd><p>The function <tt>zmathfunc</tt> defines the three mathematical functions
+<tt>min</tt>, <tt>max</tt>, and <tt>sum</tt>.  The functions <tt>min</tt> and <tt>max</tt> take
+one or more arguments.  The function <tt>sum</tt> takes zero or more arguments.
+Arguments can be of different types (ints and floats).
+</p>
+<p>Not to be confused with the <tt>zsh/mathfunc</tt> module, described in
+<a href="Zsh-Modules.html#The-zsh_002fmathfunc-Module">The zsh/mathfunc Module</a>.
 </p>
 <a name="index-zmathfuncdef"></a>
 </dd>
@@ -5545,13 +5733,30 @@ your search path, in order to be found and used by <tt>run-help</tt>.
 </p>
 <dl compact="compact">
 <dd><a name="index-run_002dhelp_002dgit"></a>
+<a name="index-run_002dhelp_002dip"></a>
+<a name="index-run_002dhelp_002dopenssl"></a>
+<a name="index-run_002dhelp_002dp4"></a>
+<a name="index-run_002dhelp_002dsudo"></a>
 <a name="index-run_002dhelp_002dsvk"></a>
 <a name="index-run_002dhelp_002dsvn"></a>
 </dd>
-<dt><tt>run-help-git</tt></dt>
-<dt><tt>run-help-svk</tt></dt>
+<dt>run-help-git</dt>
+<dt>run-help-ip</dt>
+<dt>run-help-openssl</dt>
+<dt>run-help-p4</dt>
+<dt>run-help-sudo</dt>
+<dt>run-help-svk</dt>
 <dt><tt>run-help-svn</tt></dt>
-<dd><p>Assistant functions for the <tt>git</tt>, <tt>svk</tt>, and <tt>svn</tt> commands.
+<dd><p>Assistant functions for the
+<tt>git</tt>,
+<tt>ip</tt>,
+<tt>openssl</tt>,
+<tt>p4</tt>,
+<tt>sudo</tt>,
+<tt>svk</tt>,
+and 
+<tt>svn</tt>,
+commands.
 </p>
 </dd>
 </dl>
@@ -5917,9 +6122,9 @@ The usual expansions for the <tt>PS1</tt> and <tt>RPS1</tt> parameters may be us
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>December 8, 2015</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>December 17, 2016</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.2, released on December 2, 2015.</font>
+<font size="-1">Zsh version 5.3, released on December 11, 2016.</font>
 </body>
 </html>
