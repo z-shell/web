@@ -40,7 +40,7 @@ mv {front.html,index-frame.html,indices.html,toc-chapters.html} Doc/Release
 # Create Doc/ files.
 (
     cd $ZSHPATH/Doc || exit 1
-    make everything ps
+    make everything ps dvi pdf
     # Create zsh_html.tar.gz.
     mkdir zsh_html
     cp *.html zsh_html/
