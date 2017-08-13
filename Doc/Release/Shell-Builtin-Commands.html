@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.4.90, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 17 Shell Builtin Commands</title>
+<title>17 Shell Builtin Commands (zsh)</title>
 
-<meta name="description" content="zsh: 17 Shell Builtin Commands">
-<meta name="keywords" content="zsh: 17 Shell Builtin Commands">
+<meta name="description" content="17 Shell Builtin Commands (zsh)">
+<meta name="keywords" content="17 Shell Builtin Commands (zsh)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
@@ -188,19 +188,41 @@ which no alias has been defined.
 <a name="index-functions_002c-autoloading-1"></a>
 <a name="index-autoloading-functions-1"></a>
 </dd>
-<dt><tt>autoload</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>TUXkmtz</tt> ] [ <tt>-w</tt> ] [ <var>name</var> ... ]</dt>
+<dt><tt>autoload</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>RTUXdkmrtWz</tt> ] [ <tt>-w</tt> ] [ <var>name</var> ... ]</dt>
 <dd><a name="index-fpath_002c-searching"></a>
-<p>Equivalent to <tt>functions -u</tt>, with the exception of <tt>-X</tt>/<tt>+X</tt> and
-<tt>-w</tt>.  See the section &lsquo;Autoloading Functions&rsquo; in <a href="Functions.html#Functions">Functions</a> for full details.  The <tt>fpath</tt> parameter
+<p>See the section &lsquo;Autoloading Functions&rsquo; in <a href="Functions.html#Functions">Functions</a> for full details.  The <tt>fpath</tt> parameter
 will be searched to find the function definition when the function is
 first referenced.
 </p>
-<p>The flag <tt>-X</tt> may be used only inside a shell function, and may not be
-followed by a <var>name</var>.  It causes the calling function to be marked for
-autoloading and then immediately loaded and executed, with the current
-array of positional parameters as arguments.  This replaces the previous
-definition of the function.  If no function definition is found, an error
-is printed and the function remains undefined and marked for autoloading.
+<p>If <var>name</var> consists of an absolute path, the function is defined to
+load from the file given (searching as usual for dump files in the given
+location).  The name of the function is the basename (non-directory
+part) of the file.  It is normally an error if the function is not found
+in the given location; however, if the option <tt>-d</tt> is given, searching
+for the function defaults to <tt>$fpath</tt>.  If a function is loaded by
+absolute path, any functions loaded from it that are marked for
+<tt>autoload</tt> without an absolute path have the load path of the parent
+function temporarily prepended to <tt>$fpath</tt>.
+</p>
+<p>If the option <tt>-r</tt> or <tt>-R</tt> is given, the function is searched for
+immediately and the location is recorded internally for use when the
+function is executed; a relative path is expanded using the value of
+<tt>$PWD</tt>.  This protects against a change to <tt>$fpath</tt> after the call
+to <tt>autoload</tt>.  With <tt>-r</tt>, if the function is not found, it is
+silently left unresolved until execution; with <tt>-R</tt>, an error message
+is printed and command processing aborted immediately the search fails,
+i.e. at the <tt>autoload</tt> command rather than at function execution..
+</p>
+<p>The flag <tt>-X</tt> may be used only inside a shell function.  It causes the
+calling function to be marked for autoloading and then immediately
+loaded and executed, with the current array of positional parameters as
+arguments.  This replaces the previous definition of the function.  If
+no function definition is found, an error is printed and the function
+remains undefined and marked for autoloading.  If an argument is given,
+it is used as a directory (i.e. it does not include the name of the
+function) in which the function is to be found; this may be combined
+with the <tt>-d</tt> option to allow the function search to default to <tt>$fpath</tt>
+if it is not in the given location.
 </p>
 <p>The flag <tt>+X</tt> attempts to load each <var>name</var> as an autoloaded function,
 but does <em>not</em> execute it.  The exit status is zero (success) if the
@@ -215,6 +237,13 @@ ksh autoloading behaviour on the first call to the function.
 If the <tt>-m</tt> flag is also given each <var>name</var> is treated as a
 pattern and all functions already marked for autoload that match the
 pattern are loaded.
+</p>
+<p>With the <tt>-t</tt> flag, turn on execution tracing; with <tt>-T</tt>, turn on
+execution tracing only for the current function, turning it off on entry
+to any called functions that do not also have tracing enabled.
+</p>
+<p>With the <tt>-U</tt> flag, alias expansion is suppressed when the function is
+loaded.
 </p>
 <p>With the <tt>-w</tt> flag, the <var>name</var>s are taken as names of files compiled
 with the <tt>zcompile</tt> builtin, and all functions defined in them are
@@ -235,6 +264,10 @@ any particular value.  For this, the <tt>emulate</tt> command can be used:
 
 <p>arranges that when <var>func</var> is loaded the shell is in native <tt>zsh</tt>
 emulation, and this emulation is also applied when <var>func</var> is run.
+</p>
+<p>Some of the functions of <tt>autoload</tt> are also provided by <tt>functions
+-u</tt> or <tt>functions -U</tt>, but <tt>autoload</tt> is a more comprehensive
+interface.
 </p>
 <a name="index-bg"></a>
 <a name="index-jobs_002c-backgrounding"></a>
@@ -576,7 +609,7 @@ If the <tt>-n</tt> flag is not present, print a newline at the end.
 <dd><p>backspace
 </p></dd>
 <dt><tt>\c</tt></dt>
-<dd><p>suppress final newline
+<dd><p>suppress subsequent characters and final newline
 </p></dd>
 <dt><tt>\e</tt></dt>
 <dd><p>escape
@@ -796,12 +829,21 @@ an empty string or whitespace) the return status is zero.
 </p>
 </dd>
 <dt><tt>exec</tt> [ <tt>-cl</tt> ] [ <tt>-a</tt> <var>argv0</var> ] [ <var>command</var> [ <var>arg</var> ... ] ]</dt>
-<dd><p>Replace the current shell with an external <var>command</var> rather than forking.
-With <tt>-c</tt> clear the environment; with <tt>-l</tt> prepend <tt>-</tt> to the
+<dd><p>Replace the current shell with <var>command</var> rather than forking.
+If <var>command</var> is a shell builtin command or a shell function,
+the shell executes it, then immediately exits.
+</p>
+<p>With <tt>-c</tt> clear the environment; with <tt>-l</tt> prepend <tt>-</tt> to the
 <tt>argv[0]</tt> string of the command executed (to simulate a login shell);
 with <tt>-a</tt> <var>argv0</var> set the <tt>argv[0]</tt> string of the command
 executed.
 See <a href="Shell-Grammar.html#Precommand-Modifiers">Precommand Modifiers</a>.
+</p>
+<p>If the option <tt>POSIX_BUILTINS</tt> is set, <var>command</var> is never
+interpreted as a shell builtin command or shell function.  This
+means further precommand modifiers such as <tt>builtin</tt> and
+<tt>noglob</tt> are also not interpreted within the shell.  Hence
+<var>command</var> is always found by searching the command path.
 </p>
 <p><a name="index-redirection_002c-current-shell_0027s-I_002fO"></a>
 If <var>command</var> is omitted but any redirections are specified,
@@ -988,17 +1030,23 @@ point numbers are not permitted.
 </p>
 <a name="index-functions-1"></a>
 </dd>
-<dt><tt>functions</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>UkmtTuz</tt> ] [ <tt>-x</tt> <var>num</var> ] [ <var>name</var> ... ]</dt>
-<dt><tt>functions -M</tt> <var>mathfn</var> [ <var>min</var> [ <var>max</var> [ <var>shellfn</var> ] ] ]</dt>
+<dt><tt>functions</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>UkmtTuWz</tt> ] [ <tt>-x</tt> <var>num</var> ] [ <var>name</var> ... ]</dt>
+<dt><tt>functions -M</tt> [<tt>-s</tt>] <var>mathfn</var> [ <var>min</var> [ <var>max</var> [ <var>shellfn</var> ] ] ]</dt>
 <dt><tt>functions -M</tt> [ <tt>-m</tt> <var>pattern</var> ... ]</dt>
 <dt><tt>functions +M</tt> [ <tt>-m</tt> ] <var>mathfn</var> ...</dt>
-<dd><p>Equivalent to <tt>typeset -f</tt>, with the exception of the <tt>-x</tt> and
-<tt>-M</tt> options.
+<dd><p>Equivalent to <tt>typeset -f</tt>, with the exception of the <tt>-x</tt>,
+<tt>-M</tt> and <tt>-W</tt> options.  For <tt>functions -u</tt> and <tt>functions -U</tt>,
+see <tt>autoload</tt>, which provides additional options.
 </p>
 <p>The <tt>-x</tt> option indicates that any functions output will have
 each leading tab for indentation, added by the shell to show syntactic
 structure, expanded to the given number <var>num</var> of spaces.  <var>num</var>
 can also be 0 to suppress all indentation.
+</p>
+<p>The <tt>-W</tt> option turns on the option <tt>WARN_NESTED_VAR</tt> for the named
+function or functions only.  The option is turned off at the start of
+nested functions (apart from anonoymous functions) unless the called
+function also has the <tt>-W</tt> attribute.
 </p>
 <p>Use of the <tt>-M</tt> option may not be combined with any of the options
 handled by <tt>typeset -f</tt>.
@@ -1023,6 +1071,13 @@ The result of the last arithmetical expression evaluated
 inside the shell function (even if it is a form that normally only returns
 a status) gives the result of the mathematical function.
 </p>
+<p>If the additional option <tt>-s</tt> is given to <tt>functions -M</tt>, the
+argument to the function is a single string: anything between the
+opening and matching closing parenthesis is passed to the function as a
+single argument, even if it includes commas or white space.  The minimum
+and maximum argument specifiers must therefore be 1 if given.  An empty
+argument list is passed as a zero-length string.
+</p>
 <p><tt>functions -M</tt> with no arguments lists all such user-defined functions in
 the same form as a definition.  With the additional option <tt>-m</tt> and
 a list of arguments, all functions whose <var>mathfn</var> matches one of
@@ -1030,9 +1085,9 @@ the pattern arguments are listed.
 </p>
 <p><tt>function +M</tt> removes the list of mathematical functions; with the
 additional option <tt>-m</tt> the arguments are treated as patterns and
-all functions whose <tt>mathfn</tt> matches the pattern are removed.  Note
+all functions whose <var>mathfn</var> matches the pattern are removed.  Note
 that the shell function implementing the behaviour is not removed
-(regardless of whether its name coincides with <tt>mathfn</tt>).
+(regardless of whether its name coincides with <var>mathfn</var>).
 </p>
 <p>For example, the following prints the cube of 3:
 </p>
@@ -1040,6 +1095,15 @@ that the shell function implementing the behaviour is not removed
 <pre class="example">zmath_cube() { (( $1 * $1 * $1 )) }
 functions -M cube 1 1 zmath_cube
 print $(( cube(3) ))
+</pre></div>
+
+<p>The following string function takes a single argument, including
+the commas, so prints 11:
+</p>
+<div class="example">
+<pre class="example">stringfn() { (( $#1 )) }
+functions -Ms stringfn
+print $(( stringfn(foo,bar,rod) ))
 </pre></div>
 
 </dd>
@@ -1465,6 +1529,9 @@ do not match this pattern.
 <dt><tt>-P</tt></dt>
 <dd><p>Perform prompt expansion (see
 <a href="Prompt-Expansion.html#Prompt-Expansion">Prompt Expansion</a>).
+In combination with &lsquo;<tt>-f</tt>&rsquo;,
+prompt escape sequences are parsed only within interpolated arguments,
+not within the format string.
 </p>
 </dd>
 <dt><tt>-r</tt></dt>
@@ -2374,7 +2441,9 @@ expansion to be suppressed when the function is loaded.  See the
 description of the &lsquo;<tt>autoload</tt>&rsquo; builtin for details.
 </p>
 <p>Note that the builtin <tt>functions</tt> provides the same basic capabilities
-as <tt>typeset -f</tt> but gives access to a few extra options.
+as <tt>typeset -f</tt> but gives access to a few extra options; <tt>autoload</tt>
+gives further additional options for the case <tt>typeset -fu</tt> and
+<tt>typeset -fU</tt>.
 </p>
 </dd>
 <dt><tt>-h</tt></dt>
@@ -2926,7 +2995,7 @@ is actually used (and mapped).
 <a name="index-modules_002c-loading"></a>
 <a name="index-loading-modules"></a>
 </dd>
-<dt><tt>zmodload</tt> [ <tt>-dL</tt> ] [ ... ]</dt>
+<dt><tt>zmodload</tt> [ <tt>-dL</tt> ] [ <tt>-s</tt> ] [ ... ]</dt>
 <dt><tt>zmodload -F</tt> [ <tt>-alLme</tt> <tt>-P</tt> <var>param</var> ] <var>module</var> [ [<tt>+-</tt>]<var>feature</var> ... ]</dt>
 <dt><tt>zmodload -e</tt> [ <tt>-A</tt> ] [ ... ]</dt>
 <dt><tt>zmodload</tt> [ <tt>-a</tt> [ <tt>-bcpf</tt> [ <tt>-I</tt> ] ] ] [ <tt>-iL</tt> ] ...</dt>
@@ -2945,7 +3014,7 @@ printed.  The <tt>-L</tt> option causes this list to be in the form of a
 series of <tt>zmodload</tt> commands.  Forms with arguments are:
 </p>
 <dl compact="compact">
-<dt><tt>zmodload</tt> [ <tt>-i</tt> ] <var>name</var> ...</dt>
+<dt><tt>zmodload</tt> [ <tt>-is</tt> ] <var>name</var> ...</dt>
 <dt><tt>zmodload</tt> <tt>-u</tt> [ <tt>-i</tt> ] <var>name</var> ...</dt>
 <dd><p>In the simplest case, <tt>zmodload</tt> loads a binary module.  The module must
 be in a file with a name consisting of the specified <var>name</var> followed by
@@ -2953,9 +3022,7 @@ a standard suffix, usually &lsquo;<tt>.so</tt>&rsquo; (&lsquo;<tt>.sl</tt>&rsquo
 If the module to be loaded is already loaded the duplicate module is
 ignored.  If <tt>zmodload</tt> detects an inconsistency, such as an
 invalid module name or circular dependency list, the current code block is 
-aborted.   Hence &lsquo;<tt>zmodload</tt> <var>module</var> <tt>2&gt;/dev/null</tt>&rsquo; is sufficient
-to test whether a module is available.
-If it is available, the module is loaded if necessary, while if it
+aborted.  If it is available, the module is loaded if necessary, while if it
 is not available, non-zero status is silently returned.  The option
 <tt>-i</tt> is accepted for compatibility but has no effect.
 </p>
@@ -2967,6 +3034,11 @@ There is no way to prevent the path search.
 <p>If the module supports features (see below), <tt>zmodload</tt> tries to
 enable all features when loading a module.  If the module was successfully
 loaded but not all features could be enabled, <tt>zmodload</tt> returns status 2.
+</p>
+<p>If the option <tt>-s</tt> is given, no error is printed if the module was not
+available (though other errors indicating a problem with the module are
+printed).  The return status indicates if the module was loaded.  This
+is appropriate if the caller considers the module optional.
 </p>
 <p>With <tt>-u</tt>, <tt>zmodload</tt> unloads modules.  The same <var>name</var>
 must be given that was given when the module was loaded, but it is not
@@ -3248,9 +3320,9 @@ dynamic loading of modules.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>January 3, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>August 13, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.3.1, released on December 21, 2016.</font>
+<font size="-1">Zsh version 5.4.1, released on August 8, 2017.</font>
 </body>
 </html>

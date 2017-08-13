@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.4.90, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 16 Options</title>
+<title>16 Options (zsh)</title>
 
-<meta name="description" content="zsh: 16 Options">
-<meta name="keywords" content="zsh: 16 Options">
+<meta name="description" content="16 Options (zsh)">
+<meta name="keywords" content="16 Options (zsh)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
@@ -562,8 +562,9 @@ in the other direction. This option overrides <tt>AUTO_MENU</tt>.
 <a name="index-completion_002c-exact-matches"></a>
 </dd>
 <dt><tt>REC_EXACT</tt> (<tt>-S</tt>)</dt>
-<dd><p>In completion, recognize exact matches even
-if they are ambiguous.
+<dd><p>If the string on the command line exactly matches one of the possible
+completions, it is accepted, even if there is another completion (i.e. that
+string with something else added) that also matches.
 </p>
 </dd>
 </dl>
@@ -937,9 +938,10 @@ all arguments to be removed.
 <a name="index-regexp_002c-PCRE"></a>
 <a name="index-PCRE_002c-regexp"></a>
 </dd>
-<dt><tt>REMATCH_PCRE</tt> &lt;Z&gt;</dt>
+<dt><tt>REMATCH_PCRE</tt></dt>
 <dd><p>If set, regular expression matching with the <tt>=~</tt> operator will use
-Perl-Compatible Regular Expressions from the PCRE library, if available.
+Perl-Compatible Regular Expressions from the PCRE library.
+(The <tt>zsh/pcre</tt> module must be available.)
 If not set, regular expressions will use the extended regexp syntax
 provided by the system libraries.
 </p>
@@ -986,6 +988,40 @@ global from within a function using <tt>typeset -g</tt> do not cause a warning.
 Note that there is no warning when a local parameter is assigned to in
 a nested function, which may also indicate an error.
 </p>
+<a name="index-WARN_005fNESTED_005fVAR"></a>
+<a name="index-NO_005fWARN_005fNESTED_005fVAR"></a>
+<a name="index-WARNNESTEDVAR"></a>
+<a name="index-NO_005fWARNNESTEDVAR"></a>
+<a name="index-parameters_002c-warning-when-setting-in-enclosing-scope"></a>
+</dd>
+<dt><tt>WARN_NESTED_VAR</tt></dt>
+<dd><p>Print a warning message when an existing parameter from an
+enclosing function scope, or global, is set in a function
+by an assignment or in math context.  Assignment to shell
+special parameters does not cause a warning.  This is the companion
+to <tt>WARN_CREATE_GLOBAL</tt> as in this case the warning is only
+printed when a parameter is <em>not</em> created.  Where possible,
+use of <tt>typeset -g</tt> to set the parameter suppresses the error,
+but note that this needs to be used every time the parameter is set.
+To restrict the effect of this option to a single function scope,
+use &lsquo;<tt>functions -W</tt>&rsquo;.
+</p>
+<p>For example, the following code produces a warning for the assignment
+inside the function <tt>nested</tt> as that overrides the value within
+<tt>toplevel</tt>
+</p>
+<div class="example">
+<pre class="example">toplevel() {
+  local foo=&quot;in fn&quot;
+  nested
+}
+nested() {
+     foo=&quot;in nested&quot;
+}
+setopt warn_nested_var
+toplevel
+</pre></div>
+
 </dd>
 </dl>
 
@@ -1928,7 +1964,40 @@ line.  This may be useful with terminals with other cut/paste methods.
 </tr></table>
 <h3 class="subsection">16.2.9 Scripts and Functions</h3>
 <dl compact="compact">
-<dd><a name="index-C_005fBASES"></a>
+<dd><a name="index-ALIAS_005fFUNC_005fDEF"></a>
+<a name="index-NO_005fALIAS_005fFUNC_005fDEF"></a>
+<a name="index-ALIASFUNCDEF"></a>
+<a name="index-NOALIASFUNCDEF"></a>
+<a name="index-functions_002c-defining-with-expanded-aliases"></a>
+<a name="index-aliases_002c-expanding-in-function-definition"></a>
+</dd>
+<dt><tt>ALIAS_FUNC_DEF</tt> &lt;S&gt;</dt>
+<dd><p>By default, zsh does not allow the definition of functions using
+the &lsquo;<var>name</var> <tt>()</tt>&rsquo; syntax if <var>name</var> was expanded as an
+alias: this causes an error.  This is usually the desired behaviour, as
+otherwise the combination of an alias and a function based on the same
+definition can easily cause problems.
+</p>
+<p>When this option is set, aliases can be used for defining functions.
+</p>
+<p>For example, consider the following definitions as they might
+occur in a startup file.
+</p>
+<div class="example">
+<pre class="example">alias foo=bar
+foo() {
+  print This probably does not do what you expect.
+}
+</pre></div>
+
+<p>Here, <tt>foo</tt> is expanded as an alias to <tt>bar</tt> before the
+<tt>()</tt> is encountered, so the function defined would be named
+<tt>bar</tt>.  By default this is instead an error in native mode.  Note that
+quoting any part of the function name, or using the keyword
+<tt>function</tt>, avoids the problem, so is recommended when the function
+name can also be an alias.
+</p>
+<a name="index-C_005fBASES"></a>
 <a name="index-NO_005fC_005fBASES"></a>
 <a name="index-CBASES"></a>
 <a name="index-NOCBASES"></a>
@@ -2523,6 +2592,10 @@ builtins are
 <p>In addition, various error conditions associated with the above builtins
 or <tt>exec</tt> cause a non-interactive shell to exit and an interactive
 shell to return to its top-level processing.
+</p>
+<p>Furthermore, functions and shell builtins are not executed after
+an <tt>exec</tt> prefix; the command to be executed must be an external
+command found in the path.
 </p>
 <p>Furthermore, the <tt>getopts</tt> builtin behaves in a POSIX-compatible
 fashion in that the associated variable <tt>OPTIND</tt> is not made
@@ -3387,9 +3460,9 @@ options to the shell.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>January 3, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>August 13, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.3.1, released on December 21, 2016.</font>
+<font size="-1">Zsh version 5.4.1, released on August 8, 2017.</font>
 </body>
 </html>

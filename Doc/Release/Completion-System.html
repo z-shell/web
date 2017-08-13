@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.4.90, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 20 Completion System</title>
+<title>20 Completion System (zsh)</title>
 
-<meta name="description" content="zsh: 20 Completion System">
-<meta name="keywords" content="zsh: 20 Completion System">
+<meta name="description" content="20 Completion System (zsh)">
+<meta name="keywords" content="20 Completion System (zsh)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
@@ -65,6 +65,23 @@ ul.no-bullet {list-style: none}
 <a name="index-completion_002c-programmable-1"></a>
 <a name="index-completion_002c-controlling-1"></a>
 </p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Initialization">20.2 Initialization</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Completion-System-Configuration">20.3 Completion System Configuration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Control-Functions">20.4 Control Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Bindable-Commands">20.5 Bindable Commands</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Completion-Functions">20.6 Utility Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Completion-System-Variables">20.7 Completion System Variables</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Completion-Directories">20.8 Completion Directories</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
 <hr>
 <a name="Description-3"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -1500,6 +1517,12 @@ directory is accepted without any attempt to complete it further.
 Hence, in the given example, the path <tt>/usr/bin/</tt> is accepted
 immediately and completion tried in that directory.
 </p>
+<p>This style is also useful when completing after directories that
+magically appear when referenced, such as ZFS <tt>.zfs</tt> directories
+or NetApp <tt>.snapshot</tt> directories.  When the style is set the
+shell does not check for the existence of the directory within the
+parent directory.
+</p>
 <p>If you wish to inhibit this behaviour entirely, set the <tt>path-completion</tt>
 style (see below) to &lsquo;false&rsquo;.
 </p>
@@ -1797,9 +1820,10 @@ or colons in <var>dir</var> should be quoted with a backslash to be treated
 literally.
 </p>
 <p>This can be useful on systems that support special file systems whose
-top-level pathnames can not be listed or generated with glob patterns.
-It can also be used for directories for which one does not have read
-permission.
+top-level pathnames can not be listed or generated with glob patterns
+(but see <tt>accept-exact-dirs</tt> for a more general way of dealing
+with this problem).  It can also be used for directories for which one
+does not have read permission.
 </p>
 <p>The pattern form can be used to add a certain &lsquo;magic&rsquo; entry
 to all directories on a particular file system.
@@ -2631,7 +2655,7 @@ matches does not fit on the screen by using the value
 &lsquo;<tt>select=long</tt>&rsquo;.  To start menu selection even if the current widget
 only performs listing, use the value &lsquo;<tt>select=long-list</tt>&rsquo;.
 </p>
-<p>To turn on menu completion or menu selection when a there are a certain
+<p>To turn on menu completion or menu selection when there are a certain
 number of matches <em>or</em> the list of matches does not fit on the
 screen, both of &lsquo;<tt>yes=</tt>&rsquo; and &lsquo;<tt>select=</tt>&rsquo; may be given twice, once
 with a number and once with &lsquo;<tt>long</tt>&rsquo; or &lsquo;<tt>long-list</tt>&rsquo;.
@@ -3533,6 +3557,24 @@ case they are already so. The options <tt>-M</tt>, <tt>-J</tt>, <tt>-V</tt>, <tt
 </p>
 <p>See <tt>_description</tt> for a description of <var>tag</var> and <var>descr</var>.
 </p>
+<a name="index-_005fcmdambivalent"></a>
+</dd>
+<dt><tt>_cmdambivalent</tt></dt>
+<dd><p>Completes the remaining positional arguments as an external command.
+The external command and its arguments are completed as separate arguments
+(in a manner appropriate for completing <tt>/usr/bin/env</tt>)
+if there are two or more remaining positional arguments on the command line,
+and as a quoted command string (in the manner of <tt>system(...)</tt>) otherwise.
+See also <tt>_cmdstring</tt> and <tt>_precommand</tt>.
+</p>
+<p>This function takes no arguments.
+</p>
+<a name="index-_005fcmdstring"></a>
+</dd>
+<dt><tt>_cmdstring</tt></dt>
+<dd><p>Completes an external command as a single argument, as for
+<tt>system(...)</tt>.
+</p>
 <a name="index-_005fcomplete"></a>
 </dd>
 <dt><tt>_complete</tt></dt>
@@ -3741,6 +3783,12 @@ It should appear in the list of completers before any of
 the widgets which generate matches.  It uses two styles: <tt>old-list</tt> and
 <tt>old-menu</tt>, see
 <a href="#Completion-System-Configuration">Completion System Configuration</a>.
+</p>
+<a name="index-_005fprecommand"></a>
+</dd>
+<dt><tt>_precommand</tt></dt>
+<dd><p>Complete an external command in word-separated arguments, as for
+<tt>exec</tt> and <tt>/usr/bin/env</tt>.
 </p>
 <a name="index-_005fprefix"></a>
 </dd>
@@ -4184,13 +4232,11 @@ different name for the argument context field.
 for a command whose arguments follow standard UNIX option and argument
 conventions.
 </p>
-<p><em>Options overview</em>
+<p><em>Options Overview</em>
 </p>
 <p>Options to <tt>_arguments</tt> itself must be in separate words, i.e. <tt>-s -w</tt>,
 not <tt>-sw</tt>.  The options are followed by <var>spec</var>s that describe options and
-arguments of the analyzed command.  <var>spec</var>s that describe option flags must
-precede <var>spec</var>s that describe non-option (&quot;positional&quot; or &quot;normal&quot;)
-arguments of the analyzed line.  To avoid ambiguity, all
+arguments of the analyzed command.  To avoid ambiguity, all
 options to <tt>_arguments</tt> itself may be separated from the <var>spec</var> forms
 by a single colon.
 </p>
@@ -4649,18 +4695,52 @@ initialised to the current value at the start of the function:
 <p>This is useful where it is not possible for multiple states to be valid
 together.
 </p>
-<p><em>Specifying multiple sets of options</em>
+<p><em>Grouping Options</em>
 </p>
-<p>It is possible to specify multiple sets of options and
-arguments with the sets separated by single hyphens.  The specifications
-before the first hyphen (if any) are shared by all the remaining sets.
-The first word in every other set provides a name for the
-set which may appear in exclusion lists in specifications,
-either alone or before one of the possible values described above.
-In the second case a &lsquo;<tt>-</tt>&rsquo; should appear between this name and the
-remainder.
+<p>Options can be grouped to simplify exclusion lists. A group is
+introduced with &lsquo;<tt>+</tt>&rsquo; followed by a name for the group in the
+subsequent word. Whole groups can then be referenced in an exclusion
+list or a group name can be used to disambiguate between two forms of
+the same option. For example:
 </p>
-<p>For example:
+<div class="example">
+<pre class="example">_arguments \ 
+    '(group2--x)-a' \ 
+  + group1 \ 
+    -m \ 
+    '(group2)-n' \ 
+  + group2 \ 
+    -x -y
+</pre></div>
+
+<p>If the name of a group is specified in the form
+&lsquo;<tt>(</tt><var>name</var><tt>)</tt>&rsquo; then only one value from that group
+will ever be completed; more formally, all specifications are mutually
+exclusive to all other specifications in that group. This is useful for
+defining options that are aliases for each other. For example:
+</p>
+<div class="example">
+<pre class="example">_arguments \ 
+    -a -b \ 
+  + '(operation)' \ 
+    {-c,--compress}'[compress]' \ 
+    {-d,--decompress}'[decompress]' \ 
+    {-l,--list}'[list]'
+</pre></div>
+
+<p>If an option in a group appears on the command line, it is stored in the
+associative array &lsquo;<tt>opt_args</tt>&rsquo; with &rsquo;<var>group</var><tt>-</tt><var>option</var>&rsquo;
+as a key.  In the example above, a key &lsquo;<tt>operation--c</tt>&rsquo; is used if the option
+&lsquo;<tt>-c</tt>&rsquo; is present on the command line.
+</p>
+<p><em>Specifying Multiple Sets of Arguments</em>
+</p>
+<p>It is possible to specify multiple sets of options and arguments with
+the sets separated by single hyphens. This differs from groups in that
+sets are considered to be mutually exclusive of each other.
+</p>
+<p>Specifications before the first set and from any group are common to
+all sets. For example:
 </p>
 <div class="example">
 <pre class="example">_arguments \ 
@@ -4678,30 +4758,11 @@ possible completions.  When it contains &lsquo;<tt>-d</tt>&rsquo; or an argument
 option &lsquo;<tt>-c</tt>&rsquo; will not be considered.  However, after &lsquo;<tt>-a</tt>&rsquo;
 both sets will still be considered valid.
 </p>
-<p>If an option in a set appears on the command line, it is stored in the
-associative array &lsquo;<tt>opt_args</tt>&rsquo; with &rsquo;<var>set</var><tt>-</tt><var>option</var>&rsquo;
-as a key.  In the example above, a key &lsquo;<tt>set1--c</tt>&rsquo; is used if the option
-&lsquo;<tt>-c</tt>&rsquo; is on the command line.
+<p>As for groups, the name of a set may appear in exclusion lists, either
+alone or preceding a normal option or argument specification.
 </p>
-<p>If the name given for one of the mutually exclusive sets is of the form
-&lsquo;<tt>(</tt><var>name</var><tt>)</tt>&rsquo; then only one value from each set will ever
-be completed; more formally, all specifications are mutually
-exclusive to all other specifications in the same set.  This is
-useful for defining multiple sets of options which are mutually
-exclusive and in which the options are aliases for each other.  For
-example:
-</p>
-<div class="example">
-<pre class="example">_arguments \ 
-    -a -b \ 
-  - '(compress)' \ 
-    {-c,--compress}'[compress]' \ 
-  - '(uncompress)' \ 
-    {-d,--decompress}'[decompress]'
-</pre></div>
-
-<p>As the completion code has to parse the command line separately for each
-set this form of argument is slow and should only be used when necessary.
+<p>The completion code has to parse the command line separately for each
+set. This can be slow so sets should only be used when necessary.
 A useful alternative is often an option specification with rest-arguments
 (as in &lsquo;<tt>-foo:*:...</tt>&rsquo;); here the option <tt>-foo</tt> swallows up all
 remaining arguments as described by the <var>optarg</var> definitions.
@@ -6041,9 +6102,9 @@ may be useful on your system.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>January 3, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>August 13, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.3.1, released on December 21, 2016.</font>
+<font size="-1">Zsh version 5.4.1, released on August 8, 2017.</font>
 </body>
 </html>

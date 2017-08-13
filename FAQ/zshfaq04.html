@@ -82,7 +82,7 @@ Often there will be more than one possible completion: two files
   (That's assuming you're at the end of the line, otherwise <code >\C-D</code> will
   delete the next character and you have to use <code >ESC-\C-D</code>.)  This can be
   changed by the following options, among others:
-  <ul>
+  itemize(
    <li> with <code >NO_BEEP</code> set, that annoying beep goes away
    <li> with <code >NO_LIST_BEEP</code>, beeping is only turned off for ambiguous
       completions
@@ -103,7 +103,7 @@ Often there will be more than one possible completion: two files
       those explicitly requested, note also <code >ALWAYS_LAST_PROMPT</code>, which
       causes the cursor to return to the line you were editing after
       printing the list, provided that is short enough.
-  </ul>
+  )
   Combinations of these are possible; for example, <code >AUTO_LIST</code> and
   <code >AUTO_MENU</code> together give an intuitive combination.  Note that
   from version 3.1 <code >LIST_AMBIGUOUS</code> is set by default; if you use

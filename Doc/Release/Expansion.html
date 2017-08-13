@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.4.90, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 14 Expansion</title>
+<title>14 Expansion (zsh)</title>
 
-<meta name="description" content="zsh: 14 Expansion">
-<meta name="keywords" content="zsh: 14 Expansion">
+<meta name="description" content="14 Expansion (zsh)">
+<meta name="keywords" content="14 Expansion (zsh)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
@@ -82,9 +82,12 @@ in <a href="Shell-Grammar.html#Aliasing">Aliasing</a>.
 <dt><em>Command Substitution</em></dt>
 <dt><em>Arithmetic Expansion</em></dt>
 <dt><em>Brace Expansion</em></dt>
-<dd><p>These five are performed in one step in left-to-right fashion.  After
-these expansions, all unquoted occurrences of the characters &lsquo;<tt>\</tt>&rsquo;,
-&lsquo;<tt>'</tt>&rsquo; and &lsquo;<tt>&quot;</tt>&rsquo; are removed.
+<dd><p>These five are performed in left-to-right fashion.  On each argument,
+any of the five steps that are needed are performed one after the other.
+Hence, for example, all the parts of parameter expansion are completed
+before command substitution is started.  After these expansions, all
+unquoted occurrences of the characters &lsquo;<tt>\</tt>&rsquo;,&lsquo;<tt>'</tt>&rsquo; and &lsquo;<tt>&quot;</tt>&rsquo; are
+removed.
 </p>
 </dd>
 <dt><em>Filename Expansion</em></dt>
@@ -1133,8 +1136,9 @@ all arguments to be removed.
 <p>Internally, each such expansion is converted into the
 equivalent list for brace expansion.  E.g., <tt>${^var}</tt> becomes
 <tt>{$var[1],$var[2],</tt>...<tt>}</tt>, and is processed as described in
-<a href="#Brace-Expansion">Brace Expansion</a> below.
-If word splitting is also in effect the
+<a href="#Brace-Expansion">Brace Expansion</a> below: note, however, the expansion
+happens immediately, with any explicit brace expansion
+happening later.  If word splitting is also in effect the
 <tt>$var[</tt><var>N</var><tt>]</tt> may themselves be split into different list
 elements.
 </p>
@@ -1254,15 +1258,25 @@ or <tt>z</tt> flags, which still applies within each array element.
 </p>
 </dd>
 <dt><tt>A</tt></dt>
-<dd><p>Create an array parameter with &lsquo;<tt>${</tt>...<tt>=</tt>...<tt>}</tt>&rsquo;,
+<dd><p>Convert the substitution into an array expression, even if it otherwise
+would be scalar.  This has lower precedence than subscripting, so one
+level of nested expansion is required in order that subscripts apply
+to array elements.  Thus <tt>${${(A</tt><tt>)</tt><var>name</var><tt>}[1]}</tt>
+yields the full value of <var>name</var> when <var>name</var> is scalar.
+</p>
+<p>This assigns an array parameter with &lsquo;<tt>${</tt>...<tt>=</tt>...<tt>}</tt>&rsquo;,
 &lsquo;<tt>${</tt>...<tt>:=</tt>...<tt>}</tt>&rsquo; or &lsquo;<tt>${</tt>...<tt>::=</tt>...<tt>}</tt>&rsquo;.
-If this flag is repeated (as in &lsquo;<tt>AA</tt>&rsquo;), create an associative
+If this flag is repeated (as in &lsquo;<tt>AA</tt>&rsquo;), assigns an associative
 array parameter.  Assignment is made before sorting or padding;
 if field splitting is active, the <var>word</var> part is split before
 assignment.  The <var>name</var> part may be a subscripted range for
-ordinary arrays; the <var>word</var> part <em>must</em> be converted to
-an array, for example by using &lsquo;<tt>${(AA)=</tt><var>name</var><tt>=</tt>...<tt>}</tt>&rsquo;
-to activate field splitting, when creating an associative array.
+ordinary arrays; when assigning an associative array, the <var>word</var>
+part <em>must</em> be converted to an array, for example by using
+&lsquo;<tt>${(AA)=</tt><var>name</var><tt>=</tt>...<tt>}</tt>&rsquo; to activate field splitting.
+</p>
+<p>Surrounding context such as additional nesting or use of the value
+in a scalar assignment may cause the array to be joined back into
+a single string again.
 </p>
 </dd>
 <dt><tt>a</tt></dt>
@@ -1352,7 +1366,9 @@ print builtin except that in none of these modes is &lsquo;<tt>\c</tt>&rsquo; in
 (element names) rather than the values of the elements.  Used with
 subscripts (including ordinary arrays), force indices or keys to be
 substituted even if the subscript form refers to values.  However,
-this flag may not be combined with subscript ranges.
+this flag may not be combined with subscript ranges.  With the
+<tt>KSH_ARRAYS</tt> option a subscript &lsquo;<tt>[*]</tt>&rsquo; or &lsquo;<tt>[@]</tt>&rsquo; is needed
+to operate on the whole array, as usual.
 </p>
 </dd>
 <dt><tt>L</tt></dt>
@@ -2738,6 +2754,7 @@ match a sequence of directories.  For example, <tt>foo/(a*/)#bar</tt> matches
 This operator has lower precedence than any other.
 The &lsquo;<tt>|</tt>&rsquo; character
 must be within parentheses, to avoid interpretation as a pipeline.
+The alternatives are tried in order from left to right.
 </p>
 </dd>
 <dt><tt>^</tt><var>x</var></dt>
@@ -3752,9 +3769,9 @@ print &lsquo;<tt>shmiltin.shmo</tt>&rsquo;.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>January 3, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>August 13, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.3.1, released on December 21, 2016.</font>
+<font size="-1">Zsh version 5.4.1, released on August 8, 2017.</font>
 </body>
 </html>

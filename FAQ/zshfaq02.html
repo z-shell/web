@@ -83,9 +83,9 @@ Here are some differences from ksh which might prove significant for
   if `emulate ksh' is in effect.  Capitalised words with underlines
   refer to shell options. 
 <p>
-<ul>
+itemize(
   <li> Syntax:
-  <ul>
+  itemize(
     <li>* Shell word splitting: see question <a href="zshfaq03.html#31">3.1</a>.
     <li>* Arrays are (by default) more csh-like than ksh-like:
         subscripts start at 1, not 0; <code >array[0]</code> refers to <code >array[1]</code>;
@@ -103,9 +103,9 @@ Here are some differences from ksh which might prove significant for
     <li>  In <code >cmd1 &amp;&amp; cmd2 &amp;</code>, only <code >cmd2</code> instead of the whole
         expression is run in the background in zsh.  The manual implies
         this is a bug.  Use <code >{ cmd1 &amp;&amp; cmd2 } &amp;</code> as a workaround.
-  </ul>
+  )
   <li> Command line substitutions, globbing etc.:
-  <ul>
+  itemize(
     <li>* Failure to match a globbing pattern causes an error (use
         <code >NO_NOMATCH</code>).
     <li>* The results of parameter substitutions are treated as plain text:
@@ -150,16 +150,16 @@ Here are some differences from ksh which might prove significant for
         because the return value from <code >wc</code> includes leading
         whitespace which causes wordsplitting.  Ksh handles the
         assignment specially as a single word.
-  </ul>
+  )
   <li> Command execution:
-  <ul>
+  itemize(
     <li>* There is no <code >$ENV</code> variable (use <code >/etc/zshrc</code>, <code >~/.zshrc</code>; 
         note also <code >$ZDOTDIR</code>).
     <li>* <code >$PATH</code> is not searched for commands specified
         at invocation without -c.
-  </ul>
+  )
   <li> Aliases and functions:
-  <ul>
+  itemize(
     <li>  The order in which aliases and functions are defined is significant:
         function definitions with () expand aliases -- see question <a href="zshfaq02.html#23">2.3</a>.
     <li>  Aliases and functions cannot be exported.
@@ -172,16 +172,16 @@ Here are some differences from ksh which might prove significant for
         same way as those defined with `funcname () { body }'.  In ksh,
         the former behave as if the body were read from a file with `.',
         and only the latter behave as true functions.
-  </ul>
+  )
     <li> Traps and signals:
-  <ul>
+  itemize(
     <li>* Traps are not local to functions.  The option LOCAL_TRAPS is
           available from 3.1.6.
     <li>  TRAPERR has become TRAPZERR (this was forced by UNICOS which
         has SIGERR).
-  </ul>
+  )
   <li> Editing:
-  <ul>
+  itemize(
     <li>  The options <code >gmacs</code>, <code >viraw</code> are not supported.
         Use bindkey to change the editing behaviour: <code >set -o {emacs,vi}</code>
         becomes `bindkey -{e,v}', although `set -o emacs' and `set -o vi'
@@ -207,20 +207,20 @@ Here are some differences from ksh which might prove significant for
   
 </pre>
 
-  </ul>
+  )
   <li> Built-in commands:
-  <ul>
+  itemize(
     <li>  Some built-ins (<code >r</code>, <code >autoload</code>, <code >history</code>, <code >integer</code> ...)
         were aliases in ksh. 
     <li>  There is no built-in command newgrp: use e.g. <code >alias
         newgrp="exec newgrp"</code>
     <li>  <code >jobs</code> has no <code >-n</code> flag.
-  </ul>
+  )
   <li> Other idiosyncrasies:
-  <ul>
+  itemize(
     <li>  <code >select</code> always redisplays the list of selections on each loop.
-  </ul>
-  </ul>
+  )
+  )
 <p>
 <a name="l11"></a>
 <h2 >2.2: Similarities with csh</h2>
@@ -233,7 +233,7 @@ Although certain features aim to ease the withdrawal symptoms of csh
   particularly those with arguments.
 <p>
 Csh-compatibility additions include:
-  <ul>
+  itemize(
   <li>  <code >logout</code>, <code >rehash</code>, <code >source</code>, <code >(un)limit</code> built-in commands.
   <li>  <code >*rc</code> file for interactive shells.
   <li>  Directory stacks.
@@ -254,7 +254,7 @@ Csh-compatibility additions include:
   <li>  <code >!</code>-type history (which may be turned off via <code >setopt
       nobanghist</code>).
   <li>  Arrays have csh-like features (see under <a href="zshfaq02.html#21">2.1</a>).
-  </ul>
+  )
 <p>
 <a name="l12"></a>
 <h2 >2.3: Why do my csh aliases not work?  (Plus other alias pitfalls.)</h2>
@@ -326,11 +326,11 @@ Here is Bart Schaefer's guide to converting csh aliases for zsh.
 <p>
 <li> If you have aliases that refer to each other (<code >alias ls "ls -C";
      alias lf "ls -F" ==&gt; lf == ls -C -F</code>) then you must either:
-  <ul>
+  itemize(
         <li> convert all of them to zsh functions; or
         <li> after converting, be sure your .zshrc defines all of your
            aliases before it defines any of your functions.
-         </ul>
+         )
 <p>
 Those first four are all you really need, but here are four more for
      heavy csh alias junkies:

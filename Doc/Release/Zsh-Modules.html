@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.4.90, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 22 Zsh Modules</title>
+<title>22 Zsh Modules (zsh)</title>
 
-<meta name="description" content="zsh: 22 Zsh Modules">
-<meta name="keywords" content="zsh: 22 Zsh Modules">
+<meta name="description" content="22 Zsh Modules (zsh)">
+<meta name="keywords" content="22 Zsh Modules (zsh)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
@@ -63,6 +63,79 @@ ul.no-bullet {list-style: none}
 <h1 class="chapter">22 Zsh Modules</h1>
 <p><a name="index-modules"></a>
 </p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fattr-Module">22.2 The zsh/attr Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fcap-Module">22.3 The zsh/cap Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fclone-Module">22.4 The zsh/clone Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fcompctl-Module">22.5 The zsh/compctl Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fcomplete-Module">22.6 The zsh/complete Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fcomplist-Module">22.7 The zsh/complist Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fcomputil-Module">22.8 The zsh/computil Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fcurses-Module">22.9 The zsh/curses Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fdatetime-Module">22.10 The zsh/datetime Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fdb_002fgdbm-Module">22.11 The zsh/db/gdbm Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fdeltochar-Module">22.12 The zsh/deltochar Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fexample-Module">22.13 The zsh/example Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002ffiles-Module">22.14 The zsh/files Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002flanginfo-Module">22.15 The zsh/langinfo Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fmapfile-Module">22.16 The zsh/mapfile Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fmathfunc-Module">22.17 The zsh/mathfunc Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fnewuser-Module">22.18 The zsh/newuser Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fparameter-Module">22.19 The zsh/parameter Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fpcre-Module">22.20 The zsh/pcre Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fparam_002fprivate-Module">22.21 The zsh/param/private Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fregex-Module">22.22 The zsh/regex Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fsched-Module">22.23 The zsh/sched Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fnet_002fsocket-Module">22.24 The zsh/net/socket Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fstat-Module">22.25 The zsh/stat Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fsystem-Module">22.26 The zsh/system Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fnet_002ftcp-Module">22.27 The zsh/net/tcp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002ftermcap-Module">22.28 The zsh/termcap Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fterminfo-Module">22.29 The zsh/terminfo Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzftp-Module">22.30 The zsh/zftp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzle-Module">22.31 The zsh/zle Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzleparameter-Module">22.32 The zsh/zleparameter Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzprof-Module">22.33 The zsh/zprof Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzpty-Module">22.34 The zsh/zpty Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzselect-Module">22.35 The zsh/zselect Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzutil-Module">22.36 The zsh/zutil Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
 <hr>
 <a name="Description-5"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -738,7 +811,10 @@ matches beginning with &lsquo;<tt>m</tt>&rsquo; in groups whose names  begin wit
 </p>
 <p>Note also that all patterns are tried in the order in which they
 appear in the parameter value until the first one matches which is
-then used.
+then used.  Patterns may be matched against completions, descriptions
+(possibly with spaces appended for padding), or lines consisting of a
+completion followed by a description.  For consistent coloring it may be
+necessary to use more than one pattern or a pattern with backreferences.
 </p>
 <p>When printing a match, the code prints the value of <tt>lc</tt>, the value
 for the file-type or the last matching specification with a &lsquo;<tt>*</tt>&rsquo;,
@@ -1250,6 +1326,7 @@ various parameters.
 <dt><tt>zcurses</tt> <tt>mouse</tt> [ <tt>delay</tt> <var>num</var> | [<tt>+</tt>|<tt>-</tt>]<tt>motion</tt> ]</dt>
 <dt><tt>zcurses</tt> <tt>timeout</tt> <var>targetwin</var> <var>intval</var></dt>
 <dt><tt>zcurses</tt> <tt>querychar</tt> <var>targetwin</var> [ <var>param</var> ]</dt>
+<dt><tt>zcurses</tt> <tt>resize</tt> <var>height</var> <var>width</var> [ <tt>endwin</tt> | <tt>nosave</tt> | <tt>endwin_nosave</tt> ]</dt>
 <dd><p>Manipulate curses windows.  All uses of this command should be
 bracketed by &lsquo;<tt>zcurses init</tt>&rsquo; to initialise use of curses, and
 &lsquo;<tt>zcurses end</tt>&rsquo; to end it; omitting &lsquo;<tt>zcurses end</tt>&rsquo; can cause
@@ -1451,6 +1528,21 @@ second is the color pair in the usual <var>fg_col</var><tt>/</tt><var>bg_col</va
 notation, or <tt>0</tt> if color is not supported.  Any attributes other than
 color that apply to the character, as set with the subcommand <tt>attr</tt>,
 appear as additional elements.
+</p>
+<p>The subcommand <tt>resize</tt> resizes <tt>stdscr</tt> and all windows to given
+dimensions (windows that stick out from the new dimensions are resized
+down). The underlying curses extension (<tt>resize_term call</tt>) can be
+unavailable. To verify, zeroes can be used for <var>height</var> and
+<var>width</var>. If the result of the subcommand is <tt>0</tt>, resize_term is
+available (<tt>2</tt> otherwise). Tests show that resizing can be normally
+accomplished by calling <tt>zcurses end</tt> and <tt>zcurses refresh</tt>. The
+<tt>resize</tt> subcommand is provided for versatility. Multiple system
+configurations have been checked and <tt>zcurses end</tt> and <tt>zcurses
+refresh</tt> are still needed for correct terminal state after resize. To
+invoke them with <tt>resize</tt>, use <var>endwin</var> argument.  Using
+<var>nosave</var> argument will cause new terminal state to not be saved
+internally by <tt>zcurses</tt>. This is also provided for versatility and
+should normally be not needed.
 </p>
 </dd>
 </dl>
@@ -1701,6 +1793,19 @@ made readonly with &lsquo;<tt>ztie -r</tt>&rsquo;.
 local scope (function) ends.  Note that a readonly parameter may not be
 explicitly unset, so the only way to unset a global parameter created with
 &lsquo;<tt>ztie -r</tt>&rsquo; is to use &lsquo;<tt>zuntie -u</tt>&rsquo;.
+</p>
+<a name="index-zgdbmpath"></a>
+<a name="index-database-file-path_002c-reading"></a>
+</dd>
+<dt><tt>zgdbmpath</tt> <var>parametername</var></dt>
+<dd><p>Put path to database file assigned to <var>parametername</var> into <tt>REPLY</tt>
+scalar.
+</p>
+<a name="index-zgdbm_005ftied"></a>
+<a name="index-database-tied-arrays_002c-enumerating"></a>
+</dd>
+<dt><tt>zgdbm_tied</tt></dt>
+<dd><p>Array holding names of all tied parameters.
 </p>
 </dd>
 </dl>
@@ -2387,6 +2492,32 @@ removes the definition for the function named by the key.
 <dt><tt>dis_functions</tt></dt>
 <dd><p>Like <tt>functions</tt> but for disabled functions.
 </p>
+<a name="index-functions_005fsource"></a>
+</dd>
+<dt><tt>functions_source</tt></dt>
+<dd><p>This readonly associative array maps names of enabled functions to the
+name of the file containing the source of the function.
+</p>
+<p>For an autoloaded function that has already been loaded, or marked for
+autoload with an absolute path, or that has had its path resolved with
+&lsquo;<tt>functions -r</tt>&rsquo;, this is the file found for autoloading, resolved
+to an absolute path.
+</p>
+<p>For a function defined within the body of a script or sourced file,
+this is the name of that file.  In this case, this is the exact path
+originally used to that file, which may be a relative path.
+</p>
+<p>For any other function, including any defined at an interactive prompt or
+an autoload function whose path has not yet been resolved, this is
+the empty string.  However, the hash element is reported as defined
+just so long as the function is present:  the keys to this hash are
+the same as those to <tt>$funcions</tt>.
+</p>
+<a name="index-dis_005ffunctions_005fsource"></a>
+</dd>
+<dt><tt>dis_functions_source</tt></dt>
+<dd><p>Like <tt>functions_source</tt> but for disabled functions.
+</p>
 <a name="index-builtins"></a>
 </dd>
 <dt><tt>builtins</tt></dt>
@@ -2572,10 +2703,13 @@ defined.  The line number is the line where the &lsquo;<tt>function</tt> <var>na
 or &lsquo;<var>name</var> <tt>()</tt>&rsquo; started.  In the case of an autoloaded
 function  the line number is reported as zero.
 The format of each element is <var>filename</var><tt>:</tt><var>lineno</var>.
-For functions autoloaded from a file in native zsh format, where only the
+</p>
+<p>For functions autoloaded from a file in native zsh format, where only the
 body of the function occurs in the file, or for files that have been
 executed by the <tt>source</tt> or &lsquo;<tt>.</tt>&rsquo; builtins, the trace information is
-shown as <var>filename</var><tt>:</tt><var>0</var>, since the entire file is the definition.
+shown as <var>filename</var><tt>:</tt><var>0</var>, since the entire file is the
+definition.  The source file name is resolved to an absolute path when
+the function is loaded or the path to it otherwise resolved.
 </p>
 <p>Most users will be interested in the information in the
 <tt>funcfiletrace</tt> array instead.
@@ -5288,7 +5422,7 @@ The resulting strings are stored in the <var>array</var>.
 </p>
 <a name="index-zparseopts"></a>
 </dd>
-<dt><tt>zparseopts</tt> [ <tt>-D</tt> <tt>-K</tt> <tt>-M</tt> <tt>-E</tt> ] [ <tt>-a</tt> <var>array</var> ] [ <tt>-A</tt> <var>assoc</var> ] <var>spec</var> ...</dt>
+<dt><tt>zparseopts</tt> [ <tt>-D</tt> <tt>-K</tt> <tt>-M</tt> <tt>-E</tt> ] [ <tt>-a</tt> <var>array</var> ] [ <tt>-A</tt> <var>assoc</var> ] [ <tt>-</tt> ] <var>spec</var> ...</dt>
 <dd><p>This builtin simplifies the parsing of options in positional parameters,
 i.e. the set of arguments given by <tt>$*</tt>.  Each <var>spec</var> describes one
 option and must be of the form &lsquo;<var>opt</var>[<tt>=</tt><var>array</var>]&rsquo;.  If an option
@@ -5461,9 +5595,9 @@ bar=(-a '' -b xyz)
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>January 3, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>August 13, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.3.1, released on December 21, 2016.</font>
+<font size="-1">Zsh version 5.4.1, released on August 8, 2017.</font>
 </body>
 </html>

@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.4.90, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 26 User Contributions</title>
+<title>26 User Contributions (zsh)</title>
 
-<meta name="description" content="zsh: 26 User Contributions">
-<meta name="keywords" content="zsh: 26 User Contributions">
+<meta name="description" content="26 User Contributions (zsh)">
+<meta name="keywords" content="26 User Contributions (zsh)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
@@ -63,6 +63,31 @@ ul.no-bullet {list-style: none}
 <h1 class="chapter">26 User Contributions</h1>
 <p><a name="index-user-contributions"></a>
 </p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Utilities">26.2 Utilities</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Recent-Directories">26.3 Remembering Recent Directories</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Other-Directory-Functions">26.4 Abbreviated dynamic references to directories</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Version-Control-Information">26.5 Gathering information from version control systems</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Prompt-Themes">26.6 Prompt Themes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#ZLE-Functions">26.7 ZLE Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Exception-Handling">26.8 Exception Handling</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#MIME-Functions">26.9 MIME Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Mathematical-Functions">26.10 Mathematical Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#User-Configuration-Functions">26.11 User Configuration Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Other-Functions">26.12 Other Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
 <hr>
 <a name="Description-9"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -180,7 +205,7 @@ distribution in your home directory, you would use the commands:
 </p>
 <div class="example">
 <pre class="example">mkdir ~/zsh_help
-perl ~/zsh-5.3.1/Util/helpfiles ~/zsh_help
+perl ~/zsh-5.4.1/Util/helpfiles ~/zsh_help
 </pre></div>
 
 <p><a name="index-HELPDIR"></a>
@@ -351,7 +376,7 @@ configuration.
 <p>Run <tt>zkbd</tt> either as an autoloaded function, or as a shell script:
 </p>
 <div class="example">
-<pre class="example">zsh -f ~/zsh-5.3.1/Functions/Misc/zkbd
+<pre class="example">zsh -f ~/zsh-5.4.1/Functions/Misc/zkbd
 </pre></div>
 
 <p>When you run <tt>zkbd</tt>, it first asks you to enter your terminal type; if
@@ -422,7 +447,7 @@ recreate that state.
 command and redirect the output into a file:
 </p>
 <div class="example">
-<pre class="example">. ~/zsh-5.3.1/Util/reporter &gt; zsh.report
+<pre class="example">. ~/zsh-5.4.1/Util/reporter &gt; zsh.report
 </pre></div>
 
 <p>You should check the <tt>zsh.report</tt> file for any sensitive information
@@ -1306,7 +1331,7 @@ add-zsh-hook -U zsh_directory_name zdn_mywrapper
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Complete-example" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Quickstart" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#vcs_005finfo-Quickstart" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1371,7 +1396,8 @@ they are referred to within the system:
 </dl>
 
 <p>There is also support for the patch management system <tt>quilt</tt>
-(<tt><a href="http://savannah.nongnu.org/projects/quilt">http://savannah.nongnu.org/projects/quilt</a></tt>). See <tt>Quilt Support</tt>
+(<tt><a href="http://savannah.nongnu.org/projects/quilt">http://savannah.nongnu.org/projects/quilt</a></tt>). See
+<a href="#vcs_005finfo-Quilt-Support">Quilt Support</a>
 below for details.
 </p>
 <p>To load <tt>vcs_info</tt>:
@@ -1383,14 +1409,32 @@ below for details.
 <p>It can be used in any existing prompt, because it does not require any
 specific <tt>$psvar</tt> entries to be available.
 </p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#vcs_005finfo-Quickstart">26.5.1 Quickstart</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#vcs_005finfo-Configuration">26.5.2 Configuration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#vcs_005finfo-Oddities">26.5.3 Oddities</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#vcs_005finfo-Quilt-Support">26.5.4 Quilt Support</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#vcs_005finfo-API">26.5.5 Function Descriptions (Public API)</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#vcs_005finfo-Variables">26.5.6 Variable Description</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#vcs_005finfo-Hooks">26.5.7 Hooks in vcs_info</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#vcs_005finfo-Examples">26.5.8 Examples</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
 
 <hr>
-<a name="Quickstart"></a>
+<a name="vcs_005finfo-Quickstart"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Version-Control-Information" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Version-Control-Information" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Configuration-3" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#vcs_005finfo-Configuration" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1401,6 +1445,8 @@ specific <tt>$psvar</tt> entries to be available.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
+
+<a name="Quickstart"></a>
 <h3 class="subsection">26.5.1 Quickstart</h3>
 
 <p>To get this feature working quickly (including colors), you can do the
@@ -1471,14 +1517,13 @@ see the backends listed in the <tt>disable</tt> style (or backends not in the
 That means the detection of these systems is skipped <em>completely</em>. No
 wasted time there.
 </p>
-
 <hr>
-<a name="Configuration-3"></a>
+<a name="vcs_005finfo-Configuration"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Quickstart" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#vcs_005finfo-Quickstart" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Version-Control-Information" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Oddities" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#vcs_005finfo-Oddities" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1489,6 +1534,8 @@ wasted time there.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
+
+<a name="Configuration-3"></a>
 <h3 class="subsection">26.5.2 Configuration</h3>
 
 <p>The <tt>vcs_info</tt> feature can be configured via <tt>zstyle</tt>.
@@ -1500,11 +1547,17 @@ wasted time there.
 
 <dl compact="compact">
 <dt><var>vcs-string</var></dt>
-<dd><p>is one of: <cite>git</cite>, <cite>git-svn</cite>, <cite>git-p4</cite>, <cite>hg</cite>, <cite>hg-git</cite>,
-<cite>hg-hgsubversion</cite>, <cite>hg-hgsvn</cite>, <cite>darcs</cite>, <cite>bzr</cite>, <cite>cdv</cite>, <cite>mtn</cite>,
-<cite>svn</cite>, <cite>cvs</cite>, <cite>svk</cite>, <cite>tla</cite>, <cite>p4</cite> or <cite>fossil</cite>. When hooks are
-active the hooks name is added after a &lsquo;+&rsquo;. (See <cite>Hooks in vcs_info</cite>
-below.)
+<dd><p>is one of: <tt>git</tt>, <tt>git-svn</tt>, <tt>git-p4</tt>, <tt>hg</tt>, <tt>hg-git</tt>,
+<tt>hg-hgsubversion</tt>, <tt>hg-hgsvn</tt>, <tt>darcs</tt>, <tt>bzr</tt>, <tt>cdv</tt>, <tt>mtn</tt>,
+<tt>svn</tt>, <tt>cvs</tt>, <tt>svk</tt>, <tt>tla</tt>, <tt>p4</tt> or <tt>fossil</tt>.
+This is followed by &lsquo;<tt>.quilt-</tt><var>quilt-mode</var>&rsquo; in Quilt mode
+(see <a href="#vcs_005finfo-Quilt-Support">Quilt Support</a> for details)
+and by &lsquo;<tt>+</tt><var>hook-name</var>&rsquo; while hooks are active
+(see <a href="#vcs_005finfo-Hooks">Hooks in vcs_info</a> for details).
+</p>
+
+<p>Currently, hooks in quilt mode don&rsquo;t add the &lsquo;<tt>.quilt-</tt><var>quilt-mode</var>&rsquo; information.
+This may change in the future.
 </p>
 </dd>
 <dt><var>user-context</var></dt>
@@ -1631,19 +1684,19 @@ not want <tt>vcs_info</tt> to be active, do:
 </dd>
 <dt><tt>use-quilt</tt></dt>
 <dd><p>If enabled, the <tt>quilt</tt> support code is active in &lsquo;addon&rsquo; mode.
-See <tt>Quilt Support</tt> for details.
+See <a href="#vcs_005finfo-Quilt-Support">Quilt Support</a> for details.
 </p>
 <a name="index-quilt_002dstandalone"></a>
 </dd>
 <dt><tt>quilt-standalone</tt></dt>
 <dd><p>If enabled, &lsquo;standalone&rsquo; mode detection is attempted if no VCS is active
-in a given directory. See <tt>Quilt Support</tt> for details.
+in a given directory. See <a href="#vcs_005finfo-Quilt-Support">Quilt Support</a> for details.
 </p>
 <a name="index-quilt_002dpatch_002ddir"></a>
 </dd>
 <dt><tt>quilt-patch-dir</tt></dt>
 <dd><p>Overwrite the value of the <tt>$QUILT_PATCHES</tt> environment variable. See
-<tt>Quilt Support</tt> for details.
+<a href="#vcs_005finfo-Quilt-Support">Quilt Support</a> for details.
 </p>
 <a name="index-quiltcommand"></a>
 </dd>
@@ -1790,7 +1843,7 @@ is only used by <tt>vcs_info</tt>&rsquo;s hooks system.
 <a name="index-hooks"></a>
 </dd>
 <dt><tt>hooks</tt></dt>
-<dd><p>A list style that defines hook-function names. See <cite>Hooks in vcs_info</cite>
+<dd><p>A list style that defines hook-function names. See <a href="#vcs_005finfo-Hooks">Hooks in vcs_info</a>
 below for details.
 </p>
 <a name="index-patch_002dformat"></a>
@@ -1801,6 +1854,8 @@ below for details.
 <dd><p>This pair of styles format the patch information used by the <tt>%m</tt> expando in
 formats and actionformats for the <tt>git</tt> and <tt>hg</tt> backends.  The value is
 subject to certain <tt>%</tt>-expansions described below.
+The expanded value is made available in the global <tt>backend_misc</tt> array as
+<tt>${backend_misc[patches]}</tt> (also if a <tt>set-patch-format</tt> hook is used).
 </p>
 <a name="index-get_002dunapplied"></a>
 </dd>
@@ -1949,8 +2004,8 @@ is <tt>repoXY</tt>.
 decide what this replacement expands to.
 </p>
 <p>The <tt>hg</tt> and <tt>git</tt> backends use this expando to display patch information.
-<tt>hg</tt> sources patch information from the <tt>mq</tt> extensions; <tt>git</tt> from the
-<tt>rebase</tt> command and from the and <tt>stgit</tt> extension.  The <tt>patch-format</tt>
+<tt>hg</tt> sources patch information from the <tt>mq</tt> extensions; <tt>git</tt> from in-progress
+<tt>rebase</tt> and <tt>cherry-pick</tt> operations and from the <tt>stgit</tt> extension.  The <tt>patch-format</tt>
 and <tt>nopatch-format</tt> styles control the generated string.  The former is used
 when at least one patch from the patch queue has been applied, and the latter
 otherwise.
@@ -1960,6 +2015,18 @@ to <tt>mq</tt> information).  See the <tt>get-mq</tt> and <tt>get-bookmarks</tt>
 of these styles may be enabled at the same time.  If both are enabled, both
 resulting strings will be shown separated by a semicolon (that cannot currently
 be customized).
+</p>
+<p>The <tt>quilt</tt> &lsquo;standalone&rsquo; backend sets this expando to the same value as the
+<tt>%Q</tt> expando.
+</p>
+</dd>
+<dt><tt>%Q</tt></dt>
+<dd><p>Quilt series information.
+When quilt is used (either in &lsquo;addon&rsquo; mode or as a &lsquo;standalone&rsquo; backend),
+this expando is set to quilt series&rsquo; <tt>patch-format</tt> string.
+The <tt>set-patch-format</tt> hook and <tt>nopatch-format</tt> style are honoured.
+</p>
+<p>See <a href="#vcs_005finfo-Quilt-Support">Quilt Support</a> below for details.
 </p>
 </dd>
 </dl>
@@ -2016,14 +2083,13 @@ be customized).
 <p>Not all VCS backends have to support all replacements. For <tt>nvcsformats</tt>
 no replacements are performed at all, it is just a string.
 </p>
-
 <hr>
-<a name="Oddities"></a>
+<a name="vcs_005finfo-Oddities"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Configuration-3" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#vcs_005finfo-Configuration" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Version-Control-Information" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Quilt-Support" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#vcs_005finfo-Quilt-Support" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -2034,6 +2100,8 @@ no replacements are performed at all, it is just a string.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
+
+<a name="Oddities"></a>
 <h3 class="subsection">26.5.3 Oddities</h3>
 
 <p>If you want to use the <tt>%b</tt> (bold off) prompt expansion in <tt>formats</tt>,
@@ -2044,14 +2112,20 @@ mechanism can handle it. Similarly, to hand down <tt>%b</tt> from
 cannot be easily avoided. Luckily we do not clash with a lot of prompt
 expansions and this only needs to be done for those.
 </p>
-
+<p>When one of the <tt>gen-applied-string</tt>, <tt>gen-unapplied-string</tt>, and
+<tt>set-patch-format</tt> hooks is defined,
+applying <tt>%</tt>-escaping (&lsquo;<tt>foo=${foo//'%'/%%}</tt>&rsquo;) to the interpolated values
+for use in the prompt is the responsibility of those hooks (jointly);
+when neither of those hooks is defined, <tt>vcs_info</tt> handles escaping by itself.
+We regret this coupling, but it was required for backwards compatibility.
+</p>
 <hr>
-<a name="Quilt-Support"></a>
+<a name="vcs_005finfo-Quilt-Support"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Oddities" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#vcs_005finfo-Oddities" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Version-Control-Information" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Function-Descriptions-_0028Public-API_0029" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#vcs_005finfo-API" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -2062,6 +2136,8 @@ expansions and this only needs to be done for those.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
+
+<a name="Quilt-Support"></a>
 <h3 class="subsection">26.5.4 Quilt Support</h3>
 
 <p><cite>Quilt</cite> is not a version control system, therefore this is not implemented
@@ -2076,13 +2152,24 @@ systems.
 having two slightly different modes of operation: &lsquo;addon&rsquo; mode and
 &lsquo;standalone&rsquo; mode).
 </p>
+<p>Quilt integration is off by default; to enable it, set the <tt>use-quilt</tt> style,
+and add <tt>%Q</tt> to your <tt>formats</tt> or <tt>actionformats</tt> style:
+</p><div class="example">
+<pre class="example">zstyle ':vcs_info:*' use-quilt true
+</pre></div>
+
+<p>Styles looked up from the Quilt support code include &lsquo;<tt>.quilt-</tt><var>quilt-mode</var>&rsquo;
+in the <var>vcs-string</var> part of the context, where <var>quilt-mode</var> is either
+<tt>addon</tt> or <tt>standalone</tt>.
+Example: <tt>:vcs_info:git.quilt-addon:default:</tt><var>repo-root-name</var>.
+</p>
 <p>For &lsquo;addon&rsquo; mode to become active <tt>vcs_info</tt> must have already detected a
 real version control system controlling the directory. If that is the case,
 a directory that holds quilt&rsquo;s patches needs to be found. That directory is
 configurable via the &lsquo;<tt>QUILT_PATCHES</tt>&rsquo; environment variable. If that
 variable exists its value is used, otherwise the value &lsquo;<tt>patches</tt>&rsquo; is
 assumed. The value from <tt>$QUILT_PATCHES</tt> can be overwritten using the
-<tt>`quilt-patches'</tt> style. (Note: you can use <tt>vcs_info</tt> to keep the value
+&lsquo;<tt>quilt-patches</tt>&rsquo; style. (Note: you can use <tt>vcs_info</tt> to keep the value
 of <tt>$QUILT_PATCHES</tt> correct all the time via the <tt>post-quilt</tt> hook).
 </p>
 <p>When the directory in question is found, quilt is assumed to be active. To
@@ -2096,8 +2183,9 @@ to know which patches of a series are not yet applied, you need to activate
 the <tt>get-unapplied</tt> style in the appropriate context.
 </p>
 <p><tt>vcs_info</tt> allows for very detailed control over how the gathered
-information is presented (see the below sections, <cite>Styles</cite> and <cite>Hooks in
-vcs_info</cite>), all of which are documented below. Note there are a number of
+information is presented (see 
+<a href="#vcs_005finfo-Configuration">Configuration</a> and <a href="#vcs_005finfo-Hooks">Hooks in vcs_info</a>),
+all of which are documented below. Note there are a number of
 other patch tracking systems that work on top of a certain version control
 system (like <tt>stgit</tt> for <cite>git</cite>, or <tt>mq</tt> for <cite>hg</cite>); the configuration
 for systems like that are generally configured the same way as the <cite>quilt</cite>
@@ -2150,14 +2238,13 @@ non-zero return value is interpreted as false.
 <p>Note, if there is both a function and a variable by the name of
 <tt>quilt-standalone</tt>, the function will take precedence.
 </p>
-
 <hr>
-<a name="Function-Descriptions-_0028Public-API_0029"></a>
+<a name="vcs_005finfo-API"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Quilt-Support" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#vcs_005finfo-Quilt-Support" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Version-Control-Information" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Variable-Description" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#vcs_005finfo-Variables" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -2168,6 +2255,8 @@ non-zero return value is interpreted as false.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
+
+<a name="Function-Descriptions-_0028Public-API_0029"></a>
 <h3 class="subsection">26.5.5 Function Descriptions (Public API)</h3>
 
 <dl compact="compact">
@@ -2177,7 +2266,8 @@ non-zero return value is interpreted as false.
 <dd><p>The main function, that runs all backends and assembles all data into
 <tt>${vcs_info_msg_*_}</tt>. This is the function you want to call from
 <tt>precmd</tt> if you want to include up-to-date information in your prompt (see
-<tt>Variable description</tt> below). If an argument is given, that string will be
+<a href="#vcs_005finfo-Variables">Variable Description</a>
+below).  If an argument is given, that string will be
 used instead of <tt>default</tt> in the <var>user-context</var> field of the style
 context.
 </p>
@@ -2187,7 +2277,8 @@ context.
 <dd><p>Statically registers a number of functions to a given hook. The hook needs
 to be given as the first argument; what follows is a list of hook-function
 names to register to the hook. The &lsquo;<tt>+vi-</tt>&rsquo; prefix needs to be left out
-here. See <cite>Hooks in vcs_info</cite> below for details.
+here. See <a href="#vcs_005finfo-Hooks">Hooks in vcs_info</a>
+below for details.
 </p>
 <a name="index-vcs_005finfo_005fhookdel"></a>
 </dd>
@@ -2197,8 +2288,9 @@ first non-option argument; what follows is a list of hook-function
 names to un-register from the hook. If &lsquo;<tt>-a</tt>&rsquo; is used as the first
 argument, <tt>all</tt> occurrences of the functions are unregistered. Otherwise
 only the last occurrence is removed (if a function was registered to a hook
-more than once) . The &lsquo;<tt>+vi-</tt>&rsquo; prefix needs to be left out here. See
-<cite>Hooks in vcs_info</cite> below for details.
+more than once). The &lsquo;<tt>+vi-</tt>&rsquo; prefix needs to be left out here.
+See <a href="#vcs_005finfo-Hooks">Hooks in vcs_info</a>
+below for details.
 </p>
 <a name="index-vcs_005finfo_005flastmsg"></a>
 </dd>
@@ -2227,14 +2319,13 @@ without restarting the shell.
 
 <p>All functions named <tt>VCS_INFO_*</tt> are for internal use only.
 </p>
-
 <hr>
-<a name="Variable-Description"></a>
+<a name="vcs_005finfo-Variables"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Function-Descriptions-_0028Public-API_0029" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#vcs_005finfo-API" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Version-Control-Information" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Hooks-in-vcs_005finfo" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#vcs_005finfo-Hooks" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -2245,6 +2336,8 @@ without restarting the shell.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
+
+<a name="Variable-Description"></a>
 <h3 class="subsection">26.5.6 Variable Description</h3>
 
 <dl compact="compact">
@@ -2263,14 +2356,13 @@ style above.)
 
 <p>All variables named <tt>VCS_INFO_*</tt> are for internal use only.
 </p>
-
 <hr>
-<a name="Hooks-in-vcs_005finfo"></a>
+<a name="vcs_005finfo-Hooks"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Variable-Description" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#vcs_005finfo-Variables" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Version-Control-Information" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Examples-1" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#vcs_005finfo-Examples" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -2281,6 +2373,8 @@ style above.)
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
+
+<a name="Hooks-in-vcs_005finfo"></a>
 <h3 class="subsection">26.5.7 Hooks in vcs_info</h3>
 
 <p>Hooks are places in <tt>vcs_info</tt> where you can run your own code. That
@@ -2402,10 +2496,11 @@ so far in the opposite order, which means that the first argument is the
 top-most patch and so forth.
 </p>
 <p>When setting <tt>ret</tt> to non-zero, the string in
-<tt>${hook_com[applied-string]}</tt> will be used in the <tt>%m</tt> escape in
-<tt>formats</tt> and <tt>actionformats</tt>; it will be available in the global
-<tt>backend_misc</tt> array as <tt>$backend_misc[patches]}</tt>; and it will be
+<tt>${hook_com[applied-string]}</tt> will be
 available as <tt>%p</tt> in the <tt>patch-format</tt> and <tt>nopatch-format</tt> styles.
+This hook is, in concert with <tt>set-patch-format</tt>, responsible for
+<tt>%</tt>-escaping that value for use in the prompt.
+(See <a href="#vcs_005finfo-Oddities">Oddities</a>.)
 </p>
 </dd>
 <dt><tt>gen-unapplied-string</tt></dt>
@@ -2420,6 +2515,9 @@ the patch next-in-line to be applied and so forth.
 <p>When setting <tt>ret</tt> to non-zero, the string in
 <tt>${hook_com[unapplied-string]}</tt> will be available as <tt>%u</tt> in the
 <tt>patch-format</tt> and <tt>nopatch-format</tt> styles.
+This hook is, in concert with <tt>set-patch-format</tt>, responsible for
+<tt>%</tt>-escaping that value for use in the prompt.
+(See <a href="#vcs_005finfo-Oddities">Oddities</a>.)
 </p>
 </dd>
 <dt><tt>gen-mqguards-string</tt></dt>
@@ -2506,6 +2604,11 @@ controllable in addition to that.
 will be used unchanged instead of an expanded format from <tt>patch-format</tt> or
 <tt>nopatch-format</tt>.
 </p>
+<p>This hook is, in concert with the <tt>gen-applied-string</tt> or
+<tt>gen-unapplied-string</tt> hooks if they are defined, responsible for
+<tt>%</tt>-escaping the final <tt>patch-format</tt> value for use in the prompt.
+(See <a href="#vcs_005finfo-Oddities">Oddities</a>.)
+</p>
 </dd>
 <dt><tt>set-message</tt></dt>
 <dd><p>Called each time before a &lsquo;<tt>vcs_info_msg_</tt><var>N</var><tt>_</tt>&rsquo; message is set.
@@ -2535,16 +2638,16 @@ probably not a good idea.
 </dd>
 </dl>
 
-<p>If all of this sounds rather confusing, take a look at the <cite>Examples</cite>
-section below and also in the <tt>Misc/vcs_info-examples</tt> file in the Zsh source.
+<p>If all of this sounds rather confusing, take a look at
+<a href="#vcs_005finfo-Examples">Examples</a>
+and also in the <tt>Misc/vcs_info-examples</tt> file in the Zsh source.
 They contain some explanatory code.
 </p>
-
 <hr>
-<a name="Examples-1"></a>
+<a name="vcs_005finfo-Examples"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Hooks-in-vcs_005finfo" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#vcs_005finfo-Hooks" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Version-Control-Information" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Prompt-Themes" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -2557,6 +2660,8 @@ They contain some explanatory code.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
+
+<a name="Examples-1"></a>
 <h3 class="subsection">26.5.8 Examples</h3>
 
 <p>Don&rsquo;t use <tt>vcs_info</tt> at all (even though it&rsquo;s in your prompt):
@@ -2711,7 +2816,7 @@ directory.
 <a name="Prompt-Themes"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Examples-1" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#vcs_005finfo-Examples" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Installation-3" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -2751,8 +2856,9 @@ directory.
 <p>You should make sure all the functions from the <tt>Functions/Prompts</tt>
 directory of the source distribution are available; they all begin with
 the string &lsquo;<tt>prompt_</tt>&rsquo; except for the special function&lsquo;<tt>promptinit</tt>&rsquo;.
-You also need the &lsquo;<tt>colors</tt>&rsquo; function from <tt>Functions/Misc</tt>.  All of
-these functions may already have been installed on your system; if not,
+You also need the &lsquo;<tt>colors</tt>&rsquo; and &lsquo;<tt>add-zsh-hook</tt>&rsquo; functions from
+<tt>Functions/Misc</tt>.
+All these functions may already be installed on your system; if not,
 you will need to find them and copy them.  The directory should appear as
 one of the elements of the <tt>fpath</tt> array (this should already be the
 case if they were installed), and at least the function <tt>promptinit</tt>
@@ -2774,7 +2880,7 @@ promptinit
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Installation-3" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Prompt-Themes" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#ZLE-Functions" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Utility-Themes" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -2838,11 +2944,126 @@ normally call a theme&rsquo;s setup function directly.
 </dd>
 </dl>
 
+
+<hr>
+<a name="Utility-Themes"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Theme-Selection" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Prompt-Themes" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Writing-Themes" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">26.6.3 Utility Themes</h3>
+
+<dl compact="compact">
+<dt><tt>prompt off</tt></dt>
+<dd><p>The theme &lsquo;<tt>off</tt>&rsquo; sets all the prompt variables to minimal values with
+no special effects.
+</p>
+</dd>
+<dt><tt>prompt default</tt></dt>
+<dd><p>The theme &lsquo;<tt>default</tt>&rsquo; sets all prompt variables to the same state as
+if an interactive zsh was started with no initialization files.
+</p>
+</dd>
+<dt><tt>prompt restore</tt></dt>
+<dd><p>The special theme &lsquo;<tt>restore</tt>&rsquo; erases all theme settings and sets prompt
+variables to their state before the first time the &lsquo;<tt>prompt</tt>&rsquo; function
+was run, provided each theme has properly defined its cleanup (see below).
+</p>
+<p>Note that you can undo &lsquo;<tt>prompt off</tt>&rsquo; and &lsquo;<tt>prompt default</tt>&rsquo; with
+&lsquo;<tt>prompt restore</tt>&rsquo;, but a second restore does not undo the first.
+</p>
+</dd>
+</dl>
+
+
+<hr>
+<a name="Writing-Themes"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Utility-Themes" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Prompt-Themes" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#ZLE-Functions" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">26.6.4 Writing Themes</h3>
+
+<p>The first step for adding your own theme is to choose a name for it,
+and create a file &lsquo;<tt>prompt_<var>name</var>_setup</tt>&rsquo; in a directory in your
+<tt>fpath</tt>, such as <tt>~/myfns</tt> in the example above.  The file should
+at minimum contain assignments for the prompt variables that your
+theme wishes to modify.  By convention, themes use <tt>PS1</tt>, <tt>PS2</tt>,
+<tt>RPS1</tt>, etc., rather than the longer <tt>PROMPT</tt> and <tt>RPROMPT</tt>.
+</p>
+<p>The file is autoloaded as a function in the current shell context, so
+it may contain any necessary commands to customize your theme, including
+defining additional functions.  To make some complex tasks easier, your
+setup function may also do any of the following:
+</p>
+<dl compact="compact">
+<dt>Assign <tt>prompt_opts</tt></dt>
+<dd><p>The array <tt>prompt_opts</tt> may be assigned any of <tt>&quot;bang&quot;</tt>, <tt>&quot;cr&quot;</tt>,
+<tt>&quot;percent&quot;</tt>, <tt>&quot;sp&quot;</tt>, and/or <tt>&quot;subst&quot;</tt> as values.  The corresponding
+setopts (<tt>promptbang</tt>, etc.) are turned on, all other prompt-related
+options are turned off.  The <tt>prompt_opts</tt> array preserves setopts even
+beyond the scope of <tt>localoptions</tt>, should your function need that.
+</p>
+</dd>
+<dt>Modify precmd and preexec</dt>
+<dd><p>Use of <tt>add-zsh-hook</tt> is recommended.  The <tt>precmd</tt> and <tt>preexec</tt>
+hooks are automatically adjusted if the prompt theme changes or is
+disabled.
+</p>
+</dd>
+<dt>Declare cleanup</dt>
+<dd><p>If your function makes any other changes that should be undone when the
+theme is disabled, your setup function may call
+</p><div class="example">
+<pre class="example">prompt_cleanup <var>command</var>
+</pre></div>
+<p>where <var>command</var> should be suitably quoted.  If your theme is ever
+disabled or replaced by another, <var>command</var> is executed with <tt>eval</tt>.
+You may declare more than one such cleanup hook.
+</p>
+</dd>
+<dt>Define preview</dt>
+<dd><p>Define or autoload a function <tt>prompt_<var>name</var>_preview</tt> to display
+a simulated version of your prompt.  A simple default previewer is
+defined by <tt>promptinit</tt> for themes that do not define their own.
+This preview function is called by &lsquo;<tt>prompt -p</tt>&rsquo;.
+</p>
+</dd>
+<dt>Provide help</dt>
+<dd><p>Define or autoload a function <tt>prompt_<var>name</var>_help</tt> to display
+documentation or help text for your theme.
+This help function is called by &lsquo;<tt>prompt -h</tt>&rsquo;.
+</p>
+</dd>
+</dl>
+
 <hr>
 <a name="ZLE-Functions"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Theme-Selection" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Writing-Themes" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Widgets-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -6122,9 +6343,9 @@ The usual expansions for the <tt>PS1</tt> and <tt>RPS1</tt> parameters may be us
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>January 3, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>August 13, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.3.1, released on December 21, 2016.</font>
+<font size="-1">Zsh version 5.4.1, released on August 8, 2017.</font>
 </body>
 </html>

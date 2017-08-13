@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.4.90, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 10 Jobs &amp; Signals</title>
+<title>10 Jobs &amp; Signals (zsh)</title>
 
-<meta name="description" content="zsh: 10 Jobs &amp; Signals">
-<meta name="keywords" content="zsh: 10 Jobs &amp; Signals">
+<meta name="description" content="10 Jobs &amp; Signals (zsh)">
+<meta name="keywords" content="10 Jobs &amp; Signals (zsh)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
@@ -129,6 +129,12 @@ parent shell, and any variables set by the function will not be visible
 in the parent shell.  Thus the behaviour is different from the case
 where the function was never suspended.  Zsh is different from many
 other shells in this regard.
+</p>
+<p>One additional side effect is that use of <tt>disown</tt> with a job
+created by suspending shell code in this fashion is delayed: the
+job can only be disowned once any process started from the parent
+shell has terminated.  At that point, the disowned job disappears
+silently from the job list.
 </p>
 <p>The same behaviour is found when the shell is executing code as the
 right hand side of a pipeline or any complex shell construct such as
@@ -254,9 +260,9 @@ the section Multios in <a href="Redirection.html#Redirection">Redirection</a>.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>January 3, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>August 13, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.3.1, released on December 21, 2016.</font>
+<font size="-1">Zsh version 5.4.1, released on August 8, 2017.</font>
 </body>
 </html>

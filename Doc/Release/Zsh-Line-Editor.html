@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.3, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.4.90, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 18 Zsh Line Editor</title>
+<title>18 Zsh Line Editor (zsh)</title>
 
-<meta name="description" content="zsh: 18 Zsh Line Editor">
-<meta name="keywords" content="zsh: 18 Zsh Line Editor">
+<meta name="description" content="18 Zsh Line Editor (zsh)">
+<meta name="keywords" content="18 Zsh Line Editor (zsh)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
@@ -65,6 +65,17 @@ ul.no-bullet {list-style: none}
 <a name="index-editor_002c-line"></a>
 <a name="index-ZLE"></a>
 </p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Keymaps">18.2 Keymaps</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Zle-Builtins">18.3 Zle Builtins</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Zle-Widgets">18.4 Widgets</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Character-Highlighting">18.7 Character Highlighting</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
 <hr>
 <a name="Description-1"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -1016,12 +1027,12 @@ starting with &lsquo;<tt>.</tt>&rsquo;.
 <p><a name="index-widgets_002c-user_002ddefined"></a>
 User-defined widgets, being implemented as shell functions,
 can execute any normal shell command.  They can also run other widgets
-(whether built-in or user-defined) using the <tt>zle</tt> builtin command.
-The standard input of the function is closed to prevent external commands
-from unintentionally blocking ZLE by reading from the terminal, but
-<tt>read -k</tt> or <tt>read -q</tt> can be used to read characters.  Finally,
-they can examine and edit the ZLE buffer being edited by
-reading and setting the special parameters described below.
+(whether built-in or user-defined) using the <tt>zle</tt> builtin command. The
+standard input of the function is redirected from /dev/null to prevent
+external commands from unintentionally blocking ZLE by reading from the
+terminal, but <tt>read -k</tt> or <tt>read -q</tt> can be used to read characters.
+Finally, they can examine and edit the ZLE buffer being edited by reading
+and setting the special parameters described below.
 </p>
 <p><a name="index-parameters_002c-editor"></a>
 <a name="index-parameters_002c-zle"></a>
@@ -1145,6 +1156,13 @@ when <tt>ISEARCHMATCH_ACTIVE</tt> is non-zero.
 <dt><tt>KEYS</tt> (scalar)</dt>
 <dd><p>The keys typed to invoke this widget, as a literal string; read-only.
 </p>
+<a name="index-KEYS_005fQUEUED_005fCOUNT"></a>
+</dd>
+<dt><tt>KEYS_QUEUED_COUNT</tt> (integer)</dt>
+<dd><p>The number of bytes pushed back to the input queue and therefore
+available for reading immediately before any I/O is done; read-only.
+See also <tt>PENDING</tt>; the two values are distinct.
+</p>
 <a name="index-killring"></a>
 </dd>
 <dt><tt>killring</tt> (array)</dt>
@@ -1208,7 +1226,8 @@ called behave as if no numeric argument was given.
 <dd><p>The number of bytes pending for input, i.e. the number of bytes which have
 already been typed and can immediately be read. On systems where the shell
 is not able to get this information, this parameter will always have a
-value of zero.  Read-only.
+value of zero.  Read-only.  See also <tt>KEYS_QUEUED_COUNT</tt>; the two
+values are distinct.
 </p>
 <a name="index-PREBUFFER"></a>
 </dd>
@@ -3558,9 +3577,9 @@ special array parameter <tt>region_highlight</tt>; see
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>January 3, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>August 13, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.3.1, released on December 21, 2016.</font>
+<font size="-1">Zsh version 5.4.1, released on August 8, 2017.</font>
 </body>
 </html>
