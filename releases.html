@@ -27,6 +27,105 @@
 </table>
 <hr size=1 noshade>
 
+<h2>Changes between versions 5.3.1 and 5.4.1</h2>
+
+<h3>Incompatibilities</h3>
+
+<ul>
+<li>
+The default behaviour of code like the following has changed:
+
+<pre>
+  alias foo='noglob foo'
+  foo() { print function body; }
+</pre>
+
+When this is encountered in a start-up file, or other place where input
+was read line by line, "foo" is in command position and is expanded as
+an alias before the function definition takes place.  In previous
+versions of the shell, this caused two functions "noglob" and "foo" to
+be defined.  Any expansion of an alias in a function definition is
+nearly always an unintended effect, as well as hard to detect, so has
+been made an error.  (The option setting NO_MULTI_FUNC_DEF turned this
+case into an error, but did not help with other cases and is off by
+default.)  The alternative, of not expanding the alias, was rejected as
+it was more difficult to achieve in the parser and also would silently
+change the shell's behaviur between versions.  A new option,
+ALIAS_FUNC_DEF, has been added, which can be set to make the shell
+behave as in previous versions.  It is in any case recommended to use
+the "function" keyword, as aliases are not expanded afterwards.
+</li>
+
+<li>
+It was an undocumented, and largely useless, feature that a function
+autoloaded with an absolute path was searched for along the normal fpath
+(as if the leading / was missing) and, if found, loaded under the full
+name including the leading slash.  This has been replaced with the more
+useful feature that the function is searched for only at the given
+absolute path; the name of the function is the base name of the file.
+Note that functions including a non-leading / behave as before,
+e.g. if `dir/name' is found anywhere under a directory in $fpath it is
+loaded as a function named `dir/name'.
+</li>
+
+<li>
+vcs_info: When neither a set-patch-format nor a gen-applied-string
+(resp. gen-unapplied-string) hook is set, vcs_info now '%'-escapes the
+applied-string (resp. unapplied-string) before interpolating it into the
+patch-format string, to prevent literal `%' signs in the interpolated
+value from being interpreted as prompt escape sequences.  If you use
+${vcs_info_msg_0_} in a context other than the shell prompt, you may need
+to undo the escaping with:
+
+<pre>
+    print -v vcs_info_msg_0_ -Pr -- "${vcs_info_msg_0_}"
+</pre>
+
+This is also needed if $vcs_info_msg_0_ is used to set $psvar.
+</li>
+
+<li>
+functions executed by ZLE widgets no longer have their standard input
+closed, but redirected from /dev/null instead. That still guards
+against user defined widgets inadvertently reading from the tty device,
+and addresses the antisocial behaviour of running a command with its
+stdin closed.
+</li>
+</ul>
+
+<h3>Changes</h3>
+
+<ul>
+<li>
+The 'exec' and 'command' precommand modifiers, and options to them, are
+now parsed after parameter expansion.  Previously, both the modifier and
+any options to it were parsed between alias expansion and parameter
+expansion (see zshexpn(1)), so they could neither be quoted nor be the
+result of parameter expansion.  Examples: 's=command; $s -V ls' and
+'\command -V ls' now work as expected.
+</li>
+
+<li>
+Functions executed by ZLE widgets no longer have their standard input
+closed, but redirected from /dev/null instead. That still guards
+against user defined widgets inadvertently reading from the tty device.
+</li>
+
+<li>
+There is an option WARN_NESTED_VAR, a companion to the existing
+WARN_CREATE_GLOBAL that causes a warning if a function updates a
+variable from an enclosing scope without using typeset -g.  It can be
+turned on for an individual function with "functions -W".
+</li>
+
+<li>
+zmodload now has an option -s to be silent on a failure to find a module
+but still print other errors.
+</li>
+</ul>
+
+
+
 <h2>Changes between versions 5.3 and 5.3.1</h2>
 
 <ul>
@@ -2311,7 +2410,7 @@ completion.
 <div align=right>
 <address>
 <a name=Signature href="disclaimer.html">Disclaimer</A>
-Last modified: 2017-01-03
+Last modified: 2018-08-13
 </address>
 </div>
 
