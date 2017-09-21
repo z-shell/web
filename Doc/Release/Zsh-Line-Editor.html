@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.4.90, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>18 Zsh Line Editor (zsh)</title>
+<title>zsh: 18 Zsh Line Editor</title>
 
-<meta name="description" content="18 Zsh Line Editor (zsh)">
-<meta name="keywords" content="18 Zsh Line Editor (zsh)">
+<meta name="description" content="zsh: 18 Zsh Line Editor">
+<meta name="keywords" content="zsh: 18 Zsh Line Editor">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
@@ -13,16 +13,16 @@
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
+kbd {font-style:oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
@@ -31,9 +31,10 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,7 +42,7 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 <a name="Zsh-Line-Editor"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -61,20 +62,9 @@ ul.no-bullet {list-style: none}
 
 <a name="Zsh-Line-Editor-1"></a>
 <h1 class="chapter">18 Zsh Line Editor</h1>
-<p><a name="index-line-editor"></a>
+<a name="index-line-editor"></a>
 <a name="index-editor_002c-line"></a>
 <a name="index-ZLE"></a>
-</p>
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="#Keymaps">18.2 Keymaps</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Zle-Builtins">18.3 Zle Builtins</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Zle-Widgets">18.4 Widgets</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Character-Highlighting">18.7 Character Highlighting</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-</table>
 
 <hr>
 <a name="Description-1"></a>
@@ -94,8 +84,8 @@ ul.no-bullet {list-style: none}
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">18.1 Description</h2>
-<p><a name="index-ZLE_002c-use-of"></a>
-If the <tt>ZLE</tt> option is set (which it is by default in interactive shells)
+<a name="index-ZLE_002c-use-of"></a>
+<p>If the <tt>ZLE</tt> option is set (which it is by default in interactive shells)
 and the shell input is attached to the terminal, the user
 is able to edit command lines.
 </p>
@@ -111,15 +101,15 @@ This mode
 is similar to <cite>ksh</cite>, and uses no termcap sequences.  If <tt>TERM</tt> is
 &quot;emacs&quot;, the <tt>ZLE</tt> option will be unset by default.
 </p>
-<p><a name="index-BAUD_002c-use-of"></a>
+<a name="index-BAUD_002c-use-of"></a>
 <a name="index-COLUMNS_002c-use-of"></a>
 <a name="index-LINES_002c-use-of"></a>
-The parameters <tt>BAUD</tt>, <tt>COLUMNS</tt>, and <tt>LINES</tt> are also used by the
+<p>The parameters <tt>BAUD</tt>, <tt>COLUMNS</tt>, and <tt>LINES</tt> are also used by the
 line editor. See
 <a href="Parameters.html#Parameters-Used-By-The-Shell">Parameters Used By The Shell</a>.
 </p>
-<p><a name="index-zle_005fhighlight_002c-use-of"></a>
-The parameter <tt>zle_highlight</tt> is also used by the line editor; see
+<a name="index-zle_005fhighlight_002c-use-of"></a>
+<p>The parameter <tt>zle_highlight</tt> is also used by the line editor; see
 <a href="#Character-Highlighting">Character Highlighting</a>.  Highlighting
 of special characters and the region between the cursor and the
 mark (as set with <tt>set-mark-command</tt> in Emacs mode, or by <tt>visual-mode</tt>
@@ -172,10 +162,10 @@ bindings mentioned here use the <tt>digit-argument</tt> widget.
 
 <a name="Keymaps-1"></a>
 <h2 class="section">18.2 Keymaps</h2>
-<p><a name="index-keymaps"></a>
+<a name="index-keymaps"></a>
 <a name="index-key-bindings"></a>
 <a name="index-bindings_002c-key"></a>
-A keymap in ZLE contains a set of bindings between key sequences
+<p>A keymap in ZLE contains a set of bindings between key sequences
 and ZLE commands.  The empty key sequence cannot be bound.
 </p>
 <p>There can be any number of keymaps at any time, and each keymap has one
@@ -217,9 +207,9 @@ can never be removed.  However, it can be linked to other names, which can
 be removed.  In the future other special keymaps may be added; users should
 avoid using names beginning with &lsquo;<tt>.</tt>&rsquo; for their own keymaps.
 </p>
-<p><a name="index-VISUAL"></a>
+<a name="index-VISUAL"></a>
 <a name="index-EDITOR"></a>
-In addition to these names, either &lsquo;<tt>emacs</tt>&rsquo; or &lsquo;<tt>viins</tt>&rsquo; is
+<p>In addition to these names, either &lsquo;<tt>emacs</tt>&rsquo; or &lsquo;<tt>viins</tt>&rsquo; is
 also linked to the name &lsquo;<tt>main</tt>&rsquo;.  If one of the <tt>VISUAL</tt> or
 <tt>EDITOR</tt> environment variables contain the string &lsquo;<tt>vi</tt>&rsquo; when the shell
 starts up then it will be &lsquo;<tt>viins</tt>&rsquo;, otherwise it will be &lsquo;<tt>emacs</tt>&rsquo;.
@@ -298,8 +288,8 @@ in user-defined widgets with the <tt>read-command</tt> widget, described in
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">18.2.2 Local Keymaps</h3>
-<p><a name="index-local-keymaps"></a>
-While for normal editing a single keymap is used exclusively, in many
+<a name="index-local-keymaps"></a>
+<p>While for normal editing a single keymap is used exclusively, in many
 modes a local keymap allows for some keys to be customised. For example,
 in an incremental search mode, a binding in the <tt>isearch</tt> keymap will
 override a binding in the <tt>main</tt> keymap but all keys that are not
@@ -333,8 +323,8 @@ by the binding of <tt>^Xb</tt> in the local keymap.
 
 <a name="Zle-Builtins-1"></a>
 <h2 class="section">18.3 Zle Builtins</h2>
-<p><a name="index-zle_002c-builtin-commands"></a>
-The ZLE module contains three related builtin commands. The <tt>bindkey</tt>
+<a name="index-zle_002c-builtin-commands"></a>
+<p>The ZLE module contains three related builtin commands. The <tt>bindkey</tt>
 command manipulates keymaps and key bindings; the <tt>vared</tt> command invokes
 ZLE on the value of a shell parameter; and the <tt>zle</tt> command manipulates
 editing widgets and allows command line access to ZLE commands from within
@@ -987,8 +977,8 @@ it should call the <tt>beep</tt> widget directly.
 
 <a name="Widgets"></a>
 <h2 class="section">18.4 Widgets</h2>
-<p><a name="index-widgets"></a>
-All actions in the editor are performed by &lsquo;widgets&rsquo;.  A widget&rsquo;s job is
+<a name="index-widgets"></a>
+<p>All actions in the editor are performed by &lsquo;widgets&rsquo;.  A widget&rsquo;s job is
 simply to perform some small action.  The ZLE commands that key sequences
 in keymaps are bound to are in fact widgets.  Widgets can be user-defined
 or built in.
@@ -1024,8 +1014,8 @@ starting with &lsquo;<tt>.</tt>&rsquo;.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">18.5 User-Defined Widgets</h2>
-<p><a name="index-widgets_002c-user_002ddefined"></a>
-User-defined widgets, being implemented as shell functions,
+<a name="index-widgets_002c-user_002ddefined"></a>
+<p>User-defined widgets, being implemented as shell functions,
 can execute any normal shell command.  They can also run other widgets
 (whether built-in or user-defined) using the <tt>zle</tt> builtin command. The
 standard input of the function is redirected from /dev/null to prevent
@@ -1034,9 +1024,9 @@ terminal, but <tt>read -k</tt> or <tt>read -q</tt> can be used to read character
 Finally, they can examine and edit the ZLE buffer being edited by reading
 and setting the special parameters described below.
 </p>
-<p><a name="index-parameters_002c-editor"></a>
+<a name="index-parameters_002c-editor"></a>
 <a name="index-parameters_002c-zle"></a>
-These special parameters are always available in widget functions, but
+<p>These special parameters are always available in widget functions, but
 are not in any way special outside ZLE.  If they have some normal value
 outside ZLE, that value is temporarily inaccessible, but will return
 when the widget function exits.  These special parameters in fact have
@@ -1546,8 +1536,8 @@ old keymap is passed as the sole argument.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">18.6 Standard Widgets</h2>
-<p><a name="index-widgets_002c-standard"></a>
-The following is a list of all the standard widgets,
+<a name="index-widgets_002c-standard"></a>
+<p>The following is a list of all the standard widgets,
 and their default bindings in emacs mode,
 vi command mode and vi insert mode
 (the &lsquo;<tt>emacs</tt>&rsquo;, &lsquo;<tt>vicmd</tt>&rsquo; and &lsquo;<tt>viins</tt>&rsquo; keymaps, respectively).
@@ -3258,8 +3248,8 @@ continue the argument.  Otherwise, execute vi-beginning-of-line.
 
 <a name="Text-Objects-1"></a>
 <h3 class="subsection">18.6.7 Text Objects</h3>
-<p><a name="index-text-objects"></a>
-Text objects are commands that can be used to select a block of text
+<a name="index-text-objects"></a>
+<p>Text objects are commands that can be used to select a block of text
 according to some criteria. They are a feature of the vim text editor
 and so are primarily intended for use with vi operators or from visual
 selection mode. However, they can also be used from vi-insert or emacs
@@ -3329,8 +3319,8 @@ argument, multiple words will be selected.
 <a name="Character-Highlighting-1"></a>
 <h2 class="section">18.7 Character Highlighting</h2>
 
-<p><a name="index-zle_005fhighlight_002c-setting"></a>
-The line editor has the ability to highlight characters or regions
+<a name="index-zle_005fhighlight_002c-setting"></a>
+<p>The line editor has the ability to highlight characters or regions
 of the line that have a particular significance.  This is controlled
 by the array parameter <tt>zle_highlight</tt>, if it has been set by the user.
 </p>
@@ -3577,9 +3567,9 @@ special array parameter <tt>region_highlight</tt>; see
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>August 13, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>September 21, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.4.1, released on August 8, 2017.</font>
+<font size="-1">Zsh version 5.4.2, released on August 27, 2017.</font>
 </body>
 </html>

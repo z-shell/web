@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.4.90, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>16 Options (zsh)</title>
+<title>zsh: 16 Options</title>
 
-<meta name="description" content="16 Options (zsh)">
-<meta name="keywords" content="16 Options (zsh)">
+<meta name="description" content="zsh: 16 Options">
+<meta name="keywords" content="zsh: 16 Options">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
@@ -13,16 +13,16 @@
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
+kbd {font-style:oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
@@ -31,9 +31,10 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,7 +42,7 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 <a name="Options"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -61,8 +62,8 @@ ul.no-bullet {list-style: none}
 
 <a name="Options-2"></a>
 <h1 class="chapter">16 Options</h1>
-<p><a name="index-options"></a>
-</p><table class="menu" border="0" cellspacing="0">
+<a name="index-options"></a>
+<table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top"><a href="#Specifying-Options">16.1 Specifying Options</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Description-of-Options">16.2 Description of Options</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -92,8 +93,8 @@ ul.no-bullet {list-style: none}
 
 <a name="Specifying-Options-1"></a>
 <h2 class="section">16.1 Specifying Options</h2>
-<p><a name="index-options_002c-specifying"></a>
-Options are primarily referred to by name.
+<a name="index-options_002c-specifying"></a>
+<p>Options are primarily referred to by name.
 These names are case insensitive and underscores are ignored.
 For example, &lsquo;<tt>allexport</tt>&rsquo; is equivalent to &lsquo;<tt>A__lleXP_ort</tt>&rsquo;.
 </p>
@@ -144,8 +145,8 @@ calling scripts do not strip trailing whitespace.
 
 <a name="Description-of-Options-1"></a>
 <h2 class="section">16.2 Description of Options</h2>
-<p><a name="index-options_002c-description"></a>
-In the following list, options set by default in all emulations are marked
+<a name="index-options_002c-description"></a>
+<p>In the following list, options set by default in all emulations are marked
 &lt;D&gt;; those set by default only in csh, ksh, sh, or zsh emulations are marked
 &lt;C&gt;, &lt;K&gt;, &lt;S&gt;, &lt;Z&gt; as appropriate.  When listing options (by &lsquo;<tt>setopt</tt>&rsquo;,
 &lsquo;<tt>unsetopt</tt>&rsquo;, &lsquo;<tt>set -o</tt>&rsquo; or &lsquo;<tt>set +o</tt>&rsquo;), those turned on by default
@@ -2057,6 +2058,15 @@ as it is by default, and the option <tt>ERR_EXIT</tt> is found to have been set
 on exit, then the command for which the <tt>DEBUG</tt> trap is being executed is
 skipped.  The option is restored after the trap exits.
 </p>
+<p>Non-zero status in a command list containing <tt>&amp;&amp;</tt> or <tt>||</tt> is ignored
+for commands not at the end of the list.  Hence
+</p>
+<div class="example">
+<pre class="example">false &amp;&amp; true
+</pre></div>
+
+<p>does not trigger exit.
+</p>
 <p>Exiting due to <tt>ERR_EXIT</tt> has certain interactions with asynchronous
 jobs noted in
 <a href="Jobs-_0026-Signals.html#Jobs-_0026-Signals">Jobs &amp; Signals</a>.
@@ -2070,10 +2080,27 @@ jobs noted in
 </dd>
 <dt><tt>ERR_RETURN</tt></dt>
 <dd><p>If a command has a non-zero exit status, return immediately from the
-enclosing function.  The logic is identical to that for <tt>ERR_EXIT</tt>,
+enclosing function.  The logic is similar to that for <tt>ERR_EXIT</tt>,
 except that an implicit <tt>return</tt> statement is executed instead of an
 <tt>exit</tt>.  This will trigger an exit at the outermost level of a
 non-interactive script.
+</p>
+<p>Normally this option inherits the behaviour of <tt>ERR_EXIT</tt> that
+code followed by &lsquo;<tt>&amp;&amp;</tt>&rsquo; &lsquo;<tt>||</tt>&rsquo; does not trigger a return.  Hence
+in the following:
+</p>
+<div class="example">
+<pre class="example">summit || true
+</pre></div>
+
+<p>no return is forced as the combined effect always has a zero return
+status.
+</p>
+<p>Note. however, that if <tt>summit</tt> in the above example is itself a
+function, code inside it is considered separately: it may force a return
+from <tt>summit</tt> (assuming the option remains set within <tt>summit</tt>), but
+not from the enclosing context.  This behaviour is different from
+<tt>ERR_EXIT</tt> which is unaffected by function scope.
 </p>
 <a name="index-EVAL_005fLINENO"></a>
 <a name="index-NO_005fEVAL_005fLINENO"></a>
@@ -3013,8 +3040,8 @@ a terminal.
 
 <a name="Option-Aliases-1"></a>
 <h2 class="section">16.3 Option Aliases</h2>
-<p><a name="index-options_002c-aliases"></a>
-Some options have alternative names.  These aliases are never used for
+<a name="index-options_002c-aliases"></a>
+<p>Some options have alternative names.  These aliases are never used for
 output, but can be used just like normal option names when specifying
 options to the shell.
 </p>
@@ -3146,9 +3173,9 @@ options to the shell.
 
 <a name="Single-Letter-Options-1"></a>
 <h2 class="section">16.4 Single Letter Options</h2>
-<p><a name="index-options_002c-single-letter"></a>
+<a name="index-options_002c-single-letter"></a>
 <a name="index-single-letter-options"></a>
-</p>
+
 <hr>
 <a name="Default-set"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -3460,9 +3487,9 @@ options to the shell.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>August 13, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>September 21, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.4.1, released on August 8, 2017.</font>
+<font size="-1">Zsh version 5.4.2, released on August 27, 2017.</font>
 </body>
 </html>

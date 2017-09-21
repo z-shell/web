@@ -4,6 +4,7 @@ Submitted-By: coordinator@zsh.org (Peter Stephenson) <coordinator@zsh.org (Peter
 Posting-Frequency: Monthly
 Copyright: (C) P.W. Stephenson, 1995--2016 (see end of document)
 
+
 This document contains a list of frequently-asked (or otherwise
 significant) questions concerning the Z-shell, a command interpreter
 for many UNIX systems which is freely available to anyone with FTP
@@ -131,6 +132,7 @@ Another useful source of information is the collection of FAQ articles
     USA         http://www.cis.ohio-state.edu/hypertext/faq/usenet/top.html
     UK          http://www.lib.ox.ac.uk/internet/news/faq/comp.unix.shell.html
     Netherlands http://www.cs.uu.nl/wais/html/na-dir/unix-faq/shell/.html
+  
 
 You can also get it via email by emailing mail-server@rtfm.mit.edu <mail-server@rtfm.mit.edu>
   with, in the body of the message, `send faqs/unix-faq/shell/zsh'.
@@ -182,9 +184,9 @@ Here are some things that zsh is particularly good at.  No claim of
   in any other freely-available shell which zsh does not also have
   (except smallness).
 
-itemize(
+
   o  Command line editing:
-  itemize(
+  
     o  programmable completion: incorporates the ability to use the
        full power of zsh's globbing and shell programming features,
     o  multi-line commands editable as a single buffer (even files!),
@@ -195,13 +197,13 @@ itemize(
     o  menu completion in two flavours,
     o  variable, editing function and option name completion,
     o  inline expansion of variables and history commands.  
-  )
+  
   o  Globbing --- extremely powerful, including:
-  itemize(
+  
     o  recursive globbing (cf. find),
     o  file attribute qualifiers (size, type, etc. also cf. find),
     o  full alternation and negation of patterns.
-  )
+  
   o  Handling of multiple redirections (simpler than tee).
   o  Large number of options for tailoring.
   o  Path expansion (=foo -> /usr/bin/foo).
@@ -212,7 +214,7 @@ itemize(
   o  Manipulation of arrays (including reverse subscripting).
   o  Associative arrays (key-to-value hashes)
   o  Spelling correction.
-  )
+  
 
 
 1.4: On what machines will it run?
@@ -248,7 +250,7 @@ To get it to work, retrieve the source distribution (see question
 1.5: What's the latest version?
 
 
-Zsh 5.4.1 is the latest production version.  For details of all the
+Zsh 5.4.2 is the latest production version.  For details of all the
   changes, see the NEWS file in the source distribution.
 
 A beta of the next version is sometimes available.  Development of zsh is
@@ -320,6 +322,7 @@ Starting from mid-October 1997, there is an archive of patches sent
 
 
             http://zsh.sourceforge.net/Patches/
+  
 
 
 1.7: I don't have root access: how do I make zsh my login shell?
@@ -458,9 +461,9 @@ Here are some differences from ksh which might prove significant for
   if `emulate ksh' is in effect.  Capitalised words with underlines
   refer to shell options. 
 
-itemize(
+
   o  Syntax:
-  itemize(
+  
     o * Shell word splitting: see question 3.1.
     o * Arrays are (by default) more csh-like than ksh-like:
         subscripts start at 1, not 0; array[0] refers to array[1];
@@ -478,9 +481,9 @@ itemize(
     o   In `cmd1 && cmd2 &', only `cmd2' instead of the whole
         expression is run in the background in zsh.  The manual implies
         this is a bug.  Use `{ cmd1 && cmd2 } &' as a workaround.
-  )
+  
   o  Command line substitutions, globbing etc.:
-  itemize(
+  
     o * Failure to match a globbing pattern causes an error (use
         NO_NOMATCH).
     o * The results of parameter substitutions are treated as plain text:
@@ -519,16 +522,16 @@ itemize(
         because the return value from wc includes leading
         whitespace which causes wordsplitting.  Ksh handles the
         assignment specially as a single word.
-  )
+  
   o  Command execution:
-  itemize(
+  
     o * There is no $ENV variable (use /etc/zshrc, ~/.zshrc; 
         note also $ZDOTDIR).
     o * $PATH is not searched for commands specified
         at invocation without -c.
-  )
+  
   o  Aliases and functions:
-  itemize(
+  
     o   The order in which aliases and functions are defined is significant:
         function definitions with () expand aliases -- see question 2.3.
     o   Aliases and functions cannot be exported.
@@ -541,16 +544,16 @@ itemize(
         same way as those defined with `funcname () { body }'.  In ksh,
         the former behave as if the body were read from a file with `.',
         and only the latter behave as true functions.
-  )
+  
     o  Traps and signals:
-  itemize(
+  
     o * Traps are not local to functions.  The option LOCAL_TRAPS is
           available from 3.1.6.
     o   TRAPERR has become TRAPZERR (this was forced by UNICOS which
         has SIGERR).
-  )
+  
   o  Editing:
-  itemize(
+  
     o   The options gmacs, viraw are not supported.
         Use bindkey to change the editing behaviour: `set -o {emacs,vi}'
         becomes `bindkey -{e,v}', although `set -o emacs' and `set -o vi'
@@ -573,20 +576,20 @@ itemize(
           bindkey -M vicmd 'k' vi-up-line-or-history
           bindkey -M vicmd 'j' vi-down-line-or-history
   
-  )
+  
   o  Built-in commands:
-  itemize(
+  
     o   Some built-ins (r, autoload, history, integer ...)
         were aliases in ksh. 
     o   There is no built-in command newgrp: use e.g. `alias
         newgrp="exec newgrp"'
     o   `jobs' has no `-n' flag.
-  )
+  
   o  Other idiosyncrasies:
-  itemize(
+  
     o   `select' always redisplays the list of selections on each loop.
-  )
-  )
+  
+  
 
 
 2.2: Similarities with csh
@@ -600,7 +603,7 @@ Although certain features aim to ease the withdrawal symptoms of csh
   particularly those with arguments.
 
 Csh-compatibility additions include:
-  itemize(
+  
   o   logout, rehash, source, (un)limit built-in commands.
   o   *rc file for interactive shells.
   o   Directory stacks.
@@ -621,7 +624,7 @@ Csh-compatibility additions include:
   o   !-type history (which may be turned off via `setopt
       nobanghist').
   o   Arrays have csh-like features (see under 2.1).
-  )
+  
 
 
 2.3: Why do my csh aliases not work?  (Plus other alias pitfalls.)
@@ -679,11 +682,11 @@ Here is Bart Schaefer's guide to converting csh aliases for zsh.
 
 4. ) If you have aliases that refer to each other (alias ls "ls -C";
      alias lf "ls -F" ==> lf == ls -C -F) then you must either:
-  itemize(
+  
         o  convert all of them to zsh functions; or
         o  after converting, be sure your .zshrc defines all of your
            aliases before it defines any of your functions.
-         )
+         
 
 Those first four are all you really need, but here are four more for
      heavy csh alias junkies:
@@ -951,7 +954,7 @@ Note that this happens regardless of the value of the internal field
 Other ways of causing word splitting include a judicious use of
   `eval':
   
-    sentence="Longtemps, je me suis couch\\'e de bonne heure."
+    sentence="Longtemps, je me suis couch\e de bonne heure."
     eval "words=($sentence)"
   
   after which $words is an array with the words of $sentence (note
@@ -2025,7 +2028,7 @@ Often there will be more than one possible completion: two files
   (That's assuming you're at the end of the line, otherwise \C-D will
   delete the next character and you have to use ESC-\C-D.)  This can be
   changed by the following options, among others:
-  itemize(
+  
    o  with NO_BEEP set, that annoying beep goes away
    o  with NO_LIST_BEEP, beeping is only turned off for ambiguous
       completions
@@ -2046,7 +2049,7 @@ Often there will be more than one possible completion: two files
       those explicitly requested, note also ALWAYS_LAST_PROMPT, which
       causes the cursor to return to the line you were editing after
       printing the list, provided that is short enough.
-  )
+  
   Combinations of these are possible; for example, AUTO_LIST and
   AUTO_MENU together give an intuitive combination.  Note that
   from version 3.1 LIST_AMBIGUOUS is set by default; if you use
@@ -2241,7 +2244,7 @@ Once you have a version of zsh with multibyte support, you need to
 
 There are basically three components.
 
-itemize(
+
    o  The locale.  This describes a whole series of features specific
       to countries or regions of which the character set is one.  Usually
       it is controlled by the environment variable LANG (there are
@@ -2286,7 +2289,7 @@ itemize(
       example, `iso8859-1').  Not all characters will be available
       in any font, and some fonts may have a more restricted range of
       Unicode characters than others.
-  )
+  
 
 As mentioned in the previous section, `bindkey -m' now outputs
   a warning message telling you that multibyte input from the terminal
@@ -2437,7 +2440,7 @@ The code bears the marks of the ages and many things could be done much
   particularly welcome for these tasks.
 
 Some future possibilities which have been suggested:
-  itemize(
+  
   o  The shell, in particular the line editor, should support Unicode
      characters.  Initial support for this appeared in version 4.3;
      it is reasonably complete in the line editor but patchy elsewhere
@@ -2450,7 +2453,7 @@ Some future possibilities which have been suggested:
      functions.
   o  POSIX compatibility could be improved.
   o  Option for glob qualifiers to follow perl syntax (a traditional item).
-  )
+  
 
 
 6.4: Did zsh have problems in the year 2000?

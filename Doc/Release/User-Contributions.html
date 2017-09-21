@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.4.90, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>26 User Contributions (zsh)</title>
+<title>zsh: 26 User Contributions</title>
 
-<meta name="description" content="26 User Contributions (zsh)">
-<meta name="keywords" content="26 User Contributions (zsh)">
+<meta name="description" content="zsh: 26 User Contributions">
+<meta name="keywords" content="zsh: 26 User Contributions">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
@@ -13,16 +13,16 @@
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
+kbd {font-style:oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
@@ -31,9 +31,10 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,7 +42,7 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 <a name="User-Contributions"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -61,32 +62,7 @@ ul.no-bullet {list-style: none}
 
 <a name="User-Contributions-1"></a>
 <h1 class="chapter">26 User Contributions</h1>
-<p><a name="index-user-contributions"></a>
-</p>
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="#Utilities">26.2 Utilities</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Recent-Directories">26.3 Remembering Recent Directories</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Other-Directory-Functions">26.4 Abbreviated dynamic references to directories</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Version-Control-Information">26.5 Gathering information from version control systems</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Prompt-Themes">26.6 Prompt Themes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#ZLE-Functions">26.7 ZLE Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Exception-Handling">26.8 Exception Handling</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#MIME-Functions">26.9 MIME Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Mathematical-Functions">26.10 Mathematical Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#User-Configuration-Functions">26.11 User Configuration Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Other-Functions">26.12 Other Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-</table>
+<a name="index-user-contributions"></a>
 
 <hr>
 <a name="Description-9"></a>
@@ -178,8 +154,8 @@ such as shell functions, look for comments in the function source files.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">26.2.1 Accessing On-Line Help</h3>
-<p><a name="index-helpfiles-utility"></a>
-</p>
+<a name="index-helpfiles-utility"></a>
+
 <p>The key sequence <tt>ESC h</tt> is normally bound by ZLE to execute the
 <tt>run-help</tt> widget (see
 <a href="Zsh-Line-Editor.html#Zsh-Line-Editor">Zsh Line Editor</a>).  This invokes the <tt>run-help</tt> command with the command word from the
@@ -205,11 +181,11 @@ distribution in your home directory, you would use the commands:
 </p>
 <div class="example">
 <pre class="example">mkdir ~/zsh_help
-perl ~/zsh-5.4.1/Util/helpfiles ~/zsh_help
+perl ~/zsh-5.4.2/Util/helpfiles ~/zsh_help
 </pre></div>
 
-<p><a name="index-HELPDIR"></a>
-The <tt>HELPDIR</tt> parameter tells <tt>run-help</tt> where to look for the help
+<a name="index-HELPDIR"></a>
+<p>The <tt>HELPDIR</tt> parameter tells <tt>run-help</tt> where to look for the help
 files. When unset, it uses the default installation path.
 To use your own set of help files, set this to the appropriate path
 in one of your startup files:
@@ -218,8 +194,8 @@ in one of your startup files:
 <pre class="example">HELPDIR=~/zsh_help
 </pre></div>
 
-<p><a name="index-run_002dhelp_002c-use-of"></a>
-To use the <tt>run-help</tt> function, you need to add lines something
+<a name="index-run_002dhelp_002c-use-of"></a>
+<p>To use the <tt>run-help</tt> function, you need to add lines something
 like the following to your <tt>.zshrc</tt> or equivalent startup file:
 </p>
 <div class="example">
@@ -252,9 +228,9 @@ appropriate directory.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">26.2.2 Recompiling Functions</h3>
-<p><a name="index-functions_002c-recompiling"></a>
+<a name="index-functions_002c-recompiling"></a>
 <a name="index-zrecompile-utility"></a>
-</p>
+
 <p>If you frequently edit your zsh functions, or periodically update your zsh
 installation to track the latest developments, you may find that function
 digests compiled with the <tt>zcompile</tt> builtin are frequently out of date
@@ -364,10 +340,10 @@ arguments.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">26.2.3 Keyboard Definition</h3>
-<p><a name="index-keyboard-definition"></a>
-</p>
-<p><a name="index-zkbd"></a>
-The large number of possible combinations of keyboards, workstations,
+<a name="index-keyboard-definition"></a>
+
+<a name="index-zkbd"></a>
+<p>The large number of possible combinations of keyboards, workstations,
 terminals, emulators, and window systems makes it impossible for zsh to
 have built-in key bindings for every situation.  The <tt>zkbd</tt> utility,
 found in <tt>Functions/Misc</tt>, can help you quickly create key bindings for your
@@ -376,7 +352,7 @@ configuration.
 <p>Run <tt>zkbd</tt> either as an autoloaded function, or as a shell script:
 </p>
 <div class="example">
-<pre class="example">zsh -f ~/zsh-5.4.1/Functions/Misc/zkbd
+<pre class="example">zsh -f ~/zsh-5.4.2/Functions/Misc/zkbd
 </pre></div>
 
 <p>When you run <tt>zkbd</tt>, it first asks you to enter your terminal type; if
@@ -427,8 +403,8 @@ appropriate directory.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">26.2.4 Dumping Shell State</h3>
-<p><a name="index-reporter-utility"></a>
-</p>
+<a name="index-reporter-utility"></a>
+
 <p>Occasionally you may encounter what appears to be a bug in the shell,
 particularly if you are using a beta version of zsh or a development
 release.  Usually it is sufficient to send a description of the
@@ -447,7 +423,7 @@ recreate that state.
 command and redirect the output into a file:
 </p>
 <div class="example">
-<pre class="example">. ~/zsh-5.4.1/Util/reporter &gt; zsh.report
+<pre class="example">. ~/zsh-5.4.2/Util/reporter &gt; zsh.report
 </pre></div>
 
 <p>You should check the <tt>zsh.report</tt> file for any sensitive information
@@ -540,8 +516,8 @@ any prefix, even a single letter; thus <tt>a</tt> is the same as <tt>aliases</tt
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">26.2.5 Manipulating Hook Functions</h3>
-<p><a name="index-hook-function-utility"></a>
-</p>
+<a name="index-hook-function-utility"></a>
+
 <dl compact="compact">
 <dd><a name="index-add_002dzsh_002dhook"></a>
 </dd>
@@ -603,8 +579,8 @@ Widgets are invoked in the order they were added, with
 <pre class="example"><tt>zle </tt><var>widgetname</var><tt> -Nw -- &quot;$@&quot;</tt>
 </pre></div>
 
-<p><a name="index-WIDGET_002c-in-hooks"></a>
-Note that this means that the &lsquo;<tt>WIDGET</tt>&rsquo; special parameter tracks the
+<a name="index-WIDGET_002c-in-hooks"></a>
+<p>Note that this means that the &lsquo;<tt>WIDGET</tt>&rsquo; special parameter tracks the
 <var>widgetname</var> when the widget function is called, rather than tracking
 the name of the corresponding special hook widget.
 </p>
@@ -1345,8 +1321,8 @@ add-zsh-hook -U zsh_directory_name zdn_mywrapper
 
 <a name="Gathering-information-from-version-control-systems"></a>
 <h2 class="section">26.5 Gathering information from version control systems</h2>
-<p><a name="index-version-control-utility"></a>
-</p>
+<a name="index-version-control-utility"></a>
+
 <p>In a lot of cases, it is nice to automatically retrieve information from
 version control systems (VCSs), such as subversion, CVS or git, to be able
 to provide it to the user; possibly in the user&rsquo;s prompt. So that you can
@@ -2418,7 +2394,6 @@ executed <tt>before</tt> statically registered ones (the ones added by
 For example:
 </p><div class="example">
 <pre class="example">
-
 +vi-git-myfirsthook(){
     user_data[myval]=$myval
 }
@@ -2747,7 +2722,6 @@ checking out the debugging output, disable it again:
 <p>Now, let&rsquo;s define the function:
 </p><div class="example">
 <pre class="example">
-
 function +vi-svn2subversion() {
     [[ ${hook_com[vcs_orig]} == svn ]] &amp;&amp; hook_com[vcs]=subversion
 }
@@ -2762,7 +2736,6 @@ backend is:
 </pre></div>
 <div class="example">
 <pre class="example">
-
 function +vi-svn2subversion() {
     hook_com[vcs]=subversion
 }
@@ -2779,7 +2752,6 @@ a customised bookmark string for the <tt>hg</tt> backend.
 <p>And then we define the &lsquo;<tt>+vi-hgbookmarks</tt>&rsquo; function:
 </p><div class="example">
 <pre class="example">
-
 function +vi-hgbookmarks() {
     # The default is to connect all bookmark names by
     # commas. This mixes things up a little.
@@ -6343,9 +6315,9 @@ The usual expansions for the <tt>PS1</tt> and <tt>RPS1</tt> parameters may be us
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>August 13, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>September 21, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.4.1, released on August 8, 2017.</font>
+<font size="-1">Zsh version 5.4.2, released on August 27, 2017.</font>
 </body>
 </html>

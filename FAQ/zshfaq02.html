@@ -1,10 +1,6 @@
-<!DOCTYPE html><html><head>
-<meta charset="UTF-8">
+<html>
+<head>
 <title> Z-Shell Frequently-Asked Questions </title>
-<style type="text/css">
-    figure {text-align: center;}
-    img {vertical-align: center;}
-</style>
 </head>
 <body >
 <hr>
@@ -15,7 +11,7 @@
 </ul>
 <hr>
 <a name="l9"></a>
-<h1 >Chapter 2: How does zsh differ from...?</h1>
+<h1>Chapter 2: How does zsh differ from...?</h1>
 <p>
 As has already been mentioned, zsh is most similar to ksh, while many
 of the additions are to please csh users.  Here are some more detailed
@@ -23,7 +19,7 @@ notes.  See also the article `UNIX shell differences and how to change
 your shell' posted frequently to the USENET group comp.unix.shell.
 <p>
 <a name="l10"></a>
-<h2 >2.1: Differences from sh and ksh</h2>
+<h2>2.1: Differences from sh and ksh</h2>
 <a name="21"></a>
 <p>
 Most features of ksh (and hence also of sh) are implemented in zsh;
@@ -38,7 +34,7 @@ As a summary of the status:
      zsh run by a user will behave as if sh or ksh compatible;
   <li> invoking zsh as sh or ksh (or if either is a symbolic link to
      zsh) sets appropriate options and improves compatibility (from
-     within zsh itself, calling <code >ARGV0=sh zsh</code> will also work);
+     within zsh itself, calling <code>ARGV0=sh zsh</code> will also work);
   <li> from version 3.0 onward the degree of compatibility with sh
      under these circumstances is very high:  zsh can now be used
      with GNU configure or perl's Configure, for example;
@@ -58,19 +54,19 @@ As a summary of the status:
 The classic difference is word splitting, discussed in question <a href="zshfaq03.html#31">3.1</a>;
   this catches out very many beginning zsh users.  As explained there,
   this is actually a bug in every other shell.  The answer is to set
-  <code >SH_WORD_SPLIT</code> for backward compatibility.  The next most classic
+  <code>SH_WORD_SPLIT</code> for backward compatibility.  The next most classic
   difference is that unmatched glob patterns cause the command to abort;
-  set <code >NO_NOMATCH</code> for those.
+  set <code>NO_NOMATCH</code> for those.
 <p>
 Here is a list of various options which will increase ksh
   compatibility, though maybe decrease zsh's abilities: see the manual
-  entries for <code >GLOB_SUBST</code>, <code >IGNORE_BRACES</code> (though brace expansion occurs
-  in some versions of ksh), <code >KSH_ARRAYS</code>, <code >KSH_GLOB</code>, <code >KSH_OPTION_PRINT</code>,
-  <code >LOCAL_OPTIONS</code>, <code >NO_BAD_PATTERN</code>, <code >NO_BANG_HIST</code>, <code >NO_EQUALS</code>, <code >NO_HUP</code>,
-  <code >NO_NOMATCH</code>, <code >NO_RCS</code>, <code >NO_SHORT_LOOPS</code>, <code >PROMPT_SUBST</code>, <code >RM_STAR_SILENT</code>,
-  <code >POSIX_ALIASES</code>, <code >POSIX_BUILTINS</code>, <code >POSIX_IDENTIFIERS</code>,
-  <code >SH_FILE_EXPANSION</code>, <code >SH_GLOB</code>, <code >SH_OPTION_LETTERS</code>,
-  <code >SH_WORD_SPLIT</code> (see question <a href="zshfaq03.html#31">3.1</a>) and <code >SINGLE_LINE_ZLE</code>.
+  entries for <code>GLOB_SUBST</code>, <code>IGNORE_BRACES</code> (though brace expansion occurs
+  in some versions of ksh), <code>KSH_ARRAYS</code>, <code>KSH_GLOB</code>, <code>KSH_OPTION_PRINT</code>,
+  <code>LOCAL_OPTIONS</code>, <code>NO_BAD_PATTERN</code>, <code>NO_BANG_HIST</code>, <code>NO_EQUALS</code>, <code>NO_HUP</code>,
+  <code>NO_NOMATCH</code>, <code>NO_RCS</code>, <code>NO_SHORT_LOOPS</code>, <code>PROMPT_SUBST</code>, <code>RM_STAR_SILENT</code>,
+  <code>POSIX_ALIASES</code>, <code>POSIX_BUILTINS</code>, <code>POSIX_IDENTIFIERS</code>,
+  <code>SH_FILE_EXPANSION</code>, <code>SH_GLOB</code>, <code>SH_OPTION_LETTERS</code>,
+  <code>SH_WORD_SPLIT</code> (see question <a href="zshfaq03.html#31">3.1</a>) and <code>SINGLE_LINE_ZLE</code>.
   Note that you can also disable any built-in commands which get in
   your way.  If invoked as `ksh', the shell will try to set suitable
   options.
@@ -83,35 +79,35 @@ Here are some differences from ksh which might prove significant for
   if `emulate ksh' is in effect.  Capitalised words with underlines
   refer to shell options. 
 <p>
-itemize(
+<ul>
   <li> Syntax:
-  itemize(
+  <ul>
     <li>* Shell word splitting: see question <a href="zshfaq03.html#31">3.1</a>.
     <li>* Arrays are (by default) more csh-like than ksh-like:
-        subscripts start at 1, not 0; <code >array[0]</code> refers to <code >array[1]</code>;
-        <code >$array</code> refers to the whole array, not <code >$array[0]</code>;
-        braces are unnecessary: <code >$a[1] == ${a[1]}</code>, etc.
-        Set the <code >KSH_ARRAYS</code> option for compatibility.
+        subscripts start at 1, not 0; <code>array[0]</code> refers to <code>array[1]</code>;
+        <code>$array</code> refers to the whole array, not <code>$array[0]</code>;
+        braces are unnecessary: <code>$a[1] == ${a[1]}</code>, etc.
+        Set the <code>KSH_ARRAYS</code> option for compatibility.
     <li>  Furthermore, individual elements of arrays in zsh are always
         strings, not separate parameters.  This means, for example, you
 	can't `unset' an array element in zsh as you can in ksh; you
 	can only set it to the empty string, or shorten the array.
 	(You can unset elements of associative arrays in zsh because
 	those are a completely different type of object.)
-    <li>  Coprocesses are established by <code >coproc</code>; <code >|&amp;</code> behaves like
+    <li>  Coprocesses are established by <code>coproc</code>; <code>|&amp;</code> behaves like
         csh.  Handling of coprocess file descriptors is also different.
-    <li>  In <code >cmd1 &amp;&amp; cmd2 &amp;</code>, only <code >cmd2</code> instead of the whole
+    <li>  In <code>cmd1 &amp;&amp; cmd2 &amp;</code>, only <code>cmd2</code> instead of the whole
         expression is run in the background in zsh.  The manual implies
-        this is a bug.  Use <code >{ cmd1 &amp;&amp; cmd2 } &amp;</code> as a workaround.
-  )
+        this is a bug.  Use <code>{ cmd1 &amp;&amp; cmd2 } &amp;</code> as a workaround.
+  </ul>
   <li> Command line substitutions, globbing etc.:
-  itemize(
+  <ul>
     <li>* Failure to match a globbing pattern causes an error (use
-        <code >NO_NOMATCH</code>).
+        <code>NO_NOMATCH</code>).
     <li>* The results of parameter substitutions are treated as plain text:
-        <code >foo="*"; print $foo</code> prints all files in ksh but <code >*</code> in zsh
-        (use <code >GLOB_SUBST</code>).
-    <li>* <code >$PSn</code> do not do parameter substitution by default (use PROMPT_SUBST).
+        <code>foo="*"; print $foo</code> prints all files in ksh but <code>*</code> in zsh
+        (use <code>GLOB_SUBST</code>).
+    <li>* <code>$PSn</code> do not do parameter substitution by default (use PROMPT_SUBST).
     <li>* Standard globbing does not allow ksh-style `pattern-lists'.
         Equivalents:
   <pre>
@@ -129,16 +125,16 @@ itemize(
       
 </pre>
 
-      The <code >^</code>, <code >~</code> and <code >#</code> (but not <code >|</code>)forms require <code >EXTENDED_GLOB</code>.
+      The <code>^</code>, <code>~</code> and <code>#</code> (but not <code>|</code>)forms require <code>EXTENDED_GLOB</code>.
       From version 3.1.3, the ksh forms are fully supported when the
-      option <code >KSH_GLOB</code> is in effect; for previous versions you
+      option <code>KSH_GLOB</code> is in effect; for previous versions you
       must use the table above.
 <p>
 [1] See question <a href="zshfaq03.html#327">3.27</a> for more on the mysteries of
-        <code >~</code> and <code >^</code>.
-    <li>  Unquoted assignments do file expansion after <code >:</code>s (intended for
+        <code>~</code> and <code>^</code>.
+    <li>  Unquoted assignments do file expansion after <code>:</code>s (intended for
         PATHs). 
-    <li>* <code >typeset</code> and <code >integer</code> have special behaviour for
+    <li>* <code>typeset</code> and <code>integer</code> have special behaviour for
         assignments in ksh, but not in zsh.  For example, this doesn't
         work in zsh:
   <pre>
@@ -147,19 +143,19 @@ itemize(
       
 </pre>
 
-        because the return value from <code >wc</code> includes leading
+        because the return value from <code>wc</code> includes leading
         whitespace which causes wordsplitting.  Ksh handles the
         assignment specially as a single word.
-  )
+  </ul>
   <li> Command execution:
-  itemize(
-    <li>* There is no <code >$ENV</code> variable (use <code >/etc/zshrc</code>, <code >~/.zshrc</code>; 
-        note also <code >$ZDOTDIR</code>).
-    <li>* <code >$PATH</code> is not searched for commands specified
+  <ul>
+    <li>* There is no <code>$ENV</code> variable (use <code>/etc/zshrc</code>, <code>~/.zshrc</code>; 
+        note also <code>$ZDOTDIR</code>).
+    <li>* <code>$PATH</code> is not searched for commands specified
         at invocation without -c.
-  )
+  </ul>
   <li> Aliases and functions:
-  itemize(
+  <ul>
     <li>  The order in which aliases and functions are defined is significant:
         function definitions with () expand aliases -- see question <a href="zshfaq02.html#23">2.3</a>.
     <li>  Aliases and functions cannot be exported.
@@ -172,31 +168,31 @@ itemize(
         same way as those defined with `funcname () { body }'.  In ksh,
         the former behave as if the body were read from a file with `.',
         and only the latter behave as true functions.
-  )
+  </ul>
     <li> Traps and signals:
-  itemize(
+  <ul>
     <li>* Traps are not local to functions.  The option LOCAL_TRAPS is
           available from 3.1.6.
     <li>  TRAPERR has become TRAPZERR (this was forced by UNICOS which
         has SIGERR).
-  )
+  </ul>
   <li> Editing:
-  itemize(
-    <li>  The options <code >gmacs</code>, <code >viraw</code> are not supported.
-        Use bindkey to change the editing behaviour: <code >set -o {emacs,vi}</code>
+  <ul>
+    <li>  The options <code>gmacs</code>, <code>viraw</code> are not supported.
+        Use bindkey to change the editing behaviour: <code>set -o {emacs,vi}</code>
         becomes `bindkey -{e,v}', although `set -o emacs' and `set -o vi'
         are supported for compatibility; for gmacs, go to emacs mode and
         use `bindkey \^t gosmacs-transpose-characters'.
-    <li>  The <code >keyword</code> option does not exist and <code >-k</code> is instead
-        interactivecomments.  (<code >keyword</code> is not in recent versions
+    <li>  The <code>keyword</code> option does not exist and <code>-k</code> is instead
+        interactivecomments.  (<code>keyword</code> is not in recent versions
         of ksh either.)
     <li>* Management of histories in multiple shells is different:
         the history list is not saved and restored after each command.
-        The option <code >SHARE_HISTORY</code> appeared in 3.1.6 and is set in ksh
+        The option <code>SHARE_HISTORY</code> appeared in 3.1.6 and is set in ksh
         compatibility mode to remedy this.
-    <li>  <code >\</code> does not escape editing chars (use <code >^V</code>).
-    <li>  Not all ksh bindings are set (e.g. <code >&lt;ESC&gt;#</code>; try <code >&lt;ESC&gt;q</code>).
-    <li>* <code >#</code> in an interactive shell is not treated as a comment by
+    <li>  <code>\</code> does not escape editing chars (use <code>^V</code>).
+    <li>  Not all ksh bindings are set (e.g. <code>&lt;ESC&gt;#</code>; try <code>&lt;ESC&gt;q</code>).
+    <li>* <code>#</code> in an interactive shell is not treated as a comment by
         default.
     <li>  In vi command mode the keys "k" and "j" move the cursor to the
         end of the line.  To move the cursor to the start instead, use
@@ -207,23 +203,23 @@ itemize(
   
 </pre>
 
-  )
+  </ul>
   <li> Built-in commands:
-  itemize(
-    <li>  Some built-ins (<code >r</code>, <code >autoload</code>, <code >history</code>, <code >integer</code> ...)
+  <ul>
+    <li>  Some built-ins (<code>r</code>, <code>autoload</code>, <code>history</code>, <code>integer</code> ...)
         were aliases in ksh. 
-    <li>  There is no built-in command newgrp: use e.g. <code >alias
+    <li>  There is no built-in command newgrp: use e.g. <code>alias
         newgrp="exec newgrp"</code>
-    <li>  <code >jobs</code> has no <code >-n</code> flag.
-  )
+    <li>  <code>jobs</code> has no <code>-n</code> flag.
+  </ul>
   <li> Other idiosyncrasies:
-  itemize(
-    <li>  <code >select</code> always redisplays the list of selections on each loop.
-  )
-  )
+  <ul>
+    <li>  <code>select</code> always redisplays the list of selections on each loop.
+  </ul>
+  </ul>
 <p>
 <a name="l11"></a>
-<h2 >2.2: Similarities with csh</h2>
+<h2>2.2: Similarities with csh</h2>
 <p>
 Although certain features aim to ease the withdrawal symptoms of csh
   (ab)users, the syntax is in general rather different and you should
@@ -233,31 +229,31 @@ Although certain features aim to ease the withdrawal symptoms of csh
   particularly those with arguments.
 <p>
 Csh-compatibility additions include:
-  itemize(
-  <li>  <code >logout</code>, <code >rehash</code>, <code >source</code>, <code >(un)limit</code> built-in commands.
-  <li>  <code >*rc</code> file for interactive shells.
+  <ul>
+  <li>  <code>logout</code>, <code>rehash</code>, <code>source</code>, <code>(un)limit</code> built-in commands.
+  <li>  <code>*rc</code> file for interactive shells.
   <li>  Directory stacks.
-  <li>  <code >cshjunkie*</code>, <code >ignoreeof</code> options.
-  <li>  The <code >CSH_NULL_GLOB</code> option.
-  <li>  <code >&gt;&amp;</code>, <code >|&amp;</code> etc. redirection.
-      (Note that <code >&gt;file 2&gt;&amp;1</code> is the standard Bourne shell command for
-      csh's <code >&gt;&amp;file</code>.)
-  <li>  <code >foreach ...</code> loops; alternative syntax for other loops.
-  <li>  Alternative syntax <code >if ( ... ) ...</code>, though this still doesn't
+  <li>  <code>cshjunkie*</code>, <code>ignoreeof</code> options.
+  <li>  The <code>CSH_NULL_GLOB</code> option.
+  <li>  <code>&gt;&amp;</code>, <code>|&amp;</code> etc. redirection.
+      (Note that <code>&gt;file 2&gt;&amp;1</code> is the standard Bourne shell command for
+      csh's <code>&gt;&amp;file</code>.)
+  <li>  <code>foreach ...</code> loops; alternative syntax for other loops.
+  <li>  Alternative syntax <code>if ( ... ) ...</code>, though this still doesn't
       work like csh: it expects a command in the parentheses.  Also
-      <code >for</code>, <code >which</code>.
-  <li>  <code >$PROMPT</code> as well as <code >$PS1</code>, <code >$status</code> as well as <code >$?</code>,
-      <code >$#argv</code> as well as <code >$#</code>, .... 
-  <li>  Escape sequences via <code >%</code> for prompts.
-  <li>  Special array variables <code >$PATH</code> etc. are colon-separated, <code >$path</code>
+      <code>for</code>, <code>which</code>.
+  <li>  <code>$PROMPT</code> as well as <code>$PS1</code>, <code>$status</code> as well as <code>$?</code>,
+      <code>$#argv</code> as well as <code>$#</code>, .... 
+  <li>  Escape sequences via <code>%</code> for prompts.
+  <li>  Special array variables <code>$PATH</code> etc. are colon-separated, <code>$path</code>
       are arrays.
-  <li>  <code >!</code>-type history (which may be turned off via <code >setopt
+  <li>  <code>!</code>-type history (which may be turned off via <code>setopt
       nobanghist</code>).
   <li>  Arrays have csh-like features (see under <a href="zshfaq02.html#21">2.1</a>).
-  )
+  </ul>
 <p>
 <a name="l12"></a>
-<h2 >2.3: Why do my csh aliases not work?  (Plus other alias pitfalls.)</h2>
+<h2>2.3: Why do my csh aliases not work?  (Plus other alias pitfalls.)</h2>
 <a name="23"></a>
 <p>
 First of all, check you are using the syntax
@@ -278,7 +274,7 @@ First of all, check you are using the syntax
   already defined as aliases.)
 <p>
 Otherwise, your aliases probably contain references to the command
-  line of the form <code >\!*</code>, etc.  Zsh does not handle this behaviour as it
+  line of the form <code>\!*</code>, etc.  Zsh does not handle this behaviour as it
   has shell functions which provide a way of solving this problem more
   consistent with other forms of argument handling.  For example, the
   csh alias
@@ -303,40 +299,40 @@ Otherwise, your aliases probably contain references to the command
   
 </pre>
 
-  (which converts your home directory to a <code >~</code>).  In fact, this problem is
+  (which converts your home directory to a <code>~</code>).  In fact, this problem is
   better solved by defining the special function chpwd() (see
-  the manual). Note also that the <code >;</code> at the end of the function is
+  the manual). Note also that the <code>;</code> at the end of the function is
   optional in zsh, but not in ksh or sh (for sh's where it exists).
 <p>
 Here is Bart Schaefer's guide to converting csh aliases for zsh.
 <p>
 <ol>
-  <li> If the csh alias references "parameters" (<code >\!:1</code>, <code >\!*</code> etc.),
-     then in zsh you need a function (referencing <code >$1</code>, <code >$*</code> etc.).
+  <li> If the csh alias references "parameters" (<code>\!:1</code>, <code>\!*</code> etc.),
+     then in zsh you need a function (referencing <code>$1</code>, <code>$*</code> etc.).
      Otherwise, you can use a zsh alias.
 <p>
 <li> If you use a zsh function, you need to refer _at_least_ to
-     <code >$*</code> in the body (inside the <code >{ }</code>).  Parameters don't magically
-     appear inside the <code >{ }</code> the way they get appended to an alias.
+     <code>$*</code> in the body (inside the <code>{ }</code>).  Parameters don't magically
+     appear inside the <code>{ }</code> the way they get appended to an alias.
 <p>
-<li> If the csh alias references its own name (<code >alias rm "rm -i"</code>),
+<li> If the csh alias references its own name (<code>alias rm "rm -i"</code>),
      then in a zsh function you need the "command" or "builtin" keyword
-     (function <code >rm() { command rm -i "$@" }</code>), but in a zsh alias
-     you don't (<code >alias rm="rm -i"</code>).
+     (function <code>rm() { command rm -i "$@" }</code>), but in a zsh alias
+     you don't (<code>alias rm="rm -i"</code>).
 <p>
-<li> If you have aliases that refer to each other (<code >alias ls "ls -C";
+<li> If you have aliases that refer to each other (<code>alias ls "ls -C";
      alias lf "ls -F" ==&gt; lf == ls -C -F</code>) then you must either:
-  itemize(
+  <ul>
         <li> convert all of them to zsh functions; or
         <li> after converting, be sure your .zshrc defines all of your
            aliases before it defines any of your functions.
-         )
+         </ul>
 <p>
 Those first four are all you really need, but here are four more for
      heavy csh alias junkies:
 <p>
 <li> Mapping from csh alias "parameter referencing" into zsh function
-     (assuming <code >SH_WORD_SPLIT</code> and <code >KSH_ARRAYS</code> are NOT set in zsh):
+     (assuming <code>SH_WORD_SPLIT</code> and <code>KSH_ARRAYS</code> are NOT set in zsh):
        <pre>
 
       csh             zsh
@@ -356,14 +352,14 @@ Those first four are all you really need, but here are four more for
 
 <p>
 <li> Remember that it is NOT a syntax error in a zsh function to
-     refer to a position (<code >$1</code>, <code >$2</code>, etc.) greater than the number of
-     parameters. (E.g., in a csh alias, a reference to <code >\!:5</code> will
+     refer to a position (<code>$1</code>, <code>$2</code>, etc.) greater than the number of
+     parameters. (E.g., in a csh alias, a reference to <code>\!:5</code> will
      cause an error if 4 or fewer arguments are given; in a zsh
-     function, <code >$5</code> is the empty string if there are 4 or fewer
+     function, <code>$5</code> is the empty string if there are 4 or fewer
      parameters.)
 <p>
 <li> To begin a zsh alias with a - (dash, hyphen) character, use
-     <code >alias --</code>:
+     <code>alias --</code>:
       <pre>
 
              csh                            zsh
@@ -373,7 +369,7 @@ Those first four are all you really need, but here are four more for
 </pre>
 
 <p>
-<li> Stay away from <code >alias -g</code> in zsh until you REALLY know what
+<li> Stay away from <code>alias -g</code> in zsh until you REALLY know what
      you're doing.
   </ol>
 <p>
@@ -385,10 +381,10 @@ There is one other serious problem with aliases: consider
   
 </pre>
 
-  <code >l</code> in the function definition is in command position and is expanded
-  as an alias, defining <code >/bin/ls</code> and <code >-F</code> as functions which call
-  <code >/bin/ls</code>, which gets a bit recursive.  This can be avoided if you use
-  <code >function</code> to define a function, which doesn't expand aliases.  It is
+  <code>l</code> in the function definition is in command position and is expanded
+  as an alias, defining <code>/bin/ls</code> and <code>-F</code> as functions which call
+  <code>/bin/ls</code>, which gets a bit recursive.  This can be avoided if you use
+  <code>function</code> to define a function, which doesn't expand aliases.  It is
   possible to argue for extra warnings somewhere in this mess.
 <p>
 One workaround for this is to use the "function" keyword instead:
@@ -399,24 +395,24 @@ One workaround for this is to use the "function" keyword instead:
   
 </pre>
 
-  The <code >l</code> after <code >function</code> is not expanded.  Note you don't need
-  the <code >LPAR()RPAR()</code> in this case, although it's harmless.
+  The <code>l</code> after <code>function</code> is not expanded.  Note you don't need
+  the <code>LPAR()RPAR()</code> in this case, although it's harmless.
 <p>
 You need to be careful if you are defining a function with multiple
   names; most people don't need to do this, so it's an unusual problem,
   but in case you do you should be aware that in versions of the shell
-  before 5.1 names after the first <em >were</em> expanded:
+  before 5.1 names after the first <em>were</em> expanded:
   <pre>
 
     function a b c { ... }
   
 </pre>
 
-  Here, <code >b</code> and <code >c</code>, but not <code >a</code>, have aliases expanded.
+  Here, <code>b</code> and <code>c</code>, but not <code>a</code>, have aliases expanded.
   This oddity was fixed in version 5.1.
 <p>
 The rest of this item assumes you use the (more common,
-  but equivalent) <code >LPAR()RPAR()</code> definitions.
+  but equivalent) <code>LPAR()RPAR()</code> definitions.
 <p>
 Bart Schaefer's rule is:  Define first those aliases you expect to
   use in the body of a function, but define the function first if the
@@ -433,23 +429,23 @@ If you aware of the problem, you can always escape part or all of the
   Adding the quotes has no effect on the function definition, but
   suppresses alias expansion for the function name.  Hence this is
   guaranteed to be safe---unless you are in the habit of defining
-  aliases for expressions such as <code >'l'</code>, which is valid, but probably
+  aliases for expressions such as <code>'l'</code>, which is valid, but probably
   confusing.
 <p>
 <a name="l13"></a>
-<h2 >2.4: Similarities with tcsh</h2>
+<h2>2.4: Similarities with tcsh</h2>
 <p>
 (The sections on csh apply too, of course.)  Certain features have
-  been borrowed from tcsh, including <code >$watch</code>, <code >run-help</code>, <code >$savehist</code>,
-  periodic commands etc., extended prompts, <code >sched</code> and <code >which</code> built-ins.
+  been borrowed from tcsh, including <code>$watch</code>, <code>run-help</code>, <code>$savehist</code>,
+  periodic commands etc., extended prompts, <code>sched</code> and <code>which</code> built-ins.
   Programmable completion was inspired by, but is entirely different to,
-  tcsh's <code >complete</code>.  (There is a perl script called <code >lete2ctl</code> in the
-  Misc directory of the source distribution to convert <code >complete</code> to <code >compctl</code>
+  tcsh's <code>complete</code>.  (There is a perl script called <code>lete2ctl</code> in the
+  Misc directory of the source distribution to convert <code>complete</code> to <code>compctl</code>
   statements.)  This list is not definitive: some features have gone in
   the other direction.
 <p>
-If you're missing the editor function <code >run-fg-editor</code>, try something
-  with <code >bindkey -s</code> (which binds a string to a keystroke), e.g.
+If you're missing the editor function <code>run-fg-editor</code>, try something
+  with <code>bindkey -s</code> (which binds a string to a keystroke), e.g.
   <pre>
 
     bindkey -s '^z' '\eqfg %$EDITOR:t\n'
@@ -457,17 +453,17 @@ If you're missing the editor function <code >run-fg-editor</code>, try something
 </pre>
 
   which pushes the current line onto the stack and tries to bring a job
-  with the basename of your editor into the foreground.  <code >bindkey -s</code>
+  with the basename of your editor into the foreground.  <code>bindkey -s</code>
   allows limitless possibilities along these lines.  You can execute
   any command in the middle of editing a line in the same way,
-  corresponding to tcsh's <code >-c</code> option:
+  corresponding to tcsh's <code>-c</code> option:
   <pre>
 
     bindkey -s '^p' '\eqpwd\n'
   
 </pre>
 
-  In both these examples, the <code >\eq</code> saves the current input line to
+  In both these examples, the <code>\eq</code> saves the current input line to
   be restored after the command runs; a better effect with multiline
   buffers is achieved if you also have
   <pre>
@@ -489,10 +485,10 @@ If you're missing the editor function <code >run-fg-editor</code>, try something
   
 </pre>
 
-  and can now bind <code >run-fg-editor</code> just like any other editor function.
+  and can now bind <code>run-fg-editor</code> just like any other editor function.
 <p>
 <a name="l14"></a>
-<h2 >2.5: Similarities with bash</h2>
+<h2>2.5: Similarities with bash</h2>
 <p>
 The Bourne-Again Shell, bash, is another enhanced Bourne-like shell;
   the most obvious difference from zsh is that it does not attempt to
@@ -503,21 +499,21 @@ The Bourne-Again Shell, bash, is another enhanced Bourne-like shell;
   interactive features (programmable completion, etc.) that zsh has.
 <p>
 In recent years there has been a certain amount of crossover in the
-  extensions, however.  Zsh (as of 3.1.6) has bash's `<code >${var/old/new}</code>'
-  feature for replacing the text <code >old</code> with the text <code >new</code> in the
-  parameter <code >$var</code>.  Note one difference here:  while both shells
-  implement the syntax `<code >${var/#old/new}</code>' and `<code >${var/%old/new}</code>' for
-  anchoring the match of <code >old</code> to the start or end of the parameter text,
-  respectively, in zsh you can't put the `<code >#</code>' or `<code >%</code>' inside a
-  parameter:  in other words `<code >{var/$old/new}</code>' where <code >old</code> begins with
-  a `<code >#</code>' treats that as an ordinary character in zsh, unlike bash.  To
+  extensions, however.  Zsh (as of 3.1.6) has bash's `<code>${var/old/new}</code>'
+  feature for replacing the text <code>old</code> with the text <code>new</code> in the
+  parameter <code>$var</code>.  Note one difference here:  while both shells
+  implement the syntax `<code>${var/#old/new}</code>' and `<code>${var/%old/new}</code>' for
+  anchoring the match of <code>old</code> to the start or end of the parameter text,
+  respectively, in zsh you can't put the `<code>#</code>' or `<code>%</code>' inside a
+  parameter:  in other words `<code>{var/$old/new}</code>' where <code>old</code> begins with
+  a `<code>#</code>' treats that as an ordinary character in zsh, unlike bash.  To
   do this sort of thing in zsh you can use (from 3.1.7) the new syntax
-  for anchors in any pattern, `<code >(#s)</code>' to match the start of a string,
-  and `<code >(#e)</code>' to match the end.  These require the option
-  <code >EXTENDED_GLOB</code> to be set.
+  for anchors in any pattern, `<code>(#s)</code>' to match the start of a string,
+  and `<code>(#e)</code>' to match the end.  These require the option
+  <code>EXTENDED_GLOB</code> to be set.
 <p>
 <a name="l15"></a>
-<h2 >2.6: Shouldn't zsh be more/less like ksh/(t)csh?</h2>
+<h2>2.6: Shouldn't zsh be more/less like ksh/(t)csh?</h2>
 <p>
 People often ask why zsh has all these `unnecessary' csh-like features,
   or alternatively why zsh doesn't understand more csh syntax.  This is
@@ -527,7 +523,7 @@ Paul's object in writing zsh was to produce a ksh-like shell which
   would have features familiar to csh users.  For a long time, csh was
   the preferred interactive shell and there is a strong resistance to
   changing to something unfamiliar, hence the additional syntax and
-  <code >CSH_JUNKIE</code> options.  This argument still holds.  On the other hand,
+  <code>CSH_JUNKIE</code> options.  This argument still holds.  On the other hand,
   the arguments for having what is close to a plug-in replacement for ksh
   are, if anything, even more powerful:  the deficiencies of csh as a
   programming language are well known (look in any Usenet FAQ archive, e.g.
@@ -543,7 +539,7 @@ Of course, this makes zsh rather large and feature-ridden so that it
   help.
 <p>
 <a name="l16"></a>
-<h2 >2.7: What is zsh's support for Unicode/UTF-8?</h2>
+<h2>2.7: What is zsh's support for Unicode/UTF-8?</h2>
 <p>
 `Unicode', or UCS for Universal Character Set, is the modern way
   of specifying character sets.  It replaces a large number of ad hoc

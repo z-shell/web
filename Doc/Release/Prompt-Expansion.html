@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.4.90, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>13 Prompt Expansion (zsh)</title>
+<title>zsh: 13 Prompt Expansion</title>
 
-<meta name="description" content="13 Prompt Expansion (zsh)">
-<meta name="keywords" content="13 Prompt Expansion (zsh)">
+<meta name="description" content="zsh: 13 Prompt Expansion">
+<meta name="keywords" content="zsh: 13 Prompt Expansion">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
@@ -13,16 +13,16 @@
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
+kbd {font-style:oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
@@ -31,9 +31,10 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,7 +42,7 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 <a name="Prompt-Expansion"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Conditional-Expressions.html#Conditional-Expressions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -80,13 +81,13 @@ ul.no-bullet {list-style: none}
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">13.1 Expansion of Prompt Sequences</h2>
-<p><a name="index-prompt-expansion"></a>
+<a name="index-prompt-expansion"></a>
 <a name="index-expansion_002c-prompt"></a>
-Prompt sequences undergo a special form of expansion.  This type of expansion
+<p>Prompt sequences undergo a special form of expansion.  This type of expansion
 is also available using the <tt>-P</tt> option to the <tt>print</tt> builtin.
 </p>
-<p><a name="index-PROMPT_005fSUBST_002c-use-of"></a>
-If the <tt>PROMPT_SUBST</tt> option is set, the prompt string is first subjected to
+<a name="index-PROMPT_005fSUBST_002c-use-of"></a>
+<p>If the <tt>PROMPT_SUBST</tt> option is set, the prompt string is first subjected to
 <em>parameter expansion</em>,
 <em>command substitution</em> and
 <em>arithmetic expansion</em>.
@@ -95,13 +96,13 @@ See
 </p>
 <p>Certain escape sequences may be recognised in the prompt string.
 </p>
-<p><a name="index-PROMPT_005fBANG_002c-use-of"></a>
-If the <tt>PROMPT_BANG</tt> option is set, a &lsquo;<tt>!</tt>&rsquo; in the prompt is replaced
+<a name="index-PROMPT_005fBANG_002c-use-of"></a>
+<p>If the <tt>PROMPT_BANG</tt> option is set, a &lsquo;<tt>!</tt>&rsquo; in the prompt is replaced
 by the current history event number.  A literal &lsquo;<tt>!</tt>&rsquo; may then be
 represented as &lsquo;<tt>!!</tt>&rsquo;.
 </p>
-<p><a name="index-PROMPT_005fPERCENT_002c-use-of"></a>
-If the <tt>PROMPT_PERCENT</tt> option is set, certain escape sequences that
+<a name="index-PROMPT_005fPERCENT_002c-use-of"></a>
+<p>If the <tt>PROMPT_PERCENT</tt> option is set, certain escape sequences that
 start with &lsquo;<tt>%</tt>&rsquo; are expanded.
 Many escapes are followed by a single character, although some of these
 take an optional integer argument that
@@ -681,9 +682,9 @@ of the prompt when the available space is less than <var>n</var>.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>August 13, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>September 21, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.4.1, released on August 8, 2017.</font>
+<font size="-1">Zsh version 5.4.2, released on August 27, 2017.</font>
 </body>
 </html>
