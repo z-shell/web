@@ -1,28 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: The Z Shell Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>The Z Shell Manual (zsh)</title>
 
-<meta name="description" content="zsh: The Z Shell Manual">
-<meta name="keywords" content="zsh: The Z Shell Manual">
+<meta name="description" content="The Z Shell Manual (zsh)">
+<meta name="keywords" content="The Z Shell Manual (zsh)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
@@ -31,10 +31,9 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -42,10 +41,10 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<body lang="en">
 <h1>The Z Shell Manual</h1>
-<h3 align="right">Version 5.4.2</h3>
-<h3 align="right">Updated August 27, 2017</h3>
+<h3 align="right">Version 5.5</h3>
+<h3 align="right">Updated April 8, 2018</h3>
 <strong>Original documentation by Paul Falstad</strong><br>
 <p>This is a texinfo version of the documentation for the Z Shell, originally by 
 Paul Falstad.
@@ -80,8 +79,8 @@ into another language, under the above conditions for modified versions.
 (ksh), although it is not completely compatible.  Zsh is able to emulate
 POSIX shells, but its default mode is not POSIX compatible, either.
 </p>
-<a name="index-version"></a>
-<p>Version 5.4.2, last updated August 27, 2017.
+<p><a name="index-version"></a>
+Version 5.5, last updated April 8, 2018.
 </p>
 <table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top"><a href="The-Z-Shell-Manual.html#The-Z-Shell-Manual">1 The Z Shell Manual</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -137,6 +136,7 @@ POSIX shells, but its default mode is not POSIX compatible, either.
 <tr><td align="left" valign="top"><a href="User-Contributions.html#User-Contributions">26 User Contributions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 &mdash; Indices &mdash;
 
 </pre></th></tr><tr><td align="left" valign="top"><a href="Concept-Index.html#Concept-Index">Concept Index</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -152,6 +152,7 @@ POSIX shells, but its default mode is not POSIX compatible, either.
 <tr><td align="left" valign="top"><a href="Style-and-Tag-Index.html#Style-and-Tag-Index">Style and Tag Index</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 &mdash; The Detailed Node Listing &mdash;
 
 Introduction
@@ -171,6 +172,7 @@ Introduction
 <tr><td align="left" valign="top"><a href="Introduction.html#See-Also">2.8 See Also</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 Invocation
 
 </pre></th></tr><tr><td align="left" valign="top"><a href="Invocation.html#Compatibility">4.2 Compatibility</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -178,6 +180,7 @@ Invocation
 <tr><td align="left" valign="top"><a href="Invocation.html#Restricted-Shell">4.3 Restricted Shell</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 Shell Grammar
 
 </pre></th></tr><tr><td align="left" valign="top"><a href="Shell-Grammar.html#Simple-Commands-_0026-Pipelines">6.1 Simple Commands &amp; Pipelines</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -197,6 +200,7 @@ Shell Grammar
 <tr><td align="left" valign="top"><a href="Shell-Grammar.html#Quoting">6.9 Quoting</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 Expansion
 
 </pre></th></tr><tr><td align="left" valign="top"><a href="Expansion.html#History-Expansion">14.1 History Expansion</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -216,6 +220,7 @@ Expansion
 <tr><td align="left" valign="top"><a href="Expansion.html#Filename-Generation">14.8 Filename Generation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 Parameters
 
 </pre></th></tr><tr><td align="left" valign="top"><a href="Parameters.html#Array-Parameters">15.2 Array Parameters</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -229,6 +234,7 @@ Parameters
 <tr><td align="left" valign="top"><a href="Parameters.html#Parameters-Used-By-The-Shell">15.6 Parameters Used By The Shell</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 Options
 
 </pre></th></tr><tr><td align="left" valign="top"><a href="Options.html#Specifying-Options">16.1 Specifying Options</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -240,6 +246,7 @@ Options
 <tr><td align="left" valign="top"><a href="Options.html#Single-Letter-Options">16.4 Single Letter Options</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 Zsh Line Editor
 
 </pre></th></tr><tr><td align="left" valign="top"><a href="Zsh-Line-Editor.html#Keymaps">18.2 Keymaps</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -251,6 +258,7 @@ Zsh Line Editor
 <tr><td align="left" valign="top"><a href="Zsh-Line-Editor.html#Character-Highlighting">18.7 Character Highlighting</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 Completion Widgets
 
 </pre></th></tr><tr><td align="left" valign="top"><a href="Completion-Widgets.html#Completion-Special-Parameters">19.2 Completion Special Parameters</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -264,6 +272,7 @@ Completion Widgets
 <tr><td align="left" valign="top"><a href="Completion-Widgets.html#Completion-Widget-Example">19.6 Completion Widget Example</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 Completion System
 
 </pre></th></tr><tr><td align="left" valign="top"><a href="Completion-System.html#Initialization">20.2 Initialization</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -279,6 +288,7 @@ Completion System
 <tr><td align="left" valign="top"><a href="Completion-System.html#Completion-Directories">20.8 Completion Directories</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 Completion Using compctl
 
 </pre></th></tr><tr><td align="left" valign="top"><a href="Completion-Using-compctl.html#Command-Flags">21.3 Command Flags</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -292,6 +302,7 @@ Completion Using compctl
 <tr><td align="left" valign="top"><a href="Completion-Using-compctl.html#Example">21.7 Example</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 Zsh Modules
 
 </pre></th></tr><tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fattr-Module">22.2 The zsh/attr Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -365,6 +376,7 @@ Zsh Modules
 <tr><td align="left" valign="top"><a href="Zsh-Modules.html#The-zsh_002fzutil-Module">22.36 The zsh/zutil Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 Calendar Function System
 
 </pre></th></tr><tr><td align="left" valign="top"><a href="Calendar-Function-System.html#Calendar-File-and-Date-Formats">23.2 File and Date Formats</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -378,6 +390,7 @@ Calendar Function System
 <tr><td align="left" valign="top"><a href="Calendar-Function-System.html#Calendar-Bugs">23.6 Bugs</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 TCP Function System
 
 </pre></th></tr><tr><td align="left" valign="top"><a href="TCP-Function-System.html#TCP-Functions">24.2 TCP User Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -389,6 +402,7 @@ TCP Function System
 <tr><td align="left" valign="top"><a href="TCP-Function-System.html#TCP-Bugs">24.9 TCP Bugs</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 Zftp Function System
 
 </pre></th></tr><tr><td align="left" valign="top"><a href="Zftp-Function-System.html#Installation">25.2 Installation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -398,6 +412,7 @@ Zftp Function System
 <tr><td align="left" valign="top"><a href="Zftp-Function-System.html#Miscellaneous-Features">25.4 Miscellaneous Features</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 User Contributions
 
 </pre></th></tr><tr><td align="left" valign="top"><a href="User-Contributions.html#Utilities">26.2 Utilities</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -423,6 +438,7 @@ User Contributions
 <tr><td align="left" valign="top"><a href="User-Contributions.html#Other-Functions">26.12 Other Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 </pre></th></tr></table>
 <hr>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -434,9 +450,9 @@ User Contributions
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>September 21, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>April 11, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.4.2, released on August 27, 2017.</font>
+<font size="-1">Zsh version 5.5, released on April 8, 2018.</font>
 </body>
 </html>

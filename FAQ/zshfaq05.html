@@ -1,6 +1,16 @@
-<html>
-<head>
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
 <title> Z-Shell Frequently-Asked Questions </title>
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    .XXfc {margin-left:auto;margin-right:auto;}
+    .XXtc {text-align: center;}
+    .XXtl {text-align: left;}
+    .XXtr {text-align: right;}
+    .XXvt {vertical-align: top;}
+    .XXvb {vertical-align: bottom;}
+</style>
 </head>
 <body >
 <hr>
@@ -11,11 +21,11 @@
 </ul>
 <hr>
 <a name="l53"></a>
-<h1>Chapter 5: Multibyte input and output</h1>
+<h1 >Chapter 5: Multibyte input and output</h1>
 <a name="c5"></a>
 <p>
 <a name="l54"></a>
-<h2>5.1: What is multibyte input?</h2>
+<h2 >5.1: What is multibyte input?</h2>
 <p>
 For a long time computers had a simple idea of a character: each octet
   (8-bit byte) of text contained one character.  This meant an application
@@ -63,7 +73,7 @@ The way this is done is called UTF-8.  Multibyte encodings of other
   in those formats.)
 <p>
 <a name="l55"></a>
-<h2>5.2: How does zsh handle multibyte input and output?</h2>
+<h2 >5.2: How does zsh handle multibyte input and output?</h2>
 <p>
 Until version 4.3, zsh didn't handle multibyte input properly at all.
   Each octet in a multibyte character would look to the shell like a
@@ -74,42 +84,42 @@ Until version 4.3, zsh didn't handle multibyte input properly at all.
 <p>
 From version 4.3.4, multibyte input is handled in the line editor if zsh
   has been compiled with the appropriate definitions, and is automatically
-  activated.  This is indicated by the option <code>MULTIBYTE</code>, which is
+  activated.  This is indicated by the option <code >MULTIBYTE</code>, which is
   set by default on shells that support multibyte mode.  Hence you
-  can test this with a standard option test:  `<code>[[ -o multibyte ]]</code>'.
+  can test this with a standard option test:  `<code >[[ -o multibyte ]]</code>'.
 <p>
-The <code>MULTIBYTE</code> option affects the entire shell: parameter expansion,
+The <code >MULTIBYTE</code> option affects the entire shell: parameter expansion,
   pattern matching, etc. count valid multibyte character strings as a
   single character.  You can unset the option locally in a function to
   revert to single-byte operation.
 <p>
-Note that if the shell is emulating a Bourne shell the <code>MULTIBYTE</code>
+Note that if the shell is emulating a Bourne shell the <code >MULTIBYTE</code>
   option is unset by default.  This allows various POSIX modes to
   work normally (POSIX does not deal with multibyte characters).  If
   you use a "sh" or "ksh" emulation interactively you should probably
-  set the <code>MULTIBYTE</code> option.
+  set the <code >MULTIBYTE</code> option.
 <p>
-The other option that affects multibyte support is <code>COMBINING_CHARS</code>,
+The other option that affects multibyte support is <code >COMBINING_CHARS</code>,
   new in version 4.3.9.  When this is set, any zero-length punctuation
   characters that follow an alphanumeric character (the base character) are
   assumed to be modifications (accents etc.) to the base character and to
   be displayed within the same screen area as the base character.  As not
   all terminals handle this, even if they correctly display the base
   multibyte character, this option is not on by default.  Recent versions
-  of the KDE and GNOME terminal emulators <code>konsole</code> and
-  <code>gnome-terminal</code> as well as <code>rxvt-unicode</code>, and the Unicode version
-  of xterm, <code>xterm -u8</code> or the front-end <code>uxterm</code>, are known to handle
+  of the KDE and GNOME terminal emulators <code >konsole</code> and
+  <code >gnome-terminal</code> as well as <code >rxvt-unicode</code>, and the Unicode version
+  of xterm, <code >xterm -u8</code> or the front-end <code >uxterm</code>, are known to handle
   combining characters.
 <p>
-The <code>COMBINING_CHARS</code> option only affects output; combining characters
+The <code >COMBINING_CHARS</code> option only affects output; combining characters
   may always be input, but when the option is off will be displayed
   specially.  By default this is as a code point (the index of the
   character in the character set) between angle brackets, usually
   in inverse video.  Highlighting of such special characters can
-  be modified using the new array parameter <code>zle_highlight</code>.
+  be modified using the new array parameter <code >zle_highlight</code>.
 <p>
 <a name="l56"></a>
-<h2>5.3: How do I ensure multibyte input and output work on my system?</h2>
+<h2 >5.3: How do I ensure multibyte input and output work on my system?</h2>
 <p>
 Once you have a version of zsh with multibyte support, you need to
   ensure the environment is correct.  We'll assume you're using UTF-8.
@@ -121,27 +131,27 @@ There are basically three components.
 <ul>
    <li> The locale.  This describes a whole series of features specific
       to countries or regions of which the character set is one.  Usually
-      it is controlled by the environment variable <code>LANG</code> (there are
+      it is controlled by the environment variable <code >LANG</code> (there are
       others but this is the one to start with).  You need to find a
-      locale whose name contains <code>UTF-8</code>.  This will be a variant on
+      locale whose name contains <code >UTF-8</code>.  This will be a variant on
       your usual locale, which typically indicates the language and
-      country; for example, mine is <code>en_GB.UTF-8</code>.  Luckily, zsh can
+      country; for example, mine is <code >en_GB.UTF-8</code>.  Luckily, zsh can
       complete locale names, so if you have the new completion system
-      loaded you can type <code>export LANG=</code> and attempt to complete a
+      loaded you can type <code >export LANG=</code> and attempt to complete a
       suitable locale.  It's the locale that tells the shell to expect the
       right form of multibyte input.  (However, there's no guarantee that
       the shell is actually going to get this input: for example, if you
       edit file names that have been created using a different character
       set it won't work properly.)
    <li> The terminal emulator.  Those that are supplied with a recent
-      desktop environment, such as <code>konsole</code> and <code>gnome-terminal</code>, are
+      desktop environment, such as <code >konsole</code> and <code >gnome-terminal</code>, are
       likely to have extensive support for localization and may work
       correctly as soon as they know the locale.  You can enable UTF-8
-      support for <code>xterm</code> in its application defaults file.  The
+      support for <code >xterm</code> in its application defaults file.  The
       following are the relevant resources; you don't actually need all of
-      them, as described below.  If you use a <code>~/.Xdefaults</code> or
-      <code>~/.Xresources</code> file for setting resources, prefix all the lines
-      with <code>xterm</code>:
+      them, as described below.  If you use a <code >~/.Xdefaults</code> or
+      <code >~/.Xresources</code> file for setting resources, prefix all the lines
+      with <code >xterm</code>:
       <pre>
 
         *wideChars: true
@@ -152,9 +162,9 @@ There are basically three components.
 </pre>
 
       This turns on support for wide characters (this is enabled by the
-      <code>utf8</code> resource, too); enables conversions to UTF-8 from other
+      <code >utf8</code> resource, too); enables conversions to UTF-8 from other
       locales (this is the key resource and actually overrides
-      <code>utf8</code>); turns on UTF-8 mode (this resource is mostly used to
+      <code >utf8</code>); turns on UTF-8 mode (this resource is mostly used to
       force use of UTF-8 characters if your locale system isn't up to it);
       and allows certain graphic characters to work even with UTF-8
       enabled.  (Thanks to Phil Pennock for suggestions.)
@@ -162,33 +172,33 @@ There are basically three components.
       emulator, there's a good chance it already selected the right
       character set to go with it.  If you hand-picked an old fashioned
       X font with a lot of dashes, you need to make sure it ends with
-      the right character encoding, <code>iso10646-1</code> (and not, for
-      example, <code>iso8859-1</code>).  Not all characters will be available
+      the right character encoding, <code >iso10646-1</code> (and not, for
+      example, <code >iso8859-1</code>).  Not all characters will be available
       in any font, and some fonts may have a more restricted range of
       Unicode characters than others.
   </ul>
 <p>
-As mentioned in the previous section, <code>bindkey -m</code> now outputs
+As mentioned in the previous section, <code >bindkey -m</code> now outputs
   a warning message telling you that multibyte input from the terminal
   is likely not to work.  (See <a href="zshfaq03.html#35">3.5</a> if you don't know what
   this feature does.)  If your terminal doesn't have characters
   that need to be input as multibyte, however, you can still use
   the meta bindings and can ignore the warning message.  Use
-  <code>bindkey -m 2&gt;/dev/null</code> to suppress it.
+  <code >bindkey -m 2&gt;/dev/null</code> to suppress it.
 <p>
 You might also note that the latest version of the Cygwin environment
   for Windows supports UTF-8.  In previous versions, zsh was able
-  to compile with the <code>MULTIBYTE</code> option enabled, but the system
+  to compile with the <code >MULTIBYTE</code> option enabled, but the system
   didn't provide full support for it.
 <p>
 <a name="l57"></a>
-<h2>5.4: How can I input characters that aren't on my keyboard?</h2>
+<h2 >5.4: How can I input characters that aren't on my keyboard?</h2>
 <p>
 Two functions are provided with zsh that help you input characters.
   As with all editing widgets implemented by functions, you need to
   mark the function for autoload, create the widget, and, if you are
   going to use it frequently, bind it to a key sequence.  The
-  following binds <code>insert-composed-char</code> to F5 on my keyboard:
+  following binds <code >insert-composed-char</code> to F5 on my keyboard:
   <pre>
 
     autoload -Uz insert-composed-char
@@ -198,18 +208,18 @@ Two functions are provided with zsh that help you input characters.
 </pre>
 
 <p>
-The two widgets are described in the <code>zshcontrib(1)</code> manual
+The two widgets are described in the <code >zshcontrib(1)</code> manual
   page, but here is a brief summary:
 <p>
-<code>insert-composed-char</code> is followed by two characters that
-  are a mnemonic for a multibyte character.  For example <code>a:</code>
-  is a with an Umlaut; <code>cH</code> is the symbol for hearts on a playing
+<code >insert-composed-char</code> is followed by two characters that
+  are a mnemonic for a multibyte character.  For example <code >a:</code>
+  is a with an Umlaut; <code >cH</code> is the symbol for hearts on a playing
   card.  Various accented characters, European and related alphabets,
   and punctuation and mathematical symbols are available.  The
   mnemonics are mostly those given by RFC 1345, see
   <a href="http://www.faqs.org/rfcs/rfc1345.html">http://www.faqs.org/rfcs/rfc1345.html</a>.
 <p>
-<code>insert-unicode-char</code> is used to input a Unicode character by
+<code >insert-unicode-char</code> is used to input a Unicode character by
   its hexadecimal number.  This is the number given in the Unicode
   character charts, see for example <a href="http://www.unicode.org/charts/">http://www.unicode.org/charts/</a>.
   You need to execute the function, then type the hexadecimal number
@@ -221,8 +231,8 @@ Both functions can be used without multibyte mode, provided the locale is
   that can be produced.
 <p>
 If you have a recent X Window System installation, you might find
-  the <code>AltGr</code> key helps you input accented Latin characters; for
-  example on my keyboard <code>AltGr-; e</code> gives <code>e</code> with an acute accent.
+  the <code >AltGr</code> key helps you input accented Latin characters; for
+  example on my keyboard <code >AltGr-; e</code> gives <code >e</code> with an acute accent.
   See also <a href="http://www.cl.cam.ac.uk/~mgk25/unicode.html#input">http://www.cl.cam.ac.uk/~mgk25/unicode.html#input</a>
   for general information on entering Unicode characters from a keyboard.
 <p>

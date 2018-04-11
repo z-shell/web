@@ -1,28 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 25 Zftp Function System</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>25 Zftp Function System (zsh)</title>
 
-<meta name="description" content="zsh: 25 Zftp Function System">
-<meta name="keywords" content="zsh: 25 Zftp Function System">
+<meta name="description" content="25 Zftp Function System (zsh)">
+<meta name="keywords" content="25 Zftp Function System (zsh)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
@@ -31,10 +31,9 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -42,7 +41,7 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<body lang="en">
 <a name="Zftp-Function-System"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -62,8 +61,17 @@ ul.no-bullet {list-style: none}
 
 <a name="Zftp-Function-System-1"></a>
 <h1 class="chapter">25 Zftp Function System</h1>
-<a name="index-zftp-function-system"></a>
+<p><a name="index-zftp-function-system"></a>
 <a name="index-FTP_002c-functions-for-using-shell-as-client"></a>
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Installation">25.2 Installation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Zftp-Functions">25.3 Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Miscellaneous-Features">25.4 Miscellaneous Features</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
 
 <hr>
 <a name="Description-8"></a>
@@ -863,10 +871,10 @@ each session separately.  It is used by <tt>zfget_match</tt> and <tt>zfrglob</tt
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">25.4.1 Configuration</h3>
-<a name="index-zftp-function-system_002c-configuration"></a>
+<p><a name="index-zftp-function-system_002c-configuration"></a>
 <a name="index-zftp-function-system_002c-styles"></a>
 <a name="index-styles-in-zftp-functions"></a>
-
+</p>
 <p>Various styles are available using the standard shell style mechanism,
 described in
 <a href="Zsh-Modules.html#The-zsh_002fzutil-Module">The zsh/zutil Module</a>. Briefly, the
@@ -965,8 +973,8 @@ overwritten.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">25.4.2 Remote globbing</h3>
-<a name="index-zftp-function-system_002c-remote-globbing"></a>
-
+<p><a name="index-zftp-function-system_002c-remote-globbing"></a>
+</p>
 <p>The commands for retrieving files usually perform filename generation
 (globbing) on their arguments; this can be turned off by passing the option
 <tt>-G</tt> to each of the commands.  Normally this operates by retrieving a
@@ -1007,8 +1015,8 @@ directory contents.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">25.4.3 Automatic and temporary reopening</h3>
-<a name="index-zftp-function-system_002c-automatic-reopening"></a>
-
+<p><a name="index-zftp-function-system_002c-automatic-reopening"></a>
+</p>
 <p>As described for the <tt>zfopen</tt> command, a subsequent <tt>zfopen</tt> with no
 parameters will reopen the connection to the last host (this includes
 connections made with the <tt>zfanon</tt> command).  Opened in this fashion, the
@@ -1091,9 +1099,9 @@ should automatically be available.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>September 21, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>April 11, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.4.2, released on August 27, 2017.</font>
+<font size="-1">Zsh version 5.5, released on April 8, 2018.</font>
 </body>
 </html>

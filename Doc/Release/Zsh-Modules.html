@@ -1,28 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 22 Zsh Modules</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>22 Zsh Modules (zsh)</title>
 
-<meta name="description" content="zsh: 22 Zsh Modules">
-<meta name="keywords" content="zsh: 22 Zsh Modules">
+<meta name="description" content="22 Zsh Modules (zsh)">
+<meta name="keywords" content="22 Zsh Modules (zsh)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
@@ -31,10 +31,9 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -42,7 +41,7 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<body lang="en">
 <a name="Zsh-Modules"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Completion-Using-compctl.html#Completion-Using-compctl" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -62,7 +61,80 @@ ul.no-bullet {list-style: none}
 
 <a name="Zsh-Modules-1"></a>
 <h1 class="chapter">22 Zsh Modules</h1>
-<a name="index-modules"></a>
+<p><a name="index-modules"></a>
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fattr-Module">22.2 The zsh/attr Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fcap-Module">22.3 The zsh/cap Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fclone-Module">22.4 The zsh/clone Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fcompctl-Module">22.5 The zsh/compctl Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fcomplete-Module">22.6 The zsh/complete Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fcomplist-Module">22.7 The zsh/complist Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fcomputil-Module">22.8 The zsh/computil Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fcurses-Module">22.9 The zsh/curses Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fdatetime-Module">22.10 The zsh/datetime Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fdb_002fgdbm-Module">22.11 The zsh/db/gdbm Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fdeltochar-Module">22.12 The zsh/deltochar Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fexample-Module">22.13 The zsh/example Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002ffiles-Module">22.14 The zsh/files Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002flanginfo-Module">22.15 The zsh/langinfo Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fmapfile-Module">22.16 The zsh/mapfile Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fmathfunc-Module">22.17 The zsh/mathfunc Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fnewuser-Module">22.18 The zsh/newuser Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fparameter-Module">22.19 The zsh/parameter Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fpcre-Module">22.20 The zsh/pcre Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fparam_002fprivate-Module">22.21 The zsh/param/private Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fregex-Module">22.22 The zsh/regex Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fsched-Module">22.23 The zsh/sched Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fnet_002fsocket-Module">22.24 The zsh/net/socket Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fstat-Module">22.25 The zsh/stat Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fsystem-Module">22.26 The zsh/system Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fnet_002ftcp-Module">22.27 The zsh/net/tcp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002ftermcap-Module">22.28 The zsh/termcap Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fterminfo-Module">22.29 The zsh/terminfo Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzftp-Module">22.30 The zsh/zftp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzle-Module">22.31 The zsh/zle Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzleparameter-Module">22.32 The zsh/zleparameter Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzprof-Module">22.33 The zsh/zprof Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzpty-Module">22.34 The zsh/zpty Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzselect-Module">22.35 The zsh/zselect Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzutil-Module">22.36 The zsh/zutil Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
 
 <hr>
 <a name="Description-5"></a>
@@ -598,9 +670,9 @@ completion lists will be colored.  Note, however, that <tt>complist</tt> will
 not automatically be loaded if it is not linked in:  on systems with
 dynamic loading, &lsquo;<tt>zmodload zsh/complist</tt>&rsquo; is required.
 </p>
-<a name="index-ZLS_005fCOLORS"></a>
+<p><a name="index-ZLS_005fCOLORS"></a>
 <a name="index-ZLS_005fCOLOURS"></a>
-<p>The parameters <tt>ZLS_COLORS</tt> and <tt>ZLS_COLOURS</tt> describe how matches
+The parameters <tt>ZLS_COLORS</tt> and <tt>ZLS_COLOURS</tt> describe how matches
 are highlighted.  To turn on highlighting an empty value suffices, in
 which case all the default values given below will be used.  The format of
 the value of these parameters is the same as used by the GNU version of the
@@ -857,10 +929,10 @@ should be used.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.7.3 Menu selection</h3>
-<a name="index-completion_002c-selecting-by-cursor"></a>
+<p><a name="index-completion_002c-selecting-by-cursor"></a>
 <a name="index-MENUSELECT"></a>
 <a name="index-menu_002dselect"></a>
-<p>The <tt>zsh/complist</tt> module also offers an alternative style of selecting
+The <tt>zsh/complist</tt> module also offers an alternative style of selecting
 matches from a list, called menu selection, which can be used if the
 shell is set up to return to the last prompt after showing a
 completion list (see the <tt>ALWAYS_LAST_PROMPT</tt> option in
@@ -2776,9 +2848,9 @@ print -l $accum
 print text variable contains only &quot;d's&quot;.
 </pre></div>
 
-<a name="index-REMATCH_005fPCRE-1"></a>
+<p><a name="index-REMATCH_005fPCRE-1"></a>
 <a name="index-NO_005fCASE_005fMATCH-1"></a>
-<p>If the <tt>REMATCH_PCRE</tt> option is set, the <tt>=~</tt> operator is equivalent to
+If the <tt>REMATCH_PCRE</tt> option is set, the <tt>=~</tt> operator is equivalent to
 <tt>-pcre-match</tt>, and the <tt>NO_CASE_MATCH</tt> option may be used.  Note that
 <tt>NO_CASE_MATCH</tt> never applies to the <tt>pcre_match</tt> builtin, instead use
 the <tt>-i</tt> switch of <tt>pcre_compile</tt>.
@@ -3096,8 +3168,8 @@ command line editing, file I/O, and job control mechanisms.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.24.1 Outbound Connections</h3>
-<a name="index-sockets_002c-outbound-Unix-domain"></a>
-
+<p><a name="index-sockets_002c-outbound-Unix-domain"></a>
+</p>
 <dl compact="compact">
 <dt><tt>zsocket</tt> [ <tt>-v</tt> ] [ <tt>-d</tt> <var>fd</var> ] <var>filename</var></dt>
 <dd><p>Open a new Unix domain connection to <var>filename</var>.
@@ -3140,8 +3212,8 @@ needed, for example:
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.24.2 Inbound Connections</h3>
-<a name="index-sockets_002c-inbound-Unix-domain"></a>
-
+<p><a name="index-sockets_002c-inbound-Unix-domain"></a>
+</p>
 <dl compact="compact">
 <dt><tt>zsocket</tt> <tt>-l</tt> [ <tt>-v</tt> ] [ <tt>-d</tt> <var>fd</var> ] <var>filename</var></dt>
 <dd><p><tt>zsocket -l</tt> will open a socket listening on <var>filename</var>.
@@ -3333,7 +3405,7 @@ formatting of the time elements.  The <tt>-s</tt> option is implied.
 <dt><tt>-l</tt></dt>
 <dd><p>List the names of the type elements (to standard
 output or an array as appropriate) and return immediately;
-options other than <tt>-A</tt> and arguments are ignored.
+arguments, and options other than <tt>-A</tt>, are ignored.
 </p>
 </dd>
 <dt><tt>-L</tt></dt>
@@ -3865,8 +3937,8 @@ listening.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.27.1 Outbound Connections</h3>
-<a name="index-sockets_002c-outbound-TCP"></a>
-
+<p><a name="index-sockets_002c-outbound-TCP"></a>
+</p>
 <dl compact="compact">
 <dt><tt>ztcp</tt> [ <tt>-v</tt> ] [ <tt>-d</tt> <var>fd</var> ] <var>host</var> [ <var>port</var> ]</dt>
 <dd><p>Open a new TCP connection to <var>host</var>.  If the <var>port</var> is
@@ -3902,8 +3974,8 @@ descriptor for the connection.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.27.2 Inbound Connections</h3>
-<a name="index-sockets_002c-inbound-TCP"></a>
-
+<p><a name="index-sockets_002c-inbound-TCP"></a>
+</p>
 <dl compact="compact">
 <dt><tt>ztcp</tt> <tt>-l</tt> [ <tt>-v</tt> ] [ <tt>-d</tt> <var>fd</var> ] <var>port</var></dt>
 <dd><p><tt>ztcp -l</tt> will open a socket listening on TCP
@@ -3958,8 +4030,8 @@ it will wait for one.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.27.3 Closing Connections</h3>
-<a name="index-sockets_002c-closing-TCP"></a>
-
+<p><a name="index-sockets_002c-closing-TCP"></a>
+</p>
 <dl compact="compact">
 <dt><tt>ztcp</tt> <tt>-cf</tt> [ <tt>-v</tt> ] [ <var>fd</var> ]</dt>
 <dt><tt>ztcp</tt> <tt>-c</tt> [ <tt>-v</tt> ] [ <var>fd</var> ]</dt>
@@ -3997,8 +4069,8 @@ to force such a socket closed, use <tt>-f</tt>.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.27.4 Example</h3>
-<a name="index-TCP_002c-example"></a>
-<p>Here is how to create a TCP connection between two instances of zsh.  We
+<p><a name="index-TCP_002c-example"></a>
+Here is how to create a TCP connection between two instances of zsh.  We
 need to pick an unassigned port; here we use the randomly chosen 5123.
 </p>
 <p>On <tt>host1</tt>,
@@ -4194,8 +4266,8 @@ more information on how responses from the server may be printed.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.30.1 Subcommands</h3>
-<a name="index-zftp_002c-subcommands"></a>
-
+<p><a name="index-zftp_002c-subcommands"></a>
+</p>
 <dl compact="compact">
 <dd><a name="index-FTP_002c-starting-a-session"></a>
 </dd>
@@ -4477,8 +4549,8 @@ background commands which use <tt>zftp</tt> are still active.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.30.2 Parameters</h3>
-<a name="index-zftp_002c-parameters"></a>
-<p>The following shell parameters are used by <tt>zftp</tt>.  Currently none
+<p><a name="index-zftp_002c-parameters"></a>
+The following shell parameters are used by <tt>zftp</tt>.  Currently none
 of them are special.
 </p>
 <dl compact="compact">
@@ -4674,8 +4746,8 @@ specifies that no messages should be printed.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.30.3 Functions</h3>
-<a name="index-zftp_002c-functions"></a>
-
+<p><a name="index-zftp_002c-functions"></a>
+</p>
 <dl compact="compact">
 <dd><a name="index-zftp_005fchpwd_002c-specification"></a>
 </dd>
@@ -4761,8 +4833,8 @@ user to decide whether the function should be defined and to use
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.30.4 Problems</h3>
-<a name="index-zftp_002c-problems"></a>
-
+<p><a name="index-zftp_002c-problems"></a>
+</p>
 <p>A connection may not be opened in the left hand side of a pipe as this
 occurs in a subshell and the file information is not updated in the main
 shell.  In the case of type or mode changes or closing the connection in a
@@ -5523,9 +5595,9 @@ bar=(-a '' -b xyz)
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>September 21, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>April 11, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.4.2, released on August 27, 2017.</font>
+<font size="-1">Zsh version 5.5, released on April 8, 2018.</font>
 </body>
 </html>

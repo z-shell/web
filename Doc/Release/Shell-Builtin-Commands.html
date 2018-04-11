@@ -1,28 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 17 Shell Builtin Commands</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>17 Shell Builtin Commands (zsh)</title>
 
-<meta name="description" content="zsh: 17 Shell Builtin Commands">
-<meta name="keywords" content="zsh: 17 Shell Builtin Commands">
+<meta name="description" content="17 Shell Builtin Commands (zsh)">
+<meta name="keywords" content="17 Shell Builtin Commands (zsh)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
@@ -31,10 +31,9 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -42,7 +41,7 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<body lang="en">
 <a name="Shell-Builtin-Commands"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Options.html#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -647,10 +646,19 @@ If the <tt>-n</tt> flag is not present, print a newline at the end.
 </p></dd>
 </dl>
 
-<a name="index-BSD_005fECHO_002c-use-of"></a>
-<p>The <tt>-E</tt> flag, or the <tt>BSD_ECHO</tt> option, can be used to disable
+<p><a name="index-BSD_005fECHO_002c-use-of"></a>
+The <tt>-E</tt> flag, or the <tt>BSD_ECHO</tt> option, can be used to disable
 these escape sequences.  In the latter case, <tt>-e</tt> flag can be used to
 enable them.
+</p>
+<p>Note that for standards compliance a double dash does not terminate
+option processing; instead, it is printed directly.  However, a
+single dash does terminate option processing, so the first dash,
+possibly following options, is not printed, but everything following it
+is printed as an argument.  The single dash behaviour is different
+from other shells.  For a more portable way of printing text, see
+<tt>printf</tt>, and for a more controllable way of printing text within zsh,
+see <tt>print</tt>.
 </p>
 </dd>
 <dt><tt>echotc</tt></dt>
@@ -832,7 +840,7 @@ an empty string or whitespace) the return status is zero.
 <dt><tt>exec</tt> [ <tt>-cl</tt> ] [ <tt>-a</tt> <var>argv0</var> ] [ <var>command</var> [ <var>arg</var> ... ] ]</dt>
 <dd><p>Replace the current shell with <var>command</var> rather than forking.
 If <var>command</var> is a shell builtin command or a shell function,
-the shell executes it, then immediately exits.
+the shell executes it, and exits when the command is complete.
 </p>
 <p>With <tt>-c</tt> clear the environment; with <tt>-l</tt> prepend <tt>-</tt> to the
 <tt>argv[0]</tt> string of the command executed (to simulate a login shell);
@@ -846,8 +854,8 @@ means further precommand modifiers such as <tt>builtin</tt> and
 <tt>noglob</tt> are also not interpreted within the shell.  Hence
 <var>command</var> is always found by searching the command path.
 </p>
-<a name="index-redirection_002c-current-shell_0027s-I_002fO"></a>
-<p>If <var>command</var> is omitted but any redirections are specified,
+<p><a name="index-redirection_002c-current-shell_0027s-I_002fO"></a>
+If <var>command</var> is omitted but any redirections are specified,
 then the redirections will take effect in the current shell.
 </p>
 <a name="index-exit"></a>
@@ -970,9 +978,9 @@ options above
 </p></dd>
 </dl>
 
-<a name="index-history_002c-stack"></a>
+<p><a name="index-history_002c-stack"></a>
 <a name="index-stack_002c-history"></a>
-<p>&lsquo;<tt>fc -p</tt>&rsquo; pushes the current history list onto a stack and switches to a
+&lsquo;<tt>fc -p</tt>&rsquo; pushes the current history list onto a stack and switches to a
 new history list.  If the <tt>-a</tt> option is also specified, this history list
 will be automatically popped when the current function scope is exited, which
 is a much better solution than creating a trap function to call &lsquo;<tt>fc -P</tt>&rsquo;
@@ -1000,9 +1008,9 @@ option (<tt>-a</tt>) with &lsquo;<tt>fc -p</tt>&rsquo;.  Finally, note that it i
 pop a push marked for automatic popping if you need to do so before the
 function exits.
 </p>
-<a name="index-history_002c-file"></a>
+<p><a name="index-history_002c-file"></a>
 <a name="index-file_002c-history"></a>
-<p>&lsquo;<tt>fc -R</tt>&rsquo; reads the history from the given file,
+&lsquo;<tt>fc -R</tt>&rsquo; reads the history from the given file,
 &lsquo;<tt>fc -W</tt>&rsquo; writes the history out to the given file,
 and &lsquo;<tt>fc -A</tt>&rsquo; appends the history out to the given file.
 If no filename is specified, the <tt>$HISTFILE</tt> is assumed.
@@ -2142,9 +2150,9 @@ the tty before running external commands.
 <a name="index-parameters_002c-declaring"></a>
 
 </dd>
-<dt><tt>typeset </tt>[ {<tt>+</tt>|<tt>-</tt>}<tt>AHUaghlmprtux</tt> ] [ {<tt>+</tt>|<tt>-</tt>}<tt>EFLRZi</tt> [ <var>n</var> ] ]</dt>
+<dt><tt>typeset </tt>[ {<tt>+</tt>|<tt>-</tt>}<tt>AHUaghlmrtux</tt> ] [ {<tt>+</tt>|<tt>-</tt>}<tt>EFLRZip</tt> [ <var>n</var> ] ]</dt>
 <dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[ <tt>+</tt> ] [ <var>name</var>[<tt>=</tt><var>value</var>] ... ]</dt>
-<dt><tt>typeset </tt><tt>-T</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>Uglprux</tt> ] [ {<tt>+</tt>|<tt>-</tt>}<tt>LRZ</tt> [ <var>n</var> ] ]</dt>
+<dt><tt>typeset </tt><tt>-T</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>Uglrux</tt> ] [ {<tt>+</tt>|<tt>-</tt>}<tt>LRZp</tt> [ <var>n</var> ] ]</dt>
 <dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[ <tt>+</tt> | <var>SCALAR</var>[<tt>=</tt><var>value</var>] <var>array</var>[<tt>=(</tt><var>value</var> ...<tt>)</tt>] [ <var>sep</var> ] ]</dt>
 <dt><tt>typeset</tt> <tt>-f</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>TUkmtuz</tt> ] [ <tt>+</tt> ] [ <var>name</var> ... ]</dt>
 <dd><p>Set or display attributes and values for shell parameters.
@@ -2317,11 +2325,16 @@ given, so &lsquo;<tt>typeset -m</tt>&rsquo; displays attributes but &lsquo;<tt>t
 does not.
 </p>
 </dd>
-<dt><tt>-p</tt></dt>
+<dt><tt>-p</tt> [ <var>n</var> ]</dt>
 <dd><p>If the <tt>-p</tt> option is given, parameters and values are printed in the
 form of a typeset command with an assignment, regardless of other flags
 and options.  Note that the <tt>-H</tt> flag on parameters is respected; no
 value will be shown for these parameters.
+</p>
+<p><tt>-p</tt> may be followed by an optional integer argument.  Currently
+only the value <tt>1</tt> is supported.  In this case arrays and associative
+arrays are printed with newlines between indented elements for
+readability.
 </p>
 </dd>
 <dt><tt>-T</tt> [ <var>scalar</var>[<tt>=</tt><var>value</var>] <var>array</var>[<tt>=(</tt><var>value</var> ...<tt>)</tt>] [ <var>sep</var> ] ]</dt>
@@ -2865,8 +2878,8 @@ is autoloaded; see
 for a description of how autoloaded functions are searched.  The
 extension <tt>.zwc</tt> stands for &lsquo;zsh word code&rsquo;.
 </p>
-<a name="index-fpath_002c-with-zcompile"></a>
-<p>If there is at least one <var>name</var> argument, all the named files
+<p><a name="index-fpath_002c-with-zcompile"></a>
+If there is at least one <var>name</var> argument, all the named files
 are compiled into the output <var>file</var> given as the first argument.  If
 <var>file</var> does not end in <tt>.zwc</tt>, this extension is automatically
 appended.  Files containing multiple compiled functions are called &lsquo;digest&rsquo;
@@ -3321,9 +3334,9 @@ dynamic loading of modules.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>September 21, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>April 11, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.4.2, released on August 27, 2017.</font>
+<font size="-1">Zsh version 5.5, released on April 8, 2018.</font>
 </body>
 </html>

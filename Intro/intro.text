@@ -157,8 +157,8 @@ bash,  ksh,  and  tcsh  were incorporated into [1mzsh[22m; many original
 features were added.  This document details some  of  the  unique
 features of [1mzsh[22m.  It assumes basic knowledge of the standard UNIX
 shells; the intent is to show a reader already familiar with  one
-of the other major shells what makes [1mzsh [22mmore useful or more pow-
-erful.  This document is not at all comprehensive; read the  man-
+of the other major shells what makes [1mzsh [22mmore useful or more pow‐
+erful.  This document is not at all comprehensive; read the  man‐
 ual  entry  for  a  description of the shell that is complete and
 concise, although somewhat overwhelming and devoid of examples.
 
@@ -176,7 +176,7 @@ Case is ignored in option names, as are embedded underscores.
 
 [1mFilename Generation[0m
 
-Otherwise known as [4mglobbing[24m, filename generation is quite  exten-
+Otherwise known as [4mglobbing[24m, filename generation is quite  exten‐
 sive in [1mzsh[22m.  Of course, it has all the basics:
 
 
@@ -199,7 +199,7 @@ sive in [1mzsh[22m.  Of course, it has all the basics:
 
 
 
-                               -2-
+                               ‐2‐
 
 
      % ls
@@ -218,35 +218,35 @@ sive in [1mzsh[22m.  Of course, it has all the basics:
      foo.c  q.c
 
 Also,  if  the  [4mEXTENDEDGLOB[24m option is set, some new features are
-activated.  For example, the ^ character negates the pattern fol-
+activated.  For example, the ^ character negates the pattern fol‐
 lowing it:
 
      % setopt extendedglob
-     % ls -d ^*.c
+     % ls ‐d ^*.c
      Makefile   file.pro   link       morestuff  run2       run303
      bar.o      foo        main.h     pipe       run234     stuff
      file.h     foo.o      main.o     run123     run240     sub
-     % ls -d ^*.*
+     % ls ‐d ^*.*
      Makefile   link       pipe       run2       run240     stuff
      foo        morestuff  run123     run234     run303     sub
-     % ls -d ^Makefile
+     % ls ‐d ^Makefile
      bar.o      foo        link       morestuff  run123     run240     sub
      file.h     foo.c      main.h     pipe       run2       run303
      file.pro   foo.o      main.o     q.c        run234     stuff
-     % ls -d *.^c
+     % ls ‐d *.^c
      .rhosts   bar.o     file.h    file.pro  foo.o     main.h    main.o
 
-An expression of the form <[4mx[24m-[4my[24m> matches a range of integers:
+An expression of the form <[4mx[24m−[4my>[24m matches a range of integers:
 
-     % ls run<200-300>
+     % ls run<200‐300>
      run234  run240
-     % ls run<300-400>
+     % ls run<300‐400>
      run303
-     % ls run<-200>
+     % ls run<‐200>
      run123  run2
-     % ls run<300->
+     % ls run<300‐>
      run303
-     % ls run<->
+     % ls run<‐>
      run123  run2    run234  run240  run303
 
 The [4mNUMERICGLOBSORT[24m option will sort files with numbers according
@@ -265,11 +265,11 @@ arguments:
 
 
 
-                               -3-
+                               ‐3‐
 
 
      % setopt numericglobsort
-     % echo run<->
+     % echo run<‐>
      run2 run123 run234 run240 run303
 
 Grouping is possible:
@@ -281,7 +281,7 @@ Grouping is possible:
 
 Also, the string **/ forces a recursive search of subdirectories:
 
-     % ls -R
+     % ls ‐R
      Makefile   file.pro   foo.o      main.o     q.c        run234     stuff
      bar.o      foo        link       morestuff  run123     run240     sub
      file.h     foo.c      main.h     pipe       run2       run303
@@ -331,18 +331,18 @@ matching *.c, except for the file bar.c.
 
 
 
-                               -4-
+                               ‐4‐
 
 
 One  can  add  a  number of [4mqualifiers[24m to the end of any of these
 patterns, to restrict matches to certain file types.  A qualified
 pattern is of the form
 
-     [4mpattern[24m(...)
+     [4mpattern([24m...)
 
-with single-character qualifiers inside the parentheses.
+with single‐character qualifiers inside the parentheses.
 
-     % alias l='ls -dF'
+     % alias l=’ls ‐dF’
      % l *
      Makefile    foo*        main.h      q.c         run240
      bar.o       foo.c       main.o      run123      run303
@@ -367,7 +367,7 @@ Note  that  *(x)  and  *(*) both match executables.  *(X) matches
 files executable by others, as opposed  to  *(x),  which  matches
 files  executable  by  the  owner.   *(R) and *(r) match readable
 files; *(W) and *(w), which checks for writable files.   *(W)  is
-especially important, since it checks for world-writable files:
+especially important, since it checks for world‐writable files:
 
      % l *(w)
      bar.o       foo*        link@       morestuff/  run123      run240
@@ -375,15 +375,15 @@ especially important, since it checks for world-writable files:
      file.pro    foo.o       main.o      q.c         run234      stuff/
      % l *(W)
      link@   run240
-     % l -l link run240
-     lrwxrwxrwx  1 pfalstad       10 May 23 18:12 link -> /usr/bin/
-     -rw-rw-rw-  1 pfalstad        0 May 23 18:12 run240
+     % l ‐l link run240
+     lrwxrwxrwx  1 pfalstad       10 May 23 18:12 link ‐> /usr/bin/
+     ‐rw‐rw‐rw‐  1 pfalstad        0 May 23 18:12 run240
 
 If  you  want  to have all the files of a certain type as well as
 all symbolic links pointing to files of  that  type,  prefix  the
-qualifier with a -:
+qualifier with a ‐:
 
-     % l *(-/)
+     % l *(‐/)
      link@       morestuff/  stuff/
 
 You can filter out the symbolic links with the ^ character:
@@ -397,7 +397,7 @@ You can filter out the symbolic links with the ^ character:
 
 
 
-                               -5-
+                               ‐5‐
 
 
      % l *(W^@)
@@ -418,24 +418,24 @@ To find all plain files, you can use .:
      stuff/   sub
      % l *(p)
      pipe
-     % l -l *(p)
-     prw-r--r--  1 pfalstad        0 May 23 18:12 pipe
+     % l ‐l *(p)
+     prw‐r‐‐r‐‐  1 pfalstad        0 May 23 18:12 pipe
 
 *(U) matches all files owned by you.  To search for all files not
 owned by you, use *(^U):
 
-     % l -l *(^U)
-     -rw-------  1 subbarao       29 May 23 18:13 sub
+     % l ‐l *(^U)
+     ‐rw‐‐‐‐‐‐‐  1 subbarao       29 May 23 18:13 sub
 
 This searches for setuid files:
 
-     % l -l *(s)
-     -rwsr-xr-x  1 pfalstad       16 May 23 18:12 foo*
+     % l ‐l *(s)
+     ‐rwsr‐xr‐x  1 pfalstad       16 May 23 18:12 foo*
 
-This checks for a certain user's files:
+This checks for a certain user’s files:
 
-     % l -l *(u[subbarao])
-     -rw-------  1 subbarao       29 May 23 18:13 sub
+     % l ‐l *(u[subbarao])
+     ‐rw‐‐‐‐‐‐‐  1 subbarao       29 May 23 18:13 sub
 
 
 [1mStartup Files[0m
@@ -451,7 +451,7 @@ There are five startup files that [1mzsh [22mwill read commands from:
 If [1mZDOTDIR [22mis not set, then the value of [1mHOME [22mis  used;  this  is
 the usual case.
 
-.zshenv is sourced on all invocations of the shell, unless the -f
+.zshenv is sourced on all invocations of the shell, unless the ‐f
 option is set.  It should contain commands  to  set  the  command
 search path, plus other important environment variables.  .zshenv
 
@@ -463,13 +463,13 @@ search path, plus other important environment variables.  .zshenv
 
 
 
-                               -6-
+                               ‐6‐
 
 
 should not contain commands that produce  output  or  assume  the
 shell is attached to a tty.
 
-.zshrc  is sourced in interactive shells.  It should contain com-
+.zshrc  is sourced in interactive shells.  It should contain com‐
 mands to set up aliases, functions, options, key bindings, etc.
 
 .zlogin is sourced in login shells.  It should  contain  commands
@@ -515,7 +515,7 @@ parsed, not when the function is executed.  For example:
      pfalstad:*:3564:35:Paul John Falstad:/u/pfalstad:/usr/princeton/bin/zsh
 
 Since the alias was defined after the function was parsed, it has
-no effect on the function's execution.  However, if we define the
+no effect on the function’s execution.  However, if we define the
 function again with the alias in place:
 
 
@@ -529,7 +529,7 @@ function again with the alias in place:
 
 
 
-                               -7-
+                               ‐7‐
 
 
      % function yp () { ypmatch $1 passwd.byname }
@@ -552,7 +552,7 @@ We can make the function take multiple arguments:
      subbarao:*:3338:35:Kartik Subbarao:/u/subbarao:/usr/princeton/bin/zsh
      sukthnkr:*:1267:35:Rahul Sukthankar:/u/sukthnkr:/usr/princeton/bin/tcsh
 
-The for i loops through each of the function's arguments, setting
+The for i loops through each of the function’s arguments, setting
 i equal to each of them in turn.  We can also make  the  function
 do something sensible if no arguments are given:
 
@@ -571,7 +571,7 @@ $# is the number of arguments supplied to the function.  If it is
 equal to zero, we print  a  usage  message;  otherwise,  we  loop
 through the arguments, and ypmatch all of them.
 
-Here's a function that selects a random line from a file:
+Here’s a function that selects a random line from a file:
 
 
 
@@ -595,12 +595,12 @@ Here's a function that selects a random line from a file:
 
 
 
-                               -8-
+                               ‐8‐
 
 
      % randline () {
-     >       integer z=$(wc -l <$1)
-     >       sed -n $[RANDOM % z + 1]p $1
+     >       integer z=$(wc ‐l <$1)
+     >       sed ‐n $[RANDOM % z + 1]p $1
      > }
      % randline /etc/motd
      PHOENIX WILL BE DOWN briefly Friday morning, 5/24/91 from 8 AM to
@@ -616,16 +616,16 @@ randline  has a local variable, z, that holds the number of lines
 in the file.  $[RANDOM % z  +  1]  expands  to  a  random  number
 between  1  and  z.  An expression of the form $[...]  expands to
 the value of the arithmetic expression within the  brackets,  and
-the  [1mRANDOM [22mvariable returns a random number each time it is ref-
-erenced.  % is the modulus operator, as in C.  Therefore, sed  -n
+the  [1mRANDOM [22mvariable returns a random number each time it is ref‐
+erenced.  % is the modulus operator, as in C.  Therefore, sed  ‐n
 $[RANDOM%z+1]p picks a random line from its input, from 1 to z.
 
 Function definitions can be viewed with the functions builtin:
 
      % functions randline
      randline () {
-             integer z=$(wc -l <$1)
-             sed -n $[RANDOM % z + 1]p $1
+             integer z=$(wc ‐l <$1)
+             sed ‐n $[RANDOM % z + 1]p $1
 
      }
      % functions
@@ -644,12 +644,12 @@ Function definitions can be viewed with the functions builtin:
 
      }
      randline () {
-             integer z=$(wc -l <$1)
-             sed -n $[RANDOM % z + 1]p $1
+             integer z=$(wc ‐l <$1)
+             sed ‐n $[RANDOM % z + 1]p $1
 
      }
 
-Here's another one:
+Here’s another one:
 
 
 
@@ -661,33 +661,33 @@ Here's another one:
 
 
 
-                               -9-
+                               ‐9‐
 
 
      % cx () { chmod +x $* }
-     % ls -l foo bar
-     -rw-r--r--  1 pfalstad       29 May 24 04:38 bar
-     -rw-r--r--  1 pfalstad       29 May 24 04:38 foo
+     % ls ‐l foo bar
+     ‐rw‐r‐‐r‐‐  1 pfalstad       29 May 24 04:38 bar
+     ‐rw‐r‐‐r‐‐  1 pfalstad       29 May 24 04:38 foo
      % cx foo bar
-     % ls -l foo bar
-     -rwxr-xr-x  1 pfalstad       29 May 24 04:38 bar
-     -rwxr-xr-x  1 pfalstad       29 May 24 04:38 foo
+     % ls ‐l foo bar
+     ‐rwxr‐xr‐x  1 pfalstad       29 May 24 04:38 bar
+     ‐rwxr‐xr‐x  1 pfalstad       29 May 24 04:38 foo
 
 Note that this could also have been implemented as an alias:
 
      % chmod 644 foo bar
-     % alias cx='chmod +x'
+     % alias cx=’chmod +x’
      % cx foo bar
-     % ls -l foo bar
-     -rwxr-xr-x  1 pfalstad       29 May 24 04:38 bar
-     -rwxr-xr-x  1 pfalstad       29 May 24 04:38 foo
+     % ls ‐l foo bar
+     ‐rwxr‐xr‐x  1 pfalstad       29 May 24 04:38 bar
+     ‐rwxr‐xr‐x  1 pfalstad       29 May 24 04:38 foo
 
 
 Instead  of  defining  a  lot of functions in your .zshrc, all of
 which you may not use, it is often better  to  use  the  autoload
-builtin.  The idea is, you create a directory where function def-
+builtin.  The idea is, you create a directory where function def‐
 initions are stored, declare the names in your .zshrc,  and  tell
-the shell where to look for them.  Whenever you reference a func-
+the shell where to look for them.  Whenever you reference a func‐
 tion, the shell will automatically load it into memory.
 
      % mkdir /tmp/funs
@@ -727,7 +727,7 @@ not created.)
 
 
 
-                               -10-
+                               ‐10‐
 
 
      % ed /tmp/funs/yp
@@ -743,7 +743,7 @@ not created.)
      % /tmp/funs/yp sukthnkr
      sukthnkr:*:1267:35:Rahul Sukthankar:/u/sukthnkr:/usr/princeton/bin/tcsh
 
-Now  other people, who may not use [1mzsh[22m, or who don't want to copy
+Now  other people, who may not use [1mzsh[22m, or who don’t want to copy
 all of your .zshrc, may use these functions as shell scripts.
 
 [1mDirectories[0m
@@ -751,7 +751,7 @@ all of your .zshrc, may use these functions as shell scripts.
 One nice feature of [1mzsh [22mis the way it  prints  directories.   For
 example, if we set the prompt like this:
 
-     phoenix% PROMPT='%~> '
+     phoenix% PROMPT=’%~> ’
      ~> cd src
      ~/src>
 
@@ -771,11 +771,11 @@ in this respect:
      ~foo/news/nntp> cd inews
      ~foo/news/nntp/inews>
 
-Note  that [1mzsh [22mprints [4mother[24m users' directories in the form ~user.
+Note  that [1mzsh [22mprints [4mother[24m users’ directories in the form ~user.
 Also note that you can set a parameter and use it as a  directory
 name;  [1mzsh  [22mwill act as if foo is a user with the login directory
 /usr/princeton/common/src.  This  is  convenient,  especially  if
-you're sick of seeing prompts like this:
+you’re sick of seeing prompts like this:
 
      phoenix:/usr/princeton/common/src/X.V11R4/contrib/clients/xv/docs>
 
@@ -793,7 +793,7 @@ directory a short name, like this:
 
 
 
-                               -11-
+                               ‐11‐
 
 
      /usr/princeton/common/src/news/nntp/inews> inews=$PWD
@@ -814,7 +814,7 @@ shortened.  You can define a shell function for this purpose:
      ~spool> cd .msgs
      ~spool/.msgs>
 
-You may want to add this one-line function to your .zshrc.
+You may want to add this one‐line function to your .zshrc.
 
 [1mzsh  [22mcan also put the current directory in your title bar, if you
 are using a windowing system.  One way to do  this  is  with  the
@@ -822,26 +822,26 @@ chpwd  function,  which  is  automatically  executed by the shell
 whenever you change directory.  If you are using xterm, this will
 work:
 
-     chpwd () { print -Pn '^[]2;%~^G' }
+     chpwd () { print ‐Pn ’^[]2;%~^G’ }
 
-The  -P  option  tells print to treat its arguments like a prompt
-string; otherwise the %~ would not be expanded.   The  -n  option
+The  ‐P  option  tells print to treat its arguments like a prompt
+string; otherwise the %~ would not be expanded.   The  ‐n  option
 suppresses the terminating newline, as with echo.
 
 If you are using an IRIS wsh, do this:
 
-     chpwd () { print -Pn '\2201.y%~\234' }
+     chpwd () { print ‐Pn ’\2201.y%~\234’ }
 
-The  print  -D command has other uses.  For example, to print the
+The  print  ‐D command has other uses.  For example, to print the
 current directory to standard output in short form,  you  can  do
 this:
 
-     % print -D $PWD
+     % print ‐D $PWD
      ~subbarao/src
 
 and to print each component of the path in short form:
 
-     % print -D $path
+     % print ‐D $path
      /bin /usr/bin ~locbin ~locbin/X11 ~/bin
 
 
@@ -859,13 +859,13 @@ new  directory;  the  popd command pops a directory off the stack
 
 
 
-                               -12-
+                               ‐12‐
 
 
 and changes to it.
 
      phoenix% cd
-     phoenix% PROMPT='Z %~> '
+     phoenix% PROMPT=’Z %~> ’
      Z ~> pushd /tmp
      /tmp ~
      Z /tmp> pushd /usr/etc
@@ -881,7 +881,7 @@ and changes to it.
      Z /etc> popd
      /tmp ~
 
-[1mzsh[22m's directory stack commands work similarly.  One difference is
+[1mzsh[22m’s directory stack commands work similarly.  One difference is
 the  way  pushd is handled if no arguments are given.  As in csh,
 this exchanges the top two elements of the directory stack:
 
@@ -925,12 +925,12 @@ options and parameters:
 
 
 
-                               -13-
+                               ‐13‐
 
 
      ~> DIRSTACKSIZE=8
      ~> setopt autopushd pushdminus pushdsilent pushdtohome
-     ~> alias dh='dirs -v'
+     ~> alias dh=’dirs ‐v’
      ~> cd /tmp
      /tmp> cd /usr
      /usr> cd bin
@@ -941,7 +941,7 @@ options and parameters:
      2       /usr
      3       /tmp
      4       ~
-     /usr/pub> cd -3
+     /usr/pub> cd ‐3
      /tmp> dh
      0       /tmp
      1       /usr/pub
@@ -950,17 +950,17 @@ options and parameters:
      4       ~
      /tmp> ls ~2/df
      /usr/bin/df
-     /tmp> cd -4
+     /tmp> cd ‐4
      ~>
 
 Note that ~2 expanded to the  second  directory  in  the  history
-list, and that cd -3 recalled the third directory in the list.
+list, and that cd ‐3 recalled the third directory in the list.
 
 You  may  be wondering what all those options do.  [4mAUTOPUSHD[24m made
-cd act like pushd.  (alias cd=pushd is not sufficient, for  vari-
-ous reasons.)  [4mPUSHDMINUS[24m swapped the meaning of cd +1 and cd -1;
+cd act like pushd.  (alias cd=pushd is not sufficient, for  vari‐
+ous reasons.)  [4mPUSHDMINUS[24m swapped the meaning of cd +1 and cd ‐1;
 we want them to mean the opposite  of  what  they  mean  in  csh,
-because  it  makes  more sense in this scheme, and it's easier to
+because  it  makes  more sense in this scheme, and it’s easier to
 type:
 
      ~> dh
@@ -991,7 +991,7 @@ each time we do a cd, and [4mPUSHDTOHOME[24m we mentioned earlier:
 
 
 
-                               -14-
+                               ‐14‐
 
 
      /usr/pub> unsetopt pushdsilent
@@ -1029,8 +1029,8 @@ much like [4mHISTSIZE[24m:
 
 [1mCommand/Process Substitution[0m
 
-Command substitution in [1mzsh [22mcan take two forms.   In  the  tradi-
-tional form, a command enclosed in backquotes (`...`) is replaced
+Command substitution in [1mzsh [22mcan take two forms.   In  the  tradi‐
+tional form, a command enclosed in backquotes (‘...‘) is replaced
 on the command line with its output.  This is the  form  used  by
 the  older  shells.  Newer shells (like [1mzsh[22m) also provide another
 form, $(...).  This form is much easier to nest.
@@ -1057,45 +1057,45 @@ form, $(...).  This form is much easier to nest.
 
 
 
-                               -15-
+                               ‐15‐
 
 
-     % ls -l `echo /vmunix`
-     -rwxr-xr-x  1 root      1209702 May 14 19:04 /vmunix
-     % ls -l $(echo /vmunix)
-     -rwxr-xr-x  1 root      1209702 May 14 19:04 /vmunix
+     % ls ‐l ‘echo /vmunix‘
+     ‐rwxr‐xr‐x  1 root      1209702 May 14 19:04 /vmunix
+     % ls ‐l $(echo /vmunix)
+     ‐rwxr‐xr‐x  1 root      1209702 May 14 19:04 /vmunix
      % who | grep mad
      subbarao ttyt7   May 23 15:02   (mad55sx15.Prince)
      pfalstad ttyu1   May 23 16:25   (mad55sx14.Prince)
      subbarao ttyu6   May 23 15:04   (mad55sx15.Prince)
      pfalstad ttyv3   May 23 16:25   (mad55sx14.Prince)
-     % who | grep mad | awk '{print $2}'
+     % who | grep mad | awk ’{print $2}’
      ttyt7
      ttyu1
      ttyu6
      ttyv3
-     % cd /dev; ls -l $(who |
+     % cd /dev; ls ‐l $(who |
      > grep $(echo mad) |
-     > awk '{ print $2 }')
-     crwx-w----  1 subbarao  20,  71 May 23 18:35 ttyt7
-     crw--w----  1 pfalstad  20,  81 May 23 18:42 ttyu1
-     crwx-w----  1 subbarao  20,  86 May 23 18:38 ttyu6
-     crw--w----  1 pfalstad  20,  99 May 23 18:41 ttyv3
+     > awk ’{ print $2 }’)
+     crwx‐w‐‐‐‐  1 subbarao  20,  71 May 23 18:35 ttyt7
+     crw‐‐w‐‐‐‐  1 pfalstad  20,  81 May 23 18:42 ttyu1
+     crwx‐w‐‐‐‐  1 subbarao  20,  86 May 23 18:38 ttyu6
+     crw‐‐w‐‐‐‐  1 pfalstad  20,  99 May 23 18:41 ttyv3
 
 Many common uses of command substitution, however, are superseded
 by other mechanisms of [1mzsh[22m:
 
-     % ls -l `tty`
-     crw-rw-rw-  1 root      20,  28 May 23 18:35 /dev/ttyqc
-     % ls -l $TTY
-     crw-rw-rw-  1 root      20,  28 May 23 18:35 /dev/ttyqc
-     % ls -l `which rn`
-     -rwxr-xr-x  1 root       172032 Mar  6 18:40 /usr/princeton/bin/rn
-     % ls -l =rn
-     -rwxr-xr-x  1 root       172032 Mar  6 18:40 /usr/princeton/bin/rn
+     % ls ‐l ‘tty‘
+     crw‐rw‐rw‐  1 root      20,  28 May 23 18:35 /dev/ttyqc
+     % ls ‐l $TTY
+     crw‐rw‐rw‐  1 root      20,  28 May 23 18:35 /dev/ttyqc
+     % ls ‐l ‘which rn‘
+     ‐rwxr‐xr‐x  1 root       172032 Mar  6 18:40 /usr/princeton/bin/rn
+     % ls ‐l =rn
+     ‐rwxr‐xr‐x  1 root       172032 Mar  6 18:40 /usr/princeton/bin/rn
 
-A command name with a = prepended is replaced with its full path-
-name.  This can be very convenient.  If it's not  convenient  for
+A command name with a = prepended is replaced with its full path‐
+name.  This can be very convenient.  If it’s not  convenient  for
 you, you can turn it off:
 
      % ls
@@ -1123,10 +1123,10 @@ Another nice feature is process substitution:
 
 
 
-                               -16-
+                               ‐16‐
 
 
-     % who | fgrep -f =(print -l root lemke shgchan subbarao)
+     % who | fgrep ‐f =(print ‐l root lemke shgchan subbarao)
      root     console May 19 10:41
      lemke    ttyq0   May 22 10:05   (narnia:0.0)
      lemke    ttyr7   May 22 10:05   (narnia:0.0)
@@ -1138,24 +1138,24 @@ Another nice feature is process substitution:
 
 A  command of the form =(...) is replaced with the name of a [4mfile[0m
 containing its output.  (A command  substitution,  on  the  other
-hand,  is  replaced  with  the  output itself.)  print -l is like
+hand,  is  replaced  with  the  output itself.)  print ‐l is like
 echo, excepts that it prints its arguments one per line, the  way
 fgrep expects them:
 
-     % print -l foo bar
+     % print ‐l foo bar
      foo
      bar
 
 We could also have written:
 
-     % who | fgrep -f =(echo 'root
+     % who | fgrep ‐f =(echo ’root
      > lemke
      > shgchan
-     > subbarao')
+     > subbarao’)
 
 Using process substitution, you can edit the output of a command:
 
-     % ed =(who | fgrep -f ~/.friends)
+     % ed =(who | fgrep ‐f ~/.friends)
      355
      g/lemke/d
      w /tmp/filbar
@@ -1189,10 +1189,10 @@ or easily read archived mail:
 
 
 
-                               -17-
+                               ‐17‐
 
 
-     % mail -f =(zcat ~/mail/oldzshmail.Z)
+     % mail ‐f =(zcat ~/mail/oldzshmail.Z)
      "/tmp/zsha06024": 84 messages, 0 new, 43 unread
      >  1  U  TO: pfalstad, zsh (10)
         2  U  nytim!tim@uunet.uu.net, Re: Zsh on Sparc1 /SunOS 4.0.3
@@ -1203,7 +1203,7 @@ or easily read archived mail:
         7  U  jack@cs.glasgow.ac.uk, Re: problem building zsh (147)
         8  U  nytim!tim@uunet.uu.net, Re: Zsh on Sparc1 /SunOS 4.0.3
         9     ursa!jmd, Another fix... (61)
-       10  U  pplacewa@bbn.com, Re: v18i084: Zsh 2.00 - A small complaint (36)
+       10  U  pplacewa@bbn.com, Re: v18i084: Zsh 2.00 ‐ A small complaint (36)
        11  U  lubkin@cs.rochester.edu, POSIX job control (34)
        12  U  yale!bronson!tan@uunet.UU.NET
        13  U  brett@rpi.edu, zsh (36)
@@ -1213,35 +1213,35 @@ or easily read archived mail:
        17  U  subbarao, zsh is a junk shell (43)
        18  U  amaranth@vela.acs.oakland.edu, zsh (33)
      43u/84 1: x
-     % ls -l /tmp/zsha06024
+     % ls ‐l /tmp/zsha06024
      /tmp/zsha06024 not found
 
 Note that the shell creates a temporary file, and deletes it when
 the command is finished.
 
-     % diff =(ls) =(ls -F)
+     % diff =(ls) =(ls ‐F)
      3c3
      < fortune
-     ---
+     ‐‐‐
      > fortune*
      10c10
      < strfile
-     ---
+     ‐‐‐
      > strfile*
 
-If you read [1mzsh[22m's man  page,  you  may  notice  that  <(...)   is
+If you read [1mzsh[22m’s man  page,  you  may  notice  that  <(...)   is
 another  form of process substitution which is similar to =(...).
 There is an important difference between the two.  In the  <(...)
 case,  the  shell  creates a named pipe (FIFO) instead of a file.
 This is better, since it does not fill up the file system; but it
 does  not  work in all cases.  In fact, if we had replaced =(...)
 with <(...) in the examples above, all of them would have stopped
-working  except for fgrep -f <(...).  You can not edit a pipe, or
+working  except for fgrep ‐f <(...).  You can not edit a pipe, or
 open it as a mail folder; fgrep, however,  has  no  problem  with
 reading  a  list  of  words from a pipe.  You may wonder why diff
-<(foo) bar doesn't work, since foo | diff - bar  works;  this  is
+<(foo) bar doesn’t work, since foo | diff ‐ bar  works;  this  is
 because  diff  creates a temporary file if it notices that one of
-its arguments is -, and then copies its  standard  input  to  the
+its arguments is ‐, and then copies its  standard  input  to  the
 temporary file.
 
 >(...)  is  just  like <(...) except that the command between the
@@ -1255,10 +1255,10 @@ parentheses will get its input from the named pipe.
 
 
 
-                               -18-
+                               ‐18‐
 
 
-     % dvips -o >(lpr) zsh.dvi
+     % dvips ‐o >(lpr) zsh.dvi
 
 
 [1mRedirection[0m
@@ -1283,7 +1283,7 @@ The command will first get the contents of file1 as its  standard
 input,  then  those  of  file2 and finally the contents of file3.
 This, too, works with pipes.
 
-     % cut -d: -f1 /etc/passwd | sort <newnames
+     % cut ‐d: ‐f1 /etc/passwd | sort <newnames
 
 The sort will get as its standard input first the output  of  cut
 and then the contents of newnames.
@@ -1293,14 +1293,14 @@ on your terminal, but want to pipe the standard error to  another
 command.   An  easy  way  to do this in [1mzsh [22mis by redirecting the
 standard error using 2> >(...).
 
-     % find / -name games 2> >(grep -v 'Permission' > realerrors)
+     % find / ‐name games 2> >(grep ‐v ’Permission’ > realerrors)
 
 The above redirection will actually be implemented with a regular
 pipe, not a temporary named pipe.
 
 [1mAliasing[0m
 
-Often-used commands can be abbreviated with an alias:
+Often‐used commands can be abbreviated with an alias:
 
      % alias uc=uncompress
      % ls
@@ -1321,10 +1321,10 @@ or commands with certain desired options:
 
 
 
-                               -19-
+                               ‐19‐
 
 
-     % alias fm='finger -m'
+     % alias fm=’finger ‐m’
      % fm root
      Login name: root                        In real life: Operator
      Directory: /                            Shell: /bin/csh
@@ -1332,13 +1332,13 @@ or commands with certain desired options:
      No unread mail
      No Plan.
 
-     % alias lock='lock -p -60000'
+     % alias lock=’lock ‐p ‐60000’
      % lock
      lock: /dev/ttyr4 on phoenix. timeout in 60000 minutes
      time now is Fri May 24 04:23:18 EDT 1991
      Key:
 
-     % alias l='ls -AF'
+     % alias l=’ls ‐AF’
      % l /
      .bash_history              kadb*
      .bashrc                    lib@
@@ -1350,27 +1350,27 @@ or commands with certain desired options:
 Aliases can also be used to replace old commands:
 
      % alias grep=egrep ps=sps make=gmake
-     % alias whoami='echo root'
+     % alias whoami=’echo root’
      % whoami
      root
 
 or to define new ones:
 
      % cd /
-     % alias sz='ls -l | sort -n +3 | tail -10'
+     % alias sz=’ls ‐l | sort ‐n +3 | tail ‐10’
      % sz
-     drwxr-sr-x  7 bin          3072 May 23 11:59 etc
+     drwxr‐sr‐x  7 bin          3072 May 23 11:59 etc
      drwxrwxrwx 26 root         5120 May 24 04:20 tmp
-     drwxr-xr-x  2 root         8192 Dec 26 19:34 lost+found
-     drwxr-sr-x  2 bin         14848 May 23 18:48 dev
-     -r--r--r--  1 root       140520 Dec 26 20:08 boot
-     -rwxr-xr-x  1 root       311172 Dec 26 20:08 kadb
-     -rwxr-xr-x  1 root      1209695 Apr 16 15:33 vmunix.old
-     -rwxr-xr-x  1 root      1209702 May 14 19:04 vmunix
-     -rwxr-xr-x  1 root      1209758 May 21 12:23 vmunix.new.kernelmap.old
-     -rwxr-xr-x  1 root      1711848 Dec 26 20:08 vmunix.org
+     drwxr‐xr‐x  2 root         8192 Dec 26 19:34 lost+found
+     drwxr‐sr‐x  2 bin         14848 May 23 18:48 dev
+     ‐r‐‐r‐‐r‐‐  1 root       140520 Dec 26 20:08 boot
+     ‐rwxr‐xr‐x  1 root       311172 Dec 26 20:08 kadb
+     ‐rwxr‐xr‐x  1 root      1209695 Apr 16 15:33 vmunix.old
+     ‐rwxr‐xr‐x  1 root      1209702 May 14 19:04 vmunix
+     ‐rwxr‐xr‐x  1 root      1209758 May 21 12:23 vmunix.new.kernelmap.old
+     ‐rwxr‐xr‐x  1 root      1711848 Dec 26 20:08 vmunix.org
      % cd
-     % alias rable='ls -AFtrd *(R)' nrable='ls -AFtrd *(^R)'
+     % alias rable=’ls ‐AFtrd *(R)’ nrable=’ls ‐AFtrd *(^R)’
      % rable
      README      func/       bin/        pub/        News/       src/
      nicecolors  etc/        scr/        tmp/        iris/       zsh*
@@ -1387,17 +1387,17 @@ or to define new ones:
 
 
 
-                               -20-
+                               ‐20‐
 
 
 directory, and *(^R) matches all unreadable files.)
 
 Most other shells have aliases of this  kind  ([4mcommand[24m  aliases).
-However,  [1mzsh [22malso has [4mglobal[24m aliases, which are substituted any-
-where on a line.  Global aliases can be used to  abbreviate  fre-
-quently-typed usernames, hostnames, etc.
+However,  [1mzsh [22malso has [4mglobal[24m aliases, which are substituted any‐
+where on a line.  Global aliases can be used to  abbreviate  fre‐
+quently‐typed usernames, hostnames, etc.
 
-     % alias -g me=pfalstad gun=egsirer mjm=maruchck
+     % alias ‐g me=pfalstad gun=egsirer mjm=maruchck
      % who | grep me
      pfalstad ttyp0   May 24 03:39   (mickey.Princeton)
      pfalstad ttyp5   May 24 03:42   (mickey.Princeton)
@@ -1407,18 +1407,18 @@ quently-typed usernames, hostnames, etc.
      Last login Thu May 23 19:05 on ttyq3 from bow.Princeton.ED
      New mail received Fri May 24 02:30:28 1991;
        unread since Fri May 24 02:30:27 1991
-     % alias -g phx=phoenix.princeton.edu warc=wuarchive.wustl.edu
+     % alias ‐g phx=phoenix.princeton.edu warc=wuarchive.wustl.edu
      % ftp warc
      Connected to wuarchive.wustl.edu.
 
 Here are some more interesting uses.
 
-     % alias -g M='| more' GF='| fgrep -f ~/.friends'
-     % who M   # [4mpipes[24m [4mthe[24m [4moutput[24m [4mof[24m who [4mthrough[24m more
-     % who GF  # [4msee[24m [4mif[24m [4myour[24m [4mfriends[24m [4mare[24m [4mon[0m
-     % w GF    # [4msee[24m [4mwhat[24m [4myour[24m [4mfriends[24m [4mare[24m [4mdoing[0m
+     % alias ‐g M=’| more’ GF=’| fgrep ‐f ~/.friends’
+     % who M   # [4mpipes[24m [4mthe[24m [4moutput[24m [4mof[24m [4mwho[24m [4mthrough[24m [4mmore[0m
+     [4m%[24m [4mwho[24m [4mGF[24m  [4m#[24m [4msee[24m [4mif[24m [4myour[24m [4mfriends[24m [4mare[24m [4mon[0m
+     [4m%[24m [4mw[24m [4mGF[24m    [4m#[24m [4msee[24m [4mwhat[24m [4myour[24m [4mfriends[24m [4mare[24m [4mdoing[0m
 
-Another  example makes use of [1mzsh[22m's process substitution.  If you
+Another  example makes use of [1mzsh[22m’s process substitution.  If you
 run NIS, and you miss being able to do this:
 
      % grep pfalstad /etc/passwd
@@ -1426,13 +1426,13 @@ run NIS, and you miss being able to do this:
 you can define an alias that will seem more natural than  ypmatch
 pfalstad passwd:
 
-     % alias -g PASS='<(ypcat passwd)'
+     % alias ‐g PASS=’<(ypcat passwd)’
      % grep pfalstad PASS
      pfalstad:*:3564:35:Paul John Falstad:/u/pfalstad:/usr/princeton/bin/zsh
 
-If you're really crazy, you can even call it /etc/passwd:
+If you’re really crazy, you can even call it /etc/passwd:
 
-     % alias -g /etc/passwd='<(ypcat passwd)'
+     % alias ‐g /etc/passwd=’<(ypcat passwd)’
      % grep pfalstad /etc/passwd
      pfalstad:*:3564:35:Paul John Falstad:/u/pfalstad:/usr/princeton/bin/zsh
 
@@ -1453,7 +1453,7 @@ idea, especially for aliases  which  introduce  shell  metasyntax
 
 
 
-                               -21-
+                               ‐21‐
 
 
 (like M and GF above).
@@ -1463,20 +1463,20 @@ defining them is different, and they do not have arguments.   All
 your  favorite csh aliases will probably not work under [1mzsh[22m.  For
 example, if you try:
 
-     alias rm mv '\!* /tmp/wastebasket'
+     alias rm mv ’\!* /tmp/wastebasket’
 
 no aliases will be defined, but [1mzsh [22mwill not report an error.  In
-csh,  this  line defines an alias that makes rm safe---files that
-are rm'd will be  moved  to  a  temporary  directory  instead  of
-instantly  destroyed.   In  [1mzsh[22m's syntax, however, this line asks
+csh,  this  line defines an alias that makes rm safe‐‐‐files that
+are rm’d will be  moved  to  a  temporary  directory  instead  of
+instantly  destroyed.   In  [1mzsh[22m’s syntax, however, this line asks
 the shell to print any existing alias definitions for rm, mv,  or
 !* /tmp/wastebasket.   Since  there  are  none,  most likely, the
 shell will not print  anything,  although  alias  will  return  a
 nonzero exit code.  The proper syntax is this:
 
-     alias rm='mv \!* /tmp/wastebasket'
+     alias rm=’mv \!* /tmp/wastebasket’
 
-However, this won't work either:
+However, this won’t work either:
 
      % rm foo.dvi
      zsh: no matches found: !*
@@ -1491,22 +1491,22 @@ intended.  In [1mzsh[22m, you must use a shell function for this:
      foo.dvi
 
 While this is much cleaner and easier to read (I  hope  you  will
-agree), it is not csh-compatible.  Therefore, a script to convert
+agree), it is not csh‐compatible.  Therefore, a script to convert
 csh aliases and variables has been  provided.   You  should  only
-need  to use it once, to convert all your csh aliases and parame-
+need  to use it once, to convert all your csh aliases and parame‐
 ters to [1mzsh [22mformat:
 
      % csh
      csh> alias
-     l       ls -AF
+     l       ls ‐AF
      more    less
-     on      last -2 !:1 ; who | grep !:1
+     on      last ‐2 !:1 ; who | grep !:1
      csh> exit
      % c2z >neat_zsh_aliases
      % cat neat_zsh_aliases
-     alias l='ls -AF'
-     alias more='less'
-     on () { last -2 $1 ; who | grep $1 }
+     alias l=’ls ‐AF’
+     alias more=’less’
+     on () { last ‐2 $1 ; who | grep $1 }
      ...
 
 The first two aliases were  converted  to  regular  [1mzsh  [22maliases,
@@ -1519,12 +1519,12 @@ The first two aliases were  converted  to  regular  [1mzsh  [22maliases,
 
 
 
-                               -22-
+                               ‐22‐
 
 
-while  the  third,  since it needed to handle arguments, was con-
+while  the  third,  since it needed to handle arguments, was con‐
 verted to a function.  c2z can convert most aliases to [1mzsh [22mformat
-without  any  problems.   However,  if  you're  using some really
+without  any  problems.   However,  if  you’re  using some really
 arcane csh tricks, or if you have an alias with a  name  like  do
 (which  is  reserved  in  [1mzsh[22m),  you  may have to fix some of the
 aliases by hand.
@@ -1537,28 +1537,28 @@ startup file, .zshrc.
 [1mHistory[0m
 
 There  are several ways to manipulate history in [1mzsh[22m.  One way is
-to use csh-style ! history:
+to use csh‐style ! history:
 
-     % /usr/local/bin/!:0 !-2*:s/foo/bar/ >>!$
+     % /usr/local/bin/!:0 !‐2*:s/foo/bar/ >>!$
 
-If you don't want to use this, you can  turn  it  off  by  typing
+If you don’t want to use this, you can  turn  it  off  by  typing
 setopt  nobanghist.   If you are afraid of accidentally executing
 the wrong command you can set the  [4mHISTVERIFY[24m  option.   If  this
 option  is  set, commands that result from history expansion will
 not be executed immediately, but will be put back into the editor
 buffer for further consideration.
 
-If you're not familiar with ! history, here follows some explana-
+If you’re not familiar with ! history, here follows some explana‐
 tion.  History substitutions always  start  with  a  !,  commonly
-called  "bang".   After  the ! comes an (optional) designation of
-which "event" (command) to use, then a colon, and then a designa-
-tion  of  what  word  of  that  command to use.  For example, !-[4mn[0m
+called  “bang”.   After  the ! comes an (optional) designation of
+which “event” (command) to use, then a colon, and then a designa‐
+tion  of  what  word  of  that  command to use.  For example, !‐[4mn[0m
 refers to the command [4mn[24m commands ago.
 
      % ls
      foo  bar
      % cd foo
-     % !-2
+     % !‐2
      ls
      baz  bam
 
@@ -1585,20 +1585,20 @@ use the previous command.  A $ specifies the last argument
 
 
 
-                               -23-
+                               ‐23‐
 
 
-     % mkdir /usr/local/lib/emacs/site-lisp/calc
+     % mkdir /usr/local/lib/emacs/site‐lisp/calc
      % cd !:$
-     cd /usr/local/lib/emacs/site-lisp/calc
+     cd /usr/local/lib/emacs/site‐lisp/calc
 
 If  you  use  more  words  of  the same command, only the first !
 needs an event designator.
 
      % make prig >> make.log
-     make: *** No rule to make target `prig'.  Stop.
+     make: *** No rule to make target ‘prig’.  Stop.
      % cd src
-     % !-2:0 prog >> !:$
+     % !‐2:0 prog >> !:$
      make prog >> make.log
 
 This is different from csh, where a bang with no event designator
@@ -1606,13 +1606,13 @@ always refers to the previous command.  If you actually like this
 behaviour, set the [4mCSHJUNKIEHISTORY[24m option.
 
      % setopt cshjunkiehistory
-     % !-2:0 prog2 >> !:$
+     % !‐2:0 prog2 >> !:$
      make prog2 >> cshjunkiehistory
 
-Another way to use history is to use the fc command.   For  exam-
+Another way to use history is to use the fc command.   For  exam‐
 ple, if you type an erroneous command:
 
-     % for i in `cat /etc/clients`
+     % for i in ‘cat /etc/clients‘
       do
       rpu $i
       done
@@ -1651,7 +1651,7 @@ fix it.  (The default editor is vi, by the way, not ed).
 
 
 
-                               -24-
+                               ‐24‐
 
 
      % fc
@@ -1661,7 +1661,7 @@ fix it.  (The default editor is vi, by the way, not ed).
      w
      49
      q
-     for i in `cat /etc/clients`
+     for i in ‘cat /etc/clients‘
       do
       rup $i
       done
@@ -1693,15 +1693,15 @@ with optional changes:
 
 [1mCommand Line Editing[0m
 
-[1mzsh[22m's  command  line  editor,  [1mZLE[22m,  is  quite  powerful.   It is
+[1mzsh[22m’s  command  line  editor,  [1mZLE[22m,  is  quite  powerful.   It is
 designed to emulate either emacs or vi; the default is emacs.  To
-set the bindings for vi mode, type bindkey -v.  If your [1mEDITOR [22mor
+set the bindings for vi mode, type bindkey ‐v.  If your [1mEDITOR [22mor
 [1mVISUAL [22menvironment variable is vi, [1mzsh [22mwill use vi  emulation  by
-default.  You can then switch to emacs mode with bindkey -e.
+default.  You can then switch to emacs mode with bindkey ‐e.
 
-In addition to basic editing, the shell allows you to recall pre-
+In addition to basic editing, the shell allows you to recall pre‐
 vious lines in the history.  In emacs mode, this is done with  [4m^P[0m
-(control-P) or (on many terminals) with the cursor-up key:
+(control‐P) or (on many terminals) with the cursor‐up key:
 
 
 
@@ -1717,23 +1717,23 @@ vious lines in the history.  In emacs mode, this is done with  [4m^P[0m
 
 
 
-                               -25-
+                               ‐25‐
 
 
      % ls ~
-     -           README      file        mail        pub         tmp
+     ‐           README      file        mail        pub         tmp
      Mailboxes   bin         func        nicecolors  scr         zsh
      News        etc         iris        notes       src
      % echo foobar
      foobar
      % [4m^P[0m
-     % echo foobar[4m^P[0m
-     % ls ~_
+     [4m%[24m [4mecho[24m [4mfoobar^P[0m
+     [4m%[24m [4mls[24m [4m~_[0m
 
 Pressing  [4m^P[24m  once  brings  up  the  previous line (echo foobar);
 pressing it again brings up the line before  that  (ls  ~).   The
 cursor  is  left at the end of the line, allowing you to edit the
-line if desired before executing it.  In many cases,  [1mZLE  [22melimi-
+line if desired before executing it.  In many cases,  [1mZLE  [22melimi‐
 nates the need for the fc command, since it is powerful enough to
 handle even multiline commands:
 
@@ -1747,10 +1747,10 @@ handle even multiline commands:
      d
      e
      % [4m^P[0m
-     % for i in a b c d e
-      do
-      echo $i
-      done_
+     [4m%[24m [4mfor[24m [4mi[24m [4min[24m [4ma[24m [4mb[24m [4mc[24m [4md[24m [4me[0m
+      [4mdo[0m
+      [4mecho[24m [4m$i[0m
+      [4mdone_[0m
 
 Now you can just move up to the part you want to change...
 
@@ -1771,7 +1771,7 @@ change it, and execute the new command.
      i
      j
 
-Also, you can search the history for a certain command using [4mESC-[0m
+Also, you can search the history for a certain command using [4mESC‐[0m
 [4mP[24m,  this  will  look  for  the last command that started with the
 (part of the) word at the beginning of the current line.  Hitting
 
@@ -1783,31 +1783,31 @@ Also, you can search the history for a certain command using [4mESC-[0m
 
 
 
-                               -26-
+                               ‐26‐
 
 
-[4mESC-P[24m another time gets you the command before that, etc.
+[4mESC‐P[24m another time gets you the command before that, etc.
 
-     % set [4mESC-P[0m
-     % setopt autolist [4mESC-P[0m
-     % setopt nocorrect_
+     % set [4mESC‐P[0m
+     [4m%[24m [4msetopt[24m [4mautolist[24m [4mESC‐P[0m
+     [4m%[24m [4msetopt[24m [4mnocorrect_[0m
 
-Another way is to do an incremental search, emacs-style:
+Another way is to do an incremental search, emacs‐style:
 
      % [4m^R[0m
-     % _
-     i-search:
+     [4m%[24m [4m_[0m
+     [4mi‐search:[0m
 
-     % ls_ /usr/bin
-     i-search: l
+     [4m%[24m [4mls_[24m [4m/usr/bin[0m
+     [4mi‐search:[24m [4ml[0m
 
-     % date > foofile._c
-     i-search: le
+     [4m%[24m [4mdate[24m [4m>[24m [4mfoofile._c[0m
+     [4mi‐search:[24m [4mle[0m
 
 Suppose  you  have retrieved an old history event in one of these
 ways and would like to execute several consecutive  old  commands
 starting  with this one.  ^O will execute the current command and
-then put the next command from the history into the  editor  buf-
+then put the next command from the history into the  editor  buf‐
 fer.   Typing  ^O  several times will therefore reexecute several
 consecutive commands from the history.  Of course, you  can  edit
 some of those commands in between.
@@ -1816,28 +1816,28 @@ In  addition to completion (see below), [4mTAB[24m performs expansion if
 possible.
 
      % ls *.c[4mTAB[0m
-     % ls foofile.c fortune.c rnd.c strfile.c unstr.c_
+     [4m%[24m [4mls[24m [4mfoofile.c[24m [4mfortune.c[24m [4mrnd.c[24m [4mstrfile.c[24m [4munstr.c_[0m
 
-For example, suppose you have a bunch of weird files in an impor-
+For example, suppose you have a bunch of weird files in an impor‐
 tant directory:
 
      % ls
        * * *       ; & % $??foo  dspfok        foo.c
-       !"foo"!       ` \ `         foo           rrr
+       !"foo"!       ‘ \ ‘         foo           rrr
 
-You  want  to  remove  them,  but you don't want to damage foo.c.
+You  want  to  remove  them,  but you don’t want to damage foo.c.
 Here is one way to do this:
 
      % rm *[4mTAB[0m
-     % rm \ \ \*\ \*\ \*\ \ \  \!\"foo\"\! \;\ \&\ %\ \$'
-     �'foo \`\ \\\ \` dspfok foo foo.c rrr_
+     [4m%[24m [4mrm[24m [4m\[24m [4m\[24m [4m\*\[24m [4m\*\[24m [4m\*\[24m [4m\[24m [4m\[24m  [4m\!\"foo\"\![24m [4m\;\[24m [4m\&\[24m [4m%\[24m [4m\$’[0m
+     [4m´’foo[24m [4m\‘\[24m [4m\\\[24m [4m\‘[24m [4mdspfok[24m [4mfoo[24m [4mfoo.c[24m [4mrrr_[0m
 
 When you expand *, [1mzsh [22minserts the names of all  the  files  into
 the  editing  buffer,  with proper shell quoting.  Now, just move
 back and remove foo.c from the buffer:
 
-     % rm \ \ \*\ \*\ \*\ \ \  \!\"foo\"\! \;\ \&\ %\ \$'
-     �'foo \`\ \\\ \` dspfok foo r_rr
+     % rm \ \ \*\ \*\ \*\ \ \  \!\"foo\"\! \;\ \&\ %\ \$’
+     ´’foo \‘\ \\\ \‘ dspfok foo r_rr
 
 and press return.  Everything except foo.c will be  deleted  from
 
@@ -1849,7 +1849,7 @@ and press return.  Everything except foo.c will be  deleted  from
 
 
 
-                               -27-
+                               ‐27‐
 
 
 the directory.  If you do not want to actually expand the current
@@ -1859,51 +1859,51 @@ word, but would like to see what the matches are, type ^Xg.
      foo    foo.c
      % rm f*_
 
-Here's another trick; let's say you have typed this command in:
+Here’s another trick; let’s say you have typed this command in:
 
-     % gcc -o x.out foob.c -g -Wpointer-arith -Wtrigraphs_
+     % gcc ‐o x.out foob.c ‐g ‐Wpointer‐arith ‐Wtrigraphs_
 
 and you forget which library you want.  You need  to  escape  out
 for  a minute and check by typing ls /usr/lib, or some other such
-command; but you don't want to retype the  whole  command  again,
-and  you  can't  press  return now because the current command is
+command; but you don’t want to retype the  whole  command  again,
+and  you  can’t  press  return now because the current command is
 incomplete.  In [1mzsh[22m, you can put the line on  the  [4mbuffer[24m  [4mstack[24m,
-using  [4mESC-Q[24m,  and  type  some  other  commands.  The next time a
+using  [4mESC‐Q[24m,  and  type  some  other  commands.  The next time a
 prompt is printed, the gcc line will be popped off the stack  and
 put  in  the editing buffer automatically; you can then enter the
-proper library name and press return (or, [4mESC-Q[24m  again  and  look
+proper library name and press return (or, [4mESC‐Q[24m  again  and  look
 for some other libraries whose names you forgot).
 
 A  similar  situation:  what if you forget the option to gcc that
-finds bugs using AI  techniques?   You  could  either  use  [4mESC-Q[0m
-again,  and  type man gcc, or you could press [4mESC-H[24m, which essen-
-tially does the same thing; it puts the current line on the  buf-
-fer  stack, and executes the command run-help gcc, where run-help
+finds bugs using AI  techniques?   You  could  either  use  [4mESC‐Q[0m
+again,  and  type man gcc, or you could press [4mESC‐H[24m, which essen‐
+tially does the same thing; it puts the current line on the  buf‐
+fer  stack, and executes the command run‐help gcc, where run‐help
 is an alias for man.
 
-Another interesting command is [4mESC-A[24m.  This executes the  current
+Another interesting command is [4mESC‐A[24m.  This executes the  current
 line, but retains it in the buffer, so that it appears again when
 the next prompt is printed.  Also, the cursor stays in  the  same
-place.   This  is  useful  for executing a series of similar com-
+place.   This  is  useful  for executing a series of similar com‐
 mands:
 
-     % cc grok.c -g -lc -lgl -lsun -lmalloc -Bstatic -o b.out
-     % cc fubar.c -g -lc -lgl -lsun -lmalloc -Bstatic -o b.out
-     % cc fooble.c -g -lc -lgl -lsun -lmalloc -Bstatic -o b.out
+     % cc grok.c ‐g ‐lc ‐lgl ‐lsun ‐lmalloc ‐Bstatic ‐o b.out
+     % cc fubar.c ‐g ‐lc ‐lgl ‐lsun ‐lmalloc ‐Bstatic ‐o b.out
+     % cc fooble.c ‐g ‐lc ‐lgl ‐lsun ‐lmalloc ‐Bstatic ‐o b.out
 
 
-The [4mESC-'[24m command is useful for managing the shell's quoting con-
-ventions.  Let's say you want to print this string:
+The [4mESC‐’[24m command is useful for managing the shell’s quoting con‐
+ventions.  Let’s say you want to print this string:
 
-     don't do that; type 'rm -rf \*', with a \ before the *.
+     don’t do that; type ’rm ‐rf \*’, with a \ before the *.
 
 All that is necessary is to type it into the editing buffer:
 
-     % don't do that; type 'rm -rf \*', with a \ before the *.
+     % don’t do that; type ’rm ‐rf \*’, with a \ before the *.
 
-press [4mESC-'[24m (escape-quote):
+press [4mESC‐’[24m (escape‐quote):
 
-     % 'don'\''t do that; type '\''rm -rf \*'\'', with a \ before the *.'
+     % ’don’\’’t do that; type ’\’’rm ‐rf \*’\’’, with a \ before the *.’
 
 then move to the beginning and add the echo command.
 
@@ -1915,33 +1915,33 @@ then move to the beginning and add the echo command.
 
 
 
-                               -28-
+                               ‐28‐
 
 
-     % echo 'don'\''t do that; type '\''rm -rf \*'\'', with a \ before the *.'
-     don't do that; type 'rm -rf \*', with a \ before the *.
+     % echo ’don’\’’t do that; type ’\’’rm ‐rf \*’\’’, with a \ before the *.’
+     don’t do that; type ’rm ‐rf \*’, with a \ before the *.
 
-Let's  say  you  want to create an alias to do this echo command.
-This can be done by recalling the line with [4m^P[24m and pressing [4mESC-'[0m
+Let’s  say  you  want to create an alias to do this echo command.
+This can be done by recalling the line with [4m^P[24m and pressing [4mESC‐’[0m
 again:
 
-     % 'echo '\''don'\''\'\'''\''t do that; type '\''\'\'''\''rm -rf
-     \*'\''\'\'''\'', with a \ before the *.'\'''
+     % ’echo ’\’’don’\’’\’\’’’\’’t do that; type ’\’’\’\’’’\’’rm ‐rf
+     \*’\’’\’\’’’\’’, with a \ before the *.’\’’’
 
 and  then  move to the beginning and add the command to create an
 alias.
 
-     % alias zoof='echo '\''don'\''\'\'''\''t do that; type '\''\'\'''\''rm
-     -rf \*'\''\'\'''\'', with a \ before the *.'\'''
+     % alias zoof=’echo ’\’’don’\’’\’\’’’\’’t do that; type ’\’’\’\’’’\’’rm
+     ‐rf \*’\’’\’\’’’\’’, with a \ before the *.’\’’’
      % zoof
-     don't do that; type 'rm -rf \*', with a \ before the *.
+     don’t do that; type ’rm ‐rf \*’, with a \ before the *.
 
 If one of these fancy editor commands changes your  command  line
 in a way you did not intend, you can undo changes with ^_, if you
 can get it out of your keyboard, or ^X^U, otherwise.
 
 Another use of the editor is to edit the value of variables.  For
-example, an easy way to change your path is to use the vared com-
+example, an easy way to change your path is to use the vared com‐
 mand:
 
      % vared PATH
@@ -1958,19 +1958,19 @@ Another  great  [1mzsh  [22mfeature  is completion.  If you hit [4mTAB[24m, 
 will complete all kinds of stuff.  Like commands or filenames:
 
      % comp[4mTAB[0m
-     % compress _
+     [4m%[24m [4mcompress[24m [4m_[0m
 
-     % ls nic[4mTAB[0m
-     % ls nicecolors _
+     [4m%[24m [4mls[24m [4mnicTAB[0m
+     [4m%[24m [4mls[24m [4mnicecolors[24m [4m_[0m
 
-     % ls /usr/pr[4mTAB[0m
-     % ls /usr/princeton/_
+     [4m%[24m [4mls[24m [4m/usr/prTAB[0m
+     [4m%[24m [4mls[24m [4m/usr/princeton/_[0m
 
-     % ls -l =com[4mTAB[0m
-     % ls -l =compress _
+     [4m%[24m [4mls[24m [4m‐l[24m [4m=comTAB[0m
+     [4m%[24m [4mls[24m [4m‐l[24m [4m=compress[24m [4m_[0m
 
 If the completion is ambiguous, the editor  will  beep.   If  you
-find  this  annoying, you can set the [4mNOLISTBEEP[24m option.  Comple-
+find  this  annoying, you can set the [4mNOLISTBEEP[24m option.  Comple‐
 tion can even be done in the middle of words.  To use  this,  you
 
 
@@ -1981,61 +1981,61 @@ tion can even be done in the middle of words.  To use  this,  you
 
 
 
-                               -29-
+                               ‐29‐
 
 
 will have to set the [4mCOMPLETEINWORD[24m option:
 
      % setopt completeinword
      % ls /usr/pt_on[4mTAB[0m
-     % ls /usr/princet_on/
-     % setopt alwaystoend
-     % ls /usr/pt_on[4mTAB[0m
-     % ls /usr/princeton/_
+     [4m%[24m [4mls[24m [4m/usr/princet_on/[0m
+     [4m%[24m [4msetopt[24m [4malwaystoend[0m
+     [4m%[24m [4mls[24m [4m/usr/pt_onTAB[0m
+     [4m%[24m [4mls[24m [4m/usr/princeton/_[0m
 
 You can list possible completions by pressing [4m^D[24m:
 
-     % ls /vmu[4mTAB[24m [4m--beep--[0m
-     % ls /vmunix_
-     % ls /vmunix[4m^D[0m
-     vmunix                    vmunix.old
-     vmunix.new.kernelmap.old  vmunix.org
+     % ls /vmu[4mTAB[24m [4m—beep—[0m
+     [4m%[24m [4mls[24m [4m/vmunix_[0m
+     [4m%[24m [4mls[24m [4m/vmunix^D[0m
+     [4mvmunix[24m                    [4mvmunix.old[0m
+     [4mvmunix.new.kernelmap.old[24m  [4mvmunix.org[0m
 
 Or, you could just set the [4mAUTOLIST[24m option:
 
      % setopt autolist
-     % ls /vmu[4mTAB[24m [4m--beep--[0m
-     vmunix                    vmunix.old
-     vmunix.new.kernelmap.old  vmunix.org
-     % ls /vmunix_
+     % ls /vmu[4mTAB[24m [4m—beep—[0m
+     [4mvmunix[24m                    [4mvmunix.old[0m
+     [4mvmunix.new.kernelmap.old[24m  [4mvmunix.org[0m
+     [4m%[24m [4mls[24m [4m/vmunix_[0m
 
 If you like to see the types of the files in these lists, like in
-ls -F, you can set the [4mLISTTYPES[24m option.  Together with  [4mAUTOLIST[0m
+ls ‐F, you can set the [4mLISTTYPES[24m option.  Together with  [4mAUTOLIST[0m
 you can use [4mLISTAMBIGUOUS[24m.  This will only list the possibilities
 if there is no unambiguous part to add:
 
      % setopt listambiguous
-     % ls /vmu[4mTAB[24m [4m--beep--[0m
-     % ls /vmunix_[4mTAB[24m [4m--beep--[0m
-     vmunix                    vmunix.old
-     vmunix.new.kernelmap.old  vmunix.org
+     % ls /vmu[4mTAB[24m [4m—beep—[0m
+     [4m%[24m [4mls[24m [4m/vmunix_TAB[24m [4m—beep—[0m
+     [4mvmunix[24m                    [4mvmunix.old[0m
+     [4mvmunix.new.kernelmap.old[24m  [4mvmunix.org[0m
 
-If you don't want several of these listings to scroll the  screen
+If you don’t want several of these listings to scroll the  screen
 so  much, the [4mALWAYSLASTPROMPT[24m option is useful.  If set, you can
 continue to edit the line you were editing, with  the  completion
 listing appearing beneath it.
 
 Another interesting option is [4mMENUCOMPLETE[24m.  This affects the way
-[4mTAB[24m works.  Let's look at the /vmunix example again:
+[4mTAB[24m works.  Let’s look at the /vmunix example again:
 
      % setopt menucomplete
      % ls /vmu[4mTAB[0m
-     % ls /vmunix[4mTAB[0m
-     % ls /vmunix.new.kernelmap.old[4mTAB[0m
-     % ls /vmunix.old_
+     [4m%[24m [4mls[24m [4m/vmunixTAB[0m
+     [4m%[24m [4mls[24m [4m/vmunix.new.kernelmap.oldTAB[0m
+     [4m%[24m [4mls[24m [4m/vmunix.old_[0m
 
-Each time you press [4mTAB[24m, it displays the  next  possible  comple-
-tion.   In  this  way, you can cycle through the possible comple-
+Each time you press [4mTAB[24m, it displays the  next  possible  comple‐
+tion.   In  this  way, you can cycle through the possible comple‐
 tions until you find the one you want.
 
 
@@ -2047,28 +2047,28 @@ tions until you find the one you want.
 
 
 
-                               -30-
+                               ‐30‐
 
 
 The [4mAUTOMENU[24m option makes a nice compromise between  this  method
 of  completion  and  the regular method.  If you set this option,
-pressing [4mTAB[24m once completes the unambiguous part normally, press-
+pressing [4mTAB[24m once completes the unambiguous part normally, press‐
 ing  the  [4mTAB[24m  key  repeatedly after an ambiguous completion will
 cycle through the possible completions.
 
 Another option you could set  is  [4mRECEXACT[24m,  which  causes  exact
-matches  to be accepted, even if there are other possible comple-
+matches  to be accepted, even if there are other possible comple‐
 tions:
 
      % setopt recexact
-     % ls /vmu[4mTAB[24m [4m--beep--[0m
-     vmunix                    vmunix.old
-     vmunix.new.kernelmap.old  vmunix.org
-     % ls /vmunix_[4mTAB[0m
-     % ls /vmunix _
+     % ls /vmu[4mTAB[24m [4m—beep—[0m
+     [4mvmunix[24m                    [4mvmunix.old[0m
+     [4mvmunix.new.kernelmap.old[24m  [4mvmunix.org[0m
+     [4m%[24m [4mls[24m [4m/vmunix_TAB[0m
+     [4m%[24m [4mls[24m [4m/vmunix[24m [4m_[0m
 
 To facilitate the typing of pathnames,  a  slash  will  be  added
-whenever a directory is completed.  Some computers don't like the
+whenever a directory is completed.  Some computers don’t like the
 spurious slashes at the end of directory names.   In  that  case,
 the [4mAUTOREMOVESLASH[24m option comes to rescue.  It will remove these
 slashes when you type a space or return after them.
@@ -2076,11 +2076,11 @@ slashes when you type a space or return after them.
 The [4mfignore[24m variable lists suffixes of  files  to  ignore  during
 completion.
 
-     % ls foo[4mTAB[24m [4m--beep--[0m
-     foofile.c  foofile.o
-     % fignore=( .o \~ .bak .junk )
-     % ls foo[4mTAB[0m
-     % ls foofile.c _
+     % ls foo[4mTAB[24m [4m—beep—[0m
+     [4mfoofile.c[24m  [4mfoofile.o[0m
+     [4m%[24m [4mfignore=([24m [4m.o[24m [4m\~[24m [4m.bak[24m [4m.junk[24m [4m)[0m
+     [4m%[24m [4mls[24m [4mfooTAB[0m
+     [4m%[24m [4mls[24m [4mfoofile.c[24m [4m_[0m
 
 Since  foofile.o has a suffix that is in the fignore list, it was
 not considered a possible completion of foo.
@@ -2088,18 +2088,18 @@ not considered a possible completion of foo.
 Username completion is also supported:
 
      % ls ~pfal[4mTAB[0m
-     % ls ~pfalstad/_
+     [4m%[24m [4mls[24m [4m~pfalstad/_[0m
 
 and parameter name completion:
 
      % echo $ORG[4mTAB[0m
-     % echo $ORGANIZATION _
-     % echo ${ORG[4mTAB[0m
-     % echo ${ORGANIZATION _
+     [4m%[24m [4mecho[24m [4m$ORGANIZATION[24m [4m_[0m
+     [4m%[24m [4mecho[24m [4m${ORGTAB[0m
+     [4m%[24m [4mecho[24m [4m${ORGANIZATION[24m [4m_[0m
 
-Note that in the last example a space is added after the  comple-
+Note that in the last example a space is added after the  comple‐
 tion  as usual.  But if you want to add a colon or closing brace,
-you  probably  don't  want  this  extra   space.    Setting   the
+you  probably  don’t  want  this  extra   space.    Setting   the
 [4mAUTOPARAMKEYS[24m  option will automatically remove this space if you
 type a colon or closing brace after such a completion.
 
@@ -2113,59 +2113,59 @@ type a colon or closing brace after such a completion.
 
 
 
-                               -31-
+                               ‐31‐
 
 
 There is also option completion:
 
      % setopt nocl[4mTAB[0m
-     % setopt noclobber _
+     [4m%[24m [4msetopt[24m [4mnoclobber[24m [4m_[0m
 
 and binding completion:
 
-     % bindkey '^X^X' pu[4mTAB[0m
-     % bindkey '^X^X' push-line _
+     % bindkey ’^X^X’ pu[4mTAB[0m
+     [4m%[24m [4mbindkey[24m [4m’^X^X’[24m [4mpush‐line[24m [4m_[0m
 
-The compctl command is used to control completion  of  the  argu-
+The compctl command is used to control completion  of  the  argu‐
 ments of specific commands.  For example, to specify that certain
-commands take other commands as arguments, you use compctl -c:
+commands take other commands as arguments, you use compctl ‐c:
 
-     % compctl -c man nohup
+     % compctl ‐c man nohup
      % man upt[4mTAB[0m
-     % man uptime _
+     [4m%[24m [4mman[24m [4muptime[24m [4m_[0m
 
 To specify that a command should complete filenames,  you  should
-use  compctl  -f.   This is the default.  It can be combined with
--c, as well.
+use  compctl  ‐f.   This is the default.  It can be combined with
+‐c, as well.
 
-     % compctl -cf echo
+     % compctl ‐cf echo
      % echo upt[4mTAB[0m
-     % echo uptime _
+     [4m%[24m [4mecho[24m [4muptime[24m [4m_[0m
 
-     % echo fo[4mTAB[0m
-     % echo foo.c
+     [4m%[24m [4mecho[24m [4mfoTAB[0m
+     [4m%[24m [4mecho[24m [4mfoo.c[0m
 
-Similarly, use -o to specify options, -v  to  specify  variables,
-and -b to specify bindings.
+Similarly, use ‐o to specify options, ‐v  to  specify  variables,
+and ‐b to specify bindings.
 
-     % compctl -o setopt unsetopt
-     % compctl -v typeset vared unset export
-     % compctl -b bindkey
+     % compctl ‐o setopt unsetopt
+     % compctl ‐v typeset vared unset export
+     % compctl ‐b bindkey
 
-You  can  also use -k to specify a custom list of keywords to use
-in completion.  After the -k comes either the name of an array or
+You  can  also use ‐k to specify a custom list of keywords to use
+in completion.  After the ‐k comes either the name of an array or
 a literal array to take completions from.
 
      % ftphosts=(ftp.uu.net wuarchive.wustl.edu)
-     % compctl -k ftphosts ftp
+     % compctl ‐k ftphosts ftp
      % ftp wu[4mTAB[0m
-     % ftp wuarchive.wustl.edu _
+     [4m%[24m [4mftp[24m [4mwuarchive.wustl.edu[24m [4m_[0m
 
-     % compctl -k '(cpirazzi subbarao sukthnkr)' mail finger
-     % finger cp[4mTAB[0m
-     % finger cpirazzi _
+     [4m%[24m [4mcompctl[24m [4m‐k[24m [4m’(cpirazzi[24m [4msubbarao[24m [4msukthnkr)’[24m [4mmail[24m [4mfinger[0m
+     [4m%[24m [4mfinger[24m [4mcpTAB[0m
+     [4m%[24m [4mfinger[24m [4mcpirazzi[24m [4m_[0m
 
-To better specify the files to complete for a command, use the -g
+To better specify the files to complete for a command, use the ‐g
 option which takes any glob pattern as an argument.  Be  sure  to
 quote  the  glob patterns as otherwise they will be expanded when
 the compctl command is run.
@@ -2179,43 +2179,43 @@ the compctl command is run.
 
 
 
-                               -32-
+                               ‐32‐
 
 
      % ls
      letter.tex  letter.dvi  letter.aux  letter.log  letter.toc
-     % compctl -g '*.tex' latex
-     % compctl -g '*.dvi' xdvi dvips
+     % compctl ‐g ’*.tex’ latex
+     % compctl ‐g ’*.dvi’ xdvi dvips
      % latex l[4mTAB[0m
-     % latex letter.tex _
-     % xdvi l[4mTAB[0m
-     % xdvi letter.dvi _
+     [4m%[24m [4mlatex[24m [4mletter.tex[24m [4m_[0m
+     [4m%[24m [4mxdvi[24m [4mlTAB[0m
+     [4m%[24m [4mxdvi[24m [4mletter.dvi[24m [4m_[0m
 
 Glob patterns can  include  qualifiers  within  parentheses.   To
 rmdir  only  directories and cd to directories and symbolic links
 pointing to them:
 
-     % compctl -g '*(-/)' cd
-     % compctl -g '*(/)' rmdir
+     % compctl ‐g ’*(‐/)’ cd
+     % compctl ‐g ’*(/)’ rmdir
 
-RCS users like to run commands on files which are not in the cur-
+RCS users like to run commands on files which are not in the cur‐
 rent directory, but in the RCS subdirectory where they all get ,v
 suffixes.  They might like to use
 
-     % compctl -g 'RCS/*(:t:s/\,v//)' co rlog rcs
+     % compctl ‐g ’RCS/*(:t:s/\,v//)’ co rlog rcs
      % ls RCS
      builtin.c,v  lex.c,v      zle_main.c,v
      % rlog bu[4mTAB[0m
-     % rlog builtin.c _
+     [4m%[24m [4mrlog[24m [4mbuiltin.c[24m [4m_[0m
 
 The :t modifier keeps only the last part of the pathname and  the
 :s/\,v// will replace any ,v by nothing.
 
-The -s flag is similar to -g, but it uses all expansions, instead
+The ‐s flag is similar to ‐g, but it uses all expansions, instead
 of just globbing, like brace  expansion,  parameter  substitution
 and command substitution.
 
-     % compctl -s '$(setopt)' unsetopt
+     % compctl ‐s ’$(setopt)’ unsetopt
 
 will only complete options which are actually set to be arguments
 to unsetopt.
@@ -2223,19 +2223,19 @@ to unsetopt.
 Sometimes a command takes another command as its  argument.   You
 can tell [1mzsh [22mto complete commands as the first argument to such a
 command and then use the completion method of the second command.
-The -l flag with a null-string argument is used for this.
+The ‐l flag with a null‐string argument is used for this.
 
-     % compctl -l '' nohup exec
+     % compctl ‐l ’’ nohup exec
      % nohup comp[4mTAB[0m
-     % nohup compress _
-     % nohup compress fil[4mTAB[0m
-     % nohup compress filename _
+     [4m%[24m [4mnohup[24m [4mcompress[24m [4m_[0m
+     [4m%[24m [4mnohup[24m [4mcompress[24m [4mfilTAB[0m
+     [4m%[24m [4mnohup[24m [4mcompress[24m [4mfilename[24m [4m_[0m
 
 Sometimes  you  would  like to run really complicated commands to
 find out what the possible completions are.  To do this, you  can
-specify a shell function to be called that will assign the possi-
-ble completions to a variable called reply.  Note that this vari-
-able  must  be an array.  Here's another (much slower) way to get
+specify a shell function to be called that will assign the possi‐
+ble completions to a variable called reply.  Note that this vari‐
+able  must  be an array.  Here’s another (much slower) way to get
 
 
 
@@ -2245,7 +2245,7 @@ able  must  be an array.  Here's another (much slower) way to get
 
 
 
-                               -33-
+                               ‐33‐
 
 
 the completions for co and friends:
@@ -2257,42 +2257,42 @@ the completions for co and friends:
      >   reply=($reply[*] $(basename $i ,v))
      >   done
      > }
-     % compctl -K getrcs co rlog rcs
+     % compctl ‐K getrcs co rlog rcs
 
 Some command arguments use a prefix that is not  a  part  of  the
 things to complete.  The kill builtin command takes a signal name
-after a -.  To make such a prefix be ignored  in  the  completion
-process, you can use the -P flag.
+after a ‐.  To make such a prefix be ignored  in  the  completion
+process, you can use the ‐P flag.
 
-     % compctl -P - -k signals kill
-     % kill -H[4mTAB[0m
-     % kill -HUP _
+     % compctl ‐P ‐ ‐k signals kill
+     % kill ‐H[4mTAB[0m
+     % kill ‐HUP _
 
 TeX is usually run on files ending in .tex, but also sometimes on
-other files.  It is somewhat annoying to specify that  the  argu-
+other files.  It is somewhat annoying to specify that  the  argu‐
 ments  of TeX should end in .tex and then not be able to complete
-these other files.  Therefore you can specify things  like  "Com-
+these other files.  Therefore you can specify things  like  “Com‐
 plete to files ending in .tex if available, otherwise complete to
-any filename.".  This is done with [4mxor[24med completion:
+any filename.”.  This is done with [4mxor[24med completion:
 
-     % compctl -g '*.tex' + -f tex
+     % compctl ‐g ’*.tex’ + ‐f tex
 
 The + tells the editor to only take the next thing  into  account
-if the current one doesn't generate any matches.  If you have not
+if the current one doesn’t generate any matches.  If you have not
 changed the default completion, the  above  example  is  in  fact
 equivalent to
 
-     % compctl -g '*.tex' + tex
+     % compctl ‐g ’*.tex’ + tex
 
 as  a  lone  + at the end is equivalent to specifying the default
-completion after the +.  This form of  completion  is  also  fre-
+completion after the +.  This form of  completion  is  also  fre‐
 quently  used  if  you want to run some command only on a certain
 type of files, but not necessarily in the current directory.   In
 this  case  you will want to complete both files of this type and
 directories.  Depending on your preferences you can use either of
 
-     % compctl -g '*.ps' + -g '*(-/)' ghostview
-     % compctl -g '*.ps *(-/)' ghostview
+     % compctl ‐g ’*.ps’ + ‐g ’*(‐/)’ ghostview
+     % compctl ‐g ’*.ps *(‐/)’ ghostview
 
 where the first one will only complete directories (and  symbolic
 links  pointing to directories) if no postscript file matches the
@@ -2311,63 +2311,63 @@ like  to  specify  what  to complete, depending on what flags you
 
 
 
-                               -34-
+                               ‐34‐
 
 
 give to the command and where you are on the command  line.   For
-example,  a  command  could take any filename argument after a -f
-flag, a username after a -u flag and an  executable  after  a  -x
+example,  a  command  could take any filename argument after a ‐f
+flag, a username after a ‐u flag and an  executable  after  a  ‐x
 flag.   This  section  will  introduce you to the ways to specify
 these things.  To many people it seems rather difficult at first,
-but taking the trouble to understand it can save you lots of typ-
+but taking the trouble to understand it can save you lots of typ‐
 ing in the end.  Even I keep being surprised when [1mzsh [22mmanages  to
 complete  a  small  or  even  empty prefix to the right file in a
 large directory.
 
-To tell [1mzsh [22mabout these kinds of completion,  you  use  "extended
-completion"  by  specifying  the -x flag to compctl.  The -x flag
+To tell [1mzsh [22mabout these kinds of completion,  you  use  “extended
+completion”  by  specifying  the ‐x flag to compctl.  The ‐x flag
 takes a list of patterns/flags pairs.  The patterns specify  when
 to  complete  and  the  flags specify what.  The flags are simply
-those mentioned above, like -f or -g [4mglob[24m [4mpattern[24m.
+those mentioned above, like ‐f or ‐g [4mglob[24m [4mpattern[24m.
 
-As an example, the r[[4mstring1[24m,[4mstring2[24m] pattern matches if the cur-
-sor  is after something that starts with [4mstring1[24m and before some-
+As an example, the r[[4mstring1,string2][24m pattern matches if the cur‐
+sor  is after something that starts with [4mstring1[24m and before some‐
 thing that starts with [4mstring2[24m.  The [4mstring2[24m is  often  something
 that you do not want to match anything at all.
 
      % ls
      foo1   bar1   foo.Z  bar.Z
-     % compctl -g '^*.Z' -x 'r[-d,---]' -g '*.Z' -- compress
+     % compctl ‐g ’^*.Z’ ‐x ’r[‐d,‐‐‐]’ ‐g ’*.Z’ ‐‐ compress
      % compress f[4mTAB[0m
      % compress foo1 _
-     % compress -d f[4mTAB[0m
-     % compress -d foo.Z _
+     % compress ‐d f[4mTAB[0m
+     % compress ‐d foo.Z _
 
-In  the  above example, if the cursor is after the -d the pattern
-will match and therefore [1mzsh [22muses the -g *.Z flag that will  only
+In  the  above example, if the cursor is after the ‐d the pattern
+will match and therefore [1mzsh [22muses the ‐g *.Z flag that will  only
 complete  files  ending in .Z.  Otherwise, if no pattern matches,
-it will use the flags before the -x and  in  this  case  complete
+it will use the flags before the ‐x and  in  this  case  complete
 every file that does not end in .Z.
 
-The  s[[4mstring[24m]  pattern  matches  if the current word starts with
+The  s[[4mstring][24m  pattern  matches  if the current word starts with
 [4mstring[24m.  The [4mstring[24m itself is not considered to be  part  of  the
 completion.
 
-     % compctl -x 's[-]' -k signals -- kill
-     % kill -H[4mTAB[0m
-     % kill -HUP _
+     % compctl ‐x ’s[‐]’ ‐k signals ‐‐ kill
+     % kill ‐H[4mTAB[0m
+     % kill ‐HUP _
 
-The  tar  command  takes  a  tar file as an argument after the -f
-option.  The c[[4moffset[24m,[4mstring[24m] pattern  matches  if  the  word  in
+The  tar  command  takes  a  tar file as an argument after the ‐f
+option.  The c[[4moffset,string][24m pattern  matches  if  the  word  in
 position  [4moffset[24m relative to the current word is [4mstring[24m.  More in
-particular, if [4moffset[24m is -1, it matches if the previous  word  is
+particular, if [4moffset[24m is ‐1, it matches if the previous  word  is
 [4mstring[24m.  This suggests
 
-     % compctl -f -x 'c[-1,-f]' -g '*.tar' -- tar
+     % compctl ‐f ‐x ’c[‐1,‐f]’ ‐g ’*.tar’ ‐‐ tar
 
-But  this  is  not  enough.  The -f option could be the last of a
+But  this  is  not  enough.  The ‐f option could be the last of a
 longer string of options.  C[...,...] is  just  like  c[...,...],
-except that it uses glob-like pattern matching for [4mstring[24m.  So
+except that it uses glob‐like pattern matching for [4mstring[24m.  So
 
 
 
@@ -2377,27 +2377,27 @@ except that it uses glob-like pattern matching for [4mstring[24m.  So
 
 
 
-                               -35-
+                               ‐35‐
 
 
-     % compctl -f -x 'C[-1,-*f]' -g '*.tar' -- tar
+     % compctl ‐f ‐x ’C[‐1,‐*f]’ ‐g ’*.tar’ ‐‐ tar
 
 will  complete  tar files after any option string ending in an f.
-But we'd like even more.  Old versions of tar used all options as
+But we’d like even more.  Old versions of tar used all options as
 the  first  argument,  but without the minus sign.  This might be
 inconsistent with option usage in all other commands, but  it  is
 still  supported by newer versions of tar.  So we would also like
 to complete tar files if the first argument  ends  in  an  f  and
-we're right behind it.
+we’re right behind it.
 
-We  can  `and' patterns by putting them next to each other with a
-space between them.  We can `or' these sets  by  putting  comma's
-between  them.  We will also need some new patterns.  p[[4mnum[24m] will
+We  can  ‘and’ patterns by putting them next to each other with a
+space between them.  We can ‘or’ these sets  by  putting  comma’s
+between  them.  We will also need some new patterns.  p[[4mnum][24m will
 match if the current argument (the one to be  completed)  is  the
-[4mnum[24mth  argument.   W[[4mindex[24m,[4mpattern[24m] will match if the argument in
+[4mnum[24mth  argument.   W[[4mindex,pattern][24m will match if the argument in
 place [4mindex[24m matches the [4mpattern[24m.  This gives us
 
-     % compctl -f -x 'C[-1,-*f] , W[1,*f] p[2]' -g '*.tar' -- tar
+     % compctl ‐f ‐x ’C[‐1,‐*f] , W[1,*f] p[2]’ ‐g ’*.tar’ ‐‐ tar
 
 In words: If the previous argument is an option string that  ends
 in  an  f,  or the first argument ended in an f and it is now the
@@ -2405,33 +2405,33 @@ second argument, then complete only filenames ending in .tar.
 
 All the above examples used only one set  of  patterns  with  one
 completion flag.  You can use several of these pattern/flag pairs
-separated by a -.  The first matching pattern will be used.  Sup-
+separated by a ‐.  The first matching pattern will be used.  Sup‐
 pose  you have a version of tar that supports compressed files by
-using a -Z option.  Leaving  the  old  tar  syntax  aside  for  a
-moment,  we would like to complete files ending in .tar.Z if a -Z
+using a ‐Z option.  Leaving  the  old  tar  syntax  aside  for  a
+moment,  we would like to complete files ending in .tar.Z if a ‐Z
 option has been used and files ending in .tar otherwise, all this
-only  after  a  -f flag.  Again, the -Z can be alone or it can be
+only  after  a  ‐f flag.  Again, the ‐Z can be alone or it can be
 part of a longer option string, perhaps the same as that  of  the
--f  flag.   Here's  how to do it; note the backslash and the sec-
+‐f  flag.   Here’s  how to do it; note the backslash and the sec‐
 ondary prompt which are not part of the compctl command.
 
-     % compctl -f -x 'C[-1,-*Z*f] , R[-*Z*,---] C[-1,-*f]' -g '*.tar.Z' - \
-     > 'C[-1,-*f]' -g '*.tar' -- tar
+     % compctl ‐f ‐x ’C[‐1,‐*Z*f] , R[‐*Z*,‐‐‐] C[‐1,‐*f]’ ‐g ’*.tar.Z’ ‐ \
+     > ’C[‐1,‐*f]’ ‐g ’*.tar’ ‐‐ tar
 
 The first pattern set tells us to match if  either  the  previous
 argument was an option string including a Z and ending in an f or
 there was an option string with a Z somewhere  and  the  previous
 word  was any option string ending in an f.  If this is the case,
 we need a compressed tar file.  Only if this is not the case  the
-second  pattern  set  will  be  considered.   By  the way, R[[4mpat-[0m
-[4mtern1[24m,[4mpattern2[24m] is just like r[...,...] except that it uses  pat-
+second  pattern  set  will  be  considered.   By  the way, R[[4mpat‐[0m
+[4mtern1,pattern2][24m is just like r[...,...] except that it uses  pat‐
 tern matching with shell metacharacters instead of just strings.
 
-You  will have noticed the -- before the command name.  This ends
-the list of pattern/flag pairs of -x.  It is  usually  used  just
-before the command name, but you can also use an extended comple-
+You  will have noticed the ‐‐ before the command name.  This ends
+the list of pattern/flag pairs of ‐x.  It is  usually  used  just
+before the command name, but you can also use an extended comple‐
 tion as one part of a list of xored completions,  in  which  case
-the -- appears just before one of the + signs.
+the ‐‐ appears just before one of the + signs.
 
 
 
@@ -2443,7 +2443,7 @@ the -- appears just before one of the + signs.
 
 
 
-                               -36-
+                               ‐36‐
 
 
 Note  the difference between using extended completion as part of
@@ -2451,54 +2451,54 @@ a list of xored completions as in
 
      % ls
      foo  bar
-     % compctl -x 'r[-d,---]' -g '*.Z' -- + -g '^*.Z' compress
-     % compress -d f[4mTAB[0m
-     % compress -d foo _
+     % compctl ‐x ’r[‐d,‐‐‐]’ ‐g ’*.Z’ ‐‐ + ‐g ’^*.Z’ compress
+     % compress ‐d f[4mTAB[0m
+     % compress ‐d foo _
 
-and specifying something before the -x as in
+and specifying something before the ‐x as in
 
-     % compctl -g '^*.Z' -x 'r[-d,---]' -g '*.Z' -- compress
-     % compress -d f[4mTAB[0m
-     % compress -d f_
+     % compctl ‐g ’^*.Z’ ‐x ’r[‐d,‐‐‐]’ ‐g ’*.Z’ ‐‐ compress
+     % compress ‐d f[4mTAB[0m
+     % compress ‐d f_
 
 In the first case, the alternative glob pattern  (^*.Z)  will  be
-used  if  the  first  part does not generate any possible comple-
+used  if  the  first  part does not generate any possible comple‐
 tions, while in the second case the alternative glob pattern will
-only be used if the r[...] pattern doesn't match.
+only be used if the r[...] pattern doesn’t match.
 
 [1mBindings[0m
 
 Each  of the editor commands we have seen was actually a function
-bound by default to a certain key.  The real names  of  the  com-
+bound by default to a certain key.  The real names  of  the  com‐
 mands are:
 
-     expand-or-complete   [4mTAB[0m
-     push-line            [4mESC-Q[0m
-     run-help             [4mESC-H[0m
-     accept-and-hold      [4mESC-A[0m
-     quote-line           [4mESC-'[0m
+     expand‐or‐complete   [4mTAB[0m
+     push‐line            [4mESC‐Q[0m
+     run‐help             [4mESC‐H[0m
+     accept‐and‐hold      [4mESC‐A[0m
+     quote‐line           [4mESC‐’[0m
 
 These  bindings are arbitrary; you could change them if you want.
-For example, to bind accept-line to [4m^Z[24m:
+For example, to bind accept‐line to [4m^Z[24m:
 
-     % bindkey '^Z' accept-line
+     % bindkey ’^Z’ accept‐line
 
-Another idea would be to bind the delete key to delete-char; this
+Another idea would be to bind the delete key to delete‐char; this
 might be convenient if you use [4m^H[24m for backspace.
 
-     % bindkey '^?' delete-char
+     % bindkey ’^?’ delete‐char
 
-Or, you could bind [4m^X^H[24m to run-help:
+Or, you could bind [4m^X^H[24m to run‐help:
 
-     % bindkey '^X^H' run-help
+     % bindkey ’^X^H’ run‐help
 
 Other examples:
 
-     % bindkey '^X^Z' universal-argument
-     % bindkey ' ' magic-space
-     % bindkey -s '^T' 'uptime
-     > '
-     % bindkey '^Q' push-line-or-edit
+     % bindkey ’^X^Z’ universal‐argument
+     % bindkey ’ ’ magic‐space
+     % bindkey ‐s ’^T’ ’uptime
+     > ’
+     % bindkey ’^Q’ push‐line‐or‐edit
 
 
 
@@ -2509,31 +2509,31 @@ Other examples:
 
 
 
-                               -37-
+                               ‐37‐
 
 
-universal-argument multiplies the next command by 4.  Thus [4m^X^Z^W[0m
+universal‐argument multiplies the next command by 4.  Thus [4m^X^Z^W[0m
 might delete the last four words on the line.  If you bind  space
-to  magic-space,  then csh-style history expansion is done on the
+to  magic‐space,  then csh‐style history expansion is done on the
 line whenever you press the space bar.
 
-Something that often happens is that I am typing a multiline com-
+Something that often happens is that I am typing a multiline com‐
 mand and discover an error in one of the previous lines.  In this
-case, push-line-or-edit will put the entire  multiline  construct
+case, push‐line‐or‐edit will put the entire  multiline  construct
 into  the  editor  buffer.  If there is only a single line, it is
-equivalent to push-line.
+equivalent to push‐line.
 
-The -s flag to bindkey specifies that you are binding the key  to
-a  string,  not  a command.  Thus bindkey -s '^T' 'uptime\n' lets
+The ‐s flag to bindkey specifies that you are binding the key  to
+a  string,  not  a command.  Thus bindkey ‐s ’^T’ ’uptime\n’ lets
 you VMS lovers get the load average whenever you press [4m^T[24m.
 
 If you have a NeXT keyboard, the one with the | and \  keys  very
 inconveniently placed, the following bindings may come in handy:
 
-     % bindkey -s '\e/' '\\'
-     % bindkey -s '\e=' '|'
+     % bindkey ‐s ’\e/’ ’\\’
+     % bindkey ‐s ’\e=’ ’|’
 
-Now  you  can  type  [4mALT-/[24m to get a backslash, and [4mALT-=[24m to get a
+Now  you  can  type  [4mALT‐/[24m to get a backslash, and [4mALT‐=[24m to get a
 vertical bar.  This only works inside [1mzsh[22m, of course; bindkey has
 no effect on the key mappings inside talk or mail, etc.
 
@@ -2558,7 +2558,7 @@ Spaces before or after the = are frowned upon:
      % foo = bar
      zsh: command not found: foo
 
-Also, set doesn't work for setting parameters:
+Also, set doesn’t work for setting parameters:
 
      % set foo=bar
      % set foo = bar
@@ -2575,7 +2575,7 @@ Also, set doesn't work for setting parameters:
 
 
 
-                               -38-
+                               ‐38‐
 
 
 Note  that no error message was printed.  This is because both of
@@ -2589,7 +2589,7 @@ arguments to the [4mpositional[24m [4mparameters[24m ($1, $2, etc.).
      % echo $3 $2
      bar =
 
-If  you're  really intent on using the csh syntax, define a func-
+If  you’re  really intent on using the csh syntax, define a func‐
 tion like this:
 
      % set () {
@@ -2600,21 +2600,21 @@ tion like this:
      % echo $foo $fuu
      bar brrr
 
-But then, of course you can't use the form of set  with  options,
-like set -F (which turns off filename generation).  Also, the set
-command by itself won't list all the parameters like  it  should.
+But then, of course you can’t use the form of set  with  options,
+like set ‐F (which turns off filename generation).  Also, the set
+command by itself won’t list all the parameters like  it  should.
 To get around that you need a case statement:
 
      % set () {
      >    case $1 in
-     >    -*|+*|'') builtin set $* ;;
+     >    ‐*|+*|’’) builtin set $* ;;
      >    *) eval "$1$2$3" ;;
      >    esac
      > }
 
 For the most part, this should make csh users happy.
 
-The following sh-style operators are supported in [1mzsh[22m:
+The following sh‐style operators are supported in [1mzsh[22m:
 
 
 
@@ -2641,13 +2641,13 @@ The following sh-style operators are supported in [1mzsh[22m:
 
 
 
-                               -39-
+                               ‐39‐
 
 
      % unset null
-     % echo ${foo-xxx}
+     % echo ${foo‐xxx}
      bar
-     % echo ${null-xxx}
+     % echo ${null‐xxx}
      xxx
      % unset null
      % echo ${null=xxx}
@@ -2664,7 +2664,7 @@ The following sh-style operators are supported in [1mzsh[22m:
      % echo ${foo+set}
      set
 
-Also,  csh-style  : modifiers may be appended to a parameter sub-
+Also,  csh‐style  : modifiers may be appended to a parameter sub‐
 stitution.
 
      % echo $PWD
@@ -2685,7 +2685,7 @@ stitution.
 
 The equivalent constructs in ksh (which  are  also  supported  in
 [1mzsh[22m)  are  a  bit  more general and easier to remember.  When the
-shell expands ${foo#[4mpat[24m}, it checks to see if [4mpat[24m matches a  sub-
+shell expands ${foo#[4mpat[24m}, it checks to see if [4mpat[24m matches a  sub‐
 string  at  the beginning of the value of foo.  If so, it removes
 that portion of foo, using the  shortest  possible  match.   With
 ${foo##[4mpat[24m},  the  longest possible match is removed.  ${foo%[4mpat[24m}
@@ -2707,7 +2707,7 @@ equivalents of the : modifiers:
 
 
 
-                               -40-
+                               ‐40‐
 
 
      % echo ${PWD%/*}
@@ -2743,7 +2743,7 @@ There  is  yet  another  syntax to modify substituted parameters.
 You can add certain modifiers in parentheses  after  the  opening
 brace like:
 
-     ${([4mmodifiers[24m)[4mparameter[24m}
+     ${([4mmodifiers)parameter}[0m
 
 For example, o sorts the words resulting from the expansion:
 
@@ -2756,7 +2756,7 @@ One  possible  source  of  confusion is the fact that in [1mzsh[22m, the
 result of parameter substitution is [4mnot[24m split into words.   Thus,
 this will not work:
 
-     % srcs='glob.c exec.c init.c'
+     % srcs=’glob.c exec.c init.c’
      % ls $srcs
      glob.c exec.c init.c not found
 
@@ -2773,22 +2773,22 @@ would not work properly:
 
 
 
-                               -41-
+                               ‐41‐
 
 
-     $ ll () { ls -F $* }
-     $ ll 'fuu bar'
+     $ ll () { ls ‐F $* }
+     $ ll ’fuu bar’
      fuu not found
      bar not found
 
-     % ll 'fuu bar'
+     % ll ’fuu bar’
      fuu bar not found
 
 Of course, a hackish workaround is available in sh (and [1mzsh[22m):
 
      % setopt shwordsplit
-     % ll () { ls -F "$@" }
-     % ll 'fuu bar'
+     % ll () { ls ‐F "$@" }
+     % ll ’fuu bar’
      fuu bar not found
 
 If you like the sh behaviour, [1mzsh [22mcan accomodate you:
@@ -2808,11 +2808,11 @@ Another way to get the $srcs trick to work is to use an array:
 
 or an alias:
 
-     % alias -g SRCS='exec.c glob.c init.c'
+     % alias ‐g SRCS=’exec.c glob.c init.c’
      % ls SRCS
      exec.c  glob.c  init.c
 
-Another  option  that  modifies  parameter expansion is [4mRCEXPAND-[0m
+Another  option  that  modifies  parameter expansion is [4mRCEXPAND‐[0m
 [4mPARAM[24m:
 
      % echo foo/$srcs
@@ -2839,7 +2839,7 @@ Here are some examples:
 
 
 
-                               -42-
+                               ‐42‐
 
 
      % sleep 10 &
@@ -2869,11 +2869,11 @@ Here are some examples:
      % ls $OLDPWD/.getwd
      /tmp/.getwd
 
-~+ and ~- are short for $PWD and $OLDPWD, respectively.
+~+ and ~‐ are short for $PWD and $OLDPWD, respectively.
 
-     % ls ~-/.getwd
+     % ls ~‐/.getwd
      /tmp/.getwd
-     % ls -d ~+/learning
+     % ls ‐d ~+/learning
      /home/learning
      % echo $RANDOM
      4880
@@ -2905,7 +2905,7 @@ the first component.
 
 
 
-                               -43-
+                               ‐43‐
 
 
      % cdpath=( /usr ~ ~/zsh )
@@ -2928,7 +2928,7 @@ the first component.
      % cd pub
      % pwd
      /u/pfalstad/pub
-     % ls -d /usr/pub
+     % ls ‐d /usr/pub
      /usr/pub
 
 [1mPATH  [22mand  [1mpath [22mboth set the search path for commands.  These two
@@ -2957,8 +2957,8 @@ arrays; assignments to them take the form:
      [4mname[24m=( [4melem[24m ... )
 
 Predefined  parameters  with  names in all uppercase are strings.
-If there is both an array and a string version of the same param-
-eter,  the  string  version is a colon-separated list, like [1mPATH[22m.
+If there is both an array and a string version of the same param‐
+eter,  the  string  version is a colon‐separated list, like [1mPATH[22m.
 You can use
 
 
@@ -2971,10 +2971,10 @@ You can use
 
 
 
-                               -44-
+                               ‐44‐
 
 
-     % typeset -T FOO foo
+     % typeset ‐T FOO foo
 
 to create more of these yourself.
 
@@ -3037,7 +3037,7 @@ Thus, you can view a file simply by typing:
 
 
 
-                               -45-
+                               ‐45‐
 
 
      % <file
@@ -3049,8 +3049,8 @@ default.
 
      % NULLCMD=:
      % >file
-     % ls -l file
-     -rw-r--r--  1 pfalstad        0 May 24 05:41 file
+     % ls ‐l file
+     ‐rw‐r‐‐r‐‐  1 pfalstad        0 May 24 05:41 file
 
 If  NULLCMD is unset, the shell reports an error if no command is
 specified (like csh).
@@ -3073,17 +3073,17 @@ The default prompt for [1mzsh [22mis:
      %m%#
 
 The %m stands for the short form of the current hostname, and the
-%#  stands for a % or a #, depending on whether the shell is run-
+%#  stands for a % or a #, depending on whether the shell is run‐
 ning as root or not.  [1mzsh [22msupports many other  control  sequences
 in the [1mPROMPT [22mvariable.
 
-     % PROMPT='%/> '
+     % PROMPT=’%/> ’
      /u/pfalstad/etc/TeX/zsh>
 
-     % PROMPT='%~> '
+     % PROMPT=’%~> ’
      ~/etc/TeX/zsh>
 
-     % PROMPT='%h %~> '
+     % PROMPT=’%h %~> ’
      6 ~/etc/TeX/zsh>
 
 %h represents the number of current history event.
@@ -3103,48 +3103,48 @@ in the [1mPROMPT [22mvariable.
 
 
 
-                               -46-
+                               ‐46‐
 
 
-     % PROMPT='%h %~ %M> '
-     10 ~/etc/TeX/zsh apple-gunkies.gnu.ai.mit.edu>
+     % PROMPT=’%h %~ %M> ’
+     10 ~/etc/TeX/zsh apple‐gunkies.gnu.ai.mit.edu>
 
-     % PROMPT='%h %~ %m> '
-     11 ~/etc/TeX/zsh apple-gunkies>
+     % PROMPT=’%h %~ %m> ’
+     11 ~/etc/TeX/zsh apple‐gunkies>
 
-     % PROMPT='%h %t> '
+     % PROMPT=’%h %t> ’
      12 6:11am>
 
-     % PROMPT='%n %w tty%l>'
+     % PROMPT=’%n %w tty%l>’
      pfalstad Fri 24 ttyp0>
 
-[1mPROMPT2  [22mis  used  in multiline commands, like for-loops.  The %_
+[1mPROMPT2  [22mis  used  in multiline commands, like for‐loops.  The %_
 escape sequence was made  especially  for  this  prompt.   It  is
 replaced by the kind of command that is being entered.
 
-     % PROMPT2='%_> '
+     % PROMPT2=’%_> ’
      % for i in foo bar
      for>
 
-     % echo 'hi
+     % echo ’hi
      quote>
 
 Also  available  is  the  [1mRPROMPT [22mparameter.  If this is set, the
 shell puts a prompt on the [4mright[24m side of the screen.
 
-     % RPROMPT='%t'
+     % RPROMPT=’%t’
      %                                                      6:14am
 
-     % RPROMPT='%~'
+     % RPROMPT=’%~’
      %                                               ~/etc/TeX/zsh
 
-     % PROMPT='%l %T %m[%h] ' RPROMPT=' %~'
+     % PROMPT=’%l %T %m[%h] ’ RPROMPT=’ %~’
      p0 6:15 phoenix[5]                              ~/etc/TeX/zsh
 
-These special escape sequences can  also  be  used  with  the  -P
+These special escape sequences can  also  be  used  with  the  ‐P
 option to print:
 
-     % print -P %h tty%l
+     % print ‐P %h tty%l
      15 ttyp1
 
 
@@ -3153,10 +3153,10 @@ This can be useful for termcap tricks.  To highlight  the  prompt
 and  command line while leaving command output unhighlighted, try
 this:
 
-     % POSTEDIT=`echotc se`
-     % PROMPT='%S%% '
+     % POSTEDIT=‘echotc se‘
+     % PROMPT=’%S%% ’
 
-This trick is mostly superceded by the zle_highlight array param-
+This trick is mostly superceded by the zle_highlight array param‐
 eter.
 
 
@@ -3169,7 +3169,7 @@ eter.
 
 
 
-                               -47-
+                               ‐47‐
 
 
 [1mLogin/logout watching[0m
@@ -3180,7 +3180,7 @@ usernames.
 
      % watch=( pfalstad subbarao sukthnkr egsirer )
 
-The  log command reports all people logged in that you are watch-
+The  log command reports all people logged in that you are watch‐
 ing for.
 
      % log
@@ -3235,7 +3235,7 @@ The format of the reports may also be changed.
 
 
 
-                               -48-
+                               ‐48‐
 
 
      % watch=( pfalstad gettes eps djthongs jcorr bdavis )
@@ -3249,7 +3249,7 @@ The format of the reports may also be changed.
      eps has logged on p3 from csx30:0.0.
      pfalstad has logged on p0 from mickey.
      pfalstad has logged on p5 from mickey.
-     % WATCHFMT='%n on tty%l from %M'
+     % WATCHFMT=’%n on tty%l from %M’
      % log
      jcorr on ttytf from 128.112.176.3:0.
      jcorr on ttyr0 from 128.112.176.3:0.
@@ -3260,7 +3260,7 @@ The format of the reports may also be changed.
      eps on ttyp3 from csx30:0.0
      pfalstad on ttyp0 from mickey.Princeton
      pfalstad on ttyp5 from mickey.Princeton
-     % WATCHFMT='%n fm %m'
+     % WATCHFMT=’%n fm %m’
      % log
      jcorr fm 128.112.176.3:0
      jcorr fm 128.112.176.3:0
@@ -3271,7 +3271,7 @@ The format of the reports may also be changed.
      eps fm csx30:0.0
      pfalstad fm mickey
      pfalstad fm mickey
-     % WATCHFMT='%n %a at %t %w.'
+     % WATCHFMT=’%n %a at %t %w.’
      % log
      jcorr logged on at 3:15pm Mon 20.
      jcorr logged on at 3:16pm Wed 22.
@@ -3301,14 +3301,14 @@ reported.
 
 
 
-                               -49-
+                               ‐49‐
 
 
 [1mOptions[0m
 
 Some options have already been mentioned; here are a few more:
 
-Using the [4mAUTOCD[24m option, you can simply type the name of a direc-
+Using the [4mAUTOCD[24m option, you can simply type the name of a direc‐
 tory, and it will become the current directory.
 
      % cd /
@@ -3329,25 +3329,25 @@ directory.
      % cd foo
      /tmp
 
-[4mCORRECT[24m  turns  on spelling correction for commands, and the [4mCOR-[0m
+[4mCORRECT[24m  turns  on spelling correction for commands, and the [4mCOR‐[0m
 [4mRECTALL[24m option turns on spelling correction for all arguments.
 
      % setopt correct
      % sl
-     zsh: correct `sl' to `ls' [nyae]? y
+     zsh: correct ‘sl’ to ‘ls’ [nyae]? y
      % setopt correctall
      % ls x.v11r4
-     zsh: correct `x.v11r4' to `X.V11R4' [nyae]? n
+     zsh: correct ‘x.v11r4’ to ‘X.V11R4’ [nyae]? n
      /usr/princton/src/x.v11r4 not found
      % ls /etc/paswd
-     zsh: correct to `/etc/paswd' to `/etc/passwd' [nyae]? y
+     zsh: correct to ‘/etc/paswd’ to ‘/etc/passwd’ [nyae]? y
      /etc/passwd
 
 If you press y when the shell asks you if you want to  correct  a
 word,  it  will  be  corrected.   If you press n, it will be left
 alone.  Pressing a aborts the command, and pressing e brings  the
 line  up for editing again, in case you agree the word is spelled
-wrong but you don't like the correction.
+wrong but you don’t like the correction.
 
 Normally, a quoted expression may contain a newline:
 
@@ -3367,12 +3367,12 @@ Normally, a quoted expression may contain a newline:
 
 
 
-                               -50-
+                               ‐50‐
 
 
-     % echo '
+     % echo ’
      > foo
-     > '
+     > ’
 
      foo
 
@@ -3381,20 +3381,20 @@ Normally, a quoted expression may contain a newline:
 With [4mCSHJUNKIEQUOTES[24m set, this is illegal, as it is in csh.
 
      % setopt cshjunkiequotes
-     % ls 'foo
-     zsh: unmatched '
+     % ls ’foo
+     zsh: unmatched ’
 
-[4mGLOBDOTS[24m lets files beginning with a . be matched without explic-
-itly specifying the dot. This can also be specified for a partic-
+[4mGLOBDOTS[24m lets files beginning with a . be matched without explic‐
+itly specifying the dot. This can also be specified for a partic‐
 ular pattern by appending (D) to it.
 
-     % ls -d *x*
+     % ls ‐d *x*
      Mailboxes
-     % ls -d *x*(D)
+     % ls ‐d *x*(D)
      .exrc         .pnewsexpert  .xserverrc
      .mushexpert   .xinitrc      Mailboxes
      % setopt globdots
-     % ls -d *x*
+     % ls ‐d *x*
      .exrc         .pnewsexpert  .xserverrc
      .mushexpert   .xinitrc      Mailboxes
 
@@ -3403,7 +3403,7 @@ history  if  it  is the same as the previous one; [4mHISTIGNORESPACE[0m
 prevents the current line from being saved if it  begins  with  a
 space.
 
-     % PROMPT='%h> '
+     % PROMPT=’%h> ’
      39> setopt histignoredups
      40> echo foo
      foo
@@ -3421,7 +3421,7 @@ space.
      43>  echo fubar
      fubar
 
-[4mIGNOREBRACES[24m turns off csh-style brace expansion.
+[4mIGNOREBRACES[24m turns off csh‐style brace expansion.
 
 
 
@@ -3433,7 +3433,7 @@ space.
 
 
 
-                               -51-
+                               ‐51‐
 
 
      % echo x{y{z,a},{b,c}d}e
@@ -3447,7 +3447,7 @@ pressing [4m^D[24m.
 
      % setopt ignoreeof
      % ^D
-     zsh: use 'exit' to exit.
+     zsh: use ’exit’ to exit.
 
 [4mINTERACTIVECOMMENTS[24m turns on interactive comments; comments begin
 with a #.
@@ -3465,7 +3465,7 @@ file.
      % cat /dev/null >~/.zshrc
      zsh: file exists: /u/pfalstad/.zshrc
 
-If you really do want to clobber a file, you can use the >! oper-
+If you really do want to clobber a file, you can use the >! oper‐
 ator.  To make things easier in this case, the > is stored in the
 history list as a >!:
 
@@ -3479,17 +3479,17 @@ history list as a >!:
 [4mRCQUOTES[24m lets you use a more elegant method for including  single
 quotes in a singly quoted string:
 
-     % echo '"don'\''t do that."'
-     "don't do that."
-     % echo '"don''t do that."'
+     % echo ’"don’\’’t do that."’
+     "don’t do that."
+     % echo ’"don’’t do that."’
      "dont do that."
      % setopt rcquotes
-     % echo '"don''t do that."'
-     "don't do that."
+     % echo ’"don’’t do that."’
+     "don’t do that."
 
 Finally, [4mSUNKEYBOARDHACK[24m wins the award for the strangest option.
-If a line ends with `, and there are an odd number of them on the
-line, the shell will ignore the trailing `.  This is provided for
+If a line ends with ‘, and there are an odd number of them on the
+line, the shell will ignore the trailing ‘.  This is provided for
 
 
 
@@ -3499,14 +3499,14 @@ line, the shell will ignore the trailing `.  This is provided for
 
 
 
-                               -52-
+                               ‐52‐
 
 
-keyboards whose RETURN key is too small, and too close to  the  `
+keyboards whose RETURN key is too small, and too close to  the  ‘
 key.
 
      % setopt sunkeyboardhack
-     % date`
+     % date‘
      Fri May 24 06:55:38 EDT 1991
 
 

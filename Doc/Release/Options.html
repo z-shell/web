@@ -1,28 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 16 Options</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>16 Options (zsh)</title>
 
-<meta name="description" content="zsh: 16 Options">
-<meta name="keywords" content="zsh: 16 Options">
+<meta name="description" content="16 Options (zsh)">
+<meta name="keywords" content="16 Options (zsh)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
@@ -31,10 +31,9 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -42,7 +41,7 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<body lang="en">
 <a name="Options"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -62,8 +61,8 @@ ul.no-bullet {list-style: none}
 
 <a name="Options-2"></a>
 <h1 class="chapter">16 Options</h1>
-<a name="index-options"></a>
-<table class="menu" border="0" cellspacing="0">
+<p><a name="index-options"></a>
+</p><table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top"><a href="#Specifying-Options">16.1 Specifying Options</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Description-of-Options">16.2 Description of Options</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -93,8 +92,8 @@ ul.no-bullet {list-style: none}
 
 <a name="Specifying-Options-1"></a>
 <h2 class="section">16.1 Specifying Options</h2>
-<a name="index-options_002c-specifying"></a>
-<p>Options are primarily referred to by name.
+<p><a name="index-options_002c-specifying"></a>
+Options are primarily referred to by name.
 These names are case insensitive and underscores are ignored.
 For example, &lsquo;<tt>allexport</tt>&rsquo; is equivalent to &lsquo;<tt>A__lleXP_ort</tt>&rsquo;.
 </p>
@@ -145,8 +144,8 @@ calling scripts do not strip trailing whitespace.
 
 <a name="Description-of-Options-1"></a>
 <h2 class="section">16.2 Description of Options</h2>
-<a name="index-options_002c-description"></a>
-<p>In the following list, options set by default in all emulations are marked
+<p><a name="index-options_002c-description"></a>
+In the following list, options set by default in all emulations are marked
 &lt;D&gt;; those set by default only in csh, ksh, sh, or zsh emulations are marked
 &lt;C&gt;, &lt;K&gt;, &lt;S&gt;, &lt;Z&gt; as appropriate.  When listing options (by &lsquo;<tt>setopt</tt>&rsquo;,
 &lsquo;<tt>unsetopt</tt>&rsquo;, &lsquo;<tt>set -o</tt>&rsquo; or &lsquo;<tt>set +o</tt>&rsquo;), those turned on by default
@@ -1059,7 +1058,7 @@ zsh sessions will all have the new entries from their history lists
 added to the history file, in the order that they exit.
 The file will still be periodically re-written to trim it when the
 number of lines grows 20% beyond the value specified by
-<tt>$SAVEHIST</tt> (see also the HIST_SAVE_BY_COPY option).
+<tt>$SAVEHIST</tt> (see also the <tt>HIST_SAVE_BY_COPY</tt> option).
 </p>
 <a name="index-BANG_005fHIST"></a>
 <a name="index-NO_005fBANG_005fHIST"></a>
@@ -1276,7 +1275,7 @@ history expansion and reload the line into the editing buffer.
 <a name="index-history_002c-incremental-appending-to-a-file"></a>
 </dd>
 <dt><tt>INC_APPEND_HISTORY</tt></dt>
-<dd><p>This options works like <tt>APPEND_HISTORY</tt> except that new history lines
+<dd><p>This option works like <tt>APPEND_HISTORY</tt> except that new history lines
 are added to the <tt>$HISTFILE</tt> incrementally (as soon as they are
 entered), rather than waiting until the shell exits.
 The file will still be periodically re-written to trim it when the
@@ -1775,6 +1774,20 @@ of the hook functions defined in
 the section Special Functions in <a href="Functions.html#Functions">Functions</a>
 is not counted for this purpose.
 </p>
+<a name="index-CHECK_005fRUNNING_005fJOBS"></a>
+<a name="index-NO_005fCHECK_005fRUNNING_005fJOBS"></a>
+<a name="index-CHECKRUNNINGJOBS"></a>
+<a name="index-NOCHECKRUNNINGJOBS"></a>
+<a name="index-exiting_002c-checking-running-jobs-when"></a>
+<a name="index-logging-out_002c-checking-running-jobs-when"></a>
+</dd>
+<dt><tt>CHECK_RUNNING_JOBS</tt> &lt;Z&gt;</dt>
+<dd><p>Check for both running and suspended jobs when <tt>CHECK_JOBS</tt> is enabled.
+When this option is disabled, zsh checks only for suspended jobs, which
+matches the default behavior of bash.
+</p>
+<p>This option has no effect unless <tt>CHECK_JOBS</tt> is set.
+</p>
 <a name="index-HUP"></a>
 <a name="index-NO_005fHUP"></a>
 <a name="index-NOHUP"></a>
@@ -1791,7 +1804,7 @@ shell exits.
 <a name="index-jobs_002c-list-format"></a>
 </dd>
 <dt><tt>LONG_LIST_JOBS</tt> (<tt>-R</tt>)</dt>
-<dd><p>List jobs in the long format by default.
+<dd><p>Print job notifications in the long format by default.
 </p>
 <a name="index-MONITOR"></a>
 <a name="index-NO_005fMONITOR"></a>
@@ -2628,6 +2641,9 @@ command found in the path.
 fashion in that the associated variable <tt>OPTIND</tt> is not made
 local to functions.
 </p>
+<p>Moreover, the warning and special exit code from
+<tt>[[ -o </tt><var>non_existent_option</var><tt> ]]</tt> are suppressed.
+</p>
 <a name="index-POSIX_005fIDENTIFIERS"></a>
 <a name="index-NO_005fPOSIX_005fIDENTIFIERS"></a>
 <a name="index-POSIXIDENTIFIERS"></a>
@@ -3040,8 +3056,8 @@ a terminal.
 
 <a name="Option-Aliases-1"></a>
 <h2 class="section">16.3 Option Aliases</h2>
-<a name="index-options_002c-aliases"></a>
-<p>Some options have alternative names.  These aliases are never used for
+<p><a name="index-options_002c-aliases"></a>
+Some options have alternative names.  These aliases are never used for
 output, but can be used just like normal option names when specifying
 options to the shell.
 </p>
@@ -3173,9 +3189,9 @@ options to the shell.
 
 <a name="Single-Letter-Options-1"></a>
 <h2 class="section">16.4 Single Letter Options</h2>
-<a name="index-options_002c-single-letter"></a>
+<p><a name="index-options_002c-single-letter"></a>
 <a name="index-single-letter-options"></a>
-
+</p>
 <hr>
 <a name="Default-set"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -3487,9 +3503,9 @@ options to the shell.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>September 21, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>April 11, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.4.2, released on August 27, 2017.</font>
+<font size="-1">Zsh version 5.5, released on April 8, 2018.</font>
 </body>
 </html>

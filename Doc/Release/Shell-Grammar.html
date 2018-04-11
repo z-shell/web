@@ -1,28 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 6 Shell Grammar</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>6 Shell Grammar (zsh)</title>
 
-<meta name="description" content="zsh: 6 Shell Grammar">
-<meta name="keywords" content="zsh: 6 Shell Grammar">
+<meta name="description" content="6 Shell Grammar (zsh)">
+<meta name="keywords" content="6 Shell Grammar (zsh)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
@@ -31,10 +31,9 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -42,7 +41,7 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<body lang="en">
 <a name="Shell-Grammar"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Files.html#Files" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -62,9 +61,9 @@ ul.no-bullet {list-style: none}
 
 <a name="Shell-Grammar-1"></a>
 <h1 class="chapter">6 Shell Grammar</h1>
-<a name="index-shell-grammar"></a>
+<p><a name="index-shell-grammar"></a>
 <a name="index-grammar_002c-shell"></a>
-<table class="menu" border="0" cellspacing="0">
+</p><table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top"><a href="#Simple-Commands-_0026-Pipelines">6.1 Simple Commands &amp; Pipelines</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Precommand-Modifiers">6.2 Precommand Modifiers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -104,9 +103,9 @@ ul.no-bullet {list-style: none}
 
 <a name="Simple-Commands-_0026-Pipelines-1"></a>
 <h2 class="section">6.1 Simple Commands &amp; Pipelines</h2>
-<a name="index-simple-commands"></a>
+<p><a name="index-simple-commands"></a>
 <a name="index-commands_002c-simple"></a>
-<p>A <em>simple command</em> is a sequence of optional parameter
+A <em>simple command</em> is a sequence of optional parameter
 assignments followed by blank-separated words,
 with optional redirections interspersed.  For a description
 of assignment, see the beginning of
@@ -126,8 +125,8 @@ For example,
 
 <p>is a simple command with arguments.
 </p>
-<a name="index-pipeline"></a>
-<p>A <em>pipeline</em> is either a simple command, or a sequence of two or more
+<p><a name="index-pipeline"></a>
+A <em>pipeline</em> is either a simple command, or a sequence of two or more
 simple commands where each command is separated from the next by &lsquo;<tt>|</tt>&rsquo;
 or &lsquo;<tt>|&amp;</tt>&rsquo;.  Where commands are separated by &lsquo;<tt>|</tt>&rsquo;, the standard
 output of the first command is connected to the
@@ -146,9 +145,9 @@ For example,
 <p>is a pipeline, where the output (&lsquo;<tt>foo</tt>&rsquo; plus a newline) of the first
 command will be passed to the input of the second.
 </p>
-<a name="index-coproc"></a>
+<p><a name="index-coproc"></a>
 <a name="index-coprocess"></a>
-<p>If a pipeline is preceded by &lsquo;<tt>coproc</tt>&rsquo;, it is executed as a coprocess;
+If a pipeline is preceded by &lsquo;<tt>coproc</tt>&rsquo;, it is executed as a coprocess;
 a two-way pipe is established between it and the parent shell.  The
 shell can read from or write to the coprocess by means of the &lsquo;<tt>&gt;&amp;p</tt>&rsquo;
 and &lsquo;<tt>&lt;&amp;p</tt>&rsquo; redirection operators or with &lsquo;<tt>print -p</tt>&rsquo; and &lsquo;<tt>read -p</tt>&rsquo;.
@@ -156,8 +155,8 @@ A pipeline cannot be preceded by both &lsquo;<tt>coproc</tt>&rsquo; and &lsquo;<
 If job control is active, the coprocess can be treated in other than input
 and output as an ordinary background job.
 </p>
-<a name="index-sublist"></a>
-<p>A <em>sublist</em> is either a single pipeline, or a sequence of two or more
+<p><a name="index-sublist"></a>
+A <em>sublist</em> is either a single pipeline, or a sequence of two or more
 pipelines separated by &lsquo;<tt>&amp;&amp;</tt>&rsquo; or &lsquo;<tt>||</tt>&rsquo;.  If two pipelines are separated
 by &lsquo;<tt>&amp;&amp;</tt>&rsquo;, the second pipeline is executed only if the first succeeds
 (returns a zero status).  If two pipelines are separated by &lsquo;<tt>||</tt>&rsquo;, the
@@ -175,8 +174,8 @@ which will be executed if and only if the <tt>grep</tt> command returns a zero
 status.  If it does not, the value of the sublist is that return status, else
 it is the status returned by the <tt>print</tt> (almost certainly zero).
 </p>
-<a name="index-list"></a>
-<p>A <em>list</em> is a sequence of zero or more sublists, in which each sublist
+<p><a name="index-list"></a>
+A <em>list</em> is a sequence of zero or more sublists, in which each sublist
 is terminated by &lsquo;<tt>;</tt>&rsquo;, &lsquo;<tt>&amp;</tt>&rsquo;, &lsquo;<tt>&amp;|</tt>&rsquo;, &lsquo;<tt>&amp;!</tt>&rsquo;, or a newline.
 This terminator
 may optionally be omitted from the last sublist in the list when the
@@ -214,9 +213,9 @@ in a shell function form a special sort of list.
 
 <a name="Precommand-Modifiers-1"></a>
 <h2 class="section">6.2 Precommand Modifiers</h2>
-<a name="index-precommand-modifiers"></a>
+<p><a name="index-precommand-modifiers"></a>
 <a name="index-modifiers_002c-precommand"></a>
-<p>A simple command may be preceded by a <em>precommand modifier</em>,
+A simple command may be preceded by a <em>precommand modifier</em>,
 which will alter how the command is interpreted.  These modifiers are
 shell builtin commands with the exception of <tt>nocorrect</tt> which is
 a reserved word.
@@ -301,9 +300,9 @@ the words.
 
 <a name="Complex-Commands-1"></a>
 <h2 class="section">6.3 Complex Commands</h2>
-<a name="index-complex-commands"></a>
+<p><a name="index-complex-commands"></a>
 <a name="index-commands_002c-complex"></a>
-<p>A <em>complex command</em> in zsh is one of the following:
+A <em>complex command</em> in zsh is one of the following:
 </p>
 <dl compact="compact">
 <dd><a name="index-if"></a>
@@ -566,9 +565,9 @@ for a description of <var>exp</var>.
 
 <a name="Alternate-Forms-For-Complex-Commands-1"></a>
 <h2 class="section">6.4 Alternate Forms For Complex Commands</h2>
-<a name="index-alternate-forms-for-complex-commands"></a>
+<p><a name="index-alternate-forms-for-complex-commands"></a>
 <a name="index-commands_002c-alternate-forms-for-complex"></a>
-<p>Many of zsh&rsquo;s complex commands have alternate forms.  These are
+Many of zsh&rsquo;s complex commands have alternate forms.  These are
 non-standard and are likely not to be obvious even to seasoned shell
 programmers; they should not be used anywhere that portability of shell
 code is a concern.
@@ -675,9 +674,9 @@ A short form of <tt>select</tt>.
 
 <a name="Reserved-Words-1"></a>
 <h2 class="section">6.5 Reserved Words</h2>
-<a name="index-reserved-words"></a>
+<p><a name="index-reserved-words"></a>
 <a name="index-disable_002c-use-of"></a>
-<p>The following words are recognized as reserved words when used as the first
+The following words are recognized as reserved words when used as the first
 word of a command unless quoted or disabled using <tt>disable -r</tt>:
 </p>
 <p><tt>do done esac then elif else fi for case
@@ -707,8 +706,8 @@ declare export float integer local readonly typeset</tt>
 
 <a name="Errors-1"></a>
 <h2 class="section">6.6 Errors</h2>
-<a name="index-errors_002c-handling-of"></a>
-<p>Certain errors are treated as fatal by the shell: in an interactive
+<p><a name="index-errors_002c-handling-of"></a>
+Certain errors are treated as fatal by the shell: in an interactive
 shell, they cause control to return to the command line, and in a
 non-interactive shell they cause the shell to be aborted.  In older
 versions of zsh, a non-interactive shell running a script would not
@@ -775,10 +774,10 @@ standard.
 
 <a name="Comments-1"></a>
 <h2 class="section">6.7 Comments</h2>
-<a name="index-comments"></a>
+<p><a name="index-comments"></a>
 <a name="index-INTERACTIVE_005fCOMMENTS_002c-use-of"></a>
 <a name="index-histchars_002c-use-of"></a>
-<p>In non-interactive shells, or in interactive shells with the
+In non-interactive shells, or in interactive shells with the
 <tt>INTERACTIVE_COMMENTS</tt> option set, a word beginning
 with the third character of the <tt>histchars</tt> parameter
 (&lsquo;<tt>#</tt>&rsquo; by default) causes that word and all the following
@@ -789,7 +788,7 @@ characters up to a newline to be ignored.
 <tr><td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Comments" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Shell-Grammar" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Quoting" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Alias-difficulties" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -803,8 +802,8 @@ characters up to a newline to be ignored.
 
 <a name="Aliasing-1"></a>
 <h2 class="section">6.8 Aliasing</h2>
-<a name="index-aliasing"></a>
-<p>Every eligible <em>word</em> in the shell input is checked to see if there
+<p><a name="index-aliasing"></a>
+Every eligible <em>word</em> in the shell input is checked to see if there
 is an alias defined for it.
 If so, it is replaced by the text of the alias if it is in command
 position (if it could be the first word of a simple command),
@@ -830,28 +829,66 @@ other tokens between them
 operator, and &lsquo;<tt>(</tt>&rsquo; or &lsquo;<tt>)</tt>&rsquo; when not part of a glob pattern
 </li></ul>
 
-<p>It is not presently possible to alias the &lsquo;<tt>((</tt>&rsquo; token that
-introduces arithmetic expressions, because until a full statement has been
-parsed, it cannot be distinguished from two consecutive &lsquo;<tt>(</tt>&rsquo;
-tokens introducing nested subshells.
-</p>
-<p>When <tt>POSIX_ALIASES</tt> is set, only plain unquoted strings are eligible
-for aliasing.  The <tt>alias</tt> builtin does not reject ineligible aliases,
-but they are not expanded.
-</p>
 <p>Alias expansion is done on the shell input before any other expansion
 except history expansion.  Therefore, if an alias is defined for the
 word <tt>foo</tt>, alias expansion may be avoided by quoting part of the
 word, e.g. <tt>\foo</tt>.  Any form of quoting works, although there is
 nothing to prevent an alias being defined for the quoted form such as
-<tt>\foo</tt> as well.  Also, if a separator such as <tt>&amp;&amp;</tt> is aliased,
-<tt>\&amp;&amp;</tt> turns into the two tokens <tt>\&amp;</tt> and <tt>&amp;</tt>, each of which may
-have been aliased separately.  Similarly for <tt>\&lt;&lt;</tt>, <tt>\&gt;|</tt>, etc.
+<tt>\foo</tt> as well.
+</p>
+<p>When <tt>POSIX_ALIASES</tt> is set, only plain unquoted strings are eligible
+for aliasing.  The <tt>alias</tt> builtin does not reject ineligible aliases,
+but they are not expanded.
 </p>
 <p>For use with completion, which would remove an initial backslash followed
 by a character that isn&rsquo;t special, it may be more convenient to quote the
 word by starting with a single quote, i.e. <tt>'foo</tt>; completion will
 automatically add the trailing single quote.
+</p>
+
+<hr>
+<a name="Alias-difficulties"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Aliasing" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Aliasing" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Quoting" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">6.8.1 Alias difficulties</h3>
+
+<p>Although aliases can be used in ways that bend normal shell syntax, not
+every string of non-white-space characters can be used as an alias.
+</p>
+<p>Any set of characters not listed as a word above is not a word, hence no
+attempt is made to expand it as an alias, no matter how it is defined
+(i.e. via the builtin or the special parameter <tt>aliases</tt> described in
+<a href="Zsh-Modules.html#The-zsh_002fparameter-Module">The zsh/parameter Module</a>).
+However, as noted in the case of <tt>POSIX_ALIASES</tt> above, the shell does
+not attempt to deduce whether the string corresponds to a word at the
+time the alias is created.
+</p>
+<p>For example, an expression containing an <tt>=</tt> at the start of
+a command line is an assignment and cannot be expanded as an alias;
+a lone <tt>=</tt> is not an assignment but can only be set as an alias
+using the parameter, as otherwise the <tt>=</tt> is taken part of the
+syntax of the builtin command.
+</p>
+<p>It is not presently possible to alias the &lsquo;<tt>((</tt>&rsquo; token that
+introduces arithmetic expressions, because until a full statement has been
+parsed, it cannot be distinguished from two consecutive &lsquo;<tt>(</tt>&rsquo;
+tokens introducing nested subshells.
+Also, if a separator such as <tt>&amp;&amp;</tt> is aliased,
+<tt>\&amp;&amp;</tt> turns into the two tokens <tt>\&amp;</tt> and <tt>&amp;</tt>, each of which may
+have been aliased separately.  Similarly for <tt>\&lt;&lt;</tt>, <tt>\&gt;|</tt>, etc.
 </p>
 <p>There is a commonly encountered problem with aliases
 illustrated by the following code:
@@ -896,7 +933,7 @@ code fragment might be re-executed.
 <a name="Quoting"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Aliasing" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Alias-difficulties" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Shell-Grammar" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -912,8 +949,8 @@ code fragment might be re-executed.
 
 <a name="Quoting-1"></a>
 <h2 class="section">6.9 Quoting</h2>
-<a name="index-quoting"></a>
-<p>A character may be <em>quoted</em> (that is, made
+<p><a name="index-quoting"></a>
+A character may be <em>quoted</em> (that is, made
 to stand for itself) by preceding it with a &lsquo;<tt>\</tt>&rsquo;.
 &lsquo;<tt>\</tt>&rsquo; followed by a newline is ignored.
 </p>
@@ -923,8 +960,8 @@ processed the same way as the string arguments of the
 entirely quoted.  A literal &lsquo;<tt>'</tt>&rsquo; character can be included in the
 string by using the &lsquo;<tt>\'</tt>&rsquo; escape.
 </p>
-<a name="index-RC_005fQUOTES_002c-use-of"></a>
-<p>All characters enclosed between a pair of single quotes (<tt>''</tt>) that
+<p><a name="index-RC_005fQUOTES_002c-use-of"></a>
+All characters enclosed between a pair of single quotes (<tt>''</tt>) that
 is not preceded by a &lsquo;<tt>$</tt>&rsquo; are quoted.  A single quote cannot appear
 within single quotes unless the option <tt>RC_QUOTES</tt> is set, in which case
 a pair of single quotes are turned into a single quote.  For example,
@@ -938,7 +975,8 @@ single quote if it is set.
 </p>
 <p>Inside double quotes (<tt>&quot;&quot;</tt>), parameter and
 command substitution occur, and &lsquo;<tt>\</tt>&rsquo; quotes the characters
-&lsquo;<tt>\</tt>&rsquo;, &lsquo;<tt>`</tt>&rsquo;, &lsquo;<tt>&quot;</tt>&rsquo;, and &lsquo;<tt>$</tt>&rsquo;.
+&lsquo;<tt>\</tt>&rsquo;, &lsquo;<tt>`</tt>&rsquo;, &lsquo;<tt>&quot;</tt>&rsquo;, &lsquo;<tt>$</tt>&rsquo;, and the first character
+of <tt>$histchars</tt> (default &lsquo;<tt>!</tt>&rsquo;).
 </p><hr>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -954,9 +992,9 @@ command substitution occur, and &lsquo;<tt>\</tt>&rsquo; quotes the characters
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>September 21, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>April 11, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.4.2, released on August 27, 2017.</font>
+<font size="-1">Zsh version 5.5, released on April 8, 2018.</font>
 </body>
 </html>

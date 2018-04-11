@@ -1,28 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 15 Parameters</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>15 Parameters (zsh)</title>
 
-<meta name="description" content="zsh: 15 Parameters">
-<meta name="keywords" content="zsh: 15 Parameters">
+<meta name="description" content="15 Parameters (zsh)">
+<meta name="keywords" content="15 Parameters (zsh)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
@@ -31,10 +31,9 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -42,7 +41,7 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<body lang="en">
 <a name="Parameters"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Expansion.html#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -62,8 +61,21 @@ ul.no-bullet {list-style: none}
 
 <a name="Parameters-1"></a>
 <h1 class="chapter">15 Parameters</h1>
-<a name="index-parameters"></a>
+<p><a name="index-parameters"></a>
 <a name="index-variables"></a>
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Array-Parameters">15.2 Array Parameters</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Positional-Parameters">15.3 Positional Parameters</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Local-Parameters">15.4 Local Parameters</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Parameters-Set-By-The-Shell">15.5 Parameters Set By The Shell</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Parameters-Used-By-The-Shell">15.6 Parameters Used By The Shell</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
 
 <hr>
 <a name="Description"></a>
@@ -90,12 +102,12 @@ characters and underscores, or the single characters
 A parameter whose name begins with an alphanumeric or underscore is also
 referred to as a <em>variable</em>.
 </p>
-<a name="index-scalar"></a>
+<p><a name="index-scalar"></a>
 <a name="index-parameters_002c-scalar"></a>
 <a name="index-parameters_002c-array"></a>
 <a name="index-parameters_002c-associative-array"></a>
 <a name="index-hash"></a>
-<p>The attributes of a parameter determine the <em>type</em> of its value, often
+The attributes of a parameter determine the <em>type</em> of its value, often
 referred to as the parameter type or variable type, and also control
 other processing that may be applied to the value when it is referenced.
 The value type may be a <em>scalar</em> (a string, an integer, or a floating
@@ -103,11 +115,11 @@ point number), an array (indexed numerically), or an <em>associative</em>
 array (an unordered set of name-value pairs, indexed by name, also
 referred to as a <em>hash</em>).
 </p>
-<a name="index-export"></a>
+<p><a name="index-export"></a>
 <a name="index-environment"></a>
 <a name="index-environment-variables"></a>
 <a name="index-variables_002c-environment"></a>
-<p>Named scalar parameters may have the <em>exported</em>, <tt>-x</tt>, attribute, to
+Named scalar parameters may have the <em>exported</em>, <tt>-x</tt>, attribute, to
 copy them into the process environment, which is then passed from the
 shell to any new processes that it starts.  Exported parameters are called
 <em>environment variables</em>. The shell also <em>imports</em> environment variables
@@ -116,9 +128,9 @@ exported.  Some environment variables are not imported for reasons of
 security or because they would interfere with the correct operation of
 other shell features.
 </p>
-<a name="index-special-parameters"></a>
+<p><a name="index-special-parameters"></a>
 <a name="index-parameters_002c-special"></a>
-<p>Parameters may also be <em>special</em>, that is, they have a predetermined
+Parameters may also be <em>special</em>, that is, they have a predetermined
 meaning to the shell.  Special parameters cannot have their type changed
 or their readonly attribute turned off, and if a special parameter is
 unset, then later recreated, the special properties will be retained.
@@ -198,16 +210,76 @@ expansion.
 <blockquote>
 <p><var>name</var><tt>=(</tt><var>value</var> ...<tt>)</tt>
 </p></blockquote>
+<blockquote>
+<p><var>name</var><tt>=(</tt><tt>[</tt><var>key</var><tt>]=</tt><var>value</var> ...<tt>)</tt>
+</p></blockquote>
 
 <p>If no parameter <var>name</var> exists, an ordinary array parameter is created.
 If the parameter <var>name</var> exists and is a scalar, it is replaced by a new
-array.  To append to an array without changing the existing values, use
-the syntax:
+array.
+</p>
+<p>In the third form, <var>key</var> is an expression that will be evaluated in
+arithmetic context (in its simplest form, an integer) that gives the
+index of the element to be assigned with <var>value</var>.  In this form any
+elements not explicitly mentioned that come before the largest index to
+which a value is assigned are assigned an empty string.  The indices
+may be in any order.  Note that this syntax is strict: <tt>[</tt> and <tt>]=</tt> must
+not be quoted, and <var>key</var> may not consist of the unquoted string
+<tt>]=</tt>, but is otherwise treated as a simple string.  The enhanced forms
+of subscript expression that may be used when directly subscripting a
+variable name, described in the section Array Subscripts below, are not
+available.
+</p>
+<p>The syntaxes with and without the explicit key may be mixed.  An implicit
+<var>key</var> is deduced by incrementing the index from the previously
+assigned element.  Note that it is not treated as an error
+if latter assignments in this form overwrite earlier assignments.
+</p>
+<p>For example, assuming the option <tt>KSH_ARRAYS</tt> is not set, the following:
+</p>
+<div class="example">
+<pre class="example">array=(one [3]=three four)
+</pre></div>
+
+<p>causes the array variable <tt>array</tt> to contain four elements <tt>one</tt>,
+an empty string, <tt>three</tt> and <tt>four</tt>, in that order.
+</p>
+<p>In the forms where only <var>value</var> is specified, full command
+line expansion is performed.
+</p>
+<p>In the <tt>[</tt><var>key</var><tt>]=</tt><var>value</var> form,
+both <var>key</var> and <var>value</var> undergo all forms of expansion
+allowed for single word shell expansions (this does not include filename
+generation); these are as performed by the parameter expansion flag
+<tt>(e)</tt> as described in
+<a href="Expansion.html#Parameter-Expansion">Parameter Expansion</a>.
+Nested parentheses may surround <var>value</var> and are included as part of the
+value, which is joined into a plain string; this differs from ksh which
+allows the values themselves to be arrays.  A future version of zsh may
+support that.  To cause the brackets to be interpreted as a character
+class for filename generation, and therefore to treat the resulting list
+of files as a set of values, quote the equal sign using any form of quoting.
+Example:
+</p>
+<blockquote>
+<p><var>name</var><tt>=(</tt><tt>[a-z]'='*)</tt>
+</p></blockquote>
+
+<p>To append to an array without changing the existing values, use
+one of the following:
 </p>
 <blockquote>
 <p><var>name</var><tt>+=(</tt><var>value</var> ...<tt>)</tt>
 </p></blockquote>
+<blockquote>
+<p><var>name</var><tt>+=(</tt><tt>[</tt><var>key</var><tt>]=</tt><var>value</var> ...<tt>)</tt>
+</p></blockquote>
 
+<p>In the second form <var>key</var> may specify an existing index as well as an
+index off the end of the old array; any existing value is overwritten by
+<var>value</var>.  Also, it is possible to use <tt>[</tt><var>key</var><tt>]+=</tt><var>value</var>
+to append to the existing value at that index.
+</p>
 <p>Within the parentheses on the right hand side of either form of the
 assignment, newlines and semicolons are treated the same as white space,
 separating individual <var>value</var>s.  Any consecutive sequence of such
@@ -235,7 +307,14 @@ is interpreted as alternating keys and values:
 <blockquote>
 <p><var>name</var><tt>=(</tt><var>key</var> <var>value</var> ...<tt>)</tt>
 </p></blockquote>
+<blockquote>
+<p><var>name</var><tt>=(</tt><tt>[</tt><var>key</var><tt>]=</tt><var>value</var> ...<tt>)</tt>
+</p></blockquote>
 
+<p>Note that only one of the two syntaxes above may be used in any
+given assignment; the forms may not be mixed.  This is unlike the case
+of numerically indexed arrays.
+</p>
 <p>Every <var>key</var> must have a <var>value</var> in this case.  Note that this
 assigns to the entire array, deleting any elements that do not appear in
 the list.  The append syntax may also be used with an associative array:
@@ -243,9 +322,16 @@ the list.  The append syntax may also be used with an associative array:
 <blockquote>
 <p><var>name</var><tt>+=(</tt><var>key</var> <var>value</var> ...<tt>)</tt>
 </p></blockquote>
+<blockquote>
+<p><var>name</var><tt>+=(</tt><tt>[</tt><var>key</var><tt>]=</tt><var>value</var> ...<tt>)</tt>
+</p></blockquote>
 
 <p>This adds a new key/value pair if the key is not already present, and
-replaces the value for the existing key if it is.
+replaces the value for the existing key if it is.  In the second
+form it is also possible to use <tt>[</tt><var>key</var><tt>]+=</tt><var>value</var> to
+append to the existing value at that key.  Expansion is performed
+identically to the corresponding forms for normal arrays, as
+described above.
 </p>
 <p>To create an empty array (including associative arrays), use one of:
 </p>
@@ -275,8 +361,8 @@ replaces the value for the existing key if it is.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">15.2.1 Array Subscripts</h3>
-<a name="index-subscripts"></a>
-<p>Individual elements of an array may be selected using a subscript.  A
+<p><a name="index-subscripts"></a>
+Individual elements of an array may be selected using a subscript.  A
 subscript of the form &lsquo;<tt>[</tt><var>exp</var><tt>]</tt>&rsquo; selects the single element
 <var>exp</var>, where <var>exp</var> is an arithmetic expression which will be subject
 to arithmetic expansion as if it were surrounded by
@@ -428,8 +514,8 @@ that element.  To delete an element of an associative array, use the
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">15.2.3 Subscript Flags</h3>
-<a name="index-subscript-flags"></a>
-<p>If the opening bracket, or the comma in a range, in any subscript
+<p><a name="index-subscript-flags"></a>
+If the opening bracket, or the comma in a range, in any subscript
 expression is directly followed by an opening parenthesis, the string up
 to the matching closing one is considered to be a list of flags, as in
 &lsquo;<var>name</var><tt>[(</tt><var>flags</var><tt>)</tt><var>exp</var><tt>]</tt>&rsquo;.
@@ -448,8 +534,10 @@ interpreted as a redirection.
 <dt><tt>w</tt></dt>
 <dd><p>If the parameter subscripted is a scalar then this flag makes
 subscripting work on words instead of characters.  The default word
-separator is whitespace.  This flag may not be used with the <tt>i</tt> or
-<tt>I</tt> flag.
+separator is whitespace.  When combined with the <tt>i</tt> or <tt>I</tt> flag,
+the effect is to produce the index of the first character of the
+first/last word which matches the given pattern; note that a failed
+match in this case always yields 0.
 </p>
 </dd>
 <dt><tt>s:</tt><var>string</var><tt>:</tt></dt>
@@ -952,6 +1040,17 @@ as set by the most recently failed system call.
 This value is system dependent and is intended for debugging
 purposes.  It is also useful with the <tt>zsh/system</tt> module which
 allows the number to be turned into a name or message.
+</p>
+<a name="index-FUNCNEST"></a>
+</dd>
+<dt><tt>FUNCNEST</tt> &lt;S&gt;</dt>
+<dd><p>Integer.  If greater than or equal to zero, the maximum nesting depth of
+shell functions.  When it is exceeded, an error is raised at the point
+where a function is called.  The default value is determined when
+the shell is configured, but is typically 500.  Increasing
+the value increases the danger of a runaway function recursion
+causing the shell to crash.  Setting a negative value turns off
+the check.
 </p>
 <a name="index-GID"></a>
 </dd>
@@ -1801,7 +1900,7 @@ is specified with no command.  Defaults to <tt>more</tt>.
 </dd>
 <dt><tt>REPORTMEMORY</tt></dt>
 <dd><p>If nonnegative, commands whose maximum resident set size (roughly
-speaking, main memory usage) in megabytes is greater than this
+speaking, main memory usage) in kilobytes is greater than this
 value have timing statistics reported.  The format used to output
 statistics is the value of the <tt>TIMEFMT</tt> parameter, which is the same
 as for the <tt>REPORTTIME</tt> variable and the <tt>time</tt> builtin; note that
@@ -1977,7 +2076,7 @@ kilobytes.
 </p></dd>
 <dt><tt>%M</tt></dt>
 <dd><p>The  maximum memory the process had in use at any time in
-megabytes.
+kilobytes.
 </p></dd>
 <dt><tt>%F</tt></dt>
 <dd><p>The number of major page faults (page needed to be brought
@@ -2012,10 +2111,12 @@ from disk).
 </p></dd>
 </dl>
 
-<p>A star may be inserted between the percent sign and flags printing time.
-This cause the time to be printed in
+<p>A star may be inserted between the percent sign and flags printing time
+(e.g., &lsquo;<tt>%*E</tt>&rsquo;); this causes the time to be printed in
 &lsquo;<var>hh</var><tt>:</tt><var>mm</var><tt>:</tt><var>ss</var><tt>.</tt><var>ttt</var>&rsquo;
 format (hours and minutes are only printed if they are not zero).
+Alternatively, &lsquo;<tt>m</tt>&rsquo; or &lsquo;<tt>u</tt>&rsquo; may be used (e.g., &lsquo;<tt>%mE</tt>&rsquo;) to produce
+time output in milliseconds or microseconds, respectively.
 </p>
 <a name="index-TMOUT"></a>
 </dd>
@@ -2311,9 +2412,9 @@ Some experimentation is necessary.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>September 21, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>April 11, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.4.2, released on August 27, 2017.</font>
+<font size="-1">Zsh version 5.5, released on April 8, 2018.</font>
 </body>
 </html>

@@ -1,28 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>zsh: 7 Redirection</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>7 Redirection (zsh)</title>
 
-<meta name="description" content="zsh: 7 Redirection">
-<meta name="keywords" content="zsh: 7 Redirection">
+<meta name="description" content="7 Redirection (zsh)">
+<meta name="keywords" content="7 Redirection (zsh)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
@@ -31,10 +31,9 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -42,7 +41,7 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<body lang="en">
 <a name="Redirection"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Shell-Grammar.html#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -62,10 +61,10 @@ ul.no-bullet {list-style: none}
 
 <a name="Redirection-1"></a>
 <h1 class="chapter">7 Redirection</h1>
-<a name="index-redirection"></a>
+<p><a name="index-redirection"></a>
 <a name="index-file-descriptors"></a>
 <a name="index-descriptors_002c-file"></a>
-<p>If a command is followed by <tt>&amp;</tt>
+If a command is followed by <tt>&amp;</tt>
 and job control is not active,
 then the default standard input
 for the command is the empty file <tt>/dev/null</tt>.
@@ -255,9 +254,9 @@ command represented by <var>list</var>.  See
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">7.1 Opening file descriptors using parameters</h2>
-<a name="index-file-descriptors_002c-use-with-parameters"></a>
+<p><a name="index-file-descriptors_002c-use-with-parameters"></a>
 <a name="index-parameters_002c-for-using-file-descriptors"></a>
-
+</p>
 <p>When the shell is parsing arguments to a command, and the shell option
 <tt>IGNORE_BRACES</tt> is not set, a different form of redirection is allowed:
 instead of a digit before the operator there is a valid shell identifier
@@ -330,9 +329,9 @@ line have been processed.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">7.2 Multios</h2>
-<a name="index-multios"></a>
+<p><a name="index-multios"></a>
 <a name="index-MULTIOS_002c-use-of"></a>
-<p>If the user tries to open a file descriptor for writing more than once,
+If the user tries to open a file descriptor for writing more than once,
 the shell opens the file descriptor as a pipe to a process that copies
 its input to all the specified outputs, similar to <cite>tee</cite>,
 provided the <tt>MULTIOS</tt> option is set, as it is by default.  Thus:
@@ -480,19 +479,19 @@ written.
 and zero or more parameter assignments, but no command name, zsh can
 behave in several ways.
 </p>
-<a name="index-NULLCMD_002c-use-of"></a>
+<p><a name="index-NULLCMD_002c-use-of"></a>
 <a name="index-CSH_005fNULLCMD_002c-use-of"></a>
-<p>If the parameter <tt>NULLCMD</tt> is not set or the option <tt>CSH_NULLCMD</tt> is
+If the parameter <tt>NULLCMD</tt> is not set or the option <tt>CSH_NULLCMD</tt> is
 set, an error is caused.  This is the <cite>csh</cite> behavior and <tt>CSH_NULLCMD</tt>
 is set by default when emulating <cite>csh</cite>.
 </p>
-<a name="index-SH_005fNULLCMD_002c-use-of"></a>
-<p>If the option <tt>SH_NULLCMD</tt> is set, the builtin &lsquo;<tt>:</tt>&rsquo; is inserted as a
+<p><a name="index-SH_005fNULLCMD_002c-use-of"></a>
+If the option <tt>SH_NULLCMD</tt> is set, the builtin &lsquo;<tt>:</tt>&rsquo; is inserted as a
 command with the given redirections.  This is the default when emulating
 <cite>sh</cite> or <cite>ksh</cite>.
 </p>
-<a name="index-READNULLCMD_002c-use-of"></a>
-<p>Otherwise, if the parameter <tt>NULLCMD</tt> is set, its value will be used as a
+<p><a name="index-READNULLCMD_002c-use-of"></a>
+Otherwise, if the parameter <tt>NULLCMD</tt> is set, its value will be used as a
 command with the given redirections.  If both <tt>NULLCMD</tt> and
 <tt>READNULLCMD</tt> are set, then the value of the latter will be used instead
 of that of the former when the redirection is an input.  The default for
@@ -520,9 +519,9 @@ terminal.  <tt>NULLCMD</tt> and <tt>READNULLCMD</tt> may refer to shell function
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p><font size="-1">
-  This document was generated on <em>September 21, 2017</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
+  This document was generated on <em>April 11, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
 </font></p>
 
-<font size="-1">Zsh version 5.4.2, released on August 27, 2017.</font>
+<font size="-1">Zsh version 5.5, released on April 8, 2018.</font>
 </body>
 </html>
