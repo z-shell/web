@@ -27,6 +27,81 @@
 </table>
 <hr size=1 noshade>
 
+<h2>Changes between versions 5.4.2 and 5.5</h2>
+
+<h3>Incompatibilities</h3>
+
+<ul>
+<li>
+The default build-time maximum nested function depth has been
+decreased from 1000 to 500 based on user experience.  However,
+it can now be changed at run time via the variable FUNCNEST.
+If you previously configured the shell to set a different value,
+or to remove the check, this is now reflected in the default
+value of the variable.
+</li>
+
+<li>
+The syntax
+
+<pre>
+foo=([key]=value)
+</pre>
+
+can be used to set elements of arrays and associative arrays.  In the
+unlikely event that you need to set an array by matching files using a
+pattern that starts with a character range followed by '=', you need to
+quote the '=', e.g.:
+
+<pre>
+foo=([aeiou]\=vowel)
+</pre>
+
+This is only required for array values contained within parentheses;
+command line expansion for normal arguments has not changed.
+</li>
+
+<li>
+The syntax
+
+<pre>
+[[ -o foo ]]
+</pre>
+
+where foo is not the name of a shell option (with optional underscores
+and optional "no" prefix) used to be treated as a syntax error, i.e.,
+the enclosing command line or file were aborted.  It now emits a warning
+and returns a non-zero exit code.  For further details, see the
+documentation of the -o switch in the chapter "Conditional Expressions"
+in the zshmisc(1) manual.
+</li>
+</ul>
+
+<h3>Changes</h3>
+
+<ul>
+<li>
+The effect of the NO_INTERACTIVE_COMMENTS option extends into $(...) and
+`...` command substitutions when used on the command line.  Previously,
+comments were always recognized within command substitutions unless the
+comment character "#" was disabled via reset of $histchars.
+</li>
+
+<li>
+</li>
+An alternative assignment syntax for indicating indices for arrays
+and keys for associative arrays:
+
+<pre>
+typeset -a array=([1]=first [2]=second)
+typeset -A assoc=([key1]=val1 [key2]=val2)
+</pre>
+
+is allowed for compatibility with other shells.  In the case of normal
+arrays the new syntax can be mixed with the old.
+</ul>
+
+
 <h2>Changes between versions 5.3.1 and 5.4.1</h2>
 
 <h3>Incompatibilities</h3>
@@ -2410,7 +2485,7 @@ completion.
 <div align=right>
 <address>
 <a name=Signature href="disclaimer.html">Disclaimer</A>
-Last modified: 2018-08-13
+Last modified: 2018-04-11
 </address>
 </div>
 
