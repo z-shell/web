@@ -83,7 +83,7 @@ echo
 echo "- Update date for 'News' in 'index.html'."
 echo "- Add short release notes to 'News/index.html' (manually and from README)."
 echo "- Add detailed release notes to 'releases.html' (mostly from NEWS)."
-echo "- Don't forget to update the file names and sizes in:"
+echo "- Run ./release-update-versions.zsh <version> to update file names/size in:"
 echo "  - Doc/index.html"
 echo "  - Arc/source.html"
 echo "- Commit."
