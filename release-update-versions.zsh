@@ -36,7 +36,7 @@ perl -pi -e 's#(zsh(?:-doc)?[ /-])[0-9]+\.[0-9]+(?:\.[0-9])?#${1}'$1'#g' \
 
 echo 'Downloading release files for GPG verification and size updates ...'
 t=$(mktemp -d)
-for x in $(grep -o 'http://sourceforge.net[^"]*' Arc/source.html | grep -F $1); do
+for x in $(grep -o 'https://sourceforge.net[^"]*' Arc/source.html | grep -F $1); do
     (cd $t && wget --content-disposition $x)
 done
 for x in $t/*.asc; do
