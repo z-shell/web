@@ -7,7 +7,10 @@ set -eu
 setopt extendedglob
 
 update_last_modified() {
-    sed -i 's/^Last modified: .*/Last modified: '"$(date '+%Y-%m-%d')"'/' "$@"
+    local -a baks
+    baks=( $^@.sedbak )
+    sed -i.sedbak 's/^Last modified: .*/Last modified: '"$(date '+%Y-%m-%d')"'/' "$@"
+    rm -f -- $baks # BSD sed requires back-ups with -i
 }
 
 formatted_size() {
@@ -52,7 +55,7 @@ update_last_modified Arc/source.html
 echo 'Updated Arc/source.html'
 
 
-for x in $(grep -P -o 'zsh[^"]+\.(gz|pdf)' Doc/index.html); do
+for x in $(grep -E -o 'zsh[^"]+\.(gz|pdf)' Doc/index.html); do
     update_size ${x:t} "$(formatted_size Doc/$x)" Doc/index.html
 done
 update_last_modified Doc/index.html
