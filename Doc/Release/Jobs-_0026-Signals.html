@@ -1,20 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created on January 24, 2019 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>10 Jobs &amp; Signals (zsh)</title>
+<title>zsh: 10 Jobs &amp; Signals</title>
 
-<meta name="description" content="10 Jobs &amp; Signals (zsh)">
-<meta name="keywords" content="10 Jobs &amp; Signals (zsh)">
+<meta name="description" content="zsh: 10 Jobs &amp; Signals">
+<meta name="keywords" content="zsh: 10 Jobs &amp; Signals">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2any">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
@@ -22,18 +28,18 @@ div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smalldisplay {font-family: serif; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,7 +47,8 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
 <a name="Jobs-_0026-Signals"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Functions.html#Functions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -80,9 +87,9 @@ ul.no-bullet {list-style: none}
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">10.1 Jobs</h2>
-<p><a name="index-jobs"></a>
+<a name="index-jobs"></a>
 <a name="index-MONITOR_002c-use-of"></a>
-If the <tt>MONITOR</tt> option is set,
+<p>If the <tt>MONITOR</tt> option is set,
 an interactive shell associates a <em>job</em> with each pipeline.
 It keeps a table of current jobs, printed by the <tt>jobs</tt>
 command, and assigns them small integer numbers.
@@ -153,9 +160,9 @@ output like they do when they try to read input.
 suspended.  This (intentionally) does not apply if the command is
 continued via &lsquo;<tt>kill -CONT</tt>&rsquo;, nor when it is continued with <tt>bg</tt>.
 </p>
-<p><a name="index-jobs_002c-referring-to"></a>
+<a name="index-jobs_002c-referring-to"></a>
 <a name="index-referring-to-jobs"></a>
-There are several ways to refer to jobs in the shell.
+<p>There are several ways to refer to jobs in the shell.
 A job can be referred to by the process ID of any process of the job
 or by one of the following:
 </p>
@@ -200,10 +207,10 @@ jobs will be terminated, and the running jobs will be sent
 a <tt>SIGHUP</tt> signal, if the <tt>HUP</tt> option is set.
 <a name="index-HUP_002c-use-of"></a>
 </p>
-<p><a name="index-jobs_002c-disowning"></a>
+<a name="index-jobs_002c-disowning"></a>
 <a name="index-disowning-jobs"></a>
 <a name="index-disown_002c-use-of"></a>
-To avoid having the shell terminate the running jobs, either
+<p>To avoid having the shell terminate the running jobs, either
 use the <cite>nohup</cite> command (see man page nohup(1))
 or the <tt>disown</tt> builtin.
 </p>
@@ -233,10 +240,10 @@ Otherwise, signals have the values
 inherited by the shell from its parent
 (but see the <tt>TRAP</tt><var>NAL</var> special functions in <a href="Functions.html#Functions">Functions</a>).
 </p>
-<p><a name="index-exiting-shell_002c-and-asynchronous-jobs"></a>
+<a name="index-exiting-shell_002c-and-asynchronous-jobs"></a>
 <a name="index-asynchronous-jobs_002c-and-exiting-shell"></a>
 <a name="index-jobs_002c-asynchronous_002c-and-exiting-shell"></a>
-Certain jobs are run asynchronously by the shell other than those
+<p>Certain jobs are run asynchronously by the shell other than those
 explicitly put into the background; even in cases where the shell
 would usually wait for such jobs, an explicit <tt>exit</tt> command
 or exit due to the option <tt>ERR_EXIT</tt> will cause the shell to
@@ -259,10 +266,12 @@ the section Multios in <a href="Redirection.html#Redirection">Redirection</a>.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p><font size="-1">
-  This document was generated on <em>April 29, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
-</font></p>
-
-<font size="-1">Zsh version 5.5.1, released on April 16, 2018.</font>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 24, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+<font size="-1">Zsh version 5.7, released on January 24, 2019.</font>
+</p>
 </body>
 </html>

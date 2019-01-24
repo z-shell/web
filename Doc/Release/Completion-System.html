@@ -1,20 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created on January 24, 2019 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>20 Completion System (zsh)</title>
+<title>zsh: 20 Completion System</title>
 
-<meta name="description" content="20 Completion System (zsh)">
-<meta name="keywords" content="20 Completion System (zsh)">
+<meta name="description" content="zsh: 20 Completion System">
+<meta name="keywords" content="zsh: 20 Completion System">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2any">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
@@ -22,18 +28,18 @@ div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smalldisplay {font-family: serif; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,13 +47,14 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
 <a name="Completion-System"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Completion-Widgets.html#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-Widgets.html#Completion-Widget-Example" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-3" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-6" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-Using-compctl.html#Completion-Using-compctl" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -61,29 +68,12 @@ ul.no-bullet {list-style: none}
 
 <a name="Completion-System-1"></a>
 <h1 class="chapter">20 Completion System</h1>
-<p><a name="index-completion-system"></a>
+<a name="index-completion-system"></a>
 <a name="index-completion_002c-programmable-1"></a>
 <a name="index-completion_002c-controlling-1"></a>
-</p>
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="#Initialization">20.2 Initialization</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Completion-System-Configuration">20.3 Completion System Configuration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Control-Functions">20.4 Control Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Bindable-Commands">20.5 Bindable Commands</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Completion-Functions">20.6 Utility Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Completion-System-Variables">20.7 Completion System Variables</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Completion-Directories">20.8 Completion Directories</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-</table>
 
 <hr>
-<a name="Description-3"></a>
+<a name="Description-6"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Completion-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-System" title="Previous section in reading order"> &lt; </a>]</td>
@@ -115,11 +105,13 @@ in <a href="#Initialization">Initialization</a>.
 </p>
 <p>The context that decides what completion is to be performed may be
 </p><ul>
-<li> an argument or option position: these describe the position on the
+<li> 
+an argument or option position: these describe the position on the
 command line at which completion is requested.  For example &lsquo;first argument
 to rmdir, the word being completed names a directory&rsquo;;
 
-</li><li> a special context, denoting an element in the shell&rsquo;s syntax.  For example
+</li><li> 
+a special context, denoting an element in the shell&rsquo;s syntax.  For example
 &lsquo;a word in command position&rsquo; or &lsquo;an array subscript&rsquo;.
 
 </li></ul>
@@ -162,10 +154,12 @@ completion with error correction, menu selection, etc.
 <p>More generally, the shell functions contained in the completion system are
 of two types:
 </p><ul>
-<li> those beginning &lsquo;<tt>comp</tt>&rsquo; are to be called directly; there are only
+<li> 
+those beginning &lsquo;<tt>comp</tt>&rsquo; are to be called directly; there are only
 a few of these;
 
-</li><li> those beginning &lsquo;<tt>_</tt>&rsquo; are called by the
+</li><li> 
+those beginning &lsquo;<tt>_</tt>&rsquo; are called by the
 completion code.  The shell functions of this set, which implement
 completion behaviour and may be bound to keystrokes, are referred to
 as &lsquo;widgets&rsquo;.  These proliferate as new completions are required.
@@ -193,7 +187,7 @@ as &lsquo;widgets&rsquo;.  These proliferate as new completions are required.
 <a name="Initialization"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Completion-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-3" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-6" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-System" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Use-of-compinit" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-Using-compctl.html#Completion-Using-compctl" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -209,9 +203,9 @@ as &lsquo;widgets&rsquo;.  These proliferate as new completions are required.
 
 <a name="Initialization-1"></a>
 <h2 class="section">20.2 Initialization</h2>
-<p><a name="index-compinstall"></a>
+<a name="index-compinstall"></a>
 <a name="index-completion-system_002c-installing"></a>
-</p>
+
 <p>If the system was installed completely, it should be enough to
 call the shell function <tt>compinit</tt> from your initialization file; see the
 next section.  However, the function <tt>compinstall</tt> can be run by a user
@@ -261,9 +255,9 @@ end, where you are specifically asked for confirmation.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">20.2.1 Use of compinit</h3>
-<p><a name="index-compinit"></a>
+<a name="index-compinit"></a>
 <a name="index-completion-system_002c-initializing"></a>
-</p>
+
 <p>This section describes the use of <tt>compinit</tt> to initialize completion for
 the current session when called directly; if you have run
 <tt>compinstall</tt> it will be called automatically from your <tt>.zshrc</tt>.
@@ -323,8 +317,8 @@ option <tt>-u</tt>, and to make <tt>compinit</tt> silently ignore all insecure f
 and directories use the option <tt>-i</tt>.  This security check is skipped
 entirely when the <tt>-C</tt> option is given.
 </p>
-<p><a name="index-compaudit"></a>
-The security check can be retried at any time by running the function
+<a name="index-compaudit"></a>
+<p>The security check can be retried at any time by running the function
 <tt>compaudit</tt>.  This is the same check used by <tt>compinit</tt>, but when it
 is executed directly any changes to <tt>fpath</tt> are made local to the
 function so they do not persist.  The directories to be checked may be
@@ -334,8 +328,8 @@ to <tt>fpath</tt> as necessary.  To force a check of exactly the directories
 currently named in <tt>fpath</tt>, set <tt>_compdir</tt> to an empty string before
 calling <tt>compaudit</tt> or <tt>compinit</tt>.
 </p>
-<p><a name="index-bashcompinit"></a>
-The function <tt>bashcompinit</tt> provides compatibility with bash&rsquo;s programmable
+<a name="index-bashcompinit"></a>
+<p>The function <tt>bashcompinit</tt> provides compatibility with bash&rsquo;s programmable
 completion system.  When run it will define the functions, <tt>compgen</tt> and
 <tt>complete</tt> which correspond to the bash builtins with the same names.
 It will then be possible to use completion specifications and functions
@@ -348,7 +342,7 @@ written for bash.
 <tr><td valign="middle" align="left">[<a href="#Completion-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Use-of-compinit" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Initialization" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Functions-2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functions-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-Using-compctl.html#Completion-Using-compctl" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -360,8 +354,8 @@ written for bash.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">20.2.2 Autoloaded files</h3>
-<p><a name="index-completion-system_002c-autoloaded-functions"></a>
-</p>
+<a name="index-completion-system_002c-autoloaded-functions"></a>
+
 <p>The convention for autoloaded functions used in completion is that they
 start with an underscore; as already mentioned, the <tt>fpath/FPATH</tt>
 parameter must contain the directory in which they are stored.  If <tt>zsh</tt>
@@ -378,8 +372,8 @@ subdirectories of the subdirectories to the path: this allows
 the functions to be in the same format as in the <tt>zsh</tt> source
 distribution.
 </p>
-<p><a name="index-compdef_002c-use-of-by-compinit"></a>
-When <tt>compinit</tt> is run, it searches all such files accessible via
+<a name="index-compdef_002c-use-of-by-compinit"></a>
+<p>When <tt>compinit</tt> is run, it searches all such files accessible via
 <tt>fpath/FPATH</tt> and reads the first line of each of them.  This line should
 contain one of the tags described below.  Files whose first line does not
 start with one of these tags are not considered to be part of the
@@ -617,7 +611,7 @@ matching &lsquo;<tt>*.log</tt>&rsquo;.
 </p>
 
 <hr>
-<a name="Functions-2"></a>
+<a name="Functions-1"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Completion-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Autoloaded-files" title="Previous section in reading order"> &lt; </a>]</td>
@@ -638,9 +632,9 @@ matching &lsquo;<tt>*.log</tt>&rsquo;.
 <p>The following function is defined by <tt>compinit</tt> and may be called
 directly.
 </p>
-<p><a name="index-compdef"></a>
+<a name="index-compdef"></a>
 <a name="index-completion-system_002c-adding-definitions"></a>
-</p><dl compact="compact">
+<dl compact="compact">
 <dt><tt>compdef</tt> [ <tt>-ane</tt> ] <var>function name</var> ... [ <tt>-</tt>{<tt>p</tt>|<tt>P</tt>} <var>pattern</var> ... [ <tt>-N</tt> <var>name</var> ...]]</dt>
 <dt><tt>compdef -d</tt> <var>name</var> ...</dt>
 <dt><tt>compdef -k</tt> [ <tt>-an</tt> ] <var>function style key-sequence</var> [ <var>key-sequence</var> ... ]</dt>
@@ -682,7 +676,11 @@ patterns tried finally, and normal commands and contexts.
 pattern context.  If it is set to a value containing the substring
 &lsquo;<tt>patterns</tt>&rsquo; none of the pattern-functions will be called; if it is
 set to a value containing the substring &lsquo;<tt>all</tt>&rsquo;, no other function
-will be called.
+will be called.  Setting <tt>$_compskip</tt> in this manner is of particular
+utility when using the <tt>-p</tt> option, as otherwise the dispatcher will
+move on to additional functions (likely the default one) after calling
+the pattern-context one, which can mangle the display of completion
+possibilities if not handled properly.
 </p>
 <p>The form with <tt>-k</tt> defines a widget with the same name as the <var>function</var>
 that will be called for each of the <var>key-sequence</var>s; this is like the
@@ -725,7 +723,7 @@ used to complete options for commands that understand the
 <a name="Completion-System-Configuration"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Completion-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Functions-2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functions-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-System" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Overview-2" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-Using-compctl.html#Completion-Using-compctl" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -741,8 +739,8 @@ used to complete options for commands that understand the
 
 <a name="Completion-System-Configuration-1"></a>
 <h2 class="section">20.3 Completion System Configuration</h2>
-<p><a name="index-completion-system_002c-configuration"></a>
-</p>
+<a name="index-completion-system_002c-configuration"></a>
+
 <p>This section gives a short overview of how the completion system works,
 and then more detail on how users can configure how and when matches are
 generated.
@@ -804,17 +802,20 @@ The fields are always in the order
 <tt>:completion:</tt><var>function</var><tt>:</tt><var>completer</var><tt>:</tt><var>command</var><tt>:</tt><var>argument</var><tt>:</tt><var>tag</var>.  These have the following meaning:
 </p>
 <ul>
-<li> The literal string <tt>completion</tt>, saying that this style is used by
+<li> 
+The literal string <tt>completion</tt>, saying that this style is used by
 the completion system.  This distinguishes the context from those used
 by, for example, zle widgets and ZFTP functions.
 
-</li><li> The <var>function</var>, if completion is called from a named widget rather
+</li><li> 
+The <var>function</var>, if completion is called from a named widget rather
 than through the normal completion system.  Typically this is blank, but
 it is set by special widgets such as <tt>predict-on</tt> and the various
 functions in the <tt>Widget</tt> directory of the distribution to the name of
 that function, often in an abbreviated form.
 
-</li><li> The <var>completer</var> currently active, the name of the function without the
+</li><li> 
+The <var>completer</var> currently active, the name of the function without the
 leading underscore and with other underscores converted to hyphens.  A
 &lsquo;completer&rsquo; is in overall control of how completion is to be performed;
 &lsquo;<tt>complete</tt>&rsquo; is the simplest, but other completers exist to perform
@@ -823,7 +824,8 @@ completer.  See
 <a href="#Control-Functions">Control Functions</a> 
 for more information.  
 
-</li><li> The <var>command</var> or a special <tt>-</tt><var>context</var><tt>-</tt>, just at it appears
+</li><li> 
+The <var>command</var> or a special <tt>-</tt><var>context</var><tt>-</tt>, just at it appears
 following the <tt>#compdef</tt> tag or the <tt>compdef</tt> function.  Completion
 functions for commands that have sub-commands usually modify this field
 to contain the name of the command followed by a minus sign and the
@@ -831,7 +833,8 @@ sub-command.  For example, the completion function for the <tt>cvs</tt>
 command sets this field to <tt>cvs-add</tt> when completing arguments to
 the <tt>add</tt> subcommand.
 
-</li><li> The <var>argument</var>; this indicates which command line or option argument
+</li><li> 
+The <var>argument</var>; this indicates which command line or option argument
 we are completing.  For command arguments this generally takes the form
 <tt>argument-</tt><var>n</var>, where <var>n</var> is the number of the argument,
 and for arguments to options the form <tt>option-</tt><var>opt</var><tt>-</tt><var>n</var>
@@ -839,7 +842,8 @@ where <var>n</var> is the number of the argument to option <var>opt</var>.  Howe
 this is only the case if the command line is parsed with standard
 UNIX-style options and arguments, so many completions do not set this.
 
-</li><li> The <var>tag</var>.  As described previously, tags are used to discriminate between
+</li><li> 
+The <var>tag</var>.  As described previously, tags are used to discriminate between
 the types of matches a completion function can generate in a certain context.
 Any completion function may use any tag name it likes, but a list of the
 more common ones is given below.
@@ -940,7 +944,7 @@ as <tt>menu</tt> and <tt>list-rows-first</tt>.
 style mechanism uses the most specific possible match for a particular
 style to determine the set of values.  More precisely, strings are
 preferred over patterns (for example, &lsquo;<tt>:completion::complete:::foo</tt>&rsquo; is
-more specific than &lsquo;<tt>:completion::complete:::*'</tt>), and longer patterns are
+more specific than &lsquo;<tt>:completion::complete:::*&rsquo;</tt>), and longer patterns are
 preferred over shorter patterns.
 </p>
 <p>A good rule of thumb is that any completion style pattern that needs to
@@ -971,8 +975,8 @@ common tags and styles.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">20.3.2 Standard Tags</h3>
-<p><a name="index-completion-system_002c-tags"></a>
-</p>
+<a name="index-completion-system_002c-tags"></a>
+
 <p>Some of the following are only used when looking up particular styles
 and do not refer to a type of match.
 </p>
@@ -1454,8 +1458,8 @@ what program is installed for a particular command name.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">20.3.3 Standard Styles</h3>
-<p><a name="index-completion-system_002c-styles"></a>
-</p>
+<a name="index-completion-system_002c-styles"></a>
+
 <p>Note that the values of several of these styles represent boolean
 values.  Any of the strings &lsquo;<tt>true</tt>&rsquo;, &lsquo;<tt>on</tt>&rsquo;,
 &lsquo;<tt>yes</tt>&rsquo;, and &lsquo;<tt>1</tt>&rsquo; can be used for the value &lsquo;true&rsquo; and
@@ -1964,6 +1968,17 @@ contains the string &lsquo;<tt>follow</tt>&rsquo;, timestamps are associated wit
 targets of symbolic links; the default is to use the timestamps
 of the links themselves.
 </p>
+<a name="index-file_002dsplit_002dchars_002c-completion-style"></a>
+</dd>
+<dt><tt>file-split-chars</tt></dt>
+<dd><p>A set of characters that will cause <em>all</em> file completions for
+the given context to be split at the point where any of the characters
+occurs.  A typical use is to set the style to <tt>:</tt>; then everything
+up to and including the last <tt>:</tt> in the string so far is ignored when
+completing files.  As this is quite heavy-handed, it is usually
+preferable to update completion functions for contexts where this
+behaviour is useful.
+</p>
 <a name="index-filter_002c-completion-style"></a>
 </dd>
 <dt><tt>filter</tt></dt>
@@ -2362,7 +2377,7 @@ version of the <tt>ls</tt> command:
 </pre></div>
 
 <p>The default colors are the same as for the GNU <tt>ls</tt> command and can be
-obtained by setting the style to an empty string (i.e. <tt>''</tt>).
+obtained by setting the style to an empty string (i.e. <tt>&rsquo;&rsquo;</tt>).
 </p>
 <a name="index-list_002ddirs_002dfirst_002c-completion-style"></a>
 </dd>
@@ -3411,8 +3426,8 @@ completion will not be delayed.
 
 <a name="Control-Functions-1"></a>
 <h2 class="section">20.4 Control Functions</h2>
-<p><a name="index-completion-system_002c-choosing-completers"></a>
-</p>
+<a name="index-completion-system_002c-choosing-completers"></a>
+
 <p>The initialization script <tt>compinit</tt> redefines all the widgets
 which perform completion to call the supplied widget function
 <tt>_main_complete</tt>.  This function acts as a wrapper calling the
@@ -3446,8 +3461,8 @@ although users may write their own.  Note that in contexts the leading
 underscore is stripped, for example basic completion is performed in the
 context &lsquo;<tt>:completion::complete:</tt><var>...</var>&rsquo;.
 </p>
-<p><a name="index-completion-system_002c-completers"></a>
-</p><dl compact="compact">
+<a name="index-completion-system_002c-completers"></a>
+<dl compact="compact">
 <dd><a name="index-_005fall_005fmatches"></a>
 </dd>
 <dt><tt>_all_matches</tt></dt>
@@ -3897,8 +3912,8 @@ The return status of the function is irrelevant.
 
 <a name="Bindable-Commands-1"></a>
 <h2 class="section">20.5 Bindable Commands</h2>
-<p><a name="index-completion-system_002c-bindable-commands"></a>
-</p>
+<a name="index-completion-system_002c-bindable-commands"></a>
+
 <p>In addition to the context-dependent completions provided, which are
 expected to work in an intuitively obvious way, there are a few widgets
 implementing special behaviour which can be bound separately to keys.  The
@@ -4133,10 +4148,10 @@ emacs and vi respectively.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="Utility-Functions"></a>
+<a name="Utility-Functions-1"></a>
 <h2 class="section">20.6 Utility Functions</h2>
-<p><a name="index-completion-system_002c-utility-functions"></a>
-</p>
+<a name="index-completion-system_002c-utility-functions"></a>
+
 <p>Descriptions follow for utility functions that may be
 useful when writing completion functions.  If functions are installed in
 subdirectories, most of these reside in the
@@ -4731,7 +4746,7 @@ defining options that are aliases for each other. For example:
 
 <p>If an option in a group appears on the command line, it is stored in the
 associative array &lsquo;<tt>opt_args</tt>&rsquo; with &rsquo;<var>group</var><tt>-</tt><var>option</var>&rsquo;
-as a key.  In the example above, a key &lsquo;<tt>operation--c</tt>&rsquo; is used if the option
+as a key.  In the example above, a key &lsquo;<tt>operation&ndash;c</tt>&rsquo; is used if the option
 &lsquo;<tt>-c</tt>&rsquo; is present on the command line.
 </p>
 <p><em>Specifying Multiple Sets of Arguments</em>
@@ -4822,7 +4837,7 @@ pattern and the <var>action</var> will be used only directly after the
 &lsquo;<tt>=</tt>&rsquo;, not in the next word.  This is the behaviour of a normal
 specification defined with the form &lsquo;<tt>=-</tt>&rsquo;.
 </p>
-<p>By default, the command (with the option &lsquo;<tt>--help</tt>&rsquo;) is run after
+<p>By default, the command (with the option &lsquo;<tt>&ndash;help</tt>&rsquo;) is run after
 resetting all the locale categories (except for <tt>LC_CTYPE</tt>) to &lsquo;<tt>C</tt>&rsquo;.
 If the localized help output is known to work, the option &lsquo;<tt>-l</tt>&rsquo; can
 be specified after the &lsquo;<tt>_arguments -</tt><tt>-</tt>&rsquo; so that the command is
@@ -4973,8 +4988,8 @@ for which completions should be generated (presumably not one of the
 </p>
 <p>The matches generated will be taken from the value of the style.  These
 should contain the possible values for the combinations in the appropriate
-order (users, hosts, ports in the example above).  The different fields
-the values for the different fields are separated by colons.  This
+order (users, hosts, ports in the example above).
+The values for the different fields are separated by colons.  This
 can be altered with the option <tt>-s</tt> to <tt>_combination</tt> which specifies a
 pattern.  Typically this is a character class, as for example
 &lsquo;<tt>-s &quot;[:@]&quot;</tt>&rsquo; in the case of the <tt>users-hosts</tt> style.    Each
@@ -5760,7 +5775,7 @@ layer.
 The arrays specify completions for parts of strings to be separated by the
 separators.  The arrays may be the names of array parameters or
 a quoted list of words in parentheses.  For example, with the array
-&lsquo;<tt>hosts=(ftp news)</tt>&rsquo; the call &lsquo;<tt>_sep_parts '(foo bar)' @ hosts</tt>&rsquo; will
+&lsquo;<tt>hosts=(ftp news)</tt>&rsquo; the call &lsquo;<tt>_sep_parts &rsquo;(foo bar)&rsquo; @ hosts</tt>&rsquo; will
 complete the string  &lsquo;<tt>f</tt>&rsquo; to &lsquo;<tt>foo</tt>&rsquo; and the string &lsquo;<tt>b@n</tt>&rsquo; to
 &lsquo;<tt>bar@news</tt>&rsquo;.
 </p>
@@ -6018,8 +6033,8 @@ special parameter, documented in
 
 <a name="Completion-System-Variables-1"></a>
 <h2 class="section">20.7 Completion System Variables</h2>
-<p><a name="index-completion-system_002c-variables"></a>
-</p>
+<a name="index-completion-system_002c-variables"></a>
+
 <p>There are some standard variables, initialised by the <tt>_main_complete</tt>
 function and then used from other functions.
 </p>
@@ -6071,8 +6086,8 @@ it explicitly reinserts itself into the array.
 
 <a name="Completion-Directories-1"></a>
 <h2 class="section">20.8 Completion Directories</h2>
-<p><a name="index-completion-system_002c-directory-structure"></a>
-</p>
+<a name="index-completion-system_002c-directory-structure"></a>
+
 <p>In the source distribution, the files are contained in various
 subdirectories of the <tt>Completion</tt> directory.  They may have been
 installed in the same structure, or into one single function directory.
@@ -6126,10 +6141,12 @@ may be useful on your system.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p><font size="-1">
-  This document was generated on <em>April 29, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
-</font></p>
-
-<font size="-1">Zsh version 5.5.1, released on April 16, 2018.</font>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 24, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+<font size="-1">Zsh version 5.7, released on January 24, 2019.</font>
+</p>
 </body>
 </html>

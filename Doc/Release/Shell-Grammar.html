@@ -1,20 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created on January 24, 2019 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>6 Shell Grammar (zsh)</title>
+<title>zsh: 6 Shell Grammar</title>
 
-<meta name="description" content="6 Shell Grammar (zsh)">
-<meta name="keywords" content="6 Shell Grammar (zsh)">
+<meta name="description" content="zsh: 6 Shell Grammar">
+<meta name="keywords" content="zsh: 6 Shell Grammar">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2any">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
@@ -22,18 +28,18 @@ div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smalldisplay {font-family: serif; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,11 +47,12 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
 <a name="Shell-Grammar"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Files.html#Files" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Files.html#Files-2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Files.html#Files-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Simple-Commands-_0026-Pipelines" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -61,9 +68,9 @@ ul.no-bullet {list-style: none}
 
 <a name="Shell-Grammar-1"></a>
 <h1 class="chapter">6 Shell Grammar</h1>
-<p><a name="index-shell-grammar"></a>
+<a name="index-shell-grammar"></a>
 <a name="index-grammar_002c-shell"></a>
-</p><table class="menu" border="0" cellspacing="0">
+<table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top"><a href="#Simple-Commands-_0026-Pipelines">6.1 Simple Commands &amp; Pipelines</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Precommand-Modifiers">6.2 Precommand Modifiers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -103,9 +110,9 @@ ul.no-bullet {list-style: none}
 
 <a name="Simple-Commands-_0026-Pipelines-1"></a>
 <h2 class="section">6.1 Simple Commands &amp; Pipelines</h2>
-<p><a name="index-simple-commands"></a>
+<a name="index-simple-commands"></a>
 <a name="index-commands_002c-simple"></a>
-A <em>simple command</em> is a sequence of optional parameter
+<p>A <em>simple command</em> is a sequence of optional parameter
 assignments followed by blank-separated words,
 with optional redirections interspersed.  For a description
 of assignment, see the beginning of
@@ -125,8 +132,8 @@ For example,
 
 <p>is a simple command with arguments.
 </p>
-<p><a name="index-pipeline"></a>
-A <em>pipeline</em> is either a simple command, or a sequence of two or more
+<a name="index-pipeline"></a>
+<p>A <em>pipeline</em> is either a simple command, or a sequence of two or more
 simple commands where each command is separated from the next by &lsquo;<tt>|</tt>&rsquo;
 or &lsquo;<tt>|&amp;</tt>&rsquo;.  Where commands are separated by &lsquo;<tt>|</tt>&rsquo;, the standard
 output of the first command is connected to the
@@ -145,9 +152,9 @@ For example,
 <p>is a pipeline, where the output (&lsquo;<tt>foo</tt>&rsquo; plus a newline) of the first
 command will be passed to the input of the second.
 </p>
-<p><a name="index-coproc"></a>
+<a name="index-coproc"></a>
 <a name="index-coprocess"></a>
-If a pipeline is preceded by &lsquo;<tt>coproc</tt>&rsquo;, it is executed as a coprocess;
+<p>If a pipeline is preceded by &lsquo;<tt>coproc</tt>&rsquo;, it is executed as a coprocess;
 a two-way pipe is established between it and the parent shell.  The
 shell can read from or write to the coprocess by means of the &lsquo;<tt>&gt;&amp;p</tt>&rsquo;
 and &lsquo;<tt>&lt;&amp;p</tt>&rsquo; redirection operators or with &lsquo;<tt>print -p</tt>&rsquo; and &lsquo;<tt>read -p</tt>&rsquo;.
@@ -155,8 +162,8 @@ A pipeline cannot be preceded by both &lsquo;<tt>coproc</tt>&rsquo; and &lsquo;<
 If job control is active, the coprocess can be treated in other than input
 and output as an ordinary background job.
 </p>
-<p><a name="index-sublist"></a>
-A <em>sublist</em> is either a single pipeline, or a sequence of two or more
+<a name="index-sublist"></a>
+<p>A <em>sublist</em> is either a single pipeline, or a sequence of two or more
 pipelines separated by &lsquo;<tt>&amp;&amp;</tt>&rsquo; or &lsquo;<tt>||</tt>&rsquo;.  If two pipelines are separated
 by &lsquo;<tt>&amp;&amp;</tt>&rsquo;, the second pipeline is executed only if the first succeeds
 (returns a zero status).  If two pipelines are separated by &lsquo;<tt>||</tt>&rsquo;, the
@@ -174,8 +181,8 @@ which will be executed if and only if the <tt>grep</tt> command returns a zero
 status.  If it does not, the value of the sublist is that return status, else
 it is the status returned by the <tt>print</tt> (almost certainly zero).
 </p>
-<p><a name="index-list"></a>
-A <em>list</em> is a sequence of zero or more sublists, in which each sublist
+<a name="index-list"></a>
+<p>A <em>list</em> is a sequence of zero or more sublists, in which each sublist
 is terminated by &lsquo;<tt>;</tt>&rsquo;, &lsquo;<tt>&amp;</tt>&rsquo;, &lsquo;<tt>&amp;|</tt>&rsquo;, &lsquo;<tt>&amp;!</tt>&rsquo;, or a newline.
 This terminator
 may optionally be omitted from the last sublist in the list when the
@@ -213,9 +220,9 @@ in a shell function form a special sort of list.
 
 <a name="Precommand-Modifiers-1"></a>
 <h2 class="section">6.2 Precommand Modifiers</h2>
-<p><a name="index-precommand-modifiers"></a>
+<a name="index-precommand-modifiers"></a>
 <a name="index-modifiers_002c-precommand"></a>
-A simple command may be preceded by a <em>precommand modifier</em>,
+<p>A simple command may be preceded by a <em>precommand modifier</em>,
 which will alter how the command is interpreted.  These modifiers are
 shell builtin commands with the exception of <tt>nocorrect</tt> which is
 a reserved word.
@@ -300,9 +307,9 @@ the words.
 
 <a name="Complex-Commands-1"></a>
 <h2 class="section">6.3 Complex Commands</h2>
-<p><a name="index-complex-commands"></a>
+<a name="index-complex-commands"></a>
 <a name="index-commands_002c-complex"></a>
-A <em>complex command</em> in zsh is one of the following:
+<p>A <em>complex command</em> in zsh is one of the following:
 </p>
 <dl compact="compact">
 <dd><a name="index-if"></a>
@@ -321,11 +328,14 @@ is executed.
 <a name="index-loops_002c-for"></a>
 </dd>
 <dt><tt>for</tt> <var>name</var> ... [ <tt>in</tt> <var>word</var> ... ] <var>term</var> <tt>do</tt> <var>list</var> <tt>done</tt></dt>
-<dd><p>where <var>term</var> is at least one newline or <tt>;</tt>.
-Expand the list of <var>word</var>s, and set the parameter
-<var>name</var> to each of them in turn, executing
-<var>list</var> each time.  If the <tt>in</tt> <var>word</var> is omitted,
+<dd><p>Expand the list of <var>word</var>s, and set the parameter
+<var>name</var> to each of them in turn, executing <var>list</var>
+each time.  If the &lsquo;<tt>in</tt> <var>word</var>&rsquo; is omitted,
 use the positional parameters instead of the <var>word</var>s.
+</p>
+<p>The <var>term</var> consists of one or more newline or <tt>;</tt>
+which terminate the <var>word</var>s, and are optional when the
+&lsquo;<tt>in</tt> <var>word</var>&rsquo; is omitted.
 </p>
 <p>More than one parameter <var>name</var> can appear before the list of
 <var>word</var>s.  If <var>N</var> <var>name</var>s are given, then on each execution of the
@@ -565,9 +575,9 @@ for a description of <var>exp</var>.
 
 <a name="Alternate-Forms-For-Complex-Commands-1"></a>
 <h2 class="section">6.4 Alternate Forms For Complex Commands</h2>
-<p><a name="index-alternate-forms-for-complex-commands"></a>
+<a name="index-alternate-forms-for-complex-commands"></a>
 <a name="index-commands_002c-alternate-forms-for-complex"></a>
-Many of zsh&rsquo;s complex commands have alternate forms.  These are
+<p>Many of zsh&rsquo;s complex commands have alternate forms.  These are
 non-standard and are likely not to be obvious even to seasoned shell
 programmers; they should not be used anywhere that portability of shell
 code is a concern.
@@ -674,9 +684,9 @@ A short form of <tt>select</tt>.
 
 <a name="Reserved-Words-1"></a>
 <h2 class="section">6.5 Reserved Words</h2>
-<p><a name="index-reserved-words"></a>
+<a name="index-reserved-words"></a>
 <a name="index-disable_002c-use-of"></a>
-The following words are recognized as reserved words when used as the first
+<p>The following words are recognized as reserved words when used as the first
 word of a command unless quoted or disabled using <tt>disable -r</tt>:
 </p>
 <p><tt>do done esac then elif else fi for case
@@ -706,8 +716,8 @@ declare export float integer local readonly typeset</tt>
 
 <a name="Errors-1"></a>
 <h2 class="section">6.6 Errors</h2>
-<p><a name="index-errors_002c-handling-of"></a>
-Certain errors are treated as fatal by the shell: in an interactive
+<a name="index-errors_002c-handling-of"></a>
+<p>Certain errors are treated as fatal by the shell: in an interactive
 shell, they cause control to return to the command line, and in a
 non-interactive shell they cause the shell to be aborted.  In older
 versions of zsh, a non-interactive shell running a script would not
@@ -719,35 +729,58 @@ behaviour can be recovered by setting the option <tt>CONTINUE_ON_ERROR</tt>.
 <p>Fatal errors found in non-interactive shells include:
 </p>
 <ul>
-<li> Failure to parse shell options passed when invoking the shell
-</li><li> Failure to change options with the <tt>set</tt> builtin
-</li><li> Parse errors of all sorts, including failures to parse
+<li> 
+Failure to parse shell options passed when invoking the shell
+</li><li> 
+Failure to change options with the <tt>set</tt> builtin
+</li><li> 
+Parse errors of all sorts, including failures to parse
 mathematical expressions
-</li><li> Failures to set or modify variable behaviour with <tt>typeset</tt>,
+</li><li> 
+Failures to set or modify variable behaviour with <tt>typeset</tt>,
 <tt>local</tt>, <tt>declare</tt>, <tt>export</tt>, <tt>integer</tt>, <tt>float</tt>
-</li><li> Execution of incorrectly positioned loop control structures
+</li><li> 
+Execution of incorrectly positioned loop control structures
 (<tt>continue</tt>, <tt>break</tt>)
-</li><li> Attempts to use regular expression with no regular expression
+</li><li> 
+Attempts to use regular expression with no regular expression
 module available
-</li><li> Disallowed operations when the <tt>RESTRICTED</tt> options is set
-</li><li> Failure to create a pipe needed for a pipeline
-</li><li> Failure to create a multio
-</li><li> Failure to autoload a module needed for a declared shell feature
-</li><li> Errors creating command or process substitutions
-</li><li> Syntax errors in glob qualifiers
-</li><li> File generation errors where not caught by the option <tt>BAD_PATTERN</tt>
-</li><li> All bad patterns used for matching within case statements
-</li><li> File generation failures where not caused by <tt>NO_MATCH</tt> or
+</li><li> 
+Disallowed operations when the <tt>RESTRICTED</tt> options is set
+</li><li> 
+Failure to create a pipe needed for a pipeline
+</li><li> 
+Failure to create a multio
+</li><li> 
+Failure to autoload a module needed for a declared shell feature
+</li><li> 
+Errors creating command or process substitutions
+</li><li> 
+Syntax errors in glob qualifiers
+</li><li> 
+File generation errors where not caught by the option <tt>BAD_PATTERN</tt>
+</li><li> 
+All bad patterns used for matching within case statements
+</li><li> 
+File generation failures where not caused by <tt>NO_MATCH</tt> or
 similar options
-</li><li> All file generation errors where the pattern was used to create a
+</li><li> 
+All file generation errors where the pattern was used to create a
 multio
-</li><li> Memory errors where detected by the shell
-</li><li> Invalid subscripts to shell variables
-</li><li> Attempts to assign read-only variables
-</li><li> Logical errors with variables such as assignment to the wrong type
-</li><li> Use of invalid variable names
-</li><li> Errors in variable substitution syntax
-</li><li> Failure to convert characters in <tt>$'</tt>...<tt>'</tt> expressions
+</li><li> 
+Memory errors where detected by the shell
+</li><li> 
+Invalid subscripts to shell variables
+</li><li> 
+Attempts to assign read-only variables
+</li><li> 
+Logical errors with variables such as assignment to the wrong type
+</li><li> 
+Use of invalid variable names
+</li><li> 
+Errors in variable substitution syntax
+</li><li> 
+Failure to convert characters in <tt>$&rsquo;</tt>...<tt>&rsquo;</tt> expressions
 </li></ul>
 
 <p>If the <tt>POSIX_BUILTINS</tt> option is set, more errors associated with
@@ -774,10 +807,10 @@ standard.
 
 <a name="Comments-1"></a>
 <h2 class="section">6.7 Comments</h2>
-<p><a name="index-comments"></a>
+<a name="index-comments"></a>
 <a name="index-INTERACTIVE_005fCOMMENTS_002c-use-of"></a>
 <a name="index-histchars_002c-use-of"></a>
-In non-interactive shells, or in interactive shells with the
+<p>In non-interactive shells, or in interactive shells with the
 <tt>INTERACTIVE_COMMENTS</tt> option set, a word beginning
 with the third character of the <tt>histchars</tt> parameter
 (&lsquo;<tt>#</tt>&rsquo; by default) causes that word and all the following
@@ -802,8 +835,8 @@ characters up to a newline to be ignored.
 
 <a name="Aliasing-1"></a>
 <h2 class="section">6.8 Aliasing</h2>
-<p><a name="index-aliasing"></a>
-Every eligible <em>word</em> in the shell input is checked to see if there
+<a name="index-aliasing"></a>
+<p>Every eligible <em>word</em> in the shell input is checked to see if there
 is an alias defined for it.
 If so, it is replaced by the text of the alias if it is in command
 position (if it could be the first word of a simple command),
@@ -818,14 +851,20 @@ may be defined using the <tt>-g</tt> option to that builtin.
 <p>A <em>word</em> is defined as:
 </p>
 <ul>
-<li> Any plain string or glob pattern
-</li><li> Any quoted string, using any quoting method (note that the quotes
+<li> 
+Any plain string or glob pattern
+</li><li> 
+Any quoted string, using any quoting method (note that the quotes
 must be part of the alias definition for this to be eligible)
-</li><li> Any parameter reference or command substitution
-</li><li> Any series of the foregoing, concatenated without whitespace or
+</li><li> 
+Any parameter reference or command substitution
+</li><li> 
+Any series of the foregoing, concatenated without whitespace or
 other tokens between them
-</li><li> Any reserved word (<tt>case</tt>, <tt>do</tt>, <tt>else</tt>, etc.)
-</li><li> With global aliasing, any command separator, any redirection
+</li><li> 
+Any reserved word (<tt>case</tt>, <tt>do</tt>, <tt>else</tt>, etc.)
+</li><li> 
+With global aliasing, any command separator, any redirection
 operator, and &lsquo;<tt>(</tt>&rsquo; or &lsquo;<tt>)</tt>&rsquo; when not part of a glob pattern
 </li></ul>
 
@@ -842,7 +881,7 @@ but they are not expanded.
 </p>
 <p>For use with completion, which would remove an initial backslash followed
 by a character that isn&rsquo;t special, it may be more convenient to quote the
-word by starting with a single quote, i.e. <tt>'foo</tt>; completion will
+word by starting with a single quote, i.e. <tt>&rsquo;foo</tt>; completion will
 automatically add the trailing single quote.
 </p>
 
@@ -949,19 +988,19 @@ code fragment might be re-executed.
 
 <a name="Quoting-1"></a>
 <h2 class="section">6.9 Quoting</h2>
-<p><a name="index-quoting"></a>
-A character may be <em>quoted</em> (that is, made
+<a name="index-quoting"></a>
+<p>A character may be <em>quoted</em> (that is, made
 to stand for itself) by preceding it with a &lsquo;<tt>\</tt>&rsquo;.
 &lsquo;<tt>\</tt>&rsquo; followed by a newline is ignored.
 </p>
-<p>A string enclosed between &lsquo;<tt>$'</tt>&rsquo; and &lsquo;<tt>'</tt>&rsquo; is
+<p>A string enclosed between &lsquo;<tt>$&rsquo;</tt>&rsquo; and &lsquo;<tt>&rsquo;</tt>&rsquo; is
 processed the same way as the string arguments of the
 <tt>print</tt> builtin, and the resulting string is considered to be
-entirely quoted.  A literal &lsquo;<tt>'</tt>&rsquo; character can be included in the
-string by using the &lsquo;<tt>\'</tt>&rsquo; escape.
+entirely quoted.  A literal &lsquo;<tt>&rsquo;</tt>&rsquo; character can be included in the
+string by using the &lsquo;<tt>\&rsquo;</tt>&rsquo; escape.
 </p>
-<p><a name="index-RC_005fQUOTES_002c-use-of"></a>
-All characters enclosed between a pair of single quotes (<tt>''</tt>) that
+<a name="index-RC_005fQUOTES_002c-use-of"></a>
+<p>All characters enclosed between a pair of single quotes (<tt>&rsquo;&rsquo;</tt>) that
 is not preceded by a &lsquo;<tt>$</tt>&rsquo; are quoted.  A single quote cannot appear
 within single quotes unless the option <tt>RC_QUOTES</tt> is set, in which case
 a pair of single quotes are turned into a single quote.  For example,
@@ -975,7 +1014,7 @@ single quote if it is set.
 </p>
 <p>Inside double quotes (<tt>&quot;&quot;</tt>), parameter and
 command substitution occur, and &lsquo;<tt>\</tt>&rsquo; quotes the characters
-&lsquo;<tt>\</tt>&rsquo;, &lsquo;<tt>`</tt>&rsquo;, &lsquo;<tt>&quot;</tt>&rsquo;, &lsquo;<tt>$</tt>&rsquo;, and the first character
+&lsquo;<tt>\</tt>&rsquo;, &lsquo;<tt>&lsquo;</tt>&rsquo;, &lsquo;<tt>&quot;</tt>&rsquo;, &lsquo;<tt>$</tt>&rsquo;, and the first character
 of <tt>$histchars</tt> (default &lsquo;<tt>!</tt>&rsquo;).
 </p><hr>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -991,10 +1030,12 @@ of <tt>$histchars</tt> (default &lsquo;<tt>!</tt>&rsquo;).
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p><font size="-1">
-  This document was generated on <em>April 29, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
-</font></p>
-
-<font size="-1">Zsh version 5.5.1, released on April 16, 2018.</font>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 24, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+<font size="-1">Zsh version 5.7, released on January 24, 2019.</font>
+</p>
 </body>
 </html>

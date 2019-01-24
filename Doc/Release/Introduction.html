@@ -1,20 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created on January 24, 2019 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>2 Introduction (zsh)</title>
+<title>zsh: 2 Introduction</title>
 
-<meta name="description" content="2 Introduction (zsh)">
-<meta name="keywords" content="2 Introduction (zsh)">
+<meta name="description" content="zsh: 2 Introduction">
+<meta name="keywords" content="zsh: 2 Introduction">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2any">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
@@ -22,18 +28,18 @@ div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smalldisplay {font-family: serif; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,7 +47,8 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
 <a name="Introduction"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="The-Z-Shell-Manual.html#The-Z-Shell-Manual" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -61,11 +68,15 @@ ul.no-bullet {list-style: none}
 
 <a name="Introduction-1"></a>
 <h1 class="chapter">2 Introduction</h1>
-<p><a name="index-introduction"></a>
-Zsh is a UNIX command interpreter (shell) usable as an interactive
+<a name="index-introduction"></a>
+<p>Zsh is a UNIX command interpreter (shell) usable as an interactive
 login shell and as a shell script command processor.  Of the standard shells,
-zsh most closely resembles <cite>ksh</cite> but includes many enhancements.  Zsh
-has command line editing, builtin spelling correction, programmable
+zsh most closely resembles <cite>ksh</cite> but includes many enhancements.  It
+does not provide compatibility with POSIX or other shells in its
+default operating mode:  see
+the section <a href="Invocation.html#Compatibility">Compatibility</a>.
+</p>
+<p>Zsh has command line editing, builtin spelling correction, programmable
 command completion, shell functions (with autoloading), a history
 mechanism, and a host of other features.
 </p><table class="menu" border="0" cellspacing="0">
@@ -81,7 +92,7 @@ mechanism, and a host of other features.
 </td></tr>
 <tr><td align="left" valign="top"><a href="#The-Zsh-Userguide">2.6 The Zsh Userguide</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#See-Also">2.8 See Also</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#See-Also">2.7 See Also</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 <hr>
@@ -104,8 +115,8 @@ mechanism, and a host of other features.
 
 <a name="Author-1"></a>
 <h2 class="section">2.1 Author</h2>
-<p><a name="index-author"></a>
-Zsh was originally written by Paul Falstad <tt>&lt;pf@zsh.org&gt;</tt>.
+<a name="index-author"></a>
+<p>Zsh was originally written by Paul Falstad <tt>&lt;pf@zsh.org&gt;</tt>.
 Zsh is now maintained by the members of the zsh-workers mailing
 list <tt>&lt;zsh-workers@zsh.org&gt;</tt>.  The development is currently
 coordinated by Peter Stephenson <tt>&lt;pws@zsh.org&gt;</tt>.  The coordinator
@@ -131,34 +142,17 @@ the code should generally go to the mailing list.
 
 <a name="Availability-1"></a>
 <h2 class="section">2.2 Availability</h2>
-<p>Zsh is available from the following anonymous FTP sites.  These mirror
-sites are kept frequently up to date.  The sites marked with <em>(H)</em> may be
-mirroring <tt>ftp.cs.elte.hu</tt> instead of the primary site.
+<p>Zsh is available from the following HTTP and anonymous FTP site.
 </p>
-<p><a name="index-FTP-sites-for-zsh"></a>
+<a name="index-FTP-sites-for-zsh"></a>
 <a name="index-acquiring-zsh-by-FTP"></a>
 <a name="index-availability-of-zsh"></a>
-</p><dl compact="compact">
-<dt>Primary site</dt>
-<dd><p><tt><a href="ftp://ftp.zsh.org/pub/">ftp://ftp.zsh.org/pub/</a></tt><br>
-<tt><a href="http://www.zsh.org/pub/">http://www.zsh.org/pub/</a></tt>
+<p><tt><a href="ftp://ftp.zsh.org/pub/">ftp://ftp.zsh.org/pub/</a></tt><br>
+<tt><a href="https://www.zsh.org/pub/">https://www.zsh.org/pub/</a></tt>
+)
 </p>
-</dd>
-<dt>Australia</dt>
-<dd><p><tt><a href="ftp://ftp.zsh.org/pub/">ftp://ftp.zsh.org/pub/</a></tt><br>
-<tt><a href="http://www.zsh.org/pub/">http://www.zsh.org/pub/</a></tt><br>
-<tt><a href="http://mirror.dejanseo.com.au/pub/zsh/">http://mirror.dejanseo.com.au/pub/zsh/</a></tt>
-</p>
-</dd>
-<dt>Hungary</dt>
-<dd><p><tt><a href="ftp://ftp.cs.elte.hu/pub/zsh/">ftp://ftp.cs.elte.hu/pub/zsh/</a></tt><br>
-<tt><a href="http://www.cs.elte.hu/pub/zsh/">http://www.cs.elte.hu/pub/zsh/</a></tt>
-</p>
-</dd>
-</dl>
-
 <p>The up-to-date source code is available via Git from Sourceforge.  See
-<tt><a href="http://sourceforge.net/projects/zsh/">http://sourceforge.net/projects/zsh/</a></tt> for details.  A summary of
+<tt><a href="https://sourceforge.net/projects/zsh/">https://sourceforge.net/projects/zsh/</a></tt> for details.  A summary of
 instructions for the archive can be found at
 <tt><a href="http://zsh.sourceforge.net/">http://zsh.sourceforge.net/</a></tt>.
 </p>
@@ -182,8 +176,8 @@ instructions for the archive can be found at
 
 <a name="Mailing-Lists-1"></a>
 <h2 class="section">2.3 Mailing Lists</h2>
-<p><a name="index-mailing-lists"></a>
-Zsh has 3 mailing lists:
+<a name="index-mailing-lists"></a>
+<p>Zsh has 3 mailing lists:
 </p>
 <dl compact="compact">
 <dt><tt>&lt;zsh-announce@zsh.org&gt;</tt></dt>
@@ -226,7 +220,7 @@ maintained by Karsten Thygesen <tt>&lt;karthy@kom.auc.dk&gt;</tt>.
 <p>The mailing lists are archived; the archives can be accessed via the
 administrative addresses listed above.  There is also a hypertext
 archive, maintained by Geoff Wing <tt>&lt;gcw@zsh.org&gt;</tt>, available at
-<tt><a href="http://www.zsh.org/mla/">http://www.zsh.org/mla/</a></tt>.
+<tt><a href="https://www.zsh.org/mla/">https://www.zsh.org/mla/</a></tt>.
 </p><hr>
 <a name="The-Zsh-FAQ"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -273,7 +267,7 @@ is <tt>&lt;faqmaster@zsh.org&gt;</tt>.
 
 <a name="The-Zsh-Web-Page-1"></a>
 <h2 class="section">2.5 The Zsh Web Page</h2>
-<p>Zsh has a web page which is located at <tt><a href="http://www.zsh.org/">http://www.zsh.org/</a></tt>.  This is
+<p>Zsh has a web page which is located at <tt><a href="https://www.zsh.org/">https://www.zsh.org/</a></tt>.  This is
 maintained by Karsten Thygesen <tt>&lt;karthy@zsh.org&gt;</tt>, of SunSITE Denmark.
 The contact address for web-related matters is <tt>&lt;webmaster@zsh.org&gt;</tt>.
 </p><hr>
@@ -282,7 +276,7 @@ The contact address for web-related matters is <tt>&lt;webmaster@zsh.org&gt;</tt
 <tr><td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-Zsh-Web-Page" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#The-Zsh-Wiki" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#See-Also" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -303,33 +297,11 @@ cabbalistic, hierographic, or downright mystifying (for example, the word
 <tt><a href="http://zsh.sourceforge.net/Guide/">http://zsh.sourceforge.net/Guide/</a></tt>.  At the time of writing, chapters
 dealing with startup files and their contents and the new completion system
 were essentially complete.
-</p>
-<hr>
-<a name="The-Zsh-Wiki"></a>
-<table class="header" cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#The-Zsh-Userguide" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#See-Also" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
-<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
-<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
-</tr></table>
-<h2 class="section">2.7 The Zsh Wiki</h2>
-<p>A &lsquo;wiki&rsquo; website for zsh has been created at <tt><a href="http://www.zshwiki.org/">http://www.zshwiki.org/</a></tt>.
-This is a site which can be added to and modified directly by users without
-any special permission.  You can add your own zsh tips and configurations.
 </p><hr>
 <a name="See-Also"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#The-Zsh-Wiki" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-Zsh-Userguide" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -344,7 +316,7 @@ any special permission.  You can add your own zsh tips and configurations.
 </tr></table>
 
 <a name="See-Also-1"></a>
-<h2 class="section">2.8 See Also</h2>
+<h2 class="section">2.7 See Also</h2>
 <p>man page sh(1),
 man page csh(1),
 man page tcsh(1),
@@ -370,10 +342,12 @@ IEEE Inc, 1993, ISBN 1-55937-255-9.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p><font size="-1">
-  This document was generated on <em>April 29, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
-</font></p>
-
-<font size="-1">Zsh version 5.5.1, released on April 16, 2018.</font>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 24, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+<font size="-1">Zsh version 5.7, released on January 24, 2019.</font>
+</p>
 </body>
 </html>

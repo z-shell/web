@@ -1,20 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created on January 24, 2019 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>7 Redirection (zsh)</title>
+<title>zsh: 7 Redirection</title>
 
-<meta name="description" content="7 Redirection (zsh)">
-<meta name="keywords" content="7 Redirection (zsh)">
+<meta name="description" content="zsh: 7 Redirection">
+<meta name="keywords" content="zsh: 7 Redirection">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2any">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
@@ -22,18 +28,18 @@ div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smalldisplay {font-family: serif; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,7 +47,8 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
 <a name="Redirection"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Shell-Grammar.html#Shell-Grammar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -61,10 +68,10 @@ ul.no-bullet {list-style: none}
 
 <a name="Redirection-1"></a>
 <h1 class="chapter">7 Redirection</h1>
-<p><a name="index-redirection"></a>
+<a name="index-redirection"></a>
 <a name="index-file-descriptors"></a>
 <a name="index-descriptors_002c-file"></a>
-If a command is followed by <tt>&amp;</tt>
+<p>If a command is followed by <tt>&amp;</tt>
 and job control is not active,
 then the default standard input
 for the command is the empty file <tt>/dev/null</tt>.
@@ -84,6 +91,7 @@ separate filename in turn.
 <dl compact="compact">
 <dt><tt>&lt;</tt> <var>word</var></dt>
 <dd><p>Open file <var>word</var> for reading as standard input.
+It is an error to open a file in this fashion if it does not exist.
 </p>
 </dd>
 <dt><tt>&lt;&gt;</tt> <var>word</var></dt>
@@ -132,14 +140,14 @@ no interpretation is placed upon the characters of the document.
 Otherwise, parameter and command substitution
 occurs, &lsquo;<tt>\</tt>&rsquo; followed by a newline is removed,
 and &lsquo;<tt>\</tt>&rsquo; must be used to quote the characters
-&lsquo;<tt>\</tt>&rsquo;, &lsquo;<tt>$</tt>&rsquo;, &lsquo;<tt>`</tt>&rsquo; and the first character of <var>word</var>.
+&lsquo;<tt>\</tt>&rsquo;, &lsquo;<tt>$</tt>&rsquo;, &lsquo;<tt>&lsquo;</tt>&rsquo; and the first character of <var>word</var>.
 </p>
 <p>Note that <var>word</var> itself does not undergo shell expansion.  Backquotes
 in <var>word</var> do not have their usual effect; instead they behave
 similarly to double quotes, except that the backquotes themselves are
 passed through unchanged.  (This information is given for completeness
 and it is not recommended that backquotes be used.)  Quotes in the form
-<tt>$'</tt><var>...</var><tt>'</tt> have their standard effect of expanding backslashed
+<tt>$&rsquo;</tt><var>...</var><tt>&rsquo;</tt> have their standard effect of expanding backslashed
 references to special characters.
 </p>
 <p>If <tt>&lt;&lt;-</tt> is used, then all leading
@@ -254,9 +262,9 @@ command represented by <var>list</var>.  See
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">7.1 Opening file descriptors using parameters</h2>
-<p><a name="index-file-descriptors_002c-use-with-parameters"></a>
+<a name="index-file-descriptors_002c-use-with-parameters"></a>
 <a name="index-parameters_002c-for-using-file-descriptors"></a>
-</p>
+
 <p>When the shell is parsing arguments to a command, and the shell option
 <tt>IGNORE_BRACES</tt> is not set, a different form of redirection is allowed:
 instead of a digit before the operator there is a valid shell identifier
@@ -329,9 +337,9 @@ line have been processed.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">7.2 Multios</h2>
-<p><a name="index-multios"></a>
+<a name="index-multios"></a>
 <a name="index-MULTIOS_002c-use-of"></a>
-If the user tries to open a file descriptor for writing more than once,
+<p>If the user tries to open a file descriptor for writing more than once,
 the shell opens the file descriptor as a pipe to a process that copies
 its input to all the specified outputs, similar to <cite>tee</cite>,
 provided the <tt>MULTIOS</tt> option is set, as it is by default.  Thus:
@@ -348,6 +356,9 @@ Note that a pipe is an implicit redirection; thus
 </pre></div>
 
 <p>writes the date to the file &lsquo;<tt>foo</tt>&rsquo;, and also pipes it to cat.
+</p>
+<p>Note that the shell opens all the files to be used in the multio process
+immediately, not at the point they are about to be written.
 </p>
 <p>Note also that redirections are always expanded in order.  This happens
 regardless of the setting of the <tt>MULTIOS</tt> option, but with the option
@@ -391,9 +402,13 @@ Similarly, you can do
 
 <p>If the user tries to open a file descriptor for reading more than once,
 the shell opens the file descriptor as a pipe to a process that copies
-all the specified inputs to its output in the order
-specified, similar to <cite>cat</cite>,
-provided the <tt>MULTIOS</tt> option is set.  Thus
+all the specified inputs to its output in the order specified, provided
+the <tt>MULTIOS</tt> option is set.  It should be noted that each file is
+opened immediately, not at the point where it is about to be read:
+this behaviour differs from <tt>cat</tt>, so if strictly standard behaviour
+is needed, <tt>cat</tt> should be used instead.
+</p>
+<p>Thus
 </p>
 <div class="example">
 <pre class="example">sort &lt;foo &lt;fubar
@@ -479,19 +494,19 @@ written.
 and zero or more parameter assignments, but no command name, zsh can
 behave in several ways.
 </p>
-<p><a name="index-NULLCMD_002c-use-of"></a>
+<a name="index-NULLCMD_002c-use-of"></a>
 <a name="index-CSH_005fNULLCMD_002c-use-of"></a>
-If the parameter <tt>NULLCMD</tt> is not set or the option <tt>CSH_NULLCMD</tt> is
+<p>If the parameter <tt>NULLCMD</tt> is not set or the option <tt>CSH_NULLCMD</tt> is
 set, an error is caused.  This is the <cite>csh</cite> behavior and <tt>CSH_NULLCMD</tt>
 is set by default when emulating <cite>csh</cite>.
 </p>
-<p><a name="index-SH_005fNULLCMD_002c-use-of"></a>
-If the option <tt>SH_NULLCMD</tt> is set, the builtin &lsquo;<tt>:</tt>&rsquo; is inserted as a
+<a name="index-SH_005fNULLCMD_002c-use-of"></a>
+<p>If the option <tt>SH_NULLCMD</tt> is set, the builtin &lsquo;<tt>:</tt>&rsquo; is inserted as a
 command with the given redirections.  This is the default when emulating
 <cite>sh</cite> or <cite>ksh</cite>.
 </p>
-<p><a name="index-READNULLCMD_002c-use-of"></a>
-Otherwise, if the parameter <tt>NULLCMD</tt> is set, its value will be used as a
+<a name="index-READNULLCMD_002c-use-of"></a>
+<p>Otherwise, if the parameter <tt>NULLCMD</tt> is set, its value will be used as a
 command with the given redirections.  If both <tt>NULLCMD</tt> and
 <tt>READNULLCMD</tt> are set, then the value of the latter will be used instead
 of that of the former when the redirection is an input.  The default for
@@ -518,10 +533,12 @@ terminal.  <tt>NULLCMD</tt> and <tt>READNULLCMD</tt> may refer to shell function
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p><font size="-1">
-  This document was generated on <em>April 29, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
-</font></p>
-
-<font size="-1">Zsh version 5.5.1, released on April 16, 2018.</font>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 24, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+<font size="-1">Zsh version 5.7, released on January 24, 2019.</font>
+</p>
 </body>
 </html>

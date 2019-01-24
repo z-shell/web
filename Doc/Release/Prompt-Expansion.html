@@ -1,20 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created on January 24, 2019 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>13 Prompt Expansion (zsh)</title>
+<title>zsh: 13 Prompt Expansion</title>
 
-<meta name="description" content="13 Prompt Expansion (zsh)">
-<meta name="keywords" content="13 Prompt Expansion (zsh)">
+<meta name="description" content="zsh: 13 Prompt Expansion">
+<meta name="keywords" content="zsh: 13 Prompt Expansion">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2any">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
@@ -22,18 +28,18 @@ div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smalldisplay {font-family: serif; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,7 +47,8 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
 <a name="Prompt-Expansion"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Conditional-Expressions.html#Conditional-Expressions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -80,13 +87,13 @@ ul.no-bullet {list-style: none}
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">13.1 Expansion of Prompt Sequences</h2>
-<p><a name="index-prompt-expansion"></a>
+<a name="index-prompt-expansion"></a>
 <a name="index-expansion_002c-prompt"></a>
-Prompt sequences undergo a special form of expansion.  This type of expansion
+<p>Prompt sequences undergo a special form of expansion.  This type of expansion
 is also available using the <tt>-P</tt> option to the <tt>print</tt> builtin.
 </p>
-<p><a name="index-PROMPT_005fSUBST_002c-use-of"></a>
-If the <tt>PROMPT_SUBST</tt> option is set, the prompt string is first subjected to
+<a name="index-PROMPT_005fSUBST_002c-use-of"></a>
+<p>If the <tt>PROMPT_SUBST</tt> option is set, the prompt string is first subjected to
 <em>parameter expansion</em>,
 <em>command substitution</em> and
 <em>arithmetic expansion</em>.
@@ -95,13 +102,13 @@ See
 </p>
 <p>Certain escape sequences may be recognised in the prompt string.
 </p>
-<p><a name="index-PROMPT_005fBANG_002c-use-of"></a>
-If the <tt>PROMPT_BANG</tt> option is set, a &lsquo;<tt>!</tt>&rsquo; in the prompt is replaced
+<a name="index-PROMPT_005fBANG_002c-use-of"></a>
+<p>If the <tt>PROMPT_BANG</tt> option is set, a &lsquo;<tt>!</tt>&rsquo; in the prompt is replaced
 by the current history event number.  A literal &lsquo;<tt>!</tt>&rsquo; may then be
 represented as &lsquo;<tt>!!</tt>&rsquo;.
 </p>
-<p><a name="index-PROMPT_005fPERCENT_002c-use-of"></a>
-If the <tt>PROMPT_PERCENT</tt> option is set, certain escape sequences that
+<a name="index-PROMPT_005fPERCENT_002c-use-of"></a>
+<p>If the <tt>PROMPT_PERCENT</tt> option is set, certain escape sequences that
 start with &lsquo;<tt>%</tt>&rsquo; are expanded.
 Many escapes are followed by a single character, although some of these
 take an optional integer argument that
@@ -395,11 +402,15 @@ if the number is a single digit:
 <p>In addition, if the system supports the POSIX <tt>gettimeofday</tt> system
 call, <tt>%.</tt> provides decimal fractions of a second since the epoch with
 leading zeroes.  By default three decimal places are provided, but a
-number of digits up to 6 may be given following the <tt>%</tt>; hence <tt>%6.</tt>
-outputs microseconds.  A typical example of this is the format
-&lsquo;<tt>%D{%H:%M:%S.%.}</tt>&rsquo;.
+number of digits up to 9 may be given following the <tt>%</tt>; hence <tt>%6.</tt>
+outputs microseconds, and <tt>%9.</tt> outputs nanoseconds.  (The latter
+requires a nanosecond-precision <tt>clock_gettime</tt>; systems lacking this
+will return a value multiplied by the appropriate power of 10.)  A typical
+example of this is the format &lsquo;<tt>%D{%H:%M:%S.%.}</tt>&rsquo;.
 </p>
-<p>The GNU extension that a &lsquo;<tt>-</tt>&rsquo; between the <tt>%</tt> and the
+<p>The GNU extension <tt>%N</tt> is handled as a synonym for <tt>%9.</tt>.
+</p>
+<p>Additionally, the GNU extension that a &lsquo;<tt>-</tt>&rsquo; between the <tt>%</tt> and the
 format character causes a leading zero or space to be stripped
 is handled directly by the shell for the format characters <tt>d</tt>, <tt>f</tt>,
 <tt>H</tt>, <tt>k</tt>, <tt>l</tt>, <tt>m</tt>, <tt>M</tt>, <tt>S</tt> and <tt>y</tt>; any other format
@@ -680,10 +691,12 @@ of the prompt when the available space is less than <var>n</var>.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p><font size="-1">
-  This document was generated on <em>April 29, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
-</font></p>
-
-<font size="-1">Zsh version 5.5.1, released on April 16, 2018.</font>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 24, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+<font size="-1">Zsh version 5.7, released on January 24, 2019.</font>
+</p>
 </body>
 </html>

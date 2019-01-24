@@ -1,20 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created on January 24, 2019 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>23 Calendar Function System (zsh)</title>
+<title>zsh: 23 Calendar Function System</title>
 
-<meta name="description" content="23 Calendar Function System (zsh)">
-<meta name="keywords" content="23 Calendar Function System (zsh)">
+<meta name="description" content="zsh: 23 Calendar Function System">
+<meta name="keywords" content="zsh: 23 Calendar Function System">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2any">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
@@ -22,18 +28,18 @@ div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smalldisplay {font-family: serif; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,13 +47,14 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
 <a name="Calendar-Function-System"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Zsh-Modules.html#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zsh-Modules.html#The-zsh_002fzutil-Module" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-6" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-3" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -61,24 +68,11 @@ ul.no-bullet {list-style: none}
 
 <a name="Calendar-Function-System-1"></a>
 <h1 class="chapter">23 Calendar Function System</h1>
-<p><a name="index-calendar-function-system"></a>
+<a name="index-calendar-function-system"></a>
 <a name="index-zsh_002fdatetime_002c-function-system-based-on"></a>
-</p>
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="#Calendar-File-and-Date-Formats">23.2 File and Date Formats</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Calendar-System-User-Functions">23.3 User Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Calendar-Styles">23.4 Styles</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Calendar-Utility-Functions">23.5 Utility functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Calendar-Bugs">23.6 Bugs</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-</table>
 
 <hr>
-<a name="Description-6"></a>
+<a name="Description-3"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Previous section in reading order"> &lt; </a>]</td>
@@ -132,7 +126,7 @@ operating systems.
 <a name="Calendar-File-and-Date-Formats"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-6" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-3" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Calendar-File-Format" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -232,12 +226,14 @@ system, users find a date format that is natural to them and stick to it.
 This will avoid unexpected effects.  Various key facts should be noted.
 </p>
 <ul>
-<li> In particular, note the confusion between
+<li> 
+In particular, note the confusion between
 <var>month</var><tt>/</tt><var>day</var><tt>/</tt><var>year</var> and
 <var>day</var><tt>/</tt><var>month</var><tt>/</tt><var>year</var> when the month is numeric; these
 formats should be avoided if at all possible.  Many alternatives are
 available.
-</li><li> The year must be given in full to avoid confusion, and only years
+</li><li> 
+The year must be given in full to avoid confusion, and only years
 from 1900 to 2099 inclusive are matched.
 </li></ul>
 
@@ -266,8 +262,10 @@ to separate hours and minutes, though a dot is allowed before seconds
 if they are present.  This limits time formats to the following:
 </p>
 <ul>
-<li> <var>HH</var><tt>:</tt><var>MM</var>[<tt>:</tt><var>SS</var>[<tt>.</tt><var>FFFFF</var>]] [<tt>am</tt>|<tt>pm</tt>|<tt>a.m.</tt>|<tt>p.m.</tt>]
-</li><li> <var>HH</var><tt>:</tt><var>MM</var><tt>.</tt><var>SS</var>[<tt>.</tt><var>FFFFF</var>] [<tt>am</tt>|<tt>pm</tt>|<tt>a.m.</tt>|<tt>p.m.</tt>]
+<li> 
+<var>HH</var><tt>:</tt><var>MM</var>[<tt>:</tt><var>SS</var>[<tt>.</tt><var>FFFFF</var>]] [<tt>am</tt>|<tt>pm</tt>|<tt>a.m.</tt>|<tt>p.m.</tt>]
+</li><li> 
+<var>HH</var><tt>:</tt><var>MM</var><tt>.</tt><var>SS</var>[<tt>.</tt><var>FFFFF</var>] [<tt>am</tt>|<tt>pm</tt>|<tt>a.m.</tt>|<tt>p.m.</tt>]
 </li></ul>
 
 <p>Here, square brackets indicate optional elements, possibly with
@@ -303,16 +301,26 @@ numbers may have leading zeroes, but they are not required.  The following
 are handled:
 </p>
 <ul>
-<li> <var>YYYY</var><tt>/</tt><var>MM</var><tt>/</tt><var>DD</var>
-</li><li> <var>YYYY</var><tt>-</tt><var>MM</var><tt>-</tt><var>DD</var>
-</li><li> <var>YYYY</var><tt>/</tt><var>MNM</var><tt>/</tt><var>DD</var>
-</li><li> <var>YYYY</var><tt>-</tt><var>MNM</var><tt>-</tt><var>DD</var>
-</li><li> <var>DD</var>[<tt>th</tt>|<tt>st</tt>|<tt>rd</tt>] <var>MNM</var>[<tt>,</tt>] [ <var>YYYY</var> ]
-</li><li> <var>MNM</var> <var>DD</var>[<tt>th</tt>|<tt>st</tt>|<tt>rd</tt>][<tt>,</tt>] [ <var>YYYY</var> ]
-</li><li> <var>DD</var>[<tt>th</tt>|<tt>st</tt>|<tt>rd</tt>]<tt>/</tt><var>MM</var>[<tt>,</tt>] <var>YYYY</var>
-</li><li> <var>DD</var>[<tt>th</tt>|<tt>st</tt>|<tt>rd</tt>]<tt>/</tt><var>MM</var><tt>/</tt><var>YYYY</var>
-</li><li> <var>MM</var><tt>/</tt><var>DD</var>[<tt>th</tt>|<tt>st</tt>|<tt>rd</tt>][<tt>,</tt>] <var>YYYY</var>
-</li><li> <var>MM</var><tt>/</tt><var>DD</var>[<tt>th</tt>|<tt>st</tt>|<tt>rd</tt>]<tt>/</tt><var>YYYY</var>
+<li> 
+<var>YYYY</var><tt>/</tt><var>MM</var><tt>/</tt><var>DD</var>
+</li><li> 
+<var>YYYY</var><tt>-</tt><var>MM</var><tt>-</tt><var>DD</var>
+</li><li> 
+<var>YYYY</var><tt>/</tt><var>MNM</var><tt>/</tt><var>DD</var>
+</li><li> 
+<var>YYYY</var><tt>-</tt><var>MNM</var><tt>-</tt><var>DD</var>
+</li><li> 
+<var>DD</var>[<tt>th</tt>|<tt>st</tt>|<tt>rd</tt>] <var>MNM</var>[<tt>,</tt>] [ <var>YYYY</var> ]
+</li><li> 
+<var>MNM</var> <var>DD</var>[<tt>th</tt>|<tt>st</tt>|<tt>rd</tt>][<tt>,</tt>] [ <var>YYYY</var> ]
+</li><li> 
+<var>DD</var>[<tt>th</tt>|<tt>st</tt>|<tt>rd</tt>]<tt>/</tt><var>MM</var>[<tt>,</tt>] <var>YYYY</var>
+</li><li> 
+<var>DD</var>[<tt>th</tt>|<tt>st</tt>|<tt>rd</tt>]<tt>/</tt><var>MM</var><tt>/</tt><var>YYYY</var>
+</li><li> 
+<var>MM</var><tt>/</tt><var>DD</var>[<tt>th</tt>|<tt>st</tt>|<tt>rd</tt>][<tt>,</tt>] <var>YYYY</var>
+</li><li> 
+<var>MM</var><tt>/</tt><var>DD</var>[<tt>th</tt>|<tt>st</tt>|<tt>rd</tt>]<tt>/</tt><var>YYYY</var>
 </li></ul>
 
 <p>Here, <var>MNM</var> is at least the first three letters of a month name,
@@ -369,7 +377,7 @@ together with the matched (but unused) time zone.  This leaves the following:
 <tr><td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Date-Format" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Calendar-File-and-Date-Formats" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Example-3" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Example-2" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -473,7 +481,7 @@ Monthly, 3rd Thursday
 
 
 <hr>
-<a name="Example-3"></a>
+<a name="Example-2"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Relative-Time-Format" title="Previous section in reading order"> &lt; </a>]</td>
@@ -516,7 +524,7 @@ same time.
 <a name="Calendar-System-User-Functions"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Example-3" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Example-2" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Calendar-Function-System" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Calendar-system-functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="TCP-Function-System.html#TCP-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -855,16 +863,16 @@ keywords and values.
 </dd>
 </dl>
 
-<p><a name="index-calendar_005fshowdate"></a>
-</p></dd>
+<a name="index-calendar_005fshowdate"></a>
+</dd>
 <dt><tt>calendar_showdate</tt> [ <tt>-r</tt> ] [ <tt>-f</tt> <var>fmt</var> ] <var>date-spec</var> ...</dt>
 <dd><p>The given <var>date-spec</var> is interpreted and the corresponding date and
 time printed.  If the initial <var>date-spec</var> begins with a <tt>+</tt> or
 <tt>-</tt> it is treated as relative to the current time; <var>date-spec</var>s after
 the first are treated as relative to the date calculated so far and
 a leading <tt>+</tt> is optional in that case.  This allows one to
-use the system as a date calculator.  For example, <tt>calendar_showdate '+1
-month, 1st Friday'</tt> shows the date of the first Friday of next month.
+use the system as a date calculator.  For example, <tt>calendar_showdate &rsquo;+1
+month, 1st Friday&rsquo;</tt> shows the date of the first Friday of next month.
 </p>
 <p>With the option <tt>-r</tt> nothing is printed but the value of the date and
 time in seconds since the epoch is stored in the parameter <tt>REPLY</tt>.
@@ -1031,7 +1039,7 @@ print *(e-after today:12:00-)
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="Styles"></a>
+<a name="Styles-1"></a>
 <h2 class="section">23.4 Styles</h2>
 
 <p>The zsh style mechanism using the <tt>zstyle</tt> command is describe in
@@ -1295,10 +1303,12 @@ that caused it.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p><font size="-1">
-  This document was generated on <em>April 29, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
-</font></p>
-
-<font size="-1">Zsh version 5.5.1, released on April 16, 2018.</font>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 24, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+<font size="-1">Zsh version 5.7, released on January 24, 2019.</font>
+</p>
 </body>
 </html>

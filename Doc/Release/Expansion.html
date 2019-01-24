@@ -1,20 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created on January 24, 2019 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>14 Expansion (zsh)</title>
+<title>zsh: 14 Expansion</title>
 
-<meta name="description" content="14 Expansion (zsh)">
-<meta name="keywords" content="14 Expansion (zsh)">
+<meta name="description" content="zsh: 14 Expansion">
+<meta name="keywords" content="zsh: 14 Expansion">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2any">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
@@ -22,18 +28,18 @@ div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smalldisplay {font-family: serif; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,7 +47,8 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
 <a name="Expansion"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Prompt-Expansion.html#Prompt-Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -86,7 +93,7 @@ in <a href="Shell-Grammar.html#Aliasing">Aliasing</a>.
 any of the five steps that are needed are performed one after the other.
 Hence, for example, all the parts of parameter expansion are completed
 before command substitution is started.  After these expansions, all
-unquoted occurrences of the characters &lsquo;<tt>\</tt>&rsquo;,&lsquo;<tt>'</tt>&rsquo; and &lsquo;<tt>&quot;</tt>&rsquo; are
+unquoted occurrences of the characters &lsquo;<tt>\</tt>&rsquo;,&lsquo;<tt>&rsquo;</tt>&rsquo; and &lsquo;<tt>&quot;</tt>&rsquo; are
 removed.
 </p>
 </dd>
@@ -144,15 +151,15 @@ preceding the set of five expansions mentioned above.
 
 <a name="History-Expansion-1"></a>
 <h2 class="section">14.1 History Expansion</h2>
-<p><a name="index-history"></a>
+<a name="index-history"></a>
 <a name="index-history-expansion"></a>
 <a name="index-expansion_002c-history"></a>
-History expansion allows you to use words from previous command
+<p>History expansion allows you to use words from previous command
 lines in the command line you are typing.  This simplifies spelling
 corrections and the repetition of complicated commands or arguments.
 </p>
-<p><a name="index-HISTSIZE_002c-use-of"></a>
-Immediately before execution, each command is saved in the history list,
+<a name="index-HISTSIZE_002c-use-of"></a>
+<p>Immediately before execution, each command is saved in the history list,
 the size of which is controlled by the <tt>HISTSIZE</tt> parameter.  The one
 most recent command is always retained in any case.  Each saved command in
 the history list is called a history <em>event</em> and is assigned a number,
@@ -190,11 +197,11 @@ you may see in your prompt (see
 
 <a name="Overview-1"></a>
 <h3 class="subsection">14.1.1 Overview</h3>
-<p><a name="index-histchars_002c-use-of-1"></a>
-A history expansion begins with the first character of the <tt>histchars</tt>
+<a name="index-histchars_002c-use-of-1"></a>
+<p>A history expansion begins with the first character of the <tt>histchars</tt>
 parameter, which is &lsquo;<tt>!</tt>&rsquo; by default, and may occur anywhere on the
 command line, including inside double quotes (but not inside single quotes
-<tt>'...'</tt> or C-style quotes <tt>$'...'</tt> nor when escaped with a backslash).  
+<tt>&rsquo;...&rsquo;</tt> or C-style quotes <tt>$&rsquo;...&rsquo;</tt> nor when escaped with a backslash).  
 </p>
 <p>The first character is followed by an optional event designator
 (<a href="#Event-Designators">Event Designators</a>) and then an optional word
@@ -242,8 +249,8 @@ the current list (see
 <a href="Shell-Grammar.html#Shell-Grammar">Shell Grammar</a>) is fully parsed.  The &lsquo;<tt>!&quot;</tt>&rsquo; is removed from the input, and any
 subsequent &lsquo;<tt>!</tt>&rsquo; characters have no special significance.
 </p>
-<p><a name="index-fc_002c-use-of"></a>
-A less convenient but more comprehensible form of command history support
+<a name="index-fc_002c-use-of"></a>
+<p>A less convenient but more comprehensible form of command history support
 is provided by the <tt>fc</tt> builtin.
 </p><hr>
 <a name="Event-Designators"></a>
@@ -265,10 +272,10 @@ is provided by the <tt>fc</tt> builtin.
 
 <a name="Event-Designators-1"></a>
 <h3 class="subsection">14.1.2 Event Designators</h3>
-<p><a name="index-history-event-designators"></a>
+<a name="index-history-event-designators"></a>
 <a name="index-event-designators_002c-history"></a>
-An event designator is a reference to a command-line entry in the history
-list.  In the list below, remember that the initial <tt>`!'</tt> in each item
+<p>An event designator is a reference to a command-line entry in the history
+list.  In the list below, remember that the initial <tt>&lsquo;!&rsquo;</tt> in each item
 may be changed to another character by setting the <tt>histchars</tt>
 parameter.
 </p>
@@ -335,9 +342,9 @@ one with the &lsquo;<tt>!#</tt>&rsquo; reference.
 
 <a name="Word-Designators-1"></a>
 <h3 class="subsection">14.1.3 Word Designators</h3>
-<p><a name="index-history-word-designators"></a>
+<a name="index-history-word-designators"></a>
 <a name="index-word-designators_002c-history"></a>
-A word designator indicates which word or words of a given command line are
+<p>A word designator indicates which word or words of a given command line are
 to be included in a history reference.  A &lsquo;<tt>:</tt>&rsquo; usually
 separates the event specification from the word designator.
 It may be omitted only if the word designator begins with a
@@ -398,12 +405,12 @@ in an error, although the error may not be the most obvious one.
 
 <a name="Modifiers-1"></a>
 <h3 class="subsection">14.1.4 Modifiers</h3>
-<p><a name="index-modifiers"></a>
+<a name="index-modifiers"></a>
 <a name="index-colon-modifiers"></a>
 <a name="index-history-modifiers"></a>
 <a name="index-globbing-modifiers"></a>
 <a name="index-parameter-modifiers"></a>
-After the optional word designator, you can add
+<p>After the optional word designator, you can add
 a sequence of one or more of the following modifiers,
 each preceded by a &lsquo;<tt>:</tt>&rsquo;.  These modifiers also work on the result
 of <em>filename generation</em> and <em>parameter expansion</em>, except where
@@ -649,9 +656,9 @@ the &lsquo;<tt>:</tt>&rsquo;; opening parentheses are handled specially, see abo
 
 <a name="Process-Substitution-1"></a>
 <h2 class="section">14.2 Process Substitution</h2>
-<p><a name="index-process-substitution"></a>
+<a name="index-process-substitution"></a>
 <a name="index-substitution_002c-process"></a>
-Each part of a command argument that takes the form
+<p>Each part of a command argument that takes the form
 &lsquo;<tt>&lt;(</tt><var>list</var><tt>)</tt>&rsquo;,
 &lsquo;<tt>&gt;(</tt><var>list</var><tt>)</tt>&rsquo; or
 &lsquo;<tt>=(</tt><var>list</var><tt>)</tt>&rsquo;
@@ -806,9 +813,9 @@ when the function exits.
 
 <a name="Parameter-Expansion-1"></a>
 <h2 class="section">14.3 Parameter Expansion</h2>
-<p><a name="index-parameter-expansion"></a>
+<a name="index-parameter-expansion"></a>
 <a name="index-expansion_002c-parameter"></a>
-The character &lsquo;<tt>$</tt>&rsquo; is used to introduce parameter expansions.
+<p>The character &lsquo;<tt>$</tt>&rsquo; is used to introduce parameter expansions.
 See
 <a href="Parameters.html#Parameters">Parameters</a>
 for a description of parameters, including arrays, associative arrays,
@@ -1222,10 +1229,10 @@ before.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">14.3.1 Parameter Expansion Flags</h3>
-<p><a name="index-parameter-expansion-flags"></a>
+<a name="index-parameter-expansion-flags"></a>
 <a name="index-flags_002c-parameter-expansion"></a>
 <a name="index-substitution_002c-parameter_002c-flags"></a>
-If the opening brace is directly followed by an opening parenthesis,
+<p>If the opening brace is directly followed by an opening parenthesis,
 the string up to the matching closing parenthesis will be taken as a
 list of flags.  In cases where repeating a flag is meaningful, the
 repetitions need not be consecutive; for example, &lsquo;(<tt>q%q%q</tt>)&rsquo;
@@ -1426,7 +1433,7 @@ subscripted &lsquo;<tt>elt</tt>&rsquo;.
 <dt><tt>q</tt></dt>
 <dd><p>Quote characters that are special to the shell in the resulting words with
 backslashes; unprintable or invalid characters are quoted using the
-<tt>$'\</tt><var>NNN</var><tt>'</tt> form, with separate quotes for each octet.
+<tt>$&rsquo;\</tt><var>NNN</var><tt>&rsquo;</tt> form, with separate quotes for each octet.
 </p>
 <p>If this flag is given twice, the resulting words are quoted in single
 quotes and if it is given three times, the words are quoted in double
@@ -1442,7 +1449,7 @@ protect special characters.  Typically this form gives the most readable
 output.
 </p>
 <p>If a <tt>q+</tt> is given, an extended form of minmal quoting is used that
-causes unprintable characters to be rendered using <tt>$'</tt><var>...</var><tt>'</tt>.
+causes unprintable characters to be rendered using <tt>$&rsquo;</tt><var>...</var><tt>&rsquo;</tt>.
 This quoting is similar to that used by the output of values by the
 <tt>typeset</tt> family of commands.
 </p>
@@ -2126,20 +2133,27 @@ empty string will then be elided, as it is not in double quotes.
 
 <a name="Command-Substitution-1"></a>
 <h2 class="section">14.4 Command Substitution</h2>
-<p><a name="index-command-substitution"></a>
+<a name="index-command-substitution"></a>
 <a name="index-substitution_002c-command"></a>
-A command enclosed in parentheses preceded by a dollar sign, like
+<p>A command enclosed in parentheses preceded by a dollar sign, like
 &lsquo;<tt>$(</tt>...<tt>)</tt>&rsquo;, or quoted with grave 
-accents, like &lsquo;<tt>`</tt>...<tt>`</tt>&rsquo;, is replaced with its standard output, with
+accents, like &lsquo;<tt>&lsquo;</tt>...<tt>&lsquo;</tt>&rsquo;, is replaced with its standard output, with
 any trailing newlines deleted.
 If the substitution is not enclosed in double quotes, the
 output is broken into words using the <tt>IFS</tt> parameter.
 <a name="index-IFS_002c-use-of-1"></a>
-The substitution &lsquo;<tt>$(cat</tt> <var>foo</var><tt>)</tt>&rsquo; may be replaced
-by the equivalent but faster &lsquo;<tt>$(&lt;</tt><var>foo</var><tt>)</tt>&rsquo;.
-In either case, if the option <tt>GLOB_SUBST</tt> is set,
-the output is eligible for filename generation.
-</p><hr>
+</p>
+<p>The substitution &lsquo;<tt>$(cat</tt> <var>foo</var><tt>)</tt>&rsquo; may be replaced
+by the faster &lsquo;<tt>$(&lt;</tt><var>foo</var><tt>)</tt>&rsquo;.  In this case <var>foo</var>
+undergoes single word shell expansions (<em>parameter expansion</em>,
+<em>command substitution</em> and <em>arithmetic expansion</em>), but not
+filename generation.
+</p>
+<p>If the option <tt>GLOB_SUBST</tt> is set, the result of any unquoted command
+substitution, including the special form just mentioned, is eligible for
+filename generation.
+</p>
+<hr>
 <a name="Arithmetic-Expansion"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -2159,9 +2173,9 @@ the output is eligible for filename generation.
 
 <a name="Arithmetic-Expansion-1"></a>
 <h2 class="section">14.5 Arithmetic Expansion</h2>
-<p><a name="index-arithmetic-expansion"></a>
+<a name="index-arithmetic-expansion"></a>
 <a name="index-expansion_002c-arithmetic"></a>
-A string of the form &lsquo;<tt>$[</tt><var>exp</var><tt>]</tt>&rsquo; or
+<p>A string of the form &lsquo;<tt>$[</tt><var>exp</var><tt>]</tt>&rsquo; or
 &lsquo;<tt>$((</tt><var>exp</var><tt>))</tt>&rsquo; is substituted
 with the value of the arithmetic expression <var>exp</var>.  <var>exp</var> is
 subjected to <em>parameter expansion</em>, <em>command substitution</em>
@@ -2187,9 +2201,9 @@ See <a href="Arithmetic-Evaluation.html#Arithmetic-Evaluation">Arithmetic Evalua
 
 <a name="Brace-Expansion-1"></a>
 <h2 class="section">14.6 Brace Expansion</h2>
-<p><a name="index-brace-expansion"></a>
+<a name="index-brace-expansion"></a>
 <a name="index-expansion_002c-brace"></a>
-A string of the form
+<p>A string of the form
 &lsquo;<var>foo</var><tt>{</tt><var>xx</var><tt>,</tt><var>yy</var><tt>,</tt><var>zz</var><tt>}</tt><var>bar</var>&rsquo;
 is expanded to the individual words
 &lsquo;<var>fooxxbar</var>&rsquo;, &lsquo;<var>fooyybar</var>&rsquo; and &lsquo;<var>foozzbar</var>&rsquo;.
@@ -2272,9 +2286,9 @@ above.
 
 <a name="Filename-Expansion-1"></a>
 <h2 class="section">14.7 Filename Expansion</h2>
-<p><a name="index-filename-expansion"></a>
+<a name="index-filename-expansion"></a>
 <a name="index-expansion_002c-filename"></a>
-Each word is checked to see if it begins with an unquoted &lsquo;<tt>~</tt>&rsquo;.
+<p>Each word is checked to see if it begins with an unquoted &lsquo;<tt>~</tt>&rsquo;.
 If it does, then the word up to a &lsquo;<tt>/</tt>&rsquo;,
 or the end of the word if there is no &lsquo;<tt>/</tt>&rsquo;,
 is checked to see if it can be substituted in one of the ways
@@ -2320,10 +2334,10 @@ followed by a number.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">14.7.1 Dynamic named directories</h3>
-<p><a name="index-directories_002c-named_002c-dynamic"></a>
+<a name="index-directories_002c-named_002c-dynamic"></a>
 <a name="index-named-directories_002c-dynamic"></a>
 <a name="index-dynamic-named-directories"></a>
-</p>
+
 <p>If the function <tt>zsh_directory_name</tt> exists, or the shell variable
 <tt>zsh_directory_name_functions</tt> exists and contains an array of
 function names, then the functions are used to implement dynamic
@@ -2435,10 +2449,10 @@ directory would be just as effective.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">14.7.2 Static named directories</h3>
-<p><a name="index-directories_002c-named_002c-static"></a>
+<a name="index-directories_002c-named_002c-static"></a>
 <a name="index-named-directories_002c-static"></a>
 <a name="index-static-named-directories"></a>
-A &lsquo;<tt>~</tt>&rsquo; followed by anything not already covered consisting
+<p>A &lsquo;<tt>~</tt>&rsquo; followed by anything not already covered consisting
 of any number of alphanumeric characters or underscore (&lsquo;<tt>_</tt>&rsquo;),
 hyphen (&lsquo;<tt>-</tt>&rsquo;), or dot (&lsquo;<tt>.</tt>&rsquo;) is looked up as a
 named directory, and replaced by the value of that named directory if found.
@@ -2541,8 +2555,8 @@ first &lsquo;<tt>=</tt>&rsquo; also inhibits this.
 
 <a name="Filename-Generation-1"></a>
 <h2 class="section">14.8 Filename Generation</h2>
-<p><a name="index-filename-generation"></a>
-If a word contains an unquoted instance of one of the characters
+<a name="index-filename-generation"></a>
+<p>If a word contains an unquoted instance of one of the characters
 &lsquo;<tt>*</tt>&rsquo;, &lsquo;<tt>(</tt>&rsquo;, &lsquo;<tt>|</tt>&rsquo;, &lsquo;<tt>&lt;</tt>&rsquo;, &lsquo;<tt>[</tt>&rsquo;, or &lsquo;<tt>?</tt>&rsquo;, it is regarded
 as a pattern for filename generation, unless the <tt>GLOB</tt> option is unset.
 <a name="index-GLOB_002c-use-of"></a>
@@ -2624,7 +2638,7 @@ the top bit set.
 </p>
 </dd>
 <dt><tt>[:blank:]</tt></dt>
-<dd><p>The character is either space or tab
+<dd><p>The character is a blank character
 </p>
 </dd>
 <dt><tt>[:cntrl:]</tt></dt>
@@ -2821,8 +2835,8 @@ form &lsquo;<tt>1(2##)</tt>&rsquo; which should therefore be avoided.)
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">14.8.2 ksh-like Glob Operators</h3>
-<p><a name="index-KSH_005fGLOB_002c-use-of"></a>
-If the <tt>KSH_GLOB</tt> option is set, the effects of parentheses can be
+<a name="index-KSH_005fGLOB_002c-use-of"></a>
+<p>If the <tt>KSH_GLOB</tt> option is set, the effects of parentheses can be
 modified by a preceding &lsquo;<tt>@</tt>&rsquo;, &lsquo;<tt>*</tt>&rsquo;, &lsquo;<tt>+</tt>&rsquo;, &lsquo;<tt>?</tt>&rsquo; or &lsquo;<tt>!</tt>&rsquo;.
 This character need not be unquoted to have special effects,
 but the &lsquo;<tt>(</tt>&rsquo; must be.
@@ -2871,8 +2885,8 @@ except that recursive directory searching is not supported.)
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">14.8.3 Precedence</h3>
-<p><a name="index-precedence-of-glob-operators"></a>
-The precedence of the operators given above is (highest) &lsquo;<tt>^</tt>&rsquo;, &lsquo;<tt>/</tt>&rsquo;,
+<a name="index-precedence-of-glob-operators"></a>
+<p>The precedence of the operators given above is (highest) &lsquo;<tt>^</tt>&rsquo;, &lsquo;<tt>/</tt>&rsquo;,
 &lsquo;<tt>~</tt>&rsquo;, &lsquo;<tt>|</tt>&rsquo; (lowest); the
 remaining operators are simply treated from left to right as part of a
 string, with &lsquo;<tt>#</tt>&rsquo; and &lsquo;<tt>##</tt>&rsquo; applying to the shortest possible
@@ -3278,15 +3292,15 @@ ls **.c
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">14.8.7 Glob Qualifiers</h3>
-<p><a name="index-globbing_002c-qualifiers"></a>
+<a name="index-globbing_002c-qualifiers"></a>
 <a name="index-qualifiers_002c-globbing"></a>
-Patterns used for filename generation may end in a
+<p>Patterns used for filename generation may end in a
 list of qualifiers enclosed in parentheses.
 The qualifiers specify which filenames that otherwise match the given pattern
 will be inserted in the argument list.
 </p>
-<p><a name="index-BARE_005fGLOB_005fQUAL_002c-use-of"></a>
-If the option <tt>BARE_GLOB_QUAL</tt> is set, then a trailing set of parentheses
+<a name="index-BARE_005fGLOB_005fQUAL_002c-use-of"></a>
+<p>If the option <tt>BARE_GLOB_QUAL</tt> is set, then a trailing set of parentheses
 containing no &lsquo;<tt>|</tt>&rsquo; or &lsquo;<tt>(</tt>&rsquo; characters (or &lsquo;<tt>~</tt>&rsquo; if it is special)
 is taken as a set of
 glob qualifiers.  A glob subexpression that would normally be taken as glob
@@ -3469,9 +3483,9 @@ to prevent them from being expanded before globbing is done.
 is appended to the array <tt>zsh_eval_context</tt> the duration of
 execution.
 </p>
-<p><a name="index-REPLY_002c-use-of-1"></a>
+<a name="index-REPLY_002c-use-of-1"></a>
 <a name="index-reply_002c-use-of"></a>
-During the execution of <var>string</var> the filename currently being tested is
+<p>During the execution of <var>string</var> the filename currently being tested is
 available in the parameter <tt>REPLY</tt>; the parameter may be altered to
 a string to be inserted into the list instead of the original
 filename.  In addition, the parameter <tt>reply</tt> may be set to an array or a
@@ -3479,7 +3493,7 @@ string, which overrides the value of <tt>REPLY</tt>.  If set to an array, the
 latter is inserted into the command line word by word.
 </p>
 <p>For example, suppose a directory contains a single file &lsquo;<tt>lonely</tt>&rsquo;.  Then
-the expression &lsquo;<tt>*(e:'reply=(${REPLY}{1,2})':)</tt>&rsquo; will cause the words
+the expression &lsquo;<tt>*(e:&rsquo;reply=(${REPLY}{1,2})&rsquo;:)</tt>&rsquo; will cause the words
 &lsquo;<tt>lonely1</tt>&rsquo; and &lsquo;<tt>lonely2</tt>&rsquo; to be inserted into the command line.  Note
 the quoting of <var>string</var>.
 </p>
@@ -3771,10 +3785,12 @@ print &lsquo;<tt>shmiltin.shmo</tt>&rsquo;.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p><font size="-1">
-  This document was generated on <em>April 29, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
-</font></p>
-
-<font size="-1">Zsh version 5.5.1, released on April 16, 2018.</font>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 24, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+<font size="-1">Zsh version 5.7, released on January 24, 2019.</font>
+</p>
 </body>
 </html>

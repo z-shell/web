@@ -1,20 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created on January 24, 2019 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>15 Parameters (zsh)</title>
+<title>zsh: 15 Parameters</title>
 
-<meta name="description" content="15 Parameters (zsh)">
-<meta name="keywords" content="15 Parameters (zsh)">
+<meta name="description" content="zsh: 15 Parameters">
+<meta name="keywords" content="zsh: 15 Parameters">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2any">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
@@ -22,18 +28,18 @@ div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smalldisplay {font-family: serif; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,13 +47,14 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
 <a name="Parameters"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Expansion.html#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Expansion.html#Glob-Qualifiers" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Description" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-7" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Options.html#Options" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -59,26 +66,13 @@ ul.no-bullet {list-style: none}
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="Parameters-1"></a>
+<a name="Parameters-2"></a>
 <h1 class="chapter">15 Parameters</h1>
-<p><a name="index-parameters"></a>
+<a name="index-parameters"></a>
 <a name="index-variables"></a>
-</p>
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="#Array-Parameters">15.2 Array Parameters</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Positional-Parameters">15.3 Positional Parameters</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Local-Parameters">15.4 Local Parameters</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Parameters-Set-By-The-Shell">15.5 Parameters Set By The Shell</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Parameters-Used-By-The-Shell">15.6 Parameters Used By The Shell</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-</table>
 
 <hr>
-<a name="Description"></a>
+<a name="Description-7"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Parameters" title="Previous section in reading order"> &lt; </a>]</td>
@@ -102,12 +96,12 @@ characters and underscores, or the single characters
 A parameter whose name begins with an alphanumeric or underscore is also
 referred to as a <em>variable</em>.
 </p>
-<p><a name="index-scalar"></a>
+<a name="index-scalar"></a>
 <a name="index-parameters_002c-scalar"></a>
 <a name="index-parameters_002c-array"></a>
 <a name="index-parameters_002c-associative-array"></a>
 <a name="index-hash"></a>
-The attributes of a parameter determine the <em>type</em> of its value, often
+<p>The attributes of a parameter determine the <em>type</em> of its value, often
 referred to as the parameter type or variable type, and also control
 other processing that may be applied to the value when it is referenced.
 The value type may be a <em>scalar</em> (a string, an integer, or a floating
@@ -115,11 +109,11 @@ point number), an array (indexed numerically), or an <em>associative</em>
 array (an unordered set of name-value pairs, indexed by name, also
 referred to as a <em>hash</em>).
 </p>
-<p><a name="index-export"></a>
+<a name="index-export"></a>
 <a name="index-environment"></a>
 <a name="index-environment-variables"></a>
 <a name="index-variables_002c-environment"></a>
-Named scalar parameters may have the <em>exported</em>, <tt>-x</tt>, attribute, to
+<p>Named scalar parameters may have the <em>exported</em>, <tt>-x</tt>, attribute, to
 copy them into the process environment, which is then passed from the
 shell to any new processes that it starts.  Exported parameters are called
 <em>environment variables</em>. The shell also <em>imports</em> environment variables
@@ -128,9 +122,9 @@ exported.  Some environment variables are not imported for reasons of
 security or because they would interfere with the correct operation of
 other shell features.
 </p>
-<p><a name="index-special-parameters"></a>
+<a name="index-special-parameters"></a>
 <a name="index-parameters_002c-special"></a>
-Parameters may also be <em>special</em>, that is, they have a predetermined
+<p>Parameters may also be <em>special</em>, that is, they have a predetermined
 meaning to the shell.  Special parameters cannot have their type changed
 or their readonly attribute turned off, and if a special parameter is
 unset, then later recreated, the special properties will be retained.
@@ -184,7 +178,7 @@ expansion.
 <a name="Array-Parameters"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Parameters" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Description" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-7" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Parameters" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Array-Subscripts" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Options.html#Options" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -262,7 +256,7 @@ of files as a set of values, quote the equal sign using any form of quoting.
 Example:
 </p>
 <blockquote>
-<p><var>name</var><tt>=(</tt><tt>[a-z]'='*)</tt>
+<p><var>name</var><tt>=(</tt><tt>[a-z]&rsquo;=&rsquo;*)</tt>
 </p></blockquote>
 
 <p>To append to an array without changing the existing values, use
@@ -361,8 +355,8 @@ described above.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">15.2.1 Array Subscripts</h3>
-<p><a name="index-subscripts"></a>
-Individual elements of an array may be selected using a subscript.  A
+<a name="index-subscripts"></a>
+<p>Individual elements of an array may be selected using a subscript.  A
 subscript of the form &lsquo;<tt>[</tt><var>exp</var><tt>]</tt>&rsquo; selects the single element
 <var>exp</var>, where <var>exp</var> is an arithmetic expression which will be subject
 to arithmetic expansion as if it were surrounded by
@@ -514,8 +508,8 @@ that element.  To delete an element of an associative array, use the
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">15.2.3 Subscript Flags</h3>
-<p><a name="index-subscript-flags"></a>
-If the opening bracket, or the comma in a range, in any subscript
+<a name="index-subscript-flags"></a>
+<p>If the opening bracket, or the comma in a range, in any subscript
 expression is directly followed by an opening parenthesis, the string up
 to the matching closing one is considered to be a list of flags, as in
 &lsquo;<var>name</var><tt>[(</tt><var>flags</var><tt>)</tt><var>exp</var><tt>]</tt>&rsquo;.
@@ -1263,7 +1257,7 @@ the shell.
 </p>
 </dd>
 <dt><tt>cmdsubst</tt></dt>
-<dd><p>Command substitution using the <tt>`</tt><var>...</var><tt>`</tt> or
+<dd><p>Command substitution using the <tt>&lsquo;</tt><var>...</var><tt>&lsquo;</tt> or
 <tt>$(</tt><var>...</var><tt>)</tt> construct.
 </p>
 </dd>
@@ -1384,7 +1378,7 @@ of zsh.
 <a name="index-ZSH_005fPATCHLEVEL"></a>
 </dd>
 <dt><tt>ZSH_PATCHLEVEL</tt></dt>
-<dd><p>The output of &lsquo;<tt>git describe --tags --long</tt>&rsquo; for the zsh repository
+<dd><p>The output of &lsquo;<tt>git describe &ndash;tags &ndash;long</tt>&rsquo; for the zsh repository
 used to build the shell.  This is most useful in order to keep
 track of versions of the shell during development between releases;
 hence most users should not use it and should instead rely on
@@ -2331,7 +2325,7 @@ See <a href="Zsh-Line-Editor.html#Character-Highlighting">Character Highlighting
 <dt><tt>ZLE_LINE_ABORTED</tt></dt>
 <dd><p>This parameter is set by the line editor when an error occurs.  It
 contains the line that was being edited at the point of the error.
-&lsquo;<tt>print -zr -- $ZLE_LINE_ABORTED</tt>&rsquo; can be used to recover the line.
+&lsquo;<tt>print -zr &ndash; $ZLE_LINE_ABORTED</tt>&rsquo; can be used to recover the line.
 Only the most recent line of this kind is remembered.
 </p>
 <a name="index-ZLE_005fREMOVE_005fSUFFIX_005fCHARS"></a>
@@ -2411,10 +2405,12 @@ Some experimentation is necessary.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p><font size="-1">
-  This document was generated on <em>April 29, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
-</font></p>
-
-<font size="-1">Zsh version 5.5.1, released on April 16, 2018.</font>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 24, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+<font size="-1">Zsh version 5.7, released on January 24, 2019.</font>
+</p>
 </body>
 </html>

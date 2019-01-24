@@ -1,20 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created on January 24, 2019 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>26 User Contributions (zsh)</title>
+<title>zsh: 26 User Contributions</title>
 
-<meta name="description" content="26 User Contributions (zsh)">
-<meta name="keywords" content="26 User Contributions (zsh)">
+<meta name="description" content="zsh: 26 User Contributions">
+<meta name="keywords" content="zsh: 26 User Contributions">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2any">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
@@ -22,18 +28,18 @@ div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smalldisplay {font-family: serif; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,13 +47,14 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
 <a name="User-Contributions"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Zftp-Function-System.html#Zftp-Function-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Zftp-Function-System.html#Completion-4" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Zftp-Function-System.html#Completion-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-9" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-5" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -61,35 +68,10 @@ ul.no-bullet {list-style: none}
 
 <a name="User-Contributions-1"></a>
 <h1 class="chapter">26 User Contributions</h1>
-<p><a name="index-user-contributions"></a>
-</p>
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="#Utilities">26.2 Utilities</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Recent-Directories">26.3 Remembering Recent Directories</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Other-Directory-Functions">26.4 Abbreviated dynamic references to directories</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Version-Control-Information">26.5 Gathering information from version control systems</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Prompt-Themes">26.6 Prompt Themes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#ZLE-Functions">26.7 ZLE Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Exception-Handling">26.8 Exception Handling</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#MIME-Functions">26.9 MIME Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Mathematical-Functions">26.10 Mathematical Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#User-Configuration-Functions">26.11 User Configuration Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Other-Functions">26.12 Other Functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-</table>
+<a name="index-user-contributions"></a>
 
 <hr>
-<a name="Description-9"></a>
+<a name="Description-5"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Previous section in reading order"> &lt; </a>]</td>
@@ -142,7 +124,7 @@ such as shell functions, look for comments in the function source files.
 <a name="Utilities"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-9" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-5" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Accessing-On_002dLine-Help" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -178,8 +160,8 @@ such as shell functions, look for comments in the function source files.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">26.2.1 Accessing On-Line Help</h3>
-<p><a name="index-helpfiles-utility"></a>
-</p>
+<a name="index-helpfiles-utility"></a>
+
 <p>The key sequence <tt>ESC h</tt> is normally bound by ZLE to execute the
 <tt>run-help</tt> widget (see
 <a href="Zsh-Line-Editor.html#Zsh-Line-Editor">Zsh Line Editor</a>).  This invokes the <tt>run-help</tt> command with the command word from the
@@ -205,11 +187,11 @@ distribution in your home directory, you would use the commands:
 </p>
 <div class="example">
 <pre class="example">mkdir ~/zsh_help
-perl ~/zsh-5.5.1/Util/helpfiles ~/zsh_help
+perl ~/zsh-5.7/Util/helpfiles ~/zsh_help
 </pre></div>
 
-<p><a name="index-HELPDIR"></a>
-The <tt>HELPDIR</tt> parameter tells <tt>run-help</tt> where to look for the help
+<a name="index-HELPDIR"></a>
+<p>The <tt>HELPDIR</tt> parameter tells <tt>run-help</tt> where to look for the help
 files. When unset, it uses the default installation path.
 To use your own set of help files, set this to the appropriate path
 in one of your startup files:
@@ -218,8 +200,8 @@ in one of your startup files:
 <pre class="example">HELPDIR=~/zsh_help
 </pre></div>
 
-<p><a name="index-run_002dhelp_002c-use-of"></a>
-To use the <tt>run-help</tt> function, you need to add lines something
+<a name="index-run_002dhelp_002c-use-of"></a>
+<p>To use the <tt>run-help</tt> function, you need to add lines something
 like the following to your <tt>.zshrc</tt> or equivalent startup file:
 </p>
 <div class="example">
@@ -252,9 +234,9 @@ appropriate directory.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">26.2.2 Recompiling Functions</h3>
-<p><a name="index-functions_002c-recompiling"></a>
+<a name="index-functions_002c-recompiling"></a>
 <a name="index-zrecompile-utility"></a>
-</p>
+
 <p>If you frequently edit your zsh functions, or periodically update your zsh
 installation to track the latest developments, you may find that function
 digests compiled with the <tt>zcompile</tt> builtin are frequently out of date
@@ -364,10 +346,10 @@ arguments.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">26.2.3 Keyboard Definition</h3>
-<p><a name="index-keyboard-definition"></a>
-</p>
-<p><a name="index-zkbd"></a>
-The large number of possible combinations of keyboards, workstations,
+<a name="index-keyboard-definition"></a>
+
+<a name="index-zkbd"></a>
+<p>The large number of possible combinations of keyboards, workstations,
 terminals, emulators, and window systems makes it impossible for zsh to
 have built-in key bindings for every situation.  The <tt>zkbd</tt> utility,
 found in <tt>Functions/Misc</tt>, can help you quickly create key bindings for your
@@ -376,7 +358,7 @@ configuration.
 <p>Run <tt>zkbd</tt> either as an autoloaded function, or as a shell script:
 </p>
 <div class="example">
-<pre class="example">zsh -f ~/zsh-5.5.1/Functions/Misc/zkbd
+<pre class="example">zsh -f ~/zsh-5.7/Functions/Misc/zkbd
 </pre></div>
 
 <p>When you run <tt>zkbd</tt>, it first asks you to enter your terminal type; if
@@ -427,8 +409,8 @@ appropriate directory.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">26.2.4 Dumping Shell State</h3>
-<p><a name="index-reporter-utility"></a>
-</p>
+<a name="index-reporter-utility"></a>
+
 <p>Occasionally you may encounter what appears to be a bug in the shell,
 particularly if you are using a beta version of zsh or a development
 release.  Usually it is sufficient to send a description of the
@@ -447,7 +429,7 @@ recreate that state.
 command and redirect the output into a file:
 </p>
 <div class="example">
-<pre class="example">. ~/zsh-5.5.1/Util/reporter &gt; zsh.report
+<pre class="example">. ~/zsh-5.7/Util/reporter &gt; zsh.report
 </pre></div>
 
 <p>You should check the <tt>zsh.report</tt> file for any sensitive information
@@ -540,8 +522,8 @@ any prefix, even a single letter; thus <tt>a</tt> is the same as <tt>aliases</tt
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">26.2.5 Manipulating Hook Functions</h3>
-<p><a name="index-hook-function-utility"></a>
-</p>
+<a name="index-hook-function-utility"></a>
+
 <dl compact="compact">
 <dd><a name="index-add_002dzsh_002dhook"></a>
 </dd>
@@ -603,8 +585,8 @@ Widgets are invoked in the order they were added, with
 <pre class="example"><tt>zle </tt><var>widgetname</var><tt> -Nw -- &quot;$@&quot;</tt>
 </pre></div>
 
-<p><a name="index-WIDGET_002c-in-hooks"></a>
-Note that this means that the &lsquo;<tt>WIDGET</tt>&rsquo; special parameter tracks the
+<a name="index-WIDGET_002c-in-hooks"></a>
+<p>Note that this means that the &lsquo;<tt>WIDGET</tt>&rsquo; special parameter tracks the
 <var>widgetname</var> when the widget function is called, rather than tracking
 the name of the corresponding special hook widget.
 </p>
@@ -639,7 +621,7 @@ hooks, then all hooks should be managed only via this function.
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Manipulating-Hook-Functions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Installation-2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Installation-3" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -676,7 +658,7 @@ configuration section below.
 </p>
 
 <hr>
-<a name="Installation-2"></a>
+<a name="Installation-3"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Recent-Directories" title="Previous section in reading order"> &lt; </a>]</td>
@@ -712,9 +694,9 @@ in most-recent-first order.
 <a name="Use"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Installation-2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Installation-3" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Recent-Directories" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Options-3" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Options-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -759,12 +741,12 @@ style is on by default so no action is required unless you have changed it.
 </p>
 
 <hr>
-<a name="Options-3"></a>
+<a name="Options-1"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Use" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Recent-Directories" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Configuration-1" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration-2" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -802,12 +784,12 @@ unabbreviated from and contain an absolute path, i.e. they start with <tt>/</tt>
 Usually the first entry should be left as the current directory.
 </p>
 </dd>
-<dt><tt>-p '</tt><var>pattern</var><tt>'</tt></dt>
+<dt><tt>-p &rsquo;</tt><var>pattern</var><tt>&rsquo;</tt></dt>
 <dd><p>Prunes any items in the directory list that match the given extended glob
 pattern; the pattern needs to be quoted from immediate expansion on the
 command line.  The pattern is matched against each completely expanded
 file name in the list; the full string must match, so wildcards at the
-end (e.g. <tt>'*removeme*'</tt>) are needed to remove entries with a given
+end (e.g. <tt>&rsquo;*removeme*&rsquo;</tt>) are needed to remove entries with a given
 substring.
 </p>
 <p>If output is to a terminal, then the function will print the new list
@@ -819,10 +801,10 @@ confirmation step can be skipped by using <tt>-P</tt> instead of <tt>-p</tt>.
 
 
 <hr>
-<a name="Configuration-1"></a>
+<a name="Configuration-2"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Options-3" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Options-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Recent-Directories" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Use-with-dynamic-directory-naming" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -840,7 +822,7 @@ confirmation step can be skipped by using <tt>-P</tt> instead of <tt>-p</tt>.
 <p>Configuration is by means of the styles mechanism that should be familiar
 from completion; if not, see the description of the <tt>zstyle</tt> command in
 <a href="Zsh-Modules.html#The-zsh_002fzutil-Module">The zsh/zutil Module</a>.  The context for setting styles
-should be <tt>':chpwd:*'</tt> in case the meaning of the context is extended in
+should be <tt>&rsquo;:chpwd:*&rsquo;</tt> in case the meaning of the context is extended in
 future, for example:
 </p>
 <div class="example">
@@ -852,8 +834,8 @@ style name is specific enough that a context of &rsquo;*&rsquo; should be fine.
 </p>
 <p>An exception is <tt>recent-dirs-insert</tt>, which is used exclusively by the
 completion system and so has the usual completion system context
-(<tt>':completion:*'</tt> if nothing more specific is needed), though again
-<tt>'*'</tt> should be fine in practice.
+(<tt>&rsquo;:completion:*&rsquo;</tt> if nothing more specific is needed), though again
+<tt>&rsquo;*&rsquo;</tt> should be fine in practice.
 </p>
 <dl compact="compact">
 <dt><tt>recent-dirs-default</tt></dt>
@@ -869,7 +851,7 @@ is in use.
 <dd><p>The file where the list of directories is saved.  The default
 is <tt>${ZDOTDIR:-$HOME}/.chpwd-recent-dirs</tt>, i.e. this is in your
 home directory unless you have set the variable <tt>ZDOTDIR</tt> to point
-somewhere else.  Directory names are saved in <tt>$'</tt><var>...</var><tt>'</tt> quoted
+somewhere else.  Directory names are saved in <tt>$&rsquo;</tt><var>...</var><tt>&rsquo;</tt> quoted
 form, so each line in the file can be supplied directly to the shell as an
 argument.
 </p>
@@ -965,7 +947,7 @@ to ~pws/some/other/dir does not cause ~pws to be pruned.
 <dd><p>Gives a zsh pattern for directories that should not be
 added to the recent list (if not already there).  This element
 can be repeated to add different patterns.  For example,
-<tt>'pattern:/tmp(|/*)'</tt> stops <tt>/tmp</tt> or its descendants
+<tt>&rsquo;pattern:/tmp(|/*)&rsquo;</tt> stops <tt>/tmp</tt> or its descendants
 from being added.  The <tt>EXTENDED_GLOB</tt> option is always turned on
 for these patterns.
 </p>
@@ -988,7 +970,7 @@ this.
 <a name="Use-with-dynamic-directory-naming"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Configuration-1" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration-2" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Recent-Directories" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Details-of-directory-handling" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -1129,7 +1111,7 @@ directory name mechanism.
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Other-Directory-Functions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Other-Directory-Functions" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Configuration-2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1157,7 +1139,7 @@ add-zsh-hook -U zsh_directory_name zdn_mywrapper
 
 
 <hr>
-<a name="Configuration-2"></a>
+<a name="Configuration-1"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Usage" title="Previous section in reading order"> &lt; </a>]</td>
@@ -1258,7 +1240,7 @@ directory should be sufficient to indicate the problem.
 <a name="Complete-example"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Configuration-2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Other-Directory-Functions" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Version-Control-Information" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -1345,8 +1327,8 @@ add-zsh-hook -U zsh_directory_name zdn_mywrapper
 
 <a name="Gathering-information-from-version-control-systems"></a>
 <h2 class="section">26.5 Gathering information from version control systems</h2>
-<p><a name="index-version-control-utility"></a>
-</p>
+<a name="index-version-control-utility"></a>
+
 <p>In a lot of cases, it is nice to automatically retrieve information from
 version control systems (VCSs), such as subversion, CVS or git, to be able
 to provide it to the user; possibly in the user&rsquo;s prompt. So that you can
@@ -1358,45 +1340,45 @@ instantly tell which branch you are currently on, for example.
 they are referred to within the system:
 </p><dl compact="compact">
 <dt>Bazaar (<tt>bzr</tt>)</dt>
-<dd><p><tt><a href="http://bazaar.canonical.com/">http://bazaar.canonical.com/</a></tt>
+<dd><p><tt><a href="https://bazaar.canonical.com/">https://bazaar.canonical.com/</a></tt>
 </p></dd>
 <dt>Codeville (<tt>cdv</tt>)</dt>
 <dd><p><tt><a href="http://freecode.com/projects/codeville/">http://freecode.com/projects/codeville/</a></tt>
 </p></dd>
 <dt>Concurrent Versioning System (<tt>cvs</tt>)</dt>
-<dd><p><tt><a href="http://www.nongnu.org/cvs/">http://www.nongnu.org/cvs/</a></tt>
+<dd><p><tt><a href="https://www.nongnu.org/cvs/">https://www.nongnu.org/cvs/</a></tt>
 </p></dd>
 <dt>Darcs (<tt>darcs</tt>)</dt>
 <dd><p><tt><a href="http://darcs.net/">http://darcs.net/</a></tt>
 </p></dd>
 <dt>Fossil (<tt>fossil</tt>)</dt>
-<dd><p><tt><a href="http://fossil-scm.org/">http://fossil-scm.org/</a></tt>
+<dd><p><tt><a href="https://fossil-scm.org/">https://fossil-scm.org/</a></tt>
 </p></dd>
 <dt>Git (<tt>git</tt>)</dt>
-<dd><p><tt><a href="http://git-scm.com/">http://git-scm.com/</a></tt>
+<dd><p><tt><a href="https://git-scm.com/">https://git-scm.com/</a></tt>
 </p></dd>
 <dt>GNU arch (<tt>tla</tt>)</dt>
-<dd><p><tt><a href="http://www.gnu.org/software/gnu-arch/">http://www.gnu.org/software/gnu-arch/</a></tt>
+<dd><p><tt><a href="https://www.gnu.org/software/gnu-arch/">https://www.gnu.org/software/gnu-arch/</a></tt>
 </p></dd>
 <dt>Mercurial (<tt>hg</tt>)</dt>
-<dd><p><tt><a href="http://mercurial.selenic.com/">http://mercurial.selenic.com/</a></tt>
+<dd><p><tt><a href="https://www.mercurial-scm.org/">https://www.mercurial-scm.org/</a></tt>
 </p></dd>
 <dt>Monotone (<tt>mtn</tt>)</dt>
-<dd><p><tt><a href="http://monotone.ca/">http://monotone.ca/</a></tt>
+<dd><p><tt><a href="https://monotone.ca/">https://monotone.ca/</a></tt>
 </p></dd>
 <dt>Perforce (<tt>p4</tt>)</dt>
-<dd><p><tt><a href="http://www.perforce.com/">http://www.perforce.com/</a></tt>
+<dd><p><tt><a href="https://www.perforce.com/">https://www.perforce.com/</a></tt>
 </p></dd>
 <dt>Subversion (<tt>svn</tt>)</dt>
-<dd><p><tt><a href="http://subversion.apache.org/">http://subversion.apache.org/</a></tt>
+<dd><p><tt><a href="https://subversion.apache.org/">https://subversion.apache.org/</a></tt>
 </p></dd>
 <dt>SVK (<tt>svk</tt>)</dt>
-<dd><p><tt><a href="http://svk.bestpractical.com/">http://svk.bestpractical.com/</a></tt>
+<dd><p><tt><a href="https://svk.bestpractical.com/">https://svk.bestpractical.com/</a></tt>
 </p></dd>
 </dl>
 
 <p>There is also support for the patch management system <tt>quilt</tt>
-(<tt><a href="http://savannah.nongnu.org/projects/quilt">http://savannah.nongnu.org/projects/quilt</a></tt>). See
+(<tt><a href="https://savannah.nongnu.org/projects/quilt">https://savannah.nongnu.org/projects/quilt</a></tt>). See
 <a href="#vcs_005finfo-Quilt-Support">Quilt Support</a>
 below for details.
 </p>
@@ -1464,9 +1446,9 @@ PS1='%F{5}[%F{2}%n%F{5}] %F{3}%3~ ${vcs_info_msg_0_}%f%# '
 
 <p>Obviously, the last two lines are there for demonstration. You need to
 call <tt>vcs_info</tt> from your <tt>precmd</tt> function. Once that is done you need
-a <em>single quoted</em> <tt>'${vcs_info_msg_0_}'</tt> in your prompt.
+a <em>single quoted</em> <tt>&rsquo;${vcs_info_msg_0_}&rsquo;</tt> in your prompt.
 </p>
-<p>To be able to use <tt>'${vcs_info_msg_0_}'</tt> directly in your prompt like
+<p>To be able to use <tt>&rsquo;${vcs_info_msg_0_}&rsquo;</tt> directly in your prompt like
 this, you will need to have the <tt>PROMPT_SUBST</tt> option enabled.
 </p>
 <p>Now call the <tt>vcs_info_printsys</tt> utility from the command line:
@@ -1535,7 +1517,7 @@ wasted time there.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="Configuration-3"></a>
+<a name="Configuration"></a>
 <h3 class="subsection">26.5.2 Configuration</h3>
 
 <p>The <tt>vcs_info</tt> feature can be configured via <tt>zstyle</tt>.
@@ -1586,7 +1568,7 @@ for looking up its styles.
 with the actual name, as soon as it is known. Only use this part of the
 context for defining the <tt>formats</tt>, <tt>actionformats</tt> or
 <tt>branchformat</tt> styles, as it is guaranteed that <var>repo-root-name</var> is
-set up correctly for these only. For all other styles, just use <tt>'*'</tt>
+set up correctly for these only. For all other styles, just use <tt>&rsquo;*&rsquo;</tt>
 instead.
 </p>
 <p>There are two pre-defined values for <var>user-context</var>:
@@ -1599,7 +1581,7 @@ instead.
 </p></dd>
 </dl>
 
-<p>You can of course use <tt>':vcs_info:*'</tt> to match all VCSs in all
+<p>You can of course use <tt>&rsquo;:vcs_info:*&rsquo;</tt> to match all VCSs in all
 user-contexts at once.
 </p>
 <p>This is a description of all styles that are looked up.
@@ -1631,7 +1613,7 @@ revision number. This style lets you modify how that string should look.
 <dd><p>These &quot;formats&quot; are set when we didn&rsquo;t detect a version control system
 for the current directory or <tt>vcs_info</tt> was disabled. This is useful if
 you want <tt>vcs_info</tt> to completely take over the generation of your
-prompt. You would do something like <tt>PS1='${vcs_info_msg_0_}'</tt> to
+prompt. You would do something like <tt>PS1=&rsquo;${vcs_info_msg_0_}&rsquo;</tt> to
 accomplish that.
 </p>
 <a name="index-hgrevformat"></a>
@@ -2114,7 +2096,7 @@ expansions and this only needs to be done for those.
 </p>
 <p>When one of the <tt>gen-applied-string</tt>, <tt>gen-unapplied-string</tt>, and
 <tt>set-patch-format</tt> hooks is defined,
-applying <tt>%</tt>-escaping (&lsquo;<tt>foo=${foo//'%'/%%}</tt>&rsquo;) to the interpolated values
+applying <tt>%</tt>-escaping (&lsquo;<tt>foo=${foo//&rsquo;%&rsquo;/%%}</tt>&rsquo;) to the interpolated values
 for use in the prompt is the responsibility of those hooks (jointly);
 when neither of those hooks is defined, <tt>vcs_info</tt> handles escaping by itself.
 We regret this coupling, but it was required for backwards compatibility.
@@ -2297,7 +2279,7 @@ below for details.
 <dt><tt>vcs_info_lastmsg</tt></dt>
 <dd><p>Outputs the last <tt>${vcs_info_msg_*_}</tt> value.
 Takes into account the value of the <tt>use-prompt-escapes</tt> style in
-<tt>':vcs_info:formats:command:-all-'</tt>. It also only prints <tt>max-exports</tt>
+<tt>&rsquo;:vcs_info:formats:command:-all-&rsquo;</tt>. It also only prints <tt>max-exports</tt>
 values.
 </p>
 <a name="index-vcs_005finfo_005fprintsys"></a>
@@ -2418,7 +2400,6 @@ executed <tt>before</tt> statically registered ones (the ones added by
 For example:
 </p><div class="example">
 <pre class="example">
-
 +vi-git-myfirsthook(){
     user_data[myval]=$myval
 }
@@ -2509,7 +2490,7 @@ This hook is, in concert with <tt>set-patch-format</tt>, responsible for
 generated; the <tt>get-unapplied</tt> style must be true.
 </p>
 <p>This hook gets the names of all unapplied patches which <tt>vcs_info</tt>
-collected so far in the opposite order, which mean that the first argument is
+collected so far in order, which means that the first argument is
 the patch next-in-line to be applied and so forth.
 </p>
 <p>When setting <tt>ret</tt> to non-zero, the string in
@@ -2747,7 +2728,6 @@ checking out the debugging output, disable it again:
 <p>Now, let&rsquo;s define the function:
 </p><div class="example">
 <pre class="example">
-
 function +vi-svn2subversion() {
     [[ ${hook_com[vcs_orig]} == svn ]] &amp;&amp; hook_com[vcs]=subversion
 }
@@ -2762,7 +2742,6 @@ backend is:
 </pre></div>
 <div class="example">
 <pre class="example">
-
 function +vi-svn2subversion() {
     hook_com[vcs]=subversion
 }
@@ -2779,7 +2758,6 @@ a customised bookmark string for the <tt>hg</tt> backend.
 <p>And then we define the &lsquo;<tt>+vi-hgbookmarks</tt>&rsquo; function:
 </p><div class="example">
 <pre class="example">
-
 function +vi-hgbookmarks() {
     # The default is to connect all bookmark names by
     # commas. This mixes things up a little.
@@ -2818,7 +2796,7 @@ directory.
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#vcs_005finfo-Examples" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Installation-3" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Installation-2" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -2835,7 +2813,7 @@ directory.
 
 
 <hr>
-<a name="Installation-3"></a>
+<a name="Installation-2"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Prompt-Themes" title="Previous section in reading order"> &lt; </a>]</td>
@@ -2878,7 +2856,7 @@ promptinit
 <a name="Theme-Selection"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Installation-3" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Installation-2" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Prompt-Themes" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Utility-Themes" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -3087,7 +3065,7 @@ This help function is called by &lsquo;<tt>prompt -h</tt>&rsquo;.
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#ZLE-Functions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#ZLE-Functions" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Utility-Functions-1" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Utility-Functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -3691,7 +3669,7 @@ umlaut into the command line.  This has the advantages over use of a
 literal character that it is more portable.
 </p>
 <p>For best results zsh should have been built with support for multibyte
-characters (configured with <tt>--enable-multibyte</tt>); however, the function
+characters (configured with <tt>&ndash;enable-multibyte</tt>); however, the function
 works for the limited range of characters available in single-byte
 character sets such as ISO-8859-1.
 </p>
@@ -3720,7 +3698,7 @@ follows.  Note that not every character can take every accent.
 <dt><tt>!</tt></dt>
 <dd><p>Grave.
 </p></dd>
-<dt><tt>'</tt></dt>
+<dt><tt>&rsquo;</tt></dt>
 <dd><p>Acute.
 </p></dd>
 <dt><tt>&gt;</tt></dt>
@@ -3804,7 +3782,7 @@ example <tt>^A</tt> for a double-width <tt>A</tt>.
 <dt><tt>!)</tt></dt>
 <dd><p>Right brace (curly bracket)
 </p></dd>
-<dt><tt>'?</tt></dt>
+<dt><tt>&rsquo;?</tt></dt>
 <dd><p>Tilde
 </p></dd>
 </dl>
@@ -3825,7 +3803,7 @@ example <tt>^A</tt> for a double-width <tt>A</tt>.
 <dt><tt>kk</tt></dt>
 <dd><p>Kra
 </p></dd>
-<dt><tt>'n</tt></dt>
+<dt><tt>&rsquo;n</tt></dt>
 <dd><p>&rsquo;n
 </p></dd>
 <dt><tt>NG</tt>, <tt>ng</tt></dt>
@@ -3928,16 +3906,16 @@ quote is used to open quotations in German.)
 <dt><tt>=2</tt></dt>
 <dd><p>Double low line
 </p></dd>
-<dt><tt>'6</tt></dt>
+<dt><tt>&rsquo;6</tt></dt>
 <dd><p>Left single quote
 </p></dd>
-<dt><tt>'9</tt></dt>
+<dt><tt>&rsquo;9</tt></dt>
 <dd><p>Right single quote
 </p></dd>
 <dt><tt>.9</tt></dt>
 <dd><p>&quot;Right&quot; low quote
 </p></dd>
-<dt><tt>9'</tt></dt>
+<dt><tt>9&rsquo;</tt></dt>
 <dd><p>Reversed &quot;right&quot; quote
 </p></dd>
 <dt><tt>&quot;6</tt></dt>
@@ -4043,22 +4021,22 @@ notes), flag sign, natural sign, sharp sign
 </dd>
 <dt>Accents on their own</dt>
 <dd><dl compact="compact">
-<dt><tt>'&gt;</tt></dt>
+<dt><tt>&rsquo;&gt;</tt></dt>
 <dd><p>Circumflex (same as caret, <tt>^</tt>)
 </p></dd>
-<dt><tt>'!</tt></dt>
-<dd><p>Grave (same as backtick, <tt>`</tt>)
+<dt><tt>&rsquo;!</tt></dt>
+<dd><p>Grave (same as backtick, <tt>&lsquo;</tt>)
 </p></dd>
-<dt><tt>',</tt></dt>
+<dt><tt>&rsquo;,</tt></dt>
 <dd><p>Cedilla
 </p></dd>
-<dt><tt>':</tt></dt>
+<dt><tt>&rsquo;:</tt></dt>
 <dd><p>Diaeresis (Umlaut)
 </p></dd>
-<dt><tt>'m</tt></dt>
+<dt><tt>&rsquo;m</tt></dt>
 <dd><p>Macron
 </p></dd>
-<dt><tt>''</tt></dt>
+<dt><tt>&rdquo;</tt></dt>
 <dd><p>Acute
 </p></dd>
 </dl>
@@ -4523,12 +4501,12 @@ automatically suppressed as operators alone on a line are meaningful.
 
 
 <hr>
-<a name="Utility-Functions-1"></a>
+<a name="Utility-Functions"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Widgets-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#ZLE-Functions" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Styles-1" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Styles" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -4623,10 +4601,10 @@ within the widget where <tt>modify-current-argument</tt> is called.
 
 
 <hr>
-<a name="Styles-1"></a>
+<a name="Styles"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Utility-Functions-1" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Utility-Functions" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#ZLE-Functions" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Exception-Handling" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -4845,7 +4823,7 @@ whether the <tt>widget</tt> style is used.
 <a name="Exception-Handling"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#User-Contributions" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Styles-1" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Styles" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#User-Contributions" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#MIME-Functions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -5912,7 +5890,7 @@ reference to <tt>$MATCH</tt> will be replaced by the text matched by the pattern
 </p>
 <p>The return status is 0 if at least one match was performed, else 1.
 </p>
-<a name="index-run_002dhelp"></a>
+<a name="index-run_002dhelp-1"></a>
 </dd>
 <dt><tt>run-help</tt> <var>cmd</var></dt>
 <dd><p>This function is designed to be invoked by the <tt>run-help</tt> ZLE widget,
@@ -6342,10 +6320,12 @@ The usual expansions for the <tt>PS1</tt> and <tt>RPS1</tt> parameters may be us
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p><font size="-1">
-  This document was generated on <em>April 29, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
-</font></p>
-
-<font size="-1">Zsh version 5.5.1, released on April 16, 2018.</font>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 24, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+<font size="-1">Zsh version 5.7, released on January 24, 2019.</font>
+</p>
 </body>
 </html>

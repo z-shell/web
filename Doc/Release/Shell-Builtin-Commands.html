@@ -1,20 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created on January 24, 2019 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>17 Shell Builtin Commands (zsh)</title>
+<title>zsh: 17 Shell Builtin Commands</title>
 
-<meta name="description" content="17 Shell Builtin Commands (zsh)">
-<meta name="keywords" content="17 Shell Builtin Commands (zsh)">
+<meta name="description" content="zsh: 17 Shell Builtin Commands">
+<meta name="keywords" content="zsh: 17 Shell Builtin Commands">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2any">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
@@ -22,18 +28,18 @@ div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smalldisplay {font-family: serif; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,7 +47,8 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
 <a name="Shell-Builtin-Commands"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Options.html#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -508,30 +515,30 @@ being interpreted immediately as patterns and the patterns are
 shown below in single quotes as a reminder.
 </p>
 <dl compact="compact">
-<dt><tt>'?'</tt></dt>
+<dt><tt>&rsquo;?&rsquo;</tt></dt>
 <dd><p>The pattern character <tt>?</tt> wherever it occurs, including when preceding
 a parenthesis with <tt>KSH_GLOB</tt>.
 </p>
 </dd>
-<dt><tt>'*'</tt></dt>
+<dt><tt>&rsquo;*&rsquo;</tt></dt>
 <dd><p>The pattern character <tt>*</tt> wherever it occurs, including recursive
 globbing and when preceding a parenthesis with <tt>KSH_GLOB</tt>.
 </p>
 </dd>
-<dt><tt>'['</tt></dt>
+<dt><tt>&rsquo;[&rsquo;</tt></dt>
 <dd><p>Character classes.
 </p>
 </dd>
-<dt><tt>'&lt;'</tt> (<tt>NO_SH_GLOB</tt>)</dt>
+<dt><tt>&rsquo;&lt;&rsquo;</tt> (<tt>NO_SH_GLOB</tt>)</dt>
 <dd><p>Numeric ranges.
 </p>
 </dd>
-<dt><tt>'|'</tt> (<tt>NO_SH_GLOB</tt>)</dt>
+<dt><tt>&rsquo;|&rsquo;</tt> (<tt>NO_SH_GLOB</tt>)</dt>
 <dd><p>Alternation in grouped patterns, case statements, or KSH_GLOB
 parenthesised expressions.
 </p>
 </dd>
-<dt><tt>'('</tt> (<tt>NO_SH_GLOB</tt>)</dt>
+<dt><tt>&rsquo;(&rsquo;</tt> (<tt>NO_SH_GLOB</tt>)</dt>
 <dd><p>Grouping using single parentheses.  Disabling this does not disable the
 use of parentheses for <tt>KSH_GLOB</tt> where they are introduced by a
 special character, nor for glob qualifiers (use &lsquo;<tt>setopt
@@ -539,38 +546,38 @@ NO_BARE_GLOB_QUAL</tt>&rsquo; to disable glob qualifiers that use parentheses
 only).
 </p>
 </dd>
-<dt><tt>'~'</tt> (<tt>EXTENDED_GLOB</tt>)</dt>
+<dt><tt>&rsquo;~&rsquo;</tt> (<tt>EXTENDED_GLOB</tt>)</dt>
 <dd><p>Exclusion in the form <var>A</var><tt>~</tt><var>B</var>.
 </p>
 </dd>
-<dt><tt>'^'</tt> (<tt>EXTENDED_GLOB</tt>)</dt>
+<dt><tt>&rsquo;^&rsquo;</tt> (<tt>EXTENDED_GLOB</tt>)</dt>
 <dd><p>Exclusion in the form <var>A</var><tt>^</tt><var>B</var>.
 </p>
 </dd>
-<dt><tt>'#'</tt> (<tt>EXTENDED_GLOB</tt>)</dt>
+<dt><tt>&rsquo;#&rsquo;</tt> (<tt>EXTENDED_GLOB</tt>)</dt>
 <dd><p>The pattern character <tt>#</tt> wherever it occurs, both for
 repetition of a previous pattern and for indicating globbing flags.
 </p>
 </dd>
-<dt><tt>'?('</tt> (<tt>KSH_GLOB</tt>)</dt>
+<dt><tt>&rsquo;?(&rsquo;</tt> (<tt>KSH_GLOB</tt>)</dt>
 <dd><p>The grouping form <tt>?(</tt><var>...</var><tt>)</tt>.  Note this is also
-disabled if <tt>'?'</tt> is disabled.
+disabled if <tt>&rsquo;?&rsquo;</tt> is disabled.
 </p>
 </dd>
-<dt><tt>'*('</tt> (<tt>KSH_GLOB</tt>)</dt>
+<dt><tt>&rsquo;*(&rsquo;</tt> (<tt>KSH_GLOB</tt>)</dt>
 <dd><p>The grouping form <tt>*(</tt><var>...</var><tt>)</tt>.  Note this is also
-disabled if <tt>'*'</tt> is disabled.
+disabled if <tt>&rsquo;*&rsquo;</tt> is disabled.
 </p>
 </dd>
-<dt><tt>'+('</tt> (<tt>KSH_GLOB</tt>)</dt>
+<dt><tt>&rsquo;+(&rsquo;</tt> (<tt>KSH_GLOB</tt>)</dt>
 <dd><p>The grouping form <tt>+(</tt><var>...</var><tt>)</tt>.
 </p>
 </dd>
-<dt><tt>'!('</tt> (<tt>KSH_GLOB</tt>)</dt>
+<dt><tt>&rsquo;!(&rsquo;</tt> (<tt>KSH_GLOB</tt>)</dt>
 <dd><p>The grouping form <tt>!(</tt><var>...</var><tt>)</tt>.
 </p>
 </dd>
-<dt><tt>'@('</tt> (<tt>KSH_GLOB</tt>)</dt>
+<dt><tt>&rsquo;@(&rsquo;</tt> (<tt>KSH_GLOB</tt>)</dt>
 <dd><p>The grouping form <tt>@(</tt><var>...</var><tt>)</tt>.
 </p>
 </dd>
@@ -646,8 +653,8 @@ If the <tt>-n</tt> flag is not present, print a newline at the end.
 </p></dd>
 </dl>
 
-<p><a name="index-BSD_005fECHO_002c-use-of"></a>
-The <tt>-E</tt> flag, or the <tt>BSD_ECHO</tt> option, can be used to disable
+<a name="index-BSD_005fECHO_002c-use-of"></a>
+<p>The <tt>-E</tt> flag, or the <tt>BSD_ECHO</tt> option, can be used to disable
 these escape sequences.  In the latter case, <tt>-e</tt> flag can be used to
 enable them.
 </p>
@@ -854,8 +861,8 @@ means further precommand modifiers such as <tt>builtin</tt> and
 <tt>noglob</tt> are also not interpreted within the shell.  Hence
 <var>command</var> is always found by searching the command path.
 </p>
-<p><a name="index-redirection_002c-current-shell_0027s-I_002fO"></a>
-If <var>command</var> is omitted but any redirections are specified,
+<a name="index-redirection_002c-current-shell_0027s-I_002fO"></a>
+<p>If <var>command</var> is omitted but any redirections are specified,
 then the redirections will take effect in the current shell.
 </p>
 <a name="index-exit"></a>
@@ -978,9 +985,9 @@ options above
 </p></dd>
 </dl>
 
-<p><a name="index-history_002c-stack"></a>
+<a name="index-history_002c-stack"></a>
 <a name="index-stack_002c-history"></a>
-&lsquo;<tt>fc -p</tt>&rsquo; pushes the current history list onto a stack and switches to a
+<p>&lsquo;<tt>fc -p</tt>&rsquo; pushes the current history list onto a stack and switches to a
 new history list.  If the <tt>-a</tt> option is also specified, this history list
 will be automatically popped when the current function scope is exited, which
 is a much better solution than creating a trap function to call &lsquo;<tt>fc -P</tt>&rsquo;
@@ -1008,9 +1015,9 @@ option (<tt>-a</tt>) with &lsquo;<tt>fc -p</tt>&rsquo;.  Finally, note that it i
 pop a push marked for automatic popping if you need to do so before the
 function exits.
 </p>
-<p><a name="index-history_002c-file"></a>
+<a name="index-history_002c-file"></a>
 <a name="index-file_002c-history"></a>
-&lsquo;<tt>fc -R</tt>&rsquo; reads the history from the given file,
+<p>&lsquo;<tt>fc -R</tt>&rsquo; reads the history from the given file,
 &lsquo;<tt>fc -W</tt>&rsquo; writes the history out to the given file,
 and &lsquo;<tt>fc -A</tt>&rsquo; appends the history out to the given file.
 If no filename is specified, the <tt>$HISTFILE</tt> is assumed.
@@ -1611,7 +1618,7 @@ case of &lsquo;<tt>-m</tt>&rsquo;) then nothing is printed.
 </p>
 <a name="index-printf"></a>
 </dd>
-<dt><tt>printf</tt> [ -v <var>name</var> ] <var>format</var> [ <var>arg</var> ... ]</dt>
+<dt><tt>printf</tt> [ <tt>-v</tt> <var>name</var> ] <var>format</var> [ <var>arg</var> ... ]</dt>
 <dd><p>Print the arguments according to the format specification. Formatting
 rules are the same as used in C. The same escape sequences as for <tt>echo</tt>
 are recognised in the format. All C conversion specifications ending in
@@ -1930,7 +1937,7 @@ all parameters are printed on the standard output.  If the only argument is
 &lsquo;<tt>+</tt>&rsquo;, the names of all parameters are printed.
 </p>
 <p>For historical reasons, &lsquo;<tt>set -</tt>&rsquo; is treated as &lsquo;<tt>set +xv</tt>&rsquo;
-and &lsquo;<tt>set -</tt> <var>args</var>&rsquo; as &lsquo;<tt>set +xv --</tt> <var>args</var>&rsquo; when in
+and &lsquo;<tt>set -</tt> <var>args</var>&rsquo; as &lsquo;<tt>set +xv &ndash;</tt> <var>args</var>&rsquo; when in
 any other emulation mode than zsh&rsquo;s native mode.
 </p>
 </dd>
@@ -2367,6 +2374,9 @@ It is possible to apply <tt>-T</tt> to two previously tied variables but with a
 different separator character, in which case the variables remain joined
 as before but the separator is changed.
 </p>
+<p>When an existing scalar is tied to a new array, the value of the scalar
+is preserved but no attribute other than export will be preserved.
+</p>
 </dd>
 </dl>
 
@@ -2415,12 +2425,12 @@ flag.
 </dd>
 <dt><tt>-U</tt></dt>
 <dd><p>For arrays (but not for associative arrays), keep only the first
-occurrence of each duplicated value.  This may also be set for
-colon-separated special parameters like <tt>PATH</tt> or <tt>FIGNORE</tt>, etc.
-Note the flag takes effect on assignment, and the type of the
-variable being assigned to is determinative; for variables with
-shared values it is therefore recommended to set the flag for
-all interfaces, e.g. &lsquo;<tt>typeset -U PATH path</tt>&rsquo;.
+occurrence of each duplicated value.  This may also be set for tied
+parameters (see <tt>-T</tt>) or colon-separated special parameters like
+<tt>PATH</tt> or <tt>FIGNORE</tt>, etc.  Note the flag takes effect on assignment,
+and the type of the variable being assigned to is determinative; for
+variables with shared values it is therefore recommended to set the flag
+for all interfaces, e.g. &lsquo;<tt>typeset -U PATH path</tt>&rsquo;.
 </p>
 <p>This flag has a different meaning when used with <tt>-f</tt>; see below.
 </p>
@@ -2521,9 +2531,17 @@ be turned off.
 <p>If the <tt>POSIX_BUILTINS</tt> option is set, the readonly attribute is
 more restrictive: unset variables can be marked readonly and cannot then
 be set; furthermore, the readonly attribute cannot be removed from any
-variable.  Note that in zsh (unlike other shells) it is still possible
-to create a local variable of the same name as this is considered a
-different variable (though this variable, too, can be marked readonly).
+variable.
+</p>
+<p>It is still possible to change other attributes of the variable though,
+some of which like <tt>-U</tt> or <tt>-Z</tt> would affect the value. More generally,
+the readonly attribute should not be relied on as a security mechanism.
+</p>
+<p>Note that in zsh (like in pdksh but unlike most other shells) it is
+still possible to create a local variable of the same name as this is
+considered a different variable (though this variable, too, can be marked
+readonly). Special variables that have been made readonly retain their value
+and readonly attribute when made local.
 </p>
 </dd>
 <dt><tt>-t</tt></dt>
@@ -2651,8 +2669,8 @@ Such limits will be shown by number in the output of &lsquo;<tt>ulimit -a</tt>&r
 the shell.  The shell will try to read or write the limit anyway, and
 will report an error if this fails.
 </p>
-<a name="index-umask-1"></a>
 <a name="index-umask"></a>
+<a name="index-umask-1"></a>
 </dd>
 <dt><tt>umask</tt> [ <tt>-S</tt> ] [ <var>mask</var> ]</dt>
 <dd><p>The umask is set to <var>mask</var>.  <var>mask</var> can be either
@@ -2756,6 +2774,8 @@ then all currently active child processes are waited for.
 Each <var>job</var> can be either a job specification or the process ID
 of a job in the job table.
 The exit status from this command is that of the job waited for.
+If <var>job</var> represents an unknown job or process ID, a warning is printed
+(unless the <tt>POSIX_BUILTINS</tt> option is set) and the exit status is 127.
 </p>
 <p>It is possible to wait for recent processes (specified by process ID,
 not by job) that were running in the background even if the process has
@@ -2778,6 +2798,12 @@ to process IDs.
 <dt><tt>whence</tt> [ <tt>-vcwfpamsS</tt> ] [ <tt>-x</tt> <var>num</var> ] <var>name</var> ...</dt>
 <dd><p>For each <var>name</var>, indicate how it would be interpreted if used as a
 command name.
+</p>
+<p>If <var>name</var> is not an alias, built-in command, external command, shell
+function, hashed command, or a reserved word, the exit status shall be
+non-zero, and &mdash; if <tt>-v</tt>, <tt>-c</tt>, or <tt>-w</tt> was passed &mdash; a message
+will be written to standard output.  (This is different from other shells that
+write that message to standard error.)
 </p>
 <p><tt>whence</tt> is most useful when <var>name</var> is only the last path component
 of a command, i.e. does not include a &lsquo;<tt>/</tt>&rsquo;; in particular, pattern
@@ -2878,8 +2904,8 @@ is autoloaded; see
 for a description of how autoloaded functions are searched.  The
 extension <tt>.zwc</tt> stands for &lsquo;zsh word code&rsquo;.
 </p>
-<p><a name="index-fpath_002c-with-zcompile"></a>
-If there is at least one <var>name</var> argument, all the named files
+<a name="index-fpath_002c-with-zcompile"></a>
+<p>If there is at least one <var>name</var> argument, all the named files
 are compiled into the output <var>file</var> given as the first argument.  If
 <var>file</var> does not end in <tt>.zwc</tt>, this extension is automatically
 appended.  Files containing multiple compiled functions are called &lsquo;digest&rsquo;
@@ -3333,10 +3359,12 @@ dynamic loading of modules.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p><font size="-1">
-  This document was generated on <em>April 29, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
-</font></p>
-
-<font size="-1">Zsh version 5.5.1, released on April 16, 2018.</font>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 24, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+<font size="-1">Zsh version 5.7, released on January 24, 2019.</font>
+</p>
 </body>
 </html>

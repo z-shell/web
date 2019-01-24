@@ -1,20 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created on January 24, 2019 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>11 Arithmetic Evaluation (zsh)</title>
+<title>zsh: 11 Arithmetic Evaluation</title>
 
-<meta name="description" content="11 Arithmetic Evaluation (zsh)">
-<meta name="keywords" content="11 Arithmetic Evaluation (zsh)">
+<meta name="description" content="zsh: 11 Arithmetic Evaluation">
+<meta name="keywords" content="zsh: 11 Arithmetic Evaluation">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2any">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
@@ -22,18 +28,18 @@ div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smalldisplay {font-family: serif; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,7 +47,8 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
 <a name="Arithmetic-Evaluation"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Jobs-_0026-Signals.html#Jobs-_0026-Signals" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -61,10 +68,10 @@ ul.no-bullet {list-style: none}
 
 <a name="Arithmetic-Evaluation-1"></a>
 <h1 class="chapter">11 Arithmetic Evaluation</h1>
-<p><a name="index-arithmetic-evaluation"></a>
+<a name="index-arithmetic-evaluation"></a>
 <a name="index-evaluation_002c-arithmetic"></a>
 <a name="index-let_002c-use-of"></a>
-The shell can perform integer and floating point arithmetic, either using
+<p>The shell can perform integer and floating point arithmetic, either using
 the builtin <tt>let</tt>, or via a substitution of the form
 <tt>$((</tt><var>...</var><tt>))</tt>.  For
 integers, the shell is usually compiled to use 8-byte precision where this
@@ -99,9 +106,9 @@ of the expression is non-zero, 1 if it is zero, and 2 if an error occurred.
 <p>both assigning the value 3 to the shell variable <tt>val</tt> and returning a
 zero status.
 </p>
-<p><a name="index-arithmetic-base"></a>
+<a name="index-arithmetic-base"></a>
 <a name="index-bases_002c-in-arithmetic"></a>
-Integers can be in bases other than 10.
+<p>Integers can be in bases other than 10.
 A leading &lsquo;<tt>0x</tt>&rsquo; or &lsquo;<tt>0X</tt>&rsquo; denotes hexadecimal and a leading
 &lsquo;<tt>0b</tt>&rsquo; or &lsquo;<tt>0B</tt>&rsquo; binary.
 Integers may also be of the form &lsquo;<var>base</var><tt>#</tt><var>n</var>&rsquo;,
@@ -167,9 +174,9 @@ print $(( [#_] sqrt(1e7) ))
 <p>outputs &lsquo;<tt>3_162.277_660_168_379_5</tt>&rsquo; (the number of decimal places
 shown may vary).
 </p>
-<p><a name="index-C_005fBASES_002c-use-of"></a>
+<a name="index-C_005fBASES_002c-use-of"></a>
 <a name="index-OCTAL_005fZEROES_002c-use-of"></a>
-If the <tt>C_BASES</tt> option is set, hexadecimal numbers are output in the standard C
+<p>If the <tt>C_BASES</tt> option is set, hexadecimal numbers are output in the standard C
 format, for example &lsquo;<tt>0xFF</tt>&rsquo; instead of the usual &lsquo;<tt>16#FF</tt>&rsquo;.  If the
 option <tt>OCTAL_ZEROES</tt> is also set (it is not by default), octal numbers
 will be treated similarly and hence appear as &lsquo;<tt>077</tt>&rsquo; instead of
@@ -188,16 +195,16 @@ taken for a parameter name.  All numeric parts (before and after the
 decimal point and in the exponent) may contain underscores after the
 leading digit for visual guidance; these are ignored in computation.
 </p>
-<p><a name="index-arithmetic-operators"></a>
+<a name="index-arithmetic-operators"></a>
 <a name="index-operators_002c-arithmetic"></a>
-An arithmetic expression uses nearly the same syntax and
+<p>An arithmetic expression uses nearly the same syntax and
 associativity of expressions as in C.
 </p>
 <p>In the native mode of operation, the following operators are supported
 (listed in decreasing order of precedence):
 </p>
 <dl compact="compact">
-<dt><tt>+ - ! ~ ++ --</tt></dt>
+<dt><tt>+ - ! ~ ++ &ndash;</tt></dt>
 <dd><p>unary plus/minus, logical NOT, complement, {pre,post}{in,de}crement
 </p></dd>
 <dt><tt>&lt;&lt; &gt;&gt;</tt></dt>
@@ -254,7 +261,7 @@ properties) of the operators are altered to be the same as those in
 most other languages that support the relevant operators:
 </p>
 <dl compact="compact">
-<dt><tt>+ - ! ~ ++ --</tt></dt>
+<dt><tt>+ - ! ~ ++ &ndash;</tt></dt>
 <dd><p>unary plus/minus, logical NOT, complement, {pre,post}{in,de}crement
 </p></dd>
 <dt><tt>**</tt></dt>
@@ -309,9 +316,9 @@ that of unary operators, hence &lsquo;<tt>-3**2</tt>&rsquo; evaluates as &lsquo;
 &lsquo;<tt>-9</tt>&rsquo;.  Use parentheses where necessary: &lsquo;<tt>-(3**2)</tt>&rsquo;.  This is
 for compatibility with other shells.
 </p>
-<p><a name="index-mathematical-functions_002c-use-of"></a>
+<a name="index-mathematical-functions_002c-use-of"></a>
 <a name="index-functions_002c-math_002c-use-of"></a>
-Mathematical functions can be called with the syntax
+<p>Mathematical functions can be called with the syntax
 &lsquo;<var>func</var><tt>(</tt><var>args</var><tt>)</tt>&rsquo;, where the function decides
 if the <var>args</var> is used as a string or a comma-separated list of
 arithmetic expressions. The shell currently defines no mathematical
@@ -349,10 +356,10 @@ assignment to a named parameter declared integer
 in this manner.  Assigning a floating point number to an integer results in
 rounding towards zero.
 </p>
-<p><a name="index-parameters_002c-floating-point"></a>
+<a name="index-parameters_002c-floating-point"></a>
 <a name="index-floating-point-parameters"></a>
 <a name="index-float_002c-use-of"></a>
-Likewise, floating point numbers can be declared with the <tt>float</tt>
+<p>Likewise, floating point numbers can be declared with the <tt>float</tt>
 builtin; there are two types, differing only in their output format, as
 described for the <tt>typeset</tt> builtin.  The output format can be bypassed
 by using arithmetic substitution instead of the parameter substitution,
@@ -409,10 +416,12 @@ It is therefore best to declare numeric variables with explicit types.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p><font size="-1">
-  This document was generated on <em>April 29, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
-</font></p>
-
-<font size="-1">Zsh version 5.5.1, released on April 16, 2018.</font>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 24, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+<font size="-1">Zsh version 5.7, released on January 24, 2019.</font>
+</p>
 </body>
 </html>

@@ -1,20 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created on January 24, 2019 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>22 Zsh Modules (zsh)</title>
+<title>zsh: 22 Zsh Modules</title>
 
-<meta name="description" content="22 Zsh Modules (zsh)">
-<meta name="keywords" content="22 Zsh Modules (zsh)">
+<meta name="description" content="zsh: 22 Zsh Modules">
+<meta name="keywords" content="zsh: 22 Zsh Modules">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2any">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
@@ -22,18 +28,18 @@ div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smalldisplay {font-family: serif; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,13 +47,14 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
 <a name="Zsh-Modules"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Completion-Using-compctl.html#Completion-Using-compctl" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-Using-compctl.html#Example" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-5" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-4" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -61,83 +68,10 @@ ul.no-bullet {list-style: none}
 
 <a name="Zsh-Modules-1"></a>
 <h1 class="chapter">22 Zsh Modules</h1>
-<p><a name="index-modules"></a>
-</p>
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="#The-zsh_002fattr-Module">22.2 The zsh/attr Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fcap-Module">22.3 The zsh/cap Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fclone-Module">22.4 The zsh/clone Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fcompctl-Module">22.5 The zsh/compctl Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fcomplete-Module">22.6 The zsh/complete Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fcomplist-Module">22.7 The zsh/complist Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fcomputil-Module">22.8 The zsh/computil Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fcurses-Module">22.9 The zsh/curses Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fdatetime-Module">22.10 The zsh/datetime Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fdb_002fgdbm-Module">22.11 The zsh/db/gdbm Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fdeltochar-Module">22.12 The zsh/deltochar Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fexample-Module">22.13 The zsh/example Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002ffiles-Module">22.14 The zsh/files Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002flanginfo-Module">22.15 The zsh/langinfo Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fmapfile-Module">22.16 The zsh/mapfile Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fmathfunc-Module">22.17 The zsh/mathfunc Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fnewuser-Module">22.18 The zsh/newuser Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fparameter-Module">22.19 The zsh/parameter Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fpcre-Module">22.20 The zsh/pcre Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fparam_002fprivate-Module">22.21 The zsh/param/private Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fregex-Module">22.22 The zsh/regex Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fsched-Module">22.23 The zsh/sched Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fnet_002fsocket-Module">22.24 The zsh/net/socket Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fstat-Module">22.25 The zsh/stat Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fsystem-Module">22.26 The zsh/system Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fnet_002ftcp-Module">22.27 The zsh/net/tcp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002ftermcap-Module">22.28 The zsh/termcap Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fterminfo-Module">22.29 The zsh/terminfo Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzftp-Module">22.30 The zsh/zftp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzle-Module">22.31 The zsh/zle Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzleparameter-Module">22.32 The zsh/zleparameter Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzprof-Module">22.33 The zsh/zprof Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzpty-Module">22.34 The zsh/zpty Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzselect-Module">22.35 The zsh/zselect Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzutil-Module">22.36 The zsh/zutil Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-</table>
+<a name="index-modules"></a>
 
 <hr>
-<a name="Description-5"></a>
+<a name="Description-4"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zsh-Modules" title="Previous section in reading order"> &lt; </a>]</td>
@@ -228,6 +162,10 @@ completion system.
 </dd>
 <dt><tt>zsh/mathfunc</tt></dt>
 <dd><p>Standard scientific functions for use in mathematical evaluations.
+</p>
+</dd>
+<dt><tt>zsh/nearcolor</tt></dt>
+<dd><p>Map colours to the nearest colour in the available palette.
 </p>
 </dd>
 <dt><tt>zsh/newuser</tt></dt>
@@ -341,50 +279,52 @@ styles.
 </td></tr>
 <tr><td align="left" valign="top"><a href="#The-zsh_002fmathfunc-Module">22.17 The zsh/mathfunc Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fnewuser-Module">22.18 The zsh/newuser Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fnearcolor-Module">22.18 The zsh/nearcolor Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fparameter-Module">22.19 The zsh/parameter Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fnewuser-Module">22.19 The zsh/newuser Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fpcre-Module">22.20 The zsh/pcre Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fparameter-Module">22.20 The zsh/parameter Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fparam_002fprivate-Module">22.21 The zsh/param/private Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fpcre-Module">22.21 The zsh/pcre Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fregex-Module">22.22 The zsh/regex Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fparam_002fprivate-Module">22.22 The zsh/param/private Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fsched-Module">22.23 The zsh/sched Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fregex-Module">22.23 The zsh/regex Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fnet_002fsocket-Module">22.24 The zsh/net/socket Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fsched-Module">22.24 The zsh/sched Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fstat-Module">22.25 The zsh/stat Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fnet_002fsocket-Module">22.25 The zsh/net/socket Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fsystem-Module">22.26 The zsh/system Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fstat-Module">22.26 The zsh/stat Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fnet_002ftcp-Module">22.27 The zsh/net/tcp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fsystem-Module">22.27 The zsh/system Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002ftermcap-Module">22.28 The zsh/termcap Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fnet_002ftcp-Module">22.28 The zsh/net/tcp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fterminfo-Module">22.29 The zsh/terminfo Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002ftermcap-Module">22.29 The zsh/termcap Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzftp-Module">22.30 The zsh/zftp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fterminfo-Module">22.30 The zsh/terminfo Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzle-Module">22.31 The zsh/zle Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzftp-Module">22.31 The zsh/zftp Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzleparameter-Module">22.32 The zsh/zleparameter Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzle-Module">22.32 The zsh/zle Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzprof-Module">22.33 The zsh/zprof Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzleparameter-Module">22.33 The zsh/zleparameter Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzpty-Module">22.34 The zsh/zpty Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzprof-Module">22.34 The zsh/zprof Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzselect-Module">22.35 The zsh/zselect Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzpty-Module">22.35 The zsh/zpty Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#The-zsh_002fzutil-Module">22.36 The zsh/zutil Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzselect-Module">22.36 The zsh/zselect Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#The-zsh_002fzutil-Module">22.37 The zsh/zutil Module</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 <hr>
 <a name="The-zsh_002fattr-Module"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-5" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-4" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zsh-Modules" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fcap-Module" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -548,10 +488,12 @@ the terminal. Hence the cloned zsh cannot acquire the pseudo-terminal
 as a controlling tty. That means two things:
 </p>
 <ul>
-<li> the job control signals will go to the sh-started-by-xterm process
+<li> 
+the job control signals will go to the sh-started-by-xterm process
 group (that&rsquo;s why we disable INT QUIT and TSTP with trap; otherwise
 the while loop could get suspended or killed)
-</li><li> the cloned shell will have job control disabled, and the job
+</li><li> 
+the cloned shell will have job control disabled, and the job
 control keys (control-C, control-\ and control-Z) will not work.
 </li></ul>
 
@@ -670,9 +612,9 @@ completion lists will be colored.  Note, however, that <tt>complist</tt> will
 not automatically be loaded if it is not linked in:  on systems with
 dynamic loading, &lsquo;<tt>zmodload zsh/complist</tt>&rsquo; is required.
 </p>
-<p><a name="index-ZLS_005fCOLORS"></a>
+<a name="index-ZLS_005fCOLORS"></a>
 <a name="index-ZLS_005fCOLOURS"></a>
-The parameters <tt>ZLS_COLORS</tt> and <tt>ZLS_COLOURS</tt> describe how matches
+<p>The parameters <tt>ZLS_COLORS</tt> and <tt>ZLS_COLOURS</tt> describe how matches
 are highlighted.  To turn on highlighting an empty value suffices, in
 which case all the default values given below will be used.  The format of
 the value of these parameters is the same as used by the GNU version of the
@@ -929,10 +871,10 @@ should be used.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h3 class="subsection">22.7.3 Menu selection</h3>
-<p><a name="index-completion_002c-selecting-by-cursor"></a>
+<a name="index-completion_002c-selecting-by-cursor"></a>
 <a name="index-MENUSELECT"></a>
 <a name="index-menu_002dselect"></a>
-The <tt>zsh/complist</tt> module also offers an alternative style of selecting
+<p>The <tt>zsh/complist</tt> module also offers an alternative style of selecting
 matches from a list, called menu selection, which can be used if the
 shell is set up to return to the last prompt after showing a
 completion list (see the <tt>ALWAYS_LAST_PROMPT</tt> option in
@@ -1290,7 +1232,7 @@ various parameters.
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fcurses-Module" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fcurses-Module" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Parameters-2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Parameters-4" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1549,7 +1491,7 @@ should normally be not needed.
 
 
 <hr>
-<a name="Parameters-2"></a>
+<a name="Parameters-4"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Builtin" title="Previous section in reading order"> &lt; </a>]</td>
@@ -1618,7 +1560,7 @@ have been created with &lsquo;<tt>zcurses addwin</tt>&rsquo; and not removed wit
 <a name="The-zsh_002fdatetime-Module"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Parameters-2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Parameters-4" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zsh-Modules" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fdb_002fgdbm-Module" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -1641,9 +1583,13 @@ have been created with &lsquo;<tt>zcurses addwin</tt>&rsquo; and not removed wit
 <dd><a name="index-strftime"></a>
 <a name="index-date-string_002c-printing"></a>
 </dd>
-<dt><tt>strftime</tt> [ <tt>-s</tt> <var>scalar</var> ] <var>format</var> <var>epochtime</var></dt>
+<dt><tt>strftime</tt> [ <tt>-s</tt> <var>scalar</var> ] <var>format</var> [ <var>epochtime</var> [ <var>nanoseconds</var> ] ]</dt>
 <dt><tt>strftime</tt> <tt>-r</tt> [ <tt>-q</tt> ] [ <tt>-s</tt> <var>scalar</var> ] <var>format</var> <var>timestring</var></dt>
-<dd><p>Output the date denoted by <var>epochtime</var> in the <var>format</var> specified.
+<dd><p>Output the date in the <var>format</var> specified.  With no <var>epochtime</var>, the
+current system date/time is used; optionally, <var>epochtime</var> may be used to
+specify the number of seconds since the epoch, and <var>nanoseconds</var> may
+additionally be used to specify the number of nanoseconds past the second
+(otherwise that number is assumed to be 0).
 See man page strftime(3) for details.  The zsh extensions described in
 <a href="Prompt-Expansion.html#Prompt-Expansion">Prompt Expansion</a> are also available.
 </p>
@@ -2210,7 +2156,7 @@ The double quotes and the &lsquo;<tt>@</tt>&rsquo; are necessary to prevent empt
 from being removed.  Note that if the file ends with a newline,
 the shell will split on the final newline, generating an additional
 empty field; this can be suppressed by using
-&lsquo;<var>array</var><tt>=(&quot;${(f@)${mapfile[</tt><var>filename</var><tt>]%$'\n'}}&quot;)</tt>&rsquo;.
+&lsquo;<var>array</var><tt>=(&quot;${(f@)${mapfile[</tt><var>filename</var><tt>]%$&rsquo;\n&rsquo;}}&quot;)</tt>&rsquo;.
 </p>
 </dd>
 </dl>
@@ -2258,7 +2204,7 @@ behaviour.
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Limitations" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zsh-Modules" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#The-zsh_002fnewuser-Module" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-zsh_002fnearcolor-Module" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -2298,9 +2244,9 @@ detected by the shell and an error reported.
 <tt>acosh</tt>, <tt>asin</tt>, <tt>asinh</tt>, <tt>atan</tt>, <tt>atanh</tt>, <tt>cbrt</tt>, <tt>ceil</tt>,
 <tt>cos</tt>, <tt>cosh</tt>, <tt>erf</tt>, <tt>erfc</tt>, <tt>exp</tt>, <tt>expm1</tt>, <tt>fabs</tt>,
 <tt>floor</tt>, <tt>gamma</tt>, <tt>j0</tt>, <tt>j1</tt>, <tt>lgamma</tt>, <tt>log</tt>, <tt>log10</tt>,
-<tt>log1p</tt>, <tt>logb</tt>, <tt>sin</tt>, <tt>sinh</tt>, <tt>sqrt</tt>, <tt>tan</tt>, <tt>tanh</tt>,
-<tt>y0</tt>, <tt>y1</tt>.  The <tt>atan</tt> function can optionally take a second
-argument, in which case it behaves like the C function <tt>atan2</tt>.
+<tt>log1p</tt>, <tt>log2</tt>, <tt>logb</tt>, <tt>sin</tt>, <tt>sinh</tt>, <tt>sqrt</tt>, <tt>tan</tt>,
+<tt>tanh</tt>, <tt>y0</tt>, <tt>y1</tt>.  The <tt>atan</tt> function can optionally take a
+second argument, in which case it behaves like the C function <tt>atan2</tt>.
 The <tt>ilogb</tt> function takes a single floating point argument, but
 returns an integer.
 </p>
@@ -2368,10 +2314,65 @@ should generate your own 12-byte seed.  The third call returns to the same
 sequence of random numbers used in the first call, unaffected by the
 intervening <tt>rand48()</tt>.
 </p><hr>
-<a name="The-zsh_002fnewuser-Module"></a>
+<a name="The-zsh_002fnearcolor-Module"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fmathfunc-Module" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Zsh-Modules" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#The-zsh_002fnewuser-Module" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+
+<a name="The-zsh_002fnearcolor-Module-1"></a>
+<h2 class="section">22.18 The zsh/nearcolor Module</h2>
+
+<p>The <tt>zsh/nearcolor</tt> module replaces colours specified as hex triplets
+with the nearest colour in the 88 or 256 colour palettes that are widely
+used by terminal emulators.  By default, 24-bit true colour escape codes
+are generated when colours are specified using hex triplets.  These are
+not supported by all terminals.  The purpose of this module is to make
+it easier to define colour preferences in a form that can work across a
+range of terminal emulators.
+</p>
+<p>Aside from the default colour, the ANSI standard for terminal escape
+codes provides for eight colours. The bright attribute brings this to
+sixteen. These basic colours are commonly used in terminal applications
+due to being widely supported. Expanded 88 and 256 colour palettes are
+also common and, while the first sixteen colours vary somewhat between
+terminals and configurations, these add a generally consistent and
+predictable set of colours.
+</p>
+<p>In order to use the <tt>zsh/nearcolor</tt> module, it only needs to be
+loaded. Thereafter, whenever a colour is specified using a hex triplet,
+it will be compared against each of the available colours and the
+closest will be selected. The first sixteen colours are never matched in
+this process due to being unpredictable.
+</p>
+<p>It isn&rsquo;t possible to reliably detect support for true colour in the
+terminal emulator. It is therefore recommended to be selective in
+loading the <tt>zsh/nearcolor</tt> module. For example, the following
+checks the <tt>COLORTERM</tt> environment variable:
+</p>
+<div class="example">
+<pre class="example">[[ $COLORTERM = *(24bit|truecolor)* ]] || zmodload zsh/nearcolor
+</pre></div>
+
+<p>Note that some terminals accept the true color escape codes but map
+them internally to a more limited palette in a similar manner to the
+<tt>zsh/nearcolor</tt> module.
+</p><hr>
+<a name="The-zsh_002fnewuser-Module"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-zsh_002fnearcolor-Module" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zsh-Modules" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fparameter-Module" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -2386,7 +2387,7 @@ intervening <tt>rand48()</tt>.
 </tr></table>
 
 <a name="The-zsh_002fnewuser-Module-1"></a>
-<h2 class="section">22.18 The zsh/newuser Module</h2>
+<h2 class="section">22.19 The zsh/newuser Module</h2>
 
 <p>The <tt>zsh/newuser</tt> module is loaded at boot if it is
 available, the <tt>RCS</tt> option is set, and the <tt>PRIVILEGED</tt> option is not
@@ -2409,7 +2410,7 @@ directory of the <tt>site-functions</tt> directory, and if that is not found the
 module searches in a version-specific directory, usually the parent of the
 <tt>functions</tt> directory containing version-specific functions.  (These
 directories can be configured when zsh is built using the
-<tt>--enable-site-scriptdir=</tt><var>dir</var> and <tt>--enable-scriptdir=</tt><var>dir</var>
+<tt>&ndash;enable-site-scriptdir=</tt><var>dir</var> and <tt>&ndash;enable-scriptdir=</tt><var>dir</var>
 flags to <tt>configure</tt>, respectively; the defaults are
 <var>prefix</var><tt>/share/zsh</tt> and <var>prefix</var><tt>/share/zsh/$ZSH_VERSION</tt> where
 the default <var>prefix</var> is <tt>/usr/local</tt>.)
@@ -2450,7 +2451,7 @@ The function is documented in
 </tr></table>
 
 <a name="The-zsh_002fparameter-Module-1"></a>
-<h2 class="section">22.19 The zsh/parameter Module</h2>
+<h2 class="section">22.20 The zsh/parameter Module</h2>
 
 <a name="index-parameters_002c-special-1"></a>
 <p>The <tt>zsh/parameter</tt> module gives access to some of the internal hash
@@ -2760,7 +2761,7 @@ where the <tt>source</tt> or &lsquo;<tt>.</tt>&rsquo; command was executed.
 </tr></table>
 
 <a name="The-zsh_002fpcre-Module-1"></a>
-<h2 class="section">22.20 The zsh/pcre Module</h2>
+<h2 class="section">22.21 The zsh/pcre Module</h2>
 
 <a name="index-regular-expressions_002c-perl_002dcompatible"></a>
 <p>The <tt>zsh/pcre</tt> module makes some commands available as builtins:
@@ -2848,9 +2849,9 @@ print -l $accum
 print text variable contains only &quot;d's&quot;.
 </pre></div>
 
-<p><a name="index-REMATCH_005fPCRE-1"></a>
+<a name="index-REMATCH_005fPCRE-1"></a>
 <a name="index-NO_005fCASE_005fMATCH-1"></a>
-If the <tt>REMATCH_PCRE</tt> option is set, the <tt>=~</tt> operator is equivalent to
+<p>If the <tt>REMATCH_PCRE</tt> option is set, the <tt>=~</tt> operator is equivalent to
 <tt>-pcre-match</tt>, and the <tt>NO_CASE_MATCH</tt> option may be used.  Note that
 <tt>NO_CASE_MATCH</tt> never applies to the <tt>pcre_match</tt> builtin, instead use
 the <tt>-i</tt> switch of <tt>pcre_compile</tt>.
@@ -2876,7 +2877,7 @@ the <tt>-i</tt> switch of <tt>pcre_compile</tt>.
 </tr></table>
 
 <a name="The-zsh_002fparam_002fprivate-Module-1"></a>
-<h2 class="section">22.21 The zsh/param/private Module</h2>
+<h2 class="section">22.22 The zsh/param/private Module</h2>
 
 <p>The <tt>zsh/param/private</tt> module is used to create parameters whose scope
 is limited to the current function body, and <em>not</em> to other functions
@@ -2950,17 +2951,21 @@ for declarations without assignments.
 <p>Parameters declared with <tt>private</tt> have the following properties:
 </p>
 <ul>
-<li> Within the function body where it is declared, the parameter
+<li> 
+Within the function body where it is declared, the parameter
 behaves as a local, except as noted above for tied or special parameters.
-</li><li> The type of a parameter declared private cannot be changed in the
+</li><li> 
+The type of a parameter declared private cannot be changed in the
 scope where it was declared, even if the parameter is unset.  Thus an
 array cannot be assigned to a private scalar, etc.
-</li><li> Within any other function called by the declaring function, the
+</li><li> 
+Within any other function called by the declaring function, the
 private parameter does <em>NOT</em> hide other parameters of the same name, so
 for example a global parameter of the same name is visible and may be
 assigned or unset.  This includes calls to anonymous functions, although
 that may also change in the future.
-</li><li> An exported private remains in the environment of inner scopes but
+</li><li> 
+An exported private remains in the environment of inner scopes but
 appears unset for the current shell in those scopes.  Generally, exporting
 private parameters should be avoided.
 </li></ul>
@@ -2990,7 +2995,7 @@ the parameter scope is respected.
 </tr></table>
 
 <a name="The-zsh_002fregex-Module-1"></a>
-<h2 class="section">22.22 The zsh/regex Module</h2>
+<h2 class="section">22.23 The zsh/regex Module</h2>
 
 <a name="index-regular-expressions"></a>
 <a name="index-regex"></a>
@@ -3042,7 +3047,7 @@ instead of <tt>MATCH</tt> and <tt>match</tt>.
 </tr></table>
 
 <a name="The-zsh_002fsched-Module-1"></a>
-<h2 class="section">22.23 The zsh/sched Module</h2>
+<h2 class="section">22.24 The zsh/sched Module</h2>
 
 <p>The <tt>zsh/sched</tt> module makes available one builtin command and one
 parameter.
@@ -3120,7 +3125,7 @@ so that indices may become invalid.
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fsched-Module" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zsh-Modules" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Outbound-Connections" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Outbound-Connections-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -3133,7 +3138,7 @@ so that indices may become invalid.
 </tr></table>
 
 <a name="The-zsh_002fnet_002fsocket-Module-1"></a>
-<h2 class="section">22.24 The zsh/net/socket Module</h2>
+<h2 class="section">22.25 The zsh/net/socket Module</h2>
 
 <p>The <tt>zsh/net/socket</tt> module makes available one builtin command:
 </p>
@@ -3151,7 +3156,7 @@ command line editing, file I/O, and job control mechanisms.
 
 
 <hr>
-<a name="Outbound-Connections"></a>
+<a name="Outbound-Connections-1"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fnet_002fsocket-Module" title="Previous section in reading order"> &lt; </a>]</td>
@@ -3167,9 +3172,9 @@ command line editing, file I/O, and job control mechanisms.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.24.1 Outbound Connections</h3>
-<p><a name="index-sockets_002c-outbound-Unix-domain"></a>
-</p>
+<h3 class="subsection">22.25.1 Outbound Connections</h3>
+<a name="index-sockets_002c-outbound-Unix-domain"></a>
+
 <dl compact="compact">
 <dt><tt>zsocket</tt> [ <tt>-v</tt> ] [ <tt>-d</tt> <var>fd</var> ] <var>filename</var></dt>
 <dd><p>Open a new Unix domain connection to <var>filename</var>.
@@ -3198,7 +3203,7 @@ needed, for example:
 <a name="Inbound-Connections"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Outbound-Connections" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Outbound-Connections-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fnet_002fsocket-Module" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fstat-Module" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -3211,9 +3216,9 @@ needed, for example:
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.24.2 Inbound Connections</h3>
-<p><a name="index-sockets_002c-inbound-Unix-domain"></a>
-</p>
+<h3 class="subsection">22.25.2 Inbound Connections</h3>
+<a name="index-sockets_002c-inbound-Unix-domain"></a>
+
 <dl compact="compact">
 <dt><tt>zsocket</tt> <tt>-l</tt> [ <tt>-v</tt> ] [ <tt>-d</tt> <var>fd</var> ] <var>filename</var></dt>
 <dd><p><tt>zsocket -l</tt> will open a socket listening on <var>filename</var>.
@@ -3265,7 +3270,7 @@ it will wait for one.
 </tr></table>
 
 <a name="The-zsh_002fstat-Module-1"></a>
-<h2 class="section">22.25 The zsh/stat Module</h2>
+<h2 class="section">22.26 The zsh/stat Module</h2>
 
 <p>The <tt>zsh/stat</tt> module makes available one builtin command under
 two possible names:
@@ -3394,7 +3399,10 @@ named files; no list of file names is allowed in this case.
 </dd>
 <dt><tt>-F</tt> <var>fmt</var></dt>
 <dd><p>Supplies a <tt>strftime</tt> (see man page strftime(3)) string for the
-formatting of the time elements.  The <tt>-s</tt> option is implied.
+formatting of the time elements.  The format string supports all of the
+zsh extensions described in
+<a href="Prompt-Expansion.html#Prompt-Expansion">Prompt Expansion</a>.
+The <tt>-s</tt> option is implied.
 </p>
 </dd>
 <dt><tt>-g</tt></dt>
@@ -3480,7 +3488,7 @@ standard output and no individual element has been selected.
 </tr></table>
 
 <a name="The-zsh_002fsystem-Module-1"></a>
-<h2 class="section">22.26 The zsh/system Module</h2>
+<h2 class="section">22.27 The zsh/system Module</h2>
 
 <p>The <tt>zsh/system</tt> module makes available various builtin commands and
 parameters.
@@ -3503,7 +3511,7 @@ parameters.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.26.1 Builtins</h3>
+<h3 class="subsection">22.27.1 Builtins</h3>
 
 <dl compact="compact">
 <dd><a name="index-syserror"></a>
@@ -3744,7 +3752,7 @@ version of the shell before it was implemented).
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Builtins" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fsystem-Module" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Parameters-3" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Parameters-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -3755,7 +3763,7 @@ version of the shell before it was implemented).
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.26.2 Math Functions</h3>
+<h3 class="subsection">22.27.2 Math Functions</h3>
 
 <dl compact="compact">
 <dt><tt>systell(<var>fd</var>)</tt></dt>
@@ -3767,7 +3775,7 @@ descriptor passed as an argument.
 
 
 <hr>
-<a name="Parameters-3"></a>
+<a name="Parameters-1"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Math-Functions" title="Previous section in reading order"> &lt; </a>]</td>
@@ -3783,7 +3791,7 @@ descriptor passed as an argument.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.26.3 Parameters</h3>
+<h3 class="subsection">22.27.3 Parameters</h3>
 
 <dl compact="compact">
 <dd><a name="index-errnos"></a>
@@ -3818,6 +3826,12 @@ subshells.  Compare <tt>$PPID</tt>, which returns the process ID of the parent
 of the main shell process.
 </p>
 </dd>
+<dt><tt>procsubstpid</tt></dt>
+<dd><p>Returns the process ID of the last process started for process
+substitution, i.e. the <tt>&lt;(</tt><var>...</var><tt>)</tt> and
+<tt>&gt;(</tt><var>...</var><tt>)</tt> expansions.
+</p>
+</dd>
 </dl>
 
 </dd>
@@ -3826,9 +3840,9 @@ of the main shell process.
 <a name="The-zsh_002fnet_002ftcp-Module"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Parameters-3" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Parameters-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zsh-Modules" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Outbound-Connections-1" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Outbound-Connections" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -3841,7 +3855,7 @@ of the main shell process.
 </tr></table>
 
 <a name="The-zsh_002fnet_002ftcp-Module-1"></a>
-<h2 class="section">22.27 The zsh/net/tcp Module</h2>
+<h2 class="section">22.28 The zsh/net/tcp Module</h2>
 
 <p>The <tt>zsh/net/tcp</tt> module makes available one builtin command:
 </p>
@@ -3920,7 +3934,7 @@ listening.
 
 
 <hr>
-<a name="Outbound-Connections-1"></a>
+<a name="Outbound-Connections"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fnet_002ftcp-Module" title="Previous section in reading order"> &lt; </a>]</td>
@@ -3936,9 +3950,9 @@ listening.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.27.1 Outbound Connections</h3>
-<p><a name="index-sockets_002c-outbound-TCP"></a>
-</p>
+<h3 class="subsection">22.28.1 Outbound Connections</h3>
+<a name="index-sockets_002c-outbound-TCP"></a>
+
 <dl compact="compact">
 <dt><tt>ztcp</tt> [ <tt>-v</tt> ] [ <tt>-d</tt> <var>fd</var> ] <var>host</var> [ <var>port</var> ]</dt>
 <dd><p>Open a new TCP connection to <var>host</var>.  If the <var>port</var> is
@@ -3960,7 +3974,7 @@ descriptor for the connection.
 <a name="Inbound-Connections-1"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Outbound-Connections-1" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Outbound-Connections" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fnet_002ftcp-Module" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Closing-Connections" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -3973,9 +3987,9 @@ descriptor for the connection.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.27.2 Inbound Connections</h3>
-<p><a name="index-sockets_002c-inbound-TCP"></a>
-</p>
+<h3 class="subsection">22.28.2 Inbound Connections</h3>
+<a name="index-sockets_002c-inbound-TCP"></a>
+
 <dl compact="compact">
 <dt><tt>ztcp</tt> <tt>-l</tt> [ <tt>-v</tt> ] [ <tt>-d</tt> <var>fd</var> ] <var>port</var></dt>
 <dd><p><tt>ztcp -l</tt> will open a socket listening on TCP
@@ -4018,7 +4032,7 @@ it will wait for one.
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Inbound-Connections-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fnet_002ftcp-Module" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Example-2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Example-3" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -4029,9 +4043,9 @@ it will wait for one.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.27.3 Closing Connections</h3>
-<p><a name="index-sockets_002c-closing-TCP"></a>
-</p>
+<h3 class="subsection">22.28.3 Closing Connections</h3>
+<a name="index-sockets_002c-closing-TCP"></a>
+
 <dl compact="compact">
 <dt><tt>ztcp</tt> <tt>-cf</tt> [ <tt>-v</tt> ] [ <var>fd</var> ]</dt>
 <dt><tt>ztcp</tt> <tt>-c</tt> [ <tt>-v</tt> ] [ <var>fd</var> ]</dt>
@@ -4052,7 +4066,7 @@ to force such a socket closed, use <tt>-f</tt>.
 
 
 <hr>
-<a name="Example-2"></a>
+<a name="Example-3"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Closing-Connections" title="Previous section in reading order"> &lt; </a>]</td>
@@ -4068,9 +4082,9 @@ to force such a socket closed, use <tt>-f</tt>.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.27.4 Example</h3>
-<p><a name="index-TCP_002c-example"></a>
-Here is how to create a TCP connection between two instances of zsh.  We
+<h3 class="subsection">22.28.4 Example</h3>
+<a name="index-TCP_002c-example"></a>
+<p>Here is how to create a TCP connection between two instances of zsh.  We
 need to pick an unassigned port; here we use the randomly chosen 5123.
 </p>
 <p>On <tt>host1</tt>,
@@ -4115,7 +4129,7 @@ ztcp -c $fd
 <a name="The-zsh_002ftermcap-Module"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Example-2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Example-3" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zsh-Modules" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fterminfo-Module" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -4130,7 +4144,7 @@ ztcp -c $fd
 </tr></table>
 
 <a name="The-zsh_002ftermcap-Module-1"></a>
-<h2 class="section">22.28 The zsh/termcap Module</h2>
+<h2 class="section">22.29 The zsh/termcap Module</h2>
 
 <p>The <tt>zsh/termcap</tt> module makes available one builtin command:
 </p>
@@ -4175,7 +4189,7 @@ their values.
 </tr></table>
 
 <a name="The-zsh_002fterminfo-Module-1"></a>
-<h2 class="section">22.29 The zsh/terminfo Module</h2>
+<h2 class="section">22.30 The zsh/terminfo Module</h2>
 
 <p>The <tt>zsh/terminfo</tt> module makes available one builtin command:
 </p>
@@ -4220,7 +4234,7 @@ their values.
 </tr></table>
 
 <a name="The-zsh_002fzftp-Module-1"></a>
-<h2 class="section">22.30 The zsh/zftp Module</h2>
+<h2 class="section">22.31 The zsh/zftp Module</h2>
 
 <p>The <tt>zsh/zftp</tt> module makes available one builtin command:
 </p>
@@ -4254,7 +4268,7 @@ more information on how responses from the server may be printed.
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fzftp-Module" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fzftp-Module" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Parameters-4" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Parameters-3" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -4265,9 +4279,9 @@ more information on how responses from the server may be printed.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.30.1 Subcommands</h3>
-<p><a name="index-zftp_002c-subcommands"></a>
-</p>
+<h3 class="subsection">22.31.1 Subcommands</h3>
+<a name="index-zftp_002c-subcommands"></a>
+
 <dl compact="compact">
 <dd><a name="index-FTP_002c-starting-a-session"></a>
 </dd>
@@ -4281,7 +4295,7 @@ the name of a TCP service or a number:  see the description of
 </p>
 <p>If IPv6 addresses in colon format are used, the <var>host</var> should be
 surrounded by quoted square brackets to distinguish it from the <var>port</var>,
-for example <tt>'[fe80::203:baff:fe02:8b56]'</tt>.  For consistency this is
+for example <tt>&rsquo;[fe80::203:baff:fe02:8b56]&rsquo;</tt>.  For consistency this is
 allowed with all forms of <var>host</var>.
 </p>
 <p>Remaining arguments are passed to the <tt>login</tt> subcommand.  Note that
@@ -4532,12 +4546,12 @@ background commands which use <tt>zftp</tt> are still active.
 
 
 <hr>
-<a name="Parameters-4"></a>
+<a name="Parameters-3"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Subcommands" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fzftp-Module" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Functions-3" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functions-4" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -4548,9 +4562,9 @@ background commands which use <tt>zftp</tt> are still active.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.30.2 Parameters</h3>
-<p><a name="index-zftp_002c-parameters"></a>
-The following shell parameters are used by <tt>zftp</tt>.  Currently none
+<h3 class="subsection">22.31.2 Parameters</h3>
+<a name="index-zftp_002c-parameters"></a>
+<p>The following shell parameters are used by <tt>zftp</tt>.  Currently none
 of them are special.
 </p>
 <dl compact="compact">
@@ -4729,10 +4743,10 @@ specifies that no messages should be printed.
 
 
 <hr>
-<a name="Functions-3"></a>
+<a name="Functions-4"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Parameters-4" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Parameters-3" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fzftp-Module" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Problems" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -4745,9 +4759,9 @@ specifies that no messages should be printed.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.30.3 Functions</h3>
-<p><a name="index-zftp_002c-functions"></a>
-</p>
+<h3 class="subsection">22.31.3 Functions</h3>
+<a name="index-zftp_002c-functions"></a>
+
 <dl compact="compact">
 <dd><a name="index-zftp_005fchpwd_002c-specification"></a>
 </dd>
@@ -4819,7 +4833,7 @@ user to decide whether the function should be defined and to use
 <a name="Problems"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Functions-3" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functions-4" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fzftp-Module" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#The-zsh_002fzle-Module" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Calendar-Function-System.html#Calendar-Function-System" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -4832,9 +4846,9 @@ user to decide whether the function should be defined and to use
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">22.30.4 Problems</h3>
-<p><a name="index-zftp_002c-problems"></a>
-</p>
+<h3 class="subsection">22.31.4 Problems</h3>
+<a name="index-zftp_002c-problems"></a>
+
 <p>A connection may not be opened in the left hand side of a pipe as this
 occurs in a subshell and the file information is not updated in the main
 shell.  In the case of type or mode changes or closing the connection in a
@@ -4871,7 +4885,7 @@ This is presumably a bug in the operating system.
 </tr></table>
 
 <a name="The-zsh_002fzle-Module-1"></a>
-<h2 class="section">22.31 The zsh/zle Module</h2>
+<h2 class="section">22.32 The zsh/zle Module</h2>
 
 <p>The <tt>zsh/zle</tt> module contains the Zsh Line Editor.  See
 <a href="Zsh-Line-Editor.html#Zsh-Line-Editor">Zsh Line Editor</a>.
@@ -4894,7 +4908,7 @@ This is presumably a bug in the operating system.
 </tr></table>
 
 <a name="The-zsh_002fzleparameter-Module-1"></a>
-<h2 class="section">22.32 The zsh/zleparameter Module</h2>
+<h2 class="section">22.33 The zsh/zleparameter Module</h2>
 
 <a name="index-parameters_002c-special-2"></a>
 <p>The <tt>zsh/zleparameter</tt> module defines two special parameters that can be 
@@ -4944,7 +4958,7 @@ of the shell function implementing the completion widget.
 </tr></table>
 
 <a name="The-zsh_002fzprof-Module-1"></a>
-<h2 class="section">22.33 The zsh/zprof Module</h2>
+<h2 class="section">22.34 The zsh/zprof Module</h2>
 
 <a name="index-functions_002c-profiling"></a>
 <p>When loaded, the <tt>zsh/zprof</tt> causes shell functions to be profiled.
@@ -5025,7 +5039,7 @@ counters and will not show the listing.
 </tr></table>
 
 <a name="The-zsh_002fzpty-Module-1"></a>
-<h2 class="section">22.34 The zsh/zpty Module</h2>
+<h2 class="section">22.35 The zsh/zpty Module</h2>
 
 <p>The <tt>zsh/zpty</tt> module offers one builtin:
 </p>
@@ -5068,7 +5082,8 @@ the HUP signal to be sent to the corresponding process.
 </p>
 <p>If no <var>string</var> is provided, the standard input is copied to the
 pseudo-terminal; this may stop before copying the full input if the
-pseudo-terminal is non-blocking.
+pseudo-terminal is non-blocking.  The exact input is always copied:
+the <tt>-n</tt> option is not applied.
 </p>
 <p>Note that the command under the pseudo-terminal sees this input as if it
 were typed, so beware when sending special tty driver characters such as
@@ -5140,7 +5155,7 @@ form of calls to the <tt>zpty</tt> builtin.
 </tr></table>
 
 <a name="The-zsh_002fzselect-Module-1"></a>
-<h2 class="section">22.35 The zsh/zselect Module</h2>
+<h2 class="section">22.36 The zsh/zselect Module</h2>
 
 <p>The <tt>zsh/zselect</tt> module makes available one builtin command:
 </p>
@@ -5229,7 +5244,7 @@ in the select operation the appropriate error message is printed.
 </tr></table>
 
 <a name="The-zsh_002fzutil-Module-1"></a>
-<h2 class="section">22.36 The zsh/zutil Module</h2>
+<h2 class="section">22.37 The zsh/zutil Module</h2>
 
 <a name="index-builtins_002c-utility"></a>
 <p>The <tt>zsh/zutil</tt> module only adds some builtins:
@@ -5413,6 +5428,7 @@ printed below each other.  All strings without a colon are left
 unchanged and all strings with an empty <var>right</var> string have the
 trailing colon removed.  In both cases the lengths of the strings
 are not used to determine how the other strings are to be aligned.
+A colon in the <var>left</var> string can be escaped with a backslash.
 The resulting strings are stored in the <var>array</var>.
 </p>
 <a name="index-zregexparse"></a>
@@ -5480,7 +5496,7 @@ first colon.
 
 <p>The options of <tt>zparseopts</tt> itself cannot be stacked because, for
 example, the stack &lsquo;<tt>-DEK</tt>&rsquo; is indistinguishable from a <var>spec</var> for
-the GNU-style long option &lsquo;<tt>--DEK</tt>&rsquo;.  The options of <tt>zparseopts</tt>
+the GNU-style long option &lsquo;<tt>&ndash;DEK</tt>&rsquo;.  The options of <tt>zparseopts</tt>
 itself are:
 </p>
 <dl compact="compact">
@@ -5594,10 +5610,12 @@ bar=(-a '' -b xyz)
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p><font size="-1">
-  This document was generated on <em>April 29, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
-</font></p>
-
-<font size="-1">Zsh version 5.5.1, released on April 16, 2018.</font>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 24, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+<font size="-1">Zsh version 5.7, released on January 24, 2019.</font>
+</p>
 </body>
 </html>

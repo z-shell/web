@@ -250,8 +250,8 @@ An expression of the form <[4mx[24m−[4my>[24m matches a range of integers:
      run123  run2    run234  run240  run303
 
 The [4mNUMERICGLOBSORT[24m option will sort files with numbers according
-to the number.  This will not work with  ls  as  it  resorts  its
-arguments:
+to the number.  This will not work with ls as it resorts its  ar‐
+guments:
 
 
 
@@ -477,12 +477,12 @@ that  should  be  executed  only  in  login  shells.  .zlogout is
 sourced when login shells exit.  .zprofile is similar to .zlogin,
 except  that  it is sourced before .zshrc.  .zprofile is meant as
 an alternative to .zlogin for ksh fans; the two are not  intended
-to  be  used  together,  although this could certainly be done if
-desired.   .zlogin  is  not  the  place  for  alias  definitions,
-options,  environment variable settings, etc.; as a general rule,
-it should not change the shell environment at  all.   Rather,  it
-should  be  used  to  set  the  terminal type and run a series of
-external commands (fortune, msgs, etc).
+to be used together, although this could certainly be done if de‐
+sired.  .zlogin is not the place for alias definitions,  options,
+environment variable settings, etc.; as a general rule, it should
+not change the shell environment at all.  Rather,  it  should  be
+used  to  set the terminal type and run a series of external com‐
+mands (fortune, msgs, etc).
 
 [1mShell Functions[0m
 
@@ -613,11 +613,11 @@ Here’s a function that selects a random line from a file:
      %
 
 randline  has a local variable, z, that holds the number of lines
-in the file.  $[RANDOM % z  +  1]  expands  to  a  random  number
-between  1  and  z.  An expression of the form $[...]  expands to
-the value of the arithmetic expression within the  brackets,  and
-the  [1mRANDOM [22mvariable returns a random number each time it is ref‐
-erenced.  % is the modulus operator, as in C.  Therefore, sed  ‐n
+in the file.  $[RANDOM % z + 1] expands to a  random  number  be‐
+tween  1 and z.  An expression of the form $[...]  expands to the
+value of the arithmetic expression within the brackets,  and  the
+[1mRANDOM  [22mvariable  returns  a random number each time it is refer‐
+enced.  % is the modulus operator, as in C.   Therefore,  sed  ‐n
 $[RANDOM%z+1]p picks a random line from its input, from 1 to z.
 
 Function definitions can be viewed with the functions builtin:
@@ -779,8 +779,8 @@ you’re sick of seeing prompts like this:
 
      phoenix:/usr/princeton/common/src/X.V11R4/contrib/clients/xv/docs>
 
-If  you  get  stuck  in  this  position, you can give the current
-directory a short name, like this:
+If  you  get stuck in this position, you can give the current di‐
+rectory a short name, like this:
 
 
 
@@ -801,8 +801,8 @@ directory a short name, like this:
      /usr/princeton/common/src/news/nntp/inews
      ~inews>
 
-When you reference a directory in  the  form  ~inews,  the  shell
-assumes  that you want the directory displayed in this form; thus
+When you reference a directory in the form ~inews, the shell  as‐
+sumes  that  you  want the directory displayed in this form; thus
 simply typing echo ~inews or cd ~inews causes the  prompt  to  be
 shortened.  You can define a shell function for this purpose:
 
@@ -817,9 +817,9 @@ shortened.  You can define a shell function for this purpose:
 You may want to add this one‐line function to your .zshrc.
 
 [1mzsh  [22mcan also put the current directory in your title bar, if you
-are using a windowing system.  One way to do  this  is  with  the
-chpwd  function,  which  is  automatically  executed by the shell
-whenever you change directory.  If you are using xterm, this will
+are using a windowing system.  One way to do this is with the ch‐
+pwd  function, which is automatically executed by the shell when‐
+ever you change directory.  If you are  using  xterm,  this  will
 work:
 
      chpwd () { print ‐Pn ’^[]2;%~^G’ }
@@ -959,8 +959,8 @@ list, and that cd ‐3 recalled the third directory in the list.
 You  may  be wondering what all those options do.  [4mAUTOPUSHD[24m made
 cd act like pushd.  (alias cd=pushd is not sufficient, for  vari‐
 ous reasons.)  [4mPUSHDMINUS[24m swapped the meaning of cd +1 and cd ‐1;
-we want them to mean the opposite  of  what  they  mean  in  csh,
-because  it  makes  more sense in this scheme, and it’s easier to
+we want them to mean the opposite of what they mean in  csh,  be‐
+cause  it  makes  more  sense  in this scheme, and it’s easier to
 type:
 
      ~> dh
@@ -1229,8 +1229,8 @@ the command is finished.
      ‐‐‐
      > strfile*
 
-If you read [1mzsh[22m’s man  page,  you  may  notice  that  <(...)   is
-another  form of process substitution which is similar to =(...).
+If you read [1mzsh[22m’s man page, you may notice that  <(...)   is  an‐
+other  form  of  process substitution which is similar to =(...).
 There is an important difference between the two.  In the  <(...)
 case,  the  shell  creates a named pipe (FIFO) instead of a file.
 This is better, since it does not fill up the file system; but it
@@ -1467,12 +1467,12 @@ example, if you try:
 
 no aliases will be defined, but [1mzsh [22mwill not report an error.  In
 csh,  this  line defines an alias that makes rm safe‐‐‐files that
-are rm’d will be  moved  to  a  temporary  directory  instead  of
-instantly  destroyed.   In  [1mzsh[22m’s syntax, however, this line asks
-the shell to print any existing alias definitions for rm, mv,  or
+are rm’d will be moved to a temporary directory  instead  of  in‐
+stantly  destroyed.  In [1mzsh[22m’s syntax, however, this line asks the
+shell to print any existing alias  definitions  for  rm,  mv,  or
 !* /tmp/wastebasket.   Since  there  are  none,  most likely, the
-shell will not print  anything,  although  alias  will  return  a
-nonzero exit code.  The proper syntax is this:
+shell will not print anything, although alias will return a  non‐
+zero exit code.  The proper syntax is this:
 
      alias rm=’mv \!* /tmp/wastebasket’
 
@@ -1481,8 +1481,8 @@ However, this won’t work either:
      % rm foo.dvi
      zsh: no matches found: !*
 
-While  this  makes  rm  safe,  it  is certainly not what the user
-intended.  In [1mzsh[22m, you must use a shell function for this:
+While  this  makes rm safe, it is certainly not what the user in‐
+tended.  In [1mzsh[22m, you must use a shell function for this:
 
      % unalias rm
      % rm () { mv $* /tmp/wastebasket }
@@ -1524,8 +1524,8 @@ The first two aliases were  converted  to  regular  [1mzsh  [22maliases,
 
 while  the  third,  since it needed to handle arguments, was con‐
 verted to a function.  c2z can convert most aliases to [1mzsh [22mformat
-without  any  problems.   However,  if  you’re  using some really
-arcane csh tricks, or if you have an alias with a  name  like  do
+without  any  problems.  However, if you’re using some really ar‐
+cane csh tricks, or if you have an alias  with  a  name  like  do
 (which  is  reserved  in  [1mzsh[22m),  you  may have to fix some of the
 aliases by hand.
 
@@ -1541,12 +1541,12 @@ to use csh‐style ! history:
 
      % /usr/local/bin/!:0 !‐2*:s/foo/bar/ >>!$
 
-If you don’t want to use this, you can  turn  it  off  by  typing
-setopt  nobanghist.   If you are afraid of accidentally executing
-the wrong command you can set the  [4mHISTVERIFY[24m  option.   If  this
-option  is  set, commands that result from history expansion will
-not be executed immediately, but will be put back into the editor
-buffer for further consideration.
+If you don’t want to use this, you can turn it off by typing  se‐
+topt nobanghist.  If you are afraid of accidentally executing the
+wrong command you can set the [4mHISTVERIFY[24m option.  If this  option
+is  set,  commands that result from history expansion will not be
+executed immediately, but will be put back into the editor buffer
+for further consideration.
 
 If you’re not familiar with ! history, here follows some explana‐
 tion.  History substitutions always  start  with  a  !,  commonly
@@ -1563,10 +1563,10 @@ refers to the command [4mn[24m commands ago.
      baz  bam
 
 No word designator was used, which means that the  whole  command
-referred  to  was  repeated.   Note  that the shell will echo the
-result of the history substitution.   The  word  designator  can,
-among  other  things, be a number indicating the argument to use,
-where 0 is the command.
+referred  to was repeated.  Note that the shell will echo the re‐
+sult of the history substitution.  The word designator can, among
+other things, be a number indicating the argument to use, where 0
+is the command.
 
      % /usr/bin/ls foo
      foo
@@ -1693,8 +1693,8 @@ with optional changes:
 
 [1mCommand Line Editing[0m
 
-[1mzsh[22m’s  command  line  editor,  [1mZLE[22m,  is  quite  powerful.   It is
-designed to emulate either emacs or vi; the default is emacs.  To
+[1mzsh[22m’s  command  line  editor,  [1mZLE[22m, is quite powerful.  It is de‐
+signed to emulate either emacs or vi; the default is  emacs.   To
 set the bindings for vi mode, type bindkey ‐v.  If your [1mEDITOR [22mor
 [1mVISUAL [22menvironment variable is vi, [1mzsh [22mwill use vi  emulation  by
 default.  You can then switch to emacs mode with bindkey ‐e.
@@ -1866,13 +1866,13 @@ Here’s another trick; let’s say you have typed this command in:
 and you forget which library you want.  You need  to  escape  out
 for  a minute and check by typing ls /usr/lib, or some other such
 command; but you don’t want to retype the  whole  command  again,
-and  you  can’t  press  return now because the current command is
-incomplete.  In [1mzsh[22m, you can put the line on  the  [4mbuffer[24m  [4mstack[24m,
-using  [4mESC‐Q[24m,  and  type  some  other  commands.  The next time a
-prompt is printed, the gcc line will be popped off the stack  and
-put  in  the editing buffer automatically; you can then enter the
-proper library name and press return (or, [4mESC‐Q[24m  again  and  look
-for some other libraries whose names you forgot).
+and you can’t press return now because the current command is in‐
+complete.  In [1mzsh[22m, you can put the line on the [4mbuffer[24m [4mstack[24m,  us‐
+ing  [4mESC‐Q[24m, and type some other commands.  The next time a prompt
+is printed, the gcc line will be popped off the stack and put  in
+the  editing  buffer automatically; you can then enter the proper
+library name and press return (or, [4mESC‐Q[24m again and look for  some
+other libraries whose names you forgot).
 
 A  similar  situation:  what if you forget the option to gcc that
 finds bugs using AI  techniques?   You  could  either  use  [4mESC‐Q[0m
@@ -2053,8 +2053,8 @@ tions until you find the one you want.
 The [4mAUTOMENU[24m option makes a nice compromise between  this  method
 of  completion  and  the regular method.  If you set this option,
 pressing [4mTAB[24m once completes the unambiguous part normally, press‐
-ing  the  [4mTAB[24m  key  repeatedly after an ambiguous completion will
-cycle through the possible completions.
+ing the [4mTAB[24m key repeatedly after an ambiguous completion will cy‐
+cle through the possible completions.
 
 Another option you could set  is  [4mRECEXACT[24m,  which  causes  exact
 matches  to be accepted, even if there are other possible comple‐
@@ -2099,8 +2099,8 @@ and parameter name completion:
 
 Note that in the last example a space is added after the  comple‐
 tion  as usual.  But if you want to add a colon or closing brace,
-you  probably  don’t  want  this  extra   space.    Setting   the
-[4mAUTOPARAMKEYS[24m  option will automatically remove this space if you
+you probably don’t  want  this  extra  space.   Setting  the  [4mAU‐[0m
+[4mTOPARAMKEYS[24m  option  will  automatically remove this space if you
 type a colon or closing brace after such a completion.
 
 
@@ -2346,8 +2346,8 @@ that you do not want to match anything at all.
 In  the  above example, if the cursor is after the ‐d the pattern
 will match and therefore [1mzsh [22muses the ‐g *.Z flag that will  only
 complete  files  ending in .Z.  Otherwise, if no pattern matches,
-it will use the flags before the ‐x and  in  this  case  complete
-every file that does not end in .Z.
+it will use the flags before the ‐x and in this case complete ev‐
+ery file that does not end in .Z.
 
 The  s[[4mstring][24m  pattern  matches  if the current word starts with
 [4mstring[24m.  The [4mstring[24m itself is not considered to be  part  of  the
@@ -2357,10 +2357,10 @@ completion.
      % kill ‐H[4mTAB[0m
      % kill ‐HUP _
 
-The  tar  command  takes  a  tar file as an argument after the ‐f
-option.  The c[[4moffset,string][24m pattern  matches  if  the  word  in
-position  [4moffset[24m relative to the current word is [4mstring[24m.  More in
-particular, if [4moffset[24m is ‐1, it matches if the previous  word  is
+The  tar command takes a tar file as an argument after the ‐f op‐
+tion.  The c[[4moffset,string][24m pattern matches if the word in  posi‐
+tion [4moffset[24m relative to the current word is [4mstring[24m.  More in par‐
+ticular, if [4moffset[24m is ‐1, it matches  if  the  previous  word  is
 [4mstring[24m.  This suggests
 
      % compctl ‐f ‐x ’c[‐1,‐f]’ ‐g ’*.tar’ ‐‐ tar
@@ -2407,8 +2407,8 @@ All the above examples used only one set  of  patterns  with  one
 completion flag.  You can use several of these pattern/flag pairs
 separated by a ‐.  The first matching pattern will be used.  Sup‐
 pose  you have a version of tar that supports compressed files by
-using a ‐Z option.  Leaving  the  old  tar  syntax  aside  for  a
-moment,  we would like to complete files ending in .tar.Z if a ‐Z
+using a ‐Z option.  Leaving the old tar syntax aside  for  a  mo‐
+ment,  we  would  like to complete files ending in .tar.Z if a ‐Z
 option has been used and files ending in .tar otherwise, all this
 only  after  a  ‐f flag.  Again, the ‐Z can be alone or it can be
 part of a longer option string, perhaps the same as that  of  the
@@ -2752,8 +2752,8 @@ For example, o sorts the words resulting from the expansion:
      % echo ${(o)path}
      /etc /usr/bin /usr/bin/X11
 
-One  possible  source  of  confusion is the fact that in [1mzsh[22m, the
-result of parameter substitution is [4mnot[24m split into words.   Thus,
+One possible source of confusion is the fact that in [1mzsh[22m, the re‐
+sult of parameter substitution is [4mnot[24m split  into  words.   Thus,
 this will not work:
 
      % srcs=’glob.c exec.c init.c’
@@ -3011,8 +3011,8 @@ saved when a shell exits.
 
 If  you  have  several instances of [1mzsh [22mrunning at the same time,
 like when using the X window system, it might  be  preferable  to
-append  the  history  of  each shell to a file when a shell exits
-instead of overwriting the old contents of the file.  You can get
+append the history of each shell to a file when a shell exits in‐
+stead of overwriting the old contents of the file.  You  can  get
 this behaviour by setting the [4mAPPENDHISTORY[24m option.
 
 In [1mzsh[22m, if you say
@@ -3044,8 +3044,8 @@ Thus, you can view a file simply by typing:
      foo!
 
 However,  this  is  not  csh  or sh compatible.  To correct this,
-change the value of  the  parameter  [1mNULLCMD[22m,  which  is  cat  by
-default.
+change the value of the parameter [1mNULLCMD[22m, which is  cat  by  de‐
+fault.
 
      % NULLCMD=:
      % >file
@@ -3119,8 +3119,8 @@ in the [1mPROMPT [22mvariable.
      pfalstad Fri 24 ttyp0>
 
 [1mPROMPT2  [22mis  used  in multiline commands, like for‐loops.  The %_
-escape sequence was made  especially  for  this  prompt.   It  is
-replaced by the kind of command that is being entered.
+escape sequence was made especially for this prompt.  It  is  re‐
+placed by the kind of command that is being entered.
 
      % PROMPT2=’%_> ’
      % for i in foo bar
@@ -3141,8 +3141,8 @@ shell puts a prompt on the [4mright[24m side of the screen.
      % PROMPT=’%l %T %m[%h] ’ RPROMPT=’ %~’
      p0 6:15 phoenix[5]                              ~/etc/TeX/zsh
 
-These special escape sequences can  also  be  used  with  the  ‐P
-option to print:
+These special escape sequences can also be used with the  ‐P  op‐
+tion to print:
 
      % print ‐P %h tty%l
      15 ttyp1
@@ -3321,8 +3321,8 @@ tory, and it will become the current directory.
      /etc
 
 With [4mCDABLEVARS[24m, if the argument to cd is the name of a parameter
-whose value is a valid directory,  it  will  become  the  current
-directory.
+whose value is a valid directory, it will become the current  di‐
+rectory.
 
      % setopt cdablevars
      % foo=/tmp

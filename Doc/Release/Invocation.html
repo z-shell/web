@@ -1,20 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created on January 24, 2019 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>4 Invocation (zsh)</title>
+<title>zsh: 4 Invocation</title>
 
-<meta name="description" content="4 Invocation (zsh)">
-<meta name="keywords" content="4 Invocation (zsh)">
+<meta name="description" content="zsh: 4 Invocation">
+<meta name="keywords" content="zsh: 4 Invocation">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2any">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
@@ -22,18 +28,18 @@ div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smalldisplay {font-family: serif; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,13 +47,14 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
 <a name="Invocation"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Roadmap.html#Roadmap" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Roadmap.html#Programming" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Invocation-2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Invocation-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Files.html#Files" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -59,19 +66,12 @@ ul.no-bullet {list-style: none}
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="Invocation-1"></a>
+<a name="Invocation-2"></a>
 <h1 class="chapter">4 Invocation</h1>
-<p><a name="index-invocation"></a>
-</p>
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="#Compatibility">4.2 Compatibility</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Restricted-Shell">4.3 Restricted Shell</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-</table>
+<a name="index-invocation"></a>
 
 <hr>
-<a name="Invocation-2"></a>
+<a name="Invocation-1"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Invocation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Invocation" title="Previous section in reading order"> &lt; </a>]</td>
@@ -88,11 +88,11 @@ ul.no-bullet {list-style: none}
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">4.1 Invocation</h2>
-<p><a name="index-shell-options"></a>
+<a name="index-shell-options"></a>
 <a name="index-options_002c-shell"></a>
 <a name="index-shell-flags"></a>
 <a name="index-flags_002c-shell"></a>
-The following flags are interpreted by the shell when invoked to determine
+<p>The following flags are interpreted by the shell when invoked to determine
 where the shell will read commands from:
 </p>
 <dl compact="compact">
@@ -161,8 +161,8 @@ Options may be turned <em>off</em> by name by using <tt>+o</tt> instead of <tt>-
 &lsquo;<tt>-xo shwordsplit</tt>&rsquo; or &lsquo;<tt>-xoshwordsplit</tt>&rsquo; is equivalent to
 &lsquo;<tt>-x -o shwordsplit</tt>&rsquo;.
 </p>
-<p><a name="index-long-option"></a>
-Options may also be specified by name in GNU long option style,
+<a name="index-long-option"></a>
+<p>Options may also be specified by name in GNU long option style,
 &lsquo;<tt>-</tt><tt>-</tt><var>option-name</var>&rsquo;.  When this is done, &lsquo;<tt>-</tt>&rsquo; characters in the
 option name are permitted: they are translated into &lsquo;<tt>_</tt>&rsquo;, and thus ignored.
 So, for example, &lsquo;<tt>zsh -</tt><tt>-sh-word-split</tt>&rsquo; invokes zsh with the
@@ -173,9 +173,9 @@ Unlike other option syntaxes, GNU-style long options cannot be stacked with
 any other options, so for example &lsquo;<tt>-x-shwordsplit</tt>&rsquo; is an error,
 rather than being treated like &lsquo;<tt>-x -</tt><tt>-shwordsplit</tt>&rsquo;.
 </p>
-<p><a name="index-_002d_002dversion"></a>
+<a name="index-_002d_002dversion"></a>
 <a name="index-_002d_002dhelp"></a>
-The special GNU-style option &lsquo;<tt>-</tt><tt>-version</tt>&rsquo; is handled; it sends to
+<p>The special GNU-style option &lsquo;<tt>-</tt><tt>-version</tt>&rsquo; is handled; it sends to
 standard output the shell&rsquo;s version information, then exits successfully.
 &lsquo;<tt>-</tt><tt>-help</tt>&rsquo; is also handled; it sends to standard output a list of
 options that can be used when invoking the shell, then exits successfully.
@@ -207,7 +207,7 @@ can be stacked after the &lsquo;<tt>-b</tt>&rsquo; and will take effect as norma
 <a name="Compatibility"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Invocation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Invocation-2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Invocation-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Invocation" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Restricted-Shell" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Files.html#Files" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -223,10 +223,10 @@ can be stacked after the &lsquo;<tt>-b</tt>&rsquo; and will take effect as norma
 
 <a name="Compatibility-1"></a>
 <h2 class="section">4.2 Compatibility</h2>
-<p><a name="index-compatibility"></a>
+<a name="index-compatibility"></a>
 <a name="index-sh-compatibility"></a>
 <a name="index-ksh-compatibility"></a>
-Zsh tries to emulate <cite>sh</cite> or <cite>ksh</cite> when it is invoked as
+<p>Zsh tries to emulate <cite>sh</cite> or <cite>ksh</cite> when it is invoked as
 <tt>sh</tt> or <tt>ksh</tt> respectively; more precisely, it looks at the first
 letter of the name by which it was invoked, excluding any initial &lsquo;<tt>r</tt>&rsquo;
 (assumed to stand for &lsquo;restricted&rsquo;), and if that is &lsquo;<tt>b</tt>&rsquo;, &lsquo;<tt>s</tt>&rsquo; or &lsquo;<tt>k</tt>&rsquo; it
@@ -256,8 +256,8 @@ parameters are not special and not initialized by the shell:
 <tt>status</tt>,
 <tt>watch</tt>.
 </p>
-<p><a name="index-ENV_002c-use-of"></a>
-The usual zsh startup/shutdown scripts are not executed.  Login shells
+<a name="index-ENV_002c-use-of"></a>
+<p>The usual zsh startup/shutdown scripts are not executed.  Login shells
 source <tt>/etc/profile</tt> followed by <tt>$HOME/.profile</tt>.  If the
 <tt>ENV</tt> environment variable is set on invocation, <tt>$ENV</tt> is sourced
 after the profile scripts.  The value of <tt>ENV</tt> is subjected to
@@ -317,31 +317,40 @@ options are set if zsh is invoked as <tt>ksh</tt>.
 
 <a name="Restricted-Shell-1"></a>
 <h2 class="section">4.3 Restricted Shell</h2>
-<p><a name="index-restricted-shell"></a>
+<a name="index-restricted-shell"></a>
 <a name="index-RESTRICTED"></a>
-When the basename of the command used to invoke zsh starts with the letter
+<p>When the basename of the command used to invoke zsh starts with the letter
 &lsquo;<tt>r</tt>&rsquo; or the &lsquo;<tt>-r</tt>&rsquo; command line option is supplied at invocation, the
 shell becomes restricted.  Emulation mode is determined after stripping the
 letter &lsquo;<tt>r</tt>&rsquo; from the invocation name.  The following are disabled in
 restricted mode:
 </p>
 <ul>
-<li> changing directories with the <tt>cd</tt> builtin
-</li><li> changing or unsetting the <tt>EGID</tt>, <tt>EUID</tt>, <tt>GID</tt>,
+<li> 
+changing directories with the <tt>cd</tt> builtin
+</li><li> 
+changing or unsetting the <tt>EGID</tt>, <tt>EUID</tt>, <tt>GID</tt>,
 <tt>HISTFILE</tt>, <tt>HISTSIZE</tt>, <tt>IFS</tt>, <tt>LD_AOUT_LIBRARY_PATH</tt>,
 <tt>LD_AOUT_PRELOAD</tt>, <tt>LD_LIBRARY_PATH</tt>, <tt>LD_PRELOAD</tt>,
 <tt>MODULE_PATH</tt>, <tt>module_path</tt>, <tt>PATH</tt>, <tt>path</tt>, <tt>SHELL</tt>,
 <tt>UID</tt> and <tt>USERNAME</tt> parameters
-</li><li> specifying command names containing <tt>/</tt>
-</li><li> specifying command pathnames using <tt>hash</tt>
-</li><li> redirecting output to files
-</li><li> using the <tt>exec</tt> builtin command to replace the shell with another
+</li><li> 
+specifying command names containing <tt>/</tt>
+</li><li> 
+specifying command pathnames using <tt>hash</tt>
+</li><li> 
+redirecting output to files
+</li><li> 
+using the <tt>exec</tt> builtin command to replace the shell with another
 command
-</li><li> using <tt>jobs -Z</tt> to overwrite the shell process&rsquo; argument and
+</li><li> 
+using <tt>jobs -Z</tt> to overwrite the shell process&rsquo; argument and
 environment space
-</li><li> using the <tt>ARGV0</tt> parameter to override <tt>argv[0]</tt> for external
+</li><li> 
+using the <tt>ARGV0</tt> parameter to override <tt>argv[0]</tt> for external
 commands
-</li><li> turning off restricted mode with <tt>set +r</tt> or <tt>unsetopt
+</li><li> 
+turning off restricted mode with <tt>set +r</tt> or <tt>unsetopt
 RESTRICTED</tt>
 </li></ul>
 
@@ -368,10 +377,12 @@ files.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p><font size="-1">
-  This document was generated on <em>April 29, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
-</font></p>
-
-<font size="-1">Zsh version 5.5.1, released on April 16, 2018.</font>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 24, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+<font size="-1">Zsh version 5.7, released on January 24, 2019.</font>
+</p>
 </body>
 </html>

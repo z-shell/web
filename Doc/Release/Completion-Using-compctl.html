@@ -1,20 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created on January 24, 2019 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>21 Completion Using compctl (zsh)</title>
+<title>zsh: 21 Completion Using compctl</title>
 
-<meta name="description" content="21 Completion Using compctl (zsh)">
-<meta name="keywords" content="21 Completion Using compctl (zsh)">
+<meta name="description" content="zsh: 21 Completion Using compctl">
+<meta name="keywords" content="zsh: 21 Completion Using compctl">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2any">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
@@ -22,18 +28,18 @@ div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smalldisplay {font-family: serif; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,7 +47,8 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
 <a name="Completion-Using-compctl"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Completion-System.html#Completion-System" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -61,21 +68,8 @@ ul.no-bullet {list-style: none}
 
 <a name="Completion-Using-compctl-1"></a>
 <h1 class="chapter">21 Completion Using compctl</h1>
-<p><a name="index-completion_002c-programmable-2"></a>
+<a name="index-completion_002c-programmable-2"></a>
 <a name="index-completion_002c-controlling-2"></a>
-</p>
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="#Command-Flags">21.3 Command Flags</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Option-Flags">21.4 Option Flags</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Alternative-Completion">21.5 Alternative Completion</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Extended-Completion">21.6 Extended Completion</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Example">21.7 Example</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-</table>
 
 <hr>
 <a name="Types-of-completion"></a>
@@ -83,7 +77,7 @@ ul.no-bullet {list-style: none}
 <tr><td valign="middle" align="left">[<a href="#Completion-Using-compctl" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-Using-compctl" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-Using-compctl" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-4" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zsh-Modules.html#Zsh-Modules" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -103,7 +97,7 @@ it are described in <a href="Completion-Widgets.html#Completion-Widgets">Complet
 the older <tt>compctl</tt> command.
 </p>
 <hr>
-<a name="Description-4"></a>
+<a name="Description"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Completion-Using-compctl" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Types-of-completion" title="Previous section in reading order"> &lt; </a>]</td>
@@ -120,8 +114,8 @@ the older <tt>compctl</tt> command.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">21.2 Description</h2>
-<p><a name="index-compctl"></a>
-</p>
+<a name="index-compctl"></a>
+
 <dl compact="compact">
 <dt><tt>compctl</tt> [ <tt>-CDT</tt> ] <var>options</var> [ <var>command</var> ... ]</dt>
 <dt><tt>compctl </tt>[ <tt>-CDT</tt> ] <var>options</var> [ <tt>-x</tt> <var>pattern</var> <var>options</var> <tt>-</tt> ... <tt>-</tt><tt>-</tt> ]</dt>
@@ -158,7 +152,7 @@ user-specified list.
 <a name="Command-Flags"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Completion-Using-compctl" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-4" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-Using-compctl" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Option-Flags" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zsh-Modules.html#Zsh-Modules" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -191,7 +185,7 @@ with a <tt>=</tt>, completion is tried with the pathname of the command.
 </p>
 <p>Any of the <var>command</var> strings may be patterns of the form normally
 used for filename generation.  These should be quoted to protect them
-from immediate expansion; for example the command string <tt>'foo*'</tt>
+from immediate expansion; for example the command string <tt>&rsquo;foo*&rsquo;</tt>
 arranges for completion of the words of any command beginning with
 <tt>foo</tt>.  When completion is attempted, all pattern completions are
 tried in the reverse order of their definition until one matches.  By
@@ -541,7 +535,7 @@ compctl -K whoson talk
 </pre></div>
 
 <p>completes only logged-on users after &lsquo;<tt>talk</tt>&rsquo;.  Note that &lsquo;<tt>whoson</tt>&rsquo; must
-return an array, so &lsquo;<tt>reply=`users`</tt>&rsquo; would be incorrect.
+return an array, so &lsquo;<tt>reply=&lsquo;users&lsquo;</tt>&rsquo; would be incorrect.
 </p>
 </dd>
 <dt><tt>-H</tt> <var>num pattern</var></dt>
@@ -1043,10 +1037,12 @@ complete any file; else
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p><font size="-1">
-  This document was generated on <em>April 29, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
-</font></p>
-
-<font size="-1">Zsh version 5.5.1, released on April 16, 2018.</font>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 24, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+<font size="-1">Zsh version 5.7, released on January 24, 2019.</font>
+</p>
 </body>
 </html>

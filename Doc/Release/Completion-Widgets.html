@@ -1,20 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created on January 24, 2019 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>19 Completion Widgets (zsh)</title>
+<title>zsh: 19 Completion Widgets</title>
 
-<meta name="description" content="19 Completion Widgets (zsh)">
-<meta name="keywords" content="19 Completion Widgets (zsh)">
+<meta name="description" content="zsh: 19 Completion Widgets">
+<meta name="keywords" content="zsh: 19 Completion Widgets">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2any">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
@@ -22,18 +28,18 @@ div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smalldisplay {font-family: serif; font-size: smaller}
 pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -41,13 +47,14 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en">
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
 <a name="Completion-Widgets"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Zsh-Line-Editor.html#Zsh-Line-Editor" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zsh-Line-Editor.html#Character-Highlighting" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-9" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-System.html#Completion-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -61,25 +68,12 @@ ul.no-bullet {list-style: none}
 
 <a name="Completion-Widgets-1"></a>
 <h1 class="chapter">19 Completion Widgets</h1>
-<p><a name="index-completion_002c-widgets"></a>
+<a name="index-completion_002c-widgets"></a>
 <a name="index-completion_002c-programmable"></a>
 <a name="index-completion_002c-controlling"></a>
-</p>
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="#Completion-Special-Parameters">19.2 Completion Special Parameters</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Completion-Builtin-Commands">19.3 Completion Builtin Commands</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Completion-Condition-Codes">19.4 Completion Condition Codes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Completion-Matching-Control">19.5 Completion Matching Control</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Completion-Widget-Example">19.6 Completion Widget Example</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-</table>
 
 <hr>
-<a name="Description-2"></a>
+<a name="Description-9"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-Widgets" title="Previous section in reading order"> &lt; </a>]</td>
@@ -151,7 +145,7 @@ widget, in this case <tt>expand-or-complete</tt>.
 <a name="Completion-Special-Parameters"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-9" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-Widgets" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-Builtin-Commands" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-System.html#Completion-System" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -266,7 +260,7 @@ types of quoted strings which are currently broken into parts in this
 fashion.  Its value contains one character for each quoting level.  The
 characters are a single quote or a double quote for strings quoted with
 these characters, a dollars sign for strings quoted with
-<tt>$'</tt><var>...</var><tt>'</tt> and a backslash for strings not starting with a
+<tt>$&rsquo;</tt><var>...</var><tt>&rsquo;</tt> and a backslash for strings not starting with a
 quote character.  The first character in the value always corresponds to the
 innermost quoting level.
 </p>
@@ -954,8 +948,8 @@ matches the <var>pattern</var>, the matched portion is removed from
 if <var>number</var> is given, anything up to the <var>number</var>th match is
 moved.  If the <var>number</var> is negative, the <var>number</var>th longest
 match is moved. For example, if <tt>PREFIX</tt> contains the string
-&lsquo;<tt>a=b=c</tt>&rsquo;, then <tt>compset -P '*\='</tt> will move the string &lsquo;<tt>a=b=</tt>&rsquo; 
-into the <tt>IPREFIX</tt> parameter, but <tt>compset -P 1 '*\='</tt> will move only
+&lsquo;<tt>a=b=c</tt>&rsquo;, then <tt>compset -P &rsquo;*\=&rsquo;</tt> will move the string &lsquo;<tt>a=b=</tt>&rsquo; 
+into the <tt>IPREFIX</tt> parameter, but <tt>compset -P 1 &rsquo;*\=&rsquo;</tt> will move only
 the string &lsquo;<tt>a=</tt>&rsquo;.
 </p>
 </dd>
@@ -1063,8 +1057,8 @@ zero otherwise.
 
 <a name="Completion-Condition-Codes-1"></a>
 <h2 class="section">19.4 Completion Condition Codes</h2>
-<p><a name="index-completion-widgets_002c-condition-codes"></a>
-</p>
+<a name="index-completion-widgets_002c-condition-codes"></a>
+
 <p>The following additional condition codes for use within the <tt>[[</tt> <var>...</var> <tt>]]</tt>
 construct are available in completion widgets.  These work on the special
 parameters.  All of these tests can also be performed by the <tt>compset</tt>
@@ -1410,8 +1404,8 @@ styles. The values for the latter will be used everywhere.
 
 <a name="Completion-Widget-Example-1"></a>
 <h2 class="section">19.6 Completion Widget Example</h2>
-<p><a name="index-completion-widgets_002c-example"></a>
-</p>
+<a name="index-completion-widgets_002c-example"></a>
+
 <p>The first step is to define the widget:
 </p>
 <div class="example">
@@ -1449,10 +1443,12 @@ current word.
 <td valign="middle" align="left">[<a href="Concept-Index.html#Concept-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<p><font size="-1">
-  This document was generated on <em>April 29, 2018</em> using <a href="http://www.gnu.org/software/texinfo/"><em>texi2any</em></a>.
-</font></p>
-
-<font size="-1">Zsh version 5.5.1, released on April 16, 2018.</font>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 24, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+<font size="-1">Zsh version 5.7, released on January 24, 2019.</font>
+</p>
 </body>
 </html>
