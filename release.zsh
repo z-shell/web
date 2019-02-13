@@ -20,7 +20,7 @@ rm -f FAQ/zshfaq.txt FAQ/zshfaq.yo FAQ/zshfaq*.html FAQ/zshfaq.html.tar.gz
     cd $ZSHPATH/Etc || exit 1
     make FAQ FAQ.html
     zmv 'FAQ(*).html' 'zshfaq$1.html'
-    perl -i -pe 's{\./FAQ}{zshfaq}' zshfaq*.html
+    perl -i -pe 's{\bFAQ(.*?\.html)}{zshfaq\1}' zshfaq*.html
     # Create zshfaq.html.tar.gz.
     mkdir zshfaq
     cp zshfaq*.html zshfaq/
