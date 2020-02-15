@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on April 26, 2019 by texi2html 5.0
+<!-- Created on February 15, 2020 by texi2html 5.0
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -195,7 +195,7 @@ you may see in your prompt (see
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="Overview-1"></a>
+<a name="Overview-2"></a>
 <h3 class="subsection">14.1.1 Overview</h3>
 <a name="index-histchars_002c-use-of-1"></a>
 <p>A history expansion begins with the first character of the <tt>histchars</tt>
@@ -459,9 +459,23 @@ see the definition of the filename extension in the description of the
 will be empty if the string ends with a &lsquo;<tt>.</tt>&rsquo;.
 </p>
 </dd>
-<dt><tt>h</tt></dt>
-<dd><p>Remove a trailing pathname component, leaving the head.  This works
-like &lsquo;<tt>dirname</tt>&rsquo;.
+<dt><tt>h</tt> [ <var>digits</var> ]</dt>
+<dd><p>Remove a trailing pathname component, shortening the path by one
+directory level: this is the &lsquo;head&rsquo; of the pathname.  This works like
+&lsquo;<tt>dirname</tt>&rsquo;.  If the <tt>h</tt> is followed immediately (with no spaces or
+other separator) by any number of decimal digits, and the value of the
+resulting number is non-zero, that number of leading components is
+preserved instead of the final component being removed.  In an
+absolute path the leading &lsquo;<tt>/</tt>&rsquo; is the first component, so,
+for example, if <tt>var=/my/path/to/something</tt>, then <tt>${var:h3}</tt>
+substitutes <tt>/my/path</tt>.  Consecutive &lsquo;/&rsquo;s are treated the same as
+a single &lsquo;/&rsquo;.  In parameter substitution, digits may only be
+used if the expression is in braces, so for example the short form
+substitution <tt>$var:h2</tt> is treated as <tt>${var:h}2</tt>, not as
+<tt>${var:h2}</tt>.  No restriction applies to the use of digits in history
+substitution or globbing qualifiers.  If more components are requested
+than are present, the entire path is substituted (so this does not
+trigger a &lsquo;failed modifier&rsquo; error in history expansion).
 </p>
 </dd>
 <dt><tt>l</tt></dt>
@@ -524,9 +538,12 @@ inside braces, and in filename generation it must be quoted with a
 backslash.
 </p>
 </dd>
-<dt><tt>t</tt></dt>
-<dd><p>Remove all leading pathname components, leaving the tail.  This works
-like &lsquo;<tt>basename</tt>&rsquo;.
+<dt><tt>t</tt> [ <var>digits</var> ]</dt>
+<dd><p>Remove all leading pathname components, leaving the final component (tail).
+This works like &lsquo;<tt>basename</tt>&rsquo;.  Any trailing slashes are first removed.
+Decimal digits are handled as described above for (h), but in this
+case that number of trailing components is preserved instead of
+the default 1; 0 is treated the same as 1.
 </p>
 </dd>
 <dt><tt>u</tt></dt>
@@ -594,7 +611,7 @@ backslashes.
 with the <tt>EXTENDED_GLOB</tt> option:
 </p>
 <div class="example">
-<pre class="example">print *.c(#q:s/#%(#b)s(*).c/'S${match[1]}.C'/)
+<pre class="example">print -r -- *.c(#q:s/#%(#b)s(*).c/'S${match[1]}.C'/)
 </pre></div>
 
 <p>takes the expansion of <tt>*.c</tt> and applies the glob qualifiers in the
@@ -824,7 +841,27 @@ and subscript notation to access individual array elements.
 <p>Note in particular the fact that words of unquoted parameters are not
 automatically split on whitespace unless the option <tt>SH_WORD_SPLIT</tt> is
 set; see references to this option below for more details.  This is an
-important difference from other shells.
+important difference from other shells.  However, as in other shells,
+null words are elided from unquoted parameters&rsquo; expansions.
+</p>
+<p>With default options, after the assignments:
+</p>
+<div class="example">
+<pre class="example">array=(&quot;first word&quot; &quot;&quot; &quot;third word&quot;)
+scalar=&quot;only word&quot;
+</pre></div>
+
+<p>then <tt>$array</tt> substitutes two words, &lsquo;<tt>first word</tt>&rsquo; and &lsquo;<tt>third
+word</tt>&rsquo;, and <tt>$scalar</tt> substitutes a single word &lsquo;<tt>only word</tt>&rsquo;.  Note
+that second element of <tt>array</tt> was elided.  Scalar parameters can
+be elided too if their value is null (empty).  To avoid elision, use quoting as
+follows: <tt>&quot;$scalar&quot;</tt> for scalars and <tt>&quot;${array[@]}&quot;</tt> or <tt>&quot;${(@)array}&quot;</tt>
+for arrays.  (The last two forms are equivalent.)
+</p>
+<p>Parameter expansions can involve <em>flags</em>, as in &lsquo;<tt>${(@kv)aliases}</tt>&rsquo;,
+and other operators, such as &lsquo;<tt>${PREFIX:-&quot;/usr/local&quot;}</tt>&rsquo;.  Parameter
+expansions can also be nested.  These topics will be introduced below.
+The full rules are complicated and are noted at the end.
 </p>
 <p>In the expansions discussed below that require a pattern, the form of
 the pattern is the same as that used for filename generation;
@@ -836,19 +873,8 @@ In addition to the following operations, the colon modifiers described in
 applied:  for example, <tt>${i:s/foo/bar/}</tt> performs string
 substitution on the expansion of parameter <tt>$i</tt>.
 </p>
-<p>In the following descriptions, &lsquo;word&rsquo; refers to a single word
+<p>In the following descriptions, &lsquo;<var>word</var>&rsquo; refers to a single word
 substituted on the command line, not necessarily a space delimited word.
-With default options, after the assignments:
-</p>
-<div class="example">
-<pre class="example">array=(&quot;first word&quot; &quot;second word&quot;)
-scalar=&quot;only word&quot;
-</pre></div>
-
-<p>then <tt>$array</tt> substitutes two words, &lsquo;<tt>first word</tt>&rsquo; and &lsquo;<tt>second
-word</tt>&rsquo;, and <tt>$scalar</tt> substitutes a single word &lsquo;<tt>only word</tt>&rsquo;.  This
-may be modified by explicit or implicit word-splitting, however.  The
-full rules are complicated and are noted at the end.
 </p>
 <dl compact="compact">
 <dt><tt>${</tt><var>name</var><tt>}</tt></dt>
@@ -1448,7 +1474,7 @@ form of single quoting is used that only quotes the string if needed to
 protect special characters.  Typically this form gives the most readable
 output.
 </p>
-<p>If a <tt>q+</tt> is given, an extended form of minmal quoting is used that
+<p>If a <tt>q+</tt> is given, an extended form of minimal quoting is used that
 causes unprintable characters to be rendered using <tt>$&rsquo;</tt><var>...</var><tt>&rsquo;</tt>.
 This quoting is similar to that used by the output of values by the
 <tt>typeset</tt> family of commands.
@@ -1743,12 +1769,47 @@ used with the <tt>${</tt>...<tt>/</tt>...<tt>}</tt> forms.
 </p>
 <dl compact="compact">
 <dt><tt>S</tt></dt>
-<dd><p>Search substrings as well as beginnings or ends; with <tt>#</tt> start
-from the beginning and with <tt>%</tt> start from the end of the string.
-With substitution via <tt>${</tt>...<tt>/</tt>...<tt>}</tt> or
-<tt>${</tt>...<tt>//</tt>...<tt>}</tt>, specifies non-greedy matching, i.e. that the
-shortest instead of the longest match should be replaced.
+<dd><p>With <tt>#</tt> or <tt>##</tt>, search for the match that starts closest to the start of
+the string (a &lsquo;substring match&rsquo;). Of all matches at a particular position,
+<tt>#</tt> selects the shortest and <tt>##</tt> the longest:
 </p>
+<div class="example">
+<pre class="example">% str=&quot;aXbXc&quot;
+% echo ${(S)str#X*}
+abXc
+% echo ${(S)str##X*}
+a
+% 
+</pre></div>
+
+<p>With <tt>%</tt> or <tt>%%</tt>, search for the match that starts closest to the end of
+the string:
+</p>
+<div class="example">
+<pre class="example">% str=&quot;aXbXc&quot;
+% echo ${(S)str%X*}
+aXbc
+% echo ${(S)str%%X*}
+aXb
+% 
+</pre></div>
+
+<p>(Note that <tt>%</tt> and <tt>%%</tt> don&rsquo;t search for the match that ends closest to the
+end of the string, as one might expect.)
+</p>
+<p>With substitution via <tt>${</tt>...<tt>/</tt>...<tt>}</tt> or
+<tt>${</tt>...<tt>//</tt>...<tt>}</tt>, specifies non-greedy matching, i.e. that the
+shortest instead of the longest match should be replaced:
+</p>
+<div class="example">
+<pre class="example">% str=&quot;abab&quot;
+% echo ${str/*b/_}
+_
+% echo ${(S)str/*b/_}
+_ab
+% 
+</pre></div>
+
 </dd>
 <dt><tt>I:</tt><var>expr</var><tt>:</tt></dt>
 <dd><p>Search the <var>expr</var>th match (where <var>expr</var> evaluates to a number).
@@ -1809,7 +1870,7 @@ order.
 <tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Parameter-Expansion-Flags" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Parameter-Expansion" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Examples" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Examples-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -2045,7 +2106,7 @@ expression) and replaced with the corresponding value, with internal flags
 
 
 <hr>
-<a name="Examples"></a>
+<a name="Examples-1"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Rules" title="Previous section in reading order"> &lt; </a>]</td>
@@ -2117,7 +2178,7 @@ empty string will then be elided, as it is not in double quotes.
 <a name="Command-Substitution"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Expansion" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Examples" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Examples-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Expansion" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Arithmetic-Expansion" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Parameters.html#Parameters" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -2960,13 +3021,14 @@ parentheses can be referenced.
 <p>For example,
 </p>
 <div class="example">
-<pre class="example">foo=&quot;a string with a message&quot;
-if [[ $foo = (a|an)' '(#b)(*)' '* ]]; then
+<pre class="example">foo=&quot;a_string_with_a_message&quot;
+if [[ $foo = (a|an)_(#b)(*) ]]; then
   print ${foo[$mbegin[1],$mend[1]]}
 fi
 </pre></div>
 
-<p>prints &lsquo;<tt>string with a</tt>&rsquo;.  Note that the first parenthesis is before the
+<p>prints &lsquo;<tt>string_with_a_message</tt>&rsquo;.
+Note that the first set of parentheses is before the
 <tt>(#b)</tt> and does not create a backreference.
 </p>
 <p>Backreferences work with all forms of pattern matching other than filename
@@ -3242,13 +3304,13 @@ subdirectories.
 Thus:
 </p>
 <div class="example">
-<pre class="example">ls (*/)#bar
+<pre class="example">ls -ld -- (*/)#bar
 </pre></div>
 
 <p>or
 </p>
 <div class="example">
-<pre class="example">ls **/bar
+<pre class="example">ls -ld -- **/bar
 </pre></div>
 
 <p>does a recursive directory search for files named &lsquo;<tt>bar</tt>&rsquo; (potentially
@@ -3265,13 +3327,13 @@ Hence:
 </p>
 <div class="example">
 <pre class="example">setopt GLOBSTARSHORT
-ls **.c
+ls -ld -- **.c
 </pre></div>
 
 <p>is equivalent to
 </p>
 <div class="example">
-<pre class="example">ls **/*.c
+<pre class="example">ls -ld -- **/*.c
 </pre></div>
 
 <hr>
@@ -3506,7 +3568,7 @@ appropriate test.  For example,
 <div class="example">
 <pre class="example">nt() { [[ $REPLY -nt $NTREF ]] }
 NTREF=reffile
-ls -l *(+nt)
+ls -ld -- *(+nt)
 </pre></div>
 
 <p>lists all files in the directory that have been modified more recently than
@@ -3722,40 +3784,40 @@ causes the entire expression to be subjected to any global pattern matching
 options such as <tt>NULL_GLOB</tt>. Thus:
 </p>
 <div class="example">
-<pre class="example">ls *(-/)
+<pre class="example">ls -ld -- *(-/)
 </pre></div>
 
 <p>lists all directories and symbolic links that point to directories,
 and
 </p>
 <div class="example">
-<pre class="example">ls *(-@)
+<pre class="example">ls -ld -- *(-@)
 </pre></div>
 
 <p>lists all broken symbolic links, and
 </p>
 <div class="example">
-<pre class="example">ls *(%W)
+<pre class="example">ls -ld -- *(%W)
 </pre></div>
 
 <p>lists all world-writable device files in the current directory, and
 </p>
 <div class="example">
-<pre class="example">ls *(W,X)
+<pre class="example">ls -ld -- *(W,X)
 </pre></div>
 
 <p>lists all files in the current directory that are
 world-writable or world-executable, and
 </p>
 <div class="example">
-<pre class="example">echo /tmp/foo*(u0^@:t)
+<pre class="example">print -rC1 /tmp/foo*(u0^@:t)
 </pre></div>
 
 <p>outputs the basename of all root-owned files beginning with the string
 &lsquo;<tt>foo</tt>&rsquo; in <tt>/tmp</tt>, ignoring symlinks, and
 </p>
 <div class="example">
-<pre class="example">ls *.*~(lex|parse).[ch](^D^l1)
+<pre class="example">ls -ld -- *.*~(lex|parse).[ch](^D^l1)
 </pre></div>
 
 <p>lists all files having a link count of one whose names contain a dot
@@ -3763,7 +3825,7 @@ world-writable or world-executable, and
 switched off) except for <tt>lex.c</tt>, <tt>lex.h</tt>, <tt>parse.c</tt> and <tt>parse.h</tt>.
 </p>
 <div class="example">
-<pre class="example">print b*.pro(#q:s/pro/shmo/)(#q.:s/builtin/shmiltin/)
+<pre class="example">print -rC1 b*.pro(#q:s/pro/shmo/)(#q.:s/builtin/shmiltin/)
 </pre></div>
 
 <p>demonstrates how colon modifiers and other qualifiers may be chained
@@ -3787,10 +3849,10 @@ print &lsquo;<tt>shmiltin.shmo</tt>&rsquo;.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated on <i>April 26, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+  This document was generated on <i>February 15, 2020</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
  </font>
  <br>
-<font size="-1">Zsh version 5.7.1, released on February 3, 2019.</font>
+<font size="-1">Zsh version 5.8, released on February 14, 2020.</font>
 </p>
 </body>
 </html>

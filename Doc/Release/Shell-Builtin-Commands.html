@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on April 26, 2019 by texi2html 5.0
+<!-- Created on February 15, 2020 by texi2html 5.0
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -80,11 +80,11 @@ be familiar to most command line users.
 </p>
 <p>Typically, options are single letters preceded by a hyphen (<tt>-</tt>).
 Options that take an argument accept it either immediately following the
-option letter or after white space, for example &lsquo;<tt>print -C3 *</tt>&rsquo; or
-&lsquo;<tt>print -C 3 *</tt>&rsquo; are equivalent.  Arguments to options are not the
+option letter or after white space, for example &lsquo;<tt>print -C3 {1..9}</tt>&rsquo; or
+&lsquo;<tt>print -C 3 {1..9}</tt>&rsquo; are equivalent.  Arguments to options are not the
 same as arguments to the command; the documentation indicates which is
 which.  Options that do not take an argument may be combined in a single
-word, for example &lsquo;<tt>print -ca *</tt>&rsquo; and &lsquo;<tt>print -c -a *</tt>&rsquo; are
+word, for example &lsquo;<tt>print -rca &ndash; *</tt>&rsquo; and &lsquo;<tt>print -r -c -a &ndash; *</tt>&rsquo; are
 equivalent.
 </p>
 <p>Some shell builtin commands also take options that begin with &lsquo;<tt>+</tt>&rsquo;
@@ -95,14 +95,14 @@ are.
 in a group before any non-option arguments; once the first non-option
 argument has been found, option processing is terminated.
 </p>
-<p>All builtin commands other than precommand modifiers, even those that
-have no options, can be given the argument &lsquo;<tt>-</tt><tt>-</tt>&rsquo; to terminate option
-processing.  This indicates that the following words are non-option
-arguments, but is otherwise ignored.  This is useful in cases where
-arguments to the command may begin with &lsquo;<tt>-</tt>&rsquo;.  For historical
-reasons, most builtin commands also recognize a single &lsquo;<tt>-</tt>&rsquo; in a
-separate word for this purpose; note that this is less standard and
-use of &lsquo;<tt>-</tt><tt>-</tt>&rsquo; is recommended.
+<p>All builtin commands other than &lsquo;<tt>echo</tt>&rsquo; and precommand modifiers,
+even those that have no options, can be given the argument &lsquo;<tt>-</tt><tt>-</tt>&rsquo;
+to terminate option processing.  This indicates that the following words
+are non-option arguments, but is otherwise ignored.  This is useful in
+cases where arguments to the command may begin with &lsquo;<tt>-</tt>&rsquo;.  For
+historical reasons, most builtin commands (including &lsquo;<tt>echo</tt>&rsquo;) also
+recognize a single &lsquo;<tt>-</tt>&rsquo; in a separate word for this purpose; note
+that this is less standard and use of &lsquo;<tt>-</tt><tt>-</tt>&rsquo; is recommended.
 </p>
 <dl compact="compact">
 <dt><tt>-</tt> <var>simple command</var></dt>
@@ -161,10 +161,10 @@ a literal string, not a pattern.  A trailing space in <var>value</var> is not
 special in this case.  For example,
 </p>
 <div class="example">
-<pre class="example">alias -s ps=gv
+<pre class="example">alias -s ps='gv --'
 </pre></div>
 
-<p>will cause the command &lsquo;<tt>*.ps</tt>&rsquo; to be expanded to &lsquo;<tt>gv *.ps</tt>&rsquo;.  As
+<p>will cause the command &lsquo;<tt>*.ps</tt>&rsquo; to be expanded to &lsquo;<tt>gv &ndash; *.ps</tt>&rsquo;.  As
 alias expansion is carried out earlier than globbing, the &lsquo;<tt>*.ps</tt>&rsquo; will
 then be expanded.  Suffix aliases constitute a different name space from
 other aliases (so in the above example it is still possible
@@ -353,6 +353,8 @@ of the list shown by the <tt>dirs</tt> command, starting with zero.
 An argument of the form &lsquo;<tt>-</tt><var>n</var>&rsquo; counts from the right.
 If the <tt>PUSHD_MINUS</tt> option is set, the meanings of &lsquo;<tt>+</tt>&rsquo;
 and &lsquo;<tt>-</tt>&rsquo; in this context are swapped.
+If the <tt>POSIX_CD</tt> option is set, this form of <tt>cd</tt> is not recognised
+and will be interpreted as the first form.
 </p>
 <p>If the <tt>-q</tt> (quiet) option is specified, the hook function <tt>chpwd</tt>
 and the functions in the array <tt>chpwd_functions</tt> are not called.
@@ -944,8 +946,8 @@ However, if the current event has added entries to the history with
 includes all new history entries since the current event began.
 </p>
 <p>When the <tt>-l</tt> flag is given, the resulting events are listed on
-standard output.  Otherwise the editor program <var>ename</var> is invoked on a
-file containing these history events.  If <var>ename</var> is not given, the
+standard output.  Otherwise the editor program specified by <tt>-e</tt> <var>ename</var>
+is invoked on a file containing these history events.  If <tt>-e</tt> is not given, the
 value of the parameter <tt>FCEDIT</tt> is used; if that is not set the value of
 the parameter <tt>EDITOR</tt> is used; if that is not set a builtin default,
 usually &lsquo;<tt>vi</tt>&rsquo; is used.  If <var>ename</var> is &lsquo;<tt>-</tt>&rsquo;, no editor is invoked.
@@ -1047,10 +1049,11 @@ point numbers are not permitted.
 <a name="index-functions-1"></a>
 </dd>
 <dt><tt>functions</tt> [ {<tt>+</tt>|<tt>-</tt>}<tt>UkmtTuWz</tt> ] [ <tt>-x</tt> <var>num</var> ] [ <var>name</var> ... ]</dt>
+<dt><tt>functions -c</tt> <var>oldfn</var> <var>newfn</var></dt>
 <dt><tt>functions -M</tt> [<tt>-s</tt>] <var>mathfn</var> [ <var>min</var> [ <var>max</var> [ <var>shellfn</var> ] ] ]</dt>
 <dt><tt>functions -M</tt> [ <tt>-m</tt> <var>pattern</var> ... ]</dt>
 <dt><tt>functions +M</tt> [ <tt>-m</tt> ] <var>mathfn</var> ...</dt>
-<dd><p>Equivalent to <tt>typeset -f</tt>, with the exception of the <tt>-x</tt>,
+<dd><p>Equivalent to <tt>typeset -f</tt>, with the exception of the <tt>-c</tt>, <tt>-x</tt>,
 <tt>-M</tt> and <tt>-W</tt> options.  For <tt>functions -u</tt> and <tt>functions -U</tt>,
 see <tt>autoload</tt>, which provides additional options.
 </p>
@@ -1063,6 +1066,14 @@ can also be 0 to suppress all indentation.
 function or functions only.  The option is turned off at the start of
 nested functions (apart from anonoymous functions) unless the called
 function also has the <tt>-W</tt> attribute.
+</p>
+<p>The <tt>-c</tt> option causes <var>oldfn</var> to be copied to <var>newfn</var>.  The
+copy is efficiently handled internally by reference counting.  If
+<var>oldfn</var> was marked for autoload it is first loaded and if this
+fails the copy fails.  Either function may subsequently be redefined
+without affecting the other.  A typical idiom is that <var>oldfn</var> is the
+name of a library shell function which is then redefined to call
+<tt>newfn</tt>, thereby installing a modified version of the function.
 </p>
 <p>Use of the <tt>-M</tt> option may not be combined with any of the options
 handled by <tt>typeset -f</tt>.
@@ -1184,6 +1195,10 @@ modify these tables by modifying one&rsquo;s <tt>PATH</tt>
 The choice of hash table to work on is determined by the <tt>-d</tt> option;
 without the option the command hash table is used, and with the option the
 named directory hash table is used.
+</p>
+<p>A command <var>name</var> starting with a <tt>/</tt> is never hashed, whether by
+explicit use of the <tt>hash</tt> command or otherwise.  Such a command
+is always found by direct look up in the file system.
 </p>
 <p>Given no arguments, and neither the <tt>-r</tt> or <tt>-f</tt> options,
 the selected hash table will be listed in full.
@@ -1513,7 +1528,10 @@ case-independently.
 </p>
 </dd>
 <dt><tt>-l</tt></dt>
-<dd><p>Print the arguments separated by newlines instead of spaces.
+<dd><p>Print the arguments separated by newlines instead of spaces.  Note: if
+the list of arguments is empty, <tt>print -l</tt> will still output one empty
+line. To print a possibly-empty list of arguments one per line, use
+<tt>print -C1</tt>, as in &lsquo;<tt>print -rC1 &ndash; &quot;$list[@]&quot;</tt>&rsquo;.
 </p>
 </dd>
 <dt><tt>-m</tt></dt>
@@ -1527,7 +1545,9 @@ do not match this pattern.
 </p>
 </dd>
 <dt><tt>-N</tt></dt>
-<dd><p>Print the arguments separated and terminated by nulls.
+<dd><p>Print the arguments separated and terminated by nulls. Again,
+<tt>print -rNC1 &ndash; &quot;$list[@]&quot;</tt> is a canonical way to print an
+arbitrary list as null-delimited records.
 </p>
 </dd>
 <dt><tt>-o</tt></dt>
@@ -3361,10 +3381,10 @@ dynamic loading of modules.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated on <i>April 26, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+  This document was generated on <i>February 15, 2020</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
  </font>
  <br>
-<font size="-1">Zsh version 5.7.1, released on February 3, 2019.</font>
+<font size="-1">Zsh version 5.8, released on February 14, 2020.</font>
 </p>
 </body>
 </html>

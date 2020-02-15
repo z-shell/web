@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on April 26, 2019 by texi2html 5.0
+<!-- Created on February 15, 2020 by texi2html 5.0
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -54,7 +54,7 @@ ul.no-bullet {list-style: none}
 <tr><td valign="middle" align="left">[<a href="Zsh-Line-Editor.html#Zsh-Line-Editor" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Zsh-Line-Editor.html#Character-Highlighting" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-System.html#Completion-System" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -73,7 +73,7 @@ ul.no-bullet {list-style: none}
 <a name="index-completion_002c-controlling"></a>
 
 <hr>
-<a name="Description-2"></a>
+<a name="Description-1"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-Widgets" title="Previous section in reading order"> &lt; </a>]</td>
@@ -145,7 +145,7 @@ widget, in this case <tt>expand-or-complete</tt>.
 <a name="Completion-Special-Parameters"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Completion-Widgets" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-Widgets" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Completion-Builtin-Commands" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-System.html#Completion-System" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -617,12 +617,13 @@ edited.
 <a name="index-completion-widgets_002c-adding-specified-matches"></a>
 
 </dd>
-<dt><tt>compadd </tt>[ <tt>-akqQfenUlo12C</tt> ] [ <tt>-F</tt> <var>array</var> ]</dt>
+<dt><tt>compadd </tt>[ <tt>-akqQfenUl12C</tt> ] [ <tt>-F</tt> <var>array</var> ]</dt>
 <dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-P</tt> <var>prefix</var> ] [ <tt>-S</tt> <var>suffix</var> ]</dt>
 <dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-p</tt> <var>hidden-prefix</var> ] [ <tt>-s</tt> <var>hidden-suffix</var> ]</dt>
 <dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-i</tt> <var>ignored-prefix</var> ] [ <tt>-I</tt> <var>ignored-suffix</var> ]</dt>
 <dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-W</tt> <var>file-prefix</var> ] [ <tt>-d</tt> <var>array</var> ]</dt>
-<dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-J</tt> <var>name</var> ] [ <tt>-V</tt> <var>name</var> ] [ <tt>-X</tt> <var>explanation</var> ] [ <tt>-x</tt> <var>message</var> ]</dt>
+<dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-J</tt> <var>group-name</var> ] [ <tt>-X</tt> <var>explanation</var> ] [ <tt>-x</tt> <var>message</var> ]</dt>
+<dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-V</tt> <var>group-name</var> ] [ <tt>-o</tt> [ <var>order</var> ] ]</dt>
 <dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-r</tt> <var>remove-chars</var> ] [ <tt>-R</tt> <var>remove-func</var> ]</dt>
 <dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-D</tt> <var>array</var> ] [ <tt>-O</tt> <var>array</var> ] [ <tt>-A</tt> <var>array</var> ]</dt>
 <dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>[<tt>-E</tt> <var>number</var> ]</dt>
@@ -723,20 +724,46 @@ option. If it is given, the display strings are listed one per line,
 not arrayed in columns.
 </p>
 </dd>
-<dt><tt>-o</tt></dt>
-<dd><p>This option only has an effect if used together with the <tt>-d</tt>
-option.  If it is given, the order of the output is determined by the
-match strings;  otherwise it is determined by the display strings
-(i.e. the strings given by the <tt>-d</tt> option).
+<dt><tt>-o</tt> [ <var>order</var> ]</dt>
+<dd><p>This controls the order in which matches are sorted. <var>order</var> is a
+comma-separated list comprising the following possible values.  These values
+can be abbreviated to their initial two or three characters.  Note that the
+order forms part of the group name space so matches with different orderings
+will not be in the same group.
+</p>
+<dl compact="compact">
+<dt><tt>match</tt></dt>
+<dd><p>If given, the order of the output is determined by the match strings;
+otherwise it is determined by the display strings (i.e. the strings given
+by the <tt>-d</tt> option). This is the default if &lsquo;<tt>-o</tt>&rsquo; is specified but
+the <var>order</var> argument is omitted.
 </p>
 </dd>
-<dt><tt>-J</tt> <var>name</var></dt>
+<dt><tt>nosort</tt></dt>
+<dd><p>This specifies that the matches are pre-sorted and their order should be
+preserved.  This value only makes sense alone and cannot be combined with any
+others.
+</p>
+</dd>
+<dt><tt>numeric</tt></dt>
+<dd><p>If the matches include numbers, sort them numerically rather than
+lexicographically.
+</p>
+</dd>
+<dt><tt>reverse</tt></dt>
+<dd><p>Arrange the matches backwards by reversing the sort ordering.
+</p>
+</dd>
+</dl>
+
+</dd>
+<dt><tt>-J</tt> <var>group-name</var></dt>
 <dd><p>Gives the name of the group of matches the words should be stored in.
 </p>
 </dd>
-<dt><tt>-V</tt> <var>name</var></dt>
-<dd><p>Like <tt>-J</tt> but naming an unsorted group. These are in a different name
-space than groups created with the <tt>-J</tt> flag.
+<dt><tt>-V</tt> <var>group-name</var></dt>
+<dd><p>Like <tt>-J</tt> but naming an unsorted group. This option is identical to
+the combination of <tt>-J</tt> and <tt>-o nosort</tt>.
 </p>
 </dd>
 <dt><tt>-1</tt></dt>
@@ -755,6 +782,26 @@ different name spaces.
 <dt><tt>-X</tt> <var>explanation</var></dt>
 <dd><p>The <var>explanation</var> string will be printed with the list of matches,
 above the group currently selected.
+</p>
+<p>Within the <var>explanation</var>, the following sequences may be used to
+specify output attributes
+(see <a href="Prompt-Expansion.html#Prompt-Expansion">Prompt Expansion</a>):
+&lsquo;<tt>%B</tt>&rsquo;, &lsquo;<tt>%S</tt>&rsquo;, &lsquo;<tt>%U</tt>&rsquo;, &lsquo;<tt>%F</tt>&rsquo;, &lsquo;<tt>%K</tt>&rsquo; and their lower case
+counterparts, as well as &lsquo;<tt>%{</tt>...<tt>%}</tt>&rsquo;.  &lsquo;<tt>%F</tt>&rsquo;, &lsquo;<tt>%K</tt>&rsquo; and
+&lsquo;<tt>%{</tt>...<tt>%}</tt>&rsquo; take arguments in the same form as prompt
+expansion.  (Note that the sequence &lsquo;<tt>%G</tt>&rsquo; is not available; an
+argument to &lsquo;<tt>%{</tt>&rsquo; should be used instead.)  The sequence &lsquo;<tt>%%</tt>&rsquo;
+produces a literal &lsquo;<tt>%</tt>&rsquo;.
+</p>
+<p>These sequences are most often employed by users when customising the
+<tt>format</tt> style
+(see
+<a href="Completion-System.html#Completion-System">Completion System</a>),
+but they must also be taken into account when writing completion
+functions, as passing descriptions with unescaped &lsquo;<tt>%</tt>&rsquo; characters
+to utility functions such as <tt>_arguments</tt> and <tt>_message</tt> may
+produce unexpected results. If arbitrary text is to be passed in a
+description, it can be escaped using e.g. <tt>${my_str//\%/%%}</tt>.
 </p>
 </dd>
 <dt><tt>-x</tt> <var>message</var></dt>
@@ -934,8 +981,8 @@ while its return status allows tests on them to be carried out.
 </p>
 <dl compact="compact">
 <dt><tt>-p</tt> <var>number</var></dt>
-<dd><p>If the contents of the <tt>PREFIX</tt> parameter is longer than <var>number</var>
-characters, the first <var>number</var> characters are removed from it and
+<dd><p>If the value of the <tt>PREFIX</tt> parameter is at least <var>number</var>
+characters long, the first <var>number</var> characters are removed from it and
 appended to the contents of the <tt>IPREFIX</tt> parameter.
 </p>
 </dd>
@@ -1445,10 +1492,10 @@ current word.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated on <i>April 26, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+  This document was generated on <i>February 15, 2020</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
  </font>
  <br>
-<font size="-1">Zsh version 5.7.1, released on February 3, 2019.</font>
+<font size="-1">Zsh version 5.8, released on February 14, 2020.</font>
 </p>
 </body>
 </html>

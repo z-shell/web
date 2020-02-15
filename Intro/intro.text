@@ -2791,7 +2791,7 @@ Of course, a hackish workaround is available in sh (and [1mzsh[22m):
      % ll ’fuu bar’
      fuu bar not found
 
-If you like the sh behaviour, [1mzsh [22mcan accomodate you:
+If you like the sh behaviour, [1mzsh [22mcan accommodate you:
 
      % ls ${=srcs}
      exec.c  glob.c  init.c
@@ -3156,7 +3156,7 @@ this:
      % POSTEDIT=‘echotc se‘
      % PROMPT=’%S%% ’
 
-This trick is mostly superceded by the zle_highlight array param‐
+This trick is mostly superseded by the zle_highlight array param‐
 eter.
 
 

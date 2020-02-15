@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on April 26, 2019 by texi2html 5.0
+<!-- Created on February 15, 2020 by texi2html 5.0
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -52,7 +52,7 @@ ul.no-bullet {list-style: none}
 <a name="Shell-Grammar"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="Files.html#Files" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="Files.html#Files-1" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Files.html#Files-2" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Simple-Commands-_0026-Pipelines" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Redirection.html#Redirection" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -451,11 +451,11 @@ are reset to their default values while executing <var>list</var>.
 <a name="index-try-blocks"></a>
 </dd>
 <dt><tt>{</tt> <var>try-list</var> <tt>} always {</tt> <var>always-list</var> <tt>}</tt></dt>
-<dd><p>First execute <var>try-list</var>.  Regardless of errors, or <tt>break</tt>,
-<tt>continue</tt>, or <tt>return</tt> commands encountered within <var>try-list</var>,
+<dd><p>First execute <var>try-list</var>.  Regardless of errors, or <tt>break</tt> or
+<tt>continue</tt> commands encountered within <var>try-list</var>,
 execute <var>always-list</var>.  Execution then continues from the
 result of the execution of <var>try-list</var>; in other words, any error,
-or <tt>break</tt>, <tt>continue</tt>, or <tt>return</tt> command is treated in the
+or <tt>break</tt> or <tt>continue</tt> command is treated in the
 normal way, as if <var>always-list</var> were not present.  The two
 chunks of code are referred to as the &lsquo;try block&rsquo; and the &lsquo;always block&rsquo;.
 </p>
@@ -467,23 +467,23 @@ closing brace and the <tt>always</tt>.
 causes the shell to abort execution of the current function, script, or
 list.  Syntax errors encountered while the shell is parsing the
 code do not cause the <var>always-list</var> to be executed.  For example,
-an erroneously constructed <tt>if</tt> block in <tt>try-list</tt> would cause the
-shell to abort during parsing, so that <tt>always-list</tt> would not be
+an erroneously constructed <tt>if</tt> block in <var>try-list</var> would cause the
+shell to abort during parsing, so that <var>always-list</var> would not be
 executed, while an erroneous substitution such as <tt>${*foo*}</tt> would
-cause a run-time error, after which <tt>always-list</tt> would be executed.
+cause a run-time error, after which <var>always-list</var> would be executed.
 </p>
 <p>An error condition can be tested and reset with the special integer
-variable <tt>TRY_BLOCK_ERROR</tt>.  Outside an <tt>always-list</tt> the value is
-irrelevant, but it is initialised to <tt>-1</tt>.  Inside <tt>always-list</tt>, the
-value is 1 if an error occurred in the <tt>try-list</tt>, else 0.  If
-<tt>TRY_BLOCK_ERROR</tt> is set to 0 during the <tt>always-list</tt>, the error
-condition caused by the <tt>try-list</tt> is reset, and shell execution
-continues normally after the end of <tt>always-list</tt>.  Altering the value
-during the <tt>try-list</tt> is not useful (unless this forms part of an
+variable <tt>TRY_BLOCK_ERROR</tt>.  Outside an <var>always-list</var> the value is
+irrelevant, but it is initialised to <tt>-1</tt>.  Inside <var>always-list</var>, the
+value is 1 if an error occurred in the <var>try-list</var>, else 0.  If
+<tt>TRY_BLOCK_ERROR</tt> is set to 0 during the <var>always-list</var>, the error
+condition caused by the <var>try-list</var> is reset, and shell execution
+continues normally after the end of <var>always-list</var>.  Altering the value
+during the <var>try-list</var> is not useful (unless this forms part of an
 enclosing <tt>always</tt> block).
 </p>
-<p>Regardless of <tt>TRY_BLOCK_ERROR</tt>, after the end of <tt>always-list</tt> the
-normal shell status <tt>$?</tt> is the value returned from <tt>try-list</tt>.
+<p>Regardless of <tt>TRY_BLOCK_ERROR</tt>, after the end of <var>always-list</var> the
+normal shell status <tt>$?</tt> is the value returned from <var>try-list</var>.
 This will be non-zero if there was an error, even if <tt>TRY_BLOCK_ERROR</tt>
 was set to zero.
 </p>
@@ -501,11 +501,15 @@ executing it in a subshell.
 # The error condition has been reset.
 </pre></div>
 
-<p>An <tt>exit</tt> command (or a <tt>return</tt> command executed at the outermost
-function level of a script) encountered in <tt>try-list</tt> does <em>not</em> cause
+<p>When a <tt>try</tt> block occurs outside of any function, 
+a <tt>return</tt> or a <tt>exit</tt> encountered in <var>try-list</var> does <em>not</em> cause
 the execution of <var>always-list</var>.  Instead, the shell exits immediately
 after any <tt>EXIT</tt> trap has been executed.
+Otherwise, a <tt>return</tt> command encountered in <var>try-list</var> will cause the
+execution of <var>always-list</var>, just like <tt>break</tt> and <tt>continue</tt>.
 </p>
+
+
 <a name="index-function"></a>
 </dd>
 <dt><tt>function</tt> <var>word</var> ... [ <tt>()</tt> ] [ <var>term</var> ] <tt>{</tt> <var>list</var> <tt>}</tt></dt>
@@ -1032,10 +1036,10 @@ of <tt>$histchars</tt> (default &lsquo;<tt>!</tt>&rsquo;).
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated on <i>April 26, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+  This document was generated on <i>February 15, 2020</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
  </font>
  <br>
-<font size="-1">Zsh version 5.7.1, released on February 3, 2019.</font>
+<font size="-1">Zsh version 5.8, released on February 14, 2020.</font>
 </p>
 </body>
 </html>

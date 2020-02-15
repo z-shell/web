@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on April 26, 2019 by texi2html 5.0
+<!-- Created on February 15, 2020 by texi2html 5.0
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -110,20 +110,20 @@ otherwise, it is truncated to zero length.
 <dt><tt>&gt;|</tt> <var>word</var></dt>
 <dt><tt>&gt;!</tt> <var>word</var></dt>
 <dd><p>Same as <tt>&gt;</tt>, except that the file is truncated to zero length
-if it exists, even if <tt>CLOBBER</tt> is unset.
+if it exists, regardless of <tt>CLOBBER</tt>.
 </p>
 </dd>
 <dt><tt>&gt;&gt;</tt> <var>word</var></dt>
 <dd><p>Open file <var>word</var> for writing in append mode as standard output.
-If the file does not exist, and the <tt>CLOBBER</tt>
-option is unset, this causes an error;
+If the file does not exist, and the <tt>CLOBBER</tt> and <tt>APPEND_CREATE</tt>
+options are both unset, this causes an error;
 otherwise, the file is created.
 </p>
 </dd>
 <dt><tt>&gt;&gt;|</tt> <var>word</var></dt>
 <dt><tt>&gt;&gt;!</tt> <var>word</var></dt>
 <dd><p>Same as <tt>&gt;&gt;</tt>, except that the file is created if it does not
-exist, even if <tt>CLOBBER</tt> is unset.
+exist, regardless of <tt>CLOBBER</tt> and <tt>APPEND_CREATE</tt>.
 </p>
 </dd>
 <dt><tt>&lt;&lt;</tt>[<tt>-</tt>] <var>word</var></dt>
@@ -280,7 +280,8 @@ between the closing brace and the redirection character.  For example:
 <p>This opens a new file descriptor that is a duplicate of file descriptor
 1 and sets the parameter <tt>myfd</tt> to the number of the file descriptor,
 which will be at least 10.  The new file descriptor can be written to using
-the syntax <tt>&gt;&amp;$myfd</tt>.
+the syntax <tt>&gt;&amp;$myfd</tt>.  The file descriptor remains open in subshells
+and forked external executables.
 </p>
 <p>The syntax <tt>{</tt><var>varid</var><tt>}&gt;&amp;-</tt>, for example <tt>{myfd}&gt;&amp;-</tt>, may be used
 to close a file descriptor opened in this fashion.  Note that the
@@ -535,10 +536,10 @@ terminal.  <tt>NULLCMD</tt> and <tt>READNULLCMD</tt> may refer to shell function
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated on <i>April 26, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+  This document was generated on <i>February 15, 2020</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
  </font>
  <br>
-<font size="-1">Zsh version 5.7.1, released on February 3, 2019.</font>
+<font size="-1">Zsh version 5.8, released on February 14, 2020.</font>
 </p>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on April 26, 2019 by texi2html 5.0
+<!-- Created on February 15, 2020 by texi2html 5.0
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -363,6 +363,51 @@ add further restrictions by disabling selected builtins.
 <tt>RESTRICTED</tt> option.  This immediately enables all the restrictions
 described above even if the shell still has not processed all startup
 files.
+</p>
+<p>A shell <em>Restricted Mode</em> is an outdated way to restrict what users may
+do:  modern systems have better, safer and more reliable ways to
+confine user actions, such as <em>chroot jails</em>, <em>containers</em> and
+<em>zones</em>.
+</p>
+<p>A restricted shell is very difficult to implement safely.  The feature
+may be removed in a future version of zsh.
+</p>
+<p>It is important to realise that the restrictions only apply to the shell,
+not to the commands it runs (except for some shell builtins).  While a
+restricted shell can only run the restricted list of commands accessible
+via the predefined &lsquo;<tt>PATH</tt>&rsquo; variable, it does not prevent those
+commands from running any other command.
+</p>
+<p>As an example, if &lsquo;<tt>env</tt>&rsquo; is among the list of <em>allowed</em> commands,
+then it allows the user to run any command as &lsquo;<tt>env</tt>&rsquo; is not a shell
+builtin command and can run arbitrary executables.
+</p>
+<p>So when implementing a restricted shell framework it is important to be
+fully aware of what actions each of the <em>allowed</em> commands or features
+(which may be regarded as <em>modules</em>) can perform.
+</p>
+<p>Many commands can have their behaviour affected by environment
+variables.  Except for the few listed above, zsh does not restrict
+the setting of environment variables.
+</p>
+<p>If a &lsquo;<tt>perl</tt>&rsquo;, &lsquo;<tt>python</tt>&rsquo;, &lsquo;<tt>bash</tt>&rsquo;, or other general purpose
+interpreted script it treated as a restricted
+command, the user can work around the restriction by
+setting specially crafted &lsquo;<tt>PERL5LIB</tt>&rsquo;, &lsquo;<tt>PYTHONPATH</tt>&rsquo;,
+&lsquo;<tt>BASHENV</tt>&rsquo; (etc.) environment variables. On GNU systems, any
+command can be made to run arbitrary code when performing character set
+conversion (including zsh itself) by setting a &lsquo;<tt>GCONV_PATH</tt>&rsquo;
+environment variable.  Those are only a few examples.
+</p>
+<p>Bear in mind that, contrary to some other shells, &lsquo;<tt>readonly</tt>&rsquo; is not a
+security feature in zsh as it can be undone and so cannot be used to
+mitigate the above.
+</p>
+<p>A restricted shell only works if the allowed commands are few
+and carefully written so as not to grant more access to users than
+intended.  It is also important to restrict what zsh module the user may
+load as some of them, such as &lsquo;<tt>zsh/system</tt>&rsquo;, &lsquo;<tt>zsh/mapfile</tt>&rsquo; and
+&lsquo;<tt>zsh/files</tt>&rsquo;, allow bypassing most of the restrictions.
 </p><hr>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Invocation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -379,10 +424,10 @@ files.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated on <i>April 26, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+  This document was generated on <i>February 15, 2020</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
  </font>
  <br>
-<font size="-1">Zsh version 5.7.1, released on February 3, 2019.</font>
+<font size="-1">Zsh version 5.8, released on February 14, 2020.</font>
 </p>
 </body>
 </html>

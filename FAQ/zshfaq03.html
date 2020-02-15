@@ -546,7 +546,7 @@ In version 3.0.x, the second behaviour is activated if the file
   redefine the function when you called it.
 <p>
 From version 3.1, there is an option <code>KSH_AUTOLOAD</code> to allow full ksh
-  compatiblity, i.e. the function <em>must</em> be in the second form
+  compatibility, i.e. the function <em>must</em> be in the second form
   above.  If that is not set, zsh tries to guess which form you are
   using:  if the file contains only a complete definition of the
   function in the second form, and nothing else apart from comments
@@ -1177,7 +1177,7 @@ Here are some examples with files to illustrate the points.  We'll
      operator.  As the <code>**</code> operator cannot be grouped (inside
      parentheses it is treated as <code>*</code>), this is one way to exclude some
      subdirectories from matching a <code>**</code>.  Note that this can be quite
-     inefficent because the shell performs a complete search for
+     inefficient because the shell performs a complete search for
      <code>**/foo</code> before it uses the pattern after the <code>~</code> to exclude
      files from the match.  The file is excluded if <code>bar</code> occurs
      <em>anywhere</em>, in any directory segment or the final file name.
@@ -1241,6 +1241,53 @@ If you want some further rationalisation, you might note that
   where the command is to be executed.  So although it differs from
   other Bourne-style shells it is in fact self-consistent.  Note that
   the exit status does reflect the fact the command can't be found.
+<p>
+<a name="l47"></a>
+<h2>3.30: Why doesn't the expansion <code>*.{tex,aux,pdf}</code> do what I expect?</h2>
+<p>
+Based on the behaviour of some other shells, you might guess that the
+  following expression:
+  <pre>
+
+    echo *.{tex,aux,pdf}
+  
+</pre>
+
+  would be the way to echo any files ending in <code>.tex</code>, <code>.aux</code> or
+  <code>.pdf</code> in the current directory.  Depending on your settings for
+  matching (see <a href="zshfaq02.html#21">2.1</a>, in particular <code>NO_NOMATCH</code>), you may
+  see something else, in particular an error about (say) <code>*.aux</code> if
+  there were no files ending <code>.aux</code>.
+<p>
+The reason for this is that the brace expansion isn't actually
+  a form of pattern matching.  Instead, the line above is equivalent to
+  <pre>
+
+    echo *.tex *.aux *.pdf
+  
+</pre>
+
+  giving you three separate patterns.  With the default <code>NOMATCH</code>
+  behaviour in effect, any pattern that fails to match is an error.
+<p>
+However, there <em>is</em> a way of doing exactly what you want, using
+  parentheses instead of braces:
+  <pre>
+
+    echo *.(tex|aux|pdf)
+  
+</pre>
+
+  This is now a pattern matching expression, so is considered as a
+  single pattern.  Now any file that exists will suppress the
+  <code>NOMATCH</code> behaviour, but you'll still get all the files that do
+  match.
+<p>
+This use of parentheses is special to zsh.  Modern Bourne-like shells
+  have a syntax like this, too, but with an <code>@</code> in front of the
+  parentheses: again, see <a href="zshfaq02.html#21">2.1</a>, and search for <code>@+LPAR()</code>.
+  This is harder for the user to remember but easier for the shell to
+  parse!
 <p>
 <hr>
 <ul>

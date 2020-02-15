@@ -14,11 +14,11 @@
     <li> <a href="zshfaq06.html">Next Chapter</a>
 </ul>
 <hr>
-<a name="l54"></a>
+<a name="l55"></a>
 <h1>Chapter 5: Multibyte input and output</h1>
 <a name="c5"></a>
 <p>
-<a name="l55"></a>
+<a name="l56"></a>
 <h2>5.1: What is multibyte input?</h2>
 <p>
 For a long time computers had a simple idea of a character: each octet
@@ -57,7 +57,7 @@ The way this is done is called UTF-8.  Multibyte encodings of other
   zsh will be able to use any such encoding as long as it contains ASCII as
   a single-octet subset and the system can provide information about other
   characters.  However, in the case of Unicode, UTF-8 is the only one you
-  are likely to enounter that is useful in zsh.
+  are likely to encounter that is useful in zsh.
 <p>
 (In case you're confused: Unicode is the character set, while UTF-8 is
   an encoding of it.  You might hear about other encodings, such as UCS-2
@@ -66,7 +66,7 @@ The way this is done is called UTF-8.  Multibyte encodings of other
   way, for example on Windows, but the shell can't deal directly with text
   in those formats.)
 <p>
-<a name="l56"></a>
+<a name="l57"></a>
 <h2>5.2: How does zsh handle multibyte input and output?</h2>
 <p>
 Until version 4.3, zsh didn't handle multibyte input properly at all.
@@ -76,22 +76,21 @@ Until version 4.3, zsh didn't handle multibyte input properly at all.
   cause all sorts of odd effects.  (It was possible to edit in zsh using
   single-byte extensions of ASCII such as the ISO 8859 family, however.)
 <p>
-From version 4.3.4, multibyte input is handled in the line editor if zsh
-  has been compiled with the appropriate definitions, and is automatically
-  activated.  This is indicated by the option <code>MULTIBYTE</code>, which is
-  set by default on shells that support multibyte mode.  Hence you
-  can test this with a standard option test:  `<code>[[ -o multibyte ]]</code>'.
+From version 4.3.4 (stable versions starting from 5.0), multibyte
+  input is handled in the line editor if zsh has been compiled with the
+  appropriate definitions, and is automatically activated.  This is
+  indicated by the option <code>MULTIBYTE</code>, which is set by default on
+  shells that support multibyte mode.  Hence you can test this with a
+  standard option test: `<code>[[ -o multibyte ]]</code>'.
 <p>
 The <code>MULTIBYTE</code> option affects the entire shell: parameter expansion,
   pattern matching, etc. count valid multibyte character strings as a
   single character.  You can unset the option locally in a function to
   revert to single-byte operation.
 <p>
-Note that if the shell is emulating a Bourne shell the <code>MULTIBYTE</code>
-  option is unset by default.  This allows various POSIX modes to
-  work normally (POSIX does not deal with multibyte characters).  If
-  you use a "sh" or "ksh" emulation interactively you should probably
-  set the <code>MULTIBYTE</code> option.
+As multibyte characters are nowadays standard across most utilities,
+  since 5.1 the <code>MULTBYTE</code> option has been turned on when emulating
+  other shells.
 <p>
 The other option that affects multibyte support is <code>COMBINING_CHARS</code>,
   new in version 4.3.9.  When this is set, any zero-length punctuation
@@ -112,7 +111,7 @@ The <code>COMBINING_CHARS</code> option only affects output; combining character
   in inverse video.  Highlighting of such special characters can
   be modified using the new array parameter <code>zle_highlight</code>.
 <p>
-<a name="l57"></a>
+<a name="l58"></a>
 <h2>5.3: How do I ensure multibyte input and output work on my system?</h2>
 <p>
 Once you have a version of zsh with multibyte support, you need to
@@ -124,17 +123,19 @@ There are basically three components.
 <p>
 <ul>
    <li> The locale.  This describes a whole series of features specific
-      to countries or regions of which the character set is one.  Usually
-      it is controlled by the environment variable <code>LANG</code> (there are
-      others but this is the one to start with).  You need to find a
-      locale whose name contains <code>UTF-8</code>.  This will be a variant on
-      your usual locale, which typically indicates the language and
-      country; for example, mine is <code>en_GB.UTF-8</code>.  Luckily, zsh can
-      complete locale names, so if you have the new completion system
-      loaded you can type <code>export LANG=</code> and attempt to complete a
-      suitable locale.  It's the locale that tells the shell to expect the
-      right form of multibyte input.  (However, there's no guarantee that
-      the shell is actually going to get this input: for example, if you
+      to countries or regions of which the character set is one.
+      Usually it is controlled by the environment variable <code>LANG</code>
+      (there are others but this is the one to start with).  If you have
+      a recent operating system, very likely it is already set
+      appropriately.  Otherwise, you need to find a locale whose name
+      contains <code>UTF-8</code>.  This will be a variant on your usual
+      locale, which typically indicates the language and country; for
+      example, mine is <code>en_GB.UTF-8</code>.  Luckily, zsh can complete
+      locale names, so if you have the new completion system loaded you
+      can type <code>export LANG=</code> and attempt to complete a suitable
+      locale.  It's the locale that tells the shell to expect the right
+      form of multibyte input.  (However, there's no guarantee that the
+      shell is actually going to get this input: for example, if you
       edit file names that have been created using a different character
       set it won't work properly.)
    <li> The terminal emulator.  Those that are supplied with a recent
@@ -185,7 +186,7 @@ You might also note that the latest version of the Cygwin environment
   to compile with the <code>MULTIBYTE</code> option enabled, but the system
   didn't provide full support for it.
 <p>
-<a name="l58"></a>
+<a name="l59"></a>
 <h2>5.4: How can I input characters that aren't on my keyboard?</h2>
 <p>
 Two functions are provided with zsh that help you input characters.

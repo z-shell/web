@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on April 26, 2019 by texi2html 5.0
+<!-- Created on February 15, 2020 by texi2html 5.0
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -167,7 +167,7 @@ are changed from the default.
 <tr><td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Description-of-Options" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Description-of-Options" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Completion-2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-4" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -217,6 +217,22 @@ be used explicitly in scripts to avoid ambiguity.
 slash, try to expand the expression as if it were preceded by a &lsquo;<tt>~</tt>&rsquo; (see
 <a href="Expansion.html#Filename-Expansion">Filename Expansion</a>).
 </p>
+<a name="index-CD_005fSILENT"></a>
+<a name="index-NO_005fCD_005fSILENT"></a>
+<a name="index-CDSILENT"></a>
+<a name="index-NOCDSILENT"></a>
+<a name="index-cd_002c-silencing"></a>
+<a name="index-autocd_002c-silencing"></a>
+</dd>
+<dt><tt>CD_SILENT</tt></dt>
+<dd><p>Never print the working directory after a <tt>cd</tt> (whether explicit or
+implied with the <tt>AUTO_CD</tt> option set). <tt>cd</tt> normally prints the
+working directory when the argument given to it was <tt>-</tt>, a stack entry, or
+the name of a directory found under <tt>CDPATH</tt>. Note that this is distinct
+from <tt>pushd</tt>&rsquo;s stack-printing behaviour, which is controlled by
+<tt>PUSHD_SILENT</tt>. This option overrides the printing-related effects of
+<tt>POSIX_CD</tt>.
+</p>
 <a name="index-CHASE_005fDOTS"></a>
 <a name="index-NO_005fCHASE_005fDOTS"></a>
 <a name="index-CHASEDOTS"></a>
@@ -264,7 +280,8 @@ builtin in
 <a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands">Shell Builtin Commands</a>.
 If the option is set, the shell does not test for directories beneath
 the local directory (&lsquo;<tt>.</tt>&rsquo;) until after all directories in <tt>cdpath</tt>
-have been tested.
+have been tested, and the <tt>cd</tt> and <tt>chdir</tt> commands do not recognise
+arguments of the form &lsquo;{<tt>+</tt>|<tt>-</tt>}<var>n</var>&rsquo; as directory stack entries.
 </p>
 <p>Also, if the option is set, the conditions under which the shell
 prints the new directory after changing to it are modified.  It is
@@ -316,7 +333,7 @@ when used with a number to specify a directory in the stack.
 
 
 <hr>
-<a name="Completion-2"></a>
+<a name="Completion-4"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Changing-Directories" title="Previous section in reading order"> &lt; </a>]</td>
@@ -581,7 +598,7 @@ string with something else added) that also matches.
 <a name="Expansion-and-Globbing"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Options" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Completion-2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Completion-4" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Description-of-Options" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#History" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -2790,7 +2807,8 @@ This also affects the value of the <tt>-</tt> special parameter.
 <dt><tt>SH_WORD_SPLIT</tt> (<tt>-y</tt>) &lt;K&gt; &lt;S&gt;</dt>
 <dd><p>Causes field splitting to be performed on unquoted parameter expansions.
 Note that this option has nothing to do with word splitting.
-(See <a href="Expansion.html#Parameter-Expansion">Parameter Expansion</a>.)
+(See 
+<a href="Expansion.html#Parameter-Expansion">Parameter Expansion</a>.)
 </p>
 <a name="index-TRAPS_005fASYNC"></a>
 <a name="index-NO_005fTRAPS_005fASYNC"></a>
@@ -3513,10 +3531,10 @@ options to the shell.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated on <i>April 26, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+  This document was generated on <i>February 15, 2020</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
  </font>
  <br>
-<font size="-1">Zsh version 5.7.1, released on February 3, 2019.</font>
+<font size="-1">Zsh version 5.8, released on February 14, 2020.</font>
 </p>
 </body>
 </html>

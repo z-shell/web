@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created on April 26, 2019 by texi2html 5.0
+<!-- Created on February 15, 2020 by texi2html 5.0
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -54,7 +54,7 @@ ul.no-bullet {list-style: none}
 <tr><td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="Shell-Builtin-Commands.html#Shell-Builtin-Commands" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-5" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-9" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-Widgets.html#Completion-Widgets" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -73,7 +73,7 @@ ul.no-bullet {list-style: none}
 <a name="index-ZLE-1"></a>
 
 <hr>
-<a name="Description-5"></a>
+<a name="Description-9"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Line-Editor" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zsh-Line-Editor" title="Previous section in reading order"> &lt; </a>]</td>
@@ -152,7 +152,7 @@ by the <tt>digit-argument</tt> widget. See also
 <a name="Keymaps"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Zsh-Line-Editor" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Description-5" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Description-9" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Zsh-Line-Editor" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Reading-Commands" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="Completion-Widgets.html#Completion-Widgets" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -983,7 +983,7 @@ it should call the <tt>beep</tt> widget directly.
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="Widgets"></a>
+<a name="Widgets-1"></a>
 <h2 class="section">18.4 Widgets</h2>
 <a name="index-widgets"></a>
 <p>All actions in the editor are performed by &lsquo;widgets&rsquo;.  A widget&rsquo;s job is
@@ -2697,7 +2697,7 @@ zle universal-argument
 <td valign="middle" align="left">[<a href="zsh_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 
-<a name="Completion-4"></a>
+<a name="Completion-2"></a>
 <h3 class="subsection">18.6.5 Completion</h3>
 <dl compact="compact">
 <dd><a name="index-accept_002dand_002dmenu_002dcomplete"></a>
@@ -3095,10 +3095,13 @@ directory, or changes to the value of variables referred to by the
 prompt).
 </p>
 <p>Otherwise, the prompt is only expanded each time zle starts, and
-when the display as been interrupted by output from another part of the
+when the display has been interrupted by output from another part of the
 shell (such as a job notification) which causes the command line to be
 reprinted.
 </p>
+<p><tt>reset-prompt</tt> doesn&rsquo;t alter the special parameter <tt>LASTWIDGET</tt>.
+</p>
+
 <a name="index-send_002dbreak"></a>
 </dd>
 <dt><tt>send-break</tt> (<tt>^G ESC-^G</tt>) (unbound) (unbound)</dt>
@@ -3484,10 +3487,10 @@ limited to 256 (i.e. the range 0 to 255).
 </p>
 <p>Some modern terminal emulators have support for 24-bit true colour (16
 million colours). In this case, the hex triplet format can be used. This
-consists of either a three or six digit hexadecimal number describing
-the red, green and blue components of the colour. Hex triplets can also
-be used with 88 and 256 colour terminals via the <tt>zsh/nearcolor</tt>
-module (see <a href="Zsh-Modules.html#The-zsh_002fnearcolor-Module">The zsh/nearcolor Module</a>).
+consists of a &lsquo;<tt>#</tt>&rsquo; followed by either a three or six digit hexadecimal
+number describing the red, green and blue components of the colour. Hex
+triplets can also be used with 88 and 256 colour terminals via the
+<tt>zsh/nearcolor</tt> module (see <a href="Zsh-Modules.html#The-zsh_002fnearcolor-Module">The zsh/nearcolor Module</a>).
 </p>
 <p>Colour is also known as color.
 </p>
@@ -3598,10 +3601,10 @@ special array parameter <tt>region_highlight</tt>; see
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated on <i>April 26, 2019</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+  This document was generated on <i>February 15, 2020</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
  </font>
  <br>
-<font size="-1">Zsh version 5.7.1, released on February 3, 2019.</font>
+<font size="-1">Zsh version 5.8, released on February 14, 2020.</font>
 </p>
 </body>
 </html>
