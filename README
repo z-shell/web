@@ -15,6 +15,7 @@ $SF_USER is your Sourceforge user name, you need SSH access for this to work.
 
 To upload the committed changes use:
 
+    git status -uall --ignored
     rsync -avi --no-perms --delete --exclude .git . $SF_USER,zsh@web.sourceforge.net:htdocs/
 
 `--no-perms` is important if you have a strict umask or the pages are not
