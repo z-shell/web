@@ -11,7 +11,7 @@ You can fetch the current version of the published website with:
 
     rsync -avi $SF_USER,zsh@web.sourceforge.net:htdocs/ .
 
-$SF_USER is your Sourceforge user name, you need SSH access for this to work.
+$SF_USER is your Sourceforge user name. You need SSH access for this to work.
 
 To upload the committed changes use:
 
