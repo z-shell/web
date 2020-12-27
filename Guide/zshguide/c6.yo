@@ -909,7 +909,7 @@ The most powerful way of using tt(zstyle) is with the option tt(-e).  This
 says that the words you supply are to be evaluated as if as arguments to
 tt(eval).  This should set the array tt($reply) to the words to be used.
 So
-verb(  zstyle '*' days 'Monday Tuesday')
+verb(  zstyle '*' days Monday Tuesday)
 and
 verb(  zstyle -e '*' days 'reply=(Monday Tuesday)')
 are equivalent --- but the intention, of course, is that in the second case
