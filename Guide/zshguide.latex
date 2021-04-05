@@ -13710,7 +13710,7 @@ The most powerful way of using \texttt{zstyle} is with the option \texttt{-e}.  
 says that the words you supply are to be evaluated as if as arguments to
 \texttt{eval}.  This should set the array \texttt{\$reply} to the words to be used.
 So
-\begin{verbatim}  zstyle '*' days 'Monday Tuesday'\end{verbatim}
+\begin{verbatim}  zstyle '*' days Monday Tuesday\end{verbatim}
 and
 \begin{verbatim}  zstyle -e '*' days 'reply=(Monday Tuesday)'\end{verbatim}
 are equivalent --- but the intention, of course, is that in the second case
