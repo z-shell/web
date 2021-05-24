@@ -110,17 +110,17 @@ Chapter 1: Introducing zsh and how to install it
 
 
 Information on zsh is available via the World Wide Web.  The URL
-  is http://zsh.sourceforge.net/ .
+  is https://zsh.sourceforge.io/ .
   The server provides this FAQ and much else and is
   now maintained by the zsh workers (email zsh-workers@zsh.org <zsh-workers@zsh.org>).
-  The FAQ is at http://zsh.sourceforge.net/FAQ/ .
+  The FAQ is at https://zsh.sourceforge.io/FAQ/ .
   The site also contains some contributed zsh scripts and functions;
   we are delighted to add more, or simply links to your own collection.
 
 This document was originally written in YODL, allowing it to be converted
   easily into various other formats.  The master source file lives at
-  http://zsh.sourceforge.net/FAQ/zshfaq.yo and the plain text version
-  can be found at http://zsh.sourceforge.net/FAQ/zshfaq.txt .
+  https://zsh.sourceforge.io/FAQ/zshfaq.yo and the plain text version
+  can be found at https://zsh.sourceforge.io/FAQ/zshfaq.txt .
 
 Another useful source of information is the collection of FAQ articles
   posted frequently to the Usenet news groups comp.unix.questions,
@@ -145,7 +145,7 @@ The latest version of this FAQ is also available directly from any
 I have put together a user guide to complement the manual by
   explaining the most useful features of zsh in a more easy to read way.
   This can be found at the zsh web site:
-    http://zsh.sourceforge.net/Guide/
+    https://zsh.sourceforge.io/Guide/
 
 (As a method of reading the following in Emacs, you can type \M-2
   \C-x $ to make all the indented text vanish, then \M-0 \C-x $
@@ -304,7 +304,7 @@ Starting from mid-October 1997, there is an archive of patches sent
   1.1) at:
 
 
-            http://zsh.sourceforge.net/Patches/
+            https://zsh.sourceforge.io/Patches/
   
 
 
@@ -2547,4 +2547,4 @@ notice appears in all copies of this documentation.  Remember,
 however, that this document changes monthly and it may be more useful
 to provide a pointer to it rather than the entire text.  A suitable
 pointer is "information on the Z-shell can be obtained on the World
-Wide Web at URL http://zsh.sourceforge.net/".
+Wide Web at URL https://zsh.sourceforge.io/".
