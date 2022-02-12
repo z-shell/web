@@ -27,6 +27,45 @@
 </table>
 <hr size=1 noshade>
 
+<h2>Changes between 5.8 and 5.8.1</h2>
+
+<h3>Incompatibilities</h3>
+
+<ul>
+<li>
+PROMPT_SUBST expansion is no longer performed on arguments to
+prompt-expansion sequences such as %F.
+</li>
+</ul>
+
+<h3>Changes</h3>
+
+<ul>
+<li>
+<p>
+CVE-2021-45444: Some prompt expansion sequences, such as %F, support
+'arguments' which are themselves expanded in case they contain colour
+values, etc. This additional expansion would trigger PROMPT_SUBST
+evaluation, if enabled. This could be abused to execute code the user
+didn't expect. e.g., given a certain prompt configuration, an attacker
+could trick a user into executing arbitrary code by having them check
+out a Git branch with a specially crafted name.
+</p>
+
+<p>
+This is fixed in the shell itself by no longer performing PROMPT_SUBST
+evaluation on these prompt-expansion arguments.
+</p>
+
+<p>
+Users who are concerned about an exploit but unable to update their
+binaries may apply the partial work-around described in the file
+Etc/CVE-2021-45444-VCS_Info-workaround.patch included with the shell
+source. [ Reported by RyotaK. Additional thanks to Marc Cornellà. ]
+</p>
+</li>
+</ul>
+
 <h2>Changes between 5.7 and 5.8</h2>
 
 <h3>Incompatibilities</h3>
