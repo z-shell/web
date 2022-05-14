@@ -42,6 +42,13 @@ t=$(mktemp -d)
 for x in $(grep -o 'https://sourceforge.net[^"]*' Arc/source.html | grep -F $1); do
     (cd $t && wget --content-disposition $x)
 done
+# wget doesn't seem to use the Content-Disposition name consistently, which
+# (sometimes?) results in the addition of ?viasf=1 to the end of the file name.
+# There's surely a better way to deal with this, but for now let's just manually
+# strip any trailing ?*s from the downloaded file names
+for x in $t/*\?*(#qN); do
+    mv $x ${x%\?*}
+done
 for x in $t/*.asc; do
     gpg --verify-files $x
 done
