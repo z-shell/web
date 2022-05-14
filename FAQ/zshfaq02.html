@@ -313,7 +313,8 @@ Here is Bart Schaefer's guide to converting csh aliases for zsh.
 <ol>
   <li> If the csh alias references "parameters" (<code>\!:1</code>, <code>\!*</code> etc.),
      then in zsh you need a function (referencing <code>$1</code>, <code>$*</code> etc.).
-     Otherwise, you can use a zsh alias.
+     In recent versions of zsh this can be done by defining an anonymous
+     function within the alias.  Otherwise, a simple zsh alias suffices.
 <p>
 <li> If you use a zsh function, you need to refer _at_least_ to
      <code>$*</code> in the body (inside the <code>{ }</code>).  Parameters don't magically
@@ -360,7 +361,7 @@ Those first four are all you really need, but here are four more for
      parameters. (E.g., in a csh alias, a reference to <code>\!:5</code> will
      cause an error if 4 or fewer arguments are given; in a zsh
      function, <code>$5</code> is the empty string if there are 4 or fewer
-     parameters.)
+     parameters.  Force an error in this example by using <code>${5?}</code>.)
 <p>
 <li> To begin a zsh alias with a - (dash, hyphen) character, use
      <code>alias --</code>:
@@ -387,9 +388,8 @@ There is one other serious problem with aliases: consider
 
   <code>l</code> in the function definition is in command position and is expanded
   as an alias, defining <code>/bin/ls</code> and <code>-F</code> as functions which call
-  <code>/bin/ls</code>, which gets a bit recursive.  This can be avoided if you use
-  <code>function</code> to define a function, which doesn't expand aliases.  It is
-  possible to argue for extra warnings somewhere in this mess.
+  <code>/bin/ls</code>, which gets a bit recursive.  Recent versions of zsh treat
+  this as an error, but older versions silently create the functions.
 <p>
 One workaround for this is to use the "function" keyword instead:
   <pre>
@@ -400,7 +400,7 @@ One workaround for this is to use the "function" keyword instead:
 </pre>
 
   The <code>l</code> after <code>function</code> is not expanded.  Note you don't need
-  the <code>LPAR()RPAR()</code> in this case, although it's harmless.
+  the <code>()</code> in this case, although it's harmless.
 <p>
 You need to be careful if you are defining a function with multiple
   names; most people don't need to do this, so it's an unusual problem,
@@ -416,7 +416,7 @@ You need to be careful if you are defining a function with multiple
   This oddity was fixed in version 5.1.
 <p>
 The rest of this item assumes you use the (more common,
-  but equivalent) <code>LPAR()RPAR()</code> definitions.
+  but equivalent) <code>()</code> definitions.
 <p>
 Bart Schaefer's rule is:  Define first those aliases you expect to
   use in the body of a function, but define the function first if the
@@ -493,12 +493,13 @@ If you're missing the editor function <code>run-fg-editor</code>, try something
 <p>
 <a name="l14"></a>
 <h2>2.5: Similarities with bash</h2>
+<a name="25"></a>
 <p>
 The Bourne-Again Shell, bash, is another enhanced Bourne-like shell;
   the most obvious difference from zsh is that it does not attempt to
   emulate the Korn shell.  Since both shells are under active
   development it is probably not sensible to be too specific here.
-  Broadly, bash has paid more attention to standards compliancy
+  Broadly, bash has paid more attention to standards compliance
   (i.e. POSIX) for longer, and has so far avoided the more abstruse
   interactive features (programmable completion, etc.) that zsh has.
 <p>
@@ -560,6 +561,67 @@ However, the 4.3 branch has much better support, and furthermore this
   is now fairly stable.  (Only a few minor areas need fixing before
   this becomes a production release.)  This is discussed more
   fully below, see `Multibyte input and output'.
+<p>
+<a name="l17"></a>
+<h2>2.8: Why does my bash script report an error when I run it under zsh?</h2>
+<a name="28"></a>
+<p>
+<em>tl;dr:</em> bash is not the reference implementation of zsh, and zsh is not
+  a bug-for-bug compatible reimplementation of bash.
+<p>
+bash and zsh are different programming languages.  They are not
+  interchangeable; programs written for either of these languages will,
+  in general, not run under the other.  (The situation is similar with
+  many other pairs of closely-related languages, such as Python 2 and
+  Python 3; C and C++; and even C89 and C11.)
+<p>
+When bash and zsh behave differently on the same input, whether zsh's
+  behaviour is a bug does not depend on what bash does on the same
+  input; rather, it depends on what zsh's user manual specifies.
+  (By way of comparison, it's not a bug in Emacs that <code>:q!</code> doesn't
+  cause it to exit.)
+<p>
+That being said, the bash and zsh languages do have a common subset, and it is
+  feasible to write non-trivial pieces of code that would run under either of
+  them, if one is sufficiently familiar with both of them.  However,
+  a difference between bash's behaviour and zsh's does not imply that
+  zsh has a bug.  The difference might be a bug in zsh, a bug in bash, or
+  a bug in neither shell
+  (see <a href="zshfaq03.html#31">3.1</a> for an example).
+<p>
+The recommended way to deal with these differences depends on what kind
+  of piece of code is in question: a <em>script</em> or a <em>plugin</em>.
+<p>
+For <em>scripts</em> --- external commands that
+  are located in <code>$PATH</code>, or located elsewhere and are executed by
+  giving their path explicitly (as in <code>ls</code>, <code>/etc/rc.d/sshd</code>,
+  and <code>./configure</code>) --- the answer is simple:
+<p>
+Don't run bash scripts under zsh.  If the scripts were written for
+  bash, run them in bash.  There's absolutely no problem with having
+  <code>#!/usr/bin/env bash</code> scripts even if <code>zsh</code> is your shell for
+  interactive sessions.
+<p>
+In fact, if you've recently changed to zsh, we <em>recommend</em> that
+  you keep your scripts as <code>#!/usr/bin/env bash</code>, at least for
+  a while: this would make the change more gradual and flatten your
+  learning curve.  Once you're used to zsh, you can decide for each
+  script whether to port it to zsh or keep it as-is.
+<p>
+For <em>plugins</em> --- pieces of code
+  executed within the shell itself, loaded via the <code>.</code>,
+  <code>source</code>, or <code>autoload</code> builtins, added to <code>.zshrc</code>, or
+  pasted interactively at the shell prompt --- one may consider it
+  worthwhile to invest the effort to make them runnable under either shell.
+  However, as mentioned above, doing so requires one to be familiar with both
+  shells, and either steer clear of their differences or handle them explicitly
+  with conditional code (such as <code>if test -n "$ZSH_VERSION"</code>).
+<p>
+In summary,
+  if you'd like to run a bash script or plugin under zsh, you must port the script or plugin
+  properly, reviewing it line by line for differences between the two
+  languages and adjusting it accordingly, just like you would
+  when translating a book from American English to British English.
 <p>
 <hr>
 <ul>
