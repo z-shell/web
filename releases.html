@@ -29,6 +29,294 @@
 </table>
 <hr size=1 noshade>
 
+<h2>Changes between 5.8.1 and 5.9</h2>
+
+<h3>Incompatibilities</h3>
+
+<ul>
+<li>
+compinit: A "y" response to the "Ignore ... and continue?" prompt removes
+insecure elements from the set of completion functions, where previously
+it ignored the compaudit result and included all elements.
+</li>
+
+<li>
+Build-time change: The default value of the --enable-gdbm configure
+argument has changed from "yes" to "no".  Thus, the zsh/db/gdbm module will
+not be built unless --enable-gdbm is passed explicitly.
+</li>
+
+<li>
+vcs_info quilt: The value of the 'quiltcommand' style used to be taken for the
+name of an external command.  Now it may also be a shell function.  Normal
+command word precedence rules apply, so if you have a function and a command
+with the same name, the function will be used.
+</li>
+
+<li>
+The "function" reserved word, used to define functions, gained a new -T option.
+That affects syntaxes such as:
+
+<p>
+1. "function -T { ... }".  It used to define a function named "-T".  It
+now defines and executes an anonymous function with single-level tracing
+enabled --- same as "function f { ... }; functions -T f; f", but without
+naming the function.
+</p>
+
+<p>
+2. "function -T foo { ... }".  It used to define two functions, named "-T"
+and "foo" (see the MULTI_FUNC_DEF option).  It now defines a function
+"foo" with tracing enabled.
+</p>
+
+<p>
+3. "function -- { ... }".  It used to define a function named "--".  It
+now defines and executes an anonymous function.  The "--" is taken to be
+an end-of-options guard (same as "ls --").
+</p>
+
+The sh-compatible function definition syntax, "f() { ... }", is unchanged.
+</li>
+
+<li>
+The time-out (-t) value given to zsh/system's `zsystem flock` command is
+now limited to 2^30-1 seconds (= a little over 34 years).
+</li>
+
+<li>
+zstyle: For background, recall that the zstyle builtin associates styles with
+values for particular contexts, and when a context (such as ':foo:bar:baz') is
+matched by multiple patterns (such as ':foo:*' and ':foo:bar:*'), the style's
+value for the more specific of the patterns is used.  In zsh 5.8 and earlier
+the determination of which pattern is "more specific" used semantics slightly
+different to those the documentation promised.  The implementation was changed
+to match the documentation.  The upshot of this is that if you set a single
+style in multiple contexts, zsh 5.9 may use the values set for a pattern other
+than the one zsh 5.8 used.  For example, if you do
+
+<pre>
+zstyle ':foo:bar:*'   style value1
+zstyle ':foo:*:baz:*' style value2
+</pre>
+
+and the style is looked up under a context that both patterns match (e.g.,
+:foo:bar:baz:qux), zsh 5.9 will use value2 -- which is consistent with the
+documentation of both 5.8 and 5.9 -- but zsh 5.8 will use value1.  If this
+affects you, make the implied colons in the first pattern explicit, as in:
+
+<pre>
+zstyle ':foo:bar:*:*' style value1
+zstyle ':foo:*:baz:*' style value2
+</pre>
+
+This will use value1 in both 5.8 and 5.9.
+</li>
+
+<li>
+Elements of the region_highlight array have gained a fourth space-separated
+field.  Code written against 5.9 that sets the new field may break under 5.8:
+for example, the element "0 20 bold memo=foo", which is valid under 5.9, would
+not work under 5.8.  (Under the hood, 5.8 does not recognize the space as
+terminating the highlighting specification.)  On the other hand, code that does
+not set the new, fourth field will continue to work under both 5.8 and 5.9.
+(As it happens, adding a comma after "bold" will make both 5.8 and 5.9 do the
+right thing, but this should be viewed as an unsupported hack.)
+</li>
+
+<li>
+The XTRACE option is now disabled while running user-defined completion
+widgets.  See Changes.
+</li>
+
+<li>
+emulate sh: When zsh emulates sh, the final command in a pipeline is now run in
+a subshell.  This differs from the behavior in the native (zsh) mode, but is
+consistent with most other sh implementations.
+</li>
+
+<li>
+The export and readonly builtins now ignore the -p option when there are
+operands given and POSIX_BUILTINS is enabled. This more closely matches the
+behaviour of bash and ksh.
+</li>
+
+<li>
+getopts now calculates OPTIND in a similar manner to other shells when the
+POSIX_BUILTINS option is enabled.
+</li>
+
+<li>
+Ignored-signal traps are now inherited by subshells when the POSIX_TRAPS
+option is enabled.
+</li>
+
+<li>
+emulate sh: Inf and NaN are now treated as parameter names in arithmetic
+context when zsh is emulating sh.
+</li>
+
+<li>
+The ${name:offset:length} expansion syntax now behaves more similarly to
+other shells in that the offset and length are applied as array indices
+prior to scalar conversion in e.g. "${*:0:2}".
+</li>
+</ul>
+
+<h3>Changes</h3>
+
+<ul>
+<li>
+When unsetting a hash element, the string enclosed in square brackets is
+interpreted literally after any normal command-line-argument expansions.
+Thus
+
+<pre>
+unset "hash[$key]"
+</pre>
+
+first expands $key as usual for a double-quoted string, and then interprets
+that result as the exact hash element to unset.  This differs from previous
+versions of the shell, which would also remove a leading backslash for an
+unusual subset of characters in the expansion of $key.  Note this also
+means, for example, that now
+
+<pre>
+unset 'hash[ab]cd]'
+</pre>
+
+unsets the element with key "ab]cd" rather than silently doing nothing.
+</li>
+
+<li>
+The function command learnt a -T option to declare a function and enable
+tracing for it simultaneously.
+</li>
+
+<li>
+The option SHORT_REPEAT was added to enable the short syntax of
+SHORT_LOOPS for the repeat command only. It is disabled by default.
+</li>
+
+<li>
+The _arguments function now supports NUL-delimiting optargs in the
+opt_args array via the -0 option. Developers of completion functions
+should find this easier to handle reliably than the default
+colon-delimiting behaviour.
+</li>
+
+<li>
+The zsh/system module's `zsystem flock` command learnt an -i option to
+set the wait interval used with -t. Additionally, -t now supports
+fractional seconds.
+</li>
+
+<li>
+The option CLOBBER_EMPTY was added to enable the overwrite behaviour
+of CLOBBER for empty files only. It is disabled by default.
+</li>
+
+<li>
+A (-) expansion flag was added. It works like (n) but correctly sorts
+negative numbers.
+</li>
+
+<li>
+The (*) expansion flag enables EXTENDED_GLOB for pattern matching.
+For example, ${(*)sample/(#b)*(pat)*/${match[1]}} uses backreferences
+even if EXTENDED_GLOB is not otherwise set.  However, this does not
+descend into nested expansions, and doubling as (**) does not disable
+EXTENDED_GLOB.
+</li>
+
+<li>
+The compinit function learnt a -w option to explain why compdump runs.
+When run without the -i or -u options and compaudit discovers security
+issues, answering "y" to the "Ignore insecure ..." prompt removes the
+insecure elements (like the -i option) where previously it ignored the
+result (thus formerly like the -u option).  Further, removing those
+elements includes dropping directories from the $fpath array.
+</li>
+
+<li>
+The zsh/datetime module's strftime builtin learnt an -n option to omit
+the trailing newline when printing a formatted time.
+</li>
+
+<li>
+The XTRACE option is now disabled while running user-defined completion
+widgets.  This corresponds to long-standing behavior of other user ZLE
+widgets.  Use the _complete_debug widget to capture XTRACE output, or
+use "functions -T" to enable tracing of specific completion functions.
+</li>
+
+<li>
+The fc builtin learnt an -s option which is a POSIX equivalent to the
+`fc -e-` method of re-executing a command without invoking an editor.
+</li>
+
+<li>
+The option CASE_PATHS was added to control how NO_CASE_GLOB behaves.
+NO_CASE_GLOB + NO_CASE_PATHS is equivalent to the current NO_CASE_GLOB
+behaviour. NO_CASE_GLOB + CASE_PATHS treats only path components that
+contain globbing characters as case-insensitive; this behaviour may
+yield more predictable results on case-sensitive file systems.
+NO_CASE_PATHS is the default.
+</li>
+
+<li>
+With the new TYPESET_TO_UNSET option set, "typeset foo" leaves foo unset,
+in contrast to the default behavior which assigns foo="".  Any parameter
+attributes such as numeric type, sorting, and padding are retained until
+the parameter is explicitly unset or a conflicting value is assigned.
+This is similar to default behavior of bash and ksh.  This option is
+disabled by default.
+</li>
+
+<li>
+The compadd builtin's -D option can now be specified more than once.
+</li>
+
+<li>
+The zsh/zutil module's zformat builtin learnt an -F option which behaves
+like -f except that ternary expressions check for existence instead of
+doing math evaluation.
+</li>
+
+<li>
+The conventional syntax used to indicate units, ranges, and default values
+in completion descriptions (e.g. `timeout (seconds) (0-60) [20]`) is now
+recognised by the completion system itself. These components are parsed
+out of the description and can be individually styled. A _numbers helper
+function has been added to help function authors offer rich completion
+for these values.
+</li>
+
+<li>
+The log builtin, WATCH parameter, et al., have been broken out into a
+separate module, zsh/watch. The module is enabled by default.
+</li>
+
+<li>
+The zsh/watch module's WATCHFMT parameter now supports colours via the
+%F and %K escapes.
+</li>
+
+<li>
+The STTY parameter can now be set to an empty string before running a
+command to automatically restore terminal settings after the command
+finishes.
+</li>
+
+<li>
+The "jobs" command and "$jobstates" and related parameters can report on
+parent shell jobs even in subshells.  This is a snapshot of the parent
+state, frozen at the point the subshell started.  However, if a subshell
+starts its own background jobs, the parent state is discarded in order
+to report on those new jobs.
+</li>
+</ul>
+
 <h2>Changes between 5.8 and 5.8.1</h2>
 
 <h3>Incompatibilities</h3>
@@ -2742,7 +3030,7 @@ completion.
 <div align=right>
 <address>
 <a name=Signature href="disclaimer.html">Disclaimer</A>
-Last modified: 2020-02-15
+Last modified: 2022-05-14
 </address>
 </div>
 
